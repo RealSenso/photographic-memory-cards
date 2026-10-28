@@ -3,231 +3,237 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Optimization Knowledge Plates · Luenberger & Ye</title>
+  <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="cards_data.js"></script>
-  <!-- KaTeX for mathematical equations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
     :root {
-      --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-hand: 'Caveat', cursive;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg: #0b0f1a; --rail: #0f1424; --panel: #0f1527; --panel-2: #121930; --deep: #0c1122;
+      --line: #1d2640; --line-2: #25314f; --line-3: #2a3a5e;
+      --text: #e6ebf5; --text-2: #d3dbec; --muted: #9aa6c0; --muted-2: #b4bfd6;
+      --accent: #5cc8f5; --green: #5fd3a0; --amber: #f2b84b; --red: #f5c2c2;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); }
+    button { font-family: inherit; cursor: pointer; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .mono { font-family: var(--mono); }
+
+    .app { display: flex; min-height: 100vh; }
+
+    /* ---------- left rail ---------- */
+    .rail { flex: 0 0 272px; width: 272px; background: var(--rail); border-right: 1px solid var(--line); padding: 20px 14px; display: flex; flex-direction: column; gap: 22px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 0 8px; }
+    .logo { width: 28px; height: 28px; border-radius: 8px; border: 1.5px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; color: var(--accent); }
+    .brand-name { font-family: var(--serif); font-size: 22px; }
+    .label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; color: #8e9bb8; padding: 0 8px 6px; }
+    .subj { width: 100%; display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 10px; border-radius: 10px; border: 1px solid transparent; background: transparent; color: var(--muted-2); font-size: 14px; text-align: left; }
+    .subj:hover { background: #121930; }
+    .subj.active { background: #151c33; border-color: var(--line-2); color: var(--text); font-weight: 600; }
+    .subj .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .subj .n { margin-left: auto; font-family: var(--mono); font-size: 12px; color: #8e9bb8; }
+    .topic { width: 100%; display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 6px 10px; border-radius: 8px; border: 0; background: transparent; color: var(--muted-2); font-size: 13.5px; text-align: left; }
+    .topic:hover { background: #121930; }
+    .topic.active { background: #151c33; color: var(--text); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+    .topic .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .topic .cnt { font-family: var(--mono); font-size: 11px; color: #8e9bb8; }
+    .ring { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #3a476a; flex-shrink: 0; }
+    .topic.active .ring { border: 2px solid var(--accent); }
+    .progress { margin-top: auto; border: 1px solid var(--line-2); border-radius: 12px; padding: 14px; background: #121930; display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: var(--muted-2); }
+    .bar { height: 6px; border-radius: 3px; background: #1f2a47; overflow: hidden; }
+    .bar > i { display: block; height: 100%; background: var(--accent); }
+
+    /* ---------- main column ---------- */
+    .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 14px 32px; border-bottom: 1px solid var(--line); background: rgba(13,18,32,0.94); backdrop-filter: blur(8px); }
+    .crumb { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #8e9bb8; min-width: 0; flex: 1 1 200px; }
+    .crumb b { color: var(--text); font-weight: 500; }
+    .crumb span.t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .search { position: relative; flex: 1 1 260px; max-width: 440px; }
+    .search input { width: 100%; min-height: 44px; padding: 0 56px 0 40px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text); font-size: 14px; }
+    .search input::placeholder { color: #8e9bb8; }
+    .search svg { position: absolute; left: 14px; top: 14px; }
+    .search kbd { position: absolute; right: 12px; top: 11px; font-family: var(--mono); font-size: 11px; border: 1px solid #2f3c60; border-radius: 6px; padding: 2px 6px; color: var(--muted-2); }
+    .results { position: absolute; top: 50px; left: 0; right: 0; background: #101730; border: 1px solid var(--line-3); border-radius: 12px; padding: 6px; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8); max-height: 60vh; overflow-y: auto; }
+    .results[hidden] { display: none; }
+    .res { width: 100%; text-align: left; border: 0; background: transparent; color: var(--text); padding: 10px 12px; border-radius: 8px; display: flex; flex-direction: column; gap: 3px; min-height: 44px; }
+    .res:hover, .res:focus-visible { background: #17203d; }
+    .res .meta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .res .snip { font-size: 12.5px; color: var(--muted-2); }
+    .res-empty { padding: 14px; font-size: 13px; color: var(--muted); }
+    .modes { display: flex; padding: 4px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); }
+    .modes button { min-height: 36px; padding: 0 16px; border-radius: 9px; border: 0; background: transparent; color: var(--muted-2); font-size: 13.5px; }
+    .modes button[aria-selected="true"] { background: var(--accent); color: #06101c; font-weight: 600; }
+    .btn { min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; }
+    .btn:hover { background: #17203d; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
+    .menu-btn { display: none; width: 44px; padding: 0; justify-content: center; }
+
+    .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 32px 0; }
+    .chipbtn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--muted-2); font-family: var(--mono); font-size: 13px; }
+    .chipbtn.r3 { border-color: #2c6e57; background: #11261f; color: var(--green); }
+    .chipbtn.r2 { border-color: #5a4620; background: #1d1809; color: var(--amber); }
+    .chipbtn.r1 { border-color: #6b3a3a; background: #231316; color: var(--red); }
+    .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: var(--text); }
+    .hint { margin-left: auto; font-size: 13px; color: #8e9bb8; }
+    .hint kbd { font-family: var(--mono); color: var(--muted-2); }
+
+    .stage { flex: 1; padding: 20px 32px 12px; }
+
+    /* ---------- the 16:9 card ---------- */
+    .card { display: flex; flex-wrap: wrap; aspect-ratio: 16 / 9; width: 100%; max-width: 1500px; margin: 0 auto; border: 1px solid var(--line-2); border-radius: 20px; background: var(--panel); overflow: clip; }
+    .card-left { flex: 1 1 520px; min-width: 0; padding: 26px 32px; display: flex; flex-direction: column; gap: 14px; }
+    .card-right { flex: 0 1 38%; min-width: 280px; border-left: 1px solid var(--line-2); background: var(--deep); padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; }
+    .card-head { display: flex; align-items: center; gap: 10px; }
+    .chip { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); }
+    .cat { font-family: var(--mono); font-size: 11px; letter-spacing: 1.3px; color: var(--muted); text-transform: uppercase; }
+    .card-title { margin: 6px 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.1; letter-spacing: -0.2px; }
+    .sec-label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; color: var(--accent); margin-bottom: 6px; }
+    .sec-label.muted { color: var(--muted); margin: 0; }
+    .mech { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; font-size: clamp(13.5px, 1.05vw, 16px); line-height: 1.5; color: var(--text-2); }
+    .mech li { display: flex; gap: 10px; align-items: baseline; }
+    .mech .lead { flex: 0 0 38px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; color: var(--accent); text-transform: uppercase; }
+    .mech strong { color: #fff; }
+    .math-block { border-radius: 12px; border: 1px solid var(--line-3); background: #121c36; padding: 10px 16px; color: #f2f5fb; overflow-x: auto; text-align: center; }
+    .math-block .katex-display { margin: 0.3em 0; }
+    .math-block .katex { font-size: 1.12em; }
+    .duo { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
+    .anchor, .trap { flex: 1 1 220px; border-radius: 12px; padding: 11px 14px; font-size: clamp(13px, 1vw, 15px); line-height: 1.45; }
+    .anchor { border: 1px solid #1f5a47; background: #0d1d19; color: var(--text-2); }
+    .anchor .sec-label { color: var(--green); }
+    .anchor p { margin: 0; font-style: italic; }
+    .trap { border: 1px solid #5a4620; background: #1d1809; color: #f6e6c0; }
+    .trap .sec-label { color: var(--amber); }
+    .trap p { margin: 0; }
+    .plate-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+    .copy-btn { min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 13px; display: inline-flex; align-items: center; gap: 8px; }
+    .copy-btn:hover { background: #17203d; }
+    .copy-btn.bg-emerald-500 { background: #34d399 !important; color: #06101c !important; border-color: #34d399 !important; }
+    figure.plate-fig { margin: 0; flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+    .plate { flex: 1; background: #fff; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: center; min-height: 200px; }
+    .plate-img { max-width: 100%; max-height: 440px; object-fit: contain; cursor: zoom-in; }
+    .plate-svg { width: 100%; }
+    .plate-svg svg { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 13.5px; line-height: 1.45; color: var(--muted-2); }
+    .expand { margin-left: 8px; border: 0; background: none; color: var(--accent); font-size: 12.5px; text-decoration: underline; min-height: 32px; }
+
+    /* ---------- recall ---------- */
+    .recall { display: flex; flex-wrap: wrap; gap: 32px; max-width: 1280px; margin: 0 auto; }
+    .recall > section { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+    .recall h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.12; }
+    .recall .plate { padding: 20px; }
+    .slot { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px; border: 1px dashed #34426a; background: var(--panel); }
+    .slot.trap-slot { border-color: #5a4620; background: #17130a; }
+    .slot .k { font-family: var(--mono); font-size: 12px; color: #8e9bb8; width: 20px; }
+    .slot .ln { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+    .slot .ln i { display: block; height: 9px; border-radius: 5px; background: #1f2a47; }
+    .slot .nm { font-size: 13px; color: var(--muted); }
+    .reveal { min-height: 56px; margin-top: 6px; border-radius: 14px; border: 0; background: var(--accent); color: #06101c; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .reveal kbd { font-family: var(--mono); font-size: 12px; border: 1px solid rgba(6,16,28,0.4); border-radius: 6px; padding: 2px 8px; }
+
+    /* ---------- traps list ---------- */
+    .traps { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .traps h1 { margin: 0 0 6px; font-family: var(--serif); font-weight: 400; font-size: 34px; }
+    .trap-row { text-align: left; width: 100%; display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; border-radius: 14px; border: 1px solid #5a4620; background: #1d1809; color: #f6e6c0; }
+    .trap-row:hover { background: #251e0b; }
+    .trap-row .n { font-family: var(--mono); font-size: 12px; color: var(--amber); padding-top: 3px; }
+    .trap-row .tt { font-family: var(--serif); font-size: 21px; color: #fff; margin-bottom: 4px; }
+    .trap-row .tx { font-size: 14.5px; line-height: 1.5; }
+
+    .empty { max-width: 560px; margin: 80px auto; text-align: center; color: var(--muted-2); line-height: 1.6; }
+    .empty h2 { font-family: var(--serif); font-weight: 400; font-size: 32px; color: var(--text); margin: 0 0 8px; }
+
+    /* ---------- action bar ---------- */
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px 32px 24px; }
+    .actions .sp { flex: 1 1 0; min-width: 8px; }
+    .actions .q { font-size: 13px; color: #8e9bb8; }
+    .rate { min-height: 48px; padding: 0 20px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text); font-size: 14.5px; }
+    .rate kbd { font-family: var(--mono); font-size: 11px; opacity: .8; margin-left: 6px; }
+    .rate.again { border-color: #6b3a3a; background: #231316; color: var(--red); }
+    .rate.good { border-color: #2c6e57; background: #11261f; color: #a9ecd0; }
+    .rate:disabled { opacity: .4; cursor: not-allowed; }
+    .nav { min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 14.5px; }
+    .nav.next { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
+
+    .scrim { display: none; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 900px) {
+      .menu-btn { display: inline-flex; }
+      .rail { position: fixed; z-index: 60; left: 0; top: 0; transform: translateX(-100%); transition: transform .2s ease; }
+      .rail.open { transform: none; }
+      .scrim.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50; }
+      .topbar, .strip, .stage, .actions { padding-left: 16px; padding-right: 16px; }
+      .card { aspect-ratio: auto; }
+      .card-right { flex-basis: 100%; border-left: 0; border-top: 1px solid var(--line-2); }
+      .hint { display: none; }
+      .search kbd { display: none; }
     }
 
-    body {
-      font-family: var(--font-sans);
-      background: radial-gradient(circle at 50% 10%, #141a32 0%, #080c18 45%, #030409 100%);
-      color: #e2e8f0;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    .font-hand { font-family: var(--font-hand); }
-    .font-serif-title { font-family: var(--font-serif); }
-    .font-mono { font-family: var(--font-mono); }
-
-    /* Strict 16:9 Landscape Card with Blank Background */
-    .aspect-16-9 {
-      aspect-ratio: 16 / 9;
-      width: 100%;
-    }
-
-    /* Blank Cosmic Card (No notebook lines, no paper texture) */
-    .cosmic-card {
-      background-color: #0c101d;
-      border: 1px solid rgba(56, 189, 248, 0.22);
-      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.06);
-      border-radius: 20px;
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
-    }
-
-    .cosmic-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(56, 189, 248, 0.6);
-      box-shadow: 0 28px 60px -14px rgba(0, 0, 0, 0.95), 0 0 45px rgba(56, 189, 248, 0.22);
-    }
-
-    /* Cosmic Highlighters */
-    .highlight-cyan {
-      background: rgba(14, 165, 233, 0.2);
-      border: 1px solid rgba(56, 189, 248, 0.5);
-      color: #e0f2fe;
-    }
-
-    .highlight-amber {
-      background: rgba(245, 158, 11, 0.2);
-      border: 1px solid rgba(251, 191, 36, 0.5);
-      color: #fef3c7;
-    }
-
-    .highlight-emerald {
-      background: rgba(16, 185, 129, 0.2);
-      border: 1px solid rgba(52, 211, 153, 0.5);
-      color: #d1fae5;
-    }
-
-    .highlight-purple {
-      background: rgba(168, 85, 247, 0.2);
-      border: 1px solid rgba(192, 132, 252, 0.5);
-      color: #f3e8ff;
-    }
-
-    /* Discreet Custom Cosmic Scrollbar */
-    .cosmic-scroll::-webkit-scrollbar {
-      width: 5px;
-    }
-    .cosmic-scroll::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 4px;
-    }
-    .cosmic-scroll::-webkit-scrollbar-thumb {
-      background: rgba(56, 189, 248, 0.3);
-      border-radius: 4px;
-    }
-    .cosmic-scroll::-webkit-scrollbar-thumb:hover {
-      background: rgba(56, 189, 248, 0.6);
-    }
-
-    /* KaTeX equation enlargement inside cards */
-    .math-block .katex-display {
-      margin: 0.4em 0 !important;
-    }
-    .math-block .katex {
-      font-size: 1.3em !important;
-    }
-
-    /* Print styles */
+    /* ---------- print: whole topic, one card per page ---------- */
     @media print {
-      body { background: white !important; color: black !important; }
-      header, footer, #controls-bar, #cosmos-canvas { display: none !important; }
-      .cosmic-card { break-inside: avoid; box-shadow: none !important; border: 1px solid #ccc !important; background: white !important; }
+      html, body { background: #fff !important; color: #000 !important; }
+      .rail, .topbar, .strip, .actions, .scrim, #toast { display: none !important; }
+      .stage { padding: 0 !important; }
+      .card { break-inside: avoid; page-break-after: always; aspect-ratio: auto; margin: 0 0 12px; background: #fff; border: 1px solid #999; color: #000; }
+      .card-left, .card-right { background: #fff !important; }
+      .card * { color: #000 !important; background-color: transparent !important; border-color: #999 !important; }
+      .plate { background: #fff !important; border: 1px solid #ccc; }
     }
   </style>
 </head>
-<body class="selection:bg-cyan-500 selection:text-black relative">
+<body class="selection:bg-cyan-500 selection:text-black">
+<div class="scrim" id="scrim" onclick="toggleRail(false)"></div>
 
-  <!-- ================= ANIMATED COSMOS CANVAS (GLOWING DOTS & STARS) ================= -->
-  <canvas id="cosmos-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+<div class="app">
+  <aside class="rail" id="rail" aria-label="Subjects and topics">
+    <div class="brand"><div class="logo" aria-hidden="true">P</div><div class="brand-name">Plates</div></div>
+    <div>
+      <div class="label">SUBJECTS</div>
+      <div id="subject-list"></div>
+    </div>
+    <div>
+      <div class="label" id="topics-label">TOPICS</div>
+      <div id="topic-list"></div>
+    </div>
+    <div class="progress" id="progress-card"></div>
+  </aside>
 
-  <!-- Ambient Nebula Lighting -->
-  <div class="fixed top-10 left-1/4 w-[40rem] h-[40rem] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
-  <div class="fixed bottom-20 right-1/4 w-[45rem] h-[45rem] bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none z-0"></div>
-
-  <!-- Content Wrapper -->
-  <div class="relative z-10 min-h-screen flex flex-col justify-between">
-
-    <!-- ================= TOP COSMIC NAVIGATION TOOLBAR ================= -->
-    <header class="w-full bg-[#080c18]/90 backdrop-blur-md border-b border-cyan-500/20 px-4 sm:px-8 py-3.5 sticky top-0 z-40 shadow-xl">
-      <div class="max-w-[1920px] mx-auto flex flex-wrap items-center justify-between gap-4">
-        
-        <!-- Subject & Topic Selector Bar -->
-        <div class="flex flex-wrap items-center gap-2.5 flex-1 max-w-4xl">
-          <!-- Multi-Subject Tabs -->
-          <div class="flex items-center gap-1 bg-[#0d1326] border border-cyan-500/30 p-1 rounded-xl text-xs font-mono font-bold shadow-inner shrink-0">
-            <button onclick="switchSubject('CMO')" id="sub-btn-CMO" class="px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition flex items-center gap-1 cursor-pointer">
-              <span>🔵</span> CMO
-            </button>
-            <button onclick="switchSubject('LAA')" id="sub-btn-LAA" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer">
-              <span>🟣</span> LAA
-            </button>
-            <button onclick="switchSubject('StoMA')" id="sub-btn-StoMA" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer">
-              <span>🟡</span> StoMA
-            </button>
-            <button onclick="switchSubject('DIP')" id="sub-btn-DIP" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer">
-              <span>🟢</span> DIP
-            </button>
-          </div>
-
-          <!-- Topic Dropdown -->
-          <div class="flex items-center gap-1.5 bg-[#0d1326] border border-cyan-500/30 px-3 py-1.5 rounded-xl text-xs text-slate-200 flex-1 min-w-[280px]">
-            <span class="text-[10px] text-cyan-400 font-mono font-bold shrink-0">TOPIC:</span>
-            <select id="topic-select" onchange="switchTopic(this.value)" class="w-full bg-[#080c18] border border-cyan-500/40 rounded-lg py-1 px-2 text-xs text-white focus:outline-none focus:border-cyan-400 cursor-pointer">
-              <!-- Dynamically populated -->
-            </select>
-          </div>
-
-          <!-- Search Input -->
-          <div class="relative flex-1 min-w-[180px]">
-            <input type="text" id="search-input" oninput="filterCards()" placeholder="Search formulas, traps..." class="w-full bg-[#0d1326] border border-slate-700/80 rounded-xl py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition">
-            <span class="absolute left-2.5 top-2 text-xs text-cyan-400 opacity-75">🔍</span>
-          </div>
-        </div>
-
-        <!-- Action Tools & Grid Controllers -->
-        <div class="flex flex-wrap items-center gap-2.5">
-          <!-- Layout Selector -->
-          <div class="flex items-center gap-1 bg-[#0d1326] border border-cyan-500/20 p-1 rounded-xl text-xs text-slate-300 shadow-inner">
-            <span class="px-2 text-[10px] text-slate-400 font-mono">LAYOUT:</span>
-            <button onclick="setGridCols(1)" id="col-btn-1" class="px-3 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition">1 Wide (Expansive)</button>
-            <button onclick="setGridCols(2)" id="col-btn-2" class="px-3 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">2 Cols</button>
-            <button onclick="setGridCols(3)" id="col-btn-3" class="px-3 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">3 Cols</button>
-          </div>
-
-          <!-- Card Scale Selector -->
-          <div class="flex items-center gap-1 bg-[#0d1326] border border-cyan-500/20 p-1 rounded-xl text-xs text-slate-300 shadow-inner">
-            <span class="px-2 text-[10px] text-slate-400 font-mono">SIZE:</span>
-            <button onclick="setCardScale('default')" id="scale-btn-default" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">Standard</button>
-            <button onclick="setCardScale('large')" id="scale-btn-large" class="px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition">Large (125%)</button>
-            <button onclick="setCardScale('max')" id="scale-btn-max" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">Cinema Max</button>
-          </div>
-
-          <!-- Print / Export -->
-          <button onclick="window.print()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#0d1326] text-slate-200 hover:bg-slate-800 transition border border-cyan-500/20 flex items-center gap-1.5">
-            <span>🖨️</span> <span class="hidden sm:inline">Print</span>
-          </button>
-
-          <!-- Add Card Button -->
-          <button onclick="openAddModal()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 transition shadow-lg shadow-cyan-400/20 flex items-center gap-1">
-            <span>+</span> Add Card
-          </button>
-        </div>
-
+  <div class="main">
+    <header class="topbar">
+      <button class="btn menu-btn" onclick="toggleRail(true)" aria-label="Open navigation">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h12M3 9h12M3 13h12"/></svg>
+      </button>
+      <div class="crumb" id="crumb"></div>
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#8e9bb8" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search formulas, traps, topics" aria-label="Search all cards" oninput="runSearch()" onfocus="runSearch()">
+        <kbd>⌘K</kbd>
+        <div class="results" id="search-results" hidden></div>
       </div>
+      <div class="modes" role="tablist" aria-label="Study mode">
+        <button role="tab" id="mode-study" aria-selected="true" onclick="setMode('study')">Study</button>
+        <button role="tab" id="mode-recall" aria-selected="false" onclick="setMode('recall')">Recall</button>
+        <button role="tab" id="mode-traps" aria-selected="false" onclick="setMode('traps')">Traps</button>
+      </div>
+      <button class="btn" onclick="printDeck()" aria-label="Print this topic">Print</button>
+      <button class="btn primary" onclick="openAddModal()">+ Add card</button>
     </header>
 
-    <!-- ================= MAIN EXPANSIVE DESK ================= -->
-    <main class="w-full max-w-[1920px] mx-auto flex-1 px-4 sm:px-8 py-6">
-      
-      <!-- Topic Header Banner with Interactive Sequence Navigator -->
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-3 border-b border-cyan-500/15">
-        <div class="flex items-center gap-3">
-          <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-widest flex items-center gap-1.5 shrink-0">
-            <span>🪐</span> ORBITAL DECK
-          </span>
-          <h2 id="topic-title-banner" class="text-xl sm:text-2xl font-bold text-white tracking-tight">
-            01 · Mathematical Preliminaries & Weierstrass
-          </h2>
-        </div>
-
-        <!-- Sequential Topic Stepper Controls -->
-        <div class="flex items-center gap-2">
-          <button onclick="navigateTopic(-1)" class="px-3 py-1.5 rounded-xl bg-[#0d1326] hover:bg-slate-800 text-xs font-mono text-cyan-300 border border-cyan-500/30 transition flex items-center gap-1.5 cursor-pointer shadow hover:shadow-cyan-500/20 active:scale-95">
-            <span>←</span> Prev Topic
-          </button>
-          <span id="topic-card-counter" class="px-3 py-1.5 rounded-xl bg-cyan-950/80 text-cyan-300 text-xs font-mono font-bold border border-cyan-800/80">
-            6 Cards Active
-          </span>
-          <button onclick="navigateTopic(1)" class="px-3 py-1.5 rounded-xl bg-[#0d1326] hover:bg-slate-800 text-xs font-mono text-cyan-300 border border-cyan-500/30 transition flex items-center gap-1.5 cursor-pointer shadow hover:shadow-cyan-500/20 active:scale-95">
-            Next Topic <span>→</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Uniform 16:9 Landscape Card Grid -->
-      <div id="desk-grid" class="grid grid-cols-1 max-w-[1600px] mx-auto gap-10 items-start">
-        <!-- Rendered dynamically -->
-      </div>
-
-    </main>
+    <div class="strip" id="card-strip"></div>
+    <main class="stage" id="stage"></main>
+    <footer class="actions" id="actions"></footer>
+  </div>
+</div>
 
     <!-- ================= LIGHTBOX IMAGE MODAL ================= -->
     <div id="lightbox-modal" class="fixed inset-0 bg-black/92 backdrop-blur-md z-50 p-4 flex items-center justify-center hidden" onclick="closeLightbox()">
@@ -292,25 +298,8 @@
       </div>
     </div>
 
-    <!-- ================= FOOTER ================= -->
-    <footer class="w-full border-t border-cyan-500/15 bg-[#080c18]/90 py-4 px-6 text-xs text-slate-500">
-      <div class="max-w-[1920px] mx-auto flex flex-wrap items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <span class="text-cyan-400 font-bold">Linear & Nonlinear Programming</span>
-          <span>• Constrained Optimization Knowledge Plates</span>
-        </div>
-        <div class="flex items-center gap-3 font-mono text-[11px]">
-          <span>Source: Luenberger & Ye (4th Edition)</span>
-          <span class="text-slate-700">•</span>
-          <span class="text-slate-400">Live via GitHub Pages · RealSenso</span>
-        </div>
-      </div>
-    </footer>
 
-  </div>
-
-  <!-- ================= LOGIC & DATA ================= -->
-  <script>
+<script>
     /* Default Cosmic Knowledge Deck (Luenberger & Ye 4th ed Reference) */
     const defaultDeck = [
       {
@@ -480,340 +469,368 @@
       }
     ];
 
+
     const masterCards = window.MASTER_CARDS_DATA || defaultDeck;
+    const SUBJECTS = [
+      { id: 'CMO', color: '#5cc8f5' },
+      { id: 'LAA', color: '#b79cf5' },
+      { id: 'StoMA', color: '#f2b84b' },
+      { id: 'DIP', color: '#5fd3a0' }
+    ];
+    const RATINGS_KEY = 'plates_ratings_v1';
+    const POS_KEY = 'plates_pos_v1';
+
+    let ratings = {};
+    try { ratings = JSON.parse(localStorage.getItem(RATINGS_KEY) || '{}'); } catch (e) { ratings = {}; }
+    function saveRatings() { try { localStorage.setItem(RATINGS_KEY, JSON.stringify(ratings)); } catch (e) {} }
+    function savePos() { try { localStorage.setItem(POS_KEY, JSON.stringify({ s: currentSubject, t: currentTopic, i: idx })); } catch (e) {} }
+
     let currentSubject = 'CMO';
-    let currentTopic = '09_Geometry_of_Constrained_Optimization_Tangent_Cone_and_LICQ';
-    
-    function getSubjectCards(sub) {
-      return masterCards.filter(c => (c.subject || 'CMO') === sub);
+    let currentTopic = null;
+    let deck = [];
+    let idx = 0;
+    let mode = 'study';
+    let revealed = false;
+
+    const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const stripTags = s => String(s || '').replace(/<\/?[^>]+(>|$)/g, '').replace(/\$/g, '');
+    const topicOf = c => c.topicId || 'default';
+
+    function getSubjectCards(sub) { return masterCards.filter(c => (c.subject || 'CMO') === sub); }
+
+    function getTopicsList(sub) {
+      const map = new Map();
+      getSubjectCards(sub || currentSubject).forEach(c => {
+        const id = topicOf(c);
+        if (!map.has(id)) map.set(id, { id, title: c.topicTitle || 'Default deck', cards: [] });
+        map.get(id).cards.push(c);
+      });
+      return Array.from(map.values());
     }
 
-    let deck = masterCards.filter(c => c.topicId === currentTopic);
-    if (deck.length === 0) {
-      deck = getSubjectCards('CMO');
-      if (deck.length > 0) currentTopic = deck[0].topicId;
+    const gotCount = cards => cards.filter(c => ratings[c.id] === 3).length;
+
+    /* ---------- navigation ---------- */
+    function applyAccent() {
+      const s = SUBJECTS.find(x => x.id === currentSubject);
+      document.documentElement.style.setProperty('--accent', s ? s.color : '#5cc8f5');
     }
-    let gridCols = 1; // Default to expansive 1 Wide layout as requested
-    let currentScale = 'large'; // Default to large 125% scale
 
     function switchSubject(sub) {
       currentSubject = sub;
-      ['CMO', 'LAA', 'StoMA', 'DIP'].forEach(s => {
-        const btn = document.getElementById(`sub-btn-${s}`);
-        if (!btn) return;
-        if (s === sub) {
-          btn.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition flex items-center gap-1 cursor-pointer";
-        } else {
-          btn.className = "px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer";
-        }
-      });
-
-      populateTopicsDropdown(sub);
-
-      const subCards = getSubjectCards(sub);
-      if (subCards.length > 0) {
-        switchTopic(subCards[0].topicId);
+      applyAccent();
+      const topics = getTopicsList(sub);
+      if (topics.length) {
+        const firstOpen = topics.find(t => gotCount(t.cards) < t.cards.length) || topics[0];
+        switchTopic(firstOpen.id);
       } else {
-        deck = [];
-        const banner = document.getElementById('topic-title-banner');
-        if (banner) banner.textContent = `No cards available yet for ${sub}`;
-        renderDeck();
+        currentTopic = null; deck = []; idx = 0;
+        renderAll();
       }
+      toggleRail(false);
     }
 
-    function populateTopicsDropdown(sub) {
-      const select = document.getElementById('topic-select');
-      if (!select) return;
-      const subCards = getSubjectCards(sub);
-      const map = new Map();
-      subCards.forEach(c => {
-        if (!map.has(c.topicId)) {
-          map.set(c.topicId, c.topicTitle || c.topicId);
-        }
-      });
-      
-      let html = '';
-      map.forEach((title, id) => {
-        const count = subCards.filter(c => c.topicId === id).length;
-        html += `<option value="${id}">${title} (${count} cards)</option>`;
-      });
-      if (subCards.length > 0) {
-        html += `<option value="all">🌟 All Available Topics (${subCards.length} cards in sequence)</option>`;
-      }
-      select.innerHTML = html;
-    }
-
-    function getTopicsList() {
-      const subCards = getSubjectCards(currentSubject);
-      const map = new Map();
-      subCards.forEach(c => {
-        if (!map.has(c.topicId)) {
-          map.set(c.topicId, c.topicTitle || c.topicId);
-        }
-      });
-      return Array.from(map.entries());
-    }
-
-    function switchTopic(topicId) {
+    function switchTopic(topicId, keepIdx) {
       currentTopic = topicId;
-      const searchInput = document.getElementById('search-input');
-      if (searchInput) searchInput.value = '';
-
-      const subCards = getSubjectCards(currentSubject);
-      if (topicId === 'all') {
-        deck = [...subCards];
-        document.getElementById('topic-title-banner').textContent = `All Available Topics in Sequence (${currentSubject})`;
-      } else {
-        deck = subCards.filter(c => c.topicId === topicId);
-        const match = subCards.find(c => c.topicId === topicId);
-        document.getElementById('topic-title-banner').textContent = match ? match.topicTitle : topicId;
+      deck = getSubjectCards(currentSubject).filter(c => topicOf(c) === topicId);
+      if (!keepIdx) {
+        const firstOpen = deck.findIndex(c => ratings[c.id] !== 3);
+        idx = firstOpen === -1 ? 0 : firstOpen;
       }
-
-      const select = document.getElementById('topic-select');
-      if (select && select.value !== topicId) select.value = topicId;
-
-      const counter = document.getElementById('topic-card-counter');
-      if (counter) counter.textContent = `${deck.length} Cards Active`;
-
-      renderDeck();
+      revealed = false;
+      closeSearch();
+      renderAll();
+      toggleRail(false);
     }
 
-    function navigateTopic(dir) {
-      const topics = getTopicsList().map(t => t[0]);
-      if (topics.length === 0) return;
-      let idx = topics.indexOf(currentTopic);
-      if (idx === -1) idx = 0;
-      let nextIdx = idx + dir;
-      if (nextIdx < 0) nextIdx = topics.length - 1;
-      if (nextIdx >= topics.length) nextIdx = 0;
-      switchTopic(topics[nextIdx]);
+    function goTo(i) {
+      if (!deck.length) return;
+      idx = Math.max(0, Math.min(deck.length - 1, i));
+      revealed = false;
+      renderAll();
     }
 
-    /* Render Deck with strict 16:9 Landscape cards & Blank surfaces */
-    function renderDeck() {
-      const grid = document.getElementById('desk-grid');
-      const countEl = document.getElementById('card-count');
-      if (countEl) countEl.textContent = deck.length;
+    function step(dir) {
+      if (!deck.length) return;
+      const n = idx + dir;
+      if (n >= 0 && n < deck.length) { goTo(n); return; }
+      const topics = getTopicsList();
+      let t = topics.findIndex(x => x.id === currentTopic);
+      t = (t + dir + topics.length) % topics.length;
+      switchTopic(topics[t].id);
+      if (dir < 0) goTo(deck.length - 1);
+    }
 
-      grid.innerHTML = deck.map((card, idx) => {
-        return `
-          <div class="cosmic-card aspect-16-9 flex flex-col p-6 sm:p-8 lg:p-9 relative overflow-hidden group">
-            
-            <!-- Animated Stars Background inside Card -->
-            <canvas class="card-stars absolute inset-0 w-full h-full pointer-events-none z-0 rounded-[20px]"></canvas>
+    function setMode(m) {
+      mode = m;
+      revealed = false;
+      renderAll();
+    }
 
-            <!-- Top Bar: Header, Card ID, Category, Highlighter Title -->
-            <div class="relative z-10 flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/10 shrink-0">
-              <div class="flex items-center gap-3">
-                <span class="px-3.5 py-1.5 rounded-lg font-mono font-bold text-sm sm:text-base bg-cyan-950 text-cyan-300 border border-cyan-800/80">
-                  CARD ${card.cardNumber}
-                </span>
-                <span class="text-xs sm:text-sm md:text-base font-mono tracking-widest uppercase text-slate-300">
-                  ${card.category}
-                </span>
-              </div>
+    function rate(n) {
+      const card = deck[idx];
+      if (!card) return;
+      if (mode === 'traps' || (mode === 'recall' && !revealed)) return;
+      ratings[card.id] = n;
+      saveRatings();
+      step(1);
+    }
 
-              <!-- Highlighter title badge -->
-              <div class="px-4 py-1.5 rounded-lg ${card.highlighterClass}">
-                <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-tight font-serif-title">
-                  ${card.title}
-                </h3>
-              </div>
+    function flip() {
+      if (mode === 'recall' && !revealed) { revealed = true; renderAll(); }
+      else if (mode === 'recall') { revealed = false; renderAll(); }
+      else step(1);
+    }
 
-              <!-- Top Right Action: Copy Card Button -->
-              <button onclick="copyCard(${card.id})" id="copy-btn-${card.id}" class="px-3.5 py-1.5 rounded-xl bg-[#0d1326]/90 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/30 text-xs sm:text-sm font-mono flex items-center gap-1.5 transition duration-200 shadow hover:shadow-cyan-500/30 active:scale-95 cursor-pointer shrink-0" title="Copy card formatted text & image to clipboard">
-                <span id="copy-icon-${card.id}">📋</span>
-                <span id="copy-text-${card.id}">Copy</span>
-              </button>
-            </div>
+    function toggleRail(open) {
+      document.getElementById('rail').classList.toggle('open', open);
+      document.getElementById('scrim').classList.toggle('open', open);
+    }
 
-            <!-- Main Card Body Split (Left: Content 56%, Right: Visual 44%) -->
-            <div class="relative z-10 flex-1 min-h-0 grid grid-cols-12 gap-6 sm:gap-8 overflow-hidden">
-              
-              <!-- Left Column: Knowledge, Math, Anchors (Scrollable within 16:9 boundary) -->
-              <div class="col-span-12 md:col-span-7 flex flex-col justify-between overflow-y-auto pr-4 cosmic-scroll">
-                
-                <!-- Core Translation -->
-                <div class="space-y-2">
-                  <div class="text-xs sm:text-sm md:text-base font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-                    <span>⚡ CORE MECHANISM</span>
-                  </div>
-                  <ul class="space-y-2 text-slate-100 leading-relaxed text-sm sm:text-base md:text-lg lg:text-[19px]">
-                    ${card.coreTranslation.map(pt => `
-                      <li class="flex items-start gap-2.5">
-                        <span class="text-cyan-400 font-bold shrink-0 text-lg sm:text-xl">›</span>
-                        <span>${pt}</span>
-                      </li>
-                    `).join('')}
-                  </ul>
-                </div>
-
-                <!-- Math Block -->
-                <div class="my-3 p-4 sm:p-5 rounded-2xl bg-[#060812]/85 backdrop-blur-xs border border-cyan-500/25 text-slate-100 font-mono text-base sm:text-lg md:text-xl lg:text-2xl overflow-x-auto shadow-inner math-block">
-                  ${card.math}
-                </div>
-
-                <!-- Personal Connection / Anchor -->
-                <div class="p-4 sm:p-4.5 rounded-2xl bg-amber-500/10 border-l-4 border-amber-400 text-amber-100 text-sm sm:text-base md:text-lg leading-relaxed">
-                  <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-400 mb-1 flex items-center gap-1.5">
-                    <span>💡 MEMORY ANCHOR</span>
-                  </div>
-                  <p class="italic font-serif text-base sm:text-lg md:text-xl lg:text-[21px]">"${card.personalConnection}"</p>
-                </div>
-
-                <!-- Exam Trap -->
-                <div class="mt-2.5 pt-2 border-t border-white/10 text-xs sm:text-sm md:text-base text-rose-200 flex items-start gap-2">
-                  <span class="font-bold shrink-0 text-rose-400 text-sm sm:text-base">⚠️ Exam Trap:</span>
-                  <span class="text-slate-200">${card.examTrap}</span>
-                </div>
-
-              </div>
-
-              <!-- Right Column: Visual Specimen / Luenberger Figure Corner -->
-              <div class="col-span-12 md:col-span-5 flex flex-col justify-between pl-4 sm:pl-6 border-l border-white/10 overflow-hidden h-full">
-                <!-- Visual Header -->
-                <div class="flex items-center justify-between pb-2 text-xs sm:text-sm md:text-base font-mono text-slate-300 shrink-0">
-                  <span class="font-bold text-cyan-300 flex items-center gap-1.5 text-sm sm:text-base">
-                    ${card.textbookImg ? '📖 TEXTBOOK SPECIMEN' : '📐 GEOMETRIC DIAGRAM'}
-                  </span>
-                  <span class="text-slate-400 truncate max-w-[200px]">${card.textbookRef ? card.textbookRef.split(',')[0].toUpperCase() : 'BLACK & WHITE PLATE'}</span>
-                </div>
-
-                <!-- Visual Content (Specimen Image or SVG) -->
-                <div class="flex-1 min-h-0 flex items-center justify-center p-3 sm:p-4 rounded-2xl bg-white border border-white/20 relative group/img overflow-hidden shadow-xl">
-                  ${card.textbookImg ? `
-                    <img src="${card.textbookImg}" alt="${card.title}" class="max-h-full max-w-full object-contain rounded cursor-pointer transition-transform duration-300 hover:scale-105" onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')">
-                  ` : `
-                    <div class="w-full h-full flex items-center justify-center bg-white rounded-xl p-2 sm:p-3">
-                      ${card.drawingSvg}
-                    </div>
-                  `}
-                </div>
-
-                <!-- Caption & Lightbox hint -->
-                <div class="pt-2.5 shrink-0 flex items-center justify-between text-sm sm:text-base md:text-lg font-hand text-cyan-200">
-                  <span class="truncate">"${card.drawingCaption}"</span>
-                  ${card.textbookImg ? `<button onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')" class="text-xs sm:text-sm font-mono text-slate-400 hover:text-cyan-300 underline shrink-0 ml-2">Expand 🔍</button>` : ''}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        `;
+    /* ---------- rendering ---------- */
+    function renderRail() {
+      document.getElementById('subject-list').innerHTML = SUBJECTS.map(s => {
+        const n = getSubjectCards(s.id).length;
+        return `<button class="subj ${s.id === currentSubject ? 'active' : ''}" onclick="switchSubject('${s.id}')">
+          <span class="dot" style="background:${s.color}"></span><span>${s.id}</span><span class="n">${n || ''}</span></button>`;
       }).join('');
 
-      // Auto-render KaTeX math
-      if (window.renderMathInElement) {
-        renderMathInElement(grid, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false}
-          ]
-        });
-      }
+      document.getElementById('topics-label').textContent = `${currentSubject} TOPICS`;
+      const topics = getTopicsList();
+      document.getElementById('topic-list').innerHTML = topics.length ? topics.map(t => {
+        const got = gotCount(t.cards);
+        const done = got === t.cards.length;
+        const ring = done
+          ? `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#5fd3a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7"/></svg>`
+          : `<span class="ring"></span>`;
+        return `<button class="topic ${t.id === currentTopic ? 'active' : ''}" onclick="switchTopic('${t.id}')" title="${esc(t.title)}">
+          ${ring}<span class="name">${esc(t.title)}</span><span class="cnt">${got}/${t.cards.length}</span></button>`;
+      }).join('') : `<div style="padding:8px 10px;font-size:13px;color:#8e9bb8;line-height:1.5">No cards for ${currentSubject} yet.</div>`;
 
-      // Initialize card starfields
-      setTimeout(() => {
-        initCardStarfields();
-      }, 30);
+      const all = getSubjectCards(currentSubject);
+      const got = gotCount(all);
+      const pct = all.length ? Math.round(got / all.length * 100) : 0;
+      document.getElementById('progress-card').innerHTML = `
+        <div style="display:flex;justify-content:space-between"><span>${currentSubject} progress</span><span class="mono" style="color:#e6ebf5">${got} / ${all.length}</span></div>
+        <div class="bar"><i style="width:${pct}%"></i></div>
+        <div style="font-size:12px;color:#8e9bb8;line-height:1.5">${all.length - got ? `${all.length - got} cards still to master. Rate a card “Got it” to count it.` : (all.length ? 'Every card mastered.' : '')}</div>`;
     }
 
-    /* Grid Layout Switching */
-    function setGridCols(n) {
-      gridCols = n;
-      applyLayoutAndScale();
-
-      [1, 2, 3].forEach(num => {
-        const btn = document.getElementById(`col-btn-${num}`);
-        if (num === n) {
-          btn.className = "px-3 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition";
-        } else {
-          btn.className = "px-3 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition";
-        }
+    function renderTop() {
+      const t = getTopicsList().find(x => x.id === currentTopic);
+      const card = deck[idx];
+      document.getElementById('crumb').innerHTML = `<span>${currentSubject}</span><span aria-hidden="true">/</span>
+        <span class="t">${t ? esc(t.title) : '—'}</span>${card ? `<span aria-hidden="true">/</span><b>Card ${esc(card.cardNumber)}</b>` : ''}`;
+      ['study', 'recall', 'traps'].forEach(m => {
+        document.getElementById('mode-' + m).setAttribute('aria-selected', String(m === mode));
       });
+      document.title = card ? `${card.title} · Plates` : 'Plates · Photographic Memory Cards';
     }
 
-    /* Card Scale Switching */
-    function setCardScale(scale) {
-      currentScale = scale;
-      applyLayoutAndScale();
-
-      ['default', 'large', 'max'].forEach(s => {
-        const btn = document.getElementById(`scale-btn-${s}`);
-        if (btn) {
-          if (s === scale) {
-            btn.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition";
-          } else {
-            btn.className = "px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition";
-          }
-        }
-      });
+    function renderStrip() {
+      const strip = document.getElementById('card-strip');
+      if (!deck.length) { strip.innerHTML = ''; return; }
+      strip.innerHTML = deck.map((c, i) => {
+        const r = ratings[c.id];
+        return `<button class="chipbtn ${r ? 'r' + r : ''} ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Card ${esc(c.cardNumber)}${i === idx ? ', current' : ''}">${esc(c.cardNumber)}</button>`;
+      }).join('') + `<span class="hint"><kbd>←</kbd> <kbd>→</kbd> move · <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> rate · <kbd>Space</kbd> ${mode === 'recall' ? 'reveal' : 'next'} · <kbd>/</kbd> search</span>`;
     }
 
-    function applyLayoutAndScale() {
-      const grid = document.getElementById('desk-grid');
-      
-      if (gridCols === 1) {
-        let maxWidth = 'max-w-[1600px]';
-        if (currentScale === 'default') maxWidth = 'max-w-5xl';
-        else if (currentScale === 'large') maxWidth = 'max-w-[1600px]';
-        else if (currentScale === 'max') maxWidth = 'max-w-[1850px]';
-        grid.className = `grid grid-cols-1 ${maxWidth} mx-auto gap-10 items-start`;
-      } else if (gridCols === 2) {
-        let maxWidth = 'max-w-[1850px]';
-        if (currentScale === 'max') maxWidth = 'max-w-none';
-        grid.className = `grid grid-cols-1 xl:grid-cols-2 ${maxWidth} mx-auto gap-8 items-start`;
-      } else {
-        grid.className = `grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 max-w-[1920px] mx-auto gap-6 items-start`;
-      }
-
-      setTimeout(() => {
-        if (typeof cardStarfields !== 'undefined' && cardStarfields.length) {
-          cardStarfields.forEach(cs => cs.resize());
-        }
-      }, 50);
+    function plateHtml(card) {
+      return card.textbookImg
+        ? `<img src="${esc(card.textbookImg)}" alt="${esc(card.title)}" class="plate-img" onclick="openLightboxById(${card.id})">`
+        : `<div class="plate-svg">${card.drawingSvg || ''}</div>`;
     }
 
-    /* Filter Cards */
-    function filterCards() {
-      const q = document.getElementById('search-input').value.toLowerCase();
-      if (!q) {
-        renderDeck();
-        return;
-      }
-      const filtered = deck.filter(c => 
-        c.title.toLowerCase().includes(q) ||
-        c.personalConnection.toLowerCase().includes(q) ||
-        c.coreTranslation.some(t => t.toLowerCase().includes(q))
-      );
-      
-      const grid = document.getElementById('desk-grid');
-      const countEl = document.getElementById('card-count');
-      if (countEl) countEl.textContent = filtered.length;
-      grid.innerHTML = filtered.map(c => `
-        <div class="cosmic-card aspect-16-9 p-8 flex flex-col justify-between relative overflow-hidden">
-          <canvas class="card-stars absolute inset-0 w-full h-full pointer-events-none z-0 rounded-[20px]"></canvas>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
-              <div class="flex items-center gap-3">
-                <span class="text-base font-mono font-bold text-cyan-400">CARD ${c.cardNumber}</span>
-                <h3 class="text-xl sm:text-2xl font-bold text-white font-serif-title">${c.title}</h3>
-              </div>
-              <button onclick="copyCard(${c.id})" id="copy-btn-${c.id}" class="px-3 py-1 rounded-lg bg-[#0d1326] hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/30 text-xs font-mono flex items-center gap-1.5 transition cursor-pointer">
-                <span id="copy-icon-${c.id}">📋</span>
-                <span id="copy-text-${c.id}">Copy</span>
-              </button>
+    function cardHtml(card) {
+      const leads = ['What', 'How', 'Why'];
+      const mech = card.coreTranslation.map((pt, i) =>
+        `<li><span class="lead">${card.coreTranslation.length === 3 ? leads[i] : '›'}</span><span>${pt}</span></li>`).join('');
+      return `
+        <article class="card" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
+          <div class="card-left">
+            <div>
+              <div class="card-head"><span class="chip">CARD ${esc(card.cardNumber)}</span><span class="cat">${esc(card.category)}</span></div>
+              <h1 class="card-title">${card.title}</h1>
             </div>
-            <p class="text-base sm:text-lg text-slate-200 my-3 leading-relaxed">${c.coreTranslation[0]}</p>
+            <section><div class="sec-label">1 · CORE MECHANISM</div><ul class="mech">${mech}</ul></section>
+            <section><div class="sec-label">2 · FORMAL MATHEMATICS</div><div class="math-block">${card.math}</div></section>
+            <div class="duo">
+              <section class="anchor"><div class="sec-label">3 · MEMORY ANCHOR</div><p>${card.personalConnection}</p></section>
+              <section class="trap"><div class="sec-label">4 · EXAM TRAP</div><p>${card.examTrap}</p></section>
+            </div>
           </div>
-          <p class="relative z-10 text-base sm:text-lg italic font-serif text-amber-200">"${c.personalConnection}"</p>
-        </div>
-      `).join('');
-
-      setTimeout(() => {
-        initCardStarfields();
-      }, 30);
+          <aside class="card-right">
+            <div class="plate-head">
+              <span class="sec-label muted">5 · VISUAL PLATE</span>
+              <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy card text, math and image to the clipboard">
+                <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
+            </div>
+            <figure class="plate-fig">
+              <div class="plate">${plateHtml(card)}</div>
+              <figcaption><span class="sec-label muted">6 · CAPTION&nbsp;&nbsp;</span>${card.drawingCaption || ''}
+                ${card.textbookImg ? `<button class="expand" onclick="openLightboxById(${card.id})">Expand</button>` : ''}</figcaption>
+            </figure>
+          </aside>
+        </article>`;
     }
+
+    function recallHtml(card) {
+      const slot = (k, name, lines, cls) => `<div class="slot ${cls || ''}"><span class="k">${k}</span><div class="ln">${lines.map(w => `<i style="width:${w}%"></i>`).join('')}</div><span class="nm">${name}</span></div>`;
+      return `
+        <div class="recall">
+          <section>
+            <div><div class="sec-label">STEP 1 · LOOK AT THE PLATE</div>
+              <h1>What concept is this, and what is the formula?</h1></div>
+            <div class="plate">${plateHtml(card)}</div>
+            <p style="margin:0;font-size:14px;line-height:1.5;color:#9aa6c0">Say the idea out loud before you reveal anything. The picture should rebuild the formula for you.</p>
+          </section>
+          <section>
+            <div class="sec-label" style="color:#b4bfd6">STEP 2 · REBUILD THE CARD</div>
+            ${slot('T', 'Concept title', [62])}
+            ${slot('1', 'What · How · Why', [84, 70, 52])}
+            ${slot('2', 'Formula', [66])}
+            ${slot('3', 'Memory anchor', [58])}
+            ${slot('4', 'Exam trap', [44], 'trap-slot')}
+            <button class="reveal" onclick="flip()">Reveal card <kbd>Space</kbd></button>
+          </section>
+        </div>`;
+    }
+
+    function trapsHtml() {
+      const t = getTopicsList().find(x => x.id === currentTopic);
+      return `<div class="traps"><div class="sec-label">EXAM TRAPS</div><h1>${t ? esc(t.title) : ''}</h1>` +
+        deck.map((c, i) => `<button class="trap-row" onclick="mode='study';goTo(${i})">
+          <span class="n">${esc(c.cardNumber)}</span><span><div class="tt">${c.title}</div><div class="tx">${c.examTrap}</div></span></button>`).join('') + `</div>`;
+    }
+
+    function renderStage() {
+      const stage = document.getElementById('stage');
+      if (!deck.length) {
+        stage.innerHTML = `<div class="empty"><h2>No cards for ${currentSubject} yet</h2>
+          <p>Cards you generate for this subject will show up here, grouped by topic.</p></div>`;
+      } else if (mode === 'traps') {
+        stage.innerHTML = trapsHtml();
+      } else if (mode === 'recall' && !revealed) {
+        stage.innerHTML = recallHtml(deck[idx]);
+      } else {
+        stage.innerHTML = cardHtml(deck[idx]);
+      }
+      typesetMath(stage);
+    }
+
+    function renderActions() {
+      const bar = document.getElementById('actions');
+      if (!deck.length || mode === 'traps') { bar.innerHTML = ''; return; }
+      const canRate = !(mode === 'recall' && !revealed);
+      bar.innerHTML = `
+        <button class="nav" onclick="step(-1)">← Previous</button>
+        <div class="sp"></div>
+        <span class="q">${canRate ? 'How well did you know it?' : 'Reveal the card, then rate yourself'}</span>
+        <button class="rate again" onclick="rate(1)" ${canRate ? '' : 'disabled'}>Again<kbd>1</kbd></button>
+        <button class="rate" onclick="rate(2)" ${canRate ? '' : 'disabled'}>Shaky<kbd>2</kbd></button>
+        <button class="rate good" onclick="rate(3)" ${canRate ? '' : 'disabled'}>Got it<kbd>3</kbd></button>
+        <button class="nav next" onclick="step(1)">Next →</button>`;
+    }
+
+    function typesetMath(root) {
+      const run = () => window.renderMathInElement && renderMathInElement(root, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        throwOnError: false
+      });
+      if (window.renderMathInElement) run(); else window.addEventListener('load', run, { once: true });
+    }
+
+    function renderAll() {
+      renderRail(); renderTop(); renderStrip(); renderStage(); renderActions();
+      savePos();
+    }
+    function renderDeck() { idx = Math.max(0, Math.min(idx, deck.length - 1)); renderAll(); }
+
+    /* ---------- search across every subject ---------- */
+    function closeSearch() {
+      const r = document.getElementById('search-results');
+      if (r) r.hidden = true;
+    }
+
+    function runSearch() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const box = document.getElementById('search-results');
+      if (!q) { box.hidden = true; return; }
+      const hits = masterCards.map(c => {
+        const fields = [c.title, c.category, c.topicTitle, c.personalConnection, c.examTrap, ...(c.coreTranslation || [])].map(stripTags);
+        const hay = fields.join(' ').toLowerCase();
+        return hay.includes(q) ? { c, trap: stripTags(c.examTrap).toLowerCase().includes(q) } : null;
+      }).filter(Boolean).slice(0, 8);
+      box.innerHTML = hits.length ? hits.map(h => `
+        <button class="res" onclick="openCard(${h.c.id})">
+          <span>${stripTags(h.c.title)}</span>
+          <span class="meta">${esc(h.c.subject || 'CMO')} · ${esc(h.c.topicTitle || 'Default deck')} · Card ${esc(h.c.cardNumber)}</span>
+          <span class="snip">${h.trap ? 'Exam trap: ' + esc(stripTags(h.c.examTrap).slice(0, 110)) : esc(stripTags((h.c.coreTranslation || [])[0]).slice(0, 110))}</span>
+        </button>`).join('') : `<div class="res-empty">No cards match “${esc(q)}”.</div>`;
+      box.hidden = false;
+    }
+
+    function openCard(id) {
+      const c = masterCards.find(x => x.id === id);
+      if (!c) return;
+      currentSubject = c.subject || 'CMO';
+      applyAccent();
+      mode = 'study';
+      switchTopic(topicOf(c), true);
+      idx = Math.max(0, deck.findIndex(x => x.id === id));
+      document.getElementById('search-input').value = '';
+      renderAll();
+    }
+
+    /* ---------- print: the whole topic, one card per page ---------- */
+    function printDeck() {
+      if (!deck.length) return;
+      const stage = document.getElementById('stage');
+      stage.innerHTML = deck.map(cardHtml).join('');
+      typesetMath(stage);
+      const restore = () => { renderStage(); window.removeEventListener('afterprint', restore); };
+      window.addEventListener('afterprint', restore);
+      setTimeout(() => window.print(), 150);
+    }
+
+    function openLightboxById(id) {
+      const c = masterCards.find(x => x.id === id) || deck.find(x => x.id === id);
+      if (c && c.textbookImg) openLightbox(c.textbookImg, stripTags(c.title), c.textbookRef || '');
+    }
+
+    /* ---------- keyboard ---------- */
+    document.addEventListener('keydown', e => {
+      const input = document.getElementById('search-input');
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); input.focus(); input.select(); return; }
+      if (e.key === 'Escape') { closeSearch(); closeLightbox(); closeAddModal(); toggleRail(false); input.blur(); return; }
+      const t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === '/') { e.preventDefault(); input.focus(); }
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === ' ' && !(t && t.tagName === 'BUTTON')) { e.preventDefault(); flip(); }
+      else if (e.key === '1' || e.key === '2' || e.key === '3') rate(Number(e.key));
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search')) closeSearch();
+    });
+
+    /* ---------- boot ---------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      let pos = null;
+      try { pos = JSON.parse(localStorage.getItem(POS_KEY) || 'null'); } catch (e) {}
+      if (pos && SUBJECTS.some(s => s.id === pos.s) && getTopicsList(pos.s).some(t => t.id === pos.t)) {
+        currentSubject = pos.s;
+        applyAccent();
+        switchTopic(pos.t, true);
+        idx = Math.max(0, Math.min(pos.i || 0, deck.length - 1));
+        renderAll();
+      } else {
+        switchSubject('CMO');
+      }
+    });
 
     /* Lightbox Modal */
     function openLightbox(src, title, ref) {
@@ -868,6 +885,7 @@
       };
 
       deck.push(newCard);
+      idx = deck.length - 1;
       localStorage.setItem('sirianni_index_cards_cosmos_v7', JSON.stringify(deck));
       closeAddModal();
       renderDeck();
@@ -1036,7 +1054,7 @@
         }
 
         setTimeout(() => {
-          if (iconEl) iconEl.textContent = "📋";
+          if (iconEl) iconEl.textContent = "⧉";
           if (textEl) textEl.textContent = "Copy";
           if (btn) {
             btn.classList.remove('bg-emerald-500', 'text-slate-950', 'border-emerald-400', 'font-bold');
@@ -1076,322 +1094,7 @@
       }, 2500);
     }
 
-    /* ================= BACKGROUND GLOWING DOTS & COSMOS PARTICLES ANIMATION ================= */
-    const canvas = document.getElementById('cosmos-canvas');
-    const ctx = canvas.getContext('2d');
 
-    let stars = [];
-    const numStars = 115;
-    let mouse = { x: null, y: null, maxDist: 130 };
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      if (typeof cardStarfields !== 'undefined' && cardStarfields.length) {
-        cardStarfields.forEach(cs => cs.resize());
-      }
-    }
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    class CosmicStar {
-      constructor() {
-        this.reset(true);
-      }
-      reset(init = false) {
-        this.x = Math.random() * canvas.width;
-        this.y = init ? Math.random() * canvas.height : -10;
-        this.radius = Math.random() * 2.2 + 0.8;
-        this.vx = (Math.random() - 0.5) * 0.28;
-        this.vy = Math.random() * 0.35 + 0.12;
-        this.baseAlpha = Math.random() * 0.45 + 0.4;
-        this.pulseSpeed = Math.random() * 0.03 + 0.012;
-        this.phase = Math.random() * Math.PI * 2;
-        
-        // Cosmic tints: cyan, violet, amber, celestial white
-        const tints = [
-          { r: 56, g: 189, b: 248 },  // Cyan
-          { r: 168, g: 85, b: 247 }, // Violet
-          { r: 251, g: 191, b: 36 }, // Amber
-          { r: 224, g: 242, b: 254 } // Starlight White
-        ];
-        this.color = tints[Math.floor(Math.random() * tints.length)];
-        this.glow = Math.random() > 0.35;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.phase += this.pulseSpeed;
-
-        if (this.x < -20) this.x = canvas.width + 20;
-        if (this.x > canvas.width + 20) this.x = -20;
-        if (this.y > canvas.height + 20) this.reset(false);
-      }
-      draw() {
-        const alpha = Math.max(0.15, Math.min(1, this.baseAlpha + Math.sin(this.phase) * 0.25));
-        ctx.save();
-        
-        if (this.glow) {
-          ctx.shadowBlur = this.radius * 7;
-          ctx.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${Math.min(1, alpha * 1.3)})`;
-        }
-
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha})`;
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    let cardStarfields = [];
-
-    /* ================= INDIVIDUAL CARD STARS & ANIMATION ================= */
-    class CardStarfield {
-      constructor(canvas) {
-        this.canvas = canvas;
-        this.ctx = canvas.getContext('2d');
-        this.stars = [];
-        this.shootingStars = [];
-        this.mouse = { x: null, y: null };
-        this.numStars = 55;
-
-        // Interactive mouse tracking over each individual card
-        if (this.canvas.parentElement) {
-          this.canvas.parentElement.addEventListener('mousemove', (e) => {
-            const rect = this.canvas.getBoundingClientRect();
-            this.mouse.x = e.clientX - rect.left;
-            this.mouse.y = e.clientY - rect.top;
-          });
-          this.canvas.parentElement.addEventListener('mouseleave', () => {
-            this.mouse.x = null;
-            this.mouse.y = null;
-          });
-        }
-
-        this.resize();
-        this.initStars();
-      }
-
-      resize() {
-        if (!this.canvas || !this.canvas.parentElement) return;
-        const rect = this.canvas.parentElement.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0) {
-          this.canvas.width = rect.width;
-          this.canvas.height = rect.height;
-        }
-      }
-
-      initStars() {
-        this.stars = [];
-        const tints = [
-          { r: 56, g: 189, b: 248 },   // Cyan
-          { r: 251, g: 191, b: 36 },  // Amber
-          { r: 168, g: 85, b: 247 },  // Violet
-          { r: 240, g: 249, b: 255 }  // Celestial White
-        ];
-
-        for (let i = 0; i < this.numStars; i++) {
-          this.stars.push({
-            x: Math.random() * (this.canvas.width || 800),
-            y: Math.random() * (this.canvas.height || 450),
-            radius: Math.random() * 1.8 + 0.6,
-            vx: (Math.random() - 0.5) * 0.22,
-            vy: (Math.random() - 0.5) * 0.22,
-            baseAlpha: Math.random() * 0.45 + 0.35,
-            pulseSpeed: Math.random() * 0.04 + 0.015,
-            phase: Math.random() * Math.PI * 2,
-            color: tints[Math.floor(Math.random() * tints.length)],
-            glow: Math.random() > 0.3
-          });
-        }
-      }
-
-      updateAndDraw() {
-        if (!this.canvas || this.canvas.width === 0 || this.canvas.height === 0) return;
-        const ctx = this.ctx;
-        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        // Constellation filaments inside card
-        for (let i = 0; i < this.stars.length; i++) {
-          for (let j = i + 1; j < this.stars.length; j++) {
-            const dx = this.stars[i].x - this.stars[j].x;
-            const dy = this.stars[i].y - this.stars[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 60) {
-              const opacity = (1 - dist / 60) * 0.12;
-              ctx.beginPath();
-              ctx.strokeStyle = `rgba(147, 197, 253, ${opacity})`;
-              ctx.lineWidth = 0.65;
-              ctx.moveTo(this.stars[i].x, this.stars[i].y);
-              ctx.lineTo(this.stars[j].x, this.stars[j].y);
-              ctx.stroke();
-            }
-          }
-
-          // Mouse reactivity
-          if (this.mouse.x !== null) {
-            const dx = this.stars[i].x - this.mouse.x;
-            const dy = this.stars[i].y - this.mouse.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 90) {
-              const opacity = (1 - dist / 90) * 0.3;
-              ctx.beginPath();
-              ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
-              ctx.lineWidth = 0.85;
-              ctx.moveTo(this.stars[i].x, this.stars[i].y);
-              ctx.lineTo(this.mouse.x, this.mouse.y);
-              ctx.stroke();
-            }
-          }
-        }
-
-        // Draw and drift stars
-        for (let i = 0; i < this.stars.length; i++) {
-          const s = this.stars[i];
-          s.x += s.vx;
-          s.y += s.vy;
-          s.phase += s.pulseSpeed;
-
-          if (s.x < 0) s.x = this.canvas.width;
-          if (s.x > this.canvas.width) s.x = 0;
-          if (s.y < 0) s.y = this.canvas.height;
-          if (s.y > this.canvas.height) s.y = 0;
-
-          const alpha = Math.max(0.12, Math.min(1, s.baseAlpha + Math.sin(s.phase) * 0.35));
-
-          ctx.save();
-          if (s.glow) {
-            ctx.shadowBlur = s.radius * 6;
-            ctx.shadowColor = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${alpha * 0.9})`;
-          }
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${alpha})`;
-          ctx.fill();
-          ctx.restore();
-        }
-
-        // Occasional subtle shooting star across the card
-        if (Math.random() < 0.005 && this.shootingStars.length === 0) {
-          this.shootingStars.push({
-            x: Math.random() * this.canvas.width * 0.8,
-            y: Math.random() * this.canvas.height * 0.4,
-            len: Math.random() * 35 + 25,
-            speed: Math.random() * 5 + 4,
-            angle: Math.PI / 4,
-            life: 0,
-            maxLife: 18
-          });
-        }
-
-        for (let i = this.shootingStars.length - 1; i >= 0; i--) {
-          const ss = this.shootingStars[i];
-          ss.x += Math.cos(ss.angle) * ss.speed;
-          ss.y += Math.sin(ss.angle) * ss.speed;
-          ss.life++;
-
-          const progress = ss.life / ss.maxLife;
-          const alpha = Math.sin(progress * Math.PI) * 0.55;
-
-          ctx.save();
-          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-          ctx.lineWidth = 1.2;
-          ctx.beginPath();
-          ctx.moveTo(ss.x, ss.y);
-          ctx.lineTo(ss.x - Math.cos(ss.angle) * ss.len, ss.y - Math.sin(ss.angle) * ss.len);
-          ctx.stroke();
-          ctx.restore();
-
-          if (ss.life >= ss.maxLife) {
-            this.shootingStars.splice(i, 1);
-          }
-        }
-      }
-    }
-
-    function initCardStarfields() {
-      cardStarfields = [];
-      const cardCanvases = document.querySelectorAll('.card-stars');
-      cardCanvases.forEach(canvas => {
-        cardStarfields.push(new CardStarfield(canvas));
-      });
-    }
-
-    function initCosmos() {
-      resizeCanvas();
-      stars = [];
-      for (let i = 0; i < numStars; i++) {
-        stars.push(new CosmicStar());
-      }
-    }
-
-    function animateCosmos() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw starry constellation connections
-      for (let i = 0; i < stars.length; i++) {
-        for (let j = i + 1; j < stars.length; j++) {
-          const dx = stars[i].x - stars[j].x;
-          const dy = stars[i].y - stars[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 80) {
-            const opacity = (1 - dist / 80) * 0.14;
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(147, 197, 253, ${opacity})`;
-            ctx.lineWidth = 0.75;
-            ctx.moveTo(stars[i].x, stars[i].y);
-            ctx.lineTo(stars[j].x, stars[j].y);
-            ctx.stroke();
-          }
-        }
-
-        // Connect to mouse interaction
-        if (mouse.x !== null) {
-          const dx = stars[i].x - mouse.x;
-          const dy = stars[i].y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouse.maxDist) {
-            const opacity = (1 - dist / mouse.maxDist) * 0.35;
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(stars[i].x, stars[i].y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw all page stars
-      stars.forEach(s => {
-        s.update();
-        s.draw();
-      });
-
-      // Draw all stars inside individual cards
-      for (let i = 0; i < cardStarfields.length; i++) {
-        cardStarfields[i].updateAndDraw();
-      }
-
-      requestAnimationFrame(animateCosmos);
-    }
-
-    // Initialize application
-    document.addEventListener("DOMContentLoaded", () => {
-      initCosmos();
-      animateCosmos();
-      populateTopicsDropdown(currentSubject);
-      switchTopic(currentTopic);
-      applyLayoutAndScale();
-    });
   </script>
 
   <!-- Toast Notification for Copy -->
