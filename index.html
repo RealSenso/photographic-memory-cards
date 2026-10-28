@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261029_refine5"></script>
+  <script src="cards_data.js?v=20261029_refine6"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma13"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -49,11 +49,6 @@
     .topic.active { background: #151c33; color: var(--text); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
     .topic .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .topic .cnt { font-family: var(--mono); font-size: 11px; color: #8e9bb8; }
-    .ring { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #3a476a; flex-shrink: 0; }
-    .topic.active .ring { border: 2px solid var(--accent); }
-    .progress { margin-top: auto; border: 1px solid var(--line-2); border-radius: 12px; padding: 14px; background: #121930; display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: var(--muted-2); }
-    .bar { height: 6px; border-radius: 3px; background: #1f2a47; overflow: hidden; }
-    .bar > i { display: block; height: 100%; background: var(--accent); }
 
     /* ---------- main column ---------- */
     .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -73,9 +68,6 @@
     .res .meta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
     .res .snip { font-size: 12.5px; color: var(--muted-2); }
     .res-empty { padding: 14px; font-size: 13px; color: var(--muted); }
-    .modes { display: flex; padding: 4px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); }
-    .modes button { min-height: 36px; padding: 0 16px; border-radius: 9px; border: 0; background: transparent; color: var(--muted-2); font-size: 13.5px; }
-    .modes button[aria-selected="true"] { background: var(--accent); color: #06101c; font-weight: 600; }
     .btn { min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; }
     .btn:hover { background: #17203d; }
     .btn.primary { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
@@ -83,88 +75,53 @@
 
     .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 32px 0; }
     .chipbtn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--muted-2); font-family: var(--mono); font-size: 13px; }
-    .chipbtn.r3 { border-color: #2c6e57; background: #11261f; color: var(--green); }
-    .chipbtn.r2 { border-color: #5a4620; background: #1d1809; color: var(--amber); }
-    .chipbtn.r1 { border-color: #6b3a3a; background: #231316; color: var(--red); }
     .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: var(--text); }
     .hint { margin-left: auto; font-size: 13px; color: #8e9bb8; }
     .hint kbd { font-family: var(--mono); color: var(--muted-2); }
 
     .stage { flex: 1; padding: 20px 32px 12px; }
 
-    /* ---------- the 16:9 card ---------- */
-    .card { display: flex; flex-wrap: wrap; aspect-ratio: 16 / 9; width: 100%; max-width: 1500px; margin: 0 auto; border: 1px solid var(--line-2); border-radius: 20px; background: var(--panel); overflow: clip; }
-    .card-left { flex: 1 1 520px; min-width: 0; padding: 26px 32px; display: flex; flex-direction: column; gap: 14px; }
-    .card-right { flex: 0 1 38%; min-width: 280px; border-left: 1px solid var(--line-2); background: var(--deep); padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; }
-    .card-head { display: flex; align-items: center; gap: 10px; }
-    .chip { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); }
-    .cat { font-family: var(--mono); font-size: 11px; letter-spacing: 1.3px; color: var(--muted); text-transform: uppercase; }
-    .card-title { margin: 6px 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.1; letter-spacing: -0.2px; }
-    .sec-label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; color: var(--accent); margin-bottom: 6px; }
-    .sec-label.muted { color: var(--muted); margin: 0; }
-    .mech { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; font-size: clamp(13.5px, 1.05vw, 16px); line-height: 1.5; color: var(--text-2); }
-    .mech li { display: flex; gap: 10px; align-items: baseline; }
-    .mech .lead { flex: 0 0 38px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; color: var(--accent); text-transform: uppercase; }
-    .mech strong { color: #fff; }
-    .math-block { border-radius: 12px; border: 1px solid var(--line-3); background: #121c36; padding: 10px 16px; color: #f2f5fb; overflow-x: auto; text-align: center; }
-    .math-block .katex-display { margin: 0.3em 0; }
-    .math-block .katex { font-size: 1.12em; }
-    .duo { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
-    .anchor, .trap { flex: 1 1 220px; border-radius: 12px; padding: 11px 14px; font-size: clamp(13px, 1vw, 15px); line-height: 1.45; }
-    .anchor { border: 1px solid #1f5a47; background: #0d1d19; color: var(--text-2); }
-    .anchor .sec-label { color: var(--green); }
-    .anchor p { margin: 0; font-style: italic; }
-    .trap { border: 1px solid #5a4620; background: #1d1809; color: #f6e6c0; }
-    .trap .sec-label { color: var(--amber); }
-    .trap p { margin: 0; }
-    .plate-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
-    .copy-btn { min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 13px; display: inline-flex; align-items: center; gap: 8px; }
-    .copy-btn:hover { background: #17203d; }
-    .copy-btn.bg-emerald-500 { background: #34d399 !important; color: #06101c !important; border-color: #34d399 !important; }
-    figure.plate-fig { margin: 0; flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
-    .plate { flex: 1; background: #fff; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: center; min-height: 200px; }
-    .plate-img { max-width: 100%; max-height: 440px; object-fit: contain; cursor: zoom-in; }
-    .plate-svg { width: 100%; }
-    .plate-svg svg { width: 100%; height: auto; display: block; }
-    figcaption { font-size: 13.5px; line-height: 1.45; color: var(--muted-2); }
-    .expand { margin-left: 8px; border: 0; background: none; color: var(--accent); font-size: 12.5px; text-decoration: underline; min-height: 32px; }
-
-    /* ---------- recall ---------- */
-    .recall { display: flex; flex-wrap: wrap; gap: 32px; max-width: 1280px; margin: 0 auto; }
-    .recall > section { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-    .recall h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.12; }
-    .recall .plate { padding: 20px; }
-    .slot { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px; border: 1px dashed #34426a; background: var(--panel); }
-    .slot.trap-slot { border-color: #5a4620; background: #17130a; }
-    .slot .k { font-family: var(--mono); font-size: 12px; color: #8e9bb8; width: 20px; }
-    .slot .ln { flex: 1; display: flex; flex-direction: column; gap: 7px; }
-    .slot .ln i { display: block; height: 9px; border-radius: 5px; background: #1f2a47; }
-    .slot .nm { font-size: 13px; color: var(--muted); }
-    .reveal { min-height: 56px; margin-top: 6px; border-radius: 14px; border: 0; background: var(--accent); color: #06101c; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; }
-    .reveal kbd { font-family: var(--mono); font-size: 12px; border: 1px solid rgba(6,16,28,0.4); border-radius: 6px; padding: 2px 8px; }
-
-    /* ---------- traps list ---------- */
-    .traps { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-    .traps h1 { margin: 0 0 6px; font-family: var(--serif); font-weight: 400; font-size: 34px; }
-    .trap-row { text-align: left; width: 100%; display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; border-radius: 14px; border: 1px solid #5a4620; background: #1d1809; color: #f6e6c0; }
-    .trap-row:hover { background: #251e0b; }
-    .trap-row .n { font-family: var(--mono); font-size: 12px; color: var(--amber); padding-top: 3px; }
-    .trap-row .tt { font-family: var(--serif); font-size: 21px; color: #fff; margin-bottom: 4px; }
-    .trap-row .tx { font-size: 14.5px; line-height: 1.5; }
-
+    /* ---------- the index card (as in the video) ---------- */
+    .stage { background: repeating-linear-gradient(90deg, #15100c 0 5px, #18120d 5px 11px); border-top: 1px solid var(--line); }
+    .paper-bar { display: flex; align-items: center; gap: 10px; max-width: 1080px; margin: 0 auto 12px; }
+    .paper-bar .chip { color: #e8c9a0; border-color: #6b5436; }
+    .paper-bar .cat { color: #b8a58a; }
+    .paper-bar .copy-btn { margin-left: auto; background: #241b13; border-color: #4a3a28; color: #e8d9c2; }
+    .paper { position: relative; max-width: 1080px; margin: 0 auto; min-height: 480px; padding: 30px 40px 36px; border-radius: 6px;
+      background-color: #f8f6ef;
+      background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, #c9d3df 33px, #c9d3df 34px);
+      box-shadow: 0 18px 40px -10px rgba(0,0,0,.75), 0 2px 0 #fff inset; color: #2b2b2b;
+      font-family: 'Caveat', 'Segoe Print', cursive; display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); column-gap: 34px; align-items: start; }
+    .paper::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #d2574a; border-radius: 6px 6px 0 0; }
+    .paper-title { grid-column: 1; margin: 0 0 6px; font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.05; text-transform: uppercase; letter-spacing: .5px; color: #262626;
+      padding-bottom: 6px; border-bottom: 3px double #555; min-height: 68px; display: flex; align-items: flex-end; }
+    .sketch { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+    .sketch-box { background: #fff; border: 2.5px solid #4d4d4d; border-radius: 3px; padding: 8px; box-shadow: 2px 3px 0 rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; min-height: 170px; }
+    .sketch-box img { max-width: 100%; max-height: 300px; object-fit: contain; cursor: zoom-in; }
+    .sketch-box .plate-svg { width: 100%; }
+    .sketch-box .plate-svg svg { width: 100%; height: auto; display: block; }
+    .sketch figcaption { margin-top: 6px; font-family: 'Caveat', cursive; font-size: 20px; line-height: 1.15; color: #555; }
+    .info { grid-column: 1; margin: 6px 0 0; font-size: clamp(22px, 1.9vw, 27px); line-height: 34px; color: #35322d; font-weight: 500; }
+    .info strong { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255, 213, 79, .55) 62%); }
+    .info .katex, .connection .katex { font-size: 1.02em; }
+    .connection { grid-column: 2; margin-top: 18px; }
+    .connection h2 { display: inline-block; margin: 0 0 4px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; letter-spacing: 1px; color: #16603f; border-bottom: 3px double #16603f; line-height: 1.1; }
+    .connection p { margin: 6px 0 0; font-size: clamp(21px, 1.8vw, 26px); line-height: 34px; color: #1a6b46; font-weight: 600; }
+    details.formal { max-width: 1080px; margin: 16px auto 0; border: 1px solid #4a3a28; border-radius: 12px; background: #1d1610; color: #e8d9c2; }
+    details.formal summary { cursor: pointer; padding: 12px 16px; font-size: 13.5px; color: #cdb99b; min-height: 44px; display: flex; align-items: center; }
+    details.formal .formal-body { padding: 4px 18px 18px; display: flex; flex-direction: column; gap: 12px; font-family: var(--sans); }
+    details.formal .math-block { background: #2a2016; border-color: #5a4630; color: #f5ead6; }
+    details.formal .trapline { font-size: 14.5px; line-height: 1.55; color: #f1d9a8; }
+    details.formal .trapline b { color: var(--amber); font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; margin-right: 8px; }
+    .math-block { border-radius: 12px; border: 1px solid var(--line-3); background: #121c36; padding: 10px 16px; overflow-x: auto; text-align: center; }
     .empty { max-width: 560px; margin: 80px auto; text-align: center; color: var(--muted-2); line-height: 1.6; }
     .empty h2 { font-family: var(--serif); font-weight: 400; font-size: 32px; color: var(--text); margin: 0 0 8px; }
 
     /* ---------- action bar ---------- */
     .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px 32px 24px; }
     .actions .sp { flex: 1 1 0; min-width: 8px; }
-    .actions .q { font-size: 13px; color: #8e9bb8; }
-    .rate { min-height: 48px; padding: 0 20px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text); font-size: 14.5px; }
-    .rate kbd { font-family: var(--mono); font-size: 11px; opacity: .8; margin-left: 6px; }
-    .rate.again { border-color: #6b3a3a; background: #231316; color: var(--red); }
-    .rate.good { border-color: #2c6e57; background: #11261f; color: #a9ecd0; }
-    .rate:disabled { opacity: .4; cursor: not-allowed; }
     .nav { min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 14.5px; }
+    .counter { font-size: 13px; color: #8e9bb8; font-family: var(--mono); }
     .nav.next { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
 
     .scrim { display: none; }
@@ -176,21 +133,19 @@
       .rail.open { transform: none; }
       .scrim.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50; }
       .topbar, .strip, .stage, .actions { padding-left: 16px; padding-right: 16px; }
-      .card { aspect-ratio: auto; }
-      .card-right { flex-basis: 100%; border-left: 0; border-top: 1px solid var(--line-2); }
+      .paper { grid-template-columns: 1fr; padding: 22px 20px 28px; }
+      .paper-title, .info, .connection, .sketch { grid-column: 1; grid-row: auto; }
+      .sketch { margin: 6px 0 4px; }
       .hint { display: none; }
       .search kbd { display: none; }
     }
 
-    /* ---------- print: whole topic, one card per page ---------- */
+    /* ---------- print: the whole topic, one card per page ---------- */
     @media print {
-      html, body { background: #fff !important; color: #000 !important; }
-      .rail, .topbar, .strip, .actions, .scrim, #toast { display: none !important; }
-      .stage { padding: 0 !important; }
-      .card { break-inside: avoid; page-break-after: always; aspect-ratio: auto; margin: 0 0 12px; background: #fff; border: 1px solid #999; color: #000; }
-      .card-left, .card-right { background: #fff !important; }
-      .card * { color: #000 !important; background-color: transparent !important; border-color: #999 !important; }
-      .plate { background: #fff !important; border: 1px solid #ccc; }
+      html, body { background: #fff !important; }
+      .rail, .topbar, .strip, .actions, .scrim, #toast, .paper-bar, details.formal { display: none !important; }
+      .stage { padding: 0 !important; background: none !important; border: 0 !important; }
+      .paper { break-inside: avoid; page-break-after: always; box-shadow: none; border: 1px solid #999; margin: 0 0 12px; }
     }
   </style>
 </head>
@@ -208,7 +163,6 @@
       <div class="label" id="topics-label">TOPICS</div>
       <div id="topic-list"></div>
     </div>
-    <div class="progress" id="progress-card"></div>
   </aside>
 
   <div class="main">
@@ -222,11 +176,6 @@
         <input id="search-input" type="text" autocomplete="off" placeholder="Search formulas, traps, topics" aria-label="Search all cards" oninput="runSearch()" onfocus="runSearch()">
         <kbd>⌘K</kbd>
         <div class="results" id="search-results" hidden></div>
-      </div>
-      <div class="modes" role="tablist" aria-label="Study mode">
-        <button role="tab" id="mode-study" aria-selected="true" onclick="setMode('study')">Study</button>
-        <button role="tab" id="mode-recall" aria-selected="false" onclick="setMode('recall')">Recall</button>
-        <button role="tab" id="mode-traps" aria-selected="false" onclick="setMode('traps')">Traps</button>
       </div>
       <button class="btn" onclick="printDeck()" aria-label="Print this topic">Print</button>
       <button class="btn primary" onclick="openAddModal()">+ Add card</button>
@@ -262,34 +211,34 @@
       <div class="w-full max-w-xl bg-[#0c101d] border border-cyan-500/30 rounded-2xl p-6 shadow-2xl text-slate-200">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-800">
           <h3 class="text-base font-bold text-white flex items-center gap-2">
-            <span>✨</span> Create a 16:9 Cosmic Knowledge Card
+            <span>✨</span> Make a new index card
           </h3>
           <button onclick="closeAddModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
         </div>
 
         <form onsubmit="saveCustomCard(event)" class="space-y-3.5 text-xs">
           <div>
-            <label class="block font-medium text-slate-300 mb-1">1. Concept Title (Top Banner)</label>
+            <label class="block font-medium text-slate-300 mb-1">1. Title it with what you want to remember</label>
             <input type="text" id="new-title" required placeholder="e.g. Linear Independence Constraint Qualification (LICQ)" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
           </div>
 
           <div>
-            <label class="block font-medium text-slate-300 mb-1">2. Core Plain Translation (The Feynman Mechanism)</label>
+            <label class="block font-medium text-slate-300 mb-1">2. Fill it with info. Make it sound personal and VERY informal</label>
             <textarea id="new-info" required rows="2" placeholder="Explain the concept in crisp, intuitive plain words..." class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400"></textarea>
           </div>
 
           <div>
-            <label class="block font-medium text-slate-300 mb-1">3. Formal Mathematics (LaTeX equations)</label>
+            <label class="block font-medium text-slate-300 mb-1">3. Formula (optional)</label>
             <input type="text" id="new-math" placeholder="e.g. $\nabla h_i(x^*)$ and $\nabla g_j(x^*)$ are linearly independent" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono">
           </div>
 
           <div>
-            <label class="block font-medium text-slate-300 mb-1">4. Personal Memory Anchor / Analogy</label>
+            <label class="block font-medium text-slate-300 mb-1">4. Write your own connection (or a personal example)</label>
             <textarea id="new-connection" required rows="2" placeholder="Real-world physical analogy (e.g. two ropes pulling along same axis)..." class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400"></textarea>
           </div>
 
           <div>
-            <label class="block font-medium text-slate-300 mb-1">5. Visual Caption</label>
+            <label class="block font-medium text-slate-300 mb-1">5. Draw a pic: say what you would draw</label>
             <input type="text" id="new-drawing-caption" required placeholder="e.g. Visual verification of non-degenerate gradients" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
           </div>
 
@@ -480,20 +429,14 @@
       { id: 'StoMA', color: '#f2b84b' },
       { id: 'DIP', color: '#5fd3a0' }
     ];
-    const RATINGS_KEY = 'plates_ratings_v1';
     const POS_KEY = 'plates_pos_v1';
 
-    let ratings = {};
-    try { ratings = JSON.parse(localStorage.getItem(RATINGS_KEY) || '{}'); } catch (e) { ratings = {}; }
-    function saveRatings() { try { localStorage.setItem(RATINGS_KEY, JSON.stringify(ratings)); } catch (e) {} }
     function savePos() { try { localStorage.setItem(POS_KEY, JSON.stringify({ s: currentSubject, t: currentTopic, i: idx })); } catch (e) {} }
 
     let currentSubject = 'CMO';
     let currentTopic = null;
     let deck = [];
     let idx = 0;
-    let mode = 'study';
-    let revealed = false;
 
     const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const stripTags = s => String(s || '').replace(/<\/?[^>]+(>|$)/g, '').replace(/\$/g, '');
@@ -511,8 +454,6 @@
       return Array.from(map.values());
     }
 
-    const gotCount = cards => cards.filter(c => ratings[c.id] === 3).length;
-
     /* ---------- navigation ---------- */
     function applyAccent() {
       const s = SUBJECTS.find(x => x.id === currentSubject);
@@ -524,8 +465,7 @@
       applyAccent();
       const topics = getTopicsList(sub);
       if (topics.length) {
-        const firstOpen = topics.find(t => gotCount(t.cards) < t.cards.length) || topics[0];
-        switchTopic(firstOpen.id);
+        switchTopic(topics[0].id);
       } else {
         currentTopic = null; deck = []; idx = 0;
         renderAll();
@@ -536,11 +476,7 @@
     function switchTopic(topicId, keepIdx) {
       currentTopic = topicId;
       deck = getSubjectCards(currentSubject).filter(c => topicOf(c) === topicId);
-      if (!keepIdx) {
-        const firstOpen = deck.findIndex(c => ratings[c.id] !== 3);
-        idx = firstOpen === -1 ? 0 : firstOpen;
-      }
-      revealed = false;
+      idx = keepIdx ? Math.max(0, Math.min(idx, deck.length - 1)) : 0;
       closeSearch();
       renderAll();
       toggleRail(false);
@@ -549,7 +485,6 @@
     function goTo(i) {
       if (!deck.length) return;
       idx = Math.max(0, Math.min(deck.length - 1, i));
-      revealed = false;
       renderAll();
     }
 
@@ -562,27 +497,6 @@
       t = (t + dir + topics.length) % topics.length;
       switchTopic(topics[t].id);
       if (dir < 0) goTo(deck.length - 1);
-    }
-
-    function setMode(m) {
-      mode = m;
-      revealed = false;
-      renderAll();
-    }
-
-    function rate(n) {
-      const card = deck[idx];
-      if (!card) return;
-      if (mode === 'traps' || (mode === 'recall' && !revealed)) return;
-      ratings[card.id] = n;
-      saveRatings();
-      step(1);
-    }
-
-    function flip() {
-      if (mode === 'recall' && !revealed) { revealed = true; renderAll(); }
-      else if (mode === 'recall') { revealed = false; renderAll(); }
-      else step(1);
     }
 
     function toggleRail(open) {
@@ -600,23 +514,10 @@
 
       document.getElementById('topics-label').textContent = `${currentSubject} TOPICS`;
       const topics = getTopicsList();
-      document.getElementById('topic-list').innerHTML = topics.length ? topics.map(t => {
-        const got = gotCount(t.cards);
-        const done = got === t.cards.length;
-        const ring = done
-          ? `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#5fd3a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7"/></svg>`
-          : `<span class="ring"></span>`;
-        return `<button class="topic ${t.id === currentTopic ? 'active' : ''}" onclick="switchTopic('${t.id}')" title="${esc(t.title)}">
-          ${ring}<span class="name">${esc(t.title)}</span><span class="cnt">${got}/${t.cards.length}</span></button>`;
-      }).join('') : `<div style="padding:8px 10px;font-size:13px;color:#8e9bb8;line-height:1.5">No cards for ${currentSubject} yet.</div>`;
-
-      const all = getSubjectCards(currentSubject);
-      const got = gotCount(all);
-      const pct = all.length ? Math.round(got / all.length * 100) : 0;
-      document.getElementById('progress-card').innerHTML = `
-        <div style="display:flex;justify-content:space-between"><span>${currentSubject} progress</span><span class="mono" style="color:#e6ebf5">${got} / ${all.length}</span></div>
-        <div class="bar"><i style="width:${pct}%"></i></div>
-        <div style="font-size:12px;color:#8e9bb8;line-height:1.5">${all.length - got ? `${all.length - got} cards still to master. Rate a card “Got it” to count it.` : (all.length ? 'Every card mastered.' : '')}</div>`;
+      document.getElementById('topic-list').innerHTML = topics.length ? topics.map(t =>
+        `<button class="topic ${t.id === currentTopic ? 'active' : ''}" onclick="switchTopic('${t.id}')" title="${esc(t.title)}">
+          <span class="name">${esc(t.title)}</span><span class="cnt">${t.cards.length}</span></button>`).join('')
+        : `<div style="padding:8px 10px;font-size:13px;color:#8e9bb8;line-height:1.5">No cards for ${currentSubject} yet.</div>`;
     }
 
     function renderTop() {
@@ -624,98 +525,59 @@
       const card = deck[idx];
       document.getElementById('crumb').innerHTML = `<span>${currentSubject}</span><span aria-hidden="true">/</span>
         <span class="t">${t ? esc(t.title) : '—'}</span>${card ? `<span aria-hidden="true">/</span><b>Card ${esc(card.cardNumber)}</b>` : ''}`;
-      ['study', 'recall', 'traps'].forEach(m => {
-        document.getElementById('mode-' + m).setAttribute('aria-selected', String(m === mode));
-      });
       document.title = card ? `${card.title} · Plates` : 'Plates · Photographic Memory Cards';
     }
 
     function renderStrip() {
       const strip = document.getElementById('card-strip');
       if (!deck.length) { strip.innerHTML = ''; return; }
-      strip.innerHTML = deck.map((c, i) => {
-        const r = ratings[c.id];
-        return `<button class="chipbtn ${r ? 'r' + r : ''} ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Card ${esc(c.cardNumber)}${i === idx ? ', current' : ''}">${esc(c.cardNumber)}</button>`;
-      }).join('') + `<span class="hint"><kbd>←</kbd> <kbd>→</kbd> move · <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> rate · <kbd>Space</kbd> ${mode === 'recall' ? 'reveal' : 'next'} · <kbd>/</kbd> search</span>`;
+      strip.innerHTML = deck.map((c, i) =>
+        `<button class="chipbtn ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Card ${esc(c.cardNumber)}${i === idx ? ', current' : ''}">${esc(c.cardNumber)}</button>`
+      ).join('') + `<span class="hint"><kbd>←</kbd> <kbd>→</kbd> turn the card · <kbd>/</kbd> search</span>`;
     }
 
-    function plateHtml(card) {
+    function sketchHtml(card) {
       return card.textbookImg
-        ? `<img src="${esc(card.textbookImg)}" alt="${esc(card.title)}" class="plate-img" onclick="openLightboxById(${card.id})">`
+        ? `<img src="${esc(card.textbookImg)}" alt="${esc(card.title)}" onclick="openLightboxById(${card.id})">`
         : `<div class="plate-svg">${card.drawingSvg || ''}</div>`;
     }
 
+    /* The info reads as one flowing paragraph, like handwriting on the card. */
+    const LEAD = /^\s*<strong>\s*(What|How|Why|Problem|Setup|Result|Check|Pattern|Step\s*\d*|Iteration\s*\d*)[^<]{0,30}<\/strong>\s*/i;
+    function infoParagraph(card) {
+      return card.coreTranslation.map(pt => pt.replace(LEAD, '').trim()).join(' ');
+    }
+
     function cardHtml(card) {
-      const leads = ['What', 'How', 'Why'];
-      const mech = card.coreTranslation.map((pt, i) =>
-        `<li><span class="lead">${card.coreTranslation.length === 3 && !/^\s*<strong>/.test(pt) ? leads[i] : '›'}</span><span>${pt}</span></li>`).join('');
       return `
-        <article class="card" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
-          <div class="card-left">
-            <div>
-              <div class="card-head"><span class="chip">CARD ${esc(card.cardNumber)}</span><span class="cat">${esc(card.category)}</span></div>
-              <h1 class="card-title">${card.title}</h1>
-            </div>
-            <section><div class="sec-label">1 · CORE MECHANISM</div><ul class="mech">${mech}</ul></section>
-            <section><div class="sec-label">2 · FORMAL MATHEMATICS</div><div class="math-block">${card.math}</div></section>
-            <div class="duo">
-              <section class="anchor"><div class="sec-label">3 · MEMORY ANCHOR</div><p>${card.personalConnection}</p></section>
-              <section class="trap"><div class="sec-label">4 · EXAM TRAP</div><p>${card.examTrap}</p></section>
-            </div>
+        <div class="paper-bar">
+          <span class="chip">CARD ${esc(card.cardNumber)}</span><span class="cat">${esc(card.category)}</span>
+          <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy this card (text and picture) to the clipboard">
+            <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
+        </div>
+        <article class="paper" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
+          <h1 class="paper-title">${card.title}</h1>
+          <figure class="sketch">
+            <div class="sketch-box">${sketchHtml(card)}</div>
+            <figcaption>${card.drawingCaption || ''}</figcaption>
+          </figure>
+          <p class="info">${infoParagraph(card)}</p>
+          <section class="connection"><h2>CONNECTION</h2><p>${card.personalConnection}</p></section>
+        </article>
+        <details class="formal">
+          <summary>Formal notes: the formula and the exam trap</summary>
+          <div class="formal-body">
+            <div class="math-block">${card.math}</div>
+            <div class="trapline"><b>EXAM TRAP</b>${card.examTrap}</div>
           </div>
-          <aside class="card-right">
-            <div class="plate-head">
-              <span class="sec-label muted">5 · VISUAL PLATE</span>
-              <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy card text, math and image to the clipboard">
-                <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
-            </div>
-            <figure class="plate-fig">
-              <div class="plate">${plateHtml(card)}</div>
-              <figcaption><span class="sec-label muted">6 · CAPTION&nbsp;&nbsp;</span>${card.drawingCaption || ''}
-                ${card.textbookImg ? `<button class="expand" onclick="openLightboxById(${card.id})">Expand</button>` : ''}</figcaption>
-            </figure>
-          </aside>
-        </article>`;
-    }
-
-    function recallHtml(card) {
-      const slot = (k, name, lines, cls) => `<div class="slot ${cls || ''}"><span class="k">${k}</span><div class="ln">${lines.map(w => `<i style="width:${w}%"></i>`).join('')}</div><span class="nm">${name}</span></div>`;
-      return `
-        <div class="recall">
-          <section>
-            <div><div class="sec-label">STEP 1 · LOOK AT THE PLATE</div>
-              <h1>What concept is this, and what is the formula?</h1></div>
-            <div class="plate">${plateHtml(card)}</div>
-            <p style="margin:0;font-size:14px;line-height:1.5;color:#9aa6c0">Say the idea out loud before you reveal anything. The picture should rebuild the formula for you.</p>
-          </section>
-          <section>
-            <div class="sec-label" style="color:#b4bfd6">STEP 2 · REBUILD THE CARD</div>
-            ${slot('T', 'Concept title', [62])}
-            ${slot('1', 'What · How · Why', [84, 70, 52])}
-            ${slot('2', 'Formula', [66])}
-            ${slot('3', 'Memory anchor', [58])}
-            ${slot('4', 'Exam trap', [44], 'trap-slot')}
-            <button class="reveal" onclick="flip()">Reveal card <kbd>Space</kbd></button>
-          </section>
-        </div>`;
-    }
-
-    function trapsHtml() {
-      const t = getTopicsList().find(x => x.id === currentTopic);
-      return `<div class="traps"><div class="sec-label">EXAM TRAPS</div><h1>${t ? esc(t.title) : ''}</h1>` +
-        deck.map((c, i) => `<button class="trap-row" onclick="mode='study';goTo(${i})">
-          <span class="n">${esc(c.cardNumber)}</span><span><div class="tt">${c.title}</div><div class="tx">${c.examTrap}</div></span></button>`).join('') + `</div>`;
+        </details>`;
     }
 
     function renderStage() {
       const stage = document.getElementById('stage');
       if (!deck.length) {
         stage.innerHTML = `<div class="empty"><h2>No cards for ${currentSubject} yet</h2>
-          <p>Cards you generate for this subject will show up here, grouped by topic.</p></div>`;
-      } else if (mode === 'traps') {
-        stage.innerHTML = trapsHtml();
-      } else if (mode === 'recall' && !revealed) {
-        stage.innerHTML = recallHtml(deck[idx]);
+          <p>Cards for this subject will show up here, grouped by topic.</p></div>`;
       } else {
         stage.innerHTML = cardHtml(deck[idx]);
       }
@@ -724,16 +586,13 @@
 
     function renderActions() {
       const bar = document.getElementById('actions');
-      if (!deck.length || mode === 'traps') { bar.innerHTML = ''; return; }
-      const canRate = !(mode === 'recall' && !revealed);
+      if (!deck.length) { bar.innerHTML = ''; return; }
       bar.innerHTML = `
-        <button class="nav" onclick="step(-1)">← Previous</button>
+        <button class="nav" onclick="step(-1)">← Previous card</button>
         <div class="sp"></div>
-        <span class="q">${canRate ? 'How well did you know it?' : 'Reveal the card, then rate yourself'}</span>
-        <button class="rate again" onclick="rate(1)" ${canRate ? '' : 'disabled'}>Again<kbd>1</kbd></button>
-        <button class="rate" onclick="rate(2)" ${canRate ? '' : 'disabled'}>Shaky<kbd>2</kbd></button>
-        <button class="rate good" onclick="rate(3)" ${canRate ? '' : 'disabled'}>Got it<kbd>3</kbd></button>
-        <button class="nav next" onclick="step(1)">Next →</button>`;
+        <span class="counter">${idx + 1} of ${deck.length}</span>
+        <div class="sp"></div>
+        <button class="nav next" onclick="step(1)">Next card →</button>`;
     }
 
     function typesetMath(root) {
@@ -763,13 +622,13 @@
       const hits = masterCards.map(c => {
         const fields = [c.title, c.category, c.topicTitle, c.personalConnection, c.examTrap, ...(c.coreTranslation || [])].map(stripTags);
         const hay = fields.join(' ').toLowerCase();
-        return hay.includes(q) ? { c, trap: stripTags(c.examTrap).toLowerCase().includes(q) } : null;
+        return hay.includes(q) ? { c } : null;
       }).filter(Boolean).slice(0, 8);
       box.innerHTML = hits.length ? hits.map(h => `
         <button class="res" onclick="openCard(${h.c.id})">
           <span>${stripTags(h.c.title)}</span>
           <span class="meta">${esc(h.c.subject || 'CMO')} · ${esc(h.c.topicTitle || 'Default deck')} · Card ${esc(h.c.cardNumber)}</span>
-          <span class="snip">${h.trap ? 'Exam trap: ' + esc(stripTags(h.c.examTrap).slice(0, 110)) : esc(stripTags((h.c.coreTranslation || [])[0]).slice(0, 110))}</span>
+          <span class="snip">${esc(stripTags(infoParagraph(h.c)).slice(0, 110))}</span>
         </button>`).join('') : `<div class="res-empty">No cards match “${esc(q)}”.</div>`;
       box.hidden = false;
     }
@@ -779,7 +638,6 @@
       if (!c) return;
       currentSubject = c.subject || 'CMO';
       applyAccent();
-      mode = 'study';
       switchTopic(topicOf(c), true);
       idx = Math.max(0, deck.findIndex(x => x.id === id));
       document.getElementById('search-input').value = '';
@@ -813,8 +671,7 @@
       if (e.key === '/') { e.preventDefault(); input.focus(); }
       else if (e.key === 'ArrowRight') step(1);
       else if (e.key === 'ArrowLeft') step(-1);
-      else if (e.key === ' ' && !(t && t.tagName === 'BUTTON')) { e.preventDefault(); flip(); }
-      else if (e.key === '1' || e.key === '2' || e.key === '3') rate(Number(e.key));
+      else if (e.key === ' ' && !(t && t.tagName === 'BUTTON')) { e.preventDefault(); step(1); }
     });
     document.addEventListener('click', e => {
       if (!e.target.closest('.search')) closeSearch();
