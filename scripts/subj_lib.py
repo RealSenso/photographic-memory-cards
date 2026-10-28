@@ -3,6 +3,27 @@ Reuses the black-and-white SVG toolkit from dip_lib."""
 import json, os
 from dip_lib import T, N, L, P, C, R, E, PG, AX, GRID, BARS, svg, HL
 
+import dip_lib as _dl
+
+def _clamp(x, s, sz, a, serif, bold):
+    w = len(str(s)) * sz * (0.45 if serif else 0.52) * (1.07 if bold else 1.0)
+    if a == "start":
+        x = min(x, 236 - w)
+        x = max(x, 4)
+    elif a == "end":
+        x = max(x, w + 4)
+        x = min(x, 236)
+    else:
+        x = min(max(x, w / 2 + 4), 236 - w / 2)
+    return x
+
+def T(x, y, s, sz=9, a="middle", st="italic", w="normal", f="serif"):
+    x = _clamp(x, s, sz, a, f == "serif", w == "bold")
+    return _dl.T(x, y, s, sz, a, st, w, f)
+
+def N(x, y, s, sz=8.5, a="middle", w="normal"):
+    return T(x, y, s, sz, a, "normal", w, "sans-serif")
+
 LAA = {
     2: ("02_Linear_Independence_Bases_and_Dimension", "02 · Independence, Bases & Dimension"),
     3: ("03_Linear_Maps_Null_Space_Range_and_Matrices", "03 · Linear Maps, Null Space & Range"),
