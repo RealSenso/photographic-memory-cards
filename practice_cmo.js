@@ -1,500 +1,319 @@
-/* CMO practice cards (topics 09-19): previous-year questions from the IISc exam papers (2023-2025 midterms / finals)
-   plus extra questions written at the same level. Each one is a flippable card: question on the front, solution on the back.
-   kind2 'pyq' = taken from a university paper (source tells which), 'gen' = written for this deck. */
-(function () {
-  const TOP = {
-    9: '09_Geometry_of_Constrained_Optimization_Tangent_Cone_and_LICQ',
-    10: '10_Separating_Hyperplanes_and_Farkas_Lemma',
-    11: '11_Karush_Kuhn_Tucker_Conditions_FONC_and_Sufficiency',
-    12: '12_Second_Order_Optimality_Conditions_in_Constrained_Optimization',
-    13: '13_Projections_onto_Convex_Sets',
-    14: '14_Gradient_Projection_Algorithm_and_Convergence',
-    15: '15_Active_Set_Methods_for_Quadratic_Programming',
-    16: '16_Lagrangian_Duality_and_Slaters_Condition',
-    17: '17_Wolfe_Duality',
-    18: '18_Linear_Programming_Duality_and_Polyhedral_Geometry',
-    19: '19_Penalty_and_Barrier_Methods'
-  };
-  const out = [];
-  const count = {};
-  function Q(t, kind2, source, marks, question, solution, takeaway) {
-    count[t] = (count[t] || 0) + 1;
-    out.push({ id: 600000 + t * 100 + count[t], subject: 'CMO', topicId: TOP[t], kind2, source, marks, question, solution, takeaway });
+/* Practice Questions Database for CMO (Topics 01-08) */
+window.PRACTICE_DATA = window.PRACTICE_DATA || [];
+
+window.PRACTICE_DATA.push(
+[
+  {
+    "id": 10191,
+    "subject": "CMO",
+    "topicId": "01_Mathematical_Preliminaries_Topology_and_Weierstrass",
+    "topicTitle": "01 \u00b7 Mathematical Preliminaries & Weierstrass",
+    "title": "Coercivity & Weierstrass EVT (IISc Midterm 2024)",
+    "kind2": "pyq",
+    "source": "IISc Midterm 1 2024 / Luenberger Ch 7",
+    "marks": "[8 Marks]",
+    "question": "<p><span class=\"part\">(a)</span> Define what it means for a continuous function $f: \\mathbb{R}^n \\to \\mathbb{R}$ to be <strong>coercive</strong>.</p>\n<p><span class=\"part\">(b)</span> Consider the polynomial objective:\n$$f(x_1, x_2) = x_1^4 + x_2^4 - 4x_1 x_2$$\nProve rigorously that $f$ is coercive on $\\mathbb{R}^2$.</p>\n<p><span class=\"part\">(c)</span> Using the Weierstrass Extreme Value Theorem, deduce that $f$ attains a finite global minimum on $\\mathbb{R}^2$.</p>",
+    "solution": "<p><span class=\"part\">Step 1: Definition of Coercivity</span><br>\nA continuous function $f: \\mathbb{R}^n \\to \\mathbb{R}$ is coercive if:\n$$\\lim_{\\|x\\|_2 \\to \\infty} f(x) = +\\infty$$\nEquivalently, for every $M \\in \\mathbb{R}$, there exists an $R > 0$ such that $\\|x\\|_2 > R \\implies f(x) > M$.</p>\n\n<p><span class=\"part\">Step 2: Proof of Coercivity</span><br>\nBy the arithmetic-geometric mean (AM-GM) inequality or Young's inequality:\n$$4|x_1 x_2| \\le 2(x_1^2 + x_2^2) = 2\\|x\\|_2^2$$\nNext, by the power-mean / Cauchy-Schwarz inequality on coordinates:\n$$x_1^4 + x_2^4 \\ge \\frac{1}{2}(x_1^2 + x_2^2)^2 = \\frac{1}{2}\\|x\\|_2^4$$\nCombining these lower bounds:\n$$f(x_1, x_2) \\ge \\frac{1}{2}\\|x\\|_2^4 - 2\\|x\\|_2^2 = \\|x\\|_2^2 \\left( \\frac{1}{2}\\|x\\|_2^2 - 2 \\right)$$\nAs $\\|x\\|_2 \\to \\infty$, the factor $\\left(\\frac{1}{2}\\|x\\|_2^2 - 2\\right) \\to +\\infty$. Therefore:\n$$\\lim_{\\|x\\|_2 \\to \\infty} f(x) = +\\infty$$\n<span class=\"ans\">Thus $f$ is coercive on $\\mathbb{R}^2$.</span></p>\n\n<p><span class=\"part\">Step 3: Existence of Global Minimum</span><br>\nPick any point $x_0 = (0, 0)$, where $f(0, 0) = 0$. Consider the sublevel set:\n$$S_0 = \\{x \\in \\mathbb{R}^2 : f(x) \\le f(x_0) = 0\\}$$\n1. Since $f$ is continuous, $S_0 = f^{-1}((-\\infty, 0])$ is <strong>closed</strong>.<br>\n2. Since $f$ is coercive, $S_0$ is <strong>bounded</strong> (for $\\|x\\|_2 > 2$, $f(x) > 0$, so $S_0 \\subset B_2(0)$).<br>\nBy the Heine-Borel Theorem, $S_0$ is <strong>compact</strong>.<br>\nBy Weierstrass EVT, continuous $f$ attains a minimum $x^*$ on compact $S_0$. Since $f(x) > 0 \\ge f(x^*)$ for all $x \\notin S_0$, $x^*$ is a <span class=\"ans\">global minimum on all of $\\mathbb{R}^2$</span>.</p>",
+    "takeaway": "Coercivity converts an open unconstrained search over $\\mathbb{R}^n$ into an optimization problem over a compact sublevel set $S_0$, where Weierstrass guarantees existence."
+  },
+  {
+    "id": 10192,
+    "subject": "CMO",
+    "topicId": "01_Mathematical_Preliminaries_Topology_and_Weierstrass",
+    "topicTitle": "01 \u00b7 Mathematical Preliminaries & Weierstrass",
+    "title": "Sublevel Set Characterization of Coercivity (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 3",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be a continuous function. For any $\\alpha \\in \\mathbb{R}$, define the $\\alpha$-sublevel set:\n$$S_\\alpha = \\{x \\in \\mathbb{R}^n : f(x) \\le \\alpha\\}$$\nProve that $f$ is coercive if and only if for every $\\alpha \\in \\mathbb{R}$, the sublevel set $S_\\alpha$ is compact (closed and bounded in $\\mathbb{R}^n$).</p>",
+    "solution": "<p><span class=\"part\">Preliminary: Closedness</span><br>\nFor any continuous function $f$, the sublevel set $S_\\alpha = f^{-1}((-\\infty, \\alpha])$ is the preimage of the closed set $(-\\infty, \\alpha] \\subset \\mathbb{R}$, so $S_\\alpha$ is always closed for any $\\alpha \\in \\mathbb{R}$. Thus by Heine-Borel, $S_\\alpha$ is compact $\\iff$ $S_\\alpha$ is bounded.</p>\n\n<p><span class=\"part\">Forward Direction: $(\\implies)$ Assume $f$ is coercive</span><br>\nSuppose for contradiction that there exists some $\\hat{\\alpha} \\in \\mathbb{R}$ such that $S_{\\hat{\\alpha}}$ is unbounded.<br>\nThen there exists a sequence $\\{x_k\\} \\subset S_{\\hat{\\alpha}}$ such that $\\|x_k\\| \\to \\infty$ as $k \\to \\infty$.<br>\nBy definition of $S_{\\hat{\\alpha}}$, $f(x_k) \\le \\hat{\\alpha}$ for all $k$.<br>\nHowever, because $f$ is coercive and $\\|x_k\\| \\to \\infty$, we must have:\n$$\\lim_{k \\to \\infty} f(x_k) = +\\infty$$\nThis contradicts $f(x_k) \\le \\hat{\\alpha} < \\infty$ for all $k$.<br>\n<span class=\"ans\">Therefore, every sublevel set $S_\\alpha$ must be bounded, and hence compact.</span></p>\n\n<p><span class=\"part\">Reverse Direction: $(\\impliedby)$ Assume every $S_\\alpha$ is compact</span><br>\nLet $M \\in \\mathbb{R}$ be arbitrary. Consider the sublevel set $S_M = \\{x : f(x) \\le M\\}$.<br>\nBy hypothesis, $S_M$ is bounded, so there exists some radius $R_M > 0$ such that:\n$$S_M \\subset \\{x \\in \\mathbb{R}^n : \\|x\\| \\le R_M\\}$$\nTaking contrapositives:\n$$\\|x\\| > R_M \\implies x \\notin S_M \\implies f(x) > M$$\nSince for every $M \\in \\mathbb{R}$, there exists $R_M$ such that $\\|x\\| > R_M \\implies f(x) > M$, it follows by definition that:\n$$\\lim_{\\|x\\| \\to \\infty} f(x) = +\\infty$$\n<span class=\"ans\">Hence $f$ is coercive.</span> $\\blacksquare$</p>",
+    "takeaway": "Coercivity is topological: it means every sublevel set is trapped inside a finite sphere. In convex analysis, sublevel set boundedness is the standard test for well-posedness."
+  },
+  {
+    "id": 10193,
+    "subject": "CMO",
+    "topicId": "01_Mathematical_Preliminaries_Topology_and_Weierstrass",
+    "topicTitle": "01 \u00b7 Mathematical Preliminaries & Weierstrass",
+    "title": "Quadratic Coercivity vs. Singular Solvability (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / Berkeley Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $A \\in \\mathbb{R}^{n \\times n}$ be symmetric positive semidefinite ($A \\succeq 0$), and let $b \\in \\mathbb{R}^n$. Consider the quadratic objective:\n$$f(x) = \\frac{1}{2} x^\\top A x - b^\\top x$$\n<span class=\"part\">(a)</span> Prove that $f$ is coercive on $\\mathbb{R}^n$ if and only if $A$ is strictly positive definite ($A \\succ 0$).<br>\n<span class=\"part\">(b)</span> Suppose $A$ is singular (has at least one zero eigenvalue). Under what exact necessary and sufficient condition on $b$ does $f$ still achieve a finite global minimum on $\\mathbb{R}^n$?</p>",
+    "solution": "<p><span class=\"part\">Part (a): Coercivity $\\iff A \\succ 0$</span><br>\n$(\\impliedby)$ If $A \\succ 0$, let $\\lambda_{\\min} > 0$ be the smallest eigenvalue. By Rayleigh quotient and Cauchy-Schwarz:\n$$f(x) \\ge \\frac{\\lambda_{\\min}}{2} \\|x\\|_2^2 - \\|b\\|_2 \\|x\\|_2 = \\|x\\|_2 \\left( \\frac{\\lambda_{\\min}}{2}\\|x\\|_2 - \\|b\\|_2 \\right) \\to +\\infty \\text{ as } \\|x\\|_2 \\to \\infty$$\n$(\\implies)$ If $A$ is singular, $\\exists v \\ne 0$ with $Av = 0$. Consider the ray $x(t) = tv$ for $t > 0$:\n$$f(tv) = \\frac{1}{2} t^2 (v^\\top A v) - t(b^\\top v) = -t(b^\\top v)$$\nIf $b^\\top v \\ne 0$, choosing $t \\to \\infty$ with appropriate sign gives $f(tv) \\to -\\infty$. If $b^\\top v = 0$, $f(tv) = 0$ for all $t$, which is bounded, not $+\\infty$. Thus $f$ is <span class=\"ans\">never coercive if $A$ has a zero eigenvalue</span>.</p>\n\n<p><span class=\"part\">Part (b): Solvability when $A$ is Singular</span><br>\nFor $f$ to attain a minimum, $f$ must be bounded below along the nullspace $\\ker(A)$.<br>\nAlong any $v \\in \\ker(A)$, $f(x + tv) = f(x) - t(b^\\top v)$. This linear function is bounded below on $\\mathbb{R}$ if and only if:\n$$b^\\top v = 0 \\quad \\forall v \\in \\ker(A)$$\nBy the Fundamental Theorem of Linear Algebra:\n$$\\ker(A)^\\perp = \\operatorname{range}(A^\\top) = \\operatorname{range}(A)$$\nTherefore, $b^\\top v = 0 \\; \\forall v \\in \\ker(A) \\iff <span class=\"ans\">b \\in \\operatorname{range}(A)</span>$.</p>\n\n<p><span class=\"part\">Verification of Minimizer:</span><br>\nIf $b \\in \\operatorname{range}(A)$, there exists $x^* \\in \\mathbb{R}^n$ such that $Ax^* = b$. Then:\n$$f(x) - f(x^*) = \\frac{1}{2}(x - x^*)^\\top A (x - x^*) \\ge 0 \\quad (\\text{since } A \\succeq 0)$$\nThus $x^*$ is a finite global minimizer (non-unique; the set of minimizers is $x^* + \\ker(A)$).</p>",
+    "takeaway": "A singular quadratic cannot be coercive, but it still attains a minimum if and only if $b \\in \\operatorname{range}(A)$ (the linear system $Ax = b$ is consistent)."
+  },
+  {
+    "id": 10291,
+    "subject": "CMO",
+    "topicId": "02_Multivariate_Taylor_Series_and_Optimality_Conditions",
+    "topicTitle": "02 \u00b7 Multivariate Taylor Series & Optimality",
+    "title": "Stationary Point Classification (IISc Midterm 2023)",
+    "kind2": "pyq",
+    "source": "IISc Midterm 1 2023 / Nocedal & Wright Ch 2",
+    "marks": "[10 Marks]",
+    "question": "<p>Consider the function $f: \\mathbb{R}^2 \\to \\mathbb{R}$:\n$$f(x_1, x_2) = 2x_1^3 + x_1 x_2^2 + 5x_1^2 + x_2^2$$\n<span class=\"part\">(a)</span> Compute the gradient $\\nabla f(x)$ and locate all four stationary points of $f$.<br>\n<span class=\"part\">(b)</span> Compute the Hessian matrix $\\nabla^2 f(x)$.<br>\n<span class=\"part\">(c)</span> Classify each stationary point as a local minimum, local maximum, or saddle point using second-order conditions.</p>",
+    "solution": "<p><span class=\"part\">Step 1: First-Order Necessary Condition (FONC)</span><br>\n$$\\nabla f(x) = \\begin{bmatrix} \\frac{\\partial f}{\\partial x_1} \\\\[4pt] \\frac{\\partial f}{\\partial x_2} \\end{bmatrix} = \\begin{bmatrix} 6x_1^2 + x_2^2 + 10x_1 \\\\[4pt] 2x_1 x_2 + 2x_2 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 0 \\end{bmatrix}$$\nFrom the second equation: $2x_2(x_1 + 1) = 0 \\implies x_2 = 0 \\text{ or } x_1 = -1$.\n<ul>\n  <li><strong>Case A:</strong> $x_2 = 0$. First equation becomes $6x_1^2 + 10x_1 = 2x_1(3x_1 + 5) = 0 \\implies x_1 = 0$ or $x_1 = -5/3$.<br>\n  Points: <span class=\"ans\">$(0, 0)$</span> and <span class=\"ans\">$(-5/3, 0)$</span>.</li>\n  <li><strong>Case B:</strong> $x_1 = -1$. First equation becomes $6(-1)^2 + x_2^2 + 10(-1) = x_2^2 - 4 = 0 \\implies x_2 = \\pm 2$.<br>\n  Points: <span class=\"ans\">$(-1, 2)$</span> and <span class=\"ans\">$(-1, -2)$</span>.</li>\n</ul></p>\n\n<p><span class=\"part\">Step 2: Hessian Matrix</span><br>\n$$\\nabla^2 f(x) = \\begin{bmatrix} 12x_1 + 10 & 2x_2 \\\\ 2x_2 & 2x_1 + 2 \\end{bmatrix}$$</p>\n\n<p><span class=\"part\">Step 3: Classification</span><br>\n1. <strong>At $(0, 0)$:</strong> $\\nabla^2 f(0, 0) = \\begin{bmatrix} 10 & 0 \\\\ 0 & 2 \\end{bmatrix} \\succ 0$ (eigenvalues $10, 2 > 0$).<br>\n<span class=\"ans\">Strict Local Minimum</span> ($f(0, 0) = 0$).<br>\n2. <strong>At $(-5/3, 0)$:</strong> $\\nabla^2 f(-5/3, 0) = \\begin{bmatrix} -10 & 0 \\\\ 0 & -4/3 \\end{bmatrix} \\prec 0$ (eigenvalues $-10, -4/3 < 0$).<br>\n<span class=\"ans\">Strict Local Maximum</span> ($f(-5/3, 0) = 125/27$).<br>\n3. <strong>At $(-1, 2)$:</strong> $\\nabla^2 f(-1, 2) = \\begin{bmatrix} -2 & 4 \\\\ 4 & 0 \\end{bmatrix}$. Determinant $= 0 - 16 = -16 < 0$. Indefinite.<br>\n<span class=\"ans\">Saddle Point</span> ($f(-1, 2) = 3$).<br>\n4. <strong>At $(-1, -2)$:</strong> $\\nabla^2 f(-1, -2) = \\begin{bmatrix} -2 & -4 \\\\ -4 & 0 \\end{bmatrix}$. Determinant $= 0 - 16 = -16 < 0$. Indefinite.<br>\n<span class=\"ans\">Saddle Point</span> ($f(-1, -2) = 3$).</p>",
+    "takeaway": "Factor the gradient equations completely to avoid missing solutions. A negative Hessian determinant in 2D immediately diagnoses a saddle point without needing to compute eigenvalues."
+  },
+  {
+    "id": 10292,
+    "subject": "CMO",
+    "topicId": "02_Multivariate_Taylor_Series_and_Optimality_Conditions",
+    "topicTitle": "02 \u00b7 Multivariate Taylor Series & Optimality",
+    "title": "Rigorous Proof of SONC (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 2",
+    "marks": "[8 Marks]",
+    "question": "<p>Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be twice continuously differentiable ($C^2$).<br>\nProve the <strong>Second-Order Necessary Condition (SONC)</strong>: if $x^*$ is a local minimizer of $f$, then:\n$$\\nabla f(x^*) = 0 \\quad \\text{and} \\quad \\nabla^2 f(x^*) \\succeq 0 \\text{ (positive semidefinite)}$$\nProvide a completely rigorous $\\epsilon$-$\\delta$ or limit proof based on multivariate Taylor expansion.</p>",
+    "solution": "<p><span class=\"part\">Step 1: First-Order Condition</span><br>\nSince $x^*$ is a local minimizer, along any ray $x(t) = x^* + t d$ ($d \\in \\mathbb{R}^n, t \\in \\mathbb{R}$), the 1D function $g(t) = f(x^* + t d)$ has a local minimum at $t = 0$. Thus $g'(0) = \\nabla f(x^*)^\\top d = 0$. Since this holds for all $d \\in \\mathbb{R}^n$, we must have $\\nabla f(x^*) = 0$.</p>\n\n<p><span class=\"part\">Step 2: Taylor Expansion with Integral Remainder</span><br>\nBy Taylor's theorem around $x^*$, for any direction $d \\in \\mathbb{R}^n$ and $t > 0$:\n$$f(x^* + t d) = f(x^*) + t \\nabla f(x^*)^\\top d + \\frac{t^2}{2} d^\\top \\nabla^2 f(x^*) d + o(t^2)$$\nUsing $\\nabla f(x^*) = 0$:\n$$f(x^* + t d) - f(x^*) = \\frac{t^2}{2} d^\\top \\nabla^2 f(x^*) d + o(t^2)$$</p>\n\n<p><span class=\"part\">Step 3: Isolating Curvature via Limit</span><br>\nSince $x^*$ is a local minimizer, there exists $\\epsilon > 0$ such that for all $t \\in (0, \\epsilon)$:\n$$f(x^* + t d) - f(x^*) \\ge 0$$\nDividing both sides by $t^2 > 0$:\n$$\\frac{f(x^* + t d) - f(x^*)}{t^2} = \\frac{1}{2} d^\\top \\nabla^2 f(x^*) d + \\frac{o(t^2)}{t^2} \\ge 0$$\nTaking the limit as $t \\to 0^+$:\n$$\\lim_{t \\to 0^+} \\left( \\frac{1}{2} d^\\top \\nabla^2 f(x^*) d + \\frac{o(t^2)}{t^2} \\right) = \\frac{1}{2} d^\\top \\nabla^2 f(x^*) d \\ge 0$$\nMultiplying by 2:\n$$d^\\top \\nabla^2 f(x^*) d \\ge 0$$\nSince direction $d \\in \\mathbb{R}^n$ was arbitrary, this holds for all $d \\in \\mathbb{R}^n$.<br>\n<span class=\"ans\">Therefore, $\\nabla^2 f(x^*) \\succeq 0$ (positive semidefinite).</span> $\\blacksquare$</p>",
+    "takeaway": "Dividing the Taylor error by $t^2$ and taking $t \\to 0$ suppresses all higher-order terms, revealing the quadratic curvature must be non-negative."
+  },
+  {
+    "id": 10293,
+    "subject": "CMO",
+    "topicId": "02_Multivariate_Taylor_Series_and_Optimality_Conditions",
+    "topicTitle": "02 \u00b7 Multivariate Taylor Series & Optimality",
+    "title": "Peano Counterexample & Directional Limits (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / Bertsekas Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>Consider Peano's classic polynomial function:\n$$f(x_1, x_2) = (x_2 - x_1^2)(x_2 - 2x_1^2)$$\n<span class=\"part\">(a)</span> Show that along <em>every straight line</em> passing through the origin $x(t) = (c_1 t, c_2 t)$ ($t \\in \\mathbb{R}$), $t = 0$ is a strict local minimum of $g(t) = f(c_1 t, c_2 t)$.<br>\n<span class=\"part\">(b)</span> Prove that $(0, 0)$ is <em>not</em> a local minimum of $f$ on $\\mathbb{R}^2$ by constructing a curved trajectory along which $f(x) < 0$.<br>\n<span class=\"part\">(c)</span> Why does this phenomenon not contradict the Second-Order Necessary Condition?</p>",
+    "solution": "<p><span class=\"part\">Part (a): Straight-Line Directional Analysis</span><br>\nSubstitute $x_1 = c_1 t, x_2 = c_2 t$ into $f$:\n$$g(t) = (c_2 t - c_1^2 t^2)(c_2 t - 2c_1^2 t^2)$$\n<ul>\n  <li><strong>Case 1 ($c_2 \\ne 0$):</strong> Expanding gives $g(t) = c_2^2 t^2 - 3c_1^2 c_2 t^3 + 2c_1^4 t^4$.<br>\n  $g'(0) = 0$ and $g''(0) = 2c_2^2 > 0$. By 1D second-order sufficiency, $t = 0$ is a strict local minimum!</li>\n  <li><strong>Case 2 ($c_2 = 0$, $x_1$-axis):</strong> $g(t) = (-c_1^2 t^2)(-2c_1^2 t^2) = 2c_1^4 t^4 > 0$ for all $t \\ne 0$. So $t = 0$ is again a strict local minimum!</li>\n</ul>\nThus along every straight line through the origin, $(0,0)$ is a strict local minimum.</p>\n\n<p><span class=\"part\">Part (b): Parabolic Counter-Trajectory</span><br>\nNotice that $f(x_1, x_2) < 0$ precisely when the two factors have opposite signs:\n$$x_1^2 < x_2 < 2x_1^2$$\nConsider the parabola running straight down this channel: $x_2 = \\frac{3}{2} x_1^2$.\n$$f\\left(x_1, \\frac{3}{2}x_1^2\\right) = \\left(\\frac{3}{2}x_1^2 - x_1^2\\right)\\left(\\frac{3}{2}x_1^2 - 2x_1^2\\right) = \\left(\\frac{1}{2}x_1^2\\right)\\left(-\\frac{1}{2}x_1^2\\right) = -\\frac{1}{4}x_1^4 < 0 \\quad \\forall x_1 \\ne 0$$\nSince $f(0, 0) = 0$ and every neighborhood $B_\\epsilon(0, 0)$ contains points on this parabola with $f < 0$, <span class=\"ans\">$(0, 0)$ is a saddle point, NOT a local minimum</span>.</p>\n\n<p><span class=\"part\">Part (c): Reconciling with SONC</span><br>\nComputing the Hessian at the origin:\n$$\\nabla^2 f(0, 0) = \\begin{bmatrix} 0 & 0 \\\\ 0 & 2 \\end{bmatrix} \\succeq 0$$\nThe Hessian is positive <em>semidefinite</em> (eigenvalues $0$ and $2$). SONC only says $\\nabla^2 f(x^*) \\succeq 0$ is <em>necessary</em>; it is NOT sufficient when a zero eigenvalue exists!</p>",
+    "takeaway": "Directional derivatives only probe straight lines. When the Hessian is singular, curvature along parabolic curves $x_2 \\propto x_1^2$ can create descent valleys invisible to straight lines."
+  },
+  {
+    "id": 10391,
+    "subject": "CMO",
+    "topicId": "03_Convexity_and_Strong_Convexity",
+    "topicTitle": "03 \u00b7 Convexity & Strong Convexity",
+    "title": "Polyak-\u0141ojasiewicz Inequality (IISc Endsem 2023)",
+    "kind2": "pyq",
+    "source": "IISc Endsem 2023 / Boyd Ch 3",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be continuously differentiable and $\\mu$-strongly convex ($\\mu > 0$). Let $x^*$ denote its unique global minimizer.<br>\n<span class=\"part\">(a)</span> State the first-order definition of $\\mu$-strong convexity.<br>\n<span class=\"part\">(b)</span> Prove the <strong>Polyak-\u0141ojasiewicz (PL) inequality</strong>:\n$$\\frac{1}{2\\mu} \\|\\nabla f(x)\\|_2^2 \\ge f(x) - f(x^*) \\quad \\forall x \\in \\mathbb{R}^n$$\n<span class=\"part\">(c)</span> Deduce that any stationary point $\\nabla f(\\bar{x}) = 0$ must be the global minimizer.</p>",
+    "solution": "<p><span class=\"part\">Part (a): First-Order Characterization</span><br>\nA function $f$ is $\\mu$-strongly convex if for all $x, y \\in \\mathbb{R}^n$:\n$$f(y) \\ge f(x) + \\nabla f(x)^\\top (y - x) + \\frac{\\mu}{2} \\|y - x\\|_2^2$$</p>\n\n<p><span class=\"part\">Part (b): Proof of PL Inequality</span><br>\nHold $x$ fixed and consider the right-hand side as a quadratic function of $y$:\n$$q(y) = f(x) + \\nabla f(x)^\\top (y - x) + \\frac{\\mu}{2} \\|y - x\\|_2^2$$\nTo find the minimum of $q(y)$ over all $y \\in \\mathbb{R}^n$, take the gradient with respect to $y$:\n$$\\nabla_y q(y) = \\nabla f(x) + \\mu (y - x) = 0 \\implies y^* = x - \\frac{1}{\\mu} \\nabla f(x)$$\nSubstitute this optimal $y^*$ back into $q(y)$:\n$$q(y^*) = f(x) + \\nabla f(x)^\\top \\left(-\\frac{1}{\\mu}\\nabla f(x)\\right) + \\frac{\\mu}{2} \\left\\|-\\frac{1}{\\mu}\\nabla f(x)\\right\\|^2 = f(x) - \\frac{1}{2\\mu} \\|\\nabla f(x)\\|_2^2$$\nSince $f(y) \\ge q(y)$ for all $y$, taking the infimum of both sides over $y \\in \\mathbb{R}^n$:\n$$\\inf_{y} f(y) \\ge \\min_{y} q(y) \\implies f(x^*) \\ge f(x) - \\frac{1}{2\\mu} \\|\\nabla f(x)\\|_2^2$$\nRearranging terms yields the PL inequality:\n$$<span class=\"ans\">f(x) - f(x^*) \\le \\frac{1}{2\\mu} \\|\\nabla f(x)\\|_2^2</span> \\quad \\blacksquare$$</p>\n\n<p><span class=\"part\">Part (c): Stationarity Implies Global Optimality</span><br>\nIf $\\nabla f(\\bar{x}) = 0$, then:\n$$0 \\le f(\\bar{x}) - f(x^*) \\le \\frac{1}{2\\mu} \\|\\nabla f(\\bar{x})\\|_2^2 = \\frac{1}{2\\mu} (0) = 0$$\nHence $f(\\bar{x}) = f(x^*)$, so $\\bar{x}$ must be the global minimizer.</p>",
+    "takeaway": "Minimizing the quadratic lower bound of strong convexity gives the PL inequality, which guarantees that small gradient norm translates directly into near-optimal function value."
+  },
+  {
+    "id": 10392,
+    "subject": "CMO",
+    "topicId": "03_Convexity_and_Strong_Convexity",
+    "topicTitle": "03 \u00b7 Convexity & Strong Convexity",
+    "title": "Pointwise Maximum & Epigraph Geometry (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 3",
+    "marks": "[8 Marks]",
+    "question": "<p>Let $f_1, f_2, \\dots, f_m: \\mathbb{R}^n \\to \\mathbb{R}$ be convex functions.<br>\n<span class=\"part\">(a)</span> Define the epigraph $\\operatorname{epi}(f)$ of an arbitrary function $f$.<br>\n<span class=\"part\">(b)</span> Prove that the epigraph of the pointwise maximum function $f(x) = \\max_{i=1,\\dots,m} f_i(x)$ is the intersection of the epigraphs:\n$$\\operatorname{epi}(f) = \\bigcap_{i=1}^m \\operatorname{epi}(f_i)$$\n<span class=\"part\">(c)</span> Deduce that $f(x)$ is convex.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Epigraph Definition</span><br>\nThe epigraph of a function $f: \\mathbb{R}^n \\to \\mathbb{R}$ is the set of points lying on or above its graph:\n$$\\operatorname{epi}(f) = \\{(x, t) \\in \\mathbb{R}^n \\times \\mathbb{R} : f(x) \\le t\\}$$</p>\n\n<p><span class=\"part\">Part (b): Epigraph Intersection Identity</span><br>\nLet $(x, t) \\in \\mathbb{R}^n \\times \\mathbb{R}$. Then:\n$$(x, t) \\in \\operatorname{epi}(f) \\iff f(x) \\le t$$\nSince $f(x) = \\max_{i=1,\\dots,m} f_i(x)$, the maximum is $\\le t$ if and only if each individual component is $\\le t$:\n$$\\max_{i=1,\\dots,m} f_i(x) \\le t \\iff f_i(x) \\le t \\quad \\forall i \\in \\{1, 2, \\dots, m\\}$$\nBy definition of epigraph:\n$$f_i(x) \\le t \\iff (x, t) \\in \\operatorname{epi}(f_i)$$\nTherefore:\n$$(x, t) \\in \\operatorname{epi}(f) \\iff (x, t) \\in \\operatorname{epi}(f_i) \\; \\forall i \\iff <span class=\"ans\">(x, t) \\in \\bigcap_{i=1}^m \\operatorname{epi}(f_i)</span>$$\nThis establishes the set equality $\\operatorname{epi}(f) = \\bigcap_{i=1}^m \\operatorname{epi}(f_i)$.</p>\n\n<p><span class=\"part\">Part (c): Convexity of $f$</span><br>\n1. A function is convex if and only if its epigraph is a convex set.<br>\n2. Since each $f_i$ is convex, each $\\operatorname{epi}(f_i)$ is a convex set in $\\mathbb{R}^{n+1}$.<br>\n3. The intersection of any collection of convex sets is always convex.<br>\nThus $\\operatorname{epi}(f)$ is a convex set, which proves <span class=\"ans\">$f$ is convex</span>. $\\blacksquare$</p>",
+    "takeaway": "Pointwise maximum in function space corresponds to set intersection in epigraph space. Since convexity is preserved under intersection, maximum operations preserve convexity automatically."
+  },
+  {
+    "id": 10393,
+    "subject": "CMO",
+    "topicId": "03_Convexity_and_Strong_Convexity",
+    "topicTitle": "03 \u00b7 Convexity & Strong Convexity",
+    "title": "Co-Coercivity & Baillon-Haddad Theorem (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / Berkeley Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be continuously differentiable and convex, with $L$-Lipschitz continuous gradient ($\\|\\nabla f(x) - \\nabla f(y)\\| \\le L \\|x - y\\|$).<br>\n<span class=\"part\">(a)</span> State the Descent Lemma applied to $f$.<br>\n<span class=\"part\">(b)</span> Prove the <strong>Co-coercivity inequality</strong> (also known as the Baillon-Haddad theorem for convex functions):\n$$(\\nabla f(x) - \\nabla f(y))^\\top (x - y) \\ge \\frac{1}{L} \\|\\nabla f(x) - \\nabla f(y)\\|_2^2 \\quad \\forall x, y \\in \\mathbb{R}^n$$\n<span class=\"part\">(c)</span> Contrast this with standard monotonicity $(\\nabla f(x) - \\nabla f(y))^\\top (x - y) \\ge 0$.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Descent Lemma</span><br>\nFor any $L$-smooth function $f$:\n$$f(y) \\le f(x) + \\nabla f(x)^\\top (y - x) + \\frac{L}{2} \\|y - x\\|_2^2$$</p>\n\n<p><span class=\"part\">Part (b): Proof of Co-coercivity</span><br>\nFix $x \\in \\mathbb{R}^n$. Define the shifted convex function $\\phi(z) = f(z) - \\nabla f(x)^\\top z$.<br>\nNotice that $\\nabla \\phi(z) = \\nabla f(z) - \\nabla f(x)$. Hence $\\nabla \\phi(x) = 0$, meaning $z = x$ is a global minimizer of $\\phi$.<br>\nSince $\\phi$ also has $L$-Lipschitz gradient, the Descent Lemma applied to $\\phi$ at any point $y$ yields:\n$$\\phi(x) = \\min_z \\phi(z) \\le \\phi\\left(y - \\frac{1}{L}\\nabla \\phi(y)\\right) \\le \\phi(y) - \\frac{1}{2L} \\|\\nabla \\phi(y)\\|^2$$\nSubstitute $\\phi(z) = f(z) - \\nabla f(x)^\\top z$:\n$$f(x) - \\nabla f(x)^\\top x \\le f(y) - \\nabla f(x)^\\top y - \\frac{1}{2L} \\|\\nabla f(y) - \\nabla f(x)\\|^2$$\nRearranging:\n$$f(y) \\ge f(x) + \\nabla f(x)^\\top (y - x) + \\frac{1}{2L} \\|\\nabla f(x) - \\nabla f(y)\\|^2$$\nNow write down the exact same inequality with $x$ and $y$ swapped:\n$$f(x) \\ge f(y) + \\nabla f(y)^\\top (x - y) + \\frac{1}{2L} \\|\\nabla f(x) - \\nabla f(y)\\|^2$$\nAdding these two inequalities together:\n$$0 \\ge (\\nabla f(x) - \\nabla f(y))^\\top (y - x) + \\frac{1}{L} \\|\\nabla f(x) - \\nabla f(y)\\|^2$$\nRearranging gives the co-coercivity formula:\n$$<span class=\"ans\">(\\nabla f(x) - \\nabla f(y))^\\top (x - y) \\ge \\frac{1}{L} \\|\\nabla f(x) - \\nabla f(y)\\|_2^2</span> \\quad \\blacksquare$$</p>\n\n<p><span class=\"part\">Part (c): Significance</span><br>\nMonotonicity only guarantees $\\ge 0$. Co-coercivity proves the gradient mapping is firmly nonexpansive ($1/L$ contractive), ensuring gradient descent is non-expansive for step size $\\alpha < 2/L$.</p>",
+    "takeaway": "Co-coercivity is the cornerstone of operator splitting (proximal algorithms). It proves the inner product of gradient variation and coordinate variation dominates the squared gradient norm."
+  },
+  {
+    "id": 10491,
+    "subject": "CMO",
+    "topicId": "04_Line_Search_Methods_Exact_Armijo_and_Wolfe",
+    "topicTitle": "04 \u00b7 Line Search (Armijo & Wolfe)",
+    "title": "Exact Quadratic Line Search (IISc Midterm 2024)",
+    "kind2": "pyq",
+    "source": "IISc Midterm 2 2024 / Nocedal & Wright Ch 3",
+    "marks": "[8 Marks]",
+    "question": "<p>Consider the strictly convex quadratic function:\n$$f(x) = \\frac{1}{2} x^\\top Q x - b^\\top x$$\nwhere $Q \\in \\mathbb{R}^{n \\times n}$ is symmetric positive definite ($Q \\succ 0$).<br>\n<span class=\"part\">(a)</span> For an arbitrary iterate $x_k$ and search direction $p_k$, derive the exact analytic step length $\\alpha_k$ that minimizes the 1D slice $\\phi(\\alpha) = f(x_k + \\alpha p_k)$.<br>\n<span class=\"part\">(b)</span> Specialize this formula to the steepest descent direction $p_k = -\\nabla f(x_k) = -g_k$.<br>\n<span class=\"part\">(c)</span> Prove that consecutive steepest descent steps with exact line search are strictly orthogonal: $g_{k+1}^\\top g_k = 0$.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Exact Step Length Derivation</span><br>\nExpand $\\phi(\\alpha) = f(x_k + \\alpha p_k)$:\n$$\\phi(\\alpha) = \\frac{1}{2}(x_k + \\alpha p_k)^\\top Q (x_k + \\alpha p_k) - b^\\top (x_k + \\alpha p_k)$$\n$$\\phi(\\alpha) = f(x_k) + \\alpha (Q x_k - b)^\\top p_k + \\frac{1}{2} \\alpha^2 p_k^\\top Q p_k = f(x_k) + \\alpha \\nabla f(x_k)^\\top p_k + \\frac{1}{2} \\alpha^2 p_k^\\top Q p_k$$\nDifferentiating with respect to $\\alpha$:\n$$\\phi'(\\alpha) = \\nabla f(x_k)^\\top p_k + \\alpha p_k^\\top Q p_k = 0 \\implies <span class=\"ans\">\\alpha_k = -\\frac{\\nabla f(x_k)^\\top p_k}{p_k^\\top Q p_k}</span>$$</p>\n\n<p><span class=\"part\">Part (b): Steepest Descent Direction</span><br>\nSubstituting $p_k = -g_k = -\\nabla f(x_k)$:\n$$\\alpha_k = -\\frac{g_k^\\top (-g_k)}{(-g_k)^\\top Q (-g_k)} = <span class=\"ans\">\\frac{g_k^\\top g_k}{g_k^\\top Q g_k}</span>$$</p>\n\n<p><span class=\"part\">Part (c): Orthogonality Proof</span><br>\nThe gradient at the new iterate $x_{k+1} = x_k + \\alpha_k p_k$ is:\n$$g_{k+1} = Q x_{k+1} - b = Q(x_k + \\alpha_k p_k) - b = (Q x_k - b) + \\alpha_k Q p_k = g_k + \\alpha_k Q p_k$$\nTake the inner product of $g_{k+1}$ with the search direction $p_k$:\n$$g_{k+1}^\\top p_k = g_k^\\top p_k + \\alpha_k p_k^\\top Q p_k = g_k^\\top p_k + \\left(-\\frac{g_k^\\top p_k}{p_k^\\top Q p_k}\\right) p_k^\\top Q p_k = g_k^\\top p_k - g_k^\\top p_k = 0$$\nFor steepest descent, $p_k = -g_k$. Thus:\n$$g_{k+1}^\\top (-g_k) = 0 \\implies <span class=\"ans\">g_{k+1}^\\top g_k = 0</span> \\quad \\blacksquare$$</p>",
+    "takeaway": "Exact line search stops at the tangent point where the line is tangent to the contour ellipse, forcing $g_{k+1} \\perp g_k$. This exact 90-degree orthogonality is the root cause of zig-zagging."
+  },
+  {
+    "id": 10492,
+    "subject": "CMO",
+    "topicId": "04_Line_Search_Methods_Exact_Armijo_and_Wolfe",
+    "topicTitle": "04 \u00b7 Line Search (Armijo & Wolfe)",
+    "title": "Backtracking Armijo Finite Termination (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 9",
+    "marks": "[8 Marks]",
+    "question": "<p>Consider the Backtracking Line Search algorithm: given descent direction $p_k$ ($\\nabla f(x_k)^\\top p_k < 0$), start with initial step $\\alpha = 1$, contraction factor $\\rho \\in (0, 1)$, and Armijo parameter $c \\in (0, 1)$.<br>\nRepeat $\\alpha \\leftarrow \\rho \\alpha$ until the Armijo condition holds:\n$$f(x_k + \\alpha p_k) \\le f(x_k) + c \\alpha \\nabla f(x_k)^\\top p_k$$\nProve that if $f$ is continuously differentiable ($C^1$), this backtracking procedure terminates after a finite number of iterations.</p>",
+    "solution": "<p><span class=\"part\">Step 1: First-Order Taylor Limit</span><br>\nBy definition of the directional derivative of a $C^1$ function:\n$$\\lim_{\\alpha \\to 0^+} \\frac{f(x_k + \\alpha p_k) - f(x_k)}{\\alpha} = \\nabla f(x_k)^\\top p_k$$</p>\n\n<p><span class=\"part\">Step 2: Strict Inequality Threshold</span><br>\nSince $c \\in (0, 1)$ and $\\nabla f(x_k)^\\top p_k < 0$, we have:\n$$\\nabla f(x_k)^\\top p_k < c \\nabla f(x_k)^\\top p_k$$\nDefine the strictly positive gap:\n$$\\epsilon = (1 - c) |\\nabla f(x_k)^\\top p_k| > 0$$</p>\n\n<p><span class=\"part\">Step 3: Existence of Admissible Interval</span><br>\nBy the definition of the limit, for this $\\epsilon > 0$, there exists a threshold $\\bar{\\alpha} > 0$ such that for all $\\alpha \\in (0, \\bar{\\alpha})$:\n$$\\frac{f(x_k + \\alpha p_k) - f(x_k)}{\\alpha} \\le \\nabla f(x_k)^\\top p_k + \\epsilon = c \\nabla f(x_k)^\\top p_k$$\nMultiplying by $\\alpha > 0$:\n$$f(x_k + \\alpha p_k) \\le f(x_k) + c \\alpha \\nabla f(x_k)^\\top p_k$$\nThus, the Armijo condition is satisfied for all $\\alpha \\in (0, \\bar{\\alpha})$.</p>\n\n<p><span class=\"part\">Step 4: Finite Iteration Count</span><br>\nThe backtracking loop tests the sequence of step lengths $\\alpha_m = \\rho^m$ for $m = 0, 1, 2, \\dots$.<br>\nSince $\\rho \\in (0, 1)$, $\\lim_{m \\to \\infty} \\rho^m = 0$.<br>\nTherefore, there exists a finite smallest integer $m^*$ such that:\n$$\\rho^{m^*} < \\bar{\\alpha} \\implies m^* \\le \\left\\lceil \\frac{\\ln \\bar{\\alpha}}{\\ln \\rho} \\right\\rceil < \\infty$$\n<span class=\"ans\">Backtracking terminates in at most $m^*$ steps.</span> $\\blacksquare$</p>",
+    "takeaway": "Because the true tangent slope $\\nabla f^\\top p$ is strictly steeper than the Armijo boundary slope $c \\nabla f^\\top p$, the actual curve must plunge below the Armijo line for sufficiently small $\\alpha$."
+  },
+  {
+    "id": 10493,
+    "subject": "CMO",
+    "topicId": "04_Line_Search_Methods_Exact_Armijo_and_Wolfe",
+    "topicTitle": "04 \u00b7 Line Search (Armijo & Wolfe)",
+    "title": "Strong Wolfe Conditions & Parameter Bounds (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / Nocedal & Wright Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>The Strong Wolfe conditions require finding $\\alpha_k > 0$ satisfying:\n$$f(x_k + \\alpha_k p_k) \\le f(x_k) + c_1 \\alpha_k \\nabla f(x_k)^\\top p_k \\quad \\text{(Armijo Decrease)}$$\n$$|\\nabla f(x_k + \\alpha_k p_k)^\\top p_k| \\le c_2 |\\nabla f(x_k)^\\top p_k| \\quad \\text{(Curvature Condition)}$$\nwith $0 < c_1 < c_2 < 1$.<br>\n<span class=\"part\">(a)</span> Prove that if $f$ is continuously differentiable and bounded below along the ray $\\{x_k + \\alpha p_k : \\alpha > 0\\}$, there exists an interval of step lengths satisfying the Strong Wolfe conditions.<br>\n<span class=\"part\">(b)</span> Why is the ordering condition $c_1 < c_2$ mathematically necessary? What breaks if $c_1 \\ge c_2$?</p>",
+    "solution": "<p><span class=\"part\">Part (a): Existence Proof via Mean Value Theorem</span><br>\nLet $\\phi(\\alpha) = f(x_k + \\alpha p_k)$. Since $p_k$ is a descent direction, $\\phi'(0) < 0$.<br>\nConsider the Armijo line $l(\\alpha) = \\phi(0) + c_1 \\alpha \\phi'(0)$.<br>\nSince $c_1 \\phi'(0) < 0$, $l(\\alpha) \\to -\\infty$ as $\\alpha \\to \\infty$. But $f$ is bounded below, so $\\phi(\\alpha)$ is bounded below.<br>\nTherefore, $\\phi(\\alpha)$ must cross $l(\\alpha)$ at some point $\\alpha' > 0$ such that $\\phi(\\alpha') = l(\\alpha')$.<br>\nOver the interval $[0, \\alpha']$, by the Mean Value Theorem, there exists $\\alpha^* \\in (0, \\alpha')$ such that:\n$$\\phi'(\\alpha^*) = \\frac{\\phi(\\alpha') - \\phi(0)}{\\alpha'} = c_1 \\phi'(0)$$\nSince $\\phi'(0) < 0$ and $c_1 < c_2 < 1$:\n$$c_1 \\phi'(0) > c_2 \\phi'(0) \\implies \\phi'(\\alpha^*) > -c_2 |\\phi'(0)|$$\nAlso, $\\phi(\\alpha) < l(\\alpha)$ on $(0, \\alpha')$, so $\\alpha^*$ strictly satisfies Armijo decrease.<br>\nSince $|\\phi'(\\alpha^*)| = -c_1 \\phi'(0) < c_2 |\\phi'(0)|$, by continuity of $\\phi'$, <span class=\"ans\">an entire open interval around $\\alpha^*$ satisfies the Strong Wolfe conditions</span>.</p>\n\n<p><span class=\"part\">Part (b): Necessity of $c_1 < c_2$</span><br>\nIf $c_1 \\ge c_2$, the slope requirement of condition 2 requires $|\\phi'(\\alpha)| \\le c_2 |\\phi'(0)| \\le c_1 |\\phi'(0)|$.<br>\nFor a convex function, $\\phi'(\\alpha)$ is non-decreasing. The point where the slope reaches $c_1 \\phi'(0)$ occurs exactly at or after the point where $\\phi$ crosses above the Armijo line!<br>\nThus, the set of points satisfying Armijo decrease and the set of points satisfying the curvature condition can become <span class=\"ans\">completely disjoint</span>! No step size $\\alpha$ can satisfy both conditions simultaneously when $c_1 \\ge c_2$.</p>",
+    "takeaway": "$0 < c_1 < c_2 < 1$ is required to ensure the Armijo decrease threshold and Wolfe slope flattening threshold overlap in a nonempty admissible set."
+  },
+  {
+    "id": 10591,
+    "subject": "CMO",
+    "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
+    "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
+    "title": "Kantorovich Bound & Zig-Zagging (IISc Endsem 2024)",
+    "kind2": "pyq",
+    "source": "IISc Endsem 2024 / Luenberger Ch 8",
+    "marks": "[10 Marks]",
+    "question": "<p>Consider minimizing the quadratic function:\n$$f(x_1, x_2) = \\frac{1}{2} x_1^2 + \\frac{50}{2} x_2^2$$\nusing Gradient Descent with exact line search, starting from $x_0 = (50, 1)^\\top$.<br>\n<span class=\"part\">(a)</span> Compute the condition number $\\kappa(Q)$ and the theoretical Kantorovich error reduction factor $r = \\left(\\frac{\\kappa - 1}{\\kappa + 1}\\right)^2$.<br>\n<span class=\"part\">(b)</span> Compute the exact coordinates of $x_1$ and $x_2$.<br>\n<span class=\"part\">(c)</span> Show that the ratio of components $x_{k,1}/x_{k,2}$ alternates sign while preserving its magnitude, proving endless 90\u00b0 zig-zagging.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Condition Number & Theoretical Rate</span><br>\n$$Q = \\begin{bmatrix} 1 & 0 \\\\ 0 & 50 \\end{bmatrix} \\implies \\lambda_{\\max} = 50, \\quad \\lambda_{\\min} = 1 \\implies <span class=\"ans\">\\kappa(Q) = 50</span>$$\nThe Kantorovich convergence factor is:\n$$r = \\left(\\frac{\\kappa - 1}{\\kappa + 1}\\right)^2 = \\left(\\frac{50 - 1}{50 + 1}\\right)^2 = \\left(\\frac{49}{51}\\right)^2 = \\frac{2401}{2601} \\approx <span class=\"ans\">0.9231</span>$$\nEach step reduces the error by at most $7.7\\%$.</p>\n\n<p><span class=\"part\">Part (b): Exact Calculation of $x_1$ and $x_2$</span><br>\nAt $x_0 = (50, 1)^\\top$:\n$$g_0 = Q x_0 = \\begin{bmatrix} 1(50) \\\\ 50(1) \\end{bmatrix} = \\begin{bmatrix} 50 \\\\ 50 \\end{bmatrix}$$\n$$\\alpha_0 = \\frac{g_0^\\top g_0}{g_0^\\top Q g_0} = \\frac{50^2 + 50^2}{50^2(1) + 50^2(50)} = \\frac{5000}{2500 + 125000} = \\frac{5000}{127500} = \\frac{2}{51}$$\nUpdate:\n$$x_1 = x_0 - \\alpha_0 g_0 = \\begin{bmatrix} 50 \\\\ 1 \\end{bmatrix} - \\frac{2}{51} \\begin{bmatrix} 50 \\\\ 50 \\end{bmatrix} = \\begin{bmatrix} 50(1 - 2/51) \\\\[4pt] 1 - 100/51 \\end{bmatrix} = <span class=\"ans\">\\frac{49}{51} \\begin{bmatrix} 50 \\\\ -1 \\end{bmatrix}</span>$$\nFor the next iteration, $g_1 = Q x_1 = \\frac{49}{51} \\begin{bmatrix} 50 \\\\ -50 \\end{bmatrix}$.<br>\n$$\\alpha_1 = \\frac{g_1^\\top g_1}{g_1^\\top Q g_1} = \\frac{2}{51}$$\n$$x_2 = x_1 - \\alpha_1 g_1 = \\left(\\frac{49}{51}\\right)^2 \\begin{bmatrix} 50 \\\\ 1 \\end{bmatrix}$$</p>\n\n<p><span class=\"part\">Part (c): Geometric Zig-Zagging</span><br>\nIn general: $x_k = \\left(\\frac{49}{51}\\right)^k \\begin{bmatrix} 50 \\\\[2pt] (-1)^k \\end{bmatrix}$.<br>\nThe ratio $x_{k,1}/x_{k,2} = 50 \\cdot (-1)^k$ strictly alternates sign! Iterates bounce back and forth across the narrow valley walls perpendicular to the valley floor.</p>",
+    "takeaway": "When $\\kappa \\gg 1$, exact line search traps gradient descent into an orthogonal zig-zag where progress along the slow eigenvector is choked by oscillations across the steep eigenvector."
+  },
+  {
+    "id": 10592,
+    "subject": "CMO",
+    "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
+    "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
+    "title": "Descent Lemma Derivation (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 9",
+    "marks": "[8 Marks]",
+    "question": "<p>Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be continuously differentiable with $L$-Lipschitz continuous gradient:\n$$\\|\\nabla f(u) - \\nabla f(v)\\|_2 \\le L \\|u - v\\|_2 \\quad \\forall u, v \\in \\mathbb{R}^n$$\nProve the <strong>Descent Lemma</strong> (Quadratic Upper Bound):\n$$f(y) \\le f(x) + \\nabla f(x)^\\top (y - x) + \\frac{L}{2} \\|y - x\\|_2^2 \\quad \\forall x, y \\in \\mathbb{R}^n$$</p>",
+    "solution": "<p><span class=\"part\">Step 1: Fundamental Theorem of Calculus</span><br>\nConsider the line segment connecting $x$ to $y$, parameterized by $x(t) = x + t(y - x)$ for $t \\in [0, 1]$. By the chain rule:\n$$f(y) - f(x) = \\int_0^1 \\frac{d}{dt} f(x + t(y - x)) \\, dt = \\int_0^1 \\nabla f(x + t(y - x))^\\top (y - x) \\, dt$$</p>\n\n<p><span class=\"part\">Step 2: Add and Subtract Reference Gradient</span><br>\nAdd and subtract $\\nabla f(x)^\\top (y - x)$ inside the integrand:\n$$f(y) - f(x) = \\int_0^1 \\nabla f(x)^\\top (y - x) \\, dt + \\int_0^1 [\\nabla f(x + t(y - x)) - \\nabla f(x)]^\\top (y - x) \\, dt$$\nThe first integral is independent of $t$:\n$$f(y) - f(x) = \\nabla f(x)^\\top (y - x) + \\int_0^1 [\\nabla f(x + t(y - x)) - \\nabla f(x)]^\\top (y - x) \\, dt$$</p>\n\n<p><span class=\"part\">Step 3: Cauchy-Schwarz & Lipschitz Bound</span><br>\nApply the Cauchy-Schwarz inequality to the remaining integrand:\n$$|[\\nabla f(x + t(y - x)) - \\nabla f(x)]^\\top (y - x)| \\le \\|\\nabla f(x + t(y - x)) - \\nabla f(x)\\|_2 \\|y - x\\|_2$$\nBy the $L$-Lipschitz property:\n$$\\|\\nabla f(x + t(y - x)) - \\nabla f(x)\\|_2 \\le L \\|t(y - x)\\|_2 = L t \\|y - x\\|_2$$\nSubstitute this bound back into the integral:\n$$\\int_0^1 [\\nabla f(x + t(y - x)) - \\nabla f(x)]^\\top (y - x) \\, dt \\le L \\|y - x\\|_2^2 \\int_0^1 t \\, dt = \\frac{L}{2} \\|y - x\\|_2^2$$</p>\n\n<p><span class=\"part\">Step 4: Final Assembly</span><br>\nCombining the terms:\n$$f(y) - f(x) \\le \\nabla f(x)^\\top (y - x) + \\frac{L}{2} \\|y - x\\|_2^2$$\n<span class=\"ans\">$$f(y) \\le f(x) + \\nabla f(x)^\\top (y - x) + \\frac{L}{2} \\|y - x\\|_2^2$$</span> $\\blacksquare$</p>",
+    "takeaway": "The Descent Lemma guarantees that an $L$-smooth function can never bend upwards faster than a paraboloid of curvature $L$. Any step size $\\alpha \\le 1/L$ is guaranteed to decrease the objective."
+  },
+  {
+    "id": 10593,
+    "subject": "CMO",
+    "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
+    "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
+    "title": "Sublinear O(1/T) Rate of Gradient Descent (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / MIT Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be convex and $L$-smooth with a global minimum $x^*$ ($f^* = f(x^*)$). Consider Gradient Descent with constant step size $\\alpha = 1/L$:\n$$x_{k+1} = x_k - \\frac{1}{L} \\nabla f(x_k)$$\n<span class=\"part\">(a)</span> Using the Descent Lemma, prove that each iteration guarantees:\n$$f(x_{k+1}) \\le f(x_k) - \\frac{1}{2L} \\|\\nabla f(x_k)\\|_2^2$$\n<span class=\"part\">(b)</span> Prove the global $\\mathcal{O}(1/T)$ sublinear convergence rate:\n$$f(x_T) - f^* \\le \\frac{L \\|x_0 - x^*\\|_2^2}{2T}$$</p>",
+    "solution": "<p><span class=\"part\">Part (a): Per-Step Decrease</span><br>\nSubstitute $y = x_{k+1} = x_k - \\frac{1}{L} \\nabla f(x_k)$ into the Descent Lemma:\n$$f(x_{k+1}) \\le f(x_k) + \\nabla f(x_k)^\\top \\left(-\\frac{1}{L}\\nabla f(x_k)\\right) + \\frac{L}{2} \\left\\|-\\frac{1}{L}\\nabla f(x_k)\\right\\|^2$$\n$$f(x_{k+1}) \\le f(x_k) - \\frac{1}{L}\\|\\nabla f(x_k)\\|^2 + \\frac{1}{2L}\\|\\nabla f(x_k)\\|^2 = <span class=\"ans\">f(x_k) - \\frac{1}{2L}\\|\\nabla f(x_k)\\|^2</span>$$</p>\n\n<p><span class=\"part\">Part (b): Global Rate Proof via Telescoping</span><br>\nBy convexity of $f$:\n$$f(x_k) - f^* \\le \\nabla f(x_k)^\\top (x_k - x^*)$$\nNow expand the distance to optimum for the next step:\n$$\\|x_{k+1} - x^*\\|^2 = \\left\\|x_k - \\frac{1}{L}\\nabla f(x_k) - x^*\\right\\|^2 = \\|x_k - x^*\\|^2 - \\frac{2}{L}\\nabla f(x_k)^\\top(x_k - x^*) + \\frac{1}{L^2}\\|\\nabla f(x_k)\\|^2$$\nSubstitute $\\nabla f(x_k)^\\top(x_k - x^*) \\ge f(x_k) - f^*$ and $\\frac{1}{L^2}\\|\\nabla f(x_k)\\|^2 \\le \\frac{2}{L}(f(x_k) - f(x_{k+1}))$:\n$$\\|x_{k+1} - x^*\\|^2 \\le \\|x_k - x^*\\|^2 - \\frac{2}{L}(f(x_k) - f^*) + \\frac{2}{L}(f(x_k) - f(x_{k+1})) = \\|x_k - x^*\\|^2 - \\frac{2}{L}(f(x_{k+1}) - f^*)$$\nRearranging:\n$$f(x_{k+1}) - f^* \\le \\frac{L}{2} (\\|x_k - x^*\\|^2 - \\|x_{k+1} - x^*\\|^2)$$\nSum both sides from $k = 0$ to $T - 1$:\n$$\\sum_{k=0}^{T-1} (f(x_{k+1}) - f^*) \\le \\frac{L}{2} \\sum_{k=0}^{T-1} (\\|x_k - x^*\\|^2 - \\|x_{k+1} - x^*\\|^2) = \\frac{L}{2}(\\|x_0 - x^*\\|^2 - \\|x_T - x^*\\|^2) \\le \\frac{L}{2}\\|x_0 - x^*\\|^2$$\nSince $f(x_k)$ is non-increasing, $T(f(x_T) - f^*) \\le \\sum_{k=0}^{T-1} (f(x_{k+1}) - f^*)$. Dividing by $T$:\n$$<span class=\"ans\">f(x_T) - f^* \\le \\frac{L \\|x_0 - x^*\\|_2^2}{2T}</span> \\quad \\blacksquare$$</p>",
+    "takeaway": "Telescoping the distance-to-optimum sequence is the fundamental proof architecture for establishing $\\mathcal{O}(1/T)$ first-order sublinear rates."
+  },
+  {
+    "id": 10691,
+    "subject": "CMO",
+    "topicId": "06_Newtons_Method_and_Hessian_Modifications",
+    "topicTitle": "06 \u00b7 Newton\u2019s Method & Modifications",
+    "title": "Newton Blowup on Rosenbrock (IISc Midterm 2023)",
+    "kind2": "pyq",
+    "source": "IISc Midterm 2 2023 / Nocedal & Wright Ch 3",
+    "marks": "[10 Marks]",
+    "question": "<p>Consider the Rosenbrock banana function:\n$$f(x_1, x_2) = 100(x_2 - x_1^2)^2 + (1 - x_1)^2$$\nStarting from $x_0 = (0, 0)^\\top$:<br>\n<span class=\"part\">(a)</span> Compute the gradient $\\nabla f(x_0)$ and the Hessian $\\nabla^2 f(x_0)$.<br>\n<span class=\"part\">(b)</span> Compute the pure Newton step $p_0 = -[\\nabla^2 f(x_0)]^{-1} \\nabla f(x_0)$ and the new iterate $x_1 = x_0 + p_0$.<br>\n<span class=\"part\">(c)</span> Evaluate $f(x_1)$ and compare it to $f(x_0)$. Explain what failed and why line search is mandatory.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Gradient & Hessian at $x_0 = (0, 0)$</span><br>\nPartial derivatives:\n$$\\frac{\\partial f}{\\partial x_1} = -400 x_1 (x_2 - x_1^2) - 2(1 - x_1) \\implies \\frac{\\partial f}{\\partial x_1}(0, 0) = -2$$\n$$\\frac{\\partial f}{\\partial x_2} = 200(x_2 - x_1^2) \\implies \\frac{\\partial f}{\\partial x_2}(0, 0) = 0$$\n$$\\nabla f(0, 0) = \\begin{bmatrix} -2 \\\\ 0 \\end{bmatrix}$$\nSecond derivatives:\n$$\\frac{\\partial^2 f}{\\partial x_1^2} = -400(x_2 - 3x_1^2) + 2 \\implies \\frac{\\partial^2 f}{\\partial x_1^2}(0, 0) = 2$$\n$$\\frac{\\partial^2 f}{\\partial x_1 \\partial x_2} = -400 x_1 \\implies \\frac{\\partial^2 f}{\\partial x_1 \\partial x_2}(0, 0) = 0$$\n$$\\frac{\\partial^2 f}{\\partial x_2^2} = 200 \\implies \\frac{\\partial^2 f}{\\partial x_2^2}(0, 0) = 200$$\n$$\\nabla^2 f(0, 0) = \\begin{bmatrix} 2 & 0 \\\\ 0 & 200 \\end{bmatrix}$$</p>\n\n<p><span class=\"part\">Part (b): Newton Step</span><br>\n$$[\\nabla^2 f(0, 0)]^{-1} = \\begin{bmatrix} 1/2 & 0 \\\\ 0 & 1/200 \\end{bmatrix}$$\n$$p_0 = - \\begin{bmatrix} 1/2 & 0 \\\\ 0 & 1/200 \\end{bmatrix} \\begin{bmatrix} -2 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}$$\nNew iterate:\n$$x_1 = x_0 + p_0 = \\begin{bmatrix} 0 \\\\ 0 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix} = <span class=\"ans\">\\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}</span>$$</p>\n\n<p><span class=\"part\">Part (c): Value Evaluation & Failure Analysis</span><br>\nInitial value: $f(0, 0) = 100(0 - 0)^2 + (1 - 0)^2 = 1$.<br>\nNew value:\n$$f(1, 0) = 100(0 - 1^2)^2 + (1 - 1)^2 = 100(1) + 0 = <span class=\"ans\">100</span>$$\n<span class=\"ans\">The objective exploded by a factor of 100 ($1 \\to 100$)!</span><br>\nWhy: Newton's method assumed the quadratic Taylor model at $(0,0)$ was valid across a distance of $\\|p_0\\| = 1$. But the quadratic model predicted $f(1, 0) \\approx 1 + (-2)(1) + \\frac{1}{2}(2)(1)^2 = 0$. In reality, the quartic term $-400 x_1^3$ dominated outside the neighborhood, wrecking the step. A backtracking line search (damped Newton) is required.</p>",
+    "takeaway": "Pure Newton steps can catastrophically overshoot when the objective contains high-degree nonlinearities. A line search or trust region is indispensable for global convergence."
+  },
+  {
+    "id": 10692,
+    "subject": "CMO",
+    "topicId": "06_Newtons_Method_and_Hessian_Modifications",
+    "topicTitle": "06 \u00b7 Newton\u2019s Method & Modifications",
+    "title": "Quadratic Local Convergence Proof (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 9",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $f: \\mathbb{R}^n \\to \\mathbb{R}$ be $C^2$ with $M$-Lipschitz continuous Hessian:\n$$\\|\\nabla^2 f(x) - \\nabla^2 f(y)\\|_2 \\le M \\|x - y\\|_2$$\nLet $x^*$ be a strict local minimizer with $\\nabla f(x^*) = 0$ and $\\nabla^2 f(x^*) \\succeq \\mu I$ ($\\mu > 0$).<br>\nProve that Newton's method $x_{k+1} = x_k - [\\nabla^2 f(x_k)]^{-1} \\nabla f(x_k)$ converges <strong>quadratically</strong>:\n$$\\|x_{k+1} - x^*\\|_2 \\le \\frac{M}{2\\mu} \\|x_k - x^*\\|_2^2$$\nfor $x_k$ sufficiently close to $x^*$.</p>",
+    "solution": "<p><span class=\"part\">Step 1: Algebraic Error Representation</span><br>\nSubtract $x^*$ from the Newton iteration formula:\n$$x_{k+1} - x^* = x_k - x^* - [\\nabla^2 f(x_k)]^{-1} \\nabla f(x_k)$$\nFactor out $[\\nabla^2 f(x_k)]^{-1}$:\n$$x_{k+1} - x^* = [\\nabla^2 f(x_k)]^{-1} \\left( \\nabla^2 f(x_k)(x_k - x^*) - (\\nabla f(x_k) - \\nabla f(x^*)) \\right)$$</p>\n\n<p><span class=\"part\">Step 2: Integral Representation of Gradient Difference</span><br>\nBy the Fundamental Theorem of Calculus:\n$$\\nabla f(x_k) - \\nabla f(x^*) = \\int_0^1 \\nabla^2 f(x^* + t(x_k - x^*)) (x_k - x^*) \\, dt$$\nSubstitute this into the bracketed error expression:\n$$\\nabla^2 f(x_k)(x_k - x^*) - (\\nabla f(x_k) - \\nabla f(x^*)) = \\int_0^1 [\\nabla^2 f(x_k) - \\nabla^2 f(x^* + t(x_k - x^*))] (x_k - x^*) \\, dt$$</p>\n\n<p><span class=\"part\">Step 3: Apply Lipschitz Hessian Continuity</span><br>\n$$\\|\\nabla^2 f(x_k) - \\nabla^2 f(x^* + t(x_k - x^*))\\| \\le M \\|x_k - (x^* + t(x_k - x^*))\\| = M(1 - t)\\|x_k - x^*\\|$$\nTaking norms of the integral:\n$$\\left\\|\\int_0^1 [\\dots] (x_k - x^*) \\, dt\\right\\| \\le M \\|x_k - x^*\\|^2 \\int_0^1 (1 - t) \\, dt = \\frac{M}{2} \\|x_k - x^*\\|^2$$</p>\n\n<p><span class=\"part\">Step 4: Bound on Inverse Hessian Norm</span><br>\nBy perturbation theory, for $\\|x_k - x^*\\| \\le \\frac{\\mu}{2M}$:\n$$\\|[\\nabla^2 f(x_k)]^{-1}\\| \\le \\frac{1}{\\mu - M\\|x_k - x^*\\|} \\le \\frac{1}{\\mu - \\mu/2} = \\frac{2}{\\mu}$$\nIn the asymptotic limit as $x_k \\to x^*$, $\\|[\\nabla^2 f(x_k)]^{-1}\\| \\to \\frac{1}{\\mu}$. Combining the bounds:\n$$\\|x_{k+1} - x^*\\|_2 \\le <span class=\"ans\">\\frac{M}{2\\mu} \\|x_k - x^*\\|_2^2</span> \\quad \\blacksquare$$</p>",
+    "takeaway": "Quadratic convergence means the error is squared at every step: 2 accurate digits become 4, then 8, then 16 in three iterations."
+  },
+  {
+    "id": 10693,
+    "subject": "CMO",
+    "topicId": "06_Newtons_Method_and_Hessian_Modifications",
+    "topicTitle": "06 \u00b7 Newton\u2019s Method & Modifications",
+    "title": "Levenberg-Marquardt Regularization (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / Berkeley Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>When the Hessian $\\nabla^2 f(x_k)$ is indefinite or ill-conditioned, we modify it by adding a multiple of the identity:\n$$B_k = \\nabla^2 f(x_k) + \\tau_k I$$\nand solve $B_k p_k = -\\nabla f(x_k)$.<br>\nLet the eigenvalues of $\\nabla^2 f(x_k)$ be $\\lambda_1 \\le \\lambda_2 \\le \\dots \\le \\lambda_n$.<br>\n<span class=\"part\">(a)</span> What is the minimum scalar $\\tau_k \\ge 0$ required to ensure $B_k \\succeq \\delta I$ for some desired $\\delta > 0$?<br>\n<span class=\"part\">(b)</span> Show that as $\\tau_k \\to \\infty$, the search direction $p_k$ smoothly transitions into a scaled steepest descent direction.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Minimum Shift Calculation</span><br>\nThe eigenvalues of the shifted matrix $B_k = \\nabla^2 f(x_k) + \\tau_k I$ are:\n$$\\lambda_i(B_k) = \\lambda_i + \\tau_k \\quad (i = 1, \\dots, n)$$\nTo guarantee that the matrix is strictly positive definite with smallest eigenvalue at least $\\delta > 0$:\n$$\\lambda_1 + \\tau_k \\ge \\delta \\implies \\tau_k \\ge \\delta - \\lambda_1$$\nSince $\\tau_k$ must be non-negative:\n$$<span class=\"ans\">\\tau_k = \\max(0, \\delta - \\lambda_1)</span>$$\nIf $\\lambda_1 < 0$ (Hessian is indefinite or negative definite), $\\tau_k$ must be at least $|\\lambda_1| + \\delta$, shifting all eigenvalues into the strictly positive domain.</p>\n\n<p><span class=\"part\">Part (b): Asymptotic Limit as $\\tau_k \\to \\infty$</span><br>\nFactor out $\\tau_k$ from the inverse:\n$$B_k^{-1} = (\\nabla^2 f(x_k) + \\tau_k I)^{-1} = \\frac{1}{\\tau_k} \\left( I + \\frac{1}{\\tau_k} \\nabla^2 f(x_k) \\right)^{-1}$$\nUsing the Neumann series expansion $(I + E)^{-1} = I - E + E^2 - \\dots$ for small $E = \\frac{1}{\\tau_k}\\nabla^2 f$:\n$$B_k^{-1} = \\frac{1}{\\tau_k} \\left( I - \\frac{1}{\\tau_k} \\nabla^2 f(x_k) + \\mathcal{O}\\left(\\frac{1}{\\tau_k^2}\\right) \\right) = \\frac{1}{\\tau_k} I + \\mathcal{O}\\left(\\frac{1}{\\tau_k^2}\\right)$$\nThe modified Newton direction becomes:\n$$p_k = -B_k^{-1} \\nabla f(x_k) = -\\frac{1}{\\tau_k} \\nabla f(x_k) + \\mathcal{O}\\left(\\frac{1}{\\tau_k^2}\\right)$$\n<span class=\"ans\">$$p_k \\approx -\\frac{1}{\\tau_k} \\nabla f(x_k)$$</span>\nThe direction becomes perfectly parallel to the steepest descent direction $-\\nabla f(x_k)$, with step length vanishing as $1/\\tau_k \\to 0$.</p>",
+    "takeaway": "Hessian regularization $\\nabla^2 f + \\tau I$ provides a continuous bridge between fast quadratic Newton optimization (when $\\tau \\to 0$) and guaranteed robust gradient descent (when $\\tau \\to \\infty$)."
+  },
+  {
+    "id": 10791,
+    "subject": "CMO",
+    "topicId": "07_Conjugate_Direction_and_Conjugate_Gradient_Methods",
+    "topicTitle": "07 \u00b7 Conjugate Direction & CG Methods",
+    "title": "Manual Execution of Linear CG (IISc Midterm 2024)",
+    "kind2": "pyq",
+    "source": "IISc Midterm 2 2024 / Nocedal & Wright Ch 5",
+    "marks": "[10 Marks]",
+    "question": "<p>Consider the objective function:\n$$f(x_1, x_2) = \\frac{1}{2} x_1^2 + 2x_2^2 - x_1 - 4x_2$$\nExecute the Linear Conjugate Gradient (CG) algorithm starting from $x_0 = (0, 0)^\\top$:<br>\n<span class=\"part\">(a)</span> Identify the matrix $A$ and vector $b$, and compute the initial residual $r_0$ and initial search direction $p_0$.<br>\n<span class=\"part\">(b)</span> Compute step length $\\alpha_0$ and iterate $x_1$.<br>\n<span class=\"part\">(c)</span> Compute residual $r_1$, Gram-Schmidt parameter $\\beta_1$, direction $p_1$, step length $\\alpha_1$, and iterate $x_2$. Verify $x_2$ is the exact minimizer!</p>",
+    "solution": "<p><span class=\"part\">Part (a): Matrix Form & Initial Step</span><br>\nWrite $f(x) = \\frac{1}{2} x^\\top A x - b^\\top x$:\n$$A = \\begin{bmatrix} 1 & 0 \\\\ 0 & 4 \\end{bmatrix}, \\quad b = \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix}$$\nAt $x_0 = (0, 0)^\\top$:\n$$r_0 = b - A x_0 = \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix}, \\quad p_0 = r_0 = \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix}$$</p>\n\n<p><span class=\"part\">Part (b): Iteration 0 $\\to$ Iterate $x_1$</span><br>\n$$A p_0 = \\begin{bmatrix} 1 & 0 \\\\ 0 & 4 \\end{bmatrix} \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 16 \\end{bmatrix}$$\n$$\\alpha_0 = \\frac{r_0^\\top r_0}{p_0^\\top A p_0} = \\frac{1^2 + 4^2}{1(1) + 4(16)} = \\frac{17}{1 + 64} = <span class=\"ans\">\\frac{17}{65}</span>$$\n$$x_1 = x_0 + \\alpha_0 p_0 = \\begin{bmatrix} 0 \\\\ 0 \\end{bmatrix} + \\frac{17}{65} \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix} = <span class=\"ans\">\\begin{bmatrix} 17/65 \\\\ 68/65 \\end{bmatrix}</span>$$</p>\n\n<p><span class=\"part\">Part (c): Iteration 1 $\\to$ Exact Solution $x_2$</span><br>\nResidual update:\n$$r_1 = r_0 - \\alpha_0 A p_0 = \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix} - \\frac{17}{65} \\begin{bmatrix} 1 \\\\ 16 \\end{bmatrix} = \\begin{bmatrix} 48/65 \\\\ -12/65 \\end{bmatrix} = \\frac{12}{65} \\begin{bmatrix} 4 \\\\ -1 \\end{bmatrix}$$\n$$\\beta_1 = \\frac{r_1^\\top r_1}{r_0^\\top r_0} = \\frac{(48/65)^2 + (-12/65)^2}{17} = \\frac{2304 + 144}{4225 \\times 17} = \\frac{2448}{71825} = \\frac{144}{4225}$$\nConjugate direction:\n$$p_1 = r_1 + \\beta_1 p_0 = \\begin{bmatrix} 48/65 \\\\ -12/65 \\end{bmatrix} + \\frac{144}{4225} \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix} = \\frac{204}{4225} \\begin{bmatrix} 16 \\\\ -1 \\end{bmatrix}$$\nCheck conjugacy: $p_0^\\top A p_1 \\propto [1, 4] \\begin{bmatrix} 16 \\\\ -4 \\end{bmatrix} = 16 - 16 = 0$! Exact $A$-conjugacy confirmed!<br>\nStep length: $\\alpha_1 = \\frac{r_1^\\top r_1}{p_1^\\top A p_1} = \\frac{289}{204}$.<br>\n$$x_2 = x_1 + \\alpha_1 p_1 = \\begin{bmatrix} 17/65 \\\\ 68/65 \\end{bmatrix} + \\begin{bmatrix} 48/65 \\\\ -3/65 \\end{bmatrix} = <span class=\"ans\">\\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} = x^*</span>$$\nThe algorithm terminates with the EXACT minimizer in $n = 2$ steps!</p>",
+    "takeaway": "On an $n$-dimensional strictly convex quadratic, CG explores expanding Krylov subspaces and hits the exact global minimum in at most $n$ iterations."
+  },
+  {
+    "id": 10792,
+    "subject": "CMO",
+    "topicId": "07_Conjugate_Direction_and_Conjugate_Gradient_Methods",
+    "topicTitle": "07 \u00b7 Conjugate Direction & CG Methods",
+    "title": "Conjugacy Implies Linear Independence (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 9",
+    "marks": "[8 Marks]",
+    "question": "<p>Let $A \\in \\mathbb{R}^{n \\times n}$ be symmetric positive definite ($A \\succ 0$). A set of non-zero vectors $\\{p_0, p_1, \\dots, p_k\\} \\subset \\mathbb{R}^n$ ($k < n$) is said to be mutually $A$-conjugate if:\n$$p_i^\\top A p_j = 0 \\quad \\forall i \\ne j$$\nProve that the set $\\{p_0, p_1, \\dots, p_k\\}$ is strictly linearly independent.</p>",
+    "solution": "<p><span class=\"part\">Step 1: Set up the Linear Independence Test</span><br>\nConsider a linear combination of the vectors set to zero:\n$$\\sum_{i=0}^k c_i p_i = 0$$\nfor some unknown scalar coefficients $c_0, c_1, \\dots, c_k \\in \\mathbb{R}$.</p>\n\n<p><span class=\"part\">Step 2: Isolate an Arbitrary Coefficient via $A$-Inner Product</span><br>\nPick any arbitrary index $j \\in \\{0, 1, \\dots, k\\}$. Premultiply both sides by $p_j^\\top A$:\n$$p_j^\\top A \\left( \\sum_{i=0}^k c_i p_i \\right) = p_j^\\top A \\cdot 0 = 0$$</p>\n\n<p><span class=\"part\">Step 3: Expand the Sum and Apply Conjugacy</span><br>\nBy linearity of matrix multiplication:\n$$\\sum_{i=0}^k c_i (p_j^\\top A p_i) = 0$$\nBy the $A$-conjugacy assumption, $p_j^\\top A p_i = 0$ for every $i \\ne j$. Therefore, all terms in the summation vanish except the single term where $i = j$:\n$$c_j (p_j^\\top A p_j) = 0$$</p>\n\n<p><span class=\"part\">Step 4: Use Positive Definiteness</span><br>\nBecause $A \\succ 0$ is strictly positive definite and the vector $p_j \\ne 0$ is non-zero:\n$$p_j^\\top A p_j > 0$$\nDividing by this strictly positive scalar yields:\n$$c_j = 0$$\nSince index $j \\in \\{0, 1, \\dots, k\\}$ was chosen arbitrarily, this forces:\n$$<span class=\"ans\">c_0 = c_1 = \\dots = c_k = 0</span>$$\n<span class=\"ans\">Therefore, the set $\\{p_0, p_1, \\dots, p_k\\}$ is linearly independent.</span> $\\blacksquare$</p>",
+    "takeaway": "$A$-conjugacy is ordinary orthogonality under the elliptic metric $\\langle u, v \\rangle_A = u^\\top A v$. Mutual orthogonality under any inner product immediately forces linear independence."
+  },
+  {
+    "id": 10793,
+    "subject": "CMO",
+    "topicId": "07_Conjugate_Direction_and_Conjugate_Gradient_Methods",
+    "topicTitle": "07 \u00b7 Conjugate Direction & CG Methods",
+    "title": "CG Chebyshev Rate vs Gradient Descent (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / Nocedal & Wright Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $A \\succ 0$ have condition number $\\kappa = \\lambda_{\\max}/\\lambda_{\\min}$.<br>\nThe Conjugate Gradient energy norm error satisfies the Chebyshev polynomial bound:\n$$\\|x_k - x^*\\|_A \\le 2 \\left( \\frac{\\sqrt{\\kappa} - 1}{\\sqrt{\\kappa} + 1} \\right)^k \\|x_0 - x^*\\|_A$$\n<span class=\"part\">(a)</span> For a problem with $\\kappa = 10000$, calculate the contraction factors for both Gradient Descent and Conjugate Gradient.<br>\n<span class=\"part\">(b)</span> Estimate the number of iterations required by each method to reduce the initial error by a factor of $10^{-6}$.<br>\n<span class=\"part\">(c)</span> Suppose $A$ has dimension $n = 10000$, but its eigenvalues are clustered into only $3$ distinct values. Exactly how many iterations will CG need to find $x^*$?</p>",
+    "solution": "<p><span class=\"part\">Part (a): Contraction Factors for $\\kappa = 10000$</span><br>\n<ul>\n  <li><strong>Gradient Descent:</strong>\n  $$r_{\\text{GD}} = \\frac{\\kappa - 1}{\\kappa + 1} = \\frac{9999}{10001} \\approx 1 - \\frac{2}{10001} \\approx <span class=\"ans\">0.99980</span>$$</li>\n  <li><strong>Conjugate Gradient:</strong>\n  $$\\sqrt{\\kappa} = \\sqrt{10000} = 100$$\n  $$r_{\\text{CG}} = \\frac{\\sqrt{\\kappa} - 1}{\\sqrt{\\kappa} + 1} = \\frac{99}{101} \\approx 1 - \\frac{2}{101} \\approx <span class=\"ans\">0.98020</span>$$</li>\n</ul></p>\n\n<p><span class=\"part\">Part (b): Iterations to Reach $10^{-6}$ Error</span><br>\n<ul>\n  <li><strong>Gradient Descent:</strong> $(0.9998)^k \\le 10^{-6} \\implies -2 \\times 10^{-4} k \\le -6 \\ln 10 \\approx -13.8155$.\n  $$k_{\\text{GD}} \\approx \\frac{13.8155}{2 \\times 10^{-4}} \\approx <span class=\"ans\">69,078 \\text{ iterations}</span>$$</li>\n  <li><strong>Conjugate Gradient:</strong> $2 (0.9802)^k \\le 10^{-6} \\implies k \\ln(0.9802) \\le \\ln(0.5 \\times 10^{-6}) \\approx -14.5086$.\n  $$k_{\\text{CG}} \\approx \\frac{-14.5086}{\\ln(99/101)} \\approx \\frac{-14.5086}{-0.0200} \\approx <span class=\"ans\">725 \\text{ iterations}</span>$$</li>\n</ul>\n<span class=\"ans\">Conjugate Gradient is nearly 100 times faster!</span></p>\n\n<p><span class=\"part\">Part (c): Clustered Eigenvalues</span><br>\nIf $A$ has only $m = 3$ distinct eigenvalues $\\{\\mu_1, \\mu_2, \\mu_3\\}$, its minimal polynomial has degree $3$:\n$$p(\\lambda) = (\\lambda - \\mu_1)(\\lambda - \\mu_2)(\\lambda - \\mu_3)$$\nSince CG constructs the optimal polynomial of degree $k$ over the spectrum, at step $k = 3$, the polynomial can be chosen to vanish identically on all three eigenvalues simultaneously: $P_3(\\mu_i) = 0$.<br>\n<span class=\"ans\">CG terminates in exactly $k = 3$ iterations</span>, despite $n = 10000$!</p>",
+    "takeaway": "CG scales with $\\sqrt{\\kappa}$ rather than $\\kappa$, and its convergence is determined by the number of distinct eigenvalue clusters rather than matrix dimension."
+  },
+  {
+    "id": 10891,
+    "subject": "CMO",
+    "topicId": "08_Quasi_Newton_Methods_SR1_DFP_and_BFGS",
+    "topicTitle": "08 \u00b7 Quasi-Newton Methods (BFGS)",
+    "title": "SR1 Inverse Update & Indefiniteness (IISc Midterm 2024)",
+    "kind2": "pyq",
+    "source": "IISc Midterm 2 2024 / Nocedal & Wright Ch 6",
+    "marks": "[10 Marks]",
+    "question": "<p>Let $s_k = x_{k+1} - x_k = \\begin{bmatrix} 1 \\\\ 2 \\end{bmatrix}$ and $y_k = \\nabla f(x_{k+1}) - \\nabla f(x_k) = \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}$.<br>\n<span class=\"part\">(a)</span> Verify whether the curvature condition $s_k^\\top y_k > 0$ holds.<br>\n<span class=\"part\">(b)</span> Using the Symmetric Rank-1 (SR1) formula starting with $H_k = I_2$:\n$$H_{k+1} = H_k + \\frac{(s_k - H_k y_k)(s_k - H_k y_k)^\\top}{(s_k - H_k y_k)^\\top y_k}$$\ncompute the updated inverse Hessian approximation $H_{k+1}$.<br>\n<span class=\"part\">(c)</span> Verify the secant equation $H_{k+1} y_k = s_k$, and check whether $H_{k+1}$ is positive definite.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Curvature Condition</span><br>\n$$s_k^\\top y_k = 1(2) + 2(1) = 2 + 2 = <span class=\"ans\">4 > 0</span>$$\nThe curvature condition holds strictly.</p>\n\n<p><span class=\"part\">Part (b): SR1 Update Calculation</span><br>\nCompute the discrepancy vector $v = s_k - H_k y_k$ with $H_k = I_2$:\n$$v = \\begin{bmatrix} 1 \\\\ 2 \\end{bmatrix} - \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 1 - 2 \\\\ 2 - 1 \\end{bmatrix} = \\begin{bmatrix} -1 \\\\ 1 \\end{bmatrix}$$\nDenominator:\n$$v^\\top y_k = \\begin{bmatrix} -1 & 1 \\end{bmatrix} \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix} = -2 + 1 = -1 \\ne 0$$\nNumerator outer product:\n$$v v^\\top = \\begin{bmatrix} -1 \\\\ 1 \\end{bmatrix} \\begin{bmatrix} -1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 & -1 \\\\ -1 & 1 \\end{bmatrix}$$\nRank-1 correction:\n$$\\frac{v v^\\top}{v^\\top y_k} = \\frac{1}{-1} \\begin{bmatrix} 1 & -1 \\\\ -1 & 1 \\end{bmatrix} = \\begin{bmatrix} -1 & 1 \\\\ 1 & -1 \\end{bmatrix}$$\nUpdated matrix:\n$$H_{k+1} = H_k + \\frac{v v^\\top}{v^\\top y_k} = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} + \\begin{bmatrix} -1 & 1 \\\\ 1 & -1 \\end{bmatrix} = <span class=\"ans\">\\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}</span>$$</p>\n\n<p><span class=\"part\">Part (c): Secant Verification & Indefiniteness</span><br>\nSecant check:\n$$H_{k+1} y_k = \\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix} \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 2 \\end{bmatrix} = s_k$$\n<span class=\"ans\">The secant equation is satisfied exactly!</span><br>\nPositive definiteness:\n$$\\det(H_{k+1}) = 0(0) - 1(1) = -1 < 0$$\nThe eigenvalues are $\\lambda = \\pm 1$. <span class=\"ans\">$H_{k+1}$ is INDEFINITE!</span><br>\nEven though $s_k^\\top y_k = 4 > 0$, SR1 produced an indefinite matrix with a zero diagonal! This highlights why SR1 must be paired with trust-region safeguards, unlike BFGS.</p>",
+    "takeaway": "SR1 does NOT preserve positive definiteness, even when $s_k^\\top y_k > 0$. However, its ability to generate indefinite approximations makes it valuable in non-convex trust-region methods."
+  },
+  {
+    "id": 10892,
+    "subject": "CMO",
+    "topicId": "08_Quasi_Newton_Methods_SR1_DFP_and_BFGS",
+    "topicTitle": "08 \u00b7 Quasi-Newton Methods (BFGS)",
+    "title": "BFGS Positive Definiteness Preservation (Stanford Boyd)",
+    "kind2": "pyq",
+    "source": "Stanford EE364a / Boyd Ch 9",
+    "marks": "[10 Marks]",
+    "question": "<p>The BFGS inverse Hessian update is given by:\n$$H_{k+1} = (I - \\rho_k s_k y_k^\\top) H_k (I - \\rho_k y_k s_k^\\top) + \\rho_k s_k s_k^\\top$$\nwhere $\\rho_k = \\frac{1}{y_k^\\top s_k}$.<br>\n<span class=\"part\">(a)</span> Prove that if $H_k \\succ 0$ and the curvature condition $y_k^\\top s_k > 0$ holds, then $H_{k+1} \\succ 0$ strictly.<br>\n<span class=\"part\">(b)</span> Prove that the second Wolfe line search condition $\\nabla f(x_{k+1})^\\top p_k \\ge c_2 \\nabla f(x_k)^\\top p_k$ ($c_2 < 1$) automatically guarantees $y_k^\\top s_k > 0$.</p>",
+    "solution": "<p><span class=\"part\">Part (a): Positive Definiteness Proof</span><br>\nLet $z \\in \\mathbb{R}^n$ be any non-zero vector ($z \\ne 0$). Evaluate the quadratic form $z^\\top H_{k+1} z$:\n$$z^\\top H_{k+1} z = z^\\top (I - \\rho_k s_k y_k^\\top) H_k (I - \\rho_k y_k s_k^\\top) z + \\rho_k z^\\top (s_k s_k^\\top) z$$\nDefine the auxiliary vector $w = (I - \\rho_k y_k s_k^\\top) z$. Then:\n$$z^\\top H_{k+1} z = w^\\top H_k w + \\rho_k (s_k^\\top z)^2$$\nSince $H_k \\succ 0$, $w^\\top H_k w \\ge 0$, and since $\\rho_k = \\frac{1}{y_k^\\top s_k} > 0$, $\\rho_k (s_k^\\top z)^2 \\ge 0$.<br>\nThus $z^\\top H_{k+1} z \\ge 0$. Could it equal zero?<br>\nFor the sum of two non-negative terms to be zero, both must be zero:\n1. $\\rho_k (s_k^\\top z)^2 = 0 \\implies s_k^\\top z = 0$.<br>\n2. $w^\\top H_k w = 0 \\implies w = 0$ (since $H_k \\succ 0$).<br>\nSubstitute (1) into the definition of $w$:\n$$w = z - \\rho_k y_k (s_k^\\top z) = z - \\rho_k y_k (0) = z$$\nThus $w = 0 \\implies z = 0$. But $z$ was assumed non-zero! Contradiction.<br>\n<span class=\"ans\">Therefore, $z^\\top H_{k+1} z > 0$ for all $z \\ne 0$, meaning $H_{k+1} \\succ 0$ strictly.</span> $\\blacksquare$</p>\n\n<p><span class=\"part\">Part (b): Wolfe Condition Implies $y_k^\\top s_k > 0$</span><br>\nSince $s_k = \\alpha_k p_k$ with $\\alpha_k > 0$, multiply the Wolfe curvature condition by $\\alpha_k$:\n$$\\nabla f(x_{k+1})^\\top s_k \\ge c_2 \\nabla f(x_k)^\\top s_k$$\nSubtract $\\nabla f(x_k)^\\top s_k$ from both sides:\n$$y_k^\\top s_k = (\\nabla f(x_{k+1}) - \\nabla f(x_k))^\\top s_k \\ge (c_2 - 1) \\nabla f(x_k)^\\top s_k$$\nSince $p_k$ is a descent direction, $\\nabla f(x_k)^\\top s_k = \\alpha_k \\nabla f(x_k)^\\top p_k < 0$.<br>\nSince $c_2 < 1$, $(c_2 - 1) < 0$.<br>\nThe product of two negative numbers is strictly positive:\n$$<span class=\"ans\">y_k^\\top s_k \\ge (c_2 - 1) \\nabla f(x_k)^\\top s_k > 0</span> \\quad \\blacksquare$$</p>",
+    "takeaway": "Wolfe line search guarantees positive curvature $s_k^\\top y_k > 0$, which mathematically locks BFGS into remaining positive definite forever without any matrix restarts."
+  },
+  {
+    "id": 10893,
+    "subject": "CMO",
+    "topicId": "08_Quasi_Newton_Methods_SR1_DFP_and_BFGS",
+    "topicTitle": "08 \u00b7 Quasi-Newton Methods (BFGS)",
+    "title": "L-BFGS Two-Loop Recursion & Complexity (Generated Exam)",
+    "kind2": "practice",
+    "source": "IISc / Nocedal & Wright Benchmark",
+    "marks": "[10 Marks]",
+    "question": "<p>Limited-Memory BFGS (L-BFGS) avoids storing the $n \\times n$ matrix by keeping only the $m$ most recent vector pairs $\\{s_i, y_i\\}_{i=k-m}^{k-1}$.<br>\n<span class=\"part\">(a)</span> State the complete <strong>Two-Loop Recursion algorithm</strong> to compute the search direction $r = H_k \\nabla f(x_k)$.<br>\n<span class=\"part\">(b)</span> Prove that the computational complexity of L-BFGS is $\\mathcal{O}(m n)$ FLOPs and memory is $\\mathcal{O}(m n)$, compared to $\\mathcal{O}(n^2)$ for standard BFGS.<br>\n<span class=\"part\">(c)</span> What base matrix $H_k^{(0)} = \\gamma_k I$ is conventionally used, and what is the optimal formula for $\\gamma_k$?</p>",
+    "solution": "<p><span class=\"part\">Part (a): L-BFGS Two-Loop Recursion Algorithm</span><br>\nGiven gradient $g_k = \\nabla f(x_k)$ and past $m$ pairs $\\{s_i, y_i\\}$ with $\\rho_i = 1/(y_i^\\top s_i)$:\n<ol>\n  <li><strong>First Loop (Backward):</strong><br>\n  Set $q \\leftarrow g_k$.<br>\n  For $i = k - 1, k - 2, \\dots, k - m$:<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$\\alpha_i \\leftarrow \\rho_i s_i^\\top q$<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$q \\leftarrow q - \\alpha_i y_i$</li>\n  <li><strong>Base Scaling:</strong><br>\n  $r \\leftarrow H_k^{(0)} q = \\gamma_k q$</li>\n  <li><strong>Second Loop (Forward):</strong><br>\n  For $i = k - m, k - m + 1, \\dots, k - 1$:<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$\\beta \\leftarrow \\rho_i y_i^\\top r$<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$r \\leftarrow r + s_i (\\alpha_i - \\beta)$</li>\n  <li><strong>Return Direction:</strong><br>\n  $p_k = -r$.</li>\n</ol></p>\n\n<p><span class=\"part\">Part (b): Complexity Analysis</span><br>\n<ul>\n  <li><strong>Operations:</strong> In each loop iteration, we compute one vector dot product ($s_i^\\top q$ or $y_i^\\top r$, taking $2n$ FLOPs) and one vector saxpy update (taking $2n$ FLOPs).<br>\n  Total loop FLOPs $= 2 \\times m \\times 4n = <span class=\"ans\">8mn \\text{ FLOPs} = \\mathcal{O}(mn)</span>$.</li>\n  <li><strong>Memory:</strong> We store $m$ vectors $s_i$ and $m$ vectors $y_i$, totaling <span class=\"ans\">$2mn \\text{ floats} = \\mathcal{O}(mn)$</span>.</li>\n  <li><strong>Comparison:</strong> For $n = 10^6$ and $m = 10$, standard BFGS requires $10^{12}$ floats ($\\approx 8$ Terabytes!). L-BFGS requires only $2 \\times 10 \\times 10^6 = 20 \\times 10^6$ floats ($\\approx 80$ Megabytes!), making Newton-like convergence possible on deep networks.</li>\n</ul></p>\n\n<p><span class=\"part\">Part (c): Optimal Initial Scaling Factor $\\gamma_k$</span><br>\nThe standard initial matrix uses the most recent curvature:\n$$<span class=\"ans\">\\gamma_k = \\frac{s_{k-1}^\\top y_{k-1}}{y_{k-1}^\\top y_{k-1}}</span>$$\nThis represents the inverse of the estimated eigenvalue of the true Hessian along the most recent displacement $s_{k-1}$, ensuring unit step length $\\alpha = 1$ is accepted near the minimum without line search backtracking.</p>",
+    "takeaway": "L-BFGS turns quasi-Newton optimization into a linear-time $\\mathcal{O}(mn)$ algorithm by unrolling the BFGS matrix product into two sequential vector-vector loops."
   }
-  const R = String.raw;
-
-  /* ============================ 09  Tangent cone & LICQ ============================ */
-  Q(9, 'pyq', '2024 Final · Q1(g)', '1 mark', R`
-<p><b>True or False, with a reason.</b> For a constrained problem it is found that at the optimal point $x^*$ we have $\nabla f(x^*) \neq 0$. Then at least one of the constraints must be active at $x^*$.</p>`, R`
-<p><span class="ans">True.</span></p>
-<p>Suppose no constraint were active. Then every constraint is slack, so a small ball around $x^*$ is entirely feasible, and $x^*$ would be a <i>local unconstrained</i> minimum of $f$. The first-order condition for that is $\nabla f(x^*)=0$, which contradicts the given.</p>
-<p>So a non-zero gradient at a constrained optimum means the constraints are what is stopping you from going further downhill.</p>`,
-  R`Non-zero gradient at the optimum $\Rightarrow$ something is pushing back: at least one active constraint.`);
-
-  Q(9, 'pyq', '2025 Final · Q1(k)', '1 mark', R`
-<p><b>True or False.</b> $f$ is minimised over a convex set $C\subset\mathbb{R}^d$. At the global minimiser $x^*$, <i>every</i> direction is a feasible direction (the feasible directions fill a whole ball $B(x^*,\delta)$ around $x^*$). Then no constraint is active at $x^*$.</p>`, R`
-<p><span class="ans">True.</span></p>
-<p>An active inequality $g_i(x^*)=0$ means $x^*$ sits on the boundary of $C$. On the boundary there is always some direction that points out of the set (for a linear constraint $a^\top d\lt 0$), so not all directions can be feasible.</p>
-<p>If all directions are feasible then $x^*$ is an interior point, so all inequalities are slack.</p>`,
-  R`All directions feasible $\Leftrightarrow$ interior point $\Leftrightarrow$ no active inequalities (and then $\nabla f(x^*)=0$).`);
-
-  Q(9, 'gen', '', '5 marks', R`
-<p>Let $C=\{x\in\mathbb{R}^2 : g_1(x)=x_2-x_1^2\ge 0,\; g_2(x)=-x_2\ge 0\}$ and look at $\bar x=(0,0)$.</p>
-<p><span class="part">(a)</span> Describe $C$ and write down its tangent cone $T_C(\bar x)$.</p>
-<p><span class="part">(b)</span> Compute the linearised cone $\{d : \nabla g_i(\bar x)^\top d\ge 0,\ i \text{ active}\}$. Is it equal to $T_C(\bar x)$?</p>
-<p><span class="part">(c)</span> Does LICQ hold at $\bar x$?</p>`, R`
-<p><span class="part">(a)</span> $x_2\ge x_1^2\ge 0$ and $x_2\le 0$ force $x_2=0$ and then $x_1=0$. So $C=\{(0,0)\}$ is a single point and $T_C(\bar x)=\{0\}$.</p>
-<p><span class="part">(b)</span> $\nabla g_1(\bar x)=(0,1)$, $\nabla g_2(\bar x)=(0,-1)$, both active. Linearised cone: $d_2\ge 0$ and $-d_2\ge 0$, i.e. $\{d: d_2=0\}$, the whole $x_1$-axis. This is <b>bigger</b> than $T_C(\bar x)=\{0\}$, so they are not equal.</p>
-<p><span class="part">(c)</span> $(0,1)$ and $(0,-1)$ are linearly dependent, so <span class="ans">LICQ fails</span>.</p>
-<p>That is exactly the typical story: when LICQ fails, the linearised cone can over-estimate the true tangent cone, and KKT multipliers may not exist.</p>`,
-  R`LICQ is what guarantees tangent cone $=$ linearised cone. When it fails, the linearisation can lie.`);
-
-  Q(9, 'gen', '', '5 marks', R`
-<p>$C=\{x\in\mathbb{R}^2: g_1(x)=1-x_1^2-x_2^2\ge 0,\ g_2(x)=1-x_1\ge 0\}$, point $\bar x=(1,0)$.</p>
-<p><span class="part">(a)</span> Which constraints are active? Does LICQ hold?</p>
-<p><span class="part">(b)</span> Find the tangent cone of $C$ and the linearised cone at $\bar x$.</p>
-<p><span class="part">(c)</span> What does this tell you about "LICQ is necessary for the tangent cone to equal the linearised cone"?</p>`, R`
-<p><span class="part">(a)</span> $g_1(\bar x)=0$, $g_2(\bar x)=0$: both active. $\nabla g_1=(-2,0)$, $\nabla g_2=(-1,0)$ are parallel, so <span class="ans">LICQ fails</span>.</p>
-<p><span class="part">(b)</span> Linearised cone: $-2d_1\ge0$ and $-d_1\ge0$, so $\{d: d_1\le 0\}$. $C$ is the unit disc (the constraint $x_1\le1$ is redundant), and at $(1,0)$ its tangent cone is the half-plane $\{d_1\le 0\}$. <b>They are equal.</b></p>
-<p><span class="part">(c)</span> LICQ is only a <i>sufficient</i> condition. It can fail while the cones still agree (here the second constraint is just redundant). So failing LICQ does not automatically mean KKT breaks; it only removes the guarantee.</p>`,
-  R`LICQ $\Rightarrow$ cones agree, but not the other way round. Redundant constraints break LICQ harmlessly.`);
-
-  Q(9, 'gen', '', '4 marks', R`
-<p>Minimise $f(x)=x_1^2+x_2^2$ subject to $x_1+x_2\ge 2$. At $\hat x=(2,0)$:</p>
-<p><span class="part">(a)</span> Describe the set of feasible directions and the set of descent directions.</p>
-<p><span class="part">(b)</span> Is there a feasible descent direction? What does this say about $\hat x$?</p>`, R`
-<p><span class="part">(a)</span> The constraint is active ($2+0=2$). Feasible directions: $d_1+d_2\ge 0$. Since $\nabla f(\hat x)=(4,0)$, descent directions satisfy $4d_1\lt0$, i.e. $d_1\lt 0$.</p>
-<p><span class="part">(b)</span> Take $d=(-1,1)$: $d_1+d_2=0\ge0$ is feasible and $d_1=-1\lt0$ is descent. So a feasible descent direction exists and $\hat x$ is <span class="ans">not a local minimum</span>. (Moving along the line gets you to $(1,1)$, the real minimiser.)</p>`,
-  R`At a local minimum there is no feasible descent direction. Finding one is the quickest way to reject a point.`);
-
-  /* ============================ 10  Separating hyperplanes & Farkas ============================ */
-  Q(10, 'pyq', '2024 MT3 · Q1(a)-(c)', '3 marks', R`
-<p><b>True or False.</b></p>
-<p><span class="part">(a)</span> The set $\{x\in\mathbb{R}^d : \|x-a\|>r\}$ is convex.</p>
-<p><span class="part">(b)</span> If $f$ is convex then $\{x : f(x)\le f(x^{(0)})\}$ is convex.</p>
-<p><span class="part">(c)</span> The separating hyperplane theorem applies only to halfspaces.</p>`, R`
-<p><span class="part">(a)</span> <span class="ans">False.</span> It is the outside of a ball. Take $x=a+2r e$ and $y=a-2r e$; both are outside, but their midpoint $a$ is inside.</p>
-<p><span class="part">(b)</span> <span class="ans">True.</span> Sublevel sets of convex functions are convex: if $f(x),f(y)\le c$ then $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)\le c$.</p>
-<p><span class="part">(c)</span> <span class="ans">False.</span> It separates a point from <i>any</i> closed convex set (and two disjoint convex sets, one compact); halfspaces are just one example.</p>`,
-  R`Sublevel sets of convex functions are convex. The outside of a ball is not.`);
-
-  Q(10, 'pyq', '2025 MT3 · Q1(b)', '4 marks', R`
-<p>Let $C=\{x\in\mathbb{R}^d : 0\le x_i\le 1\}$ and $z\in\mathbb{R}^d$ with $z^\top e=-5$. Find a hyperplane that separates $z$ from $C$, and justify.</p>`, R`
-<p>Since $\sum z_i=-5\lt0$, $z\notin C$. Let $w=P_C(z)-z$. Componentwise
-$$w_i=\begin{cases}-z_i>0 & z_i\lt 0\\ 0 & 0\le z_i\le1\\ 1-z_i\lt0 & z_i>1\end{cases}$$
-and $w\neq0$.</p>
-<p>The projection property says $(z-P_C(z))^\top(x-P_C(z))\le0$ for all $x\in C$, i.e.
-$$w^\top x \;\ge\; w^\top P_C(z)\qquad\forall x\in C .$$
-Also $w^\top z = w^\top P_C(z)-\|w\|^2\lt w^\top P_C(z)$.</p>
-<p>So the hyperplane $\{x: w^\top x=w^\top P_C(z)\}$ has all of $C$ on one side ($\ge$) and $z$ strictly on the other ($\lt$).</p>`,
-  R`Separating hyperplane = normal $P_C(z)-z$, passing through $P_C(z)$.`);
-
-  Q(10, 'gen', '', '4 marks', R`
-<p>Use Farkas' lemma to decide whether $Ax=b,\ x\ge0$ has a solution, where
-$$A=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad b=\begin{pmatrix}-1\\1\end{pmatrix}.$$
-If not, give a certificate.</p>`, R`
-<p>Farkas: exactly one of (I) $Ax=b,\ x\ge0$ has a solution, or (II) $\exists y$ with $A^\top y\ge0$ and $b^\top y\lt0$.</p>
-<p>Directly: $x_1+x_2=-1$ and $x_2=1$ give $x_1=-2\lt0$. So (I) fails.</p>
-<p>Certificate for (II): take $y=(1,-1)$. Then $A^\top y=(1\cdot1+0\cdot(-1),\ 1\cdot1+1\cdot(-1))=(1,0)\ge0$ and $b^\top y=-1-1=-2\lt0$. &#10003;</p>
-<p>Geometrically $y$ is the normal of a hyperplane through the origin with both columns of $A$ on the non-negative side and $b$ strictly on the negative side.</p>`,
-  R`Farkas: $b$ is in the cone of the columns, or a hyperplane through $0$ separates $b$ from that cone.`);
-
-  Q(10, 'gen', '', '5 marks', R`
-<p>At a feasible point $\hat x$ of $\min f$ s.t. $g_1\ge0,\ g_2\ge0$ both active, we know $\nabla g_1=(1,0)$, $\nabla g_2=(1,1)$ and $\nabla f=(1,3)$.</p>
-<p><span class="part">(a)</span> Can $\nabla f$ be written as $\lambda_1\nabla g_1+\lambda_2\nabla g_2$ with $\lambda\ge0$?</p>
-<p><span class="part">(b)</span> If not, use Farkas to produce a feasible descent direction.</p>`, R`
-<p><span class="part">(a)</span> Solve $(1,3)=\lambda_1(1,0)+\lambda_2(1,1)$: second coordinate gives $\lambda_2=3$, first gives $\lambda_1+3=1\Rightarrow\lambda_1=-2\lt0$. <span class="ans">No</span>, so $\hat x$ is not a KKT point.</p>
-<p><span class="part">(b)</span> By Farkas there is $d$ with $\nabla g_i^\top d\ge0$ (feasible) and $\nabla f^\top d\lt0$ (descent). Need $d_1\ge0$, $d_1+d_2\ge0$, $d_1+3d_2\lt0$. Take $d=(3,-2)$: $3\ge0$, $1\ge0$, $3-6=-3\lt0$. &#10003;</p>
-<p>So you can move to lower $f$ without leaving the feasible region: $\hat x$ is not optimal.</p>`,
-  R`Not in the cone of active gradients $\Rightarrow$ Farkas hands you a feasible descent direction.`);
-
-  Q(10, 'gen', '', '3 marks', R`
-<p>Let $C=\{x\in\mathbb{R}^2:\|x\|\le1\}$ and $z=(3,4)$. Find a hyperplane that strictly separates $z$ from $C$, and a supporting hyperplane of $C$ closest to $z$.</p>`, R`
-<p>$P_C(z)=z/\|z\|=(0.6,0.8)$, so the normal is $w=z-P_C(z)=(2.4,3.2)\propto(3,4)$.</p>
-<p>For $x\in C$, Cauchy–Schwarz gives $3x_1+4x_2\le5\|x\|\le5$. At $z$: $3\cdot3+4\cdot4=25>5$.</p>
-<p>So $3x_1+4x_2=5$ separates, and since it touches $C$ at $(0.6,0.8)$ it is the <span class="ans">supporting hyperplane</span> at the projection point. Any $3x_1+4x_2=c$ with $5\lt c\lt25$ also strictly separates.</p>`,
-  R`Normal $=z-P_C(z)$, through $P_C(z)$: that is the supporting hyperplane at the nearest point.`);
-
-  /* ============================ 11  KKT ============================ */
-  Q(11, 'pyq', '2024 Final · Q3', '10 marks', R`
-<p>$f:\mathbb{R}^3\to\mathbb{R}$ is convex and $C^1_L$. Consider
-$$\min_{x\in\mathbb{R}^3} f(x)\ \text{ s.t. }\ \tfrac13(x_1x_2+x_2x_3+x_1x_3)\le1.5,\ \ x_1+ax_2\ge b,\ \ x_2+x_3\le10,\ \ x_3\ge0.5 .$$
-At $\hat x=(1,1,1)^\top$ you only know $f(\hat x)=3$ and $\nabla f(\hat x)=(1,10,0)^\top$.</p>
-<p><span class="part">(a)</span> Choose $a,b$ so that $\hat x$ is a KKT point. (5)</p>
-<p><span class="part">(b)</span> True or False: the global optimal value of $f$ over the constraints is strictly less than 3. Justify. (5)</p>`, R`
-<p><span class="part">(a)</span> Check the constraints at $(1,1,1)$: first $=1\lt1.5$, third $=2\lt10$, fourth $=1>0.5$: all slack. Since $\nabla f(\hat x)\ne0$, the only possible active one is $x_1+ax_2\ge b$. KKT: $\nabla f=\lambda(1,a,0)^\top$, $\lambda\ge0$, so $\lambda=1$ and $a=10$. Active: $1+10=b\Rightarrow b=11$.</p>
-<p><span class="part">(b)</span> <span class="ans">False.</span> Consider the relaxed convex problem $\min f$ s.t. $x_1+10x_2\ge11$. $\hat x$ is a KKT point of it, hence its global minimiser (convex). $\hat x$ is also feasible for the original, which has <i>more</i> constraints, so the original optimum is $\ge$ the relaxed optimum $=f(\hat x)=3$ and $\le f(\hat x)$ since $\hat x$ is feasible. So the optimum is exactly 3.</p>`,
-  R`KKT + convex $\Rightarrow$ global min of the relaxed problem. A feasible point of the tighter problem that attains it is optimal there too.`);
-
-  Q(11, 'pyq', '2024 Final · Q4 (numbers tidied)', '5 marks', R`
-<p>Consider $\min f(x)$ s.t. $g_i(x)\ge0$, $i=1,2,3$, but the inequality directions may be wrong. At a KKT point $x^{(0)}$ we know
-$g_1=g_2=0,\ g_3=-4$ and
-$$\nabla f=(4,-10,4),\ \ \nabla g_1=(1,-2,0),\ \ \nabla g_2=(0,1,-2),\ \ \nabla g_3=(-1,1,10).$$
-Which inequalities are in the proper direction? Correct the wrong ones.</p>`, R`
-<p>A KKT point is feasible. But $g_3(x^{(0)})=-4\lt0$ violates $g_3\ge0$, so the third inequality must really be $g_3\le0$ (it is then slack, $\lambda_3=0$).</p>
-<p>With $g_3$ inactive, $\nabla f=\lambda_1\nabla g_1+\lambda_2\nabla g_2$:
-first coordinate $\lambda_1=4$; third coordinate $-2\lambda_2=4\Rightarrow\lambda_2=-2$; second: $-2(4)+(-2)=-10$ &#10003;.</p>
-<p>For constraints written $g_i\ge0$ we need $\lambda_i\ge0$. $\lambda_1=4$ is fine, but $\lambda_2=-2\lt0$, so <span class="ans">$g_2$ is also in the wrong direction</span> and should be $g_2\le0$ (then its multiplier flips to $+2$).</p>
-<p><b>Answer:</b> $g_1\ge0$ is correct; $g_2$ and $g_3$ must be reversed to $\le0$.</p>`,
-  R`Feasibility fixes slack constraints' direction; the sign of $\lambda$ fixes active ones.`);
-
-  Q(11, 'pyq', '2024 Final · Q5', '10 marks', R`
-<p>Let $u\in\mathbb{R}^d$ have distinct non-zero entries, $a=\min_iu_i$, $b=\max_iu_i$. Consider the LP
-$$\max_x\ u^\top x\quad\text{s.t.}\quad\sum_{i}x_i\le1,\ \ x_i\ge0 .$$
-<span class="part">(a)</span> If $\sum x_i\le1$ is <i>not</i> active at the optimum, what can you say about $a,b$ and the optimal value?</p>
-<p><span class="part">(b)</span> Repeat if it <i>is</i> active at the optimum.</p>`, R`
-<p>Write it as $\min -u^\top x$. With multipliers $\lambda\ge0$ for $\sum x_i\le1$ and $\lambda_i\ge0$ for $x_i\ge0$, stationarity is $-u_i+\lambda-\lambda_i=0$, i.e. $u_i=\lambda-\lambda_i$. Complementarity: $\lambda_ix_i=0$, $\lambda(\sum x_i-1)=0$. It is convex, so KKT is sufficient.</p>
-<p><span class="part">(a)</span> Inactive $\Rightarrow\lambda=0\Rightarrow u_i=-\lambda_i\le0$ for all $i$; entries are non-zero so $u_i\lt0$, hence $\lambda_i>0$ and $x_i=0$ for all $i$. So $a\lt b\lt0$, $x^*=0$, optimal value $0$.</p>
-<p><span class="part">(b)</span> Active: not all $\lambda_i$ can be positive (that forces $x=0$ and the sum constraint slack). So some $l$ has $\lambda_l=0$, giving $u_l=\lambda$, and $\lambda_i=\lambda-u_i\ge0$ for all $i$ means $\lambda\ge\max u_i$. Combined: $\lambda=b>0$ (the largest entry is positive). Then $x^*=e_l$ with $u_l=b$, optimal value $b$. Nothing is forced on $a$.</p>`,
-  R`LP over a simplex: put all the mass on the best coordinate if it is positive, otherwise on nothing.`);
-
-  Q(11, 'pyq', '2025 Final · Q2', '10 marks', R`
-<p>Minimise $f(x)=e^{2x_2}+\tfrac12x_1^2-x_2$ over $x\in\mathbb{R}^2$ subject to $x_1^2+x_2^2\le10$ and $u^\top x\ge2$. For what values of $u$ is $x^{(0)}=(1,1)^\top$ a global minimum?</p>`, R`
-<p>$\nabla^2f=\mathrm{diag}(1,4e^{2x_2})\succ0$, so $f$ is convex; the feasible set is convex; this is a convex program, so KKT at $x^{(0)}$ is <b>necessary and sufficient</b> (given feasibility).</p>
-<p>Feasibility: $1+1=2\lt10$, so the ball constraint is slack. We need $u^\top x^{(0)}\ge2$; since $\nabla f(x^{(0)})=(1,\,2e^2-1)\neq0$ the linear constraint must be active: $u_1+u_2=2$.</p>
-<p>KKT: $\nabla f(x^{(0)})=\lambda u$ with $\lambda>0$: $\lambda u_1=1$, $\lambda u_2=2e^2-1$. Adding: $2\lambda=2e^2$, so $\lambda=e^2$ and
-$$u=\big(e^{-2},\ 2-e^{-2}\big).$$</p>
-<p>Only this single $u$ works.</p>`,
-  R`Convex + feasible + $\nabla f=\lambda\nabla g$ with $\lambda\ge0$ $\Rightarrow$ global min. Use the active constraint to pin down unknowns.`);
-
-  Q(11, 'pyq', '2025 Final · Q4(a)-(c)', '10 marks', R`
-<p>Consider $\max_x -\sum_{i=1}^dx_i\log x_i$ s.t. $\sum x_i=1$, $x_i\ge0$ ($x$ is a probability mass function).</p>
-<p><span class="part">(a)</span> State the KKT conditions. (3)</p>
-<p><span class="part">(b)</span> Find the global optimum and optimal value. (5)</p>
-<p><span class="part">(c)</span> If instead we <i>minimise</i> the same objective, what is the optimum and where is it attained (take $0\log0=0$)? (2)</p>`, R`
-<p><span class="part">(a)</span> Write it as $\min\sum x_i\log x_i$. With $\mu$ for $\sum x_i=1$ and $\lambda_i\ge0$ for $x_i\ge0$:
-$$\log x_i+1+\mu-\lambda_i=0,\quad \lambda_ix_i=0,\quad x_i\ge0,\quad \sum x_i=1,\quad\lambda_i\ge0 .$$</p>
-<p><span class="part">(b)</span> $\sum x_i\log x_i$ has positive-definite Hessian $\mathrm{diag}(1/x_i)$ on $x_i>0$, so the problem is convex and KKT is sufficient. $\log x_i\to-\infty$ at $x_i\to0$ means the slope pushes every $x_i$ off zero, so $\lambda_i=0$ and $\log x_i=-1-\mu$ is the same for all $i$: $x_i=\tfrac1d$. Optimal value of the maximisation: $-\sum\tfrac1d\log\tfrac1d=\ \log d$. <span class="ans">Max entropy = uniform distribution, value $\log d$.</span></p>
-<p><span class="part">(c)</span> $-\sum x_i\log x_i\ge0$ on the simplex since $x_i\le1$. It is $0$ exactly when one $x_i=1$, the rest $0$. So the minimum is $0$, attained at the $d$ vertices $e_1,\dots,e_d$ (concave function minimised at extreme points).</p>`,
-  R`Entropy: uniform maximises it, point masses minimise it. Maximum of concave, minimum of concave = at vertices.`);
-
-  Q(11, 'gen', '', '5 marks', R`
-<p>Minimise $f(x)=(x_1-2)^2+(x_2-1)^2$ subject to $x_1^2+x_2^2\le1$. Write the KKT system, solve it, and verify global optimality.</p>`, R`
-<p>Write $g(x)=1-x_1^2-x_2^2\ge0$. KKT: $\nabla f=\lambda\nabla g$, $\lambda\ge0$, $\lambda g=0$:
-$$2(x_1-2)=-2\lambda x_1,\quad 2(x_2-1)=-2\lambda x_2\ \Rightarrow\ (1+\lambda)x=(2,1).$$
-$(2,1)$ lies outside the disc, so the constraint must be active ($\lambda>0$): $\|x\|=1$ gives $1+\lambda=\|(2,1)\|=\sqrt5$, so
-$$\lambda=\sqrt5-1>0,\qquad x^*=\tfrac1{\sqrt5}(2,1).$$</p>
-<p>$f$ is convex, the disc is convex, so KKT is sufficient: <span class="ans">$x^*$ is the global minimum</span>. (It is just the projection of $(2,1)$ onto the unit disc.)</p>`,
-  R`Closest point of a convex set to an outside point = projection. KKT recovers it with $\lambda>0$.`);
-
-  /* ============================ 12  Second-order conditions ============================ */
-  Q(12, 'gen', '', '6 marks', R`
-<p>Consider $\min x_1x_2$ s.t. $x_1+x_2=2$. Show $\hat x=(1,1)$ is a KKT point and use the second-order conditions to decide whether it is a local minimum.</p>`, R`
-<p>With $L=x_1x_2-\lambda(x_1+x_2-2)$: $\nabla_x L=(x_2-\lambda,\ x_1-\lambda)=0$ gives $x_1=x_2=\lambda$, and the constraint then gives $\hat x=(1,1)$, $\lambda=1$: <b>KKT point</b>.</p>
-<p>Hessian of the Lagrangian: $\nabla^2_{xx}L=\begin{pmatrix}0&1\\1&0\end{pmatrix}$, <i>indefinite</i> on $\mathbb{R}^2$, so look only on the tangent space $\{d: d_1+d_2=0\}$, spanned by $d=(1,-1)$:
-$$d^\top\nabla^2_{xx}L\,d=-2\lt0 .$$</p>
-<p>The second-order <i>necessary</i> condition requires $\ge0$ on the tangent space, so it fails: <span class="ans">$\hat x$ is not a local minimum</span> (in fact on the line $x_1(2-x_1)$ has a maximum at 1).</p>`,
-  R`First-order tells you where to look; the Hessian of $L$ on the tangent space tells you min, max or saddle.`);
-
-  Q(12, 'gen', '', '7 marks', R`
-<p>Minimise $f(x)=x_1+x_2$ subject to $x_1^2+x_2^2=2$.</p>
-<p><span class="part">(a)</span> Find all KKT points.</p>
-<p><span class="part">(b)</span> Classify each using the second-order conditions.</p>`, R`
-<p>Let $L=x_1+x_2+\lambda(x_1^2+x_2^2-2)$. $\nabla_xL=0$: $1+2\lambda x_i=0\Rightarrow x_1=x_2=-\tfrac1{2\lambda}$. The constraint gives $2x_1^2=2$, so $x=\pm(1,1)$:
-<br>$x=(-1,-1)$ with $\lambda=\tfrac12$, and $x=(1,1)$ with $\lambda=-\tfrac12$.</p>
-<p>$\nabla^2_{xx}L=2\lambda I$. The tangent space at either point is $\{d:d_1+d_2=0\}$ (gradient of constraint is $\propto(1,1)$).</p>
-<p>At $(-1,-1)$: $\lambda=\tfrac12$ gives $\nabla^2L=I\succ0$, so $d^\top\nabla^2Ld>0$: <span class="ans">strict local (and global) minimum</span>, value $-2$.</p>
-<p>At $(1,1)$: $\lambda=-\tfrac12$ gives $-I$, so $d^\top\nabla^2Ld\lt0$: not a minimum, it is the maximum (value $2$).</p>`,
-  R`Same constraint, same stationarity, opposite sign of $\lambda$: the second-order test separates min from max.`);
-
-  Q(12, 'gen', '', '5 marks', R`
-<p>Minimise $f(x)=x_2$ subject to $g(x)=x_2-x_1^2\ge0$. At $\bar x=(0,0)$ verify the KKT conditions and the second-order sufficient condition on the critical cone.</p>`, R`
-<p>$L=f-\lambda g=x_2-\lambda(x_2-x_1^2)$. $\nabla f=(0,1)$, $\nabla g=(0,1)$ at $\bar x$, so $\lambda=1\ge0$; $g(\bar x)=0$ gives complementarity. <b>KKT holds</b>.</p>
-<p>$\nabla^2_{xx}L=-\lambda\nabla^2g=-1\cdot\begin{pmatrix}-2&0\\0&0\end{pmatrix}=\begin{pmatrix}2&0\\0&0\end{pmatrix}$.</p>
-<p>Critical cone (strict complementarity holds, $\lambda>0$): $\{d:\nabla g^\top d=0\}=\{d_2=0\}$, i.e. $d=(t,0)$. Then $d^\top\nabla^2Ld=2t^2>0$ for $t\ne0$.</p>
-<p>So SOSC holds: <span class="ans">$\bar x$ is a strict local minimum</span>. The Hessian of $L$ is only positive <i>semi</i>definite on all of $\mathbb{R}^2$ (zero in the $x_2$ direction), but that direction is not critical.</p>`,
-  R`SOSC only asks for $d^\top\nabla^2L\,d>0$ on critical directions, not for all $d$.`);
-
-  Q(12, 'gen', '', '4 marks', R`
-<p>Explain in your own words why the second-order condition for constrained problems is tested only on the tangent space / critical cone and not on all of $\mathbb{R}^d$.</p>`, R`
-<p>Directions $d$ with $\nabla g_i^\top d\gt0$ for an active constraint with $\lambda_i>0$ already make $f$ increase to <b>first order</b>: $\nabla f^\top d=\sum\lambda_i\nabla g_i^\top d>0$. Curvature is irrelevant for them, no matter how negative.</p>
-<p>The only directions where the first-order change is exactly zero are the <b>critical directions</b> ($\nabla g_i^\top d=0$ for active $i$ with $\lambda_i>0$). There first-order information gives no verdict, so we need the curvature of the <i>Lagrangian</i> (not of $f$ alone, since the constraint surface bends and that bending contributes $-\sum\lambda_i\nabla^2g_i$).</p>`,
-  R`Critical cone $=$ where first-order is a tie; second-order breaks the tie, using $\nabla^2_{xx}L$ not $\nabla^2f$.`);
-
-  /* ============================ 13  Projections ============================ */
-  Q(13, 'pyq', '2024 MT3 · Q2(a)', '4 marks', R`
-<p>For $C=\{x : a^\top x\ge b\}$ and $z\in\mathbb{R}^d$ with $a^\top z\lt b$, find $P_C(z)$ with a brief justification.</p>`, R`
-<p>$P_C(z)=\arg\min_x\tfrac12\|x-z\|^2$ s.t. $a^\top x\ge b$. KKT: $x-z-\lambda a=0$, i.e. $x=z+\lambda a$, with $\lambda\ge0$ and $\lambda(a^\top x-b)=0$.</p>
-<p>Since $z\notin C$ the constraint must be active: $a^\top z+\lambda\|a\|^2=b$, so $\lambda=\dfrac{b-a^\top z}{\|a\|^2}>0$ &#10003;. Hence
-$$P_C(z)=z+\frac{b-a^\top z}{\|a\|^2}\,a .$$</p>
-<p>Geometrically: slide $z$ along the normal $a$ until you hit the boundary.</p>`,
-  R`Projection onto a halfspace: if inside, stay; if outside, move along the normal $a$ by exactly the violation.`);
-
-  Q(13, 'pyq', '2025 MT3 · Q1(a)', '6 marks', R`
-<p>Project $z\in\mathbb{R}^d$ onto the box $C=\{x:0\le x_i\le1\}$. State and solve the optimisation problem, with $z^\top e=-5$ given.</p>`, R`
-<p>$P_C(z)=\arg\min\tfrac12\|x-z\|^2$ s.t. $0\le x_i\le1$. The Lagrangian separates over coordinates:
-$$L=\sum_i\tfrac12(x_i-z_i)^2-\lambda_i(1-x_i)-\mu_ix_i .$$
-KKT: $x_i-z_i+\lambda_i-\mu_i=0$, $0\le x_i\le1$, $\lambda_i,\mu_i\ge0$, $\lambda_i(1-x_i)=0$, $\mu_ix_i=0$.</p>
-<p>Cases: $\lambda_i>0\Rightarrow x_i=1$; $\mu_i>0\Rightarrow x_i=0$; both zero $\Rightarrow x_i=z_i$. So
-$$(P_C(z))_i=\min\{1,\max\{0,z_i\}\}$$
-(clip each coordinate into $[0,1]$).</p>`,
-  R`Separable constraints $\Rightarrow$ projection is coordinate-wise clipping.`);
-
-  Q(13, 'pyq', '2025 Final · Q1(p); 2024 Final · Q1(f)', '2 marks', R`
-<p><b>True or False, with a reason.</b></p>
-<p><span class="part">(a)</span> Projection onto $\{x\in\mathbb{R}^d: x^\top e\le1\}$ does not exist because the set is unbounded.</p>
-<p><span class="part">(b)</span> Let $z\notin C$ with $C$ closed and convex. There is only one $x^*\in C$ with $\|x^*-z\|\le\|x-z\|$ for all $x\in C$.</p>`, R`
-<p><span class="part">(a)</span> <span class="ans">False.</span> Existence needs a closed set (and convexity gives uniqueness), not boundedness. Here $P_C(z)=z-\frac{(e^\top z-1)_+}{d}e$. Coercivity of $\|x-z\|^2$ handles the unbounded set.</p>
-<p><span class="part">(b)</span> <span class="ans">True.</span> Existence: $\|x-z\|^2$ is coercive and the set closed. Uniqueness: strict convexity of $\|x-z\|^2$ on a convex set.</p>`,
-  R`Closed + convex $\Rightarrow$ the projection exists and is unique, bounded or not.`);
-
-  Q(13, 'gen', '', '4 marks', R`
-<p>Compute the projection of $z=(3,-1,2)$ onto <span class="part">(a)</span> the hyperplane $\{x: e^\top x=1\}$ and <span class="part">(b)</span> the ball $\{\|x\|\le2\}$.</p>`, R`
-<p><span class="part">(a)</span> $P(z)=z-\dfrac{e^\top z-1}{\|e\|^2}e=(3,-1,2)-\dfrac{4-1}{3}(1,1,1)=(2,-2,1)$. Check: $2-2+1=1$ &#10003;.</p>
-<p><span class="part">(b)</span> $\|z\|=\sqrt{14}>2$, so scale to the boundary: $P(z)=\dfrac{2}{\sqrt{14}}(3,-1,2)$.</p>`,
-  R`Hyperplane: subtract the violation along the normal. Ball: rescale if outside.`);
-
-  Q(13, 'gen', '', '6 marks', R`
-<p>Prove that the projection onto a closed convex set $C$ is non-expansive: $\|P_C(x)-P_C(y)\|\le\|x-y\|$.</p>`, R`
-<p>Let $p=P_C(x)$, $q=P_C(y)$. The projection property says $(x-p)^\top(w-p)\le0$ for all $w\in C$. Use it twice:</p>
-<p>with $w=q$: $(x-p)^\top(q-p)\le0$; with the roles swapped ($w=p$): $(y-q)^\top(p-q)\le0$.</p>
-<p>Add them (note $(y-q)^\top(p-q)=-(y-q)^\top(q-p)$):
-$$\big[(x-y)-(p-q)\big]^\top(q-p)\le0\ \Longrightarrow\ \|p-q\|^2\le(x-y)^\top(p-q).$$
-By Cauchy–Schwarz the right side is $\le\|x-y\|\|p-q\|$. Divide by $\|p-q\|$ (if non-zero):
-$$\|p-q\|\le\|x-y\|\ \blacksquare$$</p>`,
-  R`Non-expansiveness = why gradient projection inherits the convergence rates of plain gradient descent.`);
-
-  /* ============================ 14  Gradient projection ============================ */
-  Q(14, 'pyq', '2024 MT3 · Q2(b)-(c)', '11 marks', R`
-<p>$\min f(x)$ s.t. $a^\top x\ge b$, $f\in C^1_L$ with $L=5$. Gradient projection: $x^{(k+1)}=P_C\big(x^{(k)}-0.2\nabla f(x^{(k)})\big)$.</p>
-<p><span class="part">(b)</span> Assume $a^\top x^{(k)}=b$ and $a^\top\nabla f(x^{(k)})>0$. (i) Find $x^{(k+1)}$. (3) (ii) True or False: $\nabla f(x^{(k)})^\top(x^{(k+1)}-x^{(k)})>0$. Justify. (3)</p>
-<p><span class="part">(c)</span> If the scheme converges to $\hat x$, what can you say about $\hat x$? (5)</p>`, R`
-<p><span class="part">(b)(i)</span> Put $z=x^{(k)}-0.2\nabla f$. Then $a^\top z=b-0.2a^\top\nabla f\lt b$, so $z\notin C$ and the halfspace formula gives
-$$x^{(k+1)}=z+\frac{b-a^\top z}{\|a\|^2}a=x^{(k)}-0.2\nabla f+0.2\,\frac{a^\top\nabla f}{\|a\|^2}\,a .$$</p>
-<p><span class="part">(ii)</span> <span class="ans">False.</span> $\nabla f^\top(x^{(k+1)}-x^{(k)})=-0.2\Big(\|\nabla f\|^2-\dfrac{(\nabla f^\top a)^2}{\|a\|^2}\Big)\le0$ by Cauchy–Schwarz. The step is a (weak) descent direction, the projection only removes the component that would leave $C$.</p>
-<p><span class="part">(c)</span> At convergence $\hat x=P_C(\hat x-0.2\nabla f(\hat x))$. By the projection property, for all $x\in C$: $(\hat x-0.2\nabla f(\hat x)-\hat x)^\top(x-\hat x)\le0$, i.e.
-$$\nabla f(\hat x)^\top(x-\hat x)\ge0\quad\forall x\in C ,$$
-the first-order necessary condition for a local minimum over $C$. For convex $f$ this is also sufficient: $\hat x$ is a global minimum.</p>`,
-  R`Fixed point of gradient projection $\Leftrightarrow$ the first-order condition $\nabla f(\hat x)^\top(x-\hat x)\ge0$ on $C$.`);
-
-  Q(14, 'pyq', '2025 MT3 · Q2(a),(c)', '8 marks', R`
-<p>$\min f(x)$ s.t. $Ax=b$, $f$ convex $C^1_L$, $A\in\mathbb{R}^{m\times d}$, $\mathrm{rank}(A)=m$. Use gradient projection with constant step $\alpha$.</p>
-<p><span class="part">(a)</span> State the gradient-projection update. (3)</p>
-<p><span class="part">(c)</span> Let the algorithm converge at $\hat x$. State and prove a relationship between $f(x)$ and $f(\hat x)$ for any feasible $x$. (5)</p>`, R`
-<p><span class="part">(a)</span> Projection onto $C=\{Ax=b\}$: $P_C(z)=Pz+A^\top(AA^\top)^{-1}b$ with $P=I-A^\top(AA^\top)^{-1}A$. For $x\in C$, $Px+A^\top(AA^\top)^{-1}b=x$. Then
-$$x^{(t+1)}=P_C\big(x^{(t)}-\alpha\nabla f(x^{(t)})\big)=x^{(t)}-\alpha P\nabla f(x^{(t)}) .$$</p>
-<p><span class="part">(c)</span> At convergence $P\nabla f(\hat x)=0$. Take any feasible $x$ and $v=x-\hat x$, so $Av=0$ and hence $Pv=v$. Then
-$$\nabla f(\hat x)^\top v=\nabla f(\hat x)^\top Pv=v^\top P\nabla f(\hat x)=0 .$$
-By convexity $f(x)\ge f(\hat x)+\nabla f(\hat x)^\top(x-\hat x)=f(\hat x)$. So $f(\hat x)\le f(x)$ for <b>every</b> feasible $x$: <span class="ans">$\hat x$ is a global minimiser</span>.</p>`,
-  R`$P$ keeps only the part of the gradient lying in the null space of $A$: zero projected gradient $\Rightarrow$ optimal.`);
-
-  Q(14, 'gen', '', '5 marks', R`
-<p>$f(x)=(x_1-3)^2+(x_2+1)^2$ on the box $C=[0,1]^2$. Run gradient projection from $x^{(0)}=(0.5,0.5)$ with $\alpha=0.25$ for two iterations. What happens, and is the limit optimal?</p>`, R`
-<p>$\nabla f=(2(x_1-3),2(x_2+1))$. At $x^{(0)}$: $\nabla f=(-5,3)$, so $z=(0.5+1.25,\ 0.5-0.75)=(1.75,-0.25)$. Clip into the box: $x^{(1)}=(1,0)$.</p>
-<p>At $x^{(1)}$: $\nabla f=(-4,2)$, $z=(1+1,\ 0-0.5)=(2,-0.5)\to$ clip $\to(1,0)$. So $x^{(2)}=x^{(1)}$: a <b>fixed point</b>.</p>
-<p>Optimal? $f$ is convex and separable; its minimiser over the box is clip of the unconstrained minimiser $(3,-1)$, i.e. $(1,0)$ &#10003;. Also $\nabla f(1,0)^\top(x-(1,0))=-4(x_1-1)+2x_2\ge0$ on the box. Done in one step, since the box projection is exact and the problem is separable.</p>`,
-  R`Fixed point of projected gradient $=$ stationary point; for convex $f$ it is a global min.`);
-
-  Q(14, 'pyq', '2025 Final · Q1(q); 2024 Final · Q1(i)', '2 marks', R`
-<p><b>True or False, with a reason.</b></p>
-<p><span class="part">(a)</span> Projected gradient descent always converges to a point whose gradient is zero.</p>
-<p><span class="part">(b)</span> Gradient projection finds the global minimum of a convex programming problem in a finite number of iterations.</p>`, R`
-<p><span class="part">(a)</span> <span class="ans">False.</span> It converges to a point satisfying $\nabla f(x)^\top(y-x)\ge0$ on $C$; if the optimum is on the boundary the gradient there is non-zero (e.g. $\min x$ over $[1,2]$, gradient $1$ at $x^*=1$).</p>
-<p><span class="part">(b)</span> <span class="ans">False.</span> In general it converges asymptotically with an $O(1/k)$ rate for convex $C^1_L$ functions. Finite termination happens only in special cases (as in the box example above).</p>`,
-  R`Projected gradient converges to a <i>stationary</i> point on $C$, not a zero-gradient point.`);
-
-  /* ============================ 15  Active set ============================ */
-  Q(15, 'pyq', '2023 MT3 · Q2', '15 marks', R`
-<p>$\min f(x)=\tfrac12x^\top Qx-h^\top x$ s.t. $a^{(i)\top}x\ge b_i$, $Q\succ0$. After $k$ iterations the feasible $x^{(k)}$ has working set $W^{(k)}=\{1,2,3\}$ and:</p>
-<ul>
-<li>$g_k=\nabla f(x^{(k)})=\sum_{i=1}^3\mu_ia^{(i)}$.</li>
-<li>Constraint $3$ must be dropped to progress. The new direction is $u=re_1$ ($r$ scalar).</li>
-<li>$Q_{11}=2$, $|r|=2$, $a^{(3)}_1=-\tfrac12$.</li>
-</ul>
-<p><span class="part">(a)</span> True/False: (i) $\{1,2\}$ is the active set at optimality. (ii) $u$ is a feasible direction. (iii) $x^{(k)}+u$ may not be feasible for constraint 3. (iv) $x^{(k)}+u$ is a feasible point. (v) $u$ is a descent direction.</p>
-<p><span class="part">(b)</span> Compute $u^\top a^{(i)}$, $i=1,2,3$. (5)</p>
-<p><span class="part">(c)</span> Find $g_k^\top u$ and $f(x^{(k)}+u)-f(x^{(k)})$. (5)</p>`, R`
-<p><span class="part">(b)</span> $u$ solves $\min_y g_k^\top y+\tfrac12y^\top Qy$ s.t. $y^\top a^{(1)}=y^\top a^{(2)}=0$, so $u^\top a^{(1)}=u^\top a^{(2)}=0$. Optimality: $g_k+Qu=\tilde\mu_1a^{(1)}+\tilde\mu_2a^{(2)}$, and $g_k=\sum\mu_ia^{(i)}$, so $Qu=(\tilde\mu_1-\mu_1)a^{(1)}+(\tilde\mu_2-\mu_2)a^{(2)}-\mu_3a^{(3)}$. Multiply by $u^\top$:
-$$u^\top Qu=-\mu_3\,u^\top a^{(3)}=-\mu_3\,r\,a^{(3)}_1 .$$
-Constraint 3 was dropped because $\mu_3\lt0$, and $u^\top Qu>0$, so $r\,a^{(3)}_1>0$. With $a^{(3)}_1=-\tfrac12$ this forces $r=-2$. Hence
-$$u^\top a^{(1)}=0,\quad u^\top a^{(2)}=0,\quad u^\top a^{(3)}=r\,a^{(3)}_1=\mathbf{1}.$$</p>
-<p><span class="part">(c)</span> Since $u\perp a^{(1)},a^{(2)}$: $g_k^\top u=\sum\mu_ia^{(i)\top}u=\mu_3\cdot1$, while $u^\top Qu=-\mu_3\cdot1$ from (b). So $g_k^\top u=-u^\top Qu=-r^2Q_{11}=-8$ and
-$$f(x^{(k)}+u)-f(x^{(k)})=g_k^\top u+\tfrac12u^\top Qu=-8+4=\mathbf{-4}.$$</p>
-<p><span class="part">(a)</span> (i) <span class="ans">F</span> (we only know constraint 3 leaves; nothing says the final active set is $\{1,2\}$). (ii) <span class="ans">T</span> ($u^\top a^{(1)}=u^\top a^{(2)}=0$, $u^\top a^{(3)}=1>0$). (iii) <span class="ans">F</span>: $a^{(3)\top}(x^{(k)}+u)=b_3+1\ge b_3$, still feasible for 3. (iv) <span class="ans">F</span>: constraints outside $W$ may be violated by a full step. (v) <span class="ans">T</span> ($g_k^\top u=-8<0$).</p>`,
-  R`Dropped constraint $\Rightarrow\mu\lt0\Rightarrow$ the new direction moves <i>into</i> the dropped constraint's feasible side, $u^\top a=r a_1>0$.`);
-
-  Q(15, 'pyq', '2025 MT3 · Q3', '10 marks', R`
-<p>$f(x)=\tfrac12x^\top Qx+h^\top x+c$, $Q\succ0$, subject to $x^\top a^{(i)}\ge b_i$, $i\in[m]$. Use the Active-set algorithm. Let $\hat x$ be feasible and $\hat x=\arg\min f$ s.t. $x^\top a^{(i)}=b_i$, $i\in S$.</p>
-<p><span class="part">(a)</span> Devise a test for whether $\hat x$ is optimal for the inequality problem. (3)</p>
-<p><span class="part">(b)</span> $\hat x$ fails the test. (i) Algorithm replaces $S$ by $\tilde S$: how are they related? (2) (ii) Let $\tilde x=\arg\min f$ s.t. equalities in $\tilde S$. Prove or disprove: $\tilde x-\hat x$ is a feasible descent direction. (5)</p>`, R`
-<p><span class="part">(a)</span> Solve the equality-constrained QP on $S$ to get $(\hat x,\hat\lambda)$. If all $\hat\lambda_i\ge0$, KKT holds and (since $Q\succ0$, convex) $\hat x$ is optimal. If some $\hat\lambda_i\lt0$, dropping that constraint lets $f$ decrease.</p>
-<p><span class="part">(b)(i)</span> Drop the constraint $d$ with $\hat\lambda_d\lt0$: $\tilde S=S\setminus\{d\}$, i.e. $\tilde S\cup\{d\}=S$.</p>
-<p><span class="part">(ii)</span> <span class="ans">True</span>, with $p=\tilde x-\hat x$. Since $\nabla f(\hat x)=Q\hat x+h=\sum_{i\in\tilde S}\hat\lambda_ia^{(i)}+\hat\lambda_da^{(d)}$ and $\nabla f(\tilde x)=\sum_{i\in\tilde S}\tilde\lambda_ia^{(i)}$, subtracting gives $Qp=\sum_{\tilde S}(\tilde\lambda_i-\hat\lambda_i)a^{(i)}-\hat\lambda_da^{(d)}$. Both $\hat x,\tilde x$ satisfy the equalities in $\tilde S$, so $p^\top a^{(i)}=0$ for $i\in\tilde S$; thus
-$$p^\top Qp=-\hat\lambda_d\,p^\top a^{(d)}>0\ (\text{as }p\ne0)\ \Longrightarrow\ p^\top a^{(d)}>0\ \text{because }\hat\lambda_d\lt0 .$$
-<b>Feasible</b>: $p^\top a^{(i)}=0$ for $\tilde S$ and $p^\top a^{(d)}>0$ moves into the dropped constraint's feasible side. <b>Descent</b>: $\nabla f(\hat x)^\top p=\hat\lambda_dp^\top a^{(d)}\lt0$.</p>`,
-  R`Negative multiplier $=$ the constraint is holding you back; drop it, solve again, and the step is feasible and descent for that constraint.`);
-
-  Q(15, 'gen', '2024 MT3 · Q1(d) idea', '8 marks', R`
-<p>Run the active-set method on $\min\ \tfrac12\|x\|^2-h^\top x$ with $h=(2,2)$, subject to (1) $x_1\ge0$, (2) $x_2\ge0$, (3) $-x_1-x_2\ge-2$. Start at $x^{(0)}=(0,0)$ with $W=\{1,2\}$.</p>
-<p>Trace every iteration (direction, step, working-set change) until optimal. Then answer: <i>once the working set size starts decreasing, can it increase again?</i></p>`, R`
-<p><b>Iter 0.</b> $x=(0,0)$, $g=Qx-h=(-2,-2)=\mu_1(1,0)+\mu_2(0,1)\Rightarrow\mu=(-2,-2)$: both negative. Drop constraint 1: $W=\{2\}$.</p>
-<p><b>Iter 1.</b> EQP with $x_2=0$: direction $p=(2,0)$ (minimise $-2p_1+\tfrac12p_1^2$). Max step to constraint 3: $x_1+x_2\le2\Rightarrow\alpha_{\max}=1$. Take $\alpha=1$ (blocking): $x=(2,0)$, add constraint 3: $W=\{2,3\}$.</p>
-<p><b>Iter 2.</b> $g=(2,0)-(2,2)=(0,-2)=\mu_2(0,1)+\mu_3(-1,-1)\Rightarrow\mu_3=0,\ \mu_2=-2\lt0$. Drop constraint 2: $W=\{3\}$.</p>
-<p><b>Iter 3.</b> EQP on $x_1+x_2=2$: $p=(-1,1)$ (from $\min\,2t+t^2$ with $p=(t,-t)$, $t=-1$). $\alpha_{\max}$ large; $\alpha=1$: $x=(1,1)$.</p>
-<p><b>Iter 4.</b> $g=(1,1)-(2,2)=(-1,-1)=\mu_3(-1,-1)\Rightarrow\mu_3=1\ge0$: <span class="ans">optimal, $x^*=(1,1)$</span>.</p>
-<p>Working-set sizes: $2\to1\to2\to1\to1$. It went down and then <b>up</b> again, so the claim "once it starts decreasing it cannot increase" is <span class="ans">False</span>.</p>`,
-  R`Active set: drop negative multipliers, add blocking constraints. The working set can shrink and grow many times.`);
-
-  /* ============================ 16  Lagrangian duality ============================ */
-  Q(16, 'pyq', '2023 MT3 · Q1 (constant tidied)', '15 marks', R`
-<p>Consider $\min_{x\in\mathbb{R}^2}f(x)=-\tfrac12(x_1-1)^2+\tfrac12(x_2-2)^2$ s.t. $x_1^2+x_2^2\le1$. (P)</p>
-<p><span class="part">(a)</span> Is $f$ convex? (2) <span class="part">(b)</span> For what $\lambda$ is the Lagrangian convex in $x$? (2) <span class="part">(c)</span> Compute the dual function $h(\lambda)$ and its domain. (3) <span class="part">(d)</span> State the dual problem; is it convex or concave? (3) <span class="part">(e)</span> Given the dual optimum $\lambda^*$, find a primal feasible $x^*$ whose value matches the dual value. (5)</p>`, R`
-<p><span class="part">(a)</span> <span class="ans">No.</span> $\nabla^2f=\mathrm{diag}(-1,1)$ is indefinite.</p>
-<p><span class="part">(b)</span> $L=f+\lambda(x_1^2+x_2^2-1)$ has Hessian $\mathrm{diag}(-1+2\lambda,\ 1+2\lambda)$. Convex iff both $\ge0$, i.e. $\lambda\ge\tfrac12$.</p>
-<p><span class="part">(c)</span> For $\lambda>\tfrac12$, $\nabla_xL=0$ gives $x_1=-\dfrac1{2\lambda-1}$, $x_2=\dfrac2{2\lambda+1}$, and
-$$h(\lambda)=\tfrac32-\lambda-\tfrac12\Big(\tfrac1{2\lambda-1}+\tfrac4{2\lambda+1}\Big),\quad\lambda>\tfrac12,$$
-and $-\infty$ otherwise (at $\lambda\lt\frac12$ the $x_1$ direction is concave and $L\to-\infty$).</p>
-<p><span class="part">(d)</span> Dual: $\max_{\lambda>1/2}h(\lambda)$. $h''=-\dfrac4{(2\lambda-1)^3}-\dfrac{16}{(2\lambda+1)^3}\lt0$: <span class="ans">concave</span> (the dual is always concave anyway).</p>
-<p><span class="part">(e)</span> $\lambda^*>\tfrac12$ is interior, so $h'(\lambda^*)=0$: $\dfrac1{(2\lambda^*-1)^2}+\dfrac4{(2\lambda^*+1)^2}=1$, which says exactly $\|x^*\|^2=1$ for $x^*=\big(-\tfrac1{2\lambda^*-1},\tfrac2{2\lambda^*+1}\big)$. So $x^*$ is feasible, minimises $L(\cdot,\lambda^*)$ and satisfies complementarity ($\|x^*\|=1$), hence $f(x^*)=L(x^*,\lambda^*)=h(\lambda^*)$.</p>
-<p>A <b>non-convex problem with strong duality</b> (zero gap).</p>`,
-  R`Dual function is always concave; a non-convex primal can still have zero gap (here the sphere constraint is the "S-lemma" case).`);
-
-  Q(16, 'pyq', '2024 MT3 · Q3 (b)-(d)', '12 marks', R`
-<p>$\min_{x\in\mathbb{R}^3}f(x)=x_1^2-2x_2^2+4x_3^2+2\sum_{i=1}^3r_ix_i$ s.t. $\sum x_i^2=1$. Given: C1: $\dfrac{r_1^2}{6}+\dfrac{r_2^2}{3}+\dfrac{r_3^2}{9}=5$; C2: $\Big(\dfrac{r_1}{6}\Big)^2+\Big(\dfrac{r_2}{3}\Big)^2+\Big(\dfrac{r_3}{9}\Big)^2=1$.</p>
-<p><span class="part">(b)</span> Find the dual function $g(\mu)$ and its feasible set. <span class="part">(c)</span> Find the dual optimal value and where it is attained. <span class="part">(d)</span> Show the primal optimum equals this value.</p>`, R`
-<p><span class="part">(b)</span> $L=x_1^2(1+\mu)+x_2^2(\mu-2)+x_3^2(4+\mu)+2\sum r_ix_i-\mu$. Bounded below iff all three coefficients $>0$, i.e. $\mu>2$. Minimiser $x_i=-r_i/c_i$ with $c=(1+\mu,\ \mu-2,\ 4+\mu)$, and
-$$g(\mu)=-\mu-\Big(\frac{r_1^2}{1+\mu}+\frac{r_2^2}{\mu-2}+\frac{r_3^2}{4+\mu}\Big),\qquad\mu>2 .$$</p>
-<p><span class="part">(c)</span> $g$ is concave, so $g'(\mu)=0$ is sufficient: $1=\sum r_i^2/c_i^2$. At $\mu=5$, $c=(6,3,9)$ and C2 says exactly $\sum r_i^2/c_i^2=1$. So $\mu^*=5$, and using C1: $g(5)=-5-\sum r_i^2/c_i=-5-5=\mathbf{-10}$.</p>
-<p><span class="part">(d)</span> At $\mu=5$ the minimiser $x_i=-r_i/c_i$ has $\|x\|^2=\sum r_i^2/c_i^2=1$ (C2): it is <b>feasible</b>, and by complementarity-by-equality $f(x)=L(x,5)=g(5)=-10$. Weak duality gives $f^*\ge-10$ and this point attains it: $f^*=-10$, strong duality holds although $f$ is non-convex.</p>`,
-  R`If the Lagrangian minimiser at the dual optimum is primal feasible, there is no gap, convex or not.`);
-
-  Q(16, 'pyq', '2024 Final · Q1(j)', '1 mark', R`
-<p>For a constrained problem there is a dual feasible point with dual objective value $-1$ and a primal feasible $\bar x$ with $f(\bar x)=0.5$. True or False: $f(\bar x)-f(x^*)\le1.5$.</p>`, R`
-<p><span class="ans">True.</span> Weak duality sandwiches the optimum: $-1\le d^*\le p^*=f(x^*)\le f(\bar x)=0.5$. Hence $f(\bar x)-f(x^*)\le0.5-(-1)=1.5$.</p>
-<p>Any dual feasible value is a lower bound, any primal feasible value an upper bound: the gap tells you how far from optimal you can be.</p>`,
-  R`Dual value $\le p^*\le$ primal value. The difference is a certificate of sub-optimality.`);
-
-  Q(16, 'gen', '', '6 marks', R`
-<p>Consider the classic example $\min e^{-x}$ s.t. $x^2/y\le0$ over the domain $y>0$.</p>
-<p><span class="part">(a)</span> Find $p^*$. <span class="part">(b)</span> Find the dual function and $d^*$. <span class="part">(c)</span> Explain why this does not contradict strong duality for convex problems.</p>`, R`
-<p><span class="part">(a)</span> $x^2/y\le0$ with $y>0$ forces $x=0$, so the feasible set is $\{(0,y):y>0\}$ and $p^*=e^0=\mathbf1$.</p>
-<p><span class="part">(b)</span> $g(\lambda)=\inf_{x,\,y>0}\big(e^{-x}+\lambda x^2/y\big)$. For fixed $x$, send $y\to\infty$ to kill the second term, then $x\to\infty$ so $e^{-x}\to0$: $g(\lambda)=0$ for all $\lambda\ge0$. So $d^*=\mathbf0$, <b>duality gap $=1$</b>.</p>
-<p><span class="part">(c)</span> The problem is convex, but there is no strictly feasible point (every feasible point has $x^2/y=0$, never $\lt0$): <span class="ans">Slater's condition fails</span>, so strong duality is not guaranteed. This is exactly why Slater's condition is needed.</p>`,
-  R`Convex is not enough for zero gap: you need a strictly feasible point (Slater).`);
-
-  Q(16, 'gen', '', '3 marks', R`
-<p>Prove weak duality: for $\min f(x)$ s.t. $g_i(x)\le0$, $h(\lambda)=\inf_xL(x,\lambda)$ with $\lambda\ge0$ satisfies $h(\lambda)\le f(x)$ for every feasible $x$.</p>`, R`
-<p>For feasible $x$ and $\lambda\ge0$: $\lambda_ig_i(x)\le0$, so
-$$h(\lambda)=\inf_zL(z,\lambda)\le L(x,\lambda)=f(x)+\sum\lambda_ig_i(x)\le f(x).$$
-Taking the infimum over feasible $x$: $h(\lambda)\le p^*$, hence $d^*\le p^*$. $\blacksquare$</p>`,
-  R`$\lambda\ge0$ and $g\le0$ make the penalty term non-positive: the Lagrangian under-estimates $f$ on the feasible set.`);
-
-  /* ============================ 17  Wolfe duality ============================ */
-  Q(17, 'pyq', '2024 MT3 · Q4 (multiplier names swapped)', '5 marks', R`
-<p>$\min_{x\in\mathbb{R}^d}\tfrac12\|x\|^2$ s.t. $a^\top x\le-b$, $c^\top x\ge b$, where $b>0$.</p>
-<p><span class="part">(a)</span> State the Wolfe dual (no primal variables). (1) <span class="part">(b)</span> If $a^\top c=0$ and $\|a\|=\|c\|=r$, solve it. (1) <span class="part">(c)</span> Solve the primal and compare. (3)</p>`, R`
-<p><span class="part">(a)</span> $L=\tfrac12\|x\|^2+\lambda_1(a^\top x+b)+\lambda_2(b-c^\top x)$, $\lambda_i\ge0$. Stationarity: $x=\lambda_2c-\lambda_1a$. Substituting,
-$$g(\lambda)=-\tfrac12\|\lambda_2c-\lambda_1a\|^2+b(\lambda_1+\lambda_2),\qquad\lambda_1,\lambda_2\ge0 .$$</p>
-<p><span class="part">(b)</span> With $a\perp c$: $\|\lambda_2c-\lambda_1a\|^2=r^2(\lambda_1^2+\lambda_2^2)$. Maximise $-\tfrac{r^2}2(\lambda_1^2+\lambda_2^2)+b(\lambda_1+\lambda_2)$: $\lambda_1=\lambda_2=b/r^2$ and optimal value $\dfrac{b^2}{r^2}$.</p>
-<p><span class="part">(c)</span> From stationarity $x^*=\dfrac b{r^2}(c-a)$, $\|x^*\|^2=\dfrac{b^2}{r^4}\cdot2r^2$, so the primal value is $\tfrac12\|x^*\|^2=\dfrac{b^2}{r^2}$. <span class="ans">Equal to the dual value</span>: zero gap, as expected for a convex problem with feasible constraints.</p>`,
-  R`Wolfe dual: put the stationarity condition in, remove $x$ using it, maximise over $\lambda\ge0$.`);
-
-  Q(17, 'pyq', '2024 MT3 · Q1(e); 2025 Final · Q1(n)', '2 marks', R`
-<p><b>True or False.</b></p>
-<p><span class="part">(a)</span> For a <i>convex</i> optimisation problem, the Lagrange dual and the Wolfe dual give the same dual problem.</p>
-<p><span class="part">(b)</span> The dual of a quadratic programming problem is another quadratic program.</p>`, R`
-<p><span class="part">(a)</span> <span class="ans">True.</span> With convex $f,g_i$ and $\lambda\ge0$, $L(\cdot,\lambda)$ is convex in $x$, so $\inf_xL$ is attained exactly where $\nabla_xL=0$. That is the Wolfe dual's constraint, so the two coincide. (For non-convex problems Wolfe's constraint can include non-minimising stationary points, so they can differ.)</p>
-<p><span class="part">(b)</span> <span class="ans">True.</span> Eliminating $x=Q^{-1}(A^\top\lambda-h)$ leaves a concave quadratic in $\lambda$ with linear constraints $\lambda\ge0$.</p>`,
-  R`Convex $\Rightarrow$ stationary point of $L$ $=$ minimiser of $L$: Wolfe dual equals the Lagrange dual.`);
-
-  Q(17, 'gen', '', '5 marks', R`
-<p>Derive the Wolfe dual of the LP $\min c^\top x$ s.t. $Ax\ge b$ and identify it.</p>`, R`
-<p>$L=c^\top x-\lambda^\top(Ax-b)$, $\lambda\ge0$. Wolfe's stationarity: $\nabla_xL=c-A^\top\lambda=0$. At such points $L=c^\top x-\lambda^\top Ax+\lambda^\top b=(c-A^\top\lambda)^\top x+\lambda^\top b=\lambda^\top b$. So
-$$\max_\lambda\ b^\top\lambda\quad\text{s.t.}\quad A^\top\lambda=c,\ \lambda\ge0 .$$
-This is the standard LP dual (primal inequality form, free $x$).</p>`,
-  R`The Wolfe dual of an LP is the LP dual: stationarity of $L$ becomes the dual equality constraint.`);
-
-  Q(17, 'gen', '', '5 marks', R`
-<p>Write the Wolfe dual of $\min\tfrac12x^\top Qx+h^\top x$ s.t. $Ax\ge b$ ($Q\succ0$). Then verify on $\min\tfrac12x^2$ s.t. $x\ge1$.</p>`, R`
-<p>$L=\tfrac12x^\top Qx+h^\top x-\lambda^\top(Ax-b)$. Stationarity: $Qx=A^\top\lambda-h$, $x=Q^{-1}(A^\top\lambda-h)$. At such $x$: $L=\tfrac12x^\top Qx-x^\top Qx+\lambda^\top b$, so
-$$\max_{\lambda\ge0}\ -\tfrac12(A^\top\lambda-h)^\top Q^{-1}(A^\top\lambda-h)+b^\top\lambda .$$
-Example ($Q=1,h=0,A=1,b=1$): $\max_{\lambda\ge0}\ -\tfrac12\lambda^2+\lambda$, so $\lambda=1$, value $\tfrac12$. Primal: $x^*=1$, value $\tfrac12$. &#10003; Equal.</p>`,
-  R`QP dual: concave quadratic in $\lambda$ with just $\lambda\ge0$: easier constraints than the primal.`);
-
-  /* ============================ 18  LP duality & polyhedra ============================ */
-  Q(18, 'pyq', '2025 MT3 · Q5', '10 marks', R`
-<p>Consider $\min c^\top x$ s.t. $Ax=b,\ x\ge0$ (LP), $A\in\mathbb{R}^{m\times d}$.</p>
-<p><span class="part">(a)</span> Compute the dual of (LP) (at most $m$ dual variables). (3)</p>
-<p><span class="part">(b)</span> $x^*$ is a KKT point that is a BFS. Find a dual feasible solution. (5)</p>
-<p><span class="part">(c)</span> Does strong duality hold? (2)</p>`, R`
-<p><span class="part">(a)</span> $L=c^\top x-\mu^\top(Ax-b)-\lambda^\top x=(c-A^\top\mu-\lambda)^\top x+\mu^\top b$. Finite minimum needs $c-A^\top\mu-\lambda=0$ with $\lambda\ge0$, i.e. $A^\top\mu\le c$:
-$$\max_\mu\ b^\top\mu\quad\text{s.t.}\quad A^\top\mu\le c .$$</p>
-<p><span class="part">(b)</span> Split $A=[B,N]$ with $B$ the basis of the BFS, $x^*=(B^{-1}b,0)$. KKT gives $\mu,\lambda$ with $c=A^\top\mu+\lambda$, $\lambda_B=0$, $\lambda_N\ge0$. So $c_B=B^\top\mu\Rightarrow\mu^\top=c_B^\top B^{-1}$ and $c_N-N^\top\mu=\lambda_N\ge0$, i.e. $A^\top\mu\le c$: <span class="ans">$\mu=B^{-\top}c_B$ is dual feasible</span> (these $\lambda_N$ are the reduced costs).</p>
-<p><span class="part">(c)</span> <span class="ans">Yes.</span> $c^\top x^*=c_B^\top B^{-1}b=\mu^\top b$: primal and dual values coincide.</p>`,
-  R`Optimal BFS $\Rightarrow$ dual solution $\mu=B^{-\top}c_B$; reduced costs $\ge0$ are exactly dual feasibility.`);
-
-  Q(18, 'pyq', '2025 Final · Q5', '10 marks', R`
-<p>$\min x_1-x_2$ s.t. $2x_1+5x_2\ge10$, $x_1+x_2\ge1$, $x\ge0$.</p>
-<p><span class="part">(a)</span> Find the dual of $\min c^\top x$ s.t. $Ax\ge b,\ x\ge0$. (2) <span class="part">(b)</span> Is there a dual feasible point for the given problem? (2) <span class="part">(c)</span> Find the optimal value from first principles. (1) <span class="part">(d)</span> Replace the first constraint by $2x_1+5x_2\le10$. Compute the optimal primal and dual values. (5)</p>`, R`
-<p><span class="part">(a)</span> $\max b^\top y$ s.t. $A^\top y\le c$, $y\ge0$.</p>
-<p><span class="part">(b)</span> Here $A^\top y\le c$ reads $2y_1+y_2\le1$ and $5y_1+y_2\le-1$ with $y\ge0$. The second is impossible for non-negative $y$. <span class="ans">Dual infeasible.</span></p>
-<p><span class="part">(c)</span> Primal is feasible, e.g. $x=(0,t)$ for any $t\ge2$ is feasible, with objective $-t\to-\infty$. So the optimal value is <span class="ans">$-\infty$</span> (dual infeasible + primal feasible $\Rightarrow$ primal unbounded).</p>
-<p><span class="part">(d)</span> The region $\{x\ge0,\ x_1+x_2\ge1,\ 2x_1+5x_2\le10\}$ is bounded with extreme points $(1,0),(0,1),(5,0),(0,2)$. Objective $x_1-x_2$ takes $1,-1,5,-2$, so the minimum is $\mathbf{-2}$ at $(0,2)$. Both are now feasible, so strong duality gives dual optimum $=-2$.</p>`,
-  R`Dual infeasible $+$ primal feasible $\Rightarrow$ primal unbounded. Both feasible $\Rightarrow$ equal optimal values.`);
-
-  Q(18, 'pyq', '2025 MT3 · Q4', '10 marks', R`
-<p>A bounded polyhedral set $P=\{x:a_i^\top x\le b_i\}$ has extreme points $x_1,\dots,x_k$, and $x\in P$ iff $x=\sum\lambda_ix_i$, $\lambda\ge0$, $\sum\lambda_i=1$.</p>
-<p><span class="part">(a)</span> Given $a_j=c^\top x_j$, reformulate $\min_{x\in P}c^\top x$ in terms of the $a_j$ and solve with KKT. (6)</p>
-<p><span class="part">(b)</span> Find the extreme points of $P=\{0\le x\le\mathbf1\}$. How many are there? (4)</p>`, R`
-<p><span class="part">(a)</span> $c^\top x=\sum\lambda_jc^\top x_j=\sum\lambda_ja_j$, so
-$$\min_\lambda\ \sum_j\lambda_ja_j\quad\text{s.t.}\quad\sum\lambda_j=1,\ \lambda\ge0 .$$
-KKT: $a_j-\mu-\delta_j=0$, $\delta_j\lambda_j=0$, $\delta_j\ge0$. If $\lambda_j>0$ then $a_j=\mu$. Let $a_l=\min_ja_j$. Take $\mu=a_l$, $\lambda_l=1$, others $0$: <span class="ans">the LP optimum is the smallest $c^\top x_j$ over the vertices</span>, i.e. an LP over a polytope is solved at an extreme point.</p>
-<p><span class="part">(b)</span> The extreme points of the unit cube are exactly the vectors in $\{0,1\}^d$: <span class="ans">$2^d$ of them</span>.</p>`,
-  R`Min of a linear function over a polytope $=$ min over its vertices. The cube has $2^d$ vertices.`);
-
-  Q(18, 'gen', '', '7 marks', R`
-<p>Solve $\min 2x_1+3x_2$ s.t. $x_1+x_2\ge4$, $x_1+3x_2\ge6$, $x\ge0$ by writing its dual and checking complementary slackness.</p>`, R`
-<p>Dual: $\max 4y_1+6y_2$ s.t. $y_1+y_2\le2$, $y_1+3y_2\le3$, $y\ge0$.</p>
-<p>Solve the primal by vertices: the binding pair $x_1+x_2=4,\ x_1+3x_2=6$ gives $x=(3,1)$ with value $6+3=9$; other vertices $(6,0)$ and $(0,4)$ give $12$. So the primal minimum is $9$ at $(3,1)$.</p>
-<p>Dual: both constraints binding: $y_1+y_2=2$, $y_1+3y_2=3\Rightarrow y_2=\tfrac12,\ y_1=\tfrac32$; $y\ge0$ &#10003;; value $4\cdot\tfrac32+6\cdot\tfrac12=9$. <span class="ans">Equal, so both optimal.</span></p>
-<p>Complementary slackness: $x_1,x_2>0$ means both dual constraints are tight &#10003;; $y_1,y_2>0$ means both primal constraints are tight at $(3,1)$ (4 and 6) &#10003;.</p>`,
-  R`Optimal pair: positive variable $\Leftrightarrow$ the matching constraint on the other side is tight.`);
-
-  Q(18, 'pyq', '2025 Final · Q1(s),(t)', '2 marks', R`
-<p><b>True or False, with a reason.</b></p>
-<p><span class="part">(a)</span> Linear programming problems always have a global minimum.</p>
-<p><span class="part">(b)</span> The BFS recovered from the simplex algorithm at termination may not be a KKT point.</p>`, R`
-<p><span class="part">(a)</span> <span class="ans">False.</span> An LP can be infeasible ($x\ge1,\ x\le0$) or unbounded ($\min -x$, $x\ge0$). It has a minimum only if it is feasible and bounded.</p>
-<p><span class="part">(b)</span> <span class="ans">False.</span> Simplex stops at a BFS with non-negative reduced costs; those reduced costs are exactly the KKT multipliers $\lambda_N\ge0$ and $\mu=B^{-\top}c_B$ is dual feasible. So the final BFS <i>is</i> a KKT point.</p>`,
-  R`LP: feasible $+$ bounded $\Rightarrow$ min exists at a vertex. Simplex termination $=$ KKT.`);
-
-  /* ============================ 19  Penalty & barrier ============================ */
-  Q(19, 'gen', '', '5 marks', R`
-<p>Minimise $f(x)=x$ subject to $x\ge1$ using the <b>quadratic penalty</b> $P(x;\mu)=x+\tfrac\mu2\big(\max\{0,1-x\}\big)^2$.</p>
-<p>Find the minimiser $x(\mu)$, its limit, and say whether the iterates are feasible.</p>`, R`
-<p>For $x\lt1$: $P'(x)=1-\mu(1-x)=0\Rightarrow x(\mu)=1-\dfrac1\mu\lt1$. (For $x\ge1$, $P'=1>0$, so no minimiser there.)</p>
-<p>So $x(\mu)=1-\tfrac1\mu\to1=x^*$ as $\mu\to\infty$.</p>
-<p>All iterates are <span class="ans">infeasible</span> (slightly outside $x\ge1$), approaching the boundary from the outside. The distance to feasibility shrinks like $1/\mu$.</p>`,
-  R`Penalty method: the iterates approach the solution from the infeasible side as $\mu\to\infty$.`);
-
-  Q(19, 'gen', '', '5 marks', R`
-<p>For the same problem, use the <b>log-barrier</b> $B(x;t)=x-t\log(x-1)$ on $x>1$. Find $x(t)$ and its limit. Are iterates feasible? How does this differ from the penalty method?</p>`, R`
-<p>$B'(x)=1-\dfrac t{x-1}=0\Rightarrow x(t)=1+t$, which tends to $1=x^*$ as $t\downarrow0$.</p>
-<p>All iterates are <span class="ans">strictly feasible</span> ($x(t)>1$): approaching from the <b>inside</b>. Need a strictly feasible start and the barrier blows up at the boundary, so you never leave $C$.</p>
-<p>Difference: penalty methods allow infeasibility and push back with $\mu\uparrow\infty$ (exterior); barrier methods stay interior and relax with $t\downarrow0$. The gap $f(x(t))-f^*=t$ here.</p>`,
-  R`Penalty: exterior, $\mu\to\infty$. Barrier: interior, $t\to0$, needs strictly feasible start.`);
-
-  Q(19, 'gen', '', '6 marks', R`
-<p>Minimise $x_1^2+x_2^2$ s.t. $x_1+x_2=1$ using $P(x;\mu)=x_1^2+x_2^2+\tfrac\mu2(x_1+x_2-1)^2$.</p>
-<p><span class="part">(a)</span> Find the minimiser $x(\mu)$ and its limit. <span class="part">(b)</span> Show that $\mu\,(x_1+x_2-1)$ converges to the Lagrange multiplier.</p>`, R`
-<p><span class="part">(a)</span> By symmetry $x_1=x_2=s$: $P=2s^2+\tfrac\mu2(2s-1)^2$, $P'=4s+2\mu(2s-1)=0\Rightarrow s=\dfrac{\mu}{2(1+\mu)}$. As $\mu\to\infty$: $x\to(\tfrac12,\tfrac12)$, the true solution. (Constraint violation $2s-1=-\dfrac1{1+\mu}$.)</p>
-<p><span class="part">(b)</span> The true Lagrangian $L=f+\lambda(x_1+x_2-1)$ has $2x_i+\lambda=0$, so $\lambda^*=-1$. From the penalty gradient, $2x_i+\mu(x_1+x_2-1)=0$, so $\lambda\approx\mu\,h(x(\mu))$:
-$$\mu(2s-1)=-\frac\mu{1+\mu}\to-1=\lambda^* .$$
-The penalty parameter times the constraint violation is a multiplier estimate (the idea behind augmented Lagrangian methods).</p>`,
-  R`Penalty gradient $=0$ $\Rightarrow$ $\mu\,h(x(\mu))\to\lambda^*$. Infeasibility $\sim1/\mu$.`);
-
-  Q(19, 'gen', '', '4 marks', R`
-<p>Why is it a bad idea to jump straight to a huge $\mu$ in the quadratic penalty method, and how does the log-barrier behave near the boundary? State what you would do in practice.</p>`, R`
-<p>The Hessian of $P(x;\mu)$ contains $\mu\,\nabla h\nabla h^\top$, with eigenvalue $\sim\mu\|\nabla h\|^2$ in the normal directions and only $O(1)$ in tangent directions. As $\mu\to\infty$ the condition number $\to\infty$, so gradient descent crawls and Newton's linear systems become ill-conditioned.</p>
-<p>Likewise the log-barrier Hessian contains $\dfrac{t}{g(x)^2}\nabla g\nabla g^\top$, which blows up near the boundary as $t\to0$.</p>
-<p>Practice: increase $\mu$ gradually (or decrease $t$), and use the previous minimiser as a <b>warm start</b> for the next subproblem. Each subproblem is well conditioned and the path $x(\mu)$ is followed to the solution.</p>`,
-  R`Bigger $\mu$ $=$ closer to feasibility but worse conditioning. Increase gradually and warm start.`);
-
-  Q(19, 'gen', '', '4 marks', R`
-<p>Use the $\ell_1$ (exact) penalty $P(x;\mu)=x+\mu\max\{0,1-x\}$ for $\min x$ s.t. $x\ge1$. For which $\mu$ is the minimiser exactly $x^*=1$? How does that relate to the Lagrange multiplier?</p>`, R`
-<p>For $x\lt1$: $P'=1-\mu$; for $x>1$: $P'=1$. If $\mu>1$, $P$ decreases up to $x=1$ then increases, so the unique minimiser is exactly $x=1$ for <b>every finite $\mu>1$</b>.</p>
-<p>The KKT multiplier of $x\ge1$ is $\lambda^*=1$ (since $\nabla f=1=\lambda\cdot1$). So the rule is $\mu>\lambda^*$: the exact penalty works once $\mu$ exceeds the largest multiplier. No need to send $\mu\to\infty$, but the penalty is non-smooth.</p>`,
-  R`Exact penalty: $\mu>\|\lambda^*\|_\infty$ gives the exact solution, at the price of non-differentiability.`);
-
-  window.PRACTICE_DATA = (window.PRACTICE_DATA || []).concat(out);
-})();
+]
+);

@@ -9,7 +9,7 @@
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
-  <script src="practice_cmo.js?v=20261029_p1"></script>
+  <script src="practice_cmo.js?v=20261029_cmo_p1"></script>
   <script src="topic_importance.js?v=20261028_imp1"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
@@ -126,7 +126,7 @@
     .flipwrap { flex: 1 0 auto; perspective: 1800px; cursor: pointer; display: flex; }
     .flipper { position: relative; width: 100%; display: grid; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.3,.7,.2,1); }
     .flipper.is-flipped { transform: rotateY(180deg); }
-    .pface { grid-area: 1 / 1; position: relative; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6px; padding: 34px 56px 40px; min-height: 480px;
+    .pface { --lh: 40px; grid-area: 1 / 1; position: relative; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6px; padding: 34px 56px 40px; min-height: 480px;
       background-color: #fbf8f1; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 39px, #c9d3df 39px, #c9d3df 40px);
       color: #2b2823; font-family: 'Helvetica Neue LT Std','Helvetica Neue',Helvetica,Arial,sans-serif; box-shadow: 0 10px 34px rgba(0,0,0,.5); }
     .pface::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #d2574a; border-radius: 6px 6px 0 0; }
@@ -142,6 +142,7 @@
     .pbody .katex-display { margin: 10px 0; } .pbody .katex { font-size: 1.04em; }
     .phint { margin-top: 18px; font-size: 14px; color: #8b8478; }
     .phint kbd { font-family: var(--mono); border: 1px solid #b9b2a3; border-radius: 4px; padding: 0 5px; }
+    .pface .connection { margin-top: 24px; }
     .pface .connection p { font-size: 19px; line-height: 36px; }
     .pface .connection h2 { font-size: 16px; }
     @media (max-width: 900px) { .pface { padding: 22px 20px 28px; min-height: 360px; } .pbody { font-size: 18px; line-height: 34px; } }
@@ -614,7 +615,15 @@
         .map((q, i) => Object.assign({ kind: 'practice', cardNumber: 'P' + (i + 1) }, q));
     }
     const isPractice = c => c && c.kind === 'practice';
-    function flipCard() { if (!isPractice(deck[idx])) return; flipped = !flipped; const f = document.querySelector('.flipper'); if (f) f.classList.toggle('is-flipped', flipped); renderActions(); }
+    function flipCard() {
+      if (!isPractice(deck[idx])) return;
+      flipped = !flipped;
+      const f = document.querySelector('.flipper');
+      if (f) f.classList.toggle('is-flipped', flipped);
+      renderActions();
+      const btn = document.querySelector('.paper-bar .copy-btn span');
+      if (btn) btn.textContent = flipped ? 'Question' : 'Solution';
+    }
 
     function setImpFilter(f) {
       currentImpFilter = f;
@@ -779,19 +788,24 @@
 
     function practiceHtml(q) {
       const tag = q.kind2 === 'pyq' ? ('PYQ · ' + esc(q.source)) : 'Practice · same level as the PYQs';
+      const imp = (typeof window.getTopicImportance === 'function')
+        ? window.getTopicImportance(q.subject || currentSubject, q.topicId)
+        : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
+      const impSymbol = imp.tier === 'red' ? '🔴' : (imp.tier === 'orange' ? '🟠' : '🟡');
       return `
         <div class="paper-bar">
-          <span class="chip">PRACTICE ${esc(q.cardNumber)}</span>
+          <span class="chip" style="background:#241b13;color:#e8c9a0;border-color:#6b5436">PRACTICE ${esc(q.cardNumber)}</span>
           <span class="cat">${tag}</span>
           ${q.marks ? `<span class="cat">${esc(q.marks)}</span>` : ''}
-          <button class="copy-btn" onclick="flipCard()">⟳ <span>Flip</span></button>
+          <span class="imp-badge imp-${imp.tier}" title="${esc(imp.reason)}">${impSymbol} ${esc(imp.label.toUpperCase())}</span>
+          <button class="copy-btn" onclick="flipCard()" title="Flip between Question and Solution (or press F)">⟳ <span>${flipped ? 'Question' : 'Solution'}</span></button>
         </div>
-        <div class="flipwrap" onclick="if(!event.target.closest('a,button'))flipCard()">
+        <div class="flipwrap" onclick="if(!event.target.closest('a,button') && !(window.getSelection && window.getSelection().toString().length))flipCard()">
           <div class="flipper ${flipped ? 'is-flipped' : ''}">
             <article class="pface pfront" aria-label="Question">
               <h2 class="plabel">QUESTION</h2>
               <div class="pbody">${q.question}</div>
-              <div class="phint">Try it on paper first, then flip for the solution &nbsp;(<kbd>F</kbd> or click)</div>
+              <div class="phint">Try it on paper first, then flip for the solution &nbsp;(<kbd>F</kbd> or click to flip)</div>
             </article>
             <article class="pface pback" aria-label="Solution">
               <h2 class="plabel sol">SOLUTION</h2>
