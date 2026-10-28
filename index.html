@@ -172,15 +172,6 @@
           <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
             Feasible Sets, Active Constraints & Tangent Cones
           </h2>
-        </div>
-        <div class="flex items-center gap-4 text-xs font-mono text-slate-400">
-          <span class="flex items-center gap-1.5 text-cyan-300">
-            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            Luenberger & Ye Reference Text
-          </span>
-          <span class="text-slate-600">•</span>
-          <span><strong id="card-count" class="text-white">6</strong> Synchronized 16:9 Plates</span>
-        </div>
       </div>
 
       <!-- Uniform 16:9 Landscape Card Grid -->
@@ -448,7 +439,8 @@
     /* Render Deck with strict 16:9 Landscape cards & Blank surfaces */
     function renderDeck() {
       const grid = document.getElementById('desk-grid');
-      document.getElementById('card-count').textContent = deck.length;
+      const countEl = document.getElementById('card-count');
+      if (countEl) countEl.textContent = deck.length;
 
       grid.innerHTML = deck.map((card, idx) => {
         return `
@@ -626,7 +618,8 @@
       );
       
       const grid = document.getElementById('desk-grid');
-      document.getElementById('card-count').textContent = filtered.length;
+      const countEl = document.getElementById('card-count');
+      if (countEl) countEl.textContent = filtered.length;
       grid.innerHTML = filtered.map(c => `
         <div class="cosmic-card aspect-16-9 p-6 flex flex-col justify-between">
           <div>
