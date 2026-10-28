@@ -7,14 +7,25 @@ with open('/Users/senso/Projects/photographic-memory-cards/cards_data.js') as f:
 start = text.find('[')
 end = text.rfind(']') + 1
 loaded = json.loads(text[start:end])
-all_cards = [c for c in loaded if c.get('subject') == 'CMO']
+existing_cmo = [c for c in loaded if c.get('subject') == 'CMO']
+
+# Load newly built CMO cards (Topics 06, 07, 08, 10)
+with open('/Users/senso/Projects/photographic-memory-cards/scripts/new_cmo_cards.json') as f:
+    new_cmo = json.load(f)
+
+cmo_dict = {c['id']: c for c in existing_cmo}
+for c in new_cmo:
+    cmo_dict[c['id']] = c
+
+# Sort all CMO cards strictly by (topicId, cardNumber)
+all_cards = sorted(cmo_dict.values(), key=lambda c: (c['topicId'], c['cardNumber']))
 
 # =============================================================================
 # LAA (Linear Algebra and Applications - E0 219)
 # =============================================================================
 laa_cards = [
     {
-        "id": 1001,
+        "id": 20101,
         "subject": "LAA",
         "topicId": "01_Vector_Spaces_Subspaces_and_Direct_Sums",
         "topicTitle": "01 · Vector Spaces, Subspaces & Direct Sums",
@@ -57,7 +68,7 @@ laa_cards = [
         "examTrap": "Testing if an affine plane (e.g. $W = \\{(x, y, z) : x + 2y - z = 4\\}$) is a subspace. Answer: NO! $(0,0,0) \\notin W$. It is an affine manifold, not a linear subspace."
     },
     {
-        "id": 1002,
+        "id": 20102,
         "subject": "LAA",
         "topicId": "01_Vector_Spaces_Subspaces_and_Direct_Sums",
         "topicTitle": "01 · Vector Spaces, Subspaces & Direct Sums",
@@ -79,7 +90,7 @@ laa_cards = [
         "examTrap": "The intersection condition $U_i \\cap U_j = \\{0\\}$ ONLY works for $m=2$ subspaces! For 3 or more subspaces, pairwise trivial intersection does NOT guarantee a direct sum."
     },
     {
-        "id": 1003,
+        "id": 20103,
         "subject": "LAA",
         "topicId": "01_Vector_Spaces_Subspaces_and_Direct_Sums",
         "topicTitle": "01 · Vector Spaces, Subspaces & Direct Sums",
@@ -116,7 +127,7 @@ laa_cards = [
         "examTrap": "Always use the zero-vector criterion when testing 3 or more subspaces! It is universal, completely immune to pairwise intersection traps, and matches the definition of linear independence."
     },
     {
-        "id": 1004,
+        "id": 20104,
         "subject": "LAA",
         "topicId": "01_Vector_Spaces_Subspaces_and_Direct_Sums",
         "topicTitle": "01 · Vector Spaces, Subspaces & Direct Sums",
@@ -147,7 +158,7 @@ laa_cards = [
         "examTrap": "The correct intersection condition for $m \\ge 3$ subspaces is: $U_j \\cap \\left( \\sum_{i \\ne j} U_i \\right) = \\{0\\}$ for each $j$. Each subspace must intersect the sum of ALL other subspaces trivially."
     },
     {
-        "id": 1005,
+        "id": 20105,
         "subject": "LAA",
         "topicId": "01_Vector_Spaces_Subspaces_and_Direct_Sums",
         "topicTitle": "01 · Vector Spaces, Subspaces & Direct Sums",
@@ -179,7 +190,7 @@ laa_cards = [
         "examTrap": "If $\\dim(U_1) + \\dim(U_2) > \\dim(V)$, the subspaces MUST have a non-trivial intersection! E.g., two 2D planes in $\\mathbb{R}^3$ must intersect in at least a line: $\\dim(U_1 \\cap U_2) \\ge 2 + 2 - 3 = 1$."
     },
     {
-        "id": 1006,
+        "id": 20106,
         "subject": "LAA",
         "topicId": "01_Vector_Spaces_Subspaces_and_Direct_Sums",
         "topicTitle": "01 · Vector Spaces, Subspaces & Direct Sums",
@@ -217,7 +228,7 @@ laa_cards = [
 # =============================================================================
 stoma_cards = [
     {
-        "id": 2001,
+        "id": 30101,
         "subject": "StoMA",
         "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
         "topicTitle": "01 · Probability Spaces & Continuity",
@@ -255,7 +266,7 @@ stoma_cards = [
         "examTrap": "Why do we need a $\\sigma$-algebra rather than the entire power set $2^\\Omega$? Because on uncountably infinite spaces (like $\\mathbb{R}$), non-measurable sets (e.g. Vitali sets) exist where probabilities CANNOT be consistently assigned!"
     },
     {
-        "id": 2002,
+        "id": 30102,
         "subject": "StoMA",
         "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
         "topicTitle": "01 · Probability Spaces & Continuity",
@@ -278,14 +289,14 @@ stoma_cards = [
         "coreTranslation": [
             "<strong>Axiom 1 (Non-negativity):</strong> For every event $A \\in \\mathcal{F}$, $\\mathbb{P}(A) \\ge 0$.",
             "<strong>Axiom 2 (Normalization):</strong> The entire sample space has certainty: $\\mathbb{P}(\\Omega) = 1$.",
-            "<strong>Axiom 3 (Countable Additivity):</strong> For any sequence of pairwise disjoint events $A_1, A_2, \\dots$ ($A_i \\cap A_j = \\emptyset$ for $i \\ne j$): $\\mathbb{P}\\left( \\bigcup_{i=1}^\\infty A_i \\right) = \\sum_{i=1}^\\infty \\mathbb{P}(A_i)$."
+            "<strong>Axiom 3 (Countable Additivity):</strong> For any sequence of pairwise disjoint events $A_1, A_2, \\dots$ ($A_i \\cap A_j = \\emptyset$ for $i \\ne j$): $\\mathbb{P}\\left( \\bigcup_{i=1}^\\infty A_i \\right) = \\sum_{i=1}^\\infty \\mathbb{P}(A_i)$.",
         ],
         "math": "$$\\mathbb{P}(A) \\ge 0, \\quad \\mathbb{P}(\\Omega) = 1, \\quad \\mathbb{P}\\left(\\bigcup_{i=1}^\\infty A_i\\right) = \\sum_{i=1}^\\infty \\mathbb{P}(A_i) \\; (A_i \\cap A_j = \\emptyset)$$",
         "personalConnection": "Pouring a litre bottle of milk into mutually separate teacups: the total volume of milk across all cups is the sum of the volumes in each cup; no milk is created or destroyed.",
         "examTrap": "FINITE additivity ($\\mathbb{P}(A \\cup B) = \\mathbb{P}(A) + \\mathbb{P}(B)$) is NOT enough! Countable additivity is strictly required to prove limit theorems and continuity of probability."
     },
     {
-        "id": 2003,
+        "id": 30103,
         "subject": "StoMA",
         "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
         "topicTitle": "01 · Probability Spaces & Continuity",
@@ -315,7 +326,7 @@ stoma_cards = [
         "examTrap": "Continuity of probability is mathematically EQUIVALENT to countable additivity (assuming finite additivity). If a measure fails countable additivity, continuity of probability fails immediately."
     },
     {
-        "id": 2004,
+        "id": 30104,
         "subject": "StoMA",
         "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
         "topicTitle": "01 · Probability Spaces & Continuity",
@@ -337,7 +348,7 @@ stoma_cards = [
         "examTrap": "Boole's inequality requires NO assumption of independence or disjointness! It holds universally for arbitrary events, making it the most versatile bounding tool in proof questions."
     },
     {
-        "id": 2005,
+        "id": 30105,
         "subject": "StoMA",
         "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
         "topicTitle": "01 · Probability Spaces & Continuity",
@@ -369,7 +380,7 @@ stoma_cards = [
         "examTrap": "Remember that the sign of the full intersection $\\mathbb{P}(\\bigcap_{i=1}^n A_i)$ is $(-1)^{n-1}$. For $n=2$, it's negative $(-)$; for $n=3$, it's positive $(+)$; for $n=4$, it's negative $(-)$."
     },
     {
-        "id": 2006,
+        "id": 30106,
         "subject": "StoMA",
         "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
         "topicTitle": "01 · Probability Spaces & Continuity",
@@ -415,7 +426,7 @@ stoma_cards = [
 # =============================================================================
 dip_cards = [
     {
-        "id": 3001,
+        "id": 40101,
         "subject": "DIP",
         "topicId": "01_Image_Formation_Camera_Geometry_and_Transformations",
         "topicTitle": "01 · Image Formation & Transformations",
@@ -460,7 +471,7 @@ dip_cards = [
         "examTrap": "Perspective projection is NON-LINEAR in Cartesian coordinates because of the division by $Z$! To make it linear, we MUST convert to <strong>homogeneous coordinates</strong>."
     },
     {
-        "id": 3002,
+        "id": 40102,
         "subject": "DIP",
         "topicId": "01_Image_Formation_Camera_Geometry_and_Transformations",
         "topicTitle": "01 · Image Formation & Transformations",
@@ -502,7 +513,7 @@ dip_cards = [
         "examTrap": "The equality holds UP TO SCALE (indicated by $\\sim$)! You must divide the resulting homogeneous vector by its third coordinate: $u = \\tilde{u}/\\tilde{w}, v = \\tilde{v}/\\tilde{w}$ to obtain actual pixel coordinates."
     },
     {
-        "id": 3003,
+        "id": 40103,
         "subject": "DIP",
         "topicId": "01_Image_Formation_Camera_Geometry_and_Transformations",
         "topicTitle": "01 · Image Formation & Transformations",
@@ -535,7 +546,7 @@ dip_cards = [
         "examTrap": "Never assume the principal point is at $(0, 0)$! In image coordinates, $(0,0)$ is the TOP-LEFT corner of the image. For a $1920 \\times 1080$ sensor, the principal point is approximately $(960, 540)$."
     },
     {
-        "id": 3004,
+        "id": 40104,
         "subject": "DIP",
         "topicId": "01_Image_Formation_Camera_Geometry_and_Transformations",
         "topicTitle": "01 · Image Formation & Transformations",
@@ -558,7 +569,7 @@ dip_cards = [
         "examTrap": "An Affine transformation has $h_{31} = 0, h_{32} = 0, h_{33} = 1$. The bottom row $[0, 0, 1]$ is what preserves parallel lines! When $[h_{31}, h_{32}] \\ne [0, 0]$, lines converge."
     },
     {
-        "id": 3005,
+        "id": 40105,
         "subject": "DIP",
         "topicId": "01_Image_Formation_Camera_Geometry_and_Transformations",
         "topicTitle": "01 · Image Formation & Transformations",
@@ -596,7 +607,7 @@ dip_cards = [
         "examTrap": "Forward mapping requires expensive splatting algorithms to avoid gaps. All production computer vision and DIP pipelines strictly use INVERSE warping with $T^{-1}$."
     },
     {
-        "id": 3006,
+        "id": 40106,
         "subject": "DIP",
         "topicId": "01_Image_Formation_Camera_Geometry_and_Transformations",
         "topicTitle": "01 · Image Formation & Transformations",
