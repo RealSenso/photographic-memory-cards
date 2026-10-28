@@ -960,6 +960,246 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "math": "$$f_{X+Y}(z) = \\begin{cases} z & 0 \\le z \\le 1 \\\\ 2 - z & 1 < z \\le 2 \\\\ 0 & \\text{otherwise} \\end{cases}, \\qquad \\mathbb{E}[Z] = 1, \\; \\operatorname{Var}(Z) = \\tfrac{1}{6}$$",
     "personalConnection": "Rolling two fair dice: the sum of two uniform outcomes forms a triangular frequency peak at 7, tapering linearly toward 2 and 12.",
     "examTrap": "Treating the convolution integral as a single algebraic formula over [0, 2]! The overlap geometry changes at z = 1, splitting the solution into two distinct linear regimes."
+  },
+  {
+    "id": 31001,
+    "subject": "StoMA",
+    "topicId": "10_Exchangeable_Random_Variables",
+    "topicTitle": "10 \u00b7 Exchangeable Random Variables",
+    "cardNumber": "01",
+    "category": "EXCHANGEABILITY",
+    "highlighterClass": "highlight-cyan",
+    "title": "Exchangeability: Permutation Invariance of Joint Law",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31001\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"85\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"58.5\" y=\"37.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(X\u2081, X\u2082, ...,</text><text x=\"58.5\" y=\"46.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X_n)\nJoint Law P</text><line x1=\"101\" y1=\"38\" x2=\"139\" y2=\"38\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31001)\"/><text x=\"120\" y=\"28\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Permute \u03c0</text><rect x=\"139\" y=\"20\" width=\"85\" height=\"36\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"181.5\" y=\"37.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(X_{\u03c0(1)}, ...,</text><text x=\"181.5\" y=\"46.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X_{\u03c0(n)})\nIdentical Law P</text><rect x=\"24\" y=\"70\" width=\"192\" height=\"46\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"120\" y=\"84\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">i.i.d.  \u2282  Exchangeable  \u2282  Identically Distributed</text><text x=\"120\" y=\"102\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Order does not matter; variables are symmetric but CAN be dependent</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Exchangeability: Joint distribution is invariant under all permutations \u03c0 \u2208 S_n</text></svg>",
+    "drawingCaption": "A sequence is exchangeable if its joint distribution is completely unchanged by any index permutation",
+    "coreTranslation": [
+      "<strong>Formal Definition:</strong> $(X_1, \\dots, X_n)$ is exchangeable if $(X_1, \\dots, X_n) \\stackrel{d}{=} (X_{\\pi(1)}, \\dots, X_{\\pi(n)})$ for every permutation $\\pi \\in S_n$.",
+      "<strong>Hierarchy:</strong> $\\text{i.i.d.} \\subsetneq \\text{Exchangeable} \\subsetneq \\text{Identically Distributed}$. Exchangeability is strictly weaker than i.i.d. because mutual dependence is permitted.",
+      "<strong>Equi-marginality:</strong> All $X_i$ share identical marginal distributions $F$, and all pairs $(X_i, X_j)$ share identical joint bivariate laws."
+    ],
+    "math": "$$(X_1, \\dots, X_n) \\stackrel{d}{=} (X_{\\pi(1)}, \\dots, X_{\\pi(n)}) \\quad \\forall \\pi \\in S_n; \\qquad \\text{i.i.d.} \\subset \\text{Exchangeable}$$",
+    "personalConnection": "Dealing hands in poker: whether a royal card is dealt first, third, or fifth, the joint probability of the entire hand configuration remains identical.",
+    "examTrap": "Confusing exchangeable with i.i.d.! Exchangeable variables can be strongly correlated (e.g. sampling without replacement from a finite urn)."
+  },
+  {
+    "id": 31002,
+    "subject": "StoMA",
+    "topicId": "10_Exchangeable_Random_Variables",
+    "topicTitle": "10 \u00b7 Exchangeable Random Variables",
+    "cardNumber": "02",
+    "category": "EQUI-CORRELATION",
+    "highlighterClass": "highlight-amber",
+    "title": "Equi-Marginality & Universal Pairwise Equi-Correlation",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31002\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"30\" y=\"20\" width=\"180\" height=\"85\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"61.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03a3 =\n[ \u03c3\u00b2    \u03c1\u03c3\u00b2  ...  \u03c1\u03c3\u00b2 ]\n[ \u03c1\u03c3\u00b2   \u03c3\u00b2   ...  \u03c1\u03c3\u00b2</text><text x=\"120.0\" y=\"71.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">]\n[ ...   ...  ...  ... ]\n[ \u03c1\u03c3\u00b2   \u03c1\u03c3\u00b2  ...  \u03c3\u00b2  ]</text><text x=\"120\" y=\"118\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Var(X\u1d62) = \u03c3\u00b2   and   Corr(X\u1d62, X_j) = \u03c1  for all i \u2260 j</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Symmetry forces all variances to be equal and all pairwise covariances to be identical</text></svg>",
+    "drawingCaption": "Exchangeability imposes compound symmetry: all variances are identical and all pairwise correlations match",
+    "coreTranslation": [
+      "<strong>Marginal Identity:</strong> By taking $\\pi$ swapping $1$ and $i$, $\\mathbb{P}(X_1 \\le x) = \\mathbb{P}(X_i \\le x)$ for all $i$. All variables have identical mean $\\mu$ and variance $\\sigma^2$.",
+      "<strong>Pairwise Equi-Correlation:</strong> By swapping pairs $(1, 2) \\leftrightarrow (i, j)$, $\\operatorname{Cov}(X_i, X_j) = \\operatorname{Cov}(X_1, X_2) \\triangleq c$ for all $i \\ne j$.",
+      "<strong>Compound Symmetry Matrix:</strong> The covariance matrix is $\\Sigma = \\sigma^2 [(1 - \\rho) I_n + \\rho \\mathbf{1}\\mathbf{1}^\\top]$, completely parameterized by just two numbers: $\\sigma^2$ and $\\rho$."
+    ],
+    "math": "$$\\operatorname{Var}(X_i) = \\sigma^2, \\quad \\operatorname{Cov}(X_i, X_j) = \\rho\\sigma^2 \\quad \\forall i \\ne j \\implies \\Sigma = \\sigma^2 \\left[(1-\\rho)I + \\rho \\mathbf{1}\\mathbf{1}^\\top\\right]$$",
+    "personalConnection": "A round discussion table of identical twins: each has the exact same baseline reaction and shares the exact same mutual affinity with every other sibling.",
+    "examTrap": "Assuming pairwise covariances can vary across indices. In an exchangeable sequence, Cov(X\u2081, X\u2082) MUST equal Cov(X\u2087, X\u2089)\u2014any discrepancy disproves exchangeability."
+  },
+  {
+    "id": 31003,
+    "subject": "StoMA",
+    "topicId": "10_Exchangeable_Random_Variables",
+    "topicTitle": "10 \u00b7 Exchangeable Random Variables",
+    "cardNumber": "03",
+    "category": "FINITE CORRELATION",
+    "highlighterClass": "highlight-emerald",
+    "title": "Finite Exchangeability Correlation Bound: \u03c1 \u2265 -1/(n - 1)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31003\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31003)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31003)\"/><line x1=\"60\" y1=\"65\" x2=\"200\" y2=\"65\" stroke=\"#000000\" stroke-width=\"2.5\"/><circle cx=\"60\" cy=\"65\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"60\" y=\"50\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">-1/(n - 1)</text><circle cx=\"200\" cy=\"65\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"200\" y=\"50\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">+1</text><line x1=\"130\" y1=\"60\" x2=\"130\" y2=\"70\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"130\" y=\"80\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">0 (i.i.d.)</text><rect x=\"24\" y=\"18\" width=\"192\" height=\"22\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"28.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Var(\u2211 X\u1d62) = n \u03c3\u00b2 [1 + (n -</text><text x=\"120.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1) \u03c1] \u2265 0 \u21d2 \u03c1 \u2265 -1 / (n - 1)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Finite exchangeable variables can be negatively correlated down to -1/(n - 1)</text></svg>",
+    "drawingCaption": "Variance non-negativity of the sum bounds negative correlation: \u03c1 \u2265 -1/(n - 1)",
+    "coreTranslation": [
+      "<strong>Sum Variance Expansion:</strong> For sum $S_n = \\sum_{i=1}^n X_i$, $\\operatorname{Var}(S_n) = \\sum \\operatorname{Var}(X_i) + \\sum_{i \\ne j} \\operatorname{Cov}(X_i, X_j) = n\\sigma^2 + n(n-1)\\rho\\sigma^2$.",
+      "<strong>Positivity Constraint:</strong> Since $\\operatorname{Var}(S_n) \\ge 0$, we have $n\\sigma^2 [1 + (n-1)\\rho] \\ge 0 \\implies \\rho \\ge -\\frac{1}{n-1}$.",
+      "<strong>Extreme Negative Attainment:</strong> Equality $\\rho = -\\frac{1}{n-1}$ is achieved when the sum is deterministic: $\\sum_{i=1}^n X_i = c$ almost surely."
+    ],
+    "math": "$$\\operatorname{Var}\\left(\\sum_{i=1}^n X_i\\right) \\ge 0 \\implies 1 + (n-1)\\rho \\ge 0 \\implies \\rho \\ge -\\frac{1}{n-1}$$",
+    "personalConnection": "Cutting a fixed birthday cake among n guests: if guest 1 gets a larger slice, the other slices must collectively shrink, producing mutual negative correlation -1/(n-1).",
+    "examTrap": "Believing correlation can never be negative in exchangeable systems. For finite n, negative correlation is completely valid down to the barrier -1/(n-1)."
+  },
+  {
+    "id": 31004,
+    "subject": "StoMA",
+    "topicId": "10_Exchangeable_Random_Variables",
+    "topicTitle": "10 \u00b7 Exchangeable Random Variables",
+    "cardNumber": "04",
+    "category": "INFINITE EXCHANGEABILITY",
+    "highlighterClass": "highlight-purple",
+    "title": "Infinite Exchangeability & Non-Negative Correlation",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31004\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"42\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Finite sequence: \u03c1 \u2265 -1 / (n - 1)\nTake n \u2192 \u221e (infinite</text><text x=\"120.0\" y=\"49.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">sequence):\n\u03c1 \u2265 lim_{n \u2192 \u221e} [-1 / (n - 1)] = 0</text><line x1=\"30\" y1=\"85\" x2=\"210\" y2=\"85\" stroke=\"#000000\" stroke-width=\"1.4\"/><line x1=\"100\" y1=\"85\" x2=\"200\" y2=\"85\" stroke=\"#000000\" stroke-width=\"2.5\"/><circle cx=\"100\" cy=\"85\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"100\" y=\"100\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0</text><circle cx=\"200\" cy=\"85\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"200\" y=\"100\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1</text><text x=\"150\" y=\"72\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Valid range for infinite exchangeability: \u03c1 \u2208 [0, 1]</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">An infinitely extendable exchangeable sequence CANNOT be negatively correlated!</text></svg>",
+    "drawingCaption": "If an exchangeable sequence is infinitely extendable, its pairwise correlation must be non-negative: \u03c1 \u2265 0",
+    "coreTranslation": [
+      "<strong>Infinite Extension:</strong> Sequence $(X_1, X_2, \\dots)$ is infinitely exchangeable if every finite subvector $(X_1, \\dots, X_n)$ is exchangeable for all $n \\ge 2$.",
+      "<strong>Vanishing Lower Bound:</strong> The bound $\\rho \\ge -\\frac{1}{n-1}$ must hold for arbitrarily large $n$. Taking $n \\to \\infty$ yields $\\rho \\ge 0$.",
+      "<strong>Impossibility of Negative Correlation:</strong> You cannot have an infinite family of variables that are all mutually negatively correlated! Mutual conflict cannot scale to infinity."
+    ],
+    "math": "$$\\rho \\ge -\\frac{1}{n-1} \\quad \\forall n \\ge 2 \\implies \\rho \\ge \\lim_{n \\to \\infty} \\left(-\\frac{1}{n-1}\\right) = 0 \\implies \\rho \\ge 0$$",
+    "personalConnection": "Musical harmony: you can tune 2 or 3 instruments to clash out of phase with each other, but you cannot have an infinite orchestra where every pair clashes negatively.",
+    "examTrap": "Applying De Finetti or claiming \u03c1 \u2265 0 for a finite sequence! Sampling without replacement from an urn of N balls stops at N; its correlation -1/(N-1) CANNOT be extended to infinity."
+  },
+  {
+    "id": 31005,
+    "subject": "StoMA",
+    "topicId": "10_Exchangeable_Random_Variables",
+    "topicTitle": "10 \u00b7 Exchangeable Random Variables",
+    "cardNumber": "05",
+    "category": "DE FINETTI THEOREM",
+    "highlighterClass": "highlight-cyan",
+    "title": "De Finetti\u2019s Representation Theorem: Conditionally i.i.d. Mixtures",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31005\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"80\" y=\"18\" width=\"80\" height=\"28\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"31.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Latent Prior:</text><text x=\"120.0\" y=\"40.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u0398 ~ F(\u03b8)</text><line x1=\"120\" y1=\"46\" x2=\"120\" y2=\"70\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31005)\"/><text x=\"155\" y=\"58\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Condition on \u0398</text><rect x=\"24\" y=\"70\" width=\"192\" height=\"34\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"86.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Given \u0398 = \u03b8:  X\u2081, X\u2082, ... are i.i.d. Bernoulli(\u03b8)\nP(X\u2081=x\u2081,</text><text x=\"120.0\" y=\"94.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">..., X_n=x_n) = \u222b\u2080\u00b9 \u03b8^k (1-\u03b8)^{n-k} dF(\u03b8)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">De Finetti: Every infinite exchangeable binary sequence is a mixture of i.i.d. Bernoulli trials</text></svg>",
+    "drawingCaption": "Infinite exchangeability is mathematically equivalent to conditional independence given a latent random parameter",
+    "coreTranslation": [
+      "<strong>Representation Statement:</strong> Let $(X_1, X_2, \\dots)$ be an infinite exchangeable sequence of binary variables $X_i \\in \\{0, 1\\}$. Then there exists a unique distribution function $F_\\Theta$ on $[0, 1]$ such that given $\\Theta = \\theta$, $X_i$ are i.i.d. $\\text{Bernoulli}(\\theta)$.",
+      "<strong>Integral Mixture:</strong> $\\mathbb{P}(X_1 = x_1, \\dots, X_n = x_n) = \\int_0^1 \\theta^{\\sum x_i} (1 - \\theta)^{n - \\sum x_i} dF_\\Theta(\\theta)$.",
+      "<strong>Bayesian Foundation:</strong> Justifies Bayesian probability: the 'unknown parameter' $\\Theta$ is mathematically proven to exist as the almost sure limiting frequency $\\Theta = \\lim_{n \\to \\infty} \\frac{1}{n}\\sum_{i=1}^n X_i$."
+    ],
+    "math": "$$\\mathbb{P}(X_1=x_1, \\dots, X_n=x_n) = \\int_0^1 \\theta^{\\sum x_i} (1-\\theta)^{n - \\sum x_i}\\,dF_\\Theta(\\theta), \\quad \\Theta = \\lim_{n \\to \\infty} \\frac{1}{n}\\sum_{i=1}^n X_i$$",
+    "personalConnection": "A factory coin: the coin's bias \u03b8 is chosen once at manufacturing time from prior F_\u0398, after which all tosses with that coin are independent given \u03b8.",
+    "examTrap": "Applying De Finetti to finite sequences! De Finetti FAILS for finite exchangeable collections; the infinite horizon is strictly necessary for the representation integral to hold."
+  },
+  {
+    "id": 31006,
+    "subject": "StoMA",
+    "topicId": "10_Exchangeable_Random_Variables",
+    "topicTitle": "10 \u00b7 Exchangeable Random Variables",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: P\u00f3lya\u2019s Urn Scheme & Exchangeability",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31006\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"25\" width=\"60\" height=\"55\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"54\" y=\"45\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">w white</text><text x=\"54\" y=\"62\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">b black</text><line x1=\"84\" y1=\"52\" x2=\"120\" y2=\"52\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31006)\"/><text x=\"102\" y=\"42\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Draw color</text><rect x=\"120\" y=\"35\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"168.0\" y=\"52.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Return ball PLUS\nc balls of</text><text x=\"168.0\" y=\"60.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">same color\n(Reinforcement)</text><rect x=\"24\" y=\"90\" width=\"192\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"103.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Any sequence of k white and (n-k)</text><text x=\"120.0\" y=\"111.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">black balls has IDENTICAL probability!</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">P\u00f3lya's Urn generates an infinite exchangeable sequence; limiting fraction \u0398 ~ Beta(w/c, b/c)</text></svg>",
+    "drawingCaption": "Reinforced urn sampling creates an exchangeable process where color count matters, but sequence order is irrelevant",
+    "coreTranslation": [
+      "<strong>Urn Dynamics:</strong> Start with $w$ white and $b$ black balls. Draw a ball, note its color, and replace it along with $c$ additional balls of the SAME color.",
+      "<strong>Exchangeable Proof:</strong> The probability of any specific sequence with $k$ white and $(n - k)$ black balls is identical regardless of order: $\\frac{w(w+c)\\cdots(w+(k-1)c) \\cdot b(b+c)\\cdots(b+(n-k-1)c)}{(w+b)(w+b+c)\\cdots(w+b+(n-1)c)}$.",
+      "<strong>Limiting Law:</strong> As $n \\to \\infty$, the proportion of white balls converges almost surely to random variable $\\Theta \\sim \\text{Beta}\\left(\\frac{w}{c}, \\frac{b}{c}\\right)$. For $w=1, b=1, c=1$, $\\Theta \\sim \\text{Uniform}(0, 1)$."
+    ],
+    "math": "$$\\mathbb{P}(X_1=x_1, \\dots, X_n=x_n) = \\frac{\\prod_{j=0}^{k-1}(w + jc) \\prod_{j=0}^{n-k-1}(b + jc)}{\\prod_{j=0}^{n-1}(w + b + jc)}, \\quad \\Theta \\sim \\text{Beta}\\left(\\tfrac{w}{c}, \\tfrac{b}{c}\\right)$$",
+    "personalConnection": "Social media virality: a post with initial upvotes attracts further upvotes proportionally, stabilizing to an exchangeable popularity distribution.",
+    "examTrap": "Assuming P\u00f3lya's urn trials are independent. The draws are heavily dependent (positive feedback reinforcement), yet perfectly exchangeable!"
+  },
+  {
+    "id": 31101,
+    "subject": "StoMA",
+    "topicId": "11_Covariance_Matrices_and_Linear_Least_Squares_Estimation",
+    "topicTitle": "11 \u00b7 Covariance & Linear Least Squares (LLSE)",
+    "cardNumber": "01",
+    "category": "COVARIANCE MATRICES",
+    "highlighterClass": "highlight-cyan",
+    "title": "Covariance Matrix Properties & Positive Semidefiniteness",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31101\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"18\" width=\"192\" height=\"34\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"34.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03a3_X = E[(X - \u03bc_X)(X - \u03bc_X)\u1d40] = E[X X\u1d40] - \u03bc_X</text><text x=\"120.0\" y=\"43.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc_X\u1d40\nSymmetric Positive Semidefinite: \u03a3_X \u2ab0 0</text><rect x=\"24\" y=\"60\" width=\"192\" height=\"30\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"74.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2200 v \u2208 \u211d\u207f:   v\u1d40 \u03a3_X v = Var(v\u1d40</text><text x=\"120.0\" y=\"83.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X) \u2265 0   (Eigenvalues \u03bb\u1d62 \u2265 0)</text><rect x=\"24\" y=\"96\" width=\"192\" height=\"26\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"108.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Affine transform: Y = A</text><text x=\"120.0\" y=\"117.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X + b  \u21d2  \u03a3_Y = A \u03a3_X A\u1d40</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Covariance matrices are symmetric positive semidefinite; quadratic forms equal variance</text></svg>",
+    "drawingCaption": "The covariance matrix is always symmetric positive semidefinite; its quadratic form measures directional variance",
+    "coreTranslation": [
+      "<strong>Definition:</strong> For random vector $X \\in \\mathbb{R}^n$, $\\Sigma_X \\triangleq \\mathbb{E}[(X - \\mu_X)(X - \\mu_X)^\\top] = \\mathbb{E}[XX^\\top] - \\mu_X\\mu_X^\\top$.",
+      "<strong>Positive Semidefiniteness ($\\Sigma_X \\succeq 0$):</strong> For any deterministic vector $v \\in \\mathbb{R}^n$, $v^\\top \\Sigma_X v = \\operatorname{Var}(v^\\top X) \\ge 0$. All eigenvalues are real and non-negative ($\\lambda_i \\ge 0$).",
+      "<strong>Affine Transformation Law:</strong> If $Y = A X + b$, then $\\mu_Y = A\\mu_X + b$ and $\\Sigma_Y = A \\Sigma_X A^\\top$."
+    ],
+    "math": "$$\\Sigma_X = \\mathbb{E}[(X - \\mu)(X - \\mu)^\\top] \\succeq 0, \\qquad \\Sigma_{AX + b} = A \\Sigma_X A^\\top, \\qquad v^\\top \\Sigma_X v = \\operatorname{Var}(v^\\top X) \\ge 0$$",
+    "personalConnection": "Ellipsoid of inertia: the eigenvalues of \u03a3 dictate the lengths of the principal dispersion axes of a multidimensional data cloud.",
+    "examTrap": "Writing \u03a3_{AX} = A\u1d40 \u03a3_X A instead of A \u03a3_X A\u1d40! If A is m \u00d7 n, A \u03a3_X A\u1d40 produces the correct m \u00d7 m covariance matrix."
+  },
+  {
+    "id": 31102,
+    "subject": "StoMA",
+    "topicId": "11_Covariance_Matrices_and_Linear_Least_Squares_Estimation",
+    "topicTitle": "11 \u00b7 Covariance & Linear Least Squares (LLSE)",
+    "cardNumber": "02",
+    "category": "ORTHOGONALITY PRINCIPLE",
+    "highlighterClass": "highlight-amber",
+    "title": "The Orthogonality Principle: Hilbert Space Geometry of Estimation",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31102\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"30\" y1=\"110\" x2=\"210\" y2=\"110\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"200\" y=\"122\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Affine subspace of X</text><line x1=\"60\" y1=\"110\" x2=\"140\" y2=\"35\" stroke=\"#000000\" stroke-width=\"2.0\" marker-end=\"url(#arr-31102)\"/><text x=\"145\" y=\"30\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Target Y</text><line x1=\"60\" y1=\"110\" x2=\"140\" y2=\"110\" stroke=\"#000000\" stroke-width=\"2.0\" marker-end=\"url(#arr-31102)\"/><text x=\"140\" y=\"124\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">LLSE: \u0176</text><line x1=\"140\" y1=\"110\" x2=\"140\" y2=\"35\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\"/><text x=\"165\" y=\"72\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Error: e = Y - \u0176</text><polygon points=\"140,100 130,100 130,110\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Orthogonality: E[(Y - \u0176) X\u1d40] = 0 and E[Y - \u0176] = 0 (Error is orthogonal to data)</text></svg>",
+    "drawingCaption": "The optimal linear estimator projects Y onto the linear subspace of X; error e = Y - \u0176 is orthogonal to X",
+    "coreTranslation": [
+      "<strong>Geometric Formulation:</strong> Random variables form an inner product space under $\\langle U, V \\rangle = \\mathbb{E}[UV]$. Distance is root-mean-square error $\\|Y - \\hat{Y}\\|_{L^2} = \\sqrt{\\mathbb{E}[|Y - \\hat{Y}|^2]}$.",
+      "<strong>Orthogonality Condition:</strong> $\\hat{Y} = AX + b$ minimizes MSE if and only if estimation error $e = Y - \\hat{Y}$ is orthogonal to all observations and affine constants: $\\mathbb{E}[e X^\\top] = 0$ and $\\mathbb{E}[e] = 0$.",
+      "<strong>Zero Residual Information:</strong> The error $e$ has zero correlation with $X$, meaning no further linear predictive power remains in the observation."
+    ],
+    "math": "$$\\mathbb{E}[Y - \\hat{Y}] = 0, \\qquad \\mathbb{E}\\left[(Y - \\hat{Y}) X^\\top\\right] = 0 \\iff \\hat{Y} \\text{ minimizes } \\mathbb{E}\\left[\\|Y - \\hat{Y}\\|^2\\right]$$",
+    "personalConnection": "Dropping a perpendicular shadow: the shortest path from a point in the air to a tabletop is the perpendicular drop; any oblique shadow is strictly longer.",
+    "examTrap": "Assuming error is independent of X. Orthogonality guarantees ZERO CORRELATION (Cov(e, X) = 0), not independence! Independence holds only under joint Gaussianity."
+  },
+  {
+    "id": 31103,
+    "subject": "StoMA",
+    "topicId": "11_Covariance_Matrices_and_Linear_Least_Squares_Estimation",
+    "topicTitle": "11 \u00b7 Covariance & Linear Least Squares (LLSE)",
+    "cardNumber": "03",
+    "category": "LLSE FORMULA",
+    "highlighterClass": "highlight-emerald",
+    "title": "The Multivariate Linear Least Squares Estimator (LLSE)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31103\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"41.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Multivariate LLSE:\n\u0176(X) = \u03bc_Y + \u03a3_{YX} \u03a3_X\u207b\u00b9 (X</text><text x=\"120.0\" y=\"51.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">- \u03bc_X)\n(Best linear approximation of Y given X)</text><rect x=\"20\" y=\"72\" width=\"200\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Optimal Gain Matrix: K = \u03a3_{YX} \u03a3_X\u207b\u00b9\nError</text><text x=\"120.0\" y=\"98.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Covariance: \u03a3_e = \u03a3_Y - \u03a3_{YX} \u03a3_X\u207b\u00b9 \u03a3_{XY}</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Requires ONLY first and second moments (means and covariances); no full densities needed</text></svg>",
+    "drawingCaption": "The closed-form LLSE requires only first and second moments, adjusting prior mean by optimal gain matrix",
+    "coreTranslation": [
+      "<strong>Closed-Form Estimator:</strong> $\\hat{Y}_{\\text{LLSE}}(X) = \\mu_Y + \\Sigma_{YX} \\Sigma_X^{-1} (X - \\mu_X)$, where $\\Sigma_{YX} = \\mathbb{E}[(Y - \\mu_Y)(X - \\mu_X)^\\top]$.",
+      "<strong>Optimal Kalman Gain:</strong> The matrix $K \\triangleq \\Sigma_{YX} \\Sigma_X^{-1}$ is the optimal linear regression weight matrix.",
+      "<strong>Data Parsimony:</strong> LLSE requires ONLY means $\\mu_X, \\mu_Y$ and covariances $\\Sigma_X, \\Sigma_{YX}$. It computes without knowing the underlying probability density functions."
+    ],
+    "math": "$$\\hat{Y}_{\\text{LLSE}}(X) = \\mu_Y + \\Sigma_{YX}\\Sigma_X^{-1}(X - \\mu_X), \\qquad K = \\Sigma_{YX}\\Sigma_X^{-1}$$",
+    "personalConnection": "GPS position filtering: starting at baseline belief \u03bc_Y and correcting position by multiplying sensor error (X - \u03bc_X) by Kalman gain matrix K.",
+    "examTrap": "Assuming LLSE is the optimal overall estimator. LLSE is optimal ONLY among affine estimators (c\u1d40X + d). The unconditional MMSE estimator is conditional expectation E[Y|X], which may be highly non-linear."
+  },
+  {
+    "id": 31104,
+    "subject": "StoMA",
+    "topicId": "11_Covariance_Matrices_and_Linear_Least_Squares_Estimation",
+    "topicTitle": "11 \u00b7 Covariance & Linear Least Squares (LLSE)",
+    "cardNumber": "04",
+    "category": "ERROR COVARIANCE",
+    "highlighterClass": "highlight-purple",
+    "title": "Error Covariance Matrix & Schur Complement Geometry",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31104\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"192\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Error Covariance Matrix \u03a3_e:\n\u03a3_e = E[(Y</text><text x=\"120.0\" y=\"49.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">- \u0176)(Y - \u0176)\u1d40]\n= \u03a3_Y - \u03a3_{YX} \u03a3_X\u207b\u00b9 \u03a3_{XY}</text><rect x=\"24\" y=\"70\" width=\"192\" height=\"40\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Schur Complement of Joint Covariance:\n[ \u03a3_X    \u03a3_{XY} ]\n[</text><text x=\"120.0\" y=\"98.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03a3_{YX} \u03a3_Y    ]   \u21d2  \u03a3_e = \u03a3_Y - \u03a3_{YX} \u03a3_X\u207b\u00b9 \u03a3_{XY} \u2ab0 0</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Information reduction: Observation X always reduces (or preserves) error covariance: \u03a3_e \u2aaf \u03a3_Y</text></svg>",
+    "drawingCaption": "The estimation error covariance is the Schur complement of the joint covariance matrix: \u03a3_e = \u03a3_Y - \u03a3_{YX} \u03a3_X\u207b\u00b9 \u03a3_{XY}",
+    "coreTranslation": [
+      "<strong>Matrix Formula:</strong> $\\Sigma_e \\triangleq \\operatorname{Cov}(Y - \\hat{Y}) = \\Sigma_Y - \\Sigma_{YX} \\Sigma_X^{-1} \\Sigma_{XY}$.",
+      "<strong>Monotonic Variance Reduction:</strong> Since $\\Sigma_{YX} \\Sigma_X^{-1} \\Sigma_{XY} \\succeq 0$, the error covariance satisfies $\\Sigma_e \\preceq \\Sigma_Y$ (in the Loewner positive semidefinite order). Observation $X$ can only decrease uncertainty.",
+      "<strong>Schur Complement Identity:</strong> $\\Sigma_e$ is precisely the Schur complement of block $\\Sigma_X$ in the joint covariance matrix $\\begin{bmatrix} \\Sigma_X & \\Sigma_{XY} \\\\ \\Sigma_{YX} & \\Sigma_Y \\end{bmatrix}$."
+    ],
+    "math": "$$\\Sigma_e = \\operatorname{Cov}(Y - \\hat{Y}) = \\Sigma_Y - \\Sigma_{YX}\\Sigma_X^{-1}\\Sigma_{XY} \\preceq \\Sigma_Y$$",
+    "personalConnection": "Measuring an object through fog: taking a photo never increases your uncertainty about its shape; error variance drops by the amount captured in \u03a3_{YX} \u03a3_X\u207b\u00b9 \u03a3_{XY}.",
+    "examTrap": "Singular \u03a3_X: If \u03a3_X is not invertible (observations are linearly redundant), replace \u03a3_X\u207b\u00b9 with the Moore-Penrose pseudoinverse \u03a3_X\u207a."
+  },
+  {
+    "id": 31105,
+    "subject": "StoMA",
+    "topicId": "11_Covariance_Matrices_and_Linear_Least_Squares_Estimation",
+    "topicTitle": "11 \u00b7 Covariance & Linear Least Squares (LLSE)",
+    "cardNumber": "05",
+    "category": "SCALAR LLSE",
+    "highlighterClass": "highlight-cyan",
+    "title": "Scalar LLSE & The Pearson Correlation Coefficient",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31105\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31105)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31105)\"/><line x1=\"40\" y1=\"95\" x2=\"200\" y2=\"35\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"180\" y=\"28\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Slope = \u03c1 (\u03c3_Y / \u03c3_X)</text><circle cx=\"120\" cy=\"65\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"52\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(\u03bc_X, \u03bc_Y)</text><rect x=\"24\" y=\"20\" width=\"100\" height=\"34\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"74.0\" y=\"36.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u0176 = \u03bc_Y + \u03c1 (\u03c3_Y/\u03c3_X)(X -</text><text x=\"74.0\" y=\"44.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc_X)\nSlope = Cov(X,Y)/Var(X)</text><rect x=\"130\" y=\"20\" width=\"86\" height=\"34\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"173.0\" y=\"36.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">MSE = \u03c3_Y\u00b2 (1</text><text x=\"173.0\" y=\"45.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">- \u03c1\u00b2)\nR\u00b2 = \u03c1\u00b2</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Scalar LLSE is the classic linear regression line; MSE drops by factor (1 - \u03c1\u00b2)</text></svg>",
+    "drawingCaption": "In 1D, the LLSE is the standard regression line whose residual variance equals \u03c3_Y\u00b2 (1 - \u03c1\u00b2)",
+    "coreTranslation": [
+      "<strong>Scalar Formula:</strong> $\\hat{Y} = \\mu_Y + \\rho \\frac{\\sigma_Y}{\\sigma_X} (X - \\mu_X)$, where Pearson correlation $\\rho = \\frac{\\operatorname{Cov}(X, Y)}{\\sigma_X \\sigma_Y} \\in [-1, 1]$.",
+      "<strong>Slope & Anchor:</strong> The line passes through the bivariate centroid $(\\mu_X, \\mu_Y)$ with regression slope $\\beta = \\frac{\\operatorname{Cov}(X, Y)}{\\operatorname{Var}(X)} = \\rho \\frac{\\sigma_Y}{\\sigma_X}$.",
+      "<strong>Residual MSE:</strong> $\\mathbb{E}[(Y - \\hat{Y})^2] = \\sigma_Y^2 (1 - \\rho^2)$. When $|\\rho| = 1$, MSE is 0 (exact prediction); when $\\rho = 0$, $\\hat{Y} = \\mu_Y$ and MSE is $\\sigma_Y^2$."
+    ],
+    "math": "$$\\hat{Y} = \\mu_Y + \\rho \\frac{\\sigma_Y}{\\sigma_X}(X - \\mu_X), \\qquad \\operatorname{MSE} = \\sigma_Y^2(1 - \\rho^2)$$",
+    "personalConnection": "Regression to the mean (Galton): children of exceptionally tall parents (X) are predicted to be above average (Y), but shrunk toward the population mean by factor \u03c1.",
+    "examTrap": "Swapping X and Y in the regression slope: the slope for predicting Y from X is \u03c1(\u03c3_Y/\u03c3_X), while the slope for predicting X from Y is \u03c1(\u03c3_X/\u03c3_Y) (which is NOT 1/slope!)."
+  },
+  {
+    "id": 31106,
+    "subject": "StoMA",
+    "topicId": "11_Covariance_Matrices_and_Linear_Least_Squares_Estimation",
+    "topicTitle": "11 \u00b7 Covariance & Linear Least Squares (LLSE)",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Signal Estimation in Additive Noise (Wiener Filter)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31106\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"60\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"46.0\" y=\"33.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Signal X\n(Var</text><text x=\"46.0\" y=\"42.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= \u03c3_X\u00b2)</text><line x1=\"76\" y1=\"34\" x2=\"106\" y2=\"34\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31106)\"/><circle cx=\"114\" cy=\"34\" r=\"8\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"114\" y=\"37\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">+</text><line x1=\"114\" y1=\"10\" x2=\"114\" y2=\"26\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31106)\"/><text x=\"114\" y=\"6\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Noise W ~ (0, \u03c3_W\u00b2)</text><line x1=\"122\" y1=\"34\" x2=\"150\" y2=\"34\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31106)\"/><rect x=\"150\" y=\"20\" width=\"66\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"183.0\" y=\"33.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Observe</text><text x=\"183.0\" y=\"42.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Y\nY = X + W</text><rect x=\"16\" y=\"68\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Optimal Filter: X\u0302(Y) = [ \u03c3_X\u00b2 / (\u03c3_X\u00b2 + \u03c3_W\u00b2) ] \u00b7 Y  (Wiener gain)\nMSE</text><text x=\"120.0\" y=\"97.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= [ \u03c3_X\u00b2 \u03c3_W\u00b2 ] / (\u03c3_X\u00b2 + \u03c3_W\u00b2) = \u03c3_X\u00b2 \u00b7 (1 - SNR / (1 + SNR))</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Signal shrinkage: High SNR (\u03c3_X\u00b2 >> \u03c3_W\u00b2) yields X\u0302 \u2248 Y; Low SNR shrinks X\u0302 \u2192 0</text></svg>",
+    "drawingCaption": "Estimating zero-mean signal X from noisy observation Y = X + W shrinks Y by signal-to-noise ratio fraction",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Signal $X$ has mean $0$ and variance $\\sigma_X^2$. Observation is $Y = X + W$, where noise $W$ has mean $0$, variance $\\sigma_W^2$, and $X \\perp W$.",
+      "<strong>Covariance Derivation:</strong> $\\operatorname{Var}(Y) = \\sigma_X^2 + \\sigma_W^2$. Cross-covariance is $\\operatorname{Cov}(X, Y) = \\mathbb{E}[X(X + W)] = \\mathbb{E}[X^2] = \\sigma_X^2$.",
+      "<strong>Wiener Shrinkage Estimator:</strong> $\\hat{X}(Y) = \\frac{\\sigma_X^2}{\\sigma_X^2 + \\sigma_W^2} Y = \\frac{\\text{SNR}}{1 + \\text{SNR}} Y$. Minimum MSE is $\\frac{\\sigma_X^2 \\sigma_W^2}{\\sigma_X^2 + \\sigma_W^2}$."
+    ],
+    "math": "$$\\hat{X}(Y) = \\frac{\\sigma_X^2}{\\sigma_X^2 + \\sigma_W^2} Y, \\qquad \\operatorname{MSE} = \\frac{\\sigma_X^2 \\sigma_W^2}{\\sigma_X^2 + \\sigma_W^2} = \\sigma_X^2 \\left(1 - \\frac{\\text{SNR}}{1 + \\text{SNR}}\\right)$$",
+    "personalConnection": "Noise-cancelling audio headphones: when music is loud and static is faint (high SNR), pass the audio directly; when music is faint and static dominates, heavily suppress the signal toward zero.",
+    "examTrap": "Using raw observation Y as the estimator without shrinkage! Y is unbiased, but has MSE equal to \u03c3_W\u00b2, which is strictly WORSE than the Wiener estimate's MSE."
   }
 ]
 );
