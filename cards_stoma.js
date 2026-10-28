@@ -1200,6 +1200,246 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "math": "$$\\hat{X}(Y) = \\frac{\\sigma_X^2}{\\sigma_X^2 + \\sigma_W^2} Y, \\qquad \\operatorname{MSE} = \\frac{\\sigma_X^2 \\sigma_W^2}{\\sigma_X^2 + \\sigma_W^2} = \\sigma_X^2 \\left(1 - \\frac{\\text{SNR}}{1 + \\text{SNR}}\\right)$$",
     "personalConnection": "Noise-cancelling audio headphones: when music is loud and static is faint (high SNR), pass the audio directly; when music is faint and static dominates, heavily suppress the signal toward zero.",
     "examTrap": "Using raw observation Y as the estimator without shrinkage! Y is unbiased, but has MSE equal to \u03c3_W\u00b2, which is strictly WORSE than the Wiener estimate's MSE."
+  },
+  {
+    "id": 31201,
+    "subject": "StoMA",
+    "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
+    "topicTitle": "12 \u00b7 Conditional Expectation & MMSE",
+    "cardNumber": "01",
+    "category": "MMSE OPTIMALITY",
+    "highlighterClass": "highlight-cyan",
+    "title": "Conditional Expectation: The Unconstrained MMSE Estimator",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31201\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M 25,115 Q 120,85 215,115\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"200\" y=\"125\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">L\u00b2(\u03c3(X)) subspace</text><circle cx=\"120\" cy=\"25\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"15\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Target Y</text><line x1=\"120\" y1=\"25\" x2=\"120\" y2=\"93\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\"/><circle cx=\"120\" cy=\"93\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"106\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[Y | X] (MMSE)</text><text x=\"165\" y=\"55\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Error: Y - E[Y|X]</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">E[Y|X] is the unique projection of Y onto L\u00b2(\u03c3(X)), minimizing unconstrained MSE</text></svg>",
+    "drawingCaption": "Conditional expectation E[Y|X] is the optimal unconstrained estimator, minimizing mean squared error over all functions",
+    "coreTranslation": [
+      "<strong>Optimization Problem:</strong> Find $g^*(X) = \\arg\\min_{g} \\mathbb{E}[(Y - g(X))^2]$ over ALL measurable functions (linear or non-linear).",
+      "<strong>Fundamental Theorem:</strong> The unique minimizer is the conditional expectation: $g^*(X) = \\mathbb{E}[Y \\mid X] = \\int y f_{Y \\mid X}(y \\mid X)\\,dy$.",
+      "<strong>Random Variable Character:</strong> $\\mathbb{E}[Y \\mid X]$ is NOT a fixed number! It is a random variable measurable with respect to $\\sigma(X)$, taking value $\\mathbb{E}[Y \\mid X=x]$ when $X=x$."
+    ],
+    "math": "$$\\hat{Y}_{\\text{MMSE}} = \\mathbb{E}[Y \\mid X] = \\arg\\min_{g \\in \\sigma(X)} \\mathbb{E}\\left[(Y - g(X))^2\\right], \\qquad \\mathbb{E}\\left[\\mathbb{E}[Y \\mid X]\\right] = \\mathbb{E}[Y]$$",
+    "personalConnection": "A weather forecaster: after observing thermometer and barometer readings X, your optimal forecast for tomorrow's rain Y is the conditional mean of rain given today's exact instruments.",
+    "examTrap": "Treating E[Y|X] as a deterministic number! E[Y|X] is a random variable, a function of X. Only when evaluated at a fixed sample realization X = x does it become a constant."
+  },
+  {
+    "id": 31202,
+    "subject": "StoMA",
+    "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
+    "topicTitle": "12 \u00b7 Conditional Expectation & MMSE",
+    "cardNumber": "02",
+    "category": "ORTHOGONALITY",
+    "highlighterClass": "highlight-amber",
+    "title": "The Non-Linear Orthogonality Principle: L\u00b2(\u03c3(X))",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31202\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M 30,110 Q 120,80 210,110\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"105\" x2=\"120\" y2=\"30\" stroke=\"#000000\" stroke-width=\"2.0\" marker-end=\"url(#arr-31202)\"/><text x=\"125\" y=\"25\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Y</text><line x1=\"50\" y1=\"105\" x2=\"120\" y2=\"88\" stroke=\"#000000\" stroke-width=\"2.0\" marker-end=\"url(#arr-31202)\"/><text x=\"120\" y=\"102\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[Y | X]</text><line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"88\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\"/><polygon points=\"120,78 110,78 110,88\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\"/><rect x=\"24\" y=\"20\" width=\"85\" height=\"34\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"66.5\" y=\"36.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Error e = Y -</text><text x=\"66.5\" y=\"44.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[Y|X]\nOrthogonal to all h(X)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Non-linear orthogonality: E[(Y - E[Y|X]) h(X)] = 0 for ALL measurable functions h</text></svg>",
+    "drawingCaption": "The MMSE error e = Y - E[Y|X] is orthogonal to every measurable transformation h(X), linear or non-linear",
+    "coreTranslation": [
+      "<strong>Orthogonality Condition:</strong> For any measurable function $h(X)$ with $\\mathbb{E}[h(X)^2] < \\infty$, $\\mathbb{E}[(Y - \\mathbb{E}[Y \\mid X]) h(X)] = 0$.",
+      "<strong>Zero Residual Prediction:</strong> No transformation of $X$\u2014whether $X, X^2, e^X$, or a deep neural network\u2014can extract any further predictive correlation from the residual error.",
+      "<strong>Unbiasedness:</strong> Setting $h(X) = 1$ immediately proves $\\mathbb{E}[Y - \\mathbb{E}[Y \\mid X]] = 0$, guaranteeing that the MMSE estimator is unconditionally unbiased."
+    ],
+    "math": "$$\\mathbb{E}\\left[\\left(Y - \\mathbb{E}[Y \\mid X]\\right) h(X)\\right] = 0 \\quad \\forall h \\in L^2(\\sigma(X))$$",
+    "personalConnection": "Complete data exhaustion: a gold miner who has extracted every particle of gold from an ore sample: no acid or mechanical wash can extract any remaining trace.",
+    "examTrap": "Confusing LLSE with MMSE orthogonality! LLSE error is orthogonal only to affine functions aX + b; MMSE error is orthogonal to ALL measurable non-linear functions h(X)."
+  },
+  {
+    "id": 31203,
+    "subject": "StoMA",
+    "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
+    "topicTitle": "12 \u00b7 Conditional Expectation & MMSE",
+    "cardNumber": "03",
+    "category": "TOWER PROPERTY",
+    "highlighterClass": "highlight-emerald",
+    "title": "The Tower Property & 'Taking Out What is Known'",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31203\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"192\" height=\"32\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"35.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Nested Conditioning:  E[ E[Y | X\u2081, X\u2082] | X\u2081 ] = E[Y |</text><text x=\"120.0\" y=\"44.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X\u2081]\n(Conditioning on LESS information always dominates)</text><rect x=\"24\" y=\"60\" width=\"192\" height=\"32\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"75.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Law of Total Expectation:  E[ E[Y | X] ] = E[Y]\n(Average</text><text x=\"120.0\" y=\"84.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">of local conditional means equals unconditional mean)</text><rect x=\"24\" y=\"100\" width=\"192\" height=\"26\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"112.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Taking out what is known:  E[</text><text x=\"120.0\" y=\"121.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g(X) Y | X ] = g(X) \u00b7 E[Y | X]</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Information hierarchies: coarser information washes out finer details; known factors factor out</text></svg>",
+    "drawingCaption": "Nested conditioning preserves the coarser information filter: E[E[Y|X\u2081, X\u2082]|X\u2081] = E[Y|X\u2081]",
+    "coreTranslation": [
+      "<strong>Tower Property (Total Expectation):</strong> $\\mathbb{E}[\\mathbb{E}[Y \\mid X]] = \\mathbb{E}[Y]$. The expectation of the conditional expectation recovers the unconditional mean.",
+      "<strong>Nested Conditioning:</strong> For nested $\\sigma$-algebras $\\mathcal{G}_1 \\subset \\mathcal{G}_2$, $\\mathbb{E}[\\mathbb{E}[Y \\mid \\mathcal{G}_2] \\mid \\mathcal{G}_1] = \\mathbb{E}[Y \\mid \\mathcal{G}_1]$. Conditioning on less information always wins.",
+      "<strong>Taking Out What Is Known:</strong> If $g(X)$ is $\\sigma(X)$-measurable, $\\mathbb{E}[g(X) Y \\mid X] = g(X)\\,\\mathbb{E}[Y \\mid X]$. Known variables act as scalars inside the conditional expectation."
+    ],
+    "math": "$$\\mathbb{E}\\left[\\mathbb{E}[Y \\mid X_1, X_2] \\;\\middle|\\; X_1\\right] = \\mathbb{E}[Y \\mid X_1], \\qquad \\mathbb{E}[g(X) Y \\mid X] = g(X) \\mathbb{E}[Y \\mid X]$$",
+    "personalConnection": "A national census: aggregating regional school averages yields the total national average; reporting local data to a high-level authority collapses fine-grained distinctions.",
+    "examTrap": "Reversing the tower ordering: E[E[Y|X\u2081]|X\u2081, X\u2082] = E[Y|X\u2081], NOT E[Y|X\u2081, X\u2082]! Finer conditioning cannot invent new information that was already lost."
+  },
+  {
+    "id": 31204,
+    "subject": "StoMA",
+    "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
+    "topicTitle": "12 \u00b7 Conditional Expectation & MMSE",
+    "cardNumber": "04",
+    "category": "VARIANCE DECOMPOSITION",
+    "highlighterClass": "highlight-purple",
+    "title": "Law of Total Variance (Eve\u2019s Law): Noise vs Signal",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31204\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"192\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"37.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Total Variance:  Var(Y)</text><rect x=\"24\" y=\"58\" width=\"92\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"70.0\" y=\"79.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[ Var(Y | X) ]\nExpected\nwithin-slice</text><text x=\"70.0\" y=\"87.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">variance\n(Unexplained noise)</text><text x=\"120\" y=\"80\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">+</text><rect x=\"124\" y=\"58\" width=\"92\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"170.0\" y=\"79.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Var( E[Y | X] )\nVariance</text><text x=\"170.0\" y=\"87.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">of\nconditional mean\n(Explained signal)</text><text x=\"120\" y=\"118\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">MMSE Error = E[Var(Y | X)] \u2264 Var(Y)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Eve's Law: Var(Y) = E[Var(Y | X)] + Var(E[Y | X]) decomposes total risk into noise and signal</text></svg>",
+    "drawingCaption": "Total variance decomposes into expected conditional variance (noise) plus variance of conditional mean (signal)",
+    "coreTranslation": [
+      "<strong>Formal Decomposition:</strong> $\\operatorname{Var}(Y) = \\mathbb{E}[\\operatorname{Var}(Y \\mid X)] + \\operatorname{Var}(\\mathbb{E}[Y \\mid X])$.",
+      "<strong>Signal vs Noise:</strong> $\\operatorname{Var}(\\mathbb{E}[Y \\mid X])$ is the variance explained by observation $X$ (signal), while $\\mathbb{E}[\\operatorname{Var}(Y \\mid X)]$ is the residual unexplained dispersion (noise).",
+      "<strong>MMSE Error Formula:</strong> The minimum mean squared estimation error is precisely the expected conditional variance: $\\mathbb{E}[(Y - \\hat{Y}_{\\text{MMSE}})^2] = \\mathbb{E}[\\operatorname{Var}(Y \\mid X)] \\le \\operatorname{Var}(Y)$."
+    ],
+    "math": "$$\\operatorname{Var}(Y) = \\mathbb{E}\\left[\\operatorname{Var}(Y \\mid X)\\right] + \\operatorname{Var}\\left(\\mathbb{E}[Y \\mid X]\\right), \\qquad \\text{MMSE Error} = \\mathbb{E}\\left[\\operatorname{Var}(Y \\mid X)\\right]$$",
+    "personalConnection": "Exam scores across a nation: within-school variance (students differing inside each school) PLUS across-school variance (school district averages differing from each other).",
+    "examTrap": "Missing one of the two terms in Eve's law! Forgetting Var(E[Y|X]) or E[Var(Y|X)] creates severe underestimates of total population volatility."
+  },
+  {
+    "id": 31205,
+    "subject": "StoMA",
+    "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
+    "topicTitle": "12 \u00b7 Conditional Expectation & MMSE",
+    "cardNumber": "05",
+    "category": "MMSE VS LLSE",
+    "highlighterClass": "highlight-cyan",
+    "title": "MMSE vs LLSE: Non-Linearity & Superiority",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31205\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31205)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31205)\"/><path d=\"M 40,30 Q 120,130 200,30\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.0\"/><text x=\"185\" y=\"30\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">MMSE: E[Y|X] = X\u00b2</text><line x1=\"40\" y1=\"75\" x2=\"200\" y2=\"75\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"3 3\"/><text x=\"180\" y=\"85\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">LLSE: \u0176 = E[Y]</text><rect x=\"24\" y=\"20\" width=\"110\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"79.0\" y=\"37.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Symmetric X \u21d2 Cov(X, X\u00b2)=0\nLLSE</text><text x=\"79.0\" y=\"45.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">error = Var(Y)\nMMSE error = 0!</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">MMSE \u2264 LLSE \u2264 Var(Y); LLSE coincides with MMSE if and only if E[Y|X] is affine</text></svg>",
+    "drawingCaption": "LLSE is constrained to straight lines; MMSE explores all curves and can achieve zero error when LLSE fails completely",
+    "coreTranslation": [
+      "<strong>Performance Ordering:</strong> $\\text{MMSE Error} = \\mathbb{E}[(Y - \\mathbb{E}[Y \\mid X])^2] \\le \\text{LLSE Error} \\le \\operatorname{Var}(Y)$.",
+      "<strong>Extreme Non-Linear Gap:</strong> When $Y = X^2$ with symmetric $X$, $\\operatorname{Cov}(X, Y) = 0$. LLSE outputs a useless flat line $\\hat{Y} = \\mathbb{E}[Y]$, while MMSE outputs exact parabola $\\mathbb{E}[Y \\mid X] = X^2$ with zero error!",
+      "<strong>Coincidence Theorem:</strong> MMSE and LLSE are IDENTICAL if and only if $\\mathbb{E}[Y \\mid X]$ is an affine function of $X$ (which holds automatically for jointly Gaussian systems)."
+    ],
+    "math": "$$\\mathbb{E}\\left[\\left(Y - \\mathbb{E}[Y \\mid X]\\right)^2\\right] \\le \\mathbb{E}\\left[\\left(Y - \\hat{Y}_{\\text{LLSE}}\\right)^2\\right] \\le \\operatorname{Var}(Y)$$",
+    "personalConnection": "Fitting a curve to a circle: a straight ruler (LLSE) fails miserably to follow the circular contour, whereas a flexible spline (MMSE) tracks the contour perfectly.",
+    "examTrap": "Assuming LLSE is always a close approximation to MMSE. In non-linear symmetric systems, LLSE has 0% predictive power while MMSE has 100% predictive accuracy."
+  },
+  {
+    "id": 31206,
+    "subject": "StoMA",
+    "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
+    "topicTitle": "12 \u00b7 Conditional Expectation & MMSE",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Random Sums via Eve\u2019s Law (Poisson Thinning)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31206\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"64.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">N ~ Poisson(\u03bb)\nFlips of</text><text x=\"64.0\" y=\"46.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">p-coin\nK ~ Binomial(N, p)</text><line x1=\"112\" y1=\"38\" x2=\"136\" y2=\"38\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31206)\"/><rect x=\"136\" y=\"20\" width=\"88\" height=\"36\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"180.0\" y=\"37.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Condition on N:\nE[K | N]</text><text x=\"180.0\" y=\"45.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= Np\nVar(K | N) = Np(1-p)</text><rect x=\"16\" y=\"68\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"120\" y=\"82\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[K] = E[Np] = \u03bbp</text><text x=\"120\" y=\"98\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Var(K) = E[Np(1-p)] + Var(Np) = \u03bbp(1-p) + \u03bbp\u00b2 = \u03bbp</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Poisson thinning: Total heads K has Mean = Var = \u03bbp, confirming K ~ Poisson(\u03bbp)</text></svg>",
+    "drawingCaption": "Evaluating random sums through conditioning: E[K] = \u03bbp and Var(K) = \u03bbp confirm Poisson thinning",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Number of coin tosses $N \\sim \\text{Poisson}(\\lambda)$. Each flip lands Heads with probability $p$. Total heads is $K = \\sum_{i=1}^N X_i$.",
+      "<strong>Conditional Moments:</strong> Given $N$, $K \\mid N \\sim \\text{Binomial}(N, p)$, so $\\mathbb{E}[K \\mid N] = Np$ and $\\operatorname{Var}(K \\mid N) = Np(1-p)$.",
+      "<strong>Moments via Total Variance:</strong> $\\mathbb{E}[K] = \\mathbb{E}[Np] = \\lambda p$. $\\operatorname{Var}(K) = \\mathbb{E}[Np(1-p)] + \\operatorname{Var}(Np) = \\lambda p(1-p) + p^2 \\lambda = \\lambda p$. Matches Poisson($\\lambda p$) thinning!"
+    ],
+    "math": "$$\\mathbb{E}[K] = \\lambda p, \\qquad \\operatorname{Var}(K) = \\mathbb{E}[Np(1-p)] + \\operatorname{Var}(Np) = \\lambda p \\implies K \\sim \\text{Poisson}(\\lambda p)$$",
+    "personalConnection": "Customer arrivals at a coffee shop: N visitors arrive per hour (Poisson \u03bb); each buys a pastry with probability p; pastry sales K follow a thinned Poisson law \u03bbp.",
+    "examTrap": "Attempting to compute Var(K) as Var(N) \u00d7 Var(X\u1d62)! You must use the Law of Total Variance: E[Var(K|N)] + Var(E[K|N])."
+  },
+  {
+    "id": 31301,
+    "subject": "StoMA",
+    "topicId": "13_Jointly_Gaussian_Random_Variables",
+    "topicTitle": "13 \u00b7 Jointly Gaussian Random Variables",
+    "cardNumber": "01",
+    "category": "MULTIVARIATE NORMAL",
+    "highlighterClass": "highlight-cyan",
+    "title": "Multivariate Gaussian PDF & The Mahalanobis Form",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31301\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31301)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31301)\"/><ellipse cx=\"125\" cy=\"65\" rx=\"60\" ry=\"32\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.4\" transform=\"rotate(-25 125 65)\"/><ellipse cx=\"125\" cy=\"65\" rx=\"40\" ry=\"20\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.4\" transform=\"rotate(-25 125 65)\"/><circle cx=\"125\" cy=\"65\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"125\" y=\"52\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc</text><line x1=\"80\" y1=\"85\" x2=\"170\" y2=\"45\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"2 2\"/><text x=\"165\" y=\"35\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">v\u2081 (\u03bb\u2081)</text><rect x=\"24\" y=\"18\" width=\"192\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"30.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_X(x) = (2\u03c0)^{-n/2} |\u03a3|^{-1/2}</text><text x=\"120.0\" y=\"39.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">exp( - 1/2 (x - \u03bc)\u1d40 \u03a3\u207b\u00b9 (x - \u03bc) )</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Mahalanobis distance (x - \u03bc)\u1d40 \u03a3\u207b\u00b9 (x - \u03bc) = c\u00b2 defines concentric elliptical contours</text></svg>",
+    "drawingCaption": "Multivariate Gaussian density contours are concentric ellipsoids oriented along the eigenvectors of \u03a3",
+    "coreTranslation": [
+      "<strong>Density Formula:</strong> For non-singular $\\Sigma \\succ 0$, $f_{\\mathbf{X}}(\\mathbf{x}) = \\frac{1}{(2\\pi)^{n/2} |\\Sigma|^{1/2}} \\exp\\left(-\\frac{1}{2}(\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\Sigma^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})\\right)$ on $\\mathbb{R}^n$.",
+      "<strong>Mahalanobis Distance:</strong> Level sets of constant probability density are ellipsoids defined by quadratic form $d_M^2(\\mathbf{x}, \\boldsymbol{\\mu}) = (\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\Sigma^{-1} (\\mathbf{x} - \\boldsymbol{\\mu}) = c^2$.",
+      "<strong>Eigenvector Geometry:</strong> Principal axes align with eigenvectors $v_i$ of $\\Sigma$, with half-lengths proportional to standard deviations $\\sqrt{\\lambda_i}$."
+    ],
+    "math": "$$f_{\\mathbf{X}}(\\mathbf{x}) = \\frac{1}{(2\\pi)^{n/2} |\\Sigma|^{1/2}} \\exp\\left(-\\frac{1}{2}(\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\Sigma^{-1}(\\mathbf{x} - \\boldsymbol{\\mu})\\right), \\quad \\Sigma \\succ 0$$",
+    "personalConnection": "Elliptical spiral galaxy: star density falls exponentially with Mahalanobis distance from the galactic nucleus, stretching along principal inertia axes.",
+    "examTrap": "Attempting to write density when |\u03a3| = 0 (singular covariance). When variables are linearly dependent, the distribution is degenerate and has no density with respect to Lebesgue measure on \u211d\u207f."
+  },
+  {
+    "id": 31302,
+    "subject": "StoMA",
+    "topicId": "13_Jointly_Gaussian_Random_Variables",
+    "topicTitle": "13 \u00b7 Jointly Gaussian Random Variables",
+    "cardNumber": "02",
+    "category": "GAUSSIAN DEFINITION",
+    "highlighterClass": "highlight-amber",
+    "title": "Fundamental Theorem: All Linear Projections are Gaussian",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31302\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"85\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"62.5\" y=\"41.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X ~ N(\u03bc, \u03a3)\nin \u211d\u207f</text><line x1=\"105\" y1=\"38\" x2=\"135\" y2=\"38\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31302)\"/><text x=\"120\" y=\"28\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">t\u1d40 X</text><rect x=\"135\" y=\"20\" width=\"85\" height=\"36\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"177.5\" y=\"37.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">t\u1d40 X ~ N(t\u1d40\u03bc,</text><text x=\"177.5\" y=\"46.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">t\u1d40\u03a3t)\nin \u211d\u00b9</text><rect x=\"20\" y=\"72\" width=\"200\" height=\"36\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">General Linear Map: Y = A X + b  \u21d2  Y ~ N(A\u03bc + b,  A \u03a3</text><text x=\"120.0\" y=\"98.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A\u1d40)\n(Linear operations preserve joint Gaussianity unconditionally)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Fundamental theorem: X is jointly Gaussian if and only if EVERY 1D projection t\u1d40X is Gaussian</text></svg>",
+    "drawingCaption": "A random vector is jointly Gaussian iff every one-dimensional projection t\u1d40X is a standard 1D Gaussian",
+    "coreTranslation": [
+      "<strong>Fundamental Characterization:</strong> $\\mathbf{X}$ is jointly Gaussian if and only if every linear combination $a_1 X_1 + \\dots + a_n X_n = \\mathbf{t}^\\top \\mathbf{X}$ is a 1D Gaussian for all $\\mathbf{t} \\in \\mathbb{R}^n$.",
+      "<strong>Linear Transformation Invariance:</strong> If $\\mathbf{X} \\sim \\mathcal{N}(\\boldsymbol{\\mu}, \\Sigma)$ and $Y = A \\mathbf{X} + b$, then $Y$ is strictly Gaussian: $Y \\sim \\mathcal{N}(A\\boldsymbol{\\mu} + b, A \\Sigma A^\\top)$.",
+      "<strong>Complete Parametrization:</strong> A joint Gaussian law is 100% specified by its mean vector $\\boldsymbol{\\mu}$ and covariance matrix $\\Sigma$; all higher cumulants are identically zero."
+    ],
+    "math": "$$\\mathbf{X} \\sim \\mathcal{N}(\\boldsymbol{\\mu}, \\Sigma) \\iff \\mathbf{t}^\\top \\mathbf{X} \\sim \\mathcal{N}\\left(\\mathbf{t}^\\top \\boldsymbol{\\mu}, \\; \\mathbf{t}^\\top \\Sigma \\mathbf{t}\\right) \\quad \\forall \\mathbf{t} \\in \\mathbb{R}^n$$",
+    "personalConnection": "Shadows of a 3D cloud: if every 1D shadow cast by a 3D gas cloud from every angle is a bell curve, the 3D cloud itself is an ellipsoidal Gaussian.",
+    "examTrap": "Assuming marginally Gaussian variables are jointly Gaussian! Having X ~ N(0, 1) and Y ~ N(0, 1) does NOT imply (X, Y) is jointly Gaussian (e.g. Y = SX with sign flip S)."
+  },
+  {
+    "id": 31303,
+    "subject": "StoMA",
+    "topicId": "13_Jointly_Gaussian_Random_Variables",
+    "topicTitle": "13 \u00b7 Jointly Gaussian Random Variables",
+    "cardNumber": "03",
+    "category": "GAUSSIAN INDEPENDENCE",
+    "highlighterClass": "highlight-emerald",
+    "title": "Uncorrelated \u21d4 Independent for Joint Gaussians",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31303\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"192\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Jointly Gaussian + Cov(X\u1d62, X_j) = 0\n\u21d2 \u03a3 is diagonal: \u03a3 =</text><text x=\"120.0\" y=\"49.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">diag(\u03c3\u2081\u00b2, ..., \u03c3_n\u00b2)\n\u21d2 Exponent separates: \u2211 (x\u1d62 - \u03bc\u1d62)\u00b2 / (2\u03c3\u1d62\u00b2)</text><rect x=\"24\" y=\"70\" width=\"192\" height=\"38\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"88.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Density factorizes: f_X(x) = f_{X\u2081}(x\u2081) ...</text><text x=\"120.0\" y=\"97.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_{X_n}(x_n)\n\u21d2 X\u2081, ..., X_n are MUTUALLY INDEPENDENT!</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">For JOINTLY Gaussian vectors: Uncorrelated \u21d4 Independent (a unique Gaussian signature)</text></svg>",
+    "drawingCaption": "For jointly Gaussian random variables, zero covariance is strictly equivalent to mutual statistical independence",
+    "coreTranslation": [
+      "<strong>Unique Invariant:</strong> For JOINTLY Gaussian vectors, $\\operatorname{Cov}(X_i, X_j) = 0 \\iff X_i \\perp X_j$. Zero correlation implies statistical independence.",
+      "<strong>Factorization Proof:</strong> When covariances are zero, $\\Sigma = \\operatorname{diag}(\\sigma_i^2)$, so $\\Sigma^{-1} = \\operatorname{diag}(1/\\sigma_i^2)$ and $|\\Sigma| = \\prod \\sigma_i^2$. The quadratic form decouples: $(\\mathbf{x}-\\boldsymbol{\\mu})^\\top \\Sigma^{-1}(\\mathbf{x}-\\boldsymbol{\\mu}) = \\sum \\frac{(x_i - \\mu_i)^2}{\\sigma_i^2}$.",
+      "<strong>Exclusivity:</strong> This equivalence is FALSE for general non-Gaussian variables (and false for variables that are individually Gaussian but not jointly Gaussian)."
+    ],
+    "math": "$$\\mathbf{X} \\text{ jointly Gaussian}, \\; \\operatorname{Cov}(X_i, X_j) = 0 \\iff X_i \\perp X_j \\iff f_{\\mathbf{X}}(\\mathbf{x}) = \\prod_{i=1}^n f_{X_i}(x_i)$$",
+    "personalConnection": "Orthogonal thermal velocities: molecular velocity components v_x, v_y, v_z in an ideal gas are uncorrelated and therefore completely independent.",
+    "examTrap": "Applying this equivalence without verifying JOINT Gaussianity. If joint normality fails, zero covariance tells you nothing about independence."
+  },
+  {
+    "id": 31304,
+    "subject": "StoMA",
+    "topicId": "13_Jointly_Gaussian_Random_Variables",
+    "topicTitle": "13 \u00b7 Jointly Gaussian Random Variables",
+    "cardNumber": "04",
+    "category": "GAUSSIAN CONDITIONING",
+    "highlighterClass": "highlight-purple",
+    "title": "Gaussian Conditioning: Exact Normality & MMSE = LLSE",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31304\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"41.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Conditional Law: X\u2081 | X\u2082 = x\u2082 ~ N(\u03bc_{1|2}, \u03a3_{1|2})\n\u03bc_{1|2} = \u03bc\u2081 + \u03a3\u2081\u2082 \u03a3\u2082\u2082\u207b\u00b9 (x\u2082 - \u03bc\u2082)  </text><text x=\"120.0\" y=\"50.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">[Linear in x\u2082 \u21d2 MMSE = LLSE]\n\u03a3_{1|2} = \u03a3\u2081\u2081 - \u03a3\u2081\u2082 \u03a3\u2082\u2082\u207b\u00b9 \u03a3\u2082\u2081       [CONSTANT, independent of x\u2082!]</text><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31304)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"70\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31304)\"/><line x1=\"140\" y1=\"70\" x2=\"140\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"140\" y=\"126\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X\u2082 = x\u2082</text><path d=\"M 140,114 Q 160,85 180,114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"170\" y=\"95\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">N(\u03bc_{1|2}, \u03a3_{1|2})</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Gaussian conditional mean is linear (MMSE = LLSE); conditional variance is constant</text></svg>",
+    "drawingCaption": "Conditioning a Gaussian vector yields another Gaussian: conditional mean is linear (MMSE = LLSE), and covariance is constant",
+    "coreTranslation": [
+      "<strong>Conditional Law:</strong> If $\\begin{bmatrix} X_1 \\\\ X_2 \\end{bmatrix} \\sim \\mathcal{N}\\left(\\begin{bmatrix}\\mu_1\\\\\\mu_2\\end{bmatrix}, \\begin{bmatrix}\\Sigma_{11}&\\Sigma_{12}\\\\\\Sigma_{21}&\\Sigma_{22}\\end{bmatrix}\\right)$, then $X_1 \\mid X_2 = x_2 \\sim \\mathcal{N}(\\mu_{1|2}, \\Sigma_{1|2})$.",
+      "<strong>Linear Conditional Mean:</strong> $\\mu_{1|2} = \\mu_1 + \\Sigma_{12} \\Sigma_{22}^{-1}(x_2 - \\mu_2)$. The conditional mean is strictly affine, proving **MMSE $\\equiv$ LLSE**!",
+      "<strong>Constant Conditional Covariance:</strong> $\\Sigma_{1|2} = \\Sigma_{11} - \\Sigma_{12} \\Sigma_{22}^{-1} \\Sigma_{21}$ is completely independent of the observed value $x_2$."
+    ],
+    "math": "$$X_1 \\mid X_2 = x_2 \\sim \\mathcal{N}\\left(\\mu_1 + \\Sigma_{12}\\Sigma_{22}^{-1}(x_2 - \\mu_2), \\; \\Sigma_{11} - \\Sigma_{12}\\Sigma_{22}^{-1}\\Sigma_{21}\\right)$$",
+    "personalConnection": "Linear Kalman Filtering: every updated state estimate is strictly Gaussian; error covariance is independent of measurement values and can be computed offline.",
+    "examTrap": "Expecting conditional variance \u03a3_{1|2} to change with observation x\u2082! For Gaussians, measurements shift the mean, but uncertainty reduction is invariant to observed data."
+  },
+  {
+    "id": 31305,
+    "subject": "StoMA",
+    "topicId": "13_Jointly_Gaussian_Random_Variables",
+    "topicTitle": "13 \u00b7 Jointly Gaussian Random Variables",
+    "cardNumber": "05",
+    "category": "GAUSSIAN ALGEBRA",
+    "highlighterClass": "highlight-cyan",
+    "title": "Direct Matrix Inversion: Reading Moments from Quadratic Forms",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31305\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Exponent: - 1/2 [ a(x - \u03bc_x)\u00b2 + 2b(x - \u03bc_x)(y - \u03bc_y) +</text><text x=\"120.0\" y=\"46.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">c(y - \u03bc_y)\u00b2 ]\nPrecision Matrix:  \u03a3\u207b\u00b9 = [ a  b ;  b  c ]</text><rect x=\"20\" y=\"64\" width=\"200\" height=\"46\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"86.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Invert 2\u00d72 Matrix:\n\u03a3 = [ a b ; b c ]\u207b\u00b9 = \\frac{1}{ac - b\u00b2} [ c  -b ;  -b  a</text><text x=\"120.0\" y=\"94.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">]\nVar(X) = c / (ac - b\u00b2),   Var(Y) = a / (ac - b\u00b2),   Cov(X,Y) = -b / (ac - b\u00b2)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Read moments instantly without integration: off-diagonal in precision is b, not 2b</text></svg>",
+    "drawingCaption": "The quadratic form in the exponent is the precision matrix \u03a3\u207b\u00b9; invert analytically to read all moments instantly",
+    "coreTranslation": [
+      "<strong>Exponent Identification:</strong> The exponent is $-\\frac{1}{2} (\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\Sigma^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})$. The matrix of quadratic coefficients IS $\\Sigma^{-1}$!",
+      "<strong>2D Analytical Inversion:</strong> If $\\Sigma^{-1} = \\begin{bmatrix} a & b \\\\ b & c \\end{bmatrix}$, then $\\Sigma = \\frac{1}{ac - b^2}\\begin{bmatrix} c & -b \\\\ -b & a \\end{bmatrix}$.",
+      "<strong>Direct Moment Extraction:</strong> $\\operatorname{Var}(X) = \\frac{c}{ac - b^2}$, $\\operatorname{Var}(Y) = \\frac{a}{ac - b^2}$, and $\\operatorname{Cov}(X, Y) = \\frac{-b}{ac - b^2}$. Zero integration needed!"
+    ],
+    "math": "$$-\\frac{1}{2}\\begin{bmatrix}x \\\\ y\\end{bmatrix}^\\top \\begin{bmatrix}a & b \\\\ b & c\\end{bmatrix}\\begin{bmatrix}x \\\\ y\\end{bmatrix} \\implies \\Sigma = \\begin{bmatrix}a & b \\\\ b & c\\end{bmatrix}^{-1} = \\frac{1}{ac - b^2}\\begin{bmatrix}c & -b \\\\ -b & a\\end{bmatrix}$$",
+    "personalConnection": "Reading an prescription bottle: the numbers in the quadratic exponent directly specify the precision matrix without needing to recalculate the volume.",
+    "examTrap": "Forgetting the factor of 2 in cross-term 2b xy! The off-diagonal element of \u03a3\u207b\u00b9 is b, NOT 2b. The matrix must be symmetric."
+  },
+  {
+    "id": 31306,
+    "subject": "StoMA",
+    "topicId": "13_Jointly_Gaussian_Random_Variables",
+    "topicTitle": "13 \u00b7 Jointly Gaussian Random Variables",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Marginally Normal \u2260 Jointly Normal (Y = S \u00b7 X)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31306\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31306)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31306)\"/><line x1=\"50\" y1=\"100\" x2=\"190\" y2=\"30\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"50\" y1=\"30\" x2=\"190\" y2=\"100\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"180\" y=\"25\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Y = X</text><text x=\"180\" y=\"108\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Y = -X</text><rect x=\"24\" y=\"20\" width=\"100\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"74.0\" y=\"41.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X ~ N(0, 1)\nS = \u00b11 (p = 1/2)\nY</text><text x=\"74.0\" y=\"49.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= S \u00b7 X ~ N(0, 1)\nCov(X, Y) = 0</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Both X, Y ~ N(0, 1) and Cov=0, but P(X+Y=0)=1/2 \u21d2 NOT jointly Gaussian!</text></svg>",
+    "drawingCaption": "Classic counterexample: X and Y are each standard normal and uncorrelated, yet completely dependent and not jointly Gaussian",
+    "coreTranslation": [
+      "<strong>Setup:</strong> Let $X \\sim \\mathcal{N}(0, 1)$ and let $S \\in \\{-1, +1\\}$ with $\\mathbb{P}(S = 1) = \\mathbb{P}(S = -1) = 1/2$ independently of $X$. Define $Y = S \\cdot X$.",
+      "<strong>Marginal Normality & Zero Covariance:</strong> By symmetry, $Y \\sim \\mathcal{N}(0, 1)$ and $\\operatorname{Cov}(X, Y) = \\mathbb{E}[S X^2] = \\mathbb{E}[S]\\mathbb{E}[X^2] = 0(1) = 0$.",
+      "<strong>Non-Gaussian Joint Law:</strong> The sum $X + Y = X(1 + S)$ equals $2X$ with probability $1/2$, and equals $0$ with probability $1/2$. It has atom $\\mathbb{P}(X + Y = 0) = 1/2$, so $X+Y$ is NOT normal $\\implies (X, Y)$ is NOT jointly Gaussian!"
+    ],
+    "math": "$$X, Y \\sim \\mathcal{N}(0, 1), \\quad \\operatorname{Cov}(X, Y) = 0, \\quad \\text{yet } \\mathbb{P}(X + Y = 0) = \\tfrac{1}{2} \\implies (X, Y) \\text{ NOT jointly Gaussian!}$$",
+    "personalConnection": "An 'X'-shaped target: projection onto either coordinate axis produces a smooth Gaussian shadow, but projection along the diagonal reveals a sharp 50% spike at the origin.",
+    "examTrap": "Concluding independence because Cov(X, Y) = 0! They are uncorrelated, but |Y| = |X| (complete deterministic dependence). Joint normality is strictly required for uncorrelated \u21d4 independent."
   }
 ]
 );
