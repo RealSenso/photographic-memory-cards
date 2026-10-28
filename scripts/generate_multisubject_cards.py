@@ -13,6 +13,11 @@ existing_cmo = [c for c in loaded if c.get('subject') == 'CMO']
 with open('/Users/senso/Projects/photographic-memory-cards/scripts/new_cmo_cards.json') as f:
     new_cmo = json.load(f)
 
+# Load newly built CMO cards (Topics 11 through 19)
+for t_num in range(11, 20):
+    with open(f'/Users/senso/Projects/photographic-memory-cards/scripts/cmo_topic{t_num}.json') as f:
+        new_cmo.extend(json.load(f))
+
 cmo_dict = {c['id']: c for c in existing_cmo}
 for c in new_cmo:
     cmo_dict[c['id']] = c

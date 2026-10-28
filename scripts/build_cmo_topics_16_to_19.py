@@ -1,0 +1,209 @@
+import json
+
+# =============================================================================
+# TOPIC 16: Lagrangian Duality and Slater's Condition
+# =============================================================================
+topic16_cards = [
+    {
+        "id": 1601,
+        "subject": "CMO",
+        "topicId": "16_Lagrangian_Duality_and_Slaters_Condition",
+        "topicTitle": "16 · Lagrangian Duality & Slater’s",
+        "cardNumber": "01",
+        "category": "DUALITY GEOMETRY",
+        "highlighterClass": "highlight-cyan",
+        "title": "The Primal Function ω(z) & Hyperplane Support",
+        "textbookImg": "assets/luenberger_fig14_1.png",
+        "textbookRef": "Luenberger & Ye (4th ed), Sect. 14.1, Fig. 14.1 (p. 425)",
+        "drawingCaption": "Luenberger Fig. 14.1: The primal curve ω(z) supported from below by a hyperplane with vertical intercept φ(μ)",
+        "drawingSvg": "",
+        "coreTranslation": [
+            "<strong>The Primal Function $\\omega(z)$ (Luenberger p. 424):</strong> Define $\\omega(z) = \\inf \\{ f(x) : g(x) \\le z, x \\in \\Omega \\}$. The original problem's optimal value is simply $\\omega(0) = f^*$.",
+            "<strong>Geometric Duality:</strong> Consider an affine hyperplane $r + \\mu^T z = c$ lying below the graph of $\\omega(z)$. For $z=0$, the vertical intercept is $r = c$.",
+            "<strong>Dual Function as Vertical Intercept:</strong> The highest possible vertical intercept of such a supporting hyperplane with normal $(\\mu, 1)$ is exactly the <strong>dual function value $\\phi(\\mu)$</strong>! Dual maximization seeks the highest supporting hyperplane."
+        ],
+        "math": "$$\\omega(z) = \\inf_{x \\in \\Omega} \\{f(x) : g(x) \\le z\\}, \\quad \\phi(\\mu) = \\inf_{z} \\{\\omega(z) + \\mu^T z\\} = \\inf_{x \\in \\Omega} \\{f(x) + \\mu^T g(x)\\}$$",
+        "personalConnection": "Holding a flat wooden ruler underneath a drooping electrical wire: as you slide and tilt the ruler upward so it touches the bottom of the wire, the height where the ruler crosses the vertical pole is the dual bound $\\phi(\\mu)$.",
+        "examTrap": "Notice that $\\omega(z)$ is non-increasing ($z_1 \\le z_2 \\implies \\omega(z_1) \\ge \\omega(z_2)$) because relaxing constraints ($z_2 > z_1$) enlarges the feasible region, which can only lower the minimum value."
+    },
+    {
+        "id": 1602,
+        "subject": "CMO",
+        "topicId": "16_Lagrangian_Duality_and_Slaters_Condition",
+        "topicTitle": "16 · Lagrangian Duality & Slater’s",
+        "cardNumber": "02",
+        "category": "WEAK DUALITY",
+        "highlighterClass": "highlight-amber",
+        "title": "Weak Duality Theorem & The Duality Gap",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Primal feasible values bar -->
+  <rect x="50" y="25" width="140" height="25" rx="4" fill="#f8fafc" stroke="#000000" stroke-width="1.8"/>
+  <text x="120" y="41" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">Primal Feasible Values {f(x) : g(x) ≤ 0}</text>
+  <!-- Primal optimal p* -->
+  <circle cx="90" cy="37" r="4" fill="#000000"/>
+  <text x="90" y="20" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold" text-anchor="middle">p* = min f(x)</text>
+  <!-- Duality Gap bracket -->
+  <line x1="90" y1="58" x2="150" y2="58" stroke="#000000" stroke-width="1.5"/>
+  <line x1="90" y1="53" x2="90" y2="63" stroke="#000000" stroke-width="1.5"/>
+  <line x1="150" y1="53" x2="150" y2="63" stroke="#000000" stroke-width="1.5"/>
+  <text x="120" y="72" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">Duality Gap = p* - d* ≥ 0</text>
+  <!-- Dual feasible values bar -->
+  <rect x="50" y="85" width="140" height="25" rx="4" fill="#f1f5f9" stroke="#000000" stroke-width="1.8"/>
+  <text x="120" y="101" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">Dual Feasible Values {q(λ, μ) : μ ≥ 0}</text>
+  <!-- Dual optimal d* -->
+  <circle cx="150" cy="97" r="4" fill="#000000"/>
+  <text x="150" y="122" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold" text-anchor="middle">d* = max q(λ, μ)</text>
+  <text x="120" y="138" fill="#000000" font-size="8" font-family="serif" text-anchor="middle">Weak Duality: d* ≤ p* holds universally with ZERO assumptions</text>
+</svg>""",
+        "drawingCaption": "Weak Duality: Dual optimal value d* is always less than or equal to primal optimal value p*",
+        "coreTranslation": [
+            "<strong>Weak Duality Theorem:</strong> For ANY optimization problem (convex or non-convex), the dual optimal value $d^*$ is always less than or equal to the primal optimal value $p^*$:",
+            "$$d^* = \\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu) \\le p^* = \\min_{x \\in \\Omega} f(x)$$",
+            "<strong>Proof in 2 Lines:</strong> For any feasible $x$ ($g(x) \\le 0, h(x) = 0$) and $\\mu \\ge 0$: $q(\\lambda, \\mu) = \\inf_{\\tilde{x}} \\mathcal{L}(\\tilde{x}) \\le \\mathcal{L}(x) = f(x) + \\lambda^T h(x) + \\mu^T g(x) \\le f(x)$. Taking $\\sup$ on left and $\\inf$ on right proves $d^* \\le p^*$.",
+            "<strong>Duality Gap:</strong> The difference $p^* - d^* \\ge 0$ is called the <strong>duality gap</strong>."
+        ],
+        "math": "$$d^* = \\sup_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu) \\le \\inf_{g(x) \\le 0, h(x) = 0} f(x) = p^* \\implies p^* - d^* \\ge 0 \\quad (\\text{Universal})$$",
+        "personalConnection": "A floor and ceiling: the highest possible dual value is the highest ceiling you can construct beneath the lowest floor of the building. The ceiling can never rise higher than the floor above it.",
+        "examTrap": "Weak duality requires ABSOLUTELY NO ASSUMPTIONS! It holds whether $f$ is convex, non-convex, discontinuous, or integer-valued. Strong duality ($p^* = d^*$), on the other hand, requires convexity and constraint qualifications."
+    },
+    {
+        "id": 1603,
+        "subject": "CMO",
+        "topicId": "16_Lagrangian_Duality_and_Slaters_Condition",
+        "topicTitle": "16 · Lagrangian Duality & Slater’s",
+        "cardNumber": "03",
+        "category": "STRONG DUALITY",
+        "highlighterClass": "highlight-emerald",
+        "title": "Strong Duality Theorem & Zero Duality Gap",
+        "textbookImg": "assets/luenberger_fig14_3.png",
+        "textbookRef": "Luenberger & Ye (4th ed), Sect. 14.2, Fig. 14.3 (p. 427)",
+        "drawingCaption": "Luenberger Fig. 14.3: The convex primal function ω(z) has a supporting hyperplane at z=0 with intercept f* = φ*, proving zero duality gap",
+        "textbookImg": "assets/luenberger_fig14_3.png",
+        "drawingSvg": "",
+        "coreTranslation": [
+            "<strong>Strong Duality Theorem:</strong> If the primal objective $f(x)$ and inequality constraints $g_j(x)$ are convex, equality constraints $h_i(x)$ are affine, and <strong>Slater's condition</strong> holds, then:",
+            "$$p^* = d^* \\quad (\\text{Duality Gap is Exactly Zero!})$$",
+            "<strong>Geometric Proof (Luenberger):</strong> Convexity of $f$ and $g$ guarantees that the primal function $\\omega(z)$ is a convex curve. By the Separating Hyperplane Theorem, there exists a non-vertical supporting hyperplane touching $\\omega(z)$ at $z=0$. Its intercept is $f^* = \\phi^*$, closing the gap!"
+        ],
+        "math": "$$\\text{Convexity } + \\text{ Slater's CQ } \\implies p^* = \\min_{x \\in \\Omega} f(x) = \\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu) = d^*$$",
+        "personalConnection": "Two hands clapping together with zero air trapped between them: the primal minimization descending from above meets the dual maximization ascending from below at the exact same dollar figure.",
+        "examTrap": "If Slater's condition fails (e.g., $g_1(x) = x_1^2 \\le 0$, which has no strictly interior point since $x_1$ must equal 0), strong duality can FAIL even for perfectly convex problems!"
+    },
+    {
+        "id": 1604,
+        "subject": "CMO",
+        "topicId": "16_Lagrangian_Duality_and_Slaters_Condition",
+        "topicTitle": "16 · Lagrangian Duality & Slater’s",
+        "cardNumber": "04",
+        "category": "CONCAVITY OF DUAL",
+        "highlighterClass": "highlight-violet",
+        "title": "Universal Concavity of the Dual Function q(λ, μ)",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Family of affine lines representing ℒ(x, λ, μ) for various x -->
+  <line x1="30" y1="120" x2="210" y2="30" stroke="#000000" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="30" y1="85" x2="210" y2="70" stroke="#000000" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="30" y1="35" x2="210" y2="115" stroke="#000000" stroke-width="1" stroke-dasharray="2,2"/>
+  <!-- Pointwise infimum lower envelope q(μ) -->
+  <path d="M 30 120 L 80 81 L 155 74 L 210 115" fill="none" stroke="#000000" stroke-width="2.5"/>
+  <circle cx="120" cy="76" r="4" fill="#000000"/>
+  <text x="120" y="60" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold" text-anchor="middle">q(μ) = inf_x ℒ(x, μ)</text>
+  <text x="120" y="18" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">q(λ, μ) is ALWAYS Concave (Pointwise Inf of Affine Functions)</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Dual optimization is ALWAYS a convex optimization problem!</text>
+</svg>""",
+        "drawingCaption": "Dual Concavity: The pointwise infimum of affine functions forms an inverted convex bowl (concave function)",
+        "coreTranslation": [
+            "<strong>Universal Concavity Theorem:</strong> The Lagrange dual function $q(\\lambda, \\mu) = \\inf_{x \\in \\mathcal{D}} \\mathcal{L}(x, \\lambda, \\mu)$ is <strong>concave</strong>, and the dual constraint set $\\{\\mu \\ge 0\\}$ is convex.",
+            "<strong>Why this is Astonishing:</strong> Even if the primal problem $f(x)$ is horribly non-convex, non-smooth, or an integer combinatorial problem, the dual problem is <strong>ALWAYS a tractable convex optimization problem</strong>!",
+            "<strong>Proof:</strong> For each fixed $x$, the function $(\\lambda, \\mu) \\mapsto f(x) + \\lambda^T h(x) + \\mu^T g(x)$ is an <strong>affine function</strong> of $(\\lambda, \\mu)$. The pointwise infimum of affine functions is always concave."
+        ],
+        "math": "$$q(\\alpha y_1 + (1-\\alpha) y_2) \\ge \\alpha q(y_1) + (1-\\alpha) q(y_2) \\quad (\\text{Pointwise Infimum of Affine Families})$$",
+        "personalConnection": "Carving an arch out of wood: each saw cut is a straight affine plane. By making dozens of cuts and keeping the wood below all cuts (pointwise infimum), you carve a smooth, rounded concave arch.",
+        "examTrap": "The dual function is concave, which means dual optimization is a MAXIMIZATION problem: $\\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu)$. Maximizing a concave function is equivalent to minimizing a convex function."
+    },
+    {
+        "id": 1605,
+        "subject": "CMO",
+        "topicId": "16_Lagrangian_Duality_and_Slaters_Condition",
+        "topicTitle": "16 · Lagrangian Duality & Slater’s",
+        "cardNumber": "05",
+        "category": "SENSITIVITY & SHADOW PRICES",
+        "highlighterClass": "highlight-indigo",
+        "title": "Sensitivity Analysis & Multipliers as Shadow Prices",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <defs>
+    <marker id="arr-1605" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
+    </marker>
+  </defs>
+  <!-- Axes for perturbation z vs optimal cost p*(z) -->
+  <line x1="30" y1="110" x2="210" y2="110" stroke="#000000" stroke-width="1.2" marker-end="url(#arr-1605)"/>
+  <line x1="120" y1="125" x2="120" y2="25" stroke="#000000" stroke-width="1.2" marker-end="url(#arr-1605)"/>
+  <text x="215" y="113" fill="#000000" font-size="8.5" font-family="serif" font-style="italic">z</text>
+  <text x="125" y="25" fill="#000000" font-size="8.5" font-family="serif" font-style="italic">p*(z)</text>
+  <!-- Decreasing convex curve p*(z) -->
+  <path d="M 45 35 Q 110 65 195 105" fill="none" stroke="#000000" stroke-width="2.2"/>
+  <!-- Tangent line at z=0 with slope -μ* -->
+  <line x1="70" y1="45" x2="170" y2="95" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <circle cx="120" cy="70" r="4" fill="#000000"/>
+  <text x="145" y="60" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold">Slope = -μ*</text>
+  <text x="120" y="18" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">Shadow Price: ∂p*(0) / ∂z_j = -μ_j*</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Relaxing constraint j by Δz decreases optimal cost by μ_j* · Δz</text>
+</svg>""",
+        "drawingCaption": "Shadow Price: The negative Lagrange multiplier -μ* is the exact derivative of the optimal cost with respect to constraint relaxation",
+        "coreTranslation": [
+            "<strong>Economic Interpretation of Multipliers:</strong> Consider perturbed constraints $g_j(x) \\le z_j$. Let $p^*(z)$ be the optimal cost as a function of the perturbation vector $z$.",
+            "<strong>The Sensitivity Theorem:</strong> If strong duality holds, then the optimal Lagrange multipliers $\\mu^*$ are the <strong>subgradients / negative derivatives</strong> of $p^*(z)$ at $z = 0$:",
+            "$$\\frac{\\partial p^*(0)}{\\partial z_j} = -\\mu_j^*, \\quad \\frac{\\partial p^*(0)}{\\partial w_i} = -\\lambda_i^*$$",
+            "<strong>Economic Meaning:</strong> $\\mu_j^*$ is the <strong>marginal value (shadow price)</strong> of the $j$-th resource. If an investor offers you $\\Delta z$ additional units of resource $j$, your objective cost drops by $\\mu_j^* \\Delta z$."
+        ],
+        "math": "$$p^*(z) \\ge p^*(0) - \\sum_{j=1}^m \\mu_j^* z_j - \\sum_{i=1}^p \\lambda_i^* w_i \\implies \\nabla_z p^*(0) = -\\mu^*$$",
+        "personalConnection": "Factory production line: if adding 1 hour of overtime ($\Delta z = 1$) reduces total assembly cost by \$50, the shadow price of overtime labor is exactly $\mu^* = \$50$/hour.",
+        "examTrap": "Remember the negative sign! Because relaxing a constraint means $z_j > 0$ (enlarging the feasible set), the cost decreases ($p^*(z) \\le p^*(0)$), which is why $\\partial p^* / \\partial z_j = -\\mu_j^* \\le 0$."
+    },
+    {
+        "id": 1606,
+        "subject": "CMO",
+        "topicId": "16_Lagrangian_Duality_and_Slaters_Condition",
+        "topicTitle": "16 · Lagrangian Duality & Slater’s",
+        "cardNumber": "06",
+        "category": "WORKED BENCHMARK",
+        "highlighterClass": "highlight-rose",
+        "title": "Worked Benchmark: SVM Dual Formulation",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Separating hyperplane line -->
+  <line x1="45" y1="120" x2="195" y2="30" stroke="#000000" stroke-width="2"/>
+  <!-- Margin lines -->
+  <line x1="65" y1="130" x2="215" y2="40" stroke="#000000" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <line x1="25" y1="110" x2="175" y2="20" stroke="#000000" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <!-- Class +1 points (circles) -->
+  <circle cx="105" cy="40" r="3" fill="#000000"/>
+  <circle cx="140" cy="25" r="3" fill="#000000"/>
+  <circle cx="85" cy="50" r="4.5" fill="#000000"/>
+  <text x="80" y="40" fill="#000000" font-size="8" font-family="serif">α₁ &gt; 0</text>
+  <!-- Class -1 points (squares) -->
+  <rect x="150" y="95" width="6" height="6" fill="#000000"/>
+  <rect x="180" y="110" width="6" height="6" fill="#000000"/>
+  <rect x="110" y="90" width="7" height="7" fill="#000000"/>
+  <text x="120" y="108" fill="#000000" font-size="8" font-family="serif">α₂ &gt; 0</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">SVM Dual: max ∑ α_i - 1/2 ∑ α_i α_j y_i y_j ⟨x_i, x_j⟩ s.t. α ≥ 0, ∑ α_i y_i = 0</text>
+</svg>""",
+        "drawingCaption": "Support Vector Machine: Dual multipliers α_i are non-zero ONLY for support vectors lying exactly on the margin boundary",
+        "coreTranslation": [
+            "<strong>Primal SVM:</strong> $\\min_{w, b} \\frac{1}{2} \\|w\\|^2$ subject to $y_i (w^T x_i + b) \\ge 1$ for all $i=1..N$.",
+            "<strong>Lagrangian Derivation:</strong> $\\mathcal{L}(w, b, \\alpha) = \\frac{1}{2} \\|w\\|^2 - \\sum_{i=1}^N \\alpha_i [y_i (w^T x_i + b) - 1]$.",
+            "Stationarity with respect to $w$: $\\nabla_w \\mathcal{L} = w - \\sum \\alpha_i y_i x_i = 0 \\implies w^* = \\sum_{i=1}^N \\alpha_i y_i x_i$. Stationarity w.r.t. $b$: $\\sum \\alpha_i y_i = 0$.",
+            "<strong>The Dual QP:</strong> Substitute $w^*$ back into $\\mathcal{L}$ to eliminate primal variables:",
+            "$$q(\\alpha) = \\sum_{i=1}^N \\alpha_i - \\frac{1}{2} \\sum_{i,j=1}^N \\alpha_i \\alpha_j y_i y_j x_i^T x_j \\quad \\text{s.t. } \\alpha_i \\ge 0, \\; \\sum \\alpha_i y_i = 0$$",
+            "<strong>Complementary Slackness:</strong> $\\alpha_i > 0$ ONLY for the critical data points touching the margin boundary (the <strong>Support Vectors</strong>)!"
+        ],
+        "math": "$$w^* = \\sum_{i=1}^N \\alpha_i^* y_i x_i, \\quad \\alpha_i^* [y_i(w^{*T} x_i + b^*) - 1] = 0 \\implies \\alpha_i^* = 0 \\text{ for all non-support vectors}$$",
+        "personalConnection": "A bridge supported by steel pillars: only the pillars that touch the load-bearing suspension cables have positive tension ($\alpha_i > 0$). The rest of the landscape beneath the bridge carries zero tension ($\alpha_i = 0$).",
+        "examTrap": "Notice that the dual formulation depends on data vectors $x_i$ EXCLUSIVELY through their inner products $x_i^T x_j$! This is what enables the famous <strong>Kernel Trick</strong>: replacing $x_i^T x_j$ with a non-linear kernel $K(x_i, x_j)$."
+    }
+]
+
+# Write Topic 16 cards
+with open('/Users/senso/Projects/photographic-memory-cards/scripts/cmo_topic16.json', 'w') as f:
+    json.dump(topic16_cards, f, indent=2)
+
+print(f"Generated {len(topic16_cards)} cards for Topic 16")

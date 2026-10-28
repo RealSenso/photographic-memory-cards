@@ -1,0 +1,417 @@
+import json
+
+# =============================================================================
+# TOPIC 18: Linear Programming Duality and Polyhedral Geometry
+# =============================================================================
+topic18_cards = [
+    {
+        "id": 1801,
+        "subject": "CMO",
+        "topicId": "18_Linear_Programming_Duality_and_Polyhedral_Geometry",
+        "topicTitle": "18 · LP Duality & Polyhedral Geometry",
+        "cardNumber": "01",
+        "category": "LINEAR PROGRAMMING",
+        "highlighterClass": "highlight-cyan",
+        "title": "LP Primal-Dual Pair in Standard Form",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Primal LP box -->
+  <rect x="25" y="30" width="85" height="85" rx="6" fill="#f8fafc" stroke="#000000" stroke-width="1.8"/>
+  <text x="67" y="48" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">PRIMAL LP (Std)</text>
+  <text x="67" y="68" fill="#000000" font-size="9" font-family="serif" text-anchor="middle">min cᵀ x</text>
+  <text x="67" y="86" fill="#000000" font-size="8.5" font-family="serif" text-anchor="middle">s.t. A x = b</text>
+  <text x="67" y="102" fill="#000000" font-size="8.5" font-family="serif" text-anchor="middle">x ≥ 0</text>
+  <!-- Duality arrows -->
+  <line x1="115" y1="72" x2="130" y2="72" stroke="#000000" stroke-width="2"/>
+  <!-- Dual LP box -->
+  <rect x="135" y="30" width="85" height="85" rx="6" fill="#f1f5f9" stroke="#000000" stroke-width="1.8"/>
+  <text x="177" y="48" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">DUAL LP</text>
+  <text x="177" y="68" fill="#000000" font-size="9" font-family="serif" text-anchor="middle">max bᵀ y</text>
+  <text x="177" y="86" fill="#000000" font-size="8.5" font-family="serif" text-anchor="middle">s.t. Aᵀ y ≤ c</text>
+  <text x="177" y="102" fill="#000000" font-size="8.5" font-family="serif" text-anchor="middle">(y free in ℝ^m)</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Matrix transposition: rows become columns; costs become RHS bounds</text>
+</svg>""",
+        "drawingCaption": "Standard LP Duality: Matrix A transposes to A^T, objective c becomes dual bound, and b becomes dual objective",
+        "coreTranslation": [
+            "<strong>Standard Form Primal:</strong> Minimize $c^T x$ subject to $A x = b, x \\ge 0$, where $A \\in \\mathbb{R}^{m \\times n}$.",
+            "<strong>Canonical Dual LP:</strong> Maximize $b^T y$ subject to $A^T y \\le c$, where $y \\in \\mathbb{R}^m$ is unconstrained in sign.",
+            "<strong>Transformation Mechanics:</strong>",
+            "1. Each primal equality constraint $i$ corresponds to an unconstrained dual variable $y_i$.",
+            "2. Each primal non-negative variable $x_j \\ge 0$ corresponds to a dual inequality constraint $(A^T y)_j \\le c_j$.",
+            "3. The dual of the dual is the original primal: $(LP^*)^* = LP$."
+        ],
+        "math": "$$\\min_{x \\ge 0, A x = b} c^T x \\iff \\max_{y \\in \\mathbb{R}^m, A^T y \\le c} b^T y \\quad (\\text{Standard Form LP Duality})$$",
+        "personalConnection": "Manufacturer vs Contractor: the manufacturer wants to minimize assembly cost $c^T x$ to fulfill order $b$. A subcontractor wants to maximize buyout revenue $b^T y$ while charging prices low enough ($A^T y \\le c$) that the manufacturer agrees to sell.",
+        "examTrap": "If primal has inequality $A x \\ge b, x \\ge 0$, then dual is $\\max b^T y$ s.t. $A^T y \\le c, y \\ge 0$ (dual variables become non-negative). If primal has equality $A x = b$, dual variables $y$ are completely free!"
+    },
+    {
+        "id": 1802,
+        "subject": "CMO",
+        "topicId": "18_Linear_Programming_Duality_and_Polyhedral_Geometry",
+        "topicTitle": "18 · LP Duality & Polyhedral Geometry",
+        "cardNumber": "02",
+        "category": "POLYHEDRAL GEOMETRY",
+        "highlighterClass": "highlight-amber",
+        "title": "Fundamental Theorem of LP: Extreme Points & Bases",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Convex 2D Polyhedron with vertices -->
+  <polygon points="50,110 80,45 160,35 195,85 140,120" fill="#f8fafc" stroke="#000000" stroke-width="1.8"/>
+  <!-- Vertices -->
+  <circle cx="50" cy="110" r="3.5" fill="#000000"/>
+  <circle cx="80" cy="45" r="3.5" fill="#000000"/>
+  <circle cx="160" cy="35" r="4.5" fill="#000000"/>
+  <text x="160" y="24" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold" text-anchor="middle">x* = B⁻¹ b (Optimal Vertex)</text>
+  <circle cx="195" cy="85" r="3.5" fill="#000000"/>
+  <circle cx="140" cy="120" r="3.5" fill="#000000"/>
+  <!-- Supporting hyperplane tangent to vertex -->
+  <line x1="120" y1="15" x2="215" y2="65" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="120" y="75" fill="#000000" font-size="8.5" font-family="serif" text-anchor="middle">Polyhedron 𝒫 = {x : Ax=b, x≥0}</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Fundamental Theorem: Optimal LP solution ALWAYS occurs at an Extreme Point (BFS)</text>
+</svg>""",
+        "drawingCaption": "Fundamental Theorem: A linear function over a closed bounded polyhedron always attains its minimum at a vertex",
+        "coreTranslation": [
+            "<strong>Fundamental Theorem of Linear Programming:</strong> Consider the standard LP $\\min c^T x$ s.t. $A x = b, x \\ge 0$.",
+            "1. If a feasible solution exists, there exists a <strong>Basic Feasible Solution (BFS)</strong> (an extreme point / vertex of the polyhedron).",
+            "2. If an optimal solution exists, at least one <strong>optimal BFS</strong> exists.",
+            "<strong>Algebraic Definition of BFS:</strong> Partition $A = [B \\mid N]$, where $B \\in \\mathbb{R}^{m \\times m}$ is invertible (the <strong>Basis</strong>). Setting non-basic variables $x_N = 0$ uniquely determines basic variables $x_B = B^{-1} b \\ge 0$."
+        ],
+        "math": "$$x = \\begin{bmatrix} x_B \\\\ x_N \\end{bmatrix} = \\begin{bmatrix} B^{-1} b \\\\ \\mathbf{0} \\end{bmatrix} \\iff x \\text{ is an Extreme Point of } \\mathcal{P} = \\{x : A x = b, x \\ge 0\\}$$",
+        "personalConnection": "Warping a flat cardboard sheet across a polygonal wireframe: the lowest point of a tilted flat sheet resting on a wire polygon must touch at least one of the sharp wire corners.",
+        "examTrap": "An extreme point has at least $n - m$ zero components! If $x_B$ contains zero components (some basic variables are zero), the BFS is called <strong>degenerate</strong>, which can cause Simplex to stall."
+    },
+    {
+        "id": 1803,
+        "subject": "CMO",
+        "topicId": "18_Linear_Programming_Duality_and_Polyhedral_Geometry",
+        "topicTitle": "18 · LP Duality & Polyhedral Geometry",
+        "cardNumber": "03",
+        "category": "COMPLEMENTARITY",
+        "highlighterClass": "highlight-emerald",
+        "title": "LP Complementary Slackness Theorem",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Table diagram showing complementary pairings -->
+  <rect x="30" y="25" width="180" height="90" rx="6" fill="#f8fafc" stroke="#000000" stroke-width="1.8"/>
+  <line x1="30" y1="55" x2="210" y2="55" stroke="#000000" stroke-width="1.2"/>
+  <line x1="120" y1="25" x2="120" y2="115" stroke="#000000" stroke-width="1.2"/>
+  <text x="75" y="45" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">PRIMAL VARIABLE</text>
+  <text x="165" y="45" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">DUAL CONSTRAINT</text>
+  <text x="75" y="75" fill="#000000" font-size="9" font-family="serif" text-anchor="middle">x_j &gt; 0 (Strictly Positive)</text>
+  <text x="165" y="75" fill="#000000" font-size="9" font-family="serif" font-weight="bold" text-anchor="middle">a_jᵀ y = c_j (Tight / Binding)</text>
+  <text x="75" y="100" fill="#000000" font-size="9" font-family="serif" text-anchor="middle">a_jᵀ y &lt; c_j (Loose Slack)</text>
+  <text x="165" y="100" fill="#000000" font-size="9" font-family="serif" font-weight="bold" text-anchor="middle">x_j = 0 (Zero Activity)</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="serif" font-weight="bold" text-anchor="middle">x_j · (c_j - a_jᵀ y) = 0  ∀ j = 1, ..., n</text>
+</svg>""",
+        "drawingCaption": "LP Complementary Slackness: If a primal variable is active (x_j > 0), the corresponding dual constraint must be tight",
+        "coreTranslation": [
+            "<strong>Theorem:</strong> Let $x^*$ be primal feasible ($A x^* = b, x^* \\ge 0$) and $y^*$ be dual feasible ($A^T y^* \\le c$). Then $x^*$ and $y^*$ are <strong>mutually optimal</strong> if and only if:",
+            "$$x_j^* \\cdot (c_j - A_{\\cdot j}^T y^*) = 0 \\quad \\forall \\, j = 1, \\dots, n$$",
+            "<strong>Computational Power:</strong> If you know which primal variables are non-zero ($x_j^* > 0$), you instantly know which dual constraints are equalities ($A_{\\cdot j}^T y = c_j$)! This allows you to solve for the dual vector $y^*$ by solving a small linear system without running an optimization algorithm."
+        ],
+        "math": "$$x^*, y^* \\text{ optimal} \\iff x_j^* (c_j - A_{\\cdot j}^T y^*) = 0 \\; (\\forall j) \\quad \\text{and} \\quad y_i^* (A_{i \\cdot} x^* - b_i) = 0 \\; (\\forall i)$$",
+        "personalConnection": "Running an airline: if Boeing 777 flights are actively scheduled on a route ($x_j > 0$), ticket prices on that route must exactly equal the operating cost ($A^T y = c$). If operating cost exceeds revenue ($c_j > A^T y$), you schedule zero flights ($x_j = 0$).",
+        "examTrap": "Complementary slackness allows you to check whether a proposed solution $x$ is optimal in seconds! Form the dual equality system for $x_j > 0$, solve for $y$, and check if $A^T y \\le c$. If yes, $x$ is guaranteed optimal."
+    },
+    {
+        "id": 1804,
+        "subject": "CMO",
+        "topicId": "18_Linear_Programming_Duality_and_Polyhedral_Geometry",
+        "topicTitle": "18 · LP Duality & Polyhedral Geometry",
+        "cardNumber": "04",
+        "category": "THEOREMS OF THE ALTERNATIVE",
+        "highlighterClass": "highlight-violet",
+        "title": "Farkas’ Lemma: Linear Alternative Theorem",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <defs>
+    <marker id="arr-1804" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
+    </marker>
+  </defs>
+  <!-- Polyhedral cone spanned by columns of A -->
+  <polygon points="120,85 200,35 210,105" fill="#f8fafc" stroke="#000000" stroke-width="1.8"/>
+  <text x="180" y="70" fill="#000000" font-size="8.5" font-family="serif" font-style="italic">Cone(A) = {Ax : x ≥ 0}</text>
+  <!-- Vector b outside cone -->
+  <circle cx="120" cy="85" r="3.5" fill="#000000"/>
+  <line x1="120" y1="85" x2="60" y2="40" stroke="#000000" stroke-width="2" marker-end="url(#arr-1804)"/>
+  <text x="50" y="40" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold">b ∉ Cone(A)</text>
+  <!-- Separating vector y with Aᵀy ≥ 0 and bᵀy < 0 -->
+  <line x1="120" y1="85" x2="75" y2="125" stroke="#000000" stroke-width="1.8" stroke-dasharray="3,3" marker-end="url(#arr-1804)"/>
+  <text x="65" y="132" fill="#000000" font-size="8.5" font-family="serif" font-weight="bold">y (bᵀy &lt; 0)</text>
+  <text x="120" y="18" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">Farkas’ Lemma: Exactly ONE of the two systems has a solution</text>
+</svg>""",
+        "drawingCaption": "Farkas' Lemma: Either vector b lies inside the polyhedral cone spanned by A's columns, or a separating vector y exists",
+        "coreTranslation": [
+            "<strong>Farkas' Lemma (1902):</strong> Given matrix $A \\in \\mathbb{R}^{m \\times n}$ and vector $b \\in \\mathbb{R}^m$, <strong>EXACTLY ONE</strong> of the following two linear systems has a solution:",
+            "$$\\begin{array}{lll} \\text{System 1 (Primal):} & A x = b, \\quad x \\ge \\mathbf{0} \\\\ \\text{System 2 (Dual):} & A^T y \\ge \\mathbf{0}, \\quad b^T y < 0 \\end{array}$$",
+            "<strong>Geometric Interpretation:</strong> System 1 states that $b$ lies inside the finitely generated convex cone $\\operatorname{Cone}(A) = \\{A x : x \\ge 0\\}$. If $b \\notin \\operatorname{Cone}(A)$, the Hahn-Banach / Hyperplane separation theorem guarantees a vector $y$ making an acute angle with all columns of $A$ ($A^T y \\ge 0$) but an obtuse angle with $b$ ($b^T y < 0$)."
+        ],
+        "math": "$$\\left( \\exists x \\ge 0 : A x = b \\right) \\iff \\neg\\left( \\exists y : A^T y \\ge 0, \\; b^T y < 0 \\right) \\quad (\\text{Theorem of Alternative})$$",
+        "personalConnection": "Throwing darts inside a target quadrant: either your dart lands inside the sector spanned by the target pins ($A x = b, x \\ge 0$), or you can hold up a wooden divider ($y$) separating the dart from the entire target.",
+        "examTrap": "Farkas' lemma is the engine behind Strong Duality in Linear Programming! Proving that the primal has no feasible solution is mathematically equivalent to exhibiting a certificate vector $y$ solving System 2."
+    },
+    {
+        "id": 1805,
+        "subject": "CMO",
+        "topicId": "18_Linear_Programming_Duality_and_Polyhedral_Geometry",
+        "topicTitle": "18 · LP Duality & Polyhedral Geometry",
+        "cardNumber": "05",
+        "category": "LP ALGORITHMS",
+        "highlighterClass": "highlight-indigo",
+        "title": "Simplex Boundary vs. Interior Point Central Path",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Polyhedral boundary -->
+  <polygon points="40,110 70,40 160,30 200,90 145,120" fill="#f8fafc" stroke="#000000" stroke-width="1.8"/>
+  <!-- Simplex path along edges -->
+  <path d="M 40 110 L 70 40 L 160 30" fill="none" stroke="#000000" stroke-width="2.5"/>
+  <circle cx="40" cy="110" r="3.5" fill="#000000"/>
+  <circle cx="70" cy="40" r="3.5" fill="#000000"/>
+  <circle cx="160" cy="30" r="4.5" fill="#000000"/>
+  <text x="60" y="24" fill="#000000" font-size="8" font-family="sans-serif">Simplex Edge Steps</text>
+  <!-- Interior Point Central Path -->
+  <path d="M 120 110 Q 115 70 160 30" fill="none" stroke="#000000" stroke-width="1.8" stroke-dasharray="3,3"/>
+  <text x="105" y="75" fill="#000000" font-size="8" font-family="serif" font-style="italic">Central Path x(μ)</text>
+  <text x="160" y="18" fill="#000000" font-size="8.5" font-family="serif" font-weight="bold">x* (Optimum)</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Simplex: Exponential worst-case 𝒪(2ⁿ); Interior Point: Polynomial 𝒪(√n L)</text>
+</svg>""",
+        "drawingCaption": "Simplex vs Interior Point: Simplex traverses boundary edges; Interior Point algorithms follow smooth central path through interior",
+        "coreTranslation": [
+            "<strong>Dantzig's Simplex Method (1947):</strong> Walks from vertex to adjacent vertex along 1-dimensional edges of the polyhedron. Each pivot swaps one basic variable. Worst-case complexity is <strong>exponential $\\mathcal{O}(2^n)$</strong> (Klee-Minty cube), though average performance is linear $\\mathcal{O}(m)$.",
+            "<strong>Karmarkar's Interior Point Method (1984):</strong> Follows a smooth analytical curve called the <strong>Central Path $x(\\mu)$</strong> through the strict interior of the polyhedron, parameterized by barrier parameter $\\mu \\to 0$.",
+            "<strong>Complexity Revolution:</strong> Primal-Dual Interior Point methods achieve provably <strong>polynomial time $\\mathcal{O}(\\sqrt{n} L)$</strong> iterations, solving massive million-variable linear programs efficiently."
+        ],
+        "math": "$$x(\\mu) = \\arg\\min_{A x = b, x > 0} \\left\\{ c^T x - \\mu \\sum_{j=1}^n \\ln(x_j) \\right\\} \\xrightarrow{\\mu \\to 0} x^* \\quad (\\text{Central Path})$$",
+        "personalConnection": "Walking across a fenced city park: Simplex walks strictly along the perimeter sidewalks from corner to corner. Interior point algorithms cut straight across the grass along a smooth paved central boulevard.",
+        "examTrap": "Simplex yields an EXACT extreme point vertex with rational coordinates. Interior point methods yield an interior solution within $\\epsilon$ of optimality; a 'crossover' basis identification step is required to extract an exact basic solution."
+    },
+    {
+        "id": 1806,
+        "subject": "CMO",
+        "topicId": "18_Linear_Programming_Duality_and_Polyhedral_Geometry",
+        "topicTitle": "18 · LP Duality & Polyhedral Geometry",
+        "cardNumber": "06",
+        "category": "WORKED BENCHMARK",
+        "highlighterClass": "highlight-rose",
+        "title": "Worked Benchmark: Primal-Dual Graphical Equality",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Primal 2D region -->
+  <polygon points="35,110 35,60 85,35 105,110" fill="#f8fafc" stroke="#000000" stroke-width="1.5"/>
+  <circle cx="85" cy="35" r="4" fill="#000000"/>
+  <text x="85" y="24" fill="#000000" font-size="8.5" font-family="serif" font-weight="bold">x* = (2, 3)</text>
+  <text x="65" y="80" fill="#000000" font-size="8" font-family="serif">Primal 𝒫</text>
+  <text x="65" y="125" fill="#000000" font-size="8.5" font-family="serif">z* = 3(2) + 2(3) = 12</text>
+  <!-- Dual 2D region -->
+  <polygon points="145,110 145,45 190,80 190,110" fill="#f1f5f9" stroke="#000000" stroke-width="1.5"/>
+  <circle cx="145" cy="45" r="4" fill="#000000"/>
+  <text x="145" y="35" fill="#000000" font-size="8.5" font-family="serif" font-weight="bold">y* = (1, 1)</text>
+  <text x="165" y="80" fill="#000000" font-size="8" font-family="serif">Dual 𝒟</text>
+  <text x="165" y="125" fill="#000000" font-size="8.5" font-family="serif">w* = 4(1) + 8(1) = 12</text>
+  <text x="120" y="138" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">Primal Max = Dual Min = 12 (Zero Duality Gap)</text>
+</svg>""",
+        "drawingCaption": "Worked LP Solution: Primal max 3x₁ + 2x₂ = 12 at (2,3) matches dual min 4y₁ + 8y₂ = 12 at (1,1)",
+        "coreTranslation": [
+            "<strong>Primal LP:</strong> Maximize $z = 3 x_1 + 2 x_2$ subject to $x_1 + x_2 \\le 5, \\; 2 x_1 + x_2 \\le 7, \\; x_1, x_2 \\ge 0$. (Optimal at vertex $x^* = (2, 3)$, optimal value $z^* = 3(2) + 2(3) = 12$).",
+            "<strong>Canonical Dual LP:</strong> Minimize $w = 5 y_1 + 7 y_2$ subject to $y_1 + 2 y_2 \\ge 3, \\; y_1 + y_2 \\ge 2, \\; y_1, y_2 \\ge 0$.",
+            "<strong>Complementary Slackness Verification:</strong> Since $x_1^* = 2 > 0$ and $x_2^* = 3 > 0$, both dual constraints MUST be equalities: $y_1 + 2 y_2 = 3$ and $y_1 + y_2 = 2$.",
+            "Subtracting gives $y_2^* = 1$, and $y_1^* = 1$. Both are non-negative ($y^* \\ge 0$).",
+            "Dual objective: $w^* = 5(1) + 7(1) = 12$. Exactly matches primal value $z^* = 12$!"
+        ],
+        "math": "$$z^* = 3(2) + 2(3) = 12 = 5(1) + 7(1) = w^* \\quad (\\text{Complementary Slackness } x_j > 0 \\implies A_j^T y = c_j)$$",
+        "personalConnection": "Two accountants auditing the same warehouse inventory from opposite perspectives (stock count vs invoice ledger): both reach the exact same total valuation of \$12,000.",
+        "examTrap": "Remember that if the primal is a MAXIMIZATION problem, the dual is a MINIMIZATION problem, and primal constraints $\\le$ become dual variables $y \\ge 0$. Watch the direction of the inequalities!"
+    }
+]
+
+# =============================================================================
+# TOPIC 19: Penalty and Barrier Methods
+# =============================================================================
+topic19_cards = [
+    {
+        "id": 1901,
+        "subject": "CMO",
+        "topicId": "19_Penalty_and_Barrier_Methods",
+        "topicTitle": "19 · Penalty & Barrier Methods",
+        "cardNumber": "01",
+        "category": "EXTERIOR PENALTY",
+        "highlighterClass": "highlight-cyan",
+        "title": "Quadratic Exterior Penalty Function",
+        "textbookImg": "assets/luenberger_fig13_1.png",
+        "textbookRef": "Luenberger & Ye (4th ed), Sect. 13.1, Fig. 13.1 (p. 399)",
+        "drawingCaption": "Luenberger Fig. 13.1: Plot of penalty c P(x) outside [a, b] for penalty parameters c = 1, 10, 100",
+        "drawingSvg": "",
+        "coreTranslation": [
+            "<strong>Core Philosophy:</strong> Exterior penalty methods approximate a constrained problem by an <strong>unconstrained problem</strong> that places a severe penalty on infeasible points outside $\\Omega$:",
+            "$$q(c, x) = f(x) + c P(x), \\quad \\text{where } P(x) = \\frac{1}{2} \\sum_{i=1}^p h_i(x)^2 + \\frac{1}{2} \\sum_{j=1}^m [\\max(0, g_j(x))]^2$$",
+            "<strong>Convergence Mechanics:</strong> As penalty parameter $c_k \\to \\infty$, the sequence of unconstrained minimizers $x(c_k)$ approaches the boundary from the <strong>exterior (infeasible side)</strong>, converging to the exact constrained minimizer $x^*$."
+        ],
+        "math": "$$\\min_{x \\in \\mathbb{R}^n} q(c_k, x) = f(x) + \\frac{c_k}{2} \\sum_{i=1}^p h_i(x)^2 + \\frac{c_k}{2} \\sum_{j=1}^m [\\max(0, g_j(x))]^2 \\xrightarrow{c_k \\to \\infty} x^*$$",
+        "personalConnection": "An electric livestock fence: inside the pasture ($g \\le 0$), you graze freely without penalty. The moment you push against the fence into the forbidden zone, the shock penalty ($c [\\max(0, g)]^2$) grows violently, forcing you back.",
+        "examTrap": "The quadratic penalty function for inequalities $[\\max(0, g(x))]^2$ is only ONCE continuously differentiable ($C^1$)! Its second derivative has a discontinuous jump across the boundary $g(x) = 0$, which can impair pure Newton methods."
+    },
+    {
+        "id": 1902,
+        "subject": "CMO",
+        "topicId": "19_Penalty_and_Barrier_Methods",
+        "topicTitle": "19 · Penalty & Barrier Methods",
+        "cardNumber": "02",
+        "category": "INTERIOR BARRIER",
+        "highlighterClass": "highlight-amber",
+        "title": "Logarithmic & Inverse Barrier Methods",
+        "textbookImg": "assets/luenberger_fig13_3.png",
+        "textbookRef": "Luenberger & Ye (4th ed), Sect. 13.2, Fig. 13.3 (p. 402)",
+        "drawingCaption": "Luenberger Fig. 13.3: Barrier function (1/c) B(x) erecting infinite potential energy walls at boundaries a and b",
+        "drawingSvg": "",
+        "coreTranslation": [
+            "<strong>Interior Point Barrier:</strong> Unlike penalty methods (which approach from outside), barrier methods generate iterates strictly from the <strong>interior</strong> of the feasible set $\\mathcal{S}^\\circ = \\{x : g_j(x) < 0\\}$:",
+            "$$r(c, x) = f(x) + \\frac{1}{c} B(x), \\quad B(x) = -\\sum_{j=1}^m \\ln(-g_j(x)) \\quad (\\text{or } \\sum \\frac{-1}{g_j(x)})$$",
+            "<strong>Infinite Boundary Repulsion:</strong> As $x$ approaches the boundary ($g_j(x) \\to 0^-$), $\\ln(-g_j(x)) \\to -\\infty$, creating an <strong>infinite vertical energy wall</strong> that physically prevents iterates from ever becoming infeasible. As $c \\to \\infty$, the unconstrained minimizers converge to $x^*$ from the inside!"
+        ],
+        "math": "$$B(x) = -\\sum_{j=1}^m \\ln(-g_j(x)) \\implies \\lim_{g_j(x) \\to 0} B(x) = +\\infty, \\quad x(c) = \\arg\\min_{x \\in \\mathcal{S}^\\circ} \\left\\{ f(x) + \\frac{1}{c} B(x) \\right\\}$$",
+        "personalConnection": "Two like magnetic poles pushing apart: as your hand approaches the boundary wall, the repelling magnetic force shoots up to infinity, making it physically impossible to touch the boundary.",
+        "examTrap": "Barrier methods CANNOT handle equality constraints $h_i(x) = 0$! Because equality constraints have no strict interior ($\\{x : h_i(x) < 0\\}$ is empty). Equalities must be handled via penalties, projection, or Lagrange multipliers."
+    },
+    {
+        "id": 1903,
+        "subject": "CMO",
+        "topicId": "19_Penalty_and_Barrier_Methods",
+        "topicTitle": "19 · Penalty & Barrier Methods",
+        "cardNumber": "03",
+        "category": "ILL-CONDITIONING",
+        "highlighterClass": "highlight-emerald",
+        "title": "Hessian Ill-Conditioning in Penalty Methods",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Ultra-elongated elliptical valley -->
+  <ellipse cx="120" cy="75" rx="90" ry="15" fill="#f8fafc" stroke="#000000" stroke-width="1.8"/>
+  <ellipse cx="120" cy="75" rx="55" ry="8" fill="#f1f5f9" stroke="#000000" stroke-width="1.2"/>
+  <circle cx="120" cy="75" r="3.5" fill="#000000"/>
+  <text x="120" y="78" fill="#000000" font-size="8" font-family="serif" font-style="italic">x*</text>
+  <!-- Zig-zag trajectory inside the canyon -->
+  <path d="M 40 68 L 50 82 L 65 70 L 80 80 L 100 73 L 120 75" fill="none" stroke="#000000" stroke-width="2"/>
+  <text x="120" y="20" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">Condition Number: κ(∇² q(c, x)) → ∞  like 𝒪(c)</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Hessian eigenvalues split: p eigenvalues ~ 𝒪(c), while (n-p) remain ~ 𝒪(1)</text>
+</svg>""",
+        "drawingCaption": "Ill-Conditioning: As penalty parameter c → ∞, the Hessian forms an ultra-steep ravine where gradient descent slows to a crawl",
+        "coreTranslation": [
+            "<strong>The Fundamental Flaw of Penalty Methods:</strong> As $c \\to \\infty$, the Hessian matrix of the unconstrained subproblem $\\nabla^2 q(c, x)$ becomes <strong>infinitely ill-conditioned</strong>:",
+            "$$\\nabla^2 q(c, x) = \\nabla^2 f(x) + c \\sum_{i=1}^p \\nabla h_i(x) \\nabla h_i(x)^T + c \\sum_{i=1}^p h_i(x) \\nabla^2 h_i(x)$$",
+            "<strong>Eigenvalue Splitting:</strong> Exactly $p$ eigenvalues (corresponding to the normal space to the constraints) explode like $\\mathcal{O}(c)$, while the remaining $n - p$ eigenvalues (tangent subspace) remain $\\mathcal{O}(1)$.",
+            "<strong>Algorithmic Ruin:</strong> Condition number $\\kappa = \\lambda_{\\max}/\\lambda_{\\min} \\sim \\mathcal{O}(c) \\to \\infty$. Gradient descent undergoes catastrophic zig-zagging, and Newton linear systems suffer severe roundoff errors."
+        ],
+        "math": "$$\\kappa(\\nabla^2 q(c, x)) = \\frac{\\lambda_{\\max}}{\\lambda_{\\min}} \\approx \\mathcal{O}(c) \\xrightarrow{c \\to \\infty} \\infty \\implies \\text{Catastrophic Numerical Instability}$$",
+        "personalConnection": "Driving a car through an impossibly narrow, near-vertical canyon: the canyon walls rise vertically like skyscrapers ($c \\to \\infty$). The slightest steering twitch bounces you violently between the walls without moving forward.",
+        "examTrap": "Do NOT increase penalty parameter $c$ too fast! Classical penalty codes multiply $c_{k+1} = 10 c_k$ slowly and warm-start each minimization from the previous iterate $x_k$ to survive the severe ill-conditioning."
+    },
+    {
+        "id": 1904,
+        "subject": "CMO",
+        "topicId": "19_Penalty_and_Barrier_Methods",
+        "topicTitle": "19 · Penalty & Barrier Methods",
+        "cardNumber": "04",
+        "category": "MULTIPLIER RECOVERY",
+        "highlighterClass": "highlight-violet",
+        "title": "Lagrange Multiplier Recovery from Penalty Iterates",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <defs>
+    <marker id="arr-1904" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
+    </marker>
+  </defs>
+  <!-- Boundary constraint line -->
+  <line x1="30" y1="75" x2="210" y2="75" stroke="#000000" stroke-width="2"/>
+  <text x="215" y="78" fill="#000000" font-size="8.5" font-family="serif">h(x)=0</text>
+  <!-- External iterate x_k -->
+  <circle cx="120" cy="100" r="4" fill="#000000"/>
+  <text x="120" y="115" fill="#000000" font-size="8.5" font-family="serif" font-style="italic">x(c_k)</text>
+  <!-- Restoring penalty force vector c_k h(x_k) ∇h -->
+  <line x1="120" y1="100" x2="120" y2="55" stroke="#000000" stroke-width="2" marker-end="url(#arr-1904)"/>
+  <text x="130" y="65" fill="#000000" font-size="8.5" font-family="serif" font-style="italic">λ_k = c_k h(x_k)</text>
+  <!-- Opposing gradient vector -∇f -->
+  <line x1="120" y1="100" x2="120" y2="135" stroke="#000000" stroke-width="2" marker-end="url(#arr-1904)"/>
+  <text x="130" y="132" fill="#000000" font-size="8.5" font-family="serif" font-style="italic">-∇f(x_k)</text>
+  <text x="120" y="20" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">Multiplier Convergence: c_k h(x_k) → λ*  as c_k → ∞</text>
+</svg>""",
+        "drawingCaption": "Multiplier Recovery: The spring tension force c_k h(x_k) exactly balances -∇f, converging to KKT multiplier λ*",
+        "coreTranslation": [
+            "<strong>Surprise Gift of Penalty Methods:</strong> Even though $h(x(c_k)) \\ne 0$, the penalty force vector automatically estimates the <strong>exact KKT Lagrange multipliers</strong>!",
+            "<strong>Stationarity Balance:</strong> At the unconstrained minimum $x_k$ of $q(c_k, x)$:",
+            "$$\\nabla q(c_k, x_k) = \\nabla f(x_k) + c_k \\sum_{i=1}^p h_i(x_k) \\nabla h_i(x_k) = 0$$",
+            "Rearranging: $\\nabla f(x_k) + \\sum_{i=1}^p [c_k h_i(x_k)] \\nabla h_i(x_k) = 0$. Compare this directly with the KKT condition $\\nabla f + \\sum \\lambda_i^* \\nabla h_i = 0$!",
+            "<strong>The Multiplier Estimate:</strong> $\\lambda_i^{(k)} = c_k h_i(x_k) \\to \\lambda_i^*$. For inequalities, $\\mu_j^{(k)} = c_k \\max(0, g_j(x_k)) \\to \\mu_j^*$."
+        ],
+        "math": "$$\\lambda_i^{(k)} = c_k h_i(x(c_k)) \\xrightarrow{c_k \\to \\infty} \\lambda_i^*, \\quad \\mu_j^{(k)} = c_k \\max(0, g_j(x(c_k))) \\xrightarrow{c_k \\to \\infty} \\mu_j^*$$",
+        "personalConnection": "Measuring weight on a bathroom spring scale: your foot displaces the spring slightly ($h(x) = \\Delta x$). The spring stiffness $c$ times the displacement ($c \\cdot \\Delta x$) gives the exact upward normal contact force ($\lambda^*$).",
+        "examTrap": "Notice that because $\\lambda_k \\to \\lambda^*$ (a finite number) while $c_k \\to \\infty$, the constraint violation must decay like $\\mathcal{O}(1/c_k)$: $h_i(x_k) \\approx \\frac{\\lambda_i^*}{c_k}$. This proves the constraint error is inversely proportional to $c$."
+    },
+    {
+        "id": 1905,
+        "subject": "CMO",
+        "topicId": "19_Penalty_and_Barrier_Methods",
+        "topicTitle": "19 · Penalty & Barrier Methods",
+        "cardNumber": "05",
+        "category": "AUGMENTED LAGRANGIAN",
+        "highlighterClass": "highlight-indigo",
+        "title": "Augmented Lagrangian (Method of Multipliers)",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Augmented parabolic bowl touching constraint surface at finite c -->
+  <path d="M 40 40 Q 120 120 200 40" fill="none" stroke="#000000" stroke-width="2.2"/>
+  <circle cx="120" cy="100" r="4" fill="#000000"/>
+  <text x="120" y="115" fill="#000000" font-size="8.5" font-family="serif" font-style="italic" font-weight="bold" text-anchor="middle">x* (Exact Minimum at FINITE c*!)</text>
+  <!-- Multiplier shift term λᵀ h(x) balances slope -->
+  <line x1="60" y1="75" x2="180" y2="75" stroke="#000000" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <text x="120" y="20" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">Augmented Lagrangian: ℒ_c(x, λ) = f(x) + λᵀ h(x) + c/2 ||h(x)||²</text>
+  <text x="120" y="136" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Eliminates ill-conditioning: Converges to exact solution at FINITE penalty c &lt; ∞</text>
+</svg>""",
+        "drawingCaption": "Augmented Lagrangian: Adding the linear multiplier term λ^T h shifts the minimum to x* without needing c → ∞",
+        "coreTranslation": [
+            "<strong>The Breakthrough (Hestenes & Powell, 1969):</strong> Combines the standard Lagrangian with the quadratic penalty function:",
+            "$$\\mathcal{L}_c(x, \\lambda) = f(x) + \\lambda^T h(x) + \\frac{c}{2} \\|h(x)\\|^2$$",
+            "<strong>Why this Solves Ill-Conditioning:</strong> In ordinary penalty methods, $c \\to \\infty$ was required because the penalty had to do all the work of balancing $-\\nabla f$.",
+            "By explicitly including the multiplier term $\\lambda^T h(x)$, the penalty only needs to provide local convexification! <strong>$x^*$ is an unconstrained local minimum of $\\mathcal{L}_c(x, \\lambda^*)$ at a FINITE threshold $c^* < \\infty$</strong>, completely eliminating ill-conditioning!"
+        ],
+        "math": "$$\\lambda_{k+1} = \\lambda_k + c_k h(x_k) \\quad (\\text{First-Order Dual Multiplier Update without Matrix Inverses})$$",
+        "personalConnection": "Leveling a wobbly table: ordinary penalty is jamming a stack of 50 napkins under the leg until it stops wobbling ($c \\to \\infty$). Augmented Lagrangian is adjusting the threaded screw leg ($\lambda$) so the table sits perfectly flat with zero napkins.",
+        "examTrap": "The multiplier update is $\\lambda_{k+1} = \\lambda_k + c_k h(x_k)$ (NOT minus!). Because $h(x) = \\nabla_\\lambda \\mathcal{L}_c$ is the exact gradient of the dual function with respect to $\\lambda$, this update is pure gradient ascent on the dual."
+    },
+    {
+        "id": 1906,
+        "subject": "CMO",
+        "topicId": "19_Penalty_and_Barrier_Methods",
+        "topicTitle": "19 · Penalty & Barrier Methods",
+        "cardNumber": "06",
+        "category": "WORKED BENCHMARK",
+        "highlighterClass": "highlight-rose",
+        "title": "Worked Benchmark: Augmented Lagrangian Sequence",
+        "drawingSvg": """<svg viewBox="0 0 240 145" class="w-full h-full">
+  <!-- Constraint line x₁ + x₂ = 2 -->
+  <line x1="40" y1="40" x2="190" y2="120" stroke="#000000" stroke-width="2"/>
+  <text x="195" y="125" fill="#000000" font-size="8.5" font-family="serif">x₁ + x₂ = 2</text>
+  <!-- Iterate progression: x^(0) -> x^(1) -> x* -->
+  <circle cx="70" cy="56" r="3.5" fill="#000000"/>
+  <text x="70" y="46" fill="#000000" font-size="8" font-family="serif">x^(0)=(0.67, 0.67)</text>
+  <circle cx="100" cy="72" r="3.5" fill="#000000"/>
+  <text x="100" y="62" fill="#000000" font-size="8" font-family="serif">x^(1)=(0.93, 0.93)</text>
+  <circle cx="115" cy="80" r="4.5" fill="#000000"/>
+  <text x="115" y="96" fill="#000000" font-size="8.5" font-family="serif" font-weight="bold">x*=(1, 1)</text>
+  <text x="120" y="20" fill="#000000" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">Min x₁² + x₂² s.t. x₁ + x₂ = 2 with c = 2.0</text>
+</svg>""",
+        "drawingCaption": "Worked Benchmark: Even with modest fixed penalty c = 2, multiplier updates drive x_k to (1,1) exponentially fast",
+        "coreTranslation": [
+            "<strong>Problem:</strong> Minimize $f(x) = x_1^2 + x_2^2$ subject to $h(x) = x_1 + x_2 - 2 = 0$. (Exact solution is $x^* = (1, 1), \\lambda^* = -2$).",
+            "<strong>Augmented Lagrangian:</strong> $\\mathcal{L}_c(x, \\lambda) = x_1^2 + x_2^2 + \\lambda (x_1 + x_2 - 2) + \\frac{c}{2} (x_1 + x_2 - 2)^2$. Fix $c = 2.0$, start $\\lambda_0 = 0$.",
+            "<strong>Iteration 1:</strong> $\\nabla_x \\mathcal{L}_2(x, 0) = [2x_1 + 2(x_1+x_2-2), \\; 2x_2 + 2(x_1+x_2-2)]^T = 0 \\implies x_1^{(0)} = x_2^{(0)} = 2/3 \\approx 0.67$.",
+            "Constraint violation: $h(x^{(0)}) = 2/3 + 2/3 - 2 = -2/3$.",
+            "<strong>Multiplier Update:</strong> $\\lambda_1 = \\lambda_0 + c h(x^{(0)}) = 0 + 2(-2/3) = -4/3 = -1.33$.",
+            "<strong>Iteration 2:</strong> Minimizing $\\mathcal{L}_2(x, -4/3)$ yields $x^{(1)} = (0.93, 0.93)$ and $\\lambda_2 = -1.85$. Multipliers converge geometrically to $\\lambda^* = -2.0$ without ever blowing up $c$!"
+        ],
+        "math": "$$\\lambda_0 = 0 \\implies x^{(0)} = \\left(\\frac{2}{3}, \\frac{2}{3}\\right) \\xrightarrow{\\lambda_1 = -\\frac{4}{3}} x^{(1)} = \\left(\\frac{14}{15}, \\frac{14}{15}\\right) \\to x^* = (1, 1), \\; \\lambda^* = -2$$",
+        "personalConnection": "Tuning a guitar string: instead of tightening the peg harder and harder until the string snaps ($c \\to \\infty$), you turn the fine-tuning screw ($\lambda$) by small corrective increments until the note is perfectly in pitch.",
+        "examTrap": "Compare with standard penalty: to get within $10^{-2}$ accuracy with pure penalty requires $c = 200$ (causing severe ill-conditioning). Augmented Lagrangian achieves the exact same accuracy with $c = 2$ in just 3 iterations!"
+    }
+]
+
+# Write Topic 18 and 19 cards
+with open('/Users/senso/Projects/photographic-memory-cards/scripts/cmo_topic18.json', 'w') as f:
+    json.dump(topic18_cards, f, indent=2)
+
+with open('/Users/senso/Projects/photographic-memory-cards/scripts/cmo_topic19.json', 'w') as f:
+    json.dump(topic19_cards, f, indent=2)
+
+print(f"Generated {len(topic18_cards)} cards for Topic 18")
+print(f"Generated {len(topic19_cards)} cards for Topic 19")

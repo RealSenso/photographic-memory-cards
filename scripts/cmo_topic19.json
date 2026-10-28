@@ -1,0 +1,133 @@
+[
+  {
+    "id": 1901,
+    "subject": "CMO",
+    "topicId": "19_Penalty_and_Barrier_Methods",
+    "topicTitle": "19 \u00b7 Penalty & Barrier Methods",
+    "cardNumber": "01",
+    "category": "EXTERIOR PENALTY",
+    "highlighterClass": "highlight-cyan",
+    "title": "Quadratic Exterior Penalty Function",
+    "textbookImg": "assets/luenberger_fig13_1.png",
+    "textbookRef": "Luenberger & Ye (4th ed), Sect. 13.1, Fig. 13.1 (p. 399)",
+    "drawingCaption": "Luenberger Fig. 13.1: Plot of penalty c P(x) outside [a, b] for penalty parameters c = 1, 10, 100",
+    "drawingSvg": "",
+    "coreTranslation": [
+      "<strong>Core Philosophy:</strong> Exterior penalty methods approximate a constrained problem by an <strong>unconstrained problem</strong> that places a severe penalty on infeasible points outside $\\Omega$:",
+      "$$q(c, x) = f(x) + c P(x), \\quad \\text{where } P(x) = \\frac{1}{2} \\sum_{i=1}^p h_i(x)^2 + \\frac{1}{2} \\sum_{j=1}^m [\\max(0, g_j(x))]^2$$",
+      "<strong>Convergence Mechanics:</strong> As penalty parameter $c_k \\to \\infty$, the sequence of unconstrained minimizers $x(c_k)$ approaches the boundary from the <strong>exterior (infeasible side)</strong>, converging to the exact constrained minimizer $x^*$."
+    ],
+    "math": "$$\\min_{x \\in \\mathbb{R}^n} q(c_k, x) = f(x) + \\frac{c_k}{2} \\sum_{i=1}^p h_i(x)^2 + \\frac{c_k}{2} \\sum_{j=1}^m [\\max(0, g_j(x))]^2 \\xrightarrow{c_k \\to \\infty} x^*$$",
+    "personalConnection": "An electric livestock fence: inside the pasture ($g \\le 0$), you graze freely without penalty. The moment you push against the fence into the forbidden zone, the shock penalty ($c [\\max(0, g)]^2$) grows violently, forcing you back.",
+    "examTrap": "The quadratic penalty function for inequalities $[\\max(0, g(x))]^2$ is only ONCE continuously differentiable ($C^1$)! Its second derivative has a discontinuous jump across the boundary $g(x) = 0$, which can impair pure Newton methods."
+  },
+  {
+    "id": 1902,
+    "subject": "CMO",
+    "topicId": "19_Penalty_and_Barrier_Methods",
+    "topicTitle": "19 \u00b7 Penalty & Barrier Methods",
+    "cardNumber": "02",
+    "category": "INTERIOR BARRIER",
+    "highlighterClass": "highlight-amber",
+    "title": "Logarithmic & Inverse Barrier Methods",
+    "textbookImg": "assets/luenberger_fig13_3.png",
+    "textbookRef": "Luenberger & Ye (4th ed), Sect. 13.2, Fig. 13.3 (p. 402)",
+    "drawingCaption": "Luenberger Fig. 13.3: Barrier function (1/c) B(x) erecting infinite potential energy walls at boundaries a and b",
+    "drawingSvg": "",
+    "coreTranslation": [
+      "<strong>Interior Point Barrier:</strong> Unlike penalty methods (which approach from outside), barrier methods generate iterates strictly from the <strong>interior</strong> of the feasible set $\\mathcal{S}^\\circ = \\{x : g_j(x) < 0\\}$:",
+      "$$r(c, x) = f(x) + \\frac{1}{c} B(x), \\quad B(x) = -\\sum_{j=1}^m \\ln(-g_j(x)) \\quad (\\text{or } \\sum \\frac{-1}{g_j(x)})$$",
+      "<strong>Infinite Boundary Repulsion:</strong> As $x$ approaches the boundary ($g_j(x) \\to 0^-$), $\\ln(-g_j(x)) \\to -\\infty$, creating an <strong>infinite vertical energy wall</strong> that physically prevents iterates from ever becoming infeasible. As $c \\to \\infty$, the unconstrained minimizers converge to $x^*$ from the inside!"
+    ],
+    "math": "$$B(x) = -\\sum_{j=1}^m \\ln(-g_j(x)) \\implies \\lim_{g_j(x) \\to 0} B(x) = +\\infty, \\quad x(c) = \\arg\\min_{x \\in \\mathcal{S}^\\circ} \\left\\{ f(x) + \\frac{1}{c} B(x) \\right\\}$$",
+    "personalConnection": "Two like magnetic poles pushing apart: as your hand approaches the boundary wall, the repelling magnetic force shoots up to infinity, making it physically impossible to touch the boundary.",
+    "examTrap": "Barrier methods CANNOT handle equality constraints $h_i(x) = 0$! Because equality constraints have no strict interior ($\\{x : h_i(x) < 0\\}$ is empty). Equalities must be handled via penalties, projection, or Lagrange multipliers."
+  },
+  {
+    "id": 1903,
+    "subject": "CMO",
+    "topicId": "19_Penalty_and_Barrier_Methods",
+    "topicTitle": "19 \u00b7 Penalty & Barrier Methods",
+    "cardNumber": "03",
+    "category": "ILL-CONDITIONING",
+    "highlighterClass": "highlight-emerald",
+    "title": "Hessian Ill-Conditioning in Penalty Methods",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <!-- Ultra-elongated elliptical valley -->\n  <ellipse cx=\"120\" cy=\"75\" rx=\"90\" ry=\"15\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.8\"/>\n  <ellipse cx=\"120\" cy=\"75\" rx=\"55\" ry=\"8\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.2\"/>\n  <circle cx=\"120\" cy=\"75\" r=\"3.5\" fill=\"#000000\"/>\n  <text x=\"120\" y=\"78\" fill=\"#000000\" font-size=\"8\" font-family=\"serif\" font-style=\"italic\">x*</text>\n  <!-- Zig-zag trajectory inside the canyon -->\n  <path d=\"M 40 68 L 50 82 L 65 70 L 80 80 L 100 73 L 120 75\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"9\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Condition Number: \u03ba(\u2207\u00b2 q(c, x)) \u2192 \u221e  like \ud835\udcaa(c)</text>\n  <text x=\"120\" y=\"136\" fill=\"#000000\" font-size=\"8.5\" font-family=\"sans-serif\" text-anchor=\"middle\">Hessian eigenvalues split: p eigenvalues ~ \ud835\udcaa(c), while (n-p) remain ~ \ud835\udcaa(1)</text>\n</svg>",
+    "drawingCaption": "Ill-Conditioning: As penalty parameter c \u2192 \u221e, the Hessian forms an ultra-steep ravine where gradient descent slows to a crawl",
+    "coreTranslation": [
+      "<strong>The Fundamental Flaw of Penalty Methods:</strong> As $c \\to \\infty$, the Hessian matrix of the unconstrained subproblem $\\nabla^2 q(c, x)$ becomes <strong>infinitely ill-conditioned</strong>:",
+      "$$\\nabla^2 q(c, x) = \\nabla^2 f(x) + c \\sum_{i=1}^p \\nabla h_i(x) \\nabla h_i(x)^T + c \\sum_{i=1}^p h_i(x) \\nabla^2 h_i(x)$$",
+      "<strong>Eigenvalue Splitting:</strong> Exactly $p$ eigenvalues (corresponding to the normal space to the constraints) explode like $\\mathcal{O}(c)$, while the remaining $n - p$ eigenvalues (tangent subspace) remain $\\mathcal{O}(1)$.",
+      "<strong>Algorithmic Ruin:</strong> Condition number $\\kappa = \\lambda_{\\max}/\\lambda_{\\min} \\sim \\mathcal{O}(c) \\to \\infty$. Gradient descent undergoes catastrophic zig-zagging, and Newton linear systems suffer severe roundoff errors."
+    ],
+    "math": "$$\\kappa(\\nabla^2 q(c, x)) = \\frac{\\lambda_{\\max}}{\\lambda_{\\min}} \\approx \\mathcal{O}(c) \\xrightarrow{c \\to \\infty} \\infty \\implies \\text{Catastrophic Numerical Instability}$$",
+    "personalConnection": "Driving a car through an impossibly narrow, near-vertical canyon: the canyon walls rise vertically like skyscrapers ($c \\to \\infty$). The slightest steering twitch bounces you violently between the walls without moving forward.",
+    "examTrap": "Do NOT increase penalty parameter $c$ too fast! Classical penalty codes multiply $c_{k+1} = 10 c_k$ slowly and warm-start each minimization from the previous iterate $x_k$ to survive the severe ill-conditioning."
+  },
+  {
+    "id": 1904,
+    "subject": "CMO",
+    "topicId": "19_Penalty_and_Barrier_Methods",
+    "topicTitle": "19 \u00b7 Penalty & Barrier Methods",
+    "cardNumber": "04",
+    "category": "MULTIPLIER RECOVERY",
+    "highlighterClass": "highlight-violet",
+    "title": "Lagrange Multiplier Recovery from Penalty Iterates",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <defs>\n    <marker id=\"arr-1904\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/>\n    </marker>\n  </defs>\n  <!-- Boundary constraint line -->\n  <line x1=\"30\" y1=\"75\" x2=\"210\" y2=\"75\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <text x=\"215\" y=\"78\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\">h(x)=0</text>\n  <!-- External iterate x_k -->\n  <circle cx=\"120\" cy=\"100\" r=\"4\" fill=\"#000000\"/>\n  <text x=\"120\" y=\"115\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">x(c_k)</text>\n  <!-- Restoring penalty force vector c_k h(x_k) \u2207h -->\n  <line x1=\"120\" y1=\"100\" x2=\"120\" y2=\"55\" stroke=\"#000000\" stroke-width=\"2\" marker-end=\"url(#arr-1904)\"/>\n  <text x=\"130\" y=\"65\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">\u03bb_k = c_k h(x_k)</text>\n  <!-- Opposing gradient vector -\u2207f -->\n  <line x1=\"120\" y1=\"100\" x2=\"120\" y2=\"135\" stroke=\"#000000\" stroke-width=\"2\" marker-end=\"url(#arr-1904)\"/>\n  <text x=\"130\" y=\"132\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">-\u2207f(x_k)</text>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"9\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Multiplier Convergence: c_k h(x_k) \u2192 \u03bb*  as c_k \u2192 \u221e</text>\n</svg>",
+    "drawingCaption": "Multiplier Recovery: The spring tension force c_k h(x_k) exactly balances -\u2207f, converging to KKT multiplier \u03bb*",
+    "coreTranslation": [
+      "<strong>Surprise Gift of Penalty Methods:</strong> Even though $h(x(c_k)) \\ne 0$, the penalty force vector automatically estimates the <strong>exact KKT Lagrange multipliers</strong>!",
+      "<strong>Stationarity Balance:</strong> At the unconstrained minimum $x_k$ of $q(c_k, x)$:",
+      "$$\\nabla q(c_k, x_k) = \\nabla f(x_k) + c_k \\sum_{i=1}^p h_i(x_k) \\nabla h_i(x_k) = 0$$",
+      "Rearranging: $\\nabla f(x_k) + \\sum_{i=1}^p [c_k h_i(x_k)] \\nabla h_i(x_k) = 0$. Compare this directly with the KKT condition $\\nabla f + \\sum \\lambda_i^* \\nabla h_i = 0$!",
+      "<strong>The Multiplier Estimate:</strong> $\\lambda_i^{(k)} = c_k h_i(x_k) \\to \\lambda_i^*$. For inequalities, $\\mu_j^{(k)} = c_k \\max(0, g_j(x_k)) \\to \\mu_j^*$."
+    ],
+    "math": "$$\\lambda_i^{(k)} = c_k h_i(x(c_k)) \\xrightarrow{c_k \\to \\infty} \\lambda_i^*, \\quad \\mu_j^{(k)} = c_k \\max(0, g_j(x(c_k))) \\xrightarrow{c_k \\to \\infty} \\mu_j^*$$",
+    "personalConnection": "Measuring weight on a bathroom spring scale: your foot displaces the spring slightly ($h(x) = \\Delta x$). The spring stiffness $c$ times the displacement ($c \\cdot \\Delta x$) gives the exact upward normal contact force ($\\lambda^*$).",
+    "examTrap": "Notice that because $\\lambda_k \\to \\lambda^*$ (a finite number) while $c_k \\to \\infty$, the constraint violation must decay like $\\mathcal{O}(1/c_k)$: $h_i(x_k) \\approx \\frac{\\lambda_i^*}{c_k}$. This proves the constraint error is inversely proportional to $c$."
+  },
+  {
+    "id": 1905,
+    "subject": "CMO",
+    "topicId": "19_Penalty_and_Barrier_Methods",
+    "topicTitle": "19 \u00b7 Penalty & Barrier Methods",
+    "cardNumber": "05",
+    "category": "AUGMENTED LAGRANGIAN",
+    "highlighterClass": "highlight-indigo",
+    "title": "Augmented Lagrangian (Method of Multipliers)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <!-- Augmented parabolic bowl touching constraint surface at finite c -->\n  <path d=\"M 40 40 Q 120 120 200 40\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.2\"/>\n  <circle cx=\"120\" cy=\"100\" r=\"4\" fill=\"#000000\"/>\n  <text x=\"120\" y=\"115\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"bold\" text-anchor=\"middle\">x* (Exact Minimum at FINITE c*!)</text>\n  <!-- Multiplier shift term \u03bb\u1d40 h(x) balances slope -->\n  <line x1=\"60\" y1=\"75\" x2=\"180\" y2=\"75\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3,3\"/>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"9\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Augmented Lagrangian: \u2112_c(x, \u03bb) = f(x) + \u03bb\u1d40 h(x) + c/2 ||h(x)||\u00b2</text>\n  <text x=\"120\" y=\"136\" fill=\"#000000\" font-size=\"8.5\" font-family=\"sans-serif\" text-anchor=\"middle\">Eliminates ill-conditioning: Converges to exact solution at FINITE penalty c &lt; \u221e</text>\n</svg>",
+    "drawingCaption": "Augmented Lagrangian: Adding the linear multiplier term \u03bb^T h shifts the minimum to x* without needing c \u2192 \u221e",
+    "coreTranslation": [
+      "<strong>The Breakthrough (Hestenes & Powell, 1969):</strong> Combines the standard Lagrangian with the quadratic penalty function:",
+      "$$\\mathcal{L}_c(x, \\lambda) = f(x) + \\lambda^T h(x) + \\frac{c}{2} \\|h(x)\\|^2$$",
+      "<strong>Why this Solves Ill-Conditioning:</strong> In ordinary penalty methods, $c \\to \\infty$ was required because the penalty had to do all the work of balancing $-\\nabla f$.",
+      "By explicitly including the multiplier term $\\lambda^T h(x)$, the penalty only needs to provide local convexification! <strong>$x^*$ is an unconstrained local minimum of $\\mathcal{L}_c(x, \\lambda^*)$ at a FINITE threshold $c^* < \\infty$</strong>, completely eliminating ill-conditioning!"
+    ],
+    "math": "$$\\lambda_{k+1} = \\lambda_k + c_k h(x_k) \\quad (\\text{First-Order Dual Multiplier Update without Matrix Inverses})$$",
+    "personalConnection": "Leveling a wobbly table: ordinary penalty is jamming a stack of 50 napkins under the leg until it stops wobbling ($c \\to \\infty$). Augmented Lagrangian is adjusting the threaded screw leg ($\\lambda$) so the table sits perfectly flat with zero napkins.",
+    "examTrap": "The multiplier update is $\\lambda_{k+1} = \\lambda_k + c_k h(x_k)$ (NOT minus!). Because $h(x) = \\nabla_\\lambda \\mathcal{L}_c$ is the exact gradient of the dual function with respect to $\\lambda$, this update is pure gradient ascent on the dual."
+  },
+  {
+    "id": 1906,
+    "subject": "CMO",
+    "topicId": "19_Penalty_and_Barrier_Methods",
+    "topicTitle": "19 \u00b7 Penalty & Barrier Methods",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-rose",
+    "title": "Worked Benchmark: Augmented Lagrangian Sequence",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <!-- Constraint line x\u2081 + x\u2082 = 2 -->\n  <line x1=\"40\" y1=\"40\" x2=\"190\" y2=\"120\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <text x=\"195\" y=\"125\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\">x\u2081 + x\u2082 = 2</text>\n  <!-- Iterate progression: x^(0) -> x^(1) -> x* -->\n  <circle cx=\"70\" cy=\"56\" r=\"3.5\" fill=\"#000000\"/>\n  <text x=\"70\" y=\"46\" fill=\"#000000\" font-size=\"8\" font-family=\"serif\">x^(0)=(0.67, 0.67)</text>\n  <circle cx=\"100\" cy=\"72\" r=\"3.5\" fill=\"#000000\"/>\n  <text x=\"100\" y=\"62\" fill=\"#000000\" font-size=\"8\" font-family=\"serif\">x^(1)=(0.93, 0.93)</text>\n  <circle cx=\"115\" cy=\"80\" r=\"4.5\" fill=\"#000000\"/>\n  <text x=\"115\" y=\"96\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-weight=\"bold\">x*=(1, 1)</text>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"8.5\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Min x\u2081\u00b2 + x\u2082\u00b2 s.t. x\u2081 + x\u2082 = 2 with c = 2.0</text>\n</svg>",
+    "drawingCaption": "Worked Benchmark: Even with modest fixed penalty c = 2, multiplier updates drive x_k to (1,1) exponentially fast",
+    "coreTranslation": [
+      "<strong>Problem:</strong> Minimize $f(x) = x_1^2 + x_2^2$ subject to $h(x) = x_1 + x_2 - 2 = 0$. (Exact solution is $x^* = (1, 1), \\lambda^* = -2$).",
+      "<strong>Augmented Lagrangian:</strong> $\\mathcal{L}_c(x, \\lambda) = x_1^2 + x_2^2 + \\lambda (x_1 + x_2 - 2) + \\frac{c}{2} (x_1 + x_2 - 2)^2$. Fix $c = 2.0$, start $\\lambda_0 = 0$.",
+      "<strong>Iteration 1:</strong> $\\nabla_x \\mathcal{L}_2(x, 0) = [2x_1 + 2(x_1+x_2-2), \\; 2x_2 + 2(x_1+x_2-2)]^T = 0 \\implies x_1^{(0)} = x_2^{(0)} = 2/3 \\approx 0.67$.",
+      "Constraint violation: $h(x^{(0)}) = 2/3 + 2/3 - 2 = -2/3$.",
+      "<strong>Multiplier Update:</strong> $\\lambda_1 = \\lambda_0 + c h(x^{(0)}) = 0 + 2(-2/3) = -4/3 = -1.33$.",
+      "<strong>Iteration 2:</strong> Minimizing $\\mathcal{L}_2(x, -4/3)$ yields $x^{(1)} = (0.93, 0.93)$ and $\\lambda_2 = -1.85$. Multipliers converge geometrically to $\\lambda^* = -2.0$ without ever blowing up $c$!"
+    ],
+    "math": "$$\\lambda_0 = 0 \\implies x^{(0)} = \\left(\\frac{2}{3}, \\frac{2}{3}\\right) \\xrightarrow{\\lambda_1 = -\\frac{4}{3}} x^{(1)} = \\left(\\frac{14}{15}, \\frac{14}{15}\\right) \\to x^* = (1, 1), \\; \\lambda^* = -2$$",
+    "personalConnection": "Tuning a guitar string: instead of tightening the peg harder and harder until the string snaps ($c \\to \\infty$), you turn the fine-tuning screw ($\\lambda$) by small corrective increments until the note is perfectly in pitch.",
+    "examTrap": "Compare with standard penalty: to get within $10^{-2}$ accuracy with pure penalty requires $c = 200$ (causing severe ill-conditioning). Augmented Lagrangian achieves the exact same accuracy with $c = 2$ in just 3 iterations!"
+  }
+]

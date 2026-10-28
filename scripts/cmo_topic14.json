@@ -1,0 +1,127 @@
+[
+  {
+    "id": 1401,
+    "subject": "CMO",
+    "topicId": "14_Gradient_Projection_Algorithm_and_Convergence",
+    "topicTitle": "14 \u00b7 Gradient Projection Algorithm",
+    "cardNumber": "01",
+    "category": "CONSTRAINED DESCENT",
+    "highlighterClass": "highlight-cyan",
+    "title": "The Projected Gradient Iteration",
+    "textbookImg": "assets/luenberger_fig12_4.png",
+    "textbookRef": "Luenberger & Ye (4th ed), Sect. 12.4, Fig. 12.4 (p. 384)",
+    "drawingCaption": "Luenberger Fig. 12.4: Moving along projected negative gradient to y, followed by restoration back to constraint surface at x_{k+1}",
+    "drawingSvg": "",
+    "coreTranslation": [
+      "<strong>Core Algorithm:</strong> The Gradient Projection algorithm minimizes $f(x)$ over a closed convex set $\\Omega$ by taking a gradient descent step into unconstrained space and immediately projecting back onto $\\Omega$:",
+      "$$x_{k+1} = \\Pi_\\Omega\\left( x_k - \\alpha_k \\nabla f(x_k) \\right)$$",
+      "<strong>Two-Phase Interpretation (Luenberger):</strong> When constraints are linear or simple convex sets (like boxes), the projection is direct. For curved non-linear surfaces $h(x) = 0$, the algorithm takes a tangential step to $y$, followed by a normal restoration phase to reach $x_{k+1}$ on the manifold."
+    ],
+    "math": "$$x_{k+1} = \\Pi_\\Omega(x_k - \\alpha_k \\nabla f(x_k)) = \\arg\\min_{y \\in \\Omega} \\left\\{ \\nabla f(x_k)^T (y - x_k) + \\frac{1}{2\\alpha_k} \\|y - x_k\\|^2 \\right\\}$$",
+    "personalConnection": "Walking down a hill on a hiking trail bounded by a wooden railing: whenever the downhill gradient points off the trail into the woods, you step forward and immediately slide along the railing, staying on the trail.",
+    "examTrap": "Step size $\\alpha_k$ must satisfy $\\alpha_k < 2/L$ (where $L$ is the Lipschitz constant of $\\nabla f$)! If $\\alpha_k$ is too large, projecting back can cause iterates to bounce back and forth indefinitely across the boundary."
+  },
+  {
+    "id": 1402,
+    "subject": "CMO",
+    "topicId": "14_Gradient_Projection_Algorithm_and_Convergence",
+    "topicTitle": "14 \u00b7 Gradient Projection Algorithm",
+    "cardNumber": "02",
+    "category": "STATIONARITY CRITERIA",
+    "highlighterClass": "highlight-amber",
+    "title": "Fixed-Point Characterization of Optimality",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <defs>\n    <marker id=\"arr-1402\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/>\n    </marker>\n  </defs>\n  <!-- Boundary line of Omega -->\n  <line x1=\"30\" y1=\"95\" x2=\"210\" y2=\"95\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <text x=\"215\" y=\"98\" fill=\"#000000\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\">\u2202\u03a9</text>\n  <!-- Stationary Point x* -->\n  <circle cx=\"120\" cy=\"95\" r=\"4\" fill=\"#000000\"/>\n  <text x=\"120\" y=\"115\" fill=\"#000000\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\" font-weight=\"bold\" text-anchor=\"middle\">x* = \u03a0_\u03a9(x* - \u03b1 \u2207f(x*))</text>\n  <!-- Outward normal gradient vector -->\n  <line x1=\"120\" y1=\"95\" x2=\"120\" y2=\"35\" stroke=\"#000000\" stroke-width=\"2\" marker-end=\"url(#arr-1402)\"/>\n  <text x=\"125\" y=\"42\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">-\u03b1 \u2207f(x*)</text>\n  <!-- Projection arrow straight back down to x* -->\n  <path d=\"M 120 35 L 120 95\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3,3\"/>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"9\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Stationary Point \u21d4 Zero Projected Gradient</text>\n  <text x=\"120\" y=\"136\" fill=\"#000000\" font-size=\"8.5\" font-family=\"sans-serif\" text-anchor=\"middle\">Displacement vector -\u03b1 \u2207f points directly into normal cone N_\u03a9(x*)</text>\n</svg>",
+    "drawingCaption": "Fixed-Point Property: At a constrained stationary point x*, stepping along -\u03b1 \u2207f projects straight back to x*",
+    "coreTranslation": [
+      "<strong>Fixed-Point Theorem:</strong> A point $x^* \\in \\Omega$ is a first-order stationary point of $\\min_{x \\in \\Omega} f(x)$ if and only if for <strong>any step size $\\alpha > 0$</strong>:",
+      "$$x^* = \\Pi_\\Omega(x^* - \\alpha \\nabla f(x^*))$$",
+      "<strong>The Projected Gradient Mapping:</strong> We define the projected gradient residual $G_\\alpha(x) = \\frac{1}{\\alpha} (x - \\Pi_\\Omega(x - \\alpha \\nabla f(x)))$. Then $x^*$ is stationary if and only if $G_\\alpha(x^*) = 0$.",
+      "This provides a continuous, scale-consistent stopping criterion $\\|G_\\alpha(x_k)\\| \\le \\epsilon$ for constrained optimization."
+    ],
+    "math": "$$x^* \\text{ is stationary} \\iff G_\\alpha(x^*) = \\frac{x^* - \\Pi_\\Omega(x^* - \\alpha \\nabla f(x^*))}{\\alpha} = \\mathbf{0} \\iff -\\nabla f(x^*) \\in \\mathcal{N}_\\Omega(x^*)$$",
+    "personalConnection": "Pressing your hand firmly against a glass window: you push forward with full force ($-\\alpha \\nabla f$), but the glass wall projects your hand back to its exact original contact point ($x^*$). Net motion is zero.",
+    "examTrap": "Remember that unconstrained stationarity ($\\nabla f(x^*) = 0$) DOES NOT HOLD on the boundary! The physical gradient $\\nabla f(x^*)$ can be massive; stationarity only requires that its negative points outward into the normal cone."
+  },
+  {
+    "id": 1403,
+    "subject": "CMO",
+    "topicId": "14_Gradient_Projection_Algorithm_and_Convergence",
+    "topicTitle": "14 \u00b7 Gradient Projection Algorithm",
+    "cardNumber": "03",
+    "category": "CONVERGENCE THEORY",
+    "highlighterClass": "highlight-emerald",
+    "title": "Convergence Rates: Sublinear to Linear",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <defs>\n    <marker id=\"arr-1403\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/>\n    </marker>\n  </defs>\n  <!-- Axes for convergence -->\n  <line x1=\"35\" y1=\"115\" x2=\"215\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-1403)\"/>\n  <line x1=\"40\" y1=\"120\" x2=\"40\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-1403)\"/>\n  <text x=\"215\" y=\"127\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">k</text>\n  <text x=\"15\" y=\"25\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">f(x_k) - f*</text>\n  <!-- Convex 1/k curve -->\n  <path d=\"M 45 40 Q 75 85 200 105\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"3,3\"/>\n  <text x=\"180\" y=\"80\" fill=\"#000000\" font-size=\"8\" font-family=\"serif\">Convex: \ud835\udcaa(1/k)</text>\n  <!-- Strongly convex linear convergence curve -->\n  <path d=\"M 45 35 Q 85 95 140 114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.2\"/>\n  <text x=\"145\" y=\"60\" fill=\"#000000\" font-size=\"8\" font-family=\"serif\" font-weight=\"bold\">Strongly Convex: \ud835\udcaa(\u03c1^k)</text>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"9\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Projected Gradient Matches Unconstrained GD Rates!</text>\n</svg>",
+    "drawingCaption": "Convergence Rates: Sublinear O(1/k) for general convex f, and geometric linear O(\u03c1^k) under strong convexity",
+    "coreTranslation": [
+      "<strong>Remarkable Theorem:</strong> The projected gradient algorithm inherits the <strong>exact same theoretical convergence rates</strong> as unconstrained gradient descent!",
+      "<strong>Convex Objectives ($L$-Lipschitz gradient):</strong> With step size $\\alpha = 1/L$, the objective error decreases at a sublinear rate: $f(x_k) - f^* \\le \\frac{L \\|x_0 - x^*\\|^2}{2k} = \\mathcal{O}(1/k)$.",
+      "<strong>Strongly Convex Objectives ($m$-strongly convex):</strong> With step size $\\alpha = 2/(L+m)$, the sequence converges with geometric linear rate: $\\|x_k - x^*\\| \\le \\left( \\frac{L-m}{L+m} \\right)^k \\|x_0 - x^*\\|$."
+    ],
+    "math": "$$f(x_k) - f^* \\le \\frac{L \\|x_0 - x^*\\|^2}{2k} \\; (\\text{Convex}), \\quad \\|x_k - x^*\\| \\le c \\cdot \\rho^k \\; (\\text{Strongly Convex, } \\rho < 1)$$",
+    "personalConnection": "Sliding down a water slide with raised protective banks: the banks constrain your lateral path, but your downward velocity toward the pool decays at the exact same physical friction rate as on an open slope.",
+    "examTrap": "Projection does NOT slow down asymptotic convergence rates! The only difference is the computational cost of evaluating $\\Pi_\\Omega(x)$ at each iteration."
+  },
+  {
+    "id": 1404,
+    "subject": "CMO",
+    "topicId": "14_Gradient_Projection_Algorithm_and_Convergence",
+    "topicTitle": "14 \u00b7 Gradient Projection Algorithm",
+    "cardNumber": "04",
+    "category": "LINE SEARCH",
+    "highlighterClass": "highlight-violet",
+    "title": "Armijo Line Search along the Projection Arc",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <defs>\n    <marker id=\"arr-1404\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/>\n    </marker>\n  </defs>\n  <!-- Feasible set boundary corner -->\n  <line x1=\"30\" y1=\"120\" x2=\"120\" y2=\"120\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <line x1=\"120\" y1=\"120\" x2=\"190\" y2=\"40\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <!-- Curved projection arc x(\u03b1) bending along boundary -->\n  <path d=\"M 50 120 L 120 120 L 165 70\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.5\"/>\n  <circle cx=\"50\" cy=\"120\" r=\"4\" fill=\"#000000\"/>\n  <text x=\"50\" y=\"135\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">x_k</text>\n  <!-- Accepted iterate on arc -->\n  <circle cx=\"140\" cy=\"98\" r=\"3.5\" fill=\"#000000\"/>\n  <text x=\"145\" y=\"112\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">x_k(\u03b1_k)</text>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"9\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Projection Arc: x(\u03b1) = \u03a0_\u03a9(x_k - \u03b1 \u2207f(x_k))</text>\n  <text x=\"120\" y=\"35\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" text-anchor=\"middle\">f(x(\u03b1)) \u2264 f(x_k) - \u03b3 \u2207f(x_k)\u1d40 (x_k - x(\u03b1))</text>\n</svg>",
+    "drawingCaption": "Projection Arc Line Search: Backtracking along the piecewise-linear boundary curve x(\u03b1) to satisfy Armijo descent",
+    "coreTranslation": [
+      "In constrained optimization, stepping along a straight ray $x_k - \\alpha \\nabla f(x_k)$ leaves the feasible set. We must search along the <strong>Projection Arc</strong> $x(\\alpha) = \\Pi_\\Omega(x_k - \\alpha \\nabla f(x_k))$.",
+      "<strong>Armijo Condition along the Arc (Bertsekas):</strong> Choose step size $\\alpha = \\beta^m s$ by backtracking until:",
+      "$$f(x(\\alpha)) \\le f(x_k) - \\gamma \\nabla f(x_k)^T (x_k - x(\\alpha))$$",
+      "Because $x(\\alpha)$ bends along the facets of $\\Omega$, this non-linear arc search can change active constraints multiple times in a single iteration!"
+    ],
+    "math": "$$f(x(\\alpha)) \\le f(x_k) - \\frac{\\gamma}{\\alpha} \\|x_k - x(\\alpha)\\|^2 \\quad \\text{with } \\alpha \\in \\{\\beta^0 s, \\beta^1 s, \\beta^2 s, \\dots\\}$$",
+    "personalConnection": "Navigating a sharp highway exit: you don't drive straight into the guardrail and then turn. Your car follows the curved arc of the exit ramp, smoothly shedding speed as the curve tightens.",
+    "examTrap": "Do NOT evaluate the Armijo gradient test against $-\\alpha \\nabla f(x_k)$! You must evaluate the reduction against the actual displacement vector $x_k - x(\\alpha)$, because that is the physical step taken."
+  },
+  {
+    "id": 1405,
+    "subject": "CMO",
+    "topicId": "14_Gradient_Projection_Algorithm_and_Convergence",
+    "topicTitle": "14 \u00b7 Gradient Projection Algorithm",
+    "cardNumber": "05",
+    "category": "MANIFOLD RESTORATION",
+    "highlighterClass": "highlight-indigo",
+    "title": "Restoration Phase for Non-Linear Manifolds",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <defs>\n    <marker id=\"arr-1405\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/>\n    </marker>\n  </defs>\n  <!-- Curved non-linear constraint surface h(x) = 0 -->\n  <path d=\"M 40 120 Q 120 70 200 45\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <text x=\"205\" y=\"45\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">h(x) = 0</text>\n  <!-- Tangent line at x_k -->\n  <line x1=\"50\" y1=\"120\" x2=\"160\" y2=\"70\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3,3\"/>\n  <circle cx=\"95\" cy=\"95\" r=\"4\" fill=\"#000000\"/>\n  <text x=\"90\" y=\"110\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">x_k</text>\n  <!-- Tangent step point y -->\n  <circle cx=\"150\" cy=\"74\" r=\"3.5\" fill=\"#000000\"/>\n  <text x=\"155\" y=\"68\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">y (Infeasible)</text>\n  <!-- Restoration arrow normal to tangent -->\n  <line x1=\"150\" y1=\"74\" x2=\"160\" y2=\"58\" stroke=\"#000000\" stroke-width=\"1.8\" marker-end=\"url(#arr-1405)\"/>\n  <circle cx=\"160\" cy=\"58\" r=\"4\" fill=\"#000000\"/>\n  <text x=\"175\" y=\"60\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"bold\">x_{k+1}</text>\n  <text x=\"120\" y=\"20\" fill=\"#000000\" font-size=\"9\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Two Phases: Tangent Step + Newton Restoration</text>\n</svg>",
+    "drawingCaption": "Restoration Phase: Stepping along the tangent plane leaves the curved manifold; Newton iteration restores feasibility",
+    "coreTranslation": [
+      "When constraints $h_i(x) = 0$ are curved non-linear surfaces, the tangent plane $\\{d : \\nabla h(x_k)^T d = 0\\}$ is only a first-order local approximation.",
+      "<strong>Phase 1 (Tangent Step):</strong> Take a descent step along the projected gradient on the tangent plane to point $y = x_k - \\alpha_k P_k \\nabla f(x_k)$. Point $y$ is slightly infeasible ($h(y) \\ne 0$).",
+      "<strong>Phase 2 (Restoration):</strong> Solve the underdetermined non-linear system $h(x) = 0$ starting from $y$ using <strong>Newton's method</strong> in the normal space $\\nabla h(x_k)$: $x_{k+1} = y - \\nabla h^T (\\nabla h \\nabla h^T)^{-1} h(y)$."
+    ],
+    "math": "$$y = x_k - \\alpha P_k \\nabla f(x_k), \\quad x_{k+1} = y - \\nabla h(x_k) [\\nabla h(x_k)^T \\nabla h(x_k)]^{-1} h(y) \\quad (\\text{Feasibility Restored})$$",
+    "personalConnection": "Walking along the equator on a globe: if you take a straight tangential step into outer space ($y$), you float off the planet. You must drop straight down along the radius (normal restoration) to plant your boots back on the curved earth ($x_{k+1}$).",
+    "examTrap": "If step size $\\alpha$ is chosen too large, the tangent point $y$ may fly so far from the manifold that the Newton restoration phase fails to converge (or converges to a completely different branch of the constraint surface)!"
+  },
+  {
+    "id": 1406,
+    "subject": "CMO",
+    "topicId": "14_Gradient_Projection_Algorithm_and_Convergence",
+    "topicTitle": "14 \u00b7 Gradient Projection Algorithm",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-rose",
+    "title": "Worked Benchmark: Projected GD on Non-Negative Orthant",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\">\n  <defs>\n    <marker id=\"arr-1406\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/>\n    </marker>\n  </defs>\n  <!-- Axes: First quadrant non-negative orthant -->\n  <line x1=\"40\" y1=\"120\" x2=\"210\" y2=\"120\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <text x=\"215\" y=\"123\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">x\u2081</text>\n  <line x1=\"50\" y1=\"125\" x2=\"50\" y2=\"25\" stroke=\"#000000\" stroke-width=\"2\"/>\n  <text x=\"50\" y=\"20\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\">x\u2082</text>\n  <!-- Unconstrained step dipping into quadrant 4 -->\n  <circle cx=\"90\" cy=\"80\" r=\"3.5\" fill=\"#000000\"/>\n  <text x=\"95\" y=\"78\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\">x\u2080=(1, 1)</text>\n  <line x1=\"90\" y1=\"80\" x2=\"140\" y2=\"135\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"2,2\"/>\n  <circle cx=\"140\" cy=\"135\" r=\"3\" fill=\"#000000\"/>\n  <text x=\"145\" y=\"140\" fill=\"#000000\" font-size=\"7.5\" font-family=\"serif\">(2, -0.5) Infeasible</text>\n  <!-- Projected coordinate-wise clipping -->\n  <line x1=\"140\" y1=\"135\" x2=\"140\" y2=\"120\" stroke=\"#000000\" stroke-width=\"1.8\" marker-end=\"url(#arr-1406)\"/>\n  <circle cx=\"140\" cy=\"120\" r=\"4\" fill=\"#000000\"/>\n  <text x=\"140\" y=\"112\" fill=\"#000000\" font-size=\"8.5\" font-family=\"serif\" font-weight=\"bold\">x\u2081=(2, 0)</text>\n  <text x=\"135\" y=\"30\" fill=\"#000000\" font-size=\"8.5\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\">Projected Iteration: x_{k+1} = max(0, x_k - \u03b1 \u2207f(x_k))</text>\n</svg>",
+    "drawingCaption": "Worked Benchmark: Unconstrained step plunges below axis into quadrant 4; projection clips negative x\u2082 cleanly to 0",
+    "coreTranslation": [
+      "<strong>Problem:</strong> Minimize $f(x) = \\frac{1}{2} x_1^2 + x_2^2 - 2 x_1 + 3 x_2$ subject to $x_1 \\ge 0, x_2 \\ge 0$, starting from $x_0 = (1, 1)$ with step size $\\alpha = 1.0$.",
+      "<strong>Step 1 (Gradient Evaluation):</strong> $\\nabla f(x_0) = [x_1 - 2, \\; 2x_2 + 3]^T = [1 - 2, \\; 2(1) + 3]^T = [-1, \\; 5]^T$.",
+      "<strong>Step 2 (Unconstrained Step):</strong> $y = x_0 - \\alpha \\nabla f(x_0) = [1, 1]^T - 1.0 [-1, 5]^T = [2, \\; -4]^T$.",
+      "<strong>Step 3 (Projection onto $\\mathbb{R}_+^2$):</strong> $x_1 = \\max(0, y) = [\\max(0, 2), \\; \\max(0, -4)]^T = (2, 0)$. Component $x_2$ hit the boundary and clamped to zero in a single step!"
+    ],
+    "math": "$$x_{k+1} = \\max\\left( \\mathbf{0}, \\; x_k - \\alpha \\nabla f(x_k) \\right) \\implies x_1 = \\max\\left( \\mathbf{0}, \\; \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} - \\begin{bmatrix} -1 \\\\ 5 \\end{bmatrix} \\right) = \\begin{bmatrix} 2 \\\\ 0 \\end{bmatrix}$$",
+    "personalConnection": "Clipping negative audio waveform samples to zero in an electronic half-wave rectifier: the negative half of the alternating current is instantly truncated flat against the zero voltage line.",
+    "examTrap": "Notice how projected gradient immediately identifies active constraints! Unlike active set methods (which add constraints one-by-one), projected gradient can activate DOZENS of bound constraints simultaneously in a single iteration."
+  }
+]
