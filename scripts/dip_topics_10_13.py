@@ -15,7 +15,17 @@ def STEMS(x0, base, vals, dx=14, scale=3.0, w=2.2):
     return out
 
 def BOX(x, y, w, h, label, fill="#f1f5f9", sz=9, bold=True):
-    return R(x, y, w, h, fill, 1.6) + N(x + w / 2, y + h / 2 + 3, label, sz, w="bold" if bold else "normal")
+    fw = "bold" if bold else "normal"
+    cap = max(4, int(w / (sz * 0.52)))
+    if len(label) > cap and " " in label:
+        words = label.split(" "); best = None
+        for i in range(1, len(words)):
+            a, b = " ".join(words[:i]), " ".join(words[i:])
+            score = max(len(a), len(b))
+            if best is None or score < best[0]: best = (score, a, b)
+        _, a, b = best
+        return (R(x, y, w, h, fill, 1.6) + N(x + w / 2, y + h / 2 - 1, a, sz, w=fw) + N(x + w / 2, y + h / 2 + sz, b, sz, w=fw))
+    return R(x, y, w, h, fill, 1.6) + N(x + w / 2, y + h / 2 + 3, label, sz, w=fw)
 
 # ============================ 10 · WAVELETS ============================
 tiles_stft = [R(14 + i * 24, 20 + j * 24, 24, 24, "#ffffff", 1.2) for i in range(4) for j in range(4)]
@@ -255,7 +265,7 @@ CARDS.append(card(12, 3, "ADAPTIVE FILTERS", "Adaptive Median Filter (Variable W
      L(170, 48, 154, 64, 1.3, ar=True), L(192, 48, 206, 64, 1.3, ar=True), N(150, 58, "yes", 8), N(210, 58, "no", 8),
      L(60, 48, 60, 66, 1.4, ar=True), N(72, 60, "no", 8), BOX(10, 68, 100, 30, "grow window S ≤ S_max", "#ffffff", 8),
      L(60, 98, 60, 112, 1.3), L(60, 112, 6, 112, 1.3), L(6, 112, 6, 30, 1.3), L(6, 30, 8, 30, 1.3, ar=True),
-     N(150, 118, "window maxed: output z_med", 8.5, "start"), N(150, 132, "keeps non-noisy pixels intact", 8.5, "start")],
+     N(120, 124, "window maxed: output z_med", 8.5, "start"), N(120, 138, "keeps clean pixels intact", 8.5, "start")],
     "Level A decides if the median itself is an impulse; Level B decides if the center pixel is",
     ["<strong>Problem:</strong> a fixed median over-smooths when noise is light and fails when noise is dense. The adaptive version <strong>changes the window size</strong> $S_{xy}\\le S_{\\max}$.",
      "<strong>Level A:</strong> if $z_{\\min}<z_{\\text{med}}<z_{\\max}$ the median is not an impulse (go to B); else <strong>grow the window</strong> and repeat.",
