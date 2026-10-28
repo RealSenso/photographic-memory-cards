@@ -8,7 +8,7 @@
   <script src="cards_data.js?v=20261029_refine8"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
-  <script src="cards_stoma.js?v=20261028_stoma21"></script>
+  <script src="cards_stoma.js?v=20261028_stoma23"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -75,6 +75,14 @@
     .btn.primary { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
     .menu-btn { display: none; width: 44px; padding: 0; justify-content: center; }
 
+    .plines { flex-basis: 100%; display: flex; align-items: center; gap: 14px; margin-top: -2px; }
+    .pbar { flex: 1; display: flex; gap: 4px; height: 12px; }
+    .pseg { position: relative; height: 100%; min-width: 14px; border: 0; padding: 0; border-radius: 6px; overflow: hidden; background: color-mix(in srgb, var(--c) 20%, #141a2e); cursor: pointer; }
+    .pseg i { position: absolute; top: 0; bottom: 0; left: 0; background: var(--c); border-radius: 6px 0 0 6px; transition: width .35s ease; }
+    .pseg.cur { box-shadow: 0 0 0 2px #0d1220, 0 0 0 3.5px var(--c); }
+    .pseg:hover { filter: brightness(1.25); }
+    .ptext { font-size: 12.5px; color: #8e9bb8; white-space: nowrap; font-family: var(--mono); }
+    .ptext b { color: var(--text); font-weight: 600; }
     .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 32px 0; }
     .chipbtn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--muted-2); font-family: var(--mono); font-size: 13px; }
     .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: var(--text); }
@@ -180,6 +188,7 @@
       </div>
       <button class="btn" onclick="printDeck()" aria-label="Print this topic">Print</button>
       <button class="btn primary" onclick="openAddModal()">+ Add card</button>
+      <div class="plines" id="progress-line" aria-label="Reading progress"></div>
     </header>
 
     <div class="strip" id="card-strip"></div>
@@ -432,6 +441,10 @@
     ];
     const POS_KEY = 'plates_pos_v1';
 
+    const SEEN_KEY = 'plates_seen_v1';
+    let seen = new Set();
+    try { seen = new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || '[]')); } catch (e) { seen = new Set(); }
+    function saveSeen() { try { localStorage.setItem(SEEN_KEY, JSON.stringify([...seen])); } catch (e) {} }
     function savePos() { try { localStorage.setItem(POS_KEY, JSON.stringify({ s: currentSubject, t: currentTopic, i: idx })); } catch (e) {} }
 
     let currentSubject = 'CMO';
@@ -632,8 +645,26 @@
       if (window.renderMathInElement) run(); else window.addEventListener('load', run, { once: true });
     }
 
+    function renderProgress() {
+      const el = document.getElementById('progress-line');
+      if (!el) return;
+      let total = 0, got = 0;
+      const segs = SUBJECTS.map(sub => {
+        const cs = getSubjectCards(sub.id);
+        const k = cs.filter(c => seen.has(c.id)).length;
+        total += cs.length; got += k;
+        return { sub, n: cs.length, k };
+      }).filter(x => x.n);
+      el.innerHTML = `<div class="pbar">${segs.map(x =>
+        `<button class="pseg ${x.sub.id === currentSubject ? 'cur' : ''}" style="--c:${x.sub.color};flex:${x.n} 1 0" onclick="switchSubject('${x.sub.id}')"
+          title="${x.sub.id}: ${x.k} of ${x.n} cards seen" aria-label="${x.sub.id}: ${x.k} of ${x.n} cards seen"><i style="width:${x.n ? (x.k / x.n * 100) : 0}%"></i></button>`).join('')}</div>
+        <span class="ptext"><b>${got}</b> / ${total} cards seen</span>`;
+    }
+
     function renderAll() {
-      renderRail(); renderTop(); renderStrip(); renderStage(); renderActions();
+      const cur = deck[idx];
+      if (cur && !seen.has(cur.id)) { seen.add(cur.id); saveSeen(); }
+      renderRail(); renderTop(); renderStrip(); renderStage(); renderActions(); renderProgress();
       savePos();
     }
     function renderDeck() { idx = Math.max(0, Math.min(idx, deck.length - 1)); renderAll(); }
