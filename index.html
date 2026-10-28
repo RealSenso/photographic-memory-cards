@@ -96,6 +96,14 @@
       background: rgba(56, 189, 248, 0.6);
     }
 
+    /* KaTeX equation enlargement inside cards */
+    .math-block .katex-display {
+      margin: 0.4em 0 !important;
+    }
+    .math-block .katex {
+      font-size: 1.3em !important;
+    }
+
     /* Print styles */
     @media print {
       body { background: white !important; color: black !important; }
@@ -444,45 +452,45 @@
 
       grid.innerHTML = deck.map((card, idx) => {
         return `
-          <div class="cosmic-card aspect-16-9 flex flex-col p-5 sm:p-7 lg:p-8 relative overflow-hidden group">
+          <div class="cosmic-card aspect-16-9 flex flex-col p-6 sm:p-8 lg:p-9 relative overflow-hidden group">
             
             <!-- Top Bar: Header, Card ID, Category, Highlighter Title -->
-            <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 shrink-0">
+            <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/10 shrink-0">
               <div class="flex items-center gap-3">
-                <span class="px-3 py-1 rounded-lg font-mono font-bold text-xs sm:text-sm bg-cyan-950 text-cyan-300 border border-cyan-800/80">
+                <span class="px-3.5 py-1.5 rounded-lg font-mono font-bold text-sm sm:text-base bg-cyan-950 text-cyan-300 border border-cyan-800/80">
                   CARD ${card.cardNumber}
                 </span>
-                <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-slate-400">
+                <span class="text-xs sm:text-sm md:text-base font-mono tracking-widest uppercase text-slate-300">
                   ${card.category}
                 </span>
               </div>
 
               <!-- Highlighter title badge -->
-              <div class="px-3.5 py-1 rounded-lg ${card.highlighterClass}">
-                <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight font-serif-title">
+              <div class="px-4 py-1.5 rounded-lg ${card.highlighterClass}">
+                <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-tight font-serif-title">
                   ${card.title}
                 </h3>
               </div>
 
               <!-- Starlight icon -->
-              <span class="text-base text-cyan-400/80 font-mono">✦</span>
+              <span class="text-lg text-cyan-400/80 font-mono">✦</span>
             </div>
 
             <!-- Main Card Body Split (Left: Content 56%, Right: Visual 44%) -->
-            <div class="flex-1 min-h-0 grid grid-cols-12 gap-5 sm:gap-6 overflow-hidden">
+            <div class="flex-1 min-h-0 grid grid-cols-12 gap-6 sm:gap-8 overflow-hidden">
               
               <!-- Left Column: Knowledge, Math, Anchors (Scrollable within 16:9 boundary) -->
-              <div class="col-span-12 md:col-span-7 flex flex-col justify-between overflow-y-auto pr-3 cosmic-scroll text-sm sm:text-base">
+              <div class="col-span-12 md:col-span-7 flex flex-col justify-between overflow-y-auto pr-4 cosmic-scroll">
                 
                 <!-- Core Translation -->
-                <div class="space-y-1.5">
-                  <div class="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
+                <div class="space-y-2">
+                  <div class="text-xs sm:text-sm md:text-base font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
                     <span>⚡ CORE MECHANISM</span>
                   </div>
-                  <ul class="space-y-1.5 text-slate-200 leading-relaxed text-xs sm:text-sm md:text-[15px]">
+                  <ul class="space-y-2 text-slate-100 leading-relaxed text-sm sm:text-base md:text-lg lg:text-[19px]">
                     ${card.coreTranslation.map(pt => `
-                      <li class="flex items-start gap-2">
-                        <span class="text-cyan-400 font-bold shrink-0 text-base">›</span>
+                      <li class="flex items-start gap-2.5">
+                        <span class="text-cyan-400 font-bold shrink-0 text-lg sm:text-xl">›</span>
                         <span>${pt}</span>
                       </li>
                     `).join('')}
@@ -490,51 +498,51 @@
                 </div>
 
                 <!-- Math Block -->
-                <div class="my-2.5 p-3 sm:p-4 rounded-xl bg-[#060812] border border-cyan-500/25 text-slate-100 font-mono text-sm sm:text-base md:text-lg overflow-x-auto shadow-inner">
+                <div class="my-3 p-4 sm:p-5 rounded-2xl bg-[#060812] border border-cyan-500/25 text-slate-100 font-mono text-base sm:text-lg md:text-xl lg:text-2xl overflow-x-auto shadow-inner math-block">
                   ${card.math}
                 </div>
 
                 <!-- Personal Connection / Anchor -->
-                <div class="p-3 sm:p-3.5 rounded-xl bg-amber-500/10 border-l-4 border-amber-400 text-amber-200/95 text-xs sm:text-sm md:text-[15px] leading-relaxed">
-                  <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1 flex items-center gap-1.5">
+                <div class="p-4 sm:p-4.5 rounded-2xl bg-amber-500/10 border-l-4 border-amber-400 text-amber-100 text-sm sm:text-base md:text-lg leading-relaxed">
+                  <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-400 mb-1 flex items-center gap-1.5">
                     <span>💡 MEMORY ANCHOR</span>
                   </div>
-                  <p class="italic font-serif text-sm sm:text-base">"${card.personalConnection}"</p>
+                  <p class="italic font-serif text-base sm:text-lg md:text-xl lg:text-[21px]">"${card.personalConnection}"</p>
                 </div>
 
                 <!-- Exam Trap -->
-                <div class="mt-2 pt-2 border-t border-white/5 text-xs sm:text-sm text-rose-300 flex items-start gap-1.5">
-                  <span class="font-bold shrink-0 text-rose-400">⚠️ Exam Trap:</span>
-                  <span class="text-slate-300">${card.examTrap}</span>
+                <div class="mt-2.5 pt-2 border-t border-white/10 text-xs sm:text-sm md:text-base text-rose-200 flex items-start gap-2">
+                  <span class="font-bold shrink-0 text-rose-400 text-sm sm:text-base">⚠️ Exam Trap:</span>
+                  <span class="text-slate-200">${card.examTrap}</span>
                 </div>
 
               </div>
 
               <!-- Right Column: Visual Specimen / Luenberger Figure Corner -->
-              <div class="col-span-12 md:col-span-5 flex flex-col justify-between pl-4 border-l border-white/10 overflow-hidden h-full">
+              <div class="col-span-12 md:col-span-5 flex flex-col justify-between pl-4 sm:pl-6 border-l border-white/10 overflow-hidden h-full">
                 <!-- Visual Header -->
-                <div class="flex items-center justify-between pb-1.5 text-xs font-mono text-slate-400 shrink-0">
-                  <span class="font-bold text-cyan-300 flex items-center gap-1.5 text-xs sm:text-sm">
+                <div class="flex items-center justify-between pb-2 text-xs sm:text-sm md:text-base font-mono text-slate-300 shrink-0">
+                  <span class="font-bold text-cyan-300 flex items-center gap-1.5 text-sm sm:text-base">
                     ${card.textbookImg ? '📖 TEXTBOOK SPECIMEN' : '📐 GEOMETRIC DIAGRAM'}
                   </span>
-                  <span class="text-slate-400 truncate max-w-[190px]">${card.textbookRef ? 'LUENBERGER & YE' : 'SIRIANNI DUAL-CODE'}</span>
+                  <span class="text-slate-400 truncate max-w-[200px]">${card.textbookRef ? 'LUENBERGER & YE' : 'SIRIANNI DUAL-CODE'}</span>
                 </div>
 
                 <!-- Visual Content (Specimen Image or SVG) -->
-                <div class="flex-1 min-h-0 flex items-center justify-center p-2.5 sm:p-3.5 rounded-2xl bg-white border border-white/20 relative group/img overflow-hidden shadow-xl">
+                <div class="flex-1 min-h-0 flex items-center justify-center p-3 sm:p-4 rounded-2xl bg-white border border-white/20 relative group/img overflow-hidden shadow-xl">
                   ${card.textbookImg ? `
                     <img src="${card.textbookImg}" alt="${card.title}" class="max-h-full max-w-full object-contain rounded cursor-pointer transition-transform duration-300 hover:scale-105" onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')">
                   ` : `
-                    <div class="w-full h-full flex items-center justify-center bg-[#070b16] rounded-xl p-2">
+                    <div class="w-full h-full flex items-center justify-center bg-[#070b16] rounded-xl p-3">
                       ${card.drawingSvg}
                     </div>
                   `}
                 </div>
 
                 <!-- Caption & Lightbox hint -->
-                <div class="pt-2 shrink-0 flex items-center justify-between text-xs sm:text-sm font-hand text-cyan-200">
+                <div class="pt-2.5 shrink-0 flex items-center justify-between text-sm sm:text-base md:text-lg font-hand text-cyan-200">
                   <span class="truncate">"${card.drawingCaption}"</span>
-                  ${card.textbookImg ? `<button onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')" class="text-xs font-mono text-slate-400 hover:text-cyan-300 underline shrink-0 ml-2">Expand 🔍</button>` : ''}
+                  ${card.textbookImg ? `<button onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')" class="text-xs sm:text-sm font-mono text-slate-400 hover:text-cyan-300 underline shrink-0 ml-2">Expand 🔍</button>` : ''}
                 </div>
               </div>
 
@@ -621,15 +629,15 @@
       const countEl = document.getElementById('card-count');
       if (countEl) countEl.textContent = filtered.length;
       grid.innerHTML = filtered.map(c => `
-        <div class="cosmic-card aspect-16-9 p-6 flex flex-col justify-between">
+        <div class="cosmic-card aspect-16-9 p-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-sm font-mono text-cyan-400">CARD ${c.cardNumber}</span>
-              <h3 class="text-lg font-bold text-white font-serif-title">${c.title}</h3>
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+              <span class="text-base font-mono font-bold text-cyan-400">CARD ${c.cardNumber}</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white font-serif-title">${c.title}</h3>
             </div>
-            <p class="text-sm text-slate-300 my-2">${c.coreTranslation[0]}</p>
+            <p class="text-base sm:text-lg text-slate-200 my-3 leading-relaxed">${c.coreTranslation[0]}</p>
           </div>
-          <p class="text-sm italic font-serif text-amber-200">"${c.personalConnection}"</p>
+          <p class="text-base sm:text-lg italic font-serif text-amber-200">"${c.personalConnection}"</p>
         </div>
       `).join('');
     }
