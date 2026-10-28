@@ -9,6 +9,7 @@
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
+  <script src="topic_importance.js?v=20261028_imp1"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -51,6 +52,25 @@
     .topic.active { background: #151c33; color: var(--text); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
     .topic .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .topic .cnt { font-family: var(--mono); font-size: 11px; color: #8e9bb8; }
+
+    /* ---------- topic importance markers ---------- */
+    .imp-dot { width: 7.5px; height: 7.5px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .imp-dot.imp-red { background: #ef4444; box-shadow: 0 0 7px #ef4444; }
+    .imp-dot.imp-orange { background: #f97316; box-shadow: 0 0 6px #f97316; }
+    .imp-dot.imp-yellow { background: #eab308; box-shadow: 0 0 5px #eab308; }
+
+    .imp-filters { display: flex; align-items: center; gap: 4px; padding: 2px 4px 8px; }
+    .imp-filter-btn { font-family: var(--mono); font-size: 10px; padding: 3px 6px; border-radius: 6px; border: 1px solid var(--line-2); background: transparent; color: #8e9bb8; cursor: pointer; transition: all .15s ease; white-space: nowrap; }
+    .imp-filter-btn:hover { background: #141c33; color: var(--text); }
+    .imp-filter-btn.active { background: #17223e; border-color: var(--accent); color: var(--text); font-weight: 600; }
+    .imp-filter-btn.f-red.active { border-color: #ef4444; color: #fca5a5; }
+    .imp-filter-btn.f-orange.active { border-color: #f97316; color: #fdba74; }
+    .imp-filter-btn.f-yellow.active { border-color: #eab308; color: #fde047; }
+
+    .imp-badge { font-family: var(--mono); font-size: 10.5px; font-weight: 600; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; }
+    .imp-badge.imp-red { background: #271115; border: 1px solid #7f1d1d; color: #fca5a5; }
+    .imp-badge.imp-orange { background: #27150c; border: 1px solid #7c2d12; color: #fdba74; }
+    .imp-badge.imp-yellow { background: #241d08; border: 1px solid #713f12; color: #fde047; }
 
     /* ---------- main column ---------- */
     .main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
@@ -182,6 +202,7 @@
     </div>
     <div>
       <div class="label" id="topics-label">TOPICS</div>
+      <div id="imp-filter-bar" class="imp-filters"></div>
       <div id="topic-list"></div>
     </div>
   </aside>
@@ -470,6 +491,12 @@
     let currentTopic = null;
     let deck = [];
     let idx = 0;
+    let currentImpFilter = 'all';
+
+    function setImpFilter(f) {
+      currentImpFilter = f;
+      renderRail();
+    }
 
     const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const stripTags = s => String(s || '').replace(/<\/?[^>]+(>|$)/g, '').replace(/\$/g, '');
@@ -495,6 +522,7 @@
 
     function switchSubject(sub) {
       currentSubject = sub;
+      currentImpFilter = 'all';
       applyAccent();
       const topics = getTopicsList(sub);
       if (topics.length) {
@@ -546,18 +574,51 @@
       }).join('');
 
       document.getElementById('topics-label').textContent = `${currentSubject} TOPICS`;
-      const topics = getTopicsList();
-      document.getElementById('topic-list').innerHTML = topics.length ? topics.map(t =>
-        `<button class="topic ${t.id === currentTopic ? 'active' : ''}" onclick="switchTopic('${t.id}')" title="${esc(t.title)}">
-          <span class="name">${esc(t.title)}</span><span class="cnt">${t.cards.filter(c => done.has(c.id)).length}/${t.cards.length}</span></button>`).join('')
-        : `<div style="padding:8px 10px;font-size:13px;color:#8e9bb8;line-height:1.5">No cards for ${currentSubject} yet.</div>`;
+      const allSubjTopics = getTopicsList();
+
+      const nRed = allSubjTopics.filter(t => (window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id).tier : '') === 'red').length;
+      const nOrange = allSubjTopics.filter(t => (window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id).tier : '') === 'orange').length;
+      const nYellow = allSubjTopics.filter(t => (window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id).tier : '') === 'yellow').length;
+
+      const filterBar = document.getElementById('imp-filter-bar');
+      if (filterBar) {
+        filterBar.innerHTML = `
+          <button class="imp-filter-btn ${currentImpFilter === 'all' ? 'active' : ''}" onclick="setImpFilter('all')">All (${allSubjTopics.length})</button>
+          <button class="imp-filter-btn f-red ${currentImpFilter === 'red' ? 'active' : ''}" onclick="setImpFilter('red')" title="Extremely Important (High PYQ Weight)">🔴 ${nRed}</button>
+          <button class="imp-filter-btn f-orange ${currentImpFilter === 'orange' ? 'active' : ''}" onclick="setImpFilter('orange')" title="Medium Importance">🟠 ${nOrange}</button>
+          <button class="imp-filter-btn f-yellow ${currentImpFilter === 'yellow' ? 'active' : ''}" onclick="setImpFilter('yellow')" title="Lowest Importance / Foundational">🟡 ${nYellow}</button>
+        `;
+      }
+
+      const filteredTopics = (currentImpFilter === 'all')
+        ? allSubjTopics
+        : allSubjTopics.filter(t => {
+            const imp = window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id) : { tier: 'orange' };
+            return imp.tier === currentImpFilter;
+          });
+
+      document.getElementById('topic-list').innerHTML = filteredTopics.length ? filteredTopics.map(t => {
+        const imp = (typeof window.getTopicImportance === 'function')
+          ? window.getTopicImportance(currentSubject, t.id)
+          : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
+        return `<button class="topic ${t.id === currentTopic ? 'active' : ''}" onclick="switchTopic('${t.id}')" title="${esc(t.title)} • ${imp.label} (PYQ Weight: ${imp.pyqWeight})">
+          <span class="imp-dot imp-${imp.tier}" title="${imp.label}: ${esc(imp.reason)}"></span>
+          <span class="name">${esc(t.title)}</span>
+          <span class="cnt">${t.cards.filter(c => done.has(c.id)).length}/${t.cards.length}</span>
+        </button>`;
+      }).join('')
+      : `<div style="padding:8px 10px;font-size:13px;color:#8e9bb8;line-height:1.5">No ${currentImpFilter} topics found.</div>`;
     }
 
     function renderTop() {
       const t = getTopicsList().find(x => x.id === currentTopic);
       const card = deck[idx];
+      const imp = (t && typeof window.getTopicImportance === 'function')
+        ? window.getTopicImportance(currentSubject, t.id)
+        : null;
+      const impPill = imp ? `<span class="imp-dot imp-${imp.tier}" title="${imp.label}: ${esc(imp.reason)}" style="margin-left:5px;display:inline-block;vertical-align:middle"></span>` : '';
       document.getElementById('crumb').innerHTML = `<span>${currentSubject}</span><span aria-hidden="true">/</span>
-        <span class="t">${t ? esc(t.title) : '—'}</span>${card ? `<span aria-hidden="true">/</span><b>Card ${esc(card.cardNumber)}</b>` : ''}`;
+        <span class="t">${t ? esc(t.title) : '—'}${impPill}</span>${card ? `<span aria-hidden="true">/</span><b>Card ${esc(card.cardNumber)}</b>` : ''}`;
       document.title = card ? `${card.title} · Plates` : 'Plates · Photographic Memory Cards';
     }
 
@@ -591,9 +652,16 @@
     }
 
     function cardHtml(card) {
+      const imp = (typeof window.getTopicImportance === 'function')
+        ? window.getTopicImportance(card.subject || currentSubject, card.topicId)
+        : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
+      const impSymbol = imp.tier === 'red' ? '🔴' : (imp.tier === 'orange' ? '🟠' : '🟡');
       return `
         <div class="paper-bar">
-          <span class="chip">CARD ${esc(card.cardNumber)}</span><span class="cat">${esc(card.category)}</span>${done.has(card.id) ? '<span class="donechip">✓ Done</span>' : ''}
+          <span class="chip">CARD ${esc(card.cardNumber)}</span>
+          <span class="cat">${esc(card.category)}</span>
+          <span class="imp-badge imp-${imp.tier}" title="${esc(imp.reason)}">${impSymbol} ${esc(imp.label.toUpperCase())}</span>
+          ${done.has(card.id) ? '<span class="donechip">✓ Done</span>' : ''}
           <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy this card (text and picture) to the clipboard">
             <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
         </div>
