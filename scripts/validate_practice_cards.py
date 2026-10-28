@@ -20,7 +20,7 @@ import os
 import sys
 
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REQUIRED_FIELDS = ["id", "subject", "topicId", "topicTitle", "title", "kind2", "source", "marks", "question", "solution", "takeaway"]
+REQUIRED_FIELDS = ["id", "subject", "topicId", "question", "solution"]
 
 def load_practice_file(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
@@ -28,6 +28,10 @@ def load_practice_file(filepath):
     m = re.search(r'window\.PRACTICE_DATA\.push\(\s*(\[[\s\S]*?\])\s*\);', content)
     if m:
         return json.loads(m.group(1))
+
+    m_concat = re.search(r'window\.PRACTICE_DATA\s*=\s*\(window\.PRACTICE_DATA\s*\|\|\s*\[\]\)\.concat\(\s*(\[[\s\S]*?\])\s*\);', content)
+    if m_concat:
+        return json.loads(m_concat.group(1))
     
     # Try parsing Claude IIFE format
     if "const out = [];" in content:
