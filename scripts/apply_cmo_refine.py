@@ -3,6 +3,7 @@
 Each module may define:
   FIX = {card_id: {field: new_value, ...}}      overwrite fields of an existing card
   NEW = [(after_card_id, {card fields...}), ...]  insert a new card right after another one
+  DELETE = [card_id, ...]                         remove cards
 Card numbers inside every CMO topic are renumbered 01.. in list order afterwards.
 """
 import glob, importlib, json, os, sys
@@ -24,6 +25,9 @@ for mod_path in sorted(glob.glob(os.path.join(here, "cmo_refine_*.py"))):
         assert cid in by_id, f"unknown card id {cid}"
         by_id[cid].update(fields)
         n_fix += 1
+    for cid in getattr(mod, "DELETE", []):
+        if cid in by_id:
+            cards.remove(by_id.pop(cid))
     for after_id, new in getattr(mod, "NEW", []):
         if new["id"] in by_id:
             by_id[new["id"]].update(new)
