@@ -480,6 +480,246 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "math": "$$\\mathbb{E}[X] = 0, \\quad \\mathbb{E}[X^3] = 0 \\implies \\operatorname{Cov}(X, X^2) = 0; \\quad \\mathbb{P}(X=0, X^2=1) = 0 \\ne \\tfrac{2}{9}$$",
     "personalConnection": "A parabolic satellite dish: knowing horizontal coordinate X dictates vertical focus coordinate Y = X\u00b2 with exact precision, yet linear correlation registers 0.",
     "examTrap": "Assuming uncorrelated variables are independent! Covariance measures ONLY linear association; quadratic, circular, or higher-order dependencies have Cov = 0."
+  },
+  {
+    "id": 30601,
+    "subject": "StoMA",
+    "topicId": "06_Probability_Inequalities_Markov_Chebyshev_Chernoff",
+    "topicTitle": "06 \u00b7 Probability Inequalities",
+    "cardNumber": "01",
+    "category": "MOMENT BOUND",
+    "highlighterClass": "highlight-cyan",
+    "title": "Markov\u2019s Inequality: The Foundation of Concentration",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30601\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30601)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30601)\"/><line x1=\"24\" y1=\"114\" x2=\"190\" y2=\"28\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"3 3\"/><text x=\"195\" y=\"25\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">y = x</text><line x1=\"24\" y1=\"114\" x2=\"110\" y2=\"114\" stroke=\"#000000\" stroke-width=\"2.0\"/><line x1=\"110\" y1=\"114\" x2=\"110\" y2=\"68\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"2 2\"/><line x1=\"110\" y1=\"68\" x2=\"215\" y2=\"68\" stroke=\"#000000\" stroke-width=\"2.2\"/><circle cx=\"110\" cy=\"68\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"110\" cy=\"114\" r=\"2.5\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"16\" y=\"68\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">a</text><text x=\"110\" y=\"126\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">a</text><text x=\"160\" y=\"54\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">a \u00b7 1_{X \u2265 a} \u2264 X</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Taking expectations: a P(X \u2265 a) \u2264 E[X] \u21d2 P(X \u2265 a) \u2264 E[X] / a  (X \u2265 0)</text></svg>",
+    "drawingCaption": "The step indicator a 1_{X \u2265 a} lies everywhere below X; taking expectations proves P(X \u2265 a) \u2264 E[X]/a",
+    "coreTranslation": [
+      "<strong>Hypothesis & Bound:</strong> For any non-negative random variable $X \\ge 0$ and any threshold $a > 0$, $\\mathbb{P}(X \\ge a) \\le \\frac{\\mathbb{E}[X]}{a}$.",
+      "<strong>Indicator Proof:</strong> Observe that $a \\mathbf{1}_{\\{X \\ge a\\}} \\le X \\mathbf{1}_{\\{X \\ge a\\}} \\le X$. Taking expectations preserves monotonicity: $a \\mathbb{E}[\\mathbf{1}_{\\{X \\ge a\\}}] = a \\mathbb{P}(X \\ge a) \\le \\mathbb{E}[X]$.",
+      "<strong>Master Engine:</strong> Markov is the foundational engine generating Chebyshev (via $\\phi(u)=u^2$), Chernoff (via $\\phi(u)=e^{tu}$), and all higher-order concentration inequalities."
+    ],
+    "math": "$$X \\ge 0, \\; a > 0 \\implies a\\,\\mathbf{1}_{\\{X \\ge a\\}} \\le X \\implies \\mathbb{P}(X \\ge a) \\le \\frac{\\mathbb{E}[X]}{a}$$",
+    "personalConnection": "Average wealth in a society: if mean wealth is $50,000, at most 10% of citizens can possess $500,000 or more, otherwise the total wealth would exceed the mean.",
+    "examTrap": "Applying Markov directly to random variables with negative values! Markov strictly requires X \u2265 0. For general variables, apply Markov to |X|, (X - \u03bc)\u00b2, or e^{tX}."
+  },
+  {
+    "id": 30602,
+    "subject": "StoMA",
+    "topicId": "06_Probability_Inequalities_Markov_Chebyshev_Chernoff",
+    "topicTitle": "06 \u00b7 Probability Inequalities",
+    "cardNumber": "02",
+    "category": "VARIANCE BOUND",
+    "highlighterClass": "highlight-amber",
+    "title": "Chebyshev\u2019s Inequality & Variance Dispersion",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30602\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30602)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30602)\"/><path d=\"M 30,114 Q 80,114 100,85 Q 120,25 125,25 Q 130,25 150,85 Q 170,114 220,114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"125\" y1=\"25\" x2=\"125\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.0\" stroke-dasharray=\"2 2\"/><text x=\"125\" y=\"125\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc</text><line x1=\"75\" y1=\"55\" x2=\"75\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"2 2\"/><line x1=\"175\" y1=\"55\" x2=\"175\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"2 2\"/><text x=\"75\" y=\"125\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03bc - k\u03c3</text><text x=\"175\" y=\"125\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03bc + k\u03c3</text><path d=\"M 30,114 Q 60,114 75,100 L 75,114 Z\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.0\"/><path d=\"M 175,100 Q 190,114 220,114 L 175,114 Z\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.0\"/><text x=\"120\" y=\"50\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(|X - \u03bc| \u2265 k\u03c3) \u2264 1 / k\u00b2</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Universal dispersion bound: at least (1 - 1/k\u00b2) mass lies within k standard deviations</text></svg>",
+    "drawingCaption": "Chebyshev bounds deviation from the mean: tail probability outside k standard deviations is at most 1/k\u00b2",
+    "coreTranslation": [
+      "<strong>Formal Statement:</strong> For any random variable with mean $\\mu$ and finite variance $\\sigma^2$, $\\mathbb{P}(|X - \\mu| \\ge \\epsilon) \\le \\frac{\\operatorname{Var}(X)}{\\epsilon^2}$.",
+      "<strong>Canonical Form ($k\\sigma$):</strong> Setting $\\epsilon = k\\sigma$, $\\mathbb{P}(|X - \\mu| \\ge k\\sigma) \\le \\frac{1}{k^2}$.",
+      "<strong>Distribution-Free Guarantee:</strong> Holds for ANY distribution: at least $75\\%$ of mass lies within $2\\sigma$ ($k=2$), and at least $88.89\\%$ lies within $3\\sigma$ ($k=3$), regardless of skewness."
+    ],
+    "math": "$$\\mathbb{P}(|X - \\mu| \\ge \\epsilon) \\le \\frac{\\operatorname{Var}(X)}{\\epsilon^2}, \\qquad \\mathbb{P}(|X - \\mu| \\ge k\\sigma) \\le \\frac{1}{k^2}$$",
+    "personalConnection": "Factory quality control: regardless of how defective or skewed machine tolerances are, at least 96% of items must lie within 5 standard deviations (failure rate \u2264 4%).",
+    "examTrap": "Using Chebyshev when a 1-sided bound is required. For 1-sided deviations P(X - \u03bc \u2265 \u03b5), Cantelli's inequality gives the strictly sharper bound \u03c3\u00b2 / (\u03c3\u00b2 + \u03b5\u00b2)."
+  },
+  {
+    "id": 30603,
+    "subject": "StoMA",
+    "topicId": "06_Probability_Inequalities_Markov_Chebyshev_Chernoff",
+    "topicTitle": "06 \u00b7 Probability Inequalities",
+    "cardNumber": "03",
+    "category": "EXPONENTIAL CONCENTRATION",
+    "highlighterClass": "highlight-emerald",
+    "title": "The Chernoff Bound & Exponential Moment Optimization",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30603\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30603)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30603)\"/><path d=\"M 35,30 Q 100,105 130,105 Q 160,105 210,30\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.0\"/><circle cx=\"130\" cy=\"105\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"130\" y1=\"105\" x2=\"130\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.0\" stroke-dasharray=\"2 2\"/><text x=\"130\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">t* (optimal tilt)</text><text x=\"130\" y=\"92\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">inf_{t > 0} e^{-ta} M_X(t)</text><text x=\"120\" y=\"16\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(X \u2265 a) \u2264 e^{-ta} M_X(t)  \u2200 t > 0</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Exponential Markov bound optimized over t > 0 gives exponential tail decay</text></svg>",
+    "drawingCaption": "Applying Markov to e^{tX} and optimizing over tilt parameter t > 0 delivers sharp exponential concentration",
+    "coreTranslation": [
+      "<strong>Exponential Markov Step:</strong> For any $t > 0$, $\\mathbb{P}(X \\ge a) = \\mathbb{P}(e^{tX} \\ge e^{ta}) \\le \\frac{\\mathbb{E}[e^{tX}]}{e^{ta}} = e^{-ta} M_X(t)$.",
+      "<strong>Convex Dual Optimization:</strong> Squeezing over all $t > 0$ yields the sharpest bound: $\\mathbb{P}(X \\ge a) \\le \\inf_{t > 0} \\exp(-(ta - \\log M_X(t)))$.",
+      "<strong>Legendre-Fenchel Conjugate:</strong> Exponent $-I(a) \\triangleq -\\sup_{t > 0}(ta - \\Lambda_X(t))$ is the convex conjugate of the cumulant MGF, giving exponential decay $O(e^{-n I(a)})$ for sample sums."
+    ],
+    "math": "$$\\mathbb{P}(X \\ge a) \\le \\inf_{t > 0} e^{-ta} M_X(t) = \\exp\\left(-\\sup_{t > 0}[ta - \\Lambda_X(t)]\\right)$$",
+    "personalConnection": "Focusing an optical laser: tuning parameter t sharpens the probability bound until it reaches the absolute tightest physical focus point.",
+    "examTrap": "Forgetting the constraint t > 0 for upper tails (and t < 0 for lower tails P(X \u2264 a)). Plugging negative t into an upper-tail bound flips the inequality direction!"
+  },
+  {
+    "id": 30604,
+    "subject": "StoMA",
+    "topicId": "06_Probability_Inequalities_Markov_Chebyshev_Chernoff",
+    "topicTitle": "06 \u00b7 Probability Inequalities",
+    "cardNumber": "04",
+    "category": "CONVEXITY",
+    "highlighterClass": "highlight-purple",
+    "title": "Jensen\u2019s Inequality: Secant Dominance & Convexity",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30604\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30604)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30604)\"/><path d=\"M 40,105 Q 120,110 190,30\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.0\"/><text x=\"195\" y=\"30\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g(x)</text><line x1=\"55\" y1=\"100\" x2=\"175\" y2=\"45\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"2 2\"/><line x1=\"115\" y1=\"114\" x2=\"115\" y2=\"96\" stroke=\"#000000\" stroke-width=\"1.0\" stroke-dasharray=\"2 2\"/><circle cx=\"115\" cy=\"96\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"115\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">E[X]</text><text x=\"80\" y=\"96\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g(E[X])</text><circle cx=\"115\" cy=\"72\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"80\" y=\"72\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[g(X)]</text><line x1=\"115\" y1=\"72\" x2=\"115\" y2=\"96\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"155\" y=\"85\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g(E[X]) \u2264 E[g(X)]</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">For convex g, secants lie above the curve: the function of the mean is below the mean of the function</text></svg>",
+    "drawingCaption": "For any convex function g, the secant line lies above the curve, ensuring g(E[X]) \u2264 E[g(X)]",
+    "coreTranslation": [
+      "<strong>Convexity Definition:</strong> Function $g$ is convex if $g(\\lambda x + (1-\\lambda)y) \\le \\lambda g(x) + (1-\\lambda)g(y)$ for all $\\lambda \\in [0, 1]$.",
+      "<strong>Jensen\u2019s Statement:</strong> If $g$ is convex and expectations exist, $g(\\mathbb{E}[X]) \\le \\mathbb{E}[g(X)]$.",
+      "<strong>Supporting Hyperplane Proof:</strong> At $\\mu = \\mathbb{E}[X]$, a tangent subgradient $c$ satisfies $g(x) \\ge g(\\mu) + c(x - \\mu)$. Taking expectations: $\\mathbb{E}[g(X)] \\ge g(\\mu) + c(0) = g(\\mathbb{E}[X])$."
+    ],
+    "math": "$$g \\text{ convex} \\implies g(\\mathbb{E}[X]) \\le \\mathbb{E}[g(X)]; \\qquad g \\text{ concave} \\implies \\mathbb{E}[g(X)] \\le g(\\mathbb{E}[X])$$",
+    "personalConnection": "Driving with varying speeds: traveling 100 miles at 40 mph then 100 miles at 60 mph takes longer than driving constant 50 mph because travel time T(v) = D/v is strictly convex.",
+    "examTrap": "Reversing the inequality for concave functions! For concave functions like log(x) or \u221ax, E[g(X)] \u2264 g(E[X]) (which directly proves the Arithmetic-Geometric Mean AM-GM inequality)."
+  },
+  {
+    "id": 30605,
+    "subject": "StoMA",
+    "topicId": "06_Probability_Inequalities_Markov_Chebyshev_Chernoff",
+    "topicTitle": "06 \u00b7 Probability Inequalities",
+    "cardNumber": "05",
+    "category": "CANONICAL BOUNDS",
+    "highlighterClass": "highlight-cyan",
+    "title": "Cauchy-Schwarz & Hoeffding\u2019s Concentration Inequality",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30605\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"96\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"64.0\" y=\"40.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Cauchy-Schwarz:\n|E[XY]|\u00b2 \u2264</text><text x=\"64.0\" y=\"49.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[X\u00b2]E[Y\u00b2]\n(Equality \u21d4 Y = cX)</text><rect x=\"128\" y=\"20\" width=\"96\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"176.0\" y=\"40.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Hoeffding's Lemma:\nX \u2208 [a, b],</text><text x=\"176.0\" y=\"49.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[X]=0\nM_X(t) \u2264 e^{t\u00b2(b-a)\u00b2/8}</text><rect x=\"16\" y=\"72\" width=\"208\" height=\"42\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"120\" y=\"86\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Hoeffding's Inequality (Sums of Bounded Independent RVs):</text><text x=\"120\" y=\"102\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(\u2211 (X\u1d62 - \u03bc\u1d62) \u2265 t) \u2264 exp( - 2t\u00b2 / \u2211 (b\u1d62 - a\u1d62)\u00b2 )</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Cauchy-Schwarz bounds correlations (|\u03c1| \u2264 1); Hoeffding bounds tails of bounded sums</text></svg>",
+    "drawingCaption": "Cauchy-Schwarz bounds inner products; Hoeffding provides sub-Gaussian tails for bounded independent sums",
+    "coreTranslation": [
+      "<strong>Cauchy-Schwarz:</strong> $|\\mathbb{E}[XY]|^2 \\le \\mathbb{E}[X^2]\\,\\mathbb{E}[Y^2]$. Equality holds if and only if $Y = c X$ almost surely for some constant $c$. Guarantees correlation $|\\rho_{X,Y}| \\le 1$.",
+      "<strong>Hoeffding's Lemma:</strong> If $X \\in [a, b]$ with $\\mathbb{E}[X] = 0$, its MGF satisfies sub-Gaussian proxy $M_X(t) \\le \\exp\\left(\\frac{t^2(b - a)^2}{8}\\right)$.",
+      "<strong>Hoeffding\u2019s Inequality:</strong> For independent $X_i \\in [a_i, b_i]$, $\\mathbb{P}(\\sum_{i=1}^n (X_i - \\mu_i) \\ge t) \\le \\exp\\left(-\\frac{2t^2}{\\sum_{i=1}^n (b_i - a_i)^2}\\right)$."
+    ],
+    "math": "$$|\\mathbb{E}[XY]|^2 \\le \\mathbb{E}[X^2]\\mathbb{E}[Y^2], \\quad \\mathbb{P}\\left(\\sum_{i=1}^n (X_i - \\mu_i) \\ge t\\right) \\le \\exp\\left(-\\frac{2t^2}{\\sum_{i=1}^n (b_i - a_i)^2}\\right)$$",
+    "personalConnection": "Geometric dot product: the shadow cast by vector X onto Y cannot exceed the product of their lengths (|cos \u03b8| \u2264 1).",
+    "examTrap": "Applying Hoeffding to dependent variables! Mutual independence of X\u2081,...,X_n is strictly mandatory to factorize the joint MGF in Hoeffding's proof."
+  },
+  {
+    "id": 30606,
+    "subject": "StoMA",
+    "topicId": "06_Probability_Inequalities_Markov_Chebyshev_Chernoff",
+    "topicTitle": "06 \u00b7 Probability Inequalities",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Chernoff vs Chebyshev on Coin Flips",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30606\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30606)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30606)\"/><path d=\"M 30,35 Q 70,75 120,95 Q 170,105 215,110\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"3 3\"/><text x=\"200\" y=\"100\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Chebyshev: 4/n</text><path d=\"M 30,35 Q 45,95 70,112 L 215,114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.2\"/><text x=\"90\" y=\"80\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Chernoff: e^{-n/8}</text><rect x=\"110\" y=\"24\" width=\"114\" height=\"46\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"167.0\" y=\"46.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">For n = 100:\nChebyshev: \u2264 0.04</text><text x=\"167.0\" y=\"55.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(4%)\nChernoff: \u2264 3.7 \u00d7 10\u207b\u2076</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Chernoff delivers exponential concentration; Chebyshev provides only weak polynomial decay</text></svg>",
+    "drawingCaption": "Chebyshev gives weak O(1/n) polynomial bounds; Chernoff harnesses all moments to achieve exponential decay",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Let $S_n \\sim \\text{Binomial}(n, 1/2)$, so $\\mu = n/2$ and $\\sigma^2 = n/4$. Bound tail $\\mathbb{P}(S_n \\ge \\frac{3}{4}n)$ ($\\ge 25\\%$ excess).",
+      "<strong>Chebyshev Evaluation:</strong> $\\mathbb{P}(S_n - n/2 \\ge n/4) \\le \\frac{\\sigma^2}{(n/4)^2} = \\frac{n/4}{n^2/16} = \\frac{4}{n}$ (slow polynomial rate $O(1/n)$).",
+      "<strong>Chernoff Evaluation:</strong> Hoeffding gives $\\exp(-2(n/4)^2 / n) = \\exp(-n/8)$. For $n=100$: Chebyshev gives $\\le 0.04$, while Chernoff gives $\\le e^{-12.5} \\approx 3.7 \\times 10^{-6}$!"
+    ],
+    "math": "$$\\mathbb{P}\\left(S_n \\ge \\tfrac{3}{4}n\\right) \\le \\frac{4}{n} \\quad (\\text{Chebyshev}) \\quad \\text{vs} \\quad \\exp\\left(-\\frac{n}{8}\\right) \\quad (\\text{Chernoff/Hoeffding})$$",
+    "personalConnection": "A structural safety factor: Chebyshev guarantees the bridge stands with 96% confidence, while Chernoff proves the failure probability is under four in a million.",
+    "examTrap": "Using Chebyshev for large sample sizes (n >> 100). Chebyshev captures only 2nd moments, missing the exponential destructive cancellation across independent terms."
+  },
+  {
+    "id": 30701,
+    "subject": "StoMA",
+    "topicId": "07_Joint_Distributions_Marginal_and_Conditional_Distributions",
+    "topicTitle": "07 \u00b7 Joint, Marginal & Conditional Distributions",
+    "cardNumber": "01",
+    "category": "JOINT CDF",
+    "highlighterClass": "highlight-cyan",
+    "title": "Joint Cumulative Distribution Function & 2D Rectangle Measure",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30701\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30701)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30701)\"/><rect x=\"60\" y=\"45\" width=\"90\" height=\"50\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"105\" y=\"70\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(a &lt; X \u2264 b, c &lt; Y \u2264 d)</text><circle cx=\"60\" cy=\"95\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"50\" y=\"102\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(a, c)</text><circle cx=\"150\" cy=\"95\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"160\" y=\"102\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(b, c)</text><circle cx=\"60\" cy=\"45\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"50\" y=\"40\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(a, d)</text><circle cx=\"150\" cy=\"45\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"160\" y=\"40\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(b, d)</text><rect x=\"24\" y=\"18\" width=\"192\" height=\"22\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"28.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u0394_{a,c}^{b,d} F = F(b, d) -</text><text x=\"120.0\" y=\"36.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">F(a, d) - F(b, c) + F(a, c) \u2265 0</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">2D CDF must satisfy 2-monotonicity: all rectangle probabilities must be non-negative</text></svg>",
+    "drawingCaption": "The 2D rectangle formula computes cell probability by inclusion-exclusion of quadrant corners",
+    "coreTranslation": [
+      "<strong>Joint CDF:</strong> $F_{X,Y}(x, y) \\triangleq \\mathbb{P}(X \\le x, Y \\le y)$ evaluates the cumulative measure of infinite lower-left quadrant $(-\\infty, x] \\times (-\\infty, y]$.",
+      "<strong>2D Rectangle Measure:</strong> Probability in $(a, b] \\times (c, d]$ is $\\mathbb{P}(a < X \\le b, c < Y \\le d) = F(b, d) - F(a, d) - F(b, c) + F(a, c) \\ge 0$.",
+      "<strong>2-Monotonicity Axiom:</strong> Increasing in $x$ and $y$ separately is NOT enough! The 2D cross-difference must be non-negative for every rectangle."
+    ],
+    "math": "$$\\mathbb{P}(a < X \\le b, c < Y \\le d) = F_{X,Y}(b, d) - F_{X,Y}(a, d) - F_{X,Y}(b, c) + F_{X,Y}(a, c) \\ge 0$$",
+    "personalConnection": "Measuring the area of an interior floor tile by subtracting left and bottom border carpets and restoring the doubly subtracted corner piece.",
+    "examTrap": "Assuming coordinate-wise monotonicity guarantees a valid 2D CDF. Functions exist where \u2202F/\u2202x \u2265 0 and \u2202F/\u2202y \u2265 0, yet the rectangle measure evaluates to a negative number!"
+  },
+  {
+    "id": 30702,
+    "subject": "StoMA",
+    "topicId": "07_Joint_Distributions_Marginal_and_Conditional_Distributions",
+    "topicTitle": "07 \u00b7 Joint, Marginal & Conditional Distributions",
+    "cardNumber": "02",
+    "category": "CONTINUOUS 2D",
+    "highlighterClass": "highlight-amber",
+    "title": "Joint Probability Density Function & Probability as Volume",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30702\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><polygon points=\"40,110 140,110 200,75 100,75\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"120\" y=\"102\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Region A in xy-plane</text><path d=\"M 80,95 L 80,45 Q 120,30 160,40 L 160,85 L 80,95 Z\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120\" y=\"58\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Volume = P((X, Y) \u2208 A)</text><text x=\"165\" y=\"30\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">z = f_{X,Y}(x, y)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Joint density: Probability is volume under 2D surface; f(x, y) = \u2202\u00b2F / \u2202x\u2202y</text></svg>",
+    "drawingCaption": "The joint PDF f_{X,Y}(x, y) defines a surface whose volume above any 2D region A equals P((X, Y) \u2208 A)",
+    "coreTranslation": [
+      "<strong>Mixed Derivative:</strong> If $F_{X,Y}$ is differentiable, the joint PDF is $f_{X,Y}(x, y) = \\frac{\\partial^2 F_{X,Y}(x, y)}{\\partial x \\partial y}$.",
+      "<strong>Volume Representation:</strong> For any Borel region $A \\subseteq \\mathbb{R}^2$, $\\mathbb{P}((X, Y) \\in A) = \\iint_A f_{X,Y}(x, y)\\,dx\\,dy$.",
+      "<strong>Normalization:</strong> $f_{X,Y}(x, y) \\ge 0$ everywhere and total volume $\\int_{-\\infty}^\\infty \\int_{-\\infty}^\\infty f_{X,Y}(x, y)\\,dx\\,dy = 1$."
+    ],
+    "math": "$$f_{X,Y}(x, y) = \\frac{\\partial^2 F_{X,Y}(x, y)}{\\partial x \\partial y}, \\qquad \\mathbb{P}((X, Y) \\in A) = \\iint_A f_{X,Y}(x, y)\\,dx\\,dy$$",
+    "personalConnection": "A topographical relief map of sand on a tabletop: the probability of a falling drop hitting zone A is the exact physical volume of sand standing directly over A.",
+    "examTrap": "Swapping integration order in non-rectangular domains without adjusting boundaries! For coupled domains like 0 \u2264 x \u2264 y \u2264 1, \u222b\u2080\u00b9 dx \u222b_x\u00b9 dy = \u222b\u2080\u00b9 dy \u222b\u2080^y dx."
+  },
+  {
+    "id": 30703,
+    "subject": "StoMA",
+    "topicId": "07_Joint_Distributions_Marginal_and_Conditional_Distributions",
+    "topicTitle": "07 \u00b7 Joint, Marginal & Conditional Distributions",
+    "cardNumber": "03",
+    "category": "MARGINALIZATION",
+    "highlighterClass": "highlight-emerald",
+    "title": "Marginal Distributions: Collapsing Dimensions",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30703\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"115\" cy=\"65\" rx=\"45\" ry=\"28\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.4\" transform=\"rotate(20 115 65)\"/><text x=\"115\" y=\"65\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_{X,Y}(x, y)</text><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30703)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30703)\"/><line x1=\"70\" y1=\"65\" x2=\"70\" y2=\"114\" stroke=\"#000000\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><line x1=\"160\" y1=\"65\" x2=\"160\" y2=\"114\" stroke=\"#000000\" stroke-width=\"0.8\" stroke-dasharray=\"2 2\"/><path d=\"M 70,114 Q 115,85 160,114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.0\"/><text x=\"115\" y=\"96\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_X(x) = \u222b f(x, y) dy</text><path d=\"M 24,40 Q 42,65 24,90\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.0\"/><text x=\"40\" y=\"35\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">f_Y(y) = \u222b f(x, y) dx</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Marginalization collapses dimensions by integrating out the unwanted variable</text></svg>",
+    "drawingCaption": "Marginals project joint densities onto 1D coordinate axes by integrating out the orthogonal variable",
+    "coreTranslation": [
+      "<strong>Continuous Marginalization:</strong> $f_X(x) = \\int_{-\\infty}^\\infty f_{X,Y}(x, y)\\,dy$ and $f_Y(y) = \\int_{-\\infty}^\\infty f_{X,Y}(x, y)\\,dx$.",
+      "<strong>Discrete Marginalization:</strong> $p_X(x) = \\sum_{y} p_{X,Y}(x, y)$ and $p_Y(y) = \\sum_{x} p_{X,Y}(x, y)$ (row and column sums).",
+      "<strong>Correlation Erasure:</strong> Marginals retain only single-variable laws, discarding all mutual dependence structure. Infinite distinct joints share the same marginals."
+    ],
+    "math": "$$f_X(x) = \\int_{-\\infty}^\\infty f_{X,Y}(x, y)\\,dy, \\qquad p_X(x) = \\sum_{y} p_{X,Y}(x, y)$$",
+    "personalConnection": "A 2D shadow of a flying bird: the shadow on the ground collapses vertical altitude while preserving horizontal ground position.",
+    "examTrap": "Neglecting dependent boundary limits during integration! If the support is triangular 0 \u2264 y \u2264 x \u2264 1, then f_X(x) = \u222b\u2080^x f(x, y)dy, NOT \u222b\u2080\u00b9!"
+  },
+  {
+    "id": 30704,
+    "subject": "StoMA",
+    "topicId": "07_Joint_Distributions_Marginal_and_Conditional_Distributions",
+    "topicTitle": "07 \u00b7 Joint, Marginal & Conditional Distributions",
+    "cardNumber": "04",
+    "category": "CONDITIONAL DENSITIES",
+    "highlighterClass": "highlight-purple",
+    "title": "Conditional Density: Slicing and Renormalizing",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30704\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30704)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30704)\"/><ellipse cx=\"120\" cy=\"65\" rx=\"55\" ry=\"30\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(0 120 65)\"/><ellipse cx=\"120\" cy=\"65\" rx=\"35\" ry=\"18\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(0 120 65)\"/><line x1=\"140\" y1=\"25\" x2=\"140\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.8\"/><circle cx=\"140\" cy=\"65\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"140\" y=\"126\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X = x</text><rect x=\"150\" y=\"40\" width=\"80\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"190.0\" y=\"57.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Slice profile:\nf_{Y|X}(y|x)</text><text x=\"190.0\" y=\"65.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">=\nf(x, y) / f_X(x)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Conditional PDF is the 1D slice along X=x re-normalized by 1/f_X(x) to integrate to 1</text></svg>",
+    "drawingCaption": "The conditional PDF f_{Y|X}(y|x) is a 1D cross-sectional slice of the joint surface normalized to area 1",
+    "coreTranslation": [
+      "<strong>Formal Definition:</strong> For any $x$ with $f_X(x) > 0$, the conditional PDF of $Y$ given $X=x$ is $f_{Y \\mid X}(y \\mid x) \\triangleq \\frac{f_{X,Y}(x, y)}{f_X(x)}$.",
+      "<strong>Bona Fide 1D Density:</strong> For fixed $x$, the function $y \\mapsto f_{Y \\mid X}(y \\mid x)$ is a valid density on $\\mathbb{R}$: non-negative and integrates to $\\int_{-\\infty}^\\infty f_{Y \\mid X}(y \\mid x)\\,dy = 1$.",
+      "<strong>Cross-Section Geometry:</strong> Taking a knife slice across the 2D density mountain along $X=x$, dividing by marginal $f_X(x)$ to restore unit area."
+    ],
+    "math": "$$f_{Y \\mid X}(y \\mid x) = \\frac{f_{X,Y}(x, y)}{f_X(x)}, \\quad f_X(x) > 0; \\qquad \\int_{-\\infty}^\\infty f_{Y \\mid X}(y \\mid x)\\,dy = 1$$",
+    "personalConnection": "A CT scan slice through a medical patient: isolating the 2D organ profile at a fixed longitudinal position x.",
+    "examTrap": "Borel-Kolmogorov Paradox: conditioning continuous distributions on measure-zero curves g(X,Y)=0 depends on the coordinate parametrization! Slicing is well-defined along coordinate projections."
+  },
+  {
+    "id": 30705,
+    "subject": "StoMA",
+    "topicId": "07_Joint_Distributions_Marginal_and_Conditional_Distributions",
+    "topicTitle": "07 \u00b7 Joint, Marginal & Conditional Distributions",
+    "cardNumber": "05",
+    "category": "INDEPENDENCE",
+    "highlighterClass": "highlight-cyan",
+    "title": "Independence: Factorization & The Product Support Test",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30705\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"25\" width=\"85\" height=\"65\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"66\" y=\"57\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">S_X \u00d7 S_Y\n(Product Set)</text><text x=\"66\" y=\"102\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Independent OK</text><polygon points=\"140,90 210,90 210,25\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"185\" y=\"70\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Coupled Support\n0 \u2264 y \u2264 x \u2264 1</text><text x=\"175\" y=\"102\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Coupled \u21d2 Dependent!</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Independence REQUIRES: (1) density factorizes f(x, y)=g(x)h(y) AND (2) support is a product set</text></svg>",
+    "drawingCaption": "Independence requires both algebraic density factorization and an uncoupled Cartesian product support",
+    "coreTranslation": [
+      "<strong>Definition:</strong> $X \\perp Y \\iff F_{X,Y}(x, y) = F_X(x) F_Y(y)$ for all $x, y$, equivalent to $f_{X,Y}(x, y) = f_X(x) f_Y(y)$ almost everywhere.",
+      "<strong>Product Support Requirement:</strong> Independence strictly REQUIRES the support $\\operatorname{supp}(X, Y)$ to be a Cartesian product set $S_X \\times S_Y$ (e.g. a rectangle).",
+      "<strong>Factorization Test:</strong> If $f_{X,Y}(x, y) = g(x) h(y)$ AND the support is a product set, then $X \\perp Y$, with marginals proportional to $g(x)$ and $h(y)$."
+    ],
+    "math": "$$X \\perp Y \\iff f_{X,Y}(x, y) = f_X(x) f_Y(y) \\quad \\forall (x, y) \\in S_X \\times S_Y$$",
+    "personalConnection": "A standard chessboard: choosing a rank (1-8) and a file (A-H) are completely independent; on a triangular board, the choice of rank restricts available files.",
+    "examTrap": "Declaring independence when f(x, y) = 4xy on coupled domain 0 \u2264 x \u2264 y \u2264 1! Even though the algebraic formula factorizes, coupled boundary limits destroy independence instantly."
+  },
+  {
+    "id": 30706,
+    "subject": "StoMA",
+    "topicId": "07_Joint_Distributions_Marginal_and_Conditional_Distributions",
+    "topicTitle": "07 \u00b7 Joint, Marginal & Conditional Distributions",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Triangular Support & Dependent Marginals",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30706\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30706)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30706)\"/><polygon points=\"40,114 180,114 180,25\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"40\" y1=\"114\" x2=\"180\" y2=\"25\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"2 2\"/><text x=\"110\" y=\"60\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">y = x</text><text x=\"180\" y=\"126\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1</text><text x=\"40\" y=\"126\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0</text><text x=\"24\" y=\"25\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">1</text><text x=\"130\" y=\"85\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_{X,Y} = 2</text><rect x=\"24\" y=\"20\" width=\"100\" height=\"48\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"74.0\" y=\"43.0\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_X(x) = 2x, x\u2208[0,1]\nf_Y(y) = 2(1-y),</text><text x=\"74.0\" y=\"51.0\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">y\u2208[0,1]\nf_{Y|X}(y|x) = 1/x\n\u21d2 Y|X ~ Unif[0, x]</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">f_{X,Y} \u2260 f_X f_Y \u21d2 strongly dependent; conditional expectation E[Y|X=x] = x/2</text></svg>",
+    "drawingCaption": "Uniform density on a triangle produces non-uniform marginals and conditional uniform distributions",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Uniform density on triangle $T = \\{(x, y) : 0 \\le y \\le x \\le 1\\}$. Area is $1/2$, so $f_{X,Y}(x, y) = 2 \\cdot \\mathbf{1}_{\\{0 \\le y \\le x \\le 1\\}}$.",
+      "<strong>Marginal Integrals:</strong> $f_X(x) = \\int_0^x 2\\,dy = 2x$ on $[0, 1]$. $f_Y(y) = \\int_y^1 2\\,dx = 2(1 - y)$ on $[0, 1]$. Product $f_X f_Y = 4x(1-y) \\ne 2 \\implies X \\not\\perp Y$.",
+      "<strong>Conditional Uniformity:</strong> $f_{Y \\mid X}(y \\mid x) = \\frac{2}{2x} = \\frac{1}{x} \\mathbf{1}_{\\{0 \\le y \\le x\\}}$, so $Y \\mid X=x \\sim \\text{Uniform}[0, x]$ with $\\mathbb{E}[Y \\mid X=x] = x/2$."
+    ],
+    "math": "$$f_{X,Y} = 2, \\quad f_X(x) = 2x, \\quad f_Y(y) = 2(1-y); \\quad f_{Y \\mid X}(y \\mid x) = \\frac{1}{x}\\,\\mathbf{1}_{\\{0 \\le y \\le x\\}}$$",
+    "personalConnection": "Breaking a stick at point X, then picking a point Y uniformly on the broken piece: Y is bounded by X and cannot be independent of X.",
+    "examTrap": "Integrating y from 0 to 1 when finding f_X(x)! Because y \u2264 x, integrating past x includes forbidden empty territory, producing an erroneous constant marginal."
   }
 ]
 );
