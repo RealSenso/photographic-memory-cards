@@ -22,7 +22,7 @@
 
     body {
       font-family: var(--font-sans);
-      background: radial-gradient(circle at 50% 12%, #141a32 0%, #080c18 45%, #030409 100%);
+      background: radial-gradient(circle at 50% 10%, #141a32 0%, #080c18 45%, #030409 100%);
       color: #e2e8f0;
       margin: 0;
       padding: 0;
@@ -43,57 +43,57 @@
     /* Blank Cosmic Card (No notebook lines, no paper texture) */
     .cosmic-card {
       background-color: #0c101d;
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(56, 189, 248, 0.04);
-      border-radius: 16px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.06);
+      border-radius: 20px;
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
     }
 
     .cosmic-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 28px 60px -14px rgba(0, 0, 0, 0.95), 0 0 45px rgba(56, 189, 248, 0.22);
     }
 
     /* Cosmic Highlighters */
     .highlight-cyan {
-      background: rgba(14, 165, 233, 0.18);
-      border: 1px solid rgba(56, 189, 248, 0.45);
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.5);
       color: #e0f2fe;
     }
 
     .highlight-amber {
-      background: rgba(245, 158, 11, 0.18);
-      border: 1px solid rgba(251, 191, 36, 0.45);
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(251, 191, 36, 0.5);
       color: #fef3c7;
     }
 
     .highlight-emerald {
-      background: rgba(16, 185, 129, 0.18);
-      border: 1px solid rgba(52, 211, 153, 0.45);
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(52, 211, 153, 0.5);
       color: #d1fae5;
     }
 
     .highlight-purple {
-      background: rgba(168, 85, 247, 0.18);
-      border: 1px solid rgba(192, 132, 252, 0.45);
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid rgba(192, 132, 252, 0.5);
       color: #f3e8ff;
     }
 
     /* Discreet Custom Cosmic Scrollbar */
     .cosmic-scroll::-webkit-scrollbar {
-      width: 4px;
+      width: 5px;
     }
     .cosmic-scroll::-webkit-scrollbar-track {
       background: rgba(255, 255, 255, 0.02);
       border-radius: 4px;
     }
     .cosmic-scroll::-webkit-scrollbar-thumb {
-      background: rgba(56, 189, 248, 0.25);
+      background: rgba(56, 189, 248, 0.3);
       border-radius: 4px;
     }
     .cosmic-scroll::-webkit-scrollbar-thumb:hover {
-      background: rgba(56, 189, 248, 0.55);
+      background: rgba(56, 189, 248, 0.6);
     }
 
     /* Print styles */
@@ -110,15 +110,15 @@
   <canvas id="cosmos-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
   <!-- Ambient Nebula Lighting -->
-  <div class="fixed top-10 left-1/4 w-[35rem] h-[35rem] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-  <div class="fixed bottom-20 right-1/4 w-[40rem] h-[40rem] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed top-10 left-1/4 w-[40rem] h-[40rem] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-20 right-1/4 w-[45rem] h-[45rem] bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none z-0"></div>
 
   <!-- Content Wrapper -->
   <div class="relative z-10 min-h-screen flex flex-col justify-between">
 
     <!-- ================= TOP COSMIC NAVIGATION TOOLBAR ================= -->
-    <header class="w-full bg-[#080c18]/85 backdrop-blur-md border-b border-cyan-500/20 px-4 sm:px-8 py-3.5 sticky top-0 z-40 shadow-xl">
-      <div class="max-w-[1800px] mx-auto flex flex-wrap items-center justify-between gap-4">
+    <header class="w-full bg-[#080c18]/90 backdrop-blur-md border-b border-cyan-500/20 px-4 sm:px-8 py-3.5 sticky top-0 z-40 shadow-xl">
+      <div class="max-w-[1920px] mx-auto flex flex-wrap items-center justify-between gap-4">
         
         <!-- Cosmic Brand & Philosophy -->
         <div class="flex items-center gap-3">
@@ -154,13 +154,21 @@
         </div>
 
         <!-- Action Tools & Grid Controllers -->
-        <div class="flex items-center gap-2.5">
-          <!-- Columns Selector -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <!-- Layout Selector -->
           <div class="flex items-center gap-1 bg-[#0d1326] border border-cyan-500/20 p-1 rounded-xl text-xs text-slate-300 shadow-inner">
             <span class="px-2 text-[10px] text-slate-400 font-mono">LAYOUT:</span>
-            <button onclick="setGridCols(1)" id="col-btn-1" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">1 Wide</button>
-            <button onclick="setGridCols(2)" id="col-btn-2" class="px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition">2 Cols</button>
-            <button onclick="setGridCols(3)" id="col-btn-3" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">3 Cols</button>
+            <button onclick="setGridCols(1)" id="col-btn-1" class="px-3 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition">1 Wide (Expansive)</button>
+            <button onclick="setGridCols(2)" id="col-btn-2" class="px-3 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">2 Cols</button>
+            <button onclick="setGridCols(3)" id="col-btn-3" class="px-3 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">3 Cols</button>
+          </div>
+
+          <!-- Card Scale Selector -->
+          <div class="flex items-center gap-1 bg-[#0d1326] border border-cyan-500/20 p-1 rounded-xl text-xs text-slate-300 shadow-inner">
+            <span class="px-2 text-[10px] text-slate-400 font-mono">SIZE:</span>
+            <button onclick="setCardScale('default')" id="scale-btn-default" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">Standard</button>
+            <button onclick="setCardScale('large')" id="scale-btn-large" class="px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition">Large (125%)</button>
+            <button onclick="setCardScale('max')" id="scale-btn-max" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">Cinema Max</button>
           </div>
 
           <!-- Print / Export -->
@@ -178,7 +186,7 @@
     </header>
 
     <!-- ================= MAIN EXPANSIVE DESK ================= -->
-    <main class="w-full max-w-[1800px] mx-auto flex-1 px-4 sm:px-8 py-6">
+    <main class="w-full max-w-[1920px] mx-auto flex-1 px-4 sm:px-8 py-6">
       
       <!-- Topic Header Banner -->
       <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-3 border-b border-cyan-500/15">
@@ -201,24 +209,24 @@
       </div>
 
       <!-- Uniform 16:9 Landscape Card Grid -->
-      <div id="desk-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 items-start">
+      <div id="desk-grid" class="grid grid-cols-1 max-w-[1600px] mx-auto gap-10 items-start">
         <!-- Rendered dynamically -->
       </div>
 
     </main>
 
     <!-- ================= LIGHTBOX IMAGE MODAL ================= -->
-    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 p-4 flex items-center justify-center hidden" onclick="closeLightbox()">
-      <div class="max-w-4xl max-h-[90vh] bg-[#0c101d] border border-cyan-500/30 rounded-2xl p-5 shadow-2xl flex flex-col items-center relative" onclick="event.stopPropagation()">
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/92 backdrop-blur-md z-50 p-4 flex items-center justify-center hidden" onclick="closeLightbox()">
+      <div class="max-w-5xl max-h-[92vh] w-full bg-[#0c101d] border border-cyan-500/40 rounded-2xl p-6 shadow-2xl flex flex-col items-center relative" onclick="event.stopPropagation()">
         <div class="w-full flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
           <div>
-            <h4 id="lightbox-title" class="text-sm font-bold text-white font-serif-title text-base"></h4>
-            <p id="lightbox-ref" class="text-[11px] font-mono text-cyan-400"></p>
+            <h4 id="lightbox-title" class="text-base sm:text-lg font-bold text-white font-serif-title"></h4>
+            <p id="lightbox-ref" class="text-xs font-mono text-cyan-400"></p>
           </div>
-          <button onclick="closeLightbox()" class="text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 text-sm">✕ Close</button>
+          <button onclick="closeLightbox()" class="text-slate-300 hover:text-white px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm">✕ Close</button>
         </div>
-        <div class="flex-1 flex items-center justify-center overflow-auto p-2 bg-white rounded-xl">
-          <img id="lightbox-img" src="" alt="Enlarged Specimen" class="max-h-[72vh] max-w-full object-contain">
+        <div class="flex-1 w-full flex items-center justify-center overflow-auto p-4 bg-white rounded-xl shadow-inner">
+          <img id="lightbox-img" src="" alt="Enlarged Specimen" class="max-h-[74vh] max-w-full object-contain">
         </div>
         <div class="mt-3 text-xs text-slate-400 font-mono text-center">
           Click outside or press ✕ to return to orbital desk
@@ -236,7 +244,7 @@
           <button onclick="closeAddModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
         </div>
 
-        <form onsubmit="saveCustomCard(event)" class="space-y-3 text-xs">
+        <form onsubmit="saveCustomCard(event)" class="space-y-3.5 text-xs">
           <div>
             <label class="block font-medium text-slate-300 mb-1">1. Concept Title (Top Banner)</label>
             <input type="text" id="new-title" required placeholder="e.g. Linear Independence Constraint Qualification (LICQ)" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
@@ -272,7 +280,7 @@
 
     <!-- ================= FOOTER ================= -->
     <footer class="w-full border-t border-cyan-500/15 bg-[#080c18]/90 py-4 px-6 text-xs text-slate-500">
-      <div class="max-w-[1800px] mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="max-w-[1920px] mx-auto flex flex-wrap items-center justify-between gap-4">
         <div class="flex items-center gap-2">
           <span class="text-cyan-400 font-bold">The Sirianni Method:</span>
           <span>Dual-coding cognitive architecture on uniform 16:9 landscape knowledge plates.</span>
@@ -458,8 +466,9 @@
       }
     ];
 
-    let deck = JSON.parse(localStorage.getItem('sirianni_index_cards_cosmos_v6')) || defaultDeck;
-    let gridCols = 2;
+    let deck = JSON.parse(localStorage.getItem('sirianni_index_cards_cosmos_v7')) || defaultDeck;
+    let gridCols = 1; // Default to expansive 1 Wide layout as requested
+    let currentScale = 'large'; // Default to large 125% scale
 
     /* Render Deck with strict 16:9 Landscape cards & Blank surfaces */
     function renderDeck() {
@@ -468,45 +477,45 @@
 
       grid.innerHTML = deck.map((card, idx) => {
         return `
-          <div class="cosmic-card aspect-16-9 flex flex-col p-4 sm:p-5 relative overflow-hidden group">
+          <div class="cosmic-card aspect-16-9 flex flex-col p-5 sm:p-7 lg:p-8 relative overflow-hidden group">
             
             <!-- Top Bar: Header, Card ID, Category, Highlighter Title -->
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10 shrink-0">
-              <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded font-mono font-bold text-[11px] bg-cyan-950 text-cyan-300 border border-cyan-800/80">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 shrink-0">
+              <div class="flex items-center gap-3">
+                <span class="px-3 py-1 rounded-lg font-mono font-bold text-xs sm:text-sm bg-cyan-950 text-cyan-300 border border-cyan-800/80">
                   CARD ${card.cardNumber}
                 </span>
-                <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400">
+                <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-slate-400">
                   ${card.category}
                 </span>
               </div>
 
               <!-- Highlighter title badge -->
-              <div class="px-2.5 py-0.5 rounded-md ${card.highlighterClass}">
-                <h3 class="text-xs sm:text-sm font-bold tracking-tight font-serif-title">
+              <div class="px-3.5 py-1 rounded-lg ${card.highlighterClass}">
+                <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight font-serif-title">
                   ${card.title}
                 </h3>
               </div>
 
               <!-- Starlight icon -->
-              <span class="text-xs text-cyan-400/80 font-mono">✦</span>
+              <span class="text-base text-cyan-400/80 font-mono">✦</span>
             </div>
 
-            <!-- Main Card Body Split (Left: Content 57%, Right: Visual 43%) -->
-            <div class="flex-1 min-h-0 grid grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
+            <!-- Main Card Body Split (Left: Content 56%, Right: Visual 44%) -->
+            <div class="flex-1 min-h-0 grid grid-cols-12 gap-5 sm:gap-6 overflow-hidden">
               
               <!-- Left Column: Knowledge, Math, Anchors (Scrollable within 16:9 boundary) -->
-              <div class="col-span-7 flex flex-col justify-between overflow-y-auto pr-2 cosmic-scroll text-xs">
+              <div class="col-span-12 md:col-span-7 flex flex-col justify-between overflow-y-auto pr-3 cosmic-scroll text-sm sm:text-base">
                 
                 <!-- Core Translation -->
-                <div class="space-y-1">
-                  <div class="text-[9px] font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1">
+                <div class="space-y-1.5">
+                  <div class="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
                     <span>⚡ CORE MECHANISM</span>
                   </div>
-                  <ul class="space-y-1 text-slate-200 leading-snug">
+                  <ul class="space-y-1.5 text-slate-200 leading-relaxed text-xs sm:text-sm md:text-[15px]">
                     ${card.coreTranslation.map(pt => `
-                      <li class="flex items-start gap-1.5">
-                        <span class="text-cyan-400 font-bold shrink-0">›</span>
+                      <li class="flex items-start gap-2">
+                        <span class="text-cyan-400 font-bold shrink-0 text-base">›</span>
                         <span>${pt}</span>
                       </li>
                     `).join('')}
@@ -514,20 +523,20 @@
                 </div>
 
                 <!-- Math Block -->
-                <div class="my-1.5 p-2 rounded-lg bg-[#060812] border border-cyan-500/20 text-slate-100 font-mono text-[11px] overflow-x-auto shadow-inner">
+                <div class="my-2.5 p-3 sm:p-4 rounded-xl bg-[#060812] border border-cyan-500/25 text-slate-100 font-mono text-sm sm:text-base md:text-lg overflow-x-auto shadow-inner">
                   ${card.math}
                 </div>
 
                 <!-- Personal Connection / Anchor -->
-                <div class="p-2 rounded-lg bg-amber-500/10 border-l-2 border-amber-400 text-amber-200/90 text-[11px] leading-snug">
-                  <div class="text-[9px] font-bold uppercase tracking-wider text-amber-400 mb-0.5 flex items-center gap-1">
+                <div class="p-3 sm:p-3.5 rounded-xl bg-amber-500/10 border-l-4 border-amber-400 text-amber-200/95 text-xs sm:text-sm md:text-[15px] leading-relaxed">
+                  <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1 flex items-center gap-1.5">
                     <span>💡 MEMORY ANCHOR</span>
                   </div>
-                  <p class="italic font-serif">"${card.personalConnection}"</p>
+                  <p class="italic font-serif text-sm sm:text-base">"${card.personalConnection}"</p>
                 </div>
 
                 <!-- Exam Trap -->
-                <div class="mt-1 pt-1 border-t border-white/5 text-[10px] text-rose-300 flex items-start gap-1">
+                <div class="mt-2 pt-2 border-t border-white/5 text-xs sm:text-sm text-rose-300 flex items-start gap-1.5">
                   <span class="font-bold shrink-0 text-rose-400">⚠️ Exam Trap:</span>
                   <span class="text-slate-300">${card.examTrap}</span>
                 </div>
@@ -535,30 +544,30 @@
               </div>
 
               <!-- Right Column: Visual Specimen / Luenberger Figure Corner -->
-              <div class="col-span-5 flex flex-col justify-between pl-3 border-l border-white/10 overflow-hidden h-full">
+              <div class="col-span-12 md:col-span-5 flex flex-col justify-between pl-4 border-l border-white/10 overflow-hidden h-full">
                 <!-- Visual Header -->
-                <div class="flex items-center justify-between pb-1 text-[9px] font-mono text-slate-400 shrink-0">
-                  <span class="font-bold text-cyan-300 flex items-center gap-1">
-                    ${card.textbookImg ? '📖 TEXTBOOK' : '📐 DIAGRAM'}
+                <div class="flex items-center justify-between pb-1.5 text-xs font-mono text-slate-400 shrink-0">
+                  <span class="font-bold text-cyan-300 flex items-center gap-1.5 text-xs sm:text-sm">
+                    ${card.textbookImg ? '📖 TEXTBOOK SPECIMEN' : '📐 GEOMETRIC DIAGRAM'}
                   </span>
-                  <span class="text-slate-500 truncate max-w-[130px]">${card.textbookRef ? 'LUENBERGER & YE' : 'SIRIANNI DUAL-CODE'}</span>
+                  <span class="text-slate-400 truncate max-w-[190px]">${card.textbookRef ? 'LUENBERGER & YE' : 'SIRIANNI DUAL-CODE'}</span>
                 </div>
 
                 <!-- Visual Content (Specimen Image or SVG) -->
-                <div class="flex-1 min-h-0 flex items-center justify-center p-1.5 rounded-xl bg-[#05070e] border border-white/10 relative group/img overflow-hidden">
+                <div class="flex-1 min-h-0 flex items-center justify-center p-2.5 sm:p-3.5 rounded-2xl bg-white border border-white/20 relative group/img overflow-hidden shadow-xl">
                   ${card.textbookImg ? `
-                    <img src="${card.textbookImg}" alt="${card.title}" class="max-h-full max-w-full object-contain rounded bg-white p-1 cursor-pointer transition hover:scale-105" onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')">
+                    <img src="${card.textbookImg}" alt="${card.title}" class="max-h-full max-w-full object-contain rounded cursor-pointer transition-transform duration-300 hover:scale-105" onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')">
                   ` : `
-                    <div class="w-full h-full flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center bg-[#070b16] rounded-xl p-2">
                       ${card.drawingSvg}
                     </div>
                   `}
                 </div>
 
                 <!-- Caption & Lightbox hint -->
-                <div class="pt-1 shrink-0 flex items-center justify-between text-[10px] font-hand text-cyan-200">
+                <div class="pt-2 shrink-0 flex items-center justify-between text-xs sm:text-sm font-hand text-cyan-200">
                   <span class="truncate">"${card.drawingCaption}"</span>
-                  ${card.textbookImg ? `<button onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')" class="text-[9px] font-mono text-slate-400 hover:text-cyan-300 underline shrink-0 ml-1">Expand 🔍</button>` : ''}
+                  ${card.textbookImg ? `<button onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')" class="text-xs font-mono text-slate-400 hover:text-cyan-300 underline shrink-0 ml-2">Expand 🔍</button>` : ''}
                 </div>
               </div>
 
@@ -581,23 +590,51 @@
     /* Grid Layout Switching */
     function setGridCols(n) {
       gridCols = n;
-      const grid = document.getElementById('desk-grid');
-      if (n === 1) {
-        grid.className = 'grid grid-cols-1 max-w-5xl mx-auto gap-8 items-start';
-      } else if (n === 2) {
-        grid.className = 'grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 items-start';
-      } else {
-        grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 items-start';
-      }
+      applyLayoutAndScale();
 
       [1, 2, 3].forEach(num => {
         const btn = document.getElementById(`col-btn-${num}`);
         if (num === n) {
-          btn.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition";
+          btn.className = "px-3 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition";
         } else {
-          btn.className = "px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition";
+          btn.className = "px-3 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition";
         }
       });
+    }
+
+    /* Card Scale Switching */
+    function setCardScale(scale) {
+      currentScale = scale;
+      applyLayoutAndScale();
+
+      ['default', 'large', 'max'].forEach(s => {
+        const btn = document.getElementById(`scale-btn-${s}`);
+        if (btn) {
+          if (s === scale) {
+            btn.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition";
+          } else {
+            btn.className = "px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition";
+          }
+        }
+      });
+    }
+
+    function applyLayoutAndScale() {
+      const grid = document.getElementById('desk-grid');
+      
+      if (gridCols === 1) {
+        let maxWidth = 'max-w-[1600px]';
+        if (currentScale === 'default') maxWidth = 'max-w-5xl';
+        else if (currentScale === 'large') maxWidth = 'max-w-[1600px]';
+        else if (currentScale === 'max') maxWidth = 'max-w-[1850px]';
+        grid.className = `grid grid-cols-1 ${maxWidth} mx-auto gap-10 items-start`;
+      } else if (gridCols === 2) {
+        let maxWidth = 'max-w-[1850px]';
+        if (currentScale === 'max') maxWidth = 'max-w-none';
+        grid.className = `grid grid-cols-1 xl:grid-cols-2 ${maxWidth} mx-auto gap-8 items-start`;
+      } else {
+        grid.className = `grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 max-w-[1920px] mx-auto gap-6 items-start`;
+      }
     }
 
     /* Filter Cards */
@@ -616,15 +653,15 @@
       const grid = document.getElementById('desk-grid');
       document.getElementById('card-count').textContent = filtered.length;
       grid.innerHTML = filtered.map(c => `
-        <div class="cosmic-card aspect-16-9 p-5 flex flex-col justify-between">
+        <div class="cosmic-card aspect-16-9 p-6 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono text-cyan-400">CARD ${c.cardNumber}</span>
-              <h3 class="text-base font-bold text-white font-serif-title">${c.title}</h3>
+              <span class="text-sm font-mono text-cyan-400">CARD ${c.cardNumber}</span>
+              <h3 class="text-lg font-bold text-white font-serif-title">${c.title}</h3>
             </div>
-            <p class="text-xs text-slate-300 my-2">${c.coreTranslation[0]}</p>
+            <p class="text-sm text-slate-300 my-2">${c.coreTranslation[0]}</p>
           </div>
-          <p class="text-xs italic font-serif text-amber-200">"${c.personalConnection}"</p>
+          <p class="text-sm italic font-serif text-amber-200">"${c.personalConnection}"</p>
         </div>
       `).join('');
     }
@@ -682,7 +719,7 @@
       };
 
       deck.push(newCard);
-      localStorage.setItem('sirianni_index_cards_cosmos_v6', JSON.stringify(deck));
+      localStorage.setItem('sirianni_index_cards_cosmos_v7', JSON.stringify(deck));
       closeAddModal();
       renderDeck();
     }
@@ -818,6 +855,7 @@
       initCosmos();
       animateCosmos();
       renderDeck();
+      applyLayoutAndScale();
     });
   </script>
 </body>
