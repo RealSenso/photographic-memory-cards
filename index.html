@@ -78,14 +78,15 @@
     .plines { flex-basis: 100%; display: flex; align-items: flex-start; gap: 16px; margin-top: -2px; }
     .pwrap { flex: 1; min-width: 0; }
     .pbar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: #141a2e; }
-    .pseg { position: relative; height: 100%; min-width: 0; border: 0; padding: 0; background: color-mix(in srgb, var(--c) 22%, #141a2e); cursor: pointer; }
-    .pseg + .pseg { border-left: 2px solid #0d1220; }
-    .pseg i { position: absolute; top: 0; bottom: 0; left: 0; background: var(--c); transition: width .35s ease; }
-    .pseg:hover { filter: brightness(1.2); }
-    .plabels { display: flex; margin-top: 5px; }
-    .plabels button { min-width: 0; border: 0; background: none; padding: 0 6px 0 0; text-align: left; font-family: var(--mono); font-size: 11.5px; color: #8e9bb8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
-    .plabels button b { color: var(--c); font-weight: 600; }
+    .pfill { height: 100%; min-width: 6px; background: var(--c); transition: flex-grow .35s ease; }
+    .pfill + .pfill { border-left: 1px solid rgba(8, 12, 22, .55); }
+    .prest { height: 100%; background: transparent; }
+    .plabels { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 6px; }
+    .plabels button { display: inline-flex; align-items: center; gap: 7px; border: 0; background: none; padding: 2px 0; font-family: var(--mono); font-size: 11.5px; color: #8e9bb8; white-space: nowrap; cursor: pointer; }
+    .plabels button i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); display: inline-block; }
+    .plabels button b { color: var(--text); font-weight: 600; }
     .plabels button.cur { color: var(--text); }
+    .plabels button.cur i { box-shadow: 0 0 0 2px #0d1220, 0 0 0 3.5px var(--c); }
     .ptext { font-size: 12.5px; color: #8e9bb8; white-space: nowrap; font-family: var(--mono); padding-top: 0; line-height: 14px; }
     .ptext b { color: var(--text); font-weight: 600; }
     .chipbtn.done { border-color: #2c6e57; background: #11261f; color: var(--green); }
@@ -675,13 +676,14 @@
         return { sub, n: cs.length, k };
       }).filter(x => x.n);
       const pct = (k, n) => n ? Math.round(k / n * 100) : 0;
+      const tip = x => `${x.sub.id}: ${x.k} of ${x.n} done (${pct(x.k, x.n)}%)`;
       el.innerHTML = `<div class="pwrap">
-          <div class="pbar" role="img" aria-label="Progress: ${got} of ${total} cards done">${segs.map(x =>
-            `<button class="pseg" style="--c:${x.sub.color};flex:${x.n} 1 0" onclick="switchSubject('${x.sub.id}')" title="${x.sub.id}: ${x.k} of ${x.n} done (${pct(x.k, x.n)}%)" aria-label="${x.sub.id}: ${x.k} of ${x.n} done"><i style="width:${pct(x.k, x.n)}%"></i></button>`).join('')}</div>
+          <div class="pbar" role="img" aria-label="${got} of ${total} cards done">${segs.filter(x => x.k).map(x =>
+            `<span class="pfill" style="--c:${x.sub.color};flex:${x.k} 1 0" title="${tip(x)}"></span>`).join('')}<span class="prest" style="flex:${Math.max(total - got, 0)} 1 0"></span></div>
           <div class="plabels">${segs.map(x =>
-            `<button class="${x.sub.id === currentSubject ? 'cur' : ''}" style="--c:${x.sub.color};flex:${x.n} 1 0" onclick="switchSubject('${x.sub.id}')">${x.sub.id} <b>${pct(x.k, x.n)}%</b> · ${x.k}/${x.n}</button>`).join('')}</div>
+            `<button class="${x.sub.id === currentSubject ? 'cur' : ''}" style="--c:${x.sub.color}" onclick="switchSubject('${x.sub.id}')" title="${tip(x)}"><i></i>${x.sub.id} <b>${x.k}</b>/${x.n} · ${pct(x.k, x.n)}%</button>`).join('')}</div>
         </div>
-        <span class="ptext">Overall <b>${pct(got, total)}%</b> · ${got} / ${total} done</span>`;
+        <span class="ptext"><b>${got}</b> / ${total} done · ${(got / (total || 1) * 100).toFixed(1)}%</span>`;
     }
 
     function renderAll() {
