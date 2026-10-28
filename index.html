@@ -612,7 +612,7 @@
     let flipped = false;
     /* Practice cards: PYQs and same-level questions that follow a topic's explanation cards (data: practice_*.js). */
     function practiceFor(sub, topicId) {
-      return (window.PRACTICE_DATA || []).filter(q => q.subject === sub && q.topicId === topicId)
+      return (window.PRACTICE_DATA || []).flat(Infinity).filter(q => q.subject === sub && q.topicId === topicId)
         .map((q, i) => Object.assign({ kind: 'practice', cardNumber: 'P' + (i + 1) }, q));
     }
     const isPractice = c => c && c.kind === 'practice';
