@@ -1680,6 +1680,246 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "math": "$$T_n = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{S_n} = \\frac{\\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{\\sigma}}{\\frac{S_n}{\\sigma}} \\xrightarrow{d} \\frac{\\mathcal{N}(0, 1)}{1} = \\mathcal{N}(0, 1)$$",
     "personalConnection": "Industrial sample testing: when testing more than 30 samples (n > 30), Student's t critical values become virtually indistinguishable from standard normal z-scores.",
     "examTrap": "Assuming T_n is strictly Gaussian for finite n! T_n has heavier polynomial tails (Student's t) for finite n; it becomes Gaussian ONLY in the asymptotic limit n \u2192 \u221e."
+  },
+  {
+    "id": 31601,
+    "subject": "StoMA",
+    "topicId": "16_Borel_Cantelli_Lemmas_and_Limsup_Liminf",
+    "topicTitle": "16 \u00b7 Borel-Cantelli Lemmas & Limsup/Liminf",
+    "cardNumber": "01",
+    "category": "SET LIMITS",
+    "highlighterClass": "highlight-cyan",
+    "title": "Limsup (Infinitely Often) vs Liminf (All But Finitely Often)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31601\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"41.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">limsup A_n = {A_n i.o.} = \u22c2_{n=1}^\u221e \u22c3_{k=n}^\u221e</text><text x=\"120.0\" y=\"50.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A_k\n(Outcome \u03c9 occurs in infinitely many events A_n)</text><rect x=\"16\" y=\"70\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"91.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">liminf A_n = {A_n a.b.f.o.} = \u22c3_{n=1}^\u221e \u22c2_{k=n}^\u221e</text><text x=\"120.0\" y=\"100.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A_k\n(Outcome \u03c9 occurs in all but finitely many events A_n)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">De Morgan Duality: (limsup A_n)\u1d9c = liminf A_n\u1d9c; liminf A_n \u2286 limsup A_n always</text></svg>",
+    "drawingCaption": "Limsup captures outcomes occurring infinitely often; Liminf captures outcomes occurring in all but finitely many events",
+    "coreTranslation": [
+      "<strong>Limsup Definition:</strong> $\\limsup_{n \\to \\infty} A_n \\triangleq \\bigcap_{n=1}^\\infty \\bigcup_{k=n}^\\infty A_k = \\{A_n \\text{ i.o.}\\}$ (infinitely often). $\\omega \\in \\limsup A_n \\iff \\omega$ belongs to infinitely many $A_n$.",
+      "<strong>Liminf Definition:</strong> $\\liminf_{n \\to \\infty} A_n \\triangleq \\bigcup_{n=1}^\\infty \\bigcap_{k=n}^\\infty A_k = \\{A_n \\text{ a.b.f.o.}\\}$ (all but finitely often). $\\omega \\in \\liminf A_n \\iff \\exists N$ such that $\\omega \\in A_n$ for all $n \\ge N$.",
+      "<strong>De Morgan Duality:</strong> $(\\limsup A_n)^c = \\liminf A_n^c$. Furthermore, $\\liminf A_n \\subseteq \\limsup A_n$ always holds."
+    ],
+    "math": "$$\\limsup_{n \\to \\infty} A_n = \\bigcap_{n=1}^\\infty \\bigcup_{k=n}^\\infty A_k = \\{A_n \\text{ i.o.}\\}, \\qquad \\left(\\limsup A_n\\right)^c = \\liminf A_n^c$$",
+    "personalConnection": "Meteor showers: seeing shooting stars infinitely often (limsup) means they never permanently stop; seeing them in all but finitely many seconds (liminf) means they eventually become continuous.",
+    "examTrap": "Swapping intersection and union! Limsup is intersection of unions (\u22c2 \u22c3); Liminf is union of intersections (\u22c3 \u22c2). Swapping them completely reverses their mathematical meaning."
+  },
+  {
+    "id": 31602,
+    "subject": "StoMA",
+    "topicId": "16_Borel_Cantelli_Lemmas_and_Limsup_Liminf",
+    "topicTitle": "16 \u00b7 Borel-Cantelli Lemmas & Limsup/Liminf",
+    "cardNumber": "02",
+    "category": "BOREL-CANTELLI 1",
+    "highlighterClass": "highlight-amber",
+    "title": "The First Borel-Cantelli Lemma: Sum P(A_n) < \u221e \u21d2 P(A_n i.o.) = 0",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31602\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"72.0\" y=\"37.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Finite Sum:\n\u2211_{n=1}^\u221e</text><text x=\"72.0\" y=\"47.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(A_n) &lt; \u221e</text><line x1=\"120\" y1=\"38\" x2=\"144\" y2=\"38\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31602)\"/><rect x=\"144\" y=\"20\" width=\"72\" height=\"36\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"180.0\" y=\"37.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(A_n i.o.) =</text><text x=\"180.0\" y=\"47.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0\n(Zero prob!)</text><rect x=\"24\" y=\"68\" width=\"192\" height=\"46\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"90.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Proof: P(limsup A_n) = P(\u22c2_{n=1}^\u221e \u22c3_{k=n}^\u221e A_k)\n\u2264 P(\u22c3_{k=n}^\u221e A_k) \u2264</text><text x=\"120.0\" y=\"98.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2211_{k=n}^\u221e P(A_k) \u2192 0  (tail sum of convergent series!)\nNO INDEPENDENCE REQUIRED!</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">First Borel-Cantelli Lemma: Convergent probability sum implies event occurs only finitely many times</text></svg>",
+    "drawingCaption": "If the sum of probabilities converges, the events occur infinitely often with probability exactly zero",
+    "coreTranslation": [
+      "<strong>Theorem Statement:</strong> For ANY sequence of events $\\{A_n\\}$, if $\\sum_{n=1}^\\infty \\mathbb{P}(A_n) < \\infty$, then $\\mathbb{P}(\\limsup A_n) = \\mathbb{P}(A_n \\text{ i.o.}) = 0$.",
+      "<strong>Direct Union Bound Proof:</strong> By continuity of measure, $\\mathbb{P}(\\limsup A_n) \\le \\mathbb{P}(\\bigcup_{k=n}^\\infty A_k) \\le \\sum_{k=n}^\\infty \\mathbb{P}(A_k)$. As $n \\to \\infty$, the tail of a convergent series tends to 0.",
+      "<strong>ZERO Independence Assumption:</strong> BC1 holds unconditionally for dependent, correlated, or adversarial sequences of events."
+    ],
+    "math": "$$\\sum_{n=1}^\\infty \\mathbb{P}(A_n) < \\infty \\implies \\mathbb{P}\\left(\\limsup_{n \\to \\infty} A_n\\right) = \\mathbb{P}(A_n \\text{ i.o.}) = 0 \\quad (\\text{NO independence needed})$$",
+    "personalConnection": "A leaky faucet: if the total expected number of water drops over all future time is finite (\u2211 P(A_n) < \u221e), the faucet is guaranteed to stop dripping permanently after some finite hour.",
+    "examTrap": "Assuming BC1 requires independence! BC1 is a pure measure-theoretic consequence of countable sub-additivity; it requires zero independence."
+  },
+  {
+    "id": 31603,
+    "subject": "StoMA",
+    "topicId": "16_Borel_Cantelli_Lemmas_and_Limsup_Liminf",
+    "topicTitle": "16 \u00b7 Borel-Cantelli Lemmas & Limsup/Liminf",
+    "cardNumber": "03",
+    "category": "BOREL-CANTELLI 2",
+    "highlighterClass": "highlight-emerald",
+    "title": "The Second Borel-Cantelli Lemma: Independence & Divergence",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31603\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Second Borel-Cantelli Lemma (BC2):\nIf {A_n} are INDEPENDENT</text><text x=\"120.0\" y=\"46.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">and \u2211_{n=1}^\u221e P(A_n) = \u221e\n\u21d2 P(limsup A_n) = P(A_n i.o.) = 1</text><rect x=\"20\" y=\"64\" width=\"200\" height=\"48\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"87.0\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Proof: P( (\u22c3_{k=n}^m A_k)\u1d9c ) = \u220f_{k=n}^m (1 - P(A_k))\n\u2264 \u220f_{k=n}^m exp(-P(A_k))</text><text x=\"120.0\" y=\"95.0\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= exp( - \u2211_{k=n}^m P(A_k) ) \u2192 0\n\u21d2 P(\u22c3_{k=n}^\u221e A_k) = 1  \u2200n  \u21d2  P(limsup A_n) = 1</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">BC2 strictly requires independence: divergent sum + independence forces event to recur infinitely often</text></svg>",
+    "drawingCaption": "If events are mutually independent and their probabilities diverge, the event occurs infinitely often with probability 1",
+    "coreTranslation": [
+      "<strong>Theorem Statement:</strong> If events $\\{A_n\\}$ are MUTUALLY INDEPENDENT and $\\sum_{n=1}^\\infty \\mathbb{P}(A_n) = \\infty$, then $\\mathbb{P}(\\limsup A_n) = \\mathbb{P}(A_n \\text{ i.o.}) = 1$.",
+      "<strong>Product Inequality Proof:</strong> $\\mathbb{P}(\\bigcap_{k=n}^m A_k^c) = \\prod_{k=n}^m (1 - \\mathbb{P}(A_k)) \\le \\prod_{k=n}^m e^{-\\mathbb{P}(A_k)} = \\exp(-\\sum_{k=n}^m \\mathbb{P}(A_k)) \\to 0$. Thus $\\mathbb{P}(\\bigcup_{k=n}^\\infty A_k) = 1$ for all $n$.",
+      "<strong>Strict Independence Mandate:</strong> Unlike BC1, BC2 FAILS without independence! Correlated events with divergent sums can fail to occur infinitely often."
+    ],
+    "math": "$$\\{A_n\\} \\text{ independent}, \\quad \\sum_{n=1}^\\infty \\mathbb{P}(A_n) = \\infty \\implies \\mathbb{P}\\left(\\limsup_{n \\to \\infty} A_n\\right) = 1$$",
+    "personalConnection": "Infinite monkeys on typewriters: the probability of typing 'HAMLET' on any attempt is tiny (~10\u207b\u2075\u2070), but independent attempts continue forever (\u2211 p = \u221e), guaranteeing the event occurs with probability 1.",
+    "examTrap": "Applying BC2 without independence! If A_n = A for all n with P(A) = 1/2, then \u2211 P(A_n) = \u221e, yet P(A_n i.o.) = P(A) = 1/2 \u2260 1! Independence is indispensable."
+  },
+  {
+    "id": 31604,
+    "subject": "StoMA",
+    "topicId": "16_Borel_Cantelli_Lemmas_and_Limsup_Liminf",
+    "topicTitle": "16 \u00b7 Borel-Cantelli Lemmas & Limsup/Liminf",
+    "cardNumber": "04",
+    "category": "ZERO-ONE LAW",
+    "highlighterClass": "highlight-purple",
+    "title": "Kolmogorov\u2019s Zero-One Law: Binary Tail Probabilities",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31604\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"192\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Tail \u03c3-Algebra:  \ud835\udcaf = \u22c2_{n=1}^\u221e \u03c3(X_n, X_{n+1}, ...)\n(Events</text><text x=\"120.0\" y=\"49.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">whose occurrence is unaffected by any finite prefix)</text><rect x=\"24\" y=\"70\" width=\"192\" height=\"42\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"90.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Kolmogorov's Zero-One Law:\nFor independent {X_n}, if E \u2208 \ud835\udcaf  \u21d2  P(E)</text><text x=\"120.0\" y=\"99.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= 0   OR   P(E) = 1\n(Tail events have NO intermediate probabilities!)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Tail events include: convergence of series \u2211 X_n, limsup X_n, and asymptotic frequency limits</text></svg>",
+    "drawingCaption": "Any event that does not depend on finite prefixes of an independent sequence has probability strictly 0 or 1",
+    "coreTranslation": [
+      "<strong>Tail $\\sigma$-Algebra:</strong> $\\mathcal{T} \\triangleq \\bigcap_{n=1}^\\infty \\sigma(X_n, X_{n+1}, \\dots)$. An event $E \\in \\mathcal{T}$ is unaffected by changing the values of any finite prefix $X_1, \\dots, X_M$.",
+      "<strong>Kolmogorov's Theorem:</strong> If $\\{X_n\\}$ are independent, then for every tail event $E \\in \\mathcal{T}$, $\\mathbb{P}(E) \\in \\{0, 1\\}$. Tail probabilities are binary: either impossible or certain!",
+      "<strong>Canonical Tail Events:</strong> Event $\\{\\sum X_n \\text{ converges}\\}$, $\\{\\lim X_n \\text{ exists}\\}$, $\\{\\limsup X_n \\le c\\}$, and $\\{\\lim \\frac{1}{n}\\sum X_i = \\mu\\}$ are all tail events."
+    ],
+    "math": "$$\\mathcal{T} = \\bigcap_{n=1}^\\infty \\sigma(X_n, X_{n+1}, \\dots), \\quad \\{X_n\\} \\text{ independent} \\implies \\mathbb{P}(E) \\in \\{0, 1\\} \\quad \\forall E \\in \\mathcal{T}$$",
+    "personalConnection": "A coin toss destiny: whether the fraction of heads converges as n \u2192 \u221e cannot be altered by altering the first 100 tosses; its truth is an all-or-nothing tail property.",
+    "examTrap": "Assuming event {X\u2081 = 1} is a tail event! The first step X\u2081 is in the prefix, not the tail. Only asymptotic properties invariant to finite prefixes belong to \ud835\udcaf."
+  },
+  {
+    "id": 31605,
+    "subject": "StoMA",
+    "topicId": "16_Borel_Cantelli_Lemmas_and_Limsup_Liminf",
+    "topicTitle": "16 \u00b7 Borel-Cantelli Lemmas & Limsup/Liminf",
+    "cardNumber": "05",
+    "category": "BC1 PROOF METHOD",
+    "highlighterClass": "highlight-cyan",
+    "title": "Proving Almost Sure Convergence via Borel-Cantelli 1",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31605\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"36.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Target: Prove X_n \u2192^{a.s.} X</text><line x1=\"120\" y1=\"46\" x2=\"120\" y2=\"60\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31605)\"/><rect x=\"20\" y=\"60\" width=\"200\" height=\"26\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"76.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Define bad events: A_n(\u03b5) = { |X_n - X| \u2265 \u03b5 }</text><line x1=\"120\" y1=\"86\" x2=\"120\" y2=\"100\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31605)\"/><rect x=\"20\" y=\"100\" width=\"200\" height=\"26\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"112.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Show \u2211_{n=1}^\u221e P(|X_n - X| \u2265 \u03b5) &lt;</text><text x=\"120.0\" y=\"121.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u221e  \u2200\u03b5 > 0  \u21d2  P(A_n(\u03b5) i.o.) = 0</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Master recipe: Summability of error probabilities proves almost sure convergence via BC1</text></svg>",
+    "drawingCaption": "The standard analytical method for establishing almost sure convergence: show error probability series converges",
+    "coreTranslation": [
+      "<strong>Equivalence Criterion:</strong> $X_n \\xrightarrow{a.s.} X \\iff \\mathbb{P}(\\limsup_{n \\to \\infty} \\{|X_n - X| \\ge \\epsilon\\}) = 0$ for all $\\epsilon > 0$.",
+      "<strong>Sufficient Condition:</strong> By BC1, to prove $X_n \\xrightarrow{a.s.} X$, it is SUFFICIENT to show that $\\sum_{n=1}^\\infty \\mathbb{P}(|X_n - X| \\ge \\epsilon) < \\infty$ for every $\\epsilon > 0$.",
+      "<strong>Markov / Chebyshev Synergy:</strong> Combine with Markov's inequality: if $\\mathbb{P}(|X_n - X| \\ge \\epsilon) \\le \\frac{\\mathbb{E}[|X_n - X|^p]}{\\epsilon^p}$ and $\\sum \\mathbb{E}[|X_n - X|^p] < \\infty$, almost sure convergence follows immediately."
+    ],
+    "math": "$$\\sum_{n=1}^\\infty \\mathbb{P}(|X_n - X| \\ge \\epsilon) < \\infty \\quad \\forall \\epsilon > 0 \\implies X_n \\xrightarrow{\\text{a.s.}} X$$",
+    "personalConnection": "Eradicating a disease: if the probability of outbreaks at year n sums to a finite number over all centuries, the disease is guaranteed to disappear permanently with probability 1.",
+    "examTrap": "Attempting to check a.s. convergence pointwise by hand! Pathwise limits are analytically intractable; the summable probability test (BC1) is the universal tool."
+  },
+  {
+    "id": 31606,
+    "subject": "StoMA",
+    "topicId": "16_Borel_Cantelli_Lemmas_and_Limsup_Liminf",
+    "topicTitle": "16 \u00b7 Borel-Cantelli Lemmas & Limsup/Liminf",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Longest Head Runs in Infinite Coin Tosses",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31606\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"68.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Event A_k:\nBlock k of</text><text x=\"68.0\" y=\"46.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">length L_k\nhas ALL Heads</text><rect x=\"124\" y=\"20\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"172.0\" y=\"37.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(A_k) = (1/2)^{L_k}\nDisjoint</text><text x=\"172.0\" y=\"45.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">blocks \u21d2\nMutually independent</text><rect x=\"20\" y=\"68\" width=\"200\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Dichotomy by Borel-Cantelli:\n(1) L_k = c log\u2082(k): \u2211 k\u207b\u1d9c &lt; \u221e for c > 1 \u21d2 Finitely</text><text x=\"120.0\" y=\"97.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">many runs (BC1)\n(2) L_k = c log\u2082(k): \u2211 k\u207b\u1d9c = \u221e for c \u2264 1 \u21d2 Infinitely many runs (BC2)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Runs of length (1 - \u03b5) log\u2082(n) occur infinitely often; runs of (1 + \u03b5) log\u2082(n) cease permanently</text></svg>",
+    "drawingCaption": "Borel-Cantelli pins down the exact logarithmic growth of the longest streak of heads in infinite coin tosses",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Divide an infinite sequence of fair coin tosses into non-overlapping blocks of length $L_k$. Event $A_k$: block $k$ consists entirely of Heads ($P(A_k) = 2^{-L_k}$). Blocks are independent.",
+      "<strong>Case 1 ($L_k = (1+\\epsilon)\\log_2 k$):</strong> $\\mathbb{P}(A_k) = k^{-(1+\\epsilon)}$. Since $\\sum k^{-(1+\\epsilon)} < \\infty$, BC1 proves such runs occur only FINITELY many times.",
+      "<strong>Case 2 ($L_k = (1-\\epsilon)\\log_2 k$):</strong> $\\mathbb{P}(A_k) = k^{-(1-\\epsilon)}$. Since $\\sum k^{-(1-\\epsilon)} = \\infty$, BC2 proves such runs occur INFINITELY OFTEN. Thus longest run length in $n$ tosses is $\\approx \\log_2 n$ almost surely!"
+    ],
+    "math": "$$\\sum_{k=1}^\\infty 2^{-L_k} < \\infty \\implies \\text{finitely often}; \\qquad \\sum_{k=1}^\\infty 2^{-L_k} = \\infty \\implies \\text{infinitely often (a.s.)}$$",
+    "personalConnection": "Winning streaks in casino games: in an infinite lifetime of fair betting, you will encounter winning streaks of length log\u2082(n) infinitely many times, but streaks exceeding (1+\u03b5) log\u2082(n) will permanently vanish.",
+    "examTrap": "Selecting overlapping blocks and applying BC2! Overlapping blocks are correlated, violating the independence mandate of BC2. Non-overlapping partitioning restores independence."
+  },
+  {
+    "id": 31701,
+    "subject": "StoMA",
+    "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
+    "topicTitle": "17 \u00b7 Laws of Large Numbers (WLLN & SLLN)",
+    "cardNumber": "01",
+    "category": "WLLN",
+    "highlighterClass": "highlight-cyan",
+    "title": "The Weak Law of Large Numbers: Dispersion Collapse",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31701\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31701)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31701)\"/><path d=\"M 30,114 Q 80,114 125,70 Q 170,114 220,114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/><path d=\"M 70,114 Q 100,114 125,40 Q 150,114 180,114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.6\"/><path d=\"M 100,114 Q 115,114 125,20 Q 135,114 150,114\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.2\"/><line x1=\"125\" y1=\"20\" x2=\"125\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.0\" stroke-dasharray=\"2 2\"/><text x=\"125\" y=\"126\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc</text><text x=\"175\" y=\"45\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Var(X\u0304_n) = \u03c3\u00b2 / n \u2192 0</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">WLLN: P(|X\u0304_n - \u03bc| \u2265 \u03b5) \u2264 \u03c3\u00b2 / (n \u03b5\u00b2) \u2192 0 proves convergence in probability</text></svg>",
+    "drawingCaption": "The variance of the sample mean shrinks as \u03c3\u00b2/n; Chebyshev\u2019s inequality proves convergence in probability to \u03bc",
+    "coreTranslation": [
+      "<strong>Theorem Statement:</strong> For i.i.d. $X_i$ with mean $\\mu$ and finite variance $\\sigma^2$, sample mean $\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i$ satisfies $\\bar{X}_n \\xrightarrow{P} \\mu$: for all $\\epsilon > 0$, $\\lim_{n \\to \\infty} \\mathbb{P}(|\\bar{X}_n - \\mu| \\ge \\epsilon) = 0$.",
+      "<strong>Chebyshev Proof:</strong> $\\mathbb{E}[\\bar{X}_n] = \\mu$ and $\\operatorname{Var}(\\bar{X}_n) = \\frac{\\sigma^2}{n}$. By Chebyshev, $\\mathbb{P}(|\\bar{X}_n - \\mu| \\ge \\epsilon) \\le \\frac{\\operatorname{Var}(\\bar{X}_n)}{\\epsilon^2} = \\frac{\\sigma^2}{n\\epsilon^2} \\to 0$.",
+      "<strong>Relaxation:</strong> Finite variance is not necessary! Khinchin's WLLN requires ONLY $\\mathbb{E}[|X|] < \\infty$ (proved via characteristic functions)."
+    ],
+    "math": "$$\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i \\xrightarrow{P} \\mu, \\qquad \\mathbb{P}\\left(|\\bar{X}_n - \\mu| \\ge \\epsilon\\right) \\le \\frac{\\sigma^2}{n\\epsilon^2} \\to 0$$",
+    "personalConnection": "A pollster averaging 1,000 voter responses: the average response has sampling error variance 1,000 times smaller than any single respondent's volatility.",
+    "examTrap": "Believing WLLN guarantees paths settle down without wild fluctuations. WLLN guarantees only that at step n, error is unlikely; it does NOT preclude infinite future deviations at later times!"
+  },
+  {
+    "id": 31702,
+    "subject": "StoMA",
+    "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
+    "topicTitle": "17 \u00b7 Laws of Large Numbers (WLLN & SLLN)",
+    "cardNumber": "02",
+    "category": "SLLN",
+    "highlighterClass": "highlight-amber",
+    "title": "The Strong Law of Large Numbers: Pathwise Certainty",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31702\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31702)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31702)\"/><line x1=\"24\" y1=\"55\" x2=\"215\" y2=\"55\" stroke=\"#000000\" stroke-width=\"1.0\" stroke-dasharray=\"2 2\"/><text x=\"205\" y=\"50\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03bc + \u03b5</text><line x1=\"24\" y1=\"85\" x2=\"215\" y2=\"85\" stroke=\"#000000\" stroke-width=\"1.0\" stroke-dasharray=\"2 2\"/><text x=\"205\" y=\"95\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03bc - \u03b5</text><line x1=\"24\" y1=\"70\" x2=\"215\" y2=\"70\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"205\" y=\"70\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc</text><path d=\"M 24,100 Q 50,30 80,80 Q 110,65 140,73 L 215,70\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"120\" y=\"35\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Trajectory enters tube and NEVER leaves!</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">SLLN: P(lim_{n \u2192 \u221e} X\u0304_n = \u03bc) = 1 guarantees 100% of sample paths converge to \u03bc</text></svg>",
+    "drawingCaption": "The Strong Law guarantees that 100% of actual sample trajectories permanently converge to the true mean \u03bc",
+    "coreTranslation": [
+      "<strong>Theorem Statement (Kolmogorov):</strong> Let $X_1, X_2, \\dots$ be i.i.d. with $\\mathbb{E}[|X|] < \\infty$. Then $\\mathbb{P}\\left(\\lim_{n \\to \\infty} \\bar{X}_n = \\mu\\right) = 1$ (Almost Sure convergence).",
+      "<strong>Trajectory Geometry:</strong> For almost every sample path $\\omega$, for ANY $\\epsilon > 0$, there exists an integer $N(\\omega)$ such that $|\\bar{X}_n(\\omega) - \\mu| < \\epsilon$ for ALL $n \\ge N(\\omega)$. The path enters the $\\epsilon$-tube and NEVER leaves.",
+      "<strong>Fundamental Foundation:</strong> Justifies the frequentist definition of probability: empirical frequencies $\\frac{1}{n}\\sum \\mathbf{1}_{A}$ converge almost surely to true probability $\\mathbb{P}(A)$."
+    ],
+    "math": "$$\\mathbb{P}\\left(\\lim_{n \\to \\infty} \\frac{1}{n}\\sum_{i=1}^n X_i = \\mu\\right) = 1 \\iff \\mathbb{E}[|X|] < \\infty$$",
+    "personalConnection": "Casino house edge: occasional lucky gamblers win on single days, but over millions of cumulative bets, the casino's average profit per game converges with 100% mathematical certainty to the house edge.",
+    "examTrap": "Confusing WLLN with SLLN! WLLN is a snapshot statement (prob at time n); SLLN is a full-path statement (the entire future trajectory never strays)."
+  },
+  {
+    "id": 31703,
+    "subject": "StoMA",
+    "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
+    "topicTitle": "17 \u00b7 Laws of Large Numbers (WLLN & SLLN)",
+    "cardNumber": "03",
+    "category": "SLLN 4TH MOMENT PROOF",
+    "highlighterClass": "highlight-emerald",
+    "title": "The 4th Moment Proof of the Strong Law via BC1",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31703\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"41.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Step 1: Assume E[X\u2074] &lt; \u221e\nExpand E[ (\u2211 (X\u1d62 - \u03bc))\u2074 ] = n E[(X-\u03bc)\u2074]</text><text x=\"120.0\" y=\"49.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">+ 3n(n-1) (E[(X-\u03bc)\u00b2])\u00b2 \u2264 C n\u00b2\n\u21d2 E[ (X\u0304_n - \u03bc)\u2074 ] \u2264 C / n\u00b2</text><rect x=\"16\" y=\"68\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Step 2: Markov on 4th Power + Borel-Cantelli 1:\nP(|X\u0304_n - \u03bc| \u2265 \u03b5) \u2264 E[(X\u0304_n -</text><text x=\"120.0\" y=\"97.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc)\u2074] / \u03b5\u2074 \u2264 C / (n\u00b2 \u03b5\u2074)\nSum converges: \u2211_{n=1}^\u221e 1/n\u00b2 &lt; \u221e \u21d2 X\u0304_n \u2192^{a.s.} \u03bc !</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">4th moment power gives 1/n\u00b2 decay; summability unlocks Borel-Cantelli 1 to prove SLLN</text></svg>",
+    "drawingCaption": "Assuming E[X\u2074] < \u221e achieves O(1/n\u00b2) variance decay, whose summability unlocks Borel-Cantelli 1",
+    "coreTranslation": [
+      "<strong>4th Moment Expansion:</strong> Assume $\\mathbb{E}[X^4] < \\infty$ and $\\mu = 0$. $\\mathbb{E}[(\\sum X_i)^4] = \\sum \\mathbb{E}[X_i^4] + 6\\sum_{i < j} \\mathbb{E}[X_i^2 X_j^2] = n \\mathbb{E}[X^4] + 3n(n-1)\\sigma^4 \\le C n^2$.",
+      "<strong>Fourth Power Decay:</strong> $\\mathbb{E}[(\\bar{X}_n)^4] = \\frac{1}{n^4} \\mathbb{E}[(\\sum X_i)^4] \\le \\frac{C n^2}{n^4} = \\frac{C}{n^2}$.",
+      "<strong>Summability via BC1:</strong> By Markov, $\\mathbb{P}(|\\bar{X}_n| \\ge \\epsilon) \\le \\frac{\\mathbb{E}[(\\bar{X}_n)^4]}{\\epsilon^4} \\le \\frac{C}{n^2 \\epsilon^4}$. Since $\\sum_{n=1}^\\infty \\frac{1}{n^2} = \\frac{\\pi^2}{6} < \\infty$, BC1 proves $\\bar{X}_n \\xrightarrow{a.s.} 0$!"
+    ],
+    "math": "$$\\mathbb{E}\\left[(\\bar{X}_n - \\mu)^4\\right] \\le \\frac{C}{n^2} \\implies \\sum_{n=1}^\\infty \\mathbb{P}\\left(|\\bar{X}_n - \\mu| \\ge \\epsilon\\right) \\le \\sum_{n=1}^\\infty \\frac{C}{n^2 \\epsilon^4} < \\infty \\implies \\bar{X}_n \\xrightarrow{\\text{a.s.}} \\mu$$",
+    "personalConnection": "Accelerating brake pad: 2nd moment gives 1/n decay (harmonic series diverges, no BC1); 4th moment gives 1/n\u00b2 decay (quadratic series converges, unlocking BC1).",
+    "examTrap": "Chebyshev gives 1/n decay: \u2211 1/n = \u221e (diverges), which CANNOT be plugged into BC1! The 4th moment is essential to force the series to converge."
+  },
+  {
+    "id": 31704,
+    "subject": "StoMA",
+    "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
+    "topicTitle": "17 \u00b7 Laws of Large Numbers (WLLN & SLLN)",
+    "cardNumber": "04",
+    "category": "KOLMOGOROV SLLN",
+    "highlighterClass": "highlight-purple",
+    "title": "Kolmogorov\u2019s Sharp SLLN & The Truncation Technique",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31704\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Kolmogorov's Sharp SLLN Criterion:\nX\u1d62 i.i.d. \u21d2 X\u0304_n \u2192^{a.s.} \u03bc  IF AND ONLY IF</text><text x=\"120.0\" y=\"49.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\"> E[|X|] &lt; \u221e\n(Requires NO variance; first moment is necessary and sufficient)</text><rect x=\"20\" y=\"68\" width=\"200\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">The Truncation Method:\nDefine Y\u2099 = X\u2099 \u00b7 1_{|X\u2099| \u2264 n}  (Truncate at n)\n(1) P(X\u2099 \u2260 Y\u2099 i.o.)</text><text x=\"120.0\" y=\"97.0\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= 0 via BC1 since \u2211 P(|X| > n) \u2264 E[|X|] &lt; \u221e\n(2) Apply Kolmogorov's Maximal Inequality to Y\u2099</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Kolmogorov's truncation removes extreme tails, proving SLLN with zero variance assumptions</text></svg>",
+    "drawingCaption": "Finite expectation E[|X|] < \u221e is both necessary and sufficient for the Strong Law to hold",
+    "coreTranslation": [
+      "<strong>Sharpest Condition:</strong> For i.i.d. $X_i$, $\\bar{X}_n \\xrightarrow{a.s.} \\mu$ IF AND ONLY IF $\\mathbb{E}[|X|] < \\infty$. Finite variance is NOT required!",
+      "<strong>Truncation Idea:</strong> Define $Y_n = X_n \\mathbf{1}_{\\{|X_n| \\le n\\}}$. The tails satisfy $\\sum_{n=1}^\\infty \\mathbb{P}(X_n \\ne Y_n) = \\sum_{n=1}^\\infty \\mathbb{P}(|X| > n) \\le \\mathbb{E}[|X|] < \\infty$.",
+      "<strong>Equivalence via BC1:</strong> By BC1, $X_n = Y_n$ for all but finitely many $n$ almost surely! Thus $\\bar{X}_n$ and $\\bar{Y}_n$ have identical asymptotic limits."
+    ],
+    "math": "$$\\bar{X}_n \\xrightarrow{\\text{a.s.}} \\mu \\iff \\mathbb{E}[|X|] < \\infty, \\qquad Y_n = X_n\\,\\mathbf{1}_{\\{|X_n| \\le n\\}} \\implies \\sum_{n=1}^\\infty \\mathbb{P}(X_n \\ne Y_n) \\le \\mathbb{E}[|X|] < \\infty$$",
+    "personalConnection": "Filtering rare black swans: trimming off the extreme rare tail above n creates a well-behaved sequence Y\u2099, while BC1 proves you only trimmed finitely many observations.",
+    "examTrap": "Assuming variance is required for SLLN. Kolmogorov proved that E[|X|] < \u221e alone suffices; distributions with infinite variance (e.g. Pareto with 1 < \u03b1 \u2264 2) still satisfy SLLN!"
+  },
+  {
+    "id": 31705,
+    "subject": "StoMA",
+    "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
+    "topicTitle": "17 \u00b7 Laws of Large Numbers (WLLN & SLLN)",
+    "cardNumber": "05",
+    "category": "LAW COMPARISON",
+    "highlighterClass": "highlight-cyan",
+    "title": "Geometric Contrast: WLLN (Snapshots) vs SLLN (Trajectories)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31705\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"96\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"68.0\" y=\"41.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">WLLN (Snapshot):\nP(|X\u0304_n - \u03bc| \u2265 \u03b5) \u2192</text><text x=\"68.0\" y=\"49.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0\nChecks only step n\n(Can escape at n+1)</text><rect x=\"124\" y=\"20\" width=\"96\" height=\"44\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"172.0\" y=\"41.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">SLLN (Whole path):\nP(\u22c3_{k=n}^\u221e {|X\u0304_k-\u03bc|\u2265\u03b5})</text><text x=\"172.0\" y=\"49.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2192 0\nChecks ALL future k \u2265 n\n(Trapped forever!)</text><line x1=\"20\" y1=\"90\" x2=\"220\" y2=\"90\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"20\" y=\"100\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">n</text><text x=\"120\" y=\"100\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">k \u2192 \u221e</text><path d=\"M 20,90 Q 70,70 120,88 L 220,90\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">WLLN controls the vertical slice at n; SLLN controls the entire horizontal tail trajectory</text></svg>",
+    "drawingCaption": "WLLN controls a single point in time; SLLN controls the entire infinite tail trajectory from step n onward",
+    "coreTranslation": [
+      "<strong>WLLN Condition:</strong> $\\lim_{n \\to \\infty} \\mathbb{P}(|\\bar{X}_n - \\mu| \\ge \\epsilon) = 0$. Evaluates probability at single vertical slice $n$.",
+      "<strong>SLLN Condition:</strong> $\\lim_{n \\to \\infty} \\mathbb{P}\\left(\\bigcup_{k=n}^\\infty \\{|\\bar{X}_k - \\mu| \\ge \\epsilon\\}\\right) = 0$. Evaluates the probability of ANY departure across the entire infinite future $k \\ge n$.",
+      "<strong>Strict Superiority:</strong> Because $\\mathbb{P}(|\\bar{X}_n - \\mu| \\ge \\epsilon) \\le \\mathbb{P}(\\bigcup_{k=n}^\\infty \\{|\\bar{X}_k - \\mu| \\ge \\epsilon\\})$, SLLN trivially implies WLLN."
+    ],
+    "math": "$$\\text{WLLN}: \\mathbb{P}(|\\bar{X}_n - \\mu| \\ge \\epsilon) \\to 0, \\qquad \\text{SLLN}: \\mathbb{P}\\left(\\bigcup_{k=n}^\\infty \\{|\\bar{X}_k - \\mu| \\ge \\epsilon\\}\\right) \\to 0$$",
+    "personalConnection": "A missile guidance path: WLLN says the missile is near target at second 100 (but might veer off at second 101); SLLN guarantees the missile stays locked inside the target crosshair for all seconds t \u2265 100.",
+    "examTrap": "Assuming WLLN implies SLLN. Variables can satisfy WLLN while oscillating violently out of the tube infinitely many times (e.g. typewriter sequence)."
+  },
+  {
+    "id": 31706,
+    "subject": "StoMA",
+    "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
+    "topicTitle": "17 \u00b7 Laws of Large Numbers (WLLN & SLLN)",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Catastrophic Failure of the Law of Large Numbers (Cauchy)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31706\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Cauchy Distribution: f(x) = \\frac{1}{\u03c0(1+x\u00b2)}\nCharacteristic Function:</text><text x=\"120.0\" y=\"49.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03c6_X(t) = exp(-|t|)\nE[|X|] = \u221e  (First moment fails to exist!)</text><rect x=\"20\" y=\"68\" width=\"200\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Sample Mean of n i.i.d. Cauchy RVs:\n\u03c6_{X\u0304_n}(t) = [\u03c6_X(t/n)]\u207f = [exp(-|t|/n)]\u207f</text><text x=\"120.0\" y=\"97.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= exp(-|t|) = \u03c6_X(t) !\n\u21d2 X\u0304_n has the EXACT SAME Cauchy distribution for ALL n!</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Cauchy fails LLN completely: averaging n Cauchy variables provides ZERO noise reduction!</text></svg>",
+    "drawingCaption": "The sample mean of n independent Cauchy variables is identical to a single Cauchy variable; averaging provides zero gain",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Let $X_1, \\dots, X_n \\stackrel{\\text{i.i.d.}}{\\sim} \\text{Cauchy}(0, 1)$ with density $f(x) = \\frac{1}{\\pi(1+x^2)}$. Its characteristic function is $\\phi_X(t) = e^{-|t|}$. First moment $\\mathbb{E}[|X|] = \\infty$.",
+      "<strong>Sample Mean Characteristic Function:</strong> $\\phi_{\\bar{X}_n}(t) = [\\phi_X(t/n)]^n = [e^{-|t|/n}]^n = e^{-|t|} = \\phi_X(t)$!",
+      "<strong>Zero Averaging Gain:</strong> The sample mean $\\bar{X}_n$ is identically distributed to $X_1$ for every $n$. Averaging 1,000,000 Cauchy variables does NOT concentrate around 0; both WLLN and SLLN fail completely!"
+    ],
+    "math": "$$\\phi_{\\bar{X}_n}(t) = \\left[\\exp\\left(-\\frac{|t|}{n}\\right)\\right]^n = \\exp(-|t|) \\implies \\bar{X}_n \\stackrel{d}{=} X_1 \\quad \\forall n \\ge 1$$",
+    "personalConnection": "A broken clock whose error doubles with every tick: averaging multiple readings produces a result just as wildly erratic as a single glance.",
+    "examTrap": "Attempting to apply LLN to Cauchy distributions because the PDF looks symmetric! Symmetry is irrelevant when the tail integral \u222b |x| f(x)dx diverges to infinity."
   }
 ]
 );
