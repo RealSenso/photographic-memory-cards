@@ -676,7 +676,7 @@
                   <span class="font-bold text-cyan-300 flex items-center gap-1.5 text-sm sm:text-base">
                     ${card.textbookImg ? '📖 TEXTBOOK SPECIMEN' : '📐 GEOMETRIC DIAGRAM'}
                   </span>
-                  <span class="text-slate-400 truncate max-w-[200px]">${card.textbookRef ? 'LUENBERGER & YE' : 'SIRIANNI DUAL-CODE'}</span>
+                  <span class="text-slate-400 truncate max-w-[200px]">${card.textbookRef ? card.textbookRef.split(',')[0].toUpperCase() : 'BLACK & WHITE PLATE'}</span>
                 </div>
 
                 <!-- Visual Content (Specimen Image or SVG) -->
