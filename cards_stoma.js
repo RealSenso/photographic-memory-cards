@@ -720,6 +720,246 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "math": "$$f_{X,Y} = 2, \\quad f_X(x) = 2x, \\quad f_Y(y) = 2(1-y); \\quad f_{Y \\mid X}(y \\mid x) = \\frac{1}{x}\\,\\mathbf{1}_{\\{0 \\le y \\le x\\}}$$",
     "personalConnection": "Breaking a stick at point X, then picking a point Y uniformly on the broken piece: Y is bounded by X and cannot be independent of X.",
     "examTrap": "Integrating y from 0 to 1 when finding f_X(x)! Because y \u2264 x, integrating past x includes forbidden empty territory, producing an erroneous constant marginal."
+  },
+  {
+    "id": 30801,
+    "subject": "StoMA",
+    "topicId": "08_Multiple_Random_Variables_and_Order_Statistics",
+    "topicTitle": "08 \u00b7 Multiple RVs & Order Statistics",
+    "cardNumber": "01",
+    "category": "EXTREME VALUES",
+    "highlighterClass": "highlight-cyan",
+    "title": "Order Statistics & Extremes: Sample Minimum and Maximum",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30801\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"72\" x2=\"220\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.8\"/><circle cx=\"40\" cy=\"72\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"40\" y=\"60\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X_{(1)}</text><text x=\"40\" y=\"86\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Min</text><circle cx=\"80\" cy=\"72\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"80\" y=\"60\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X_{(2)}</text><circle cx=\"120\" cy=\"72\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"60\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">...</text><circle cx=\"160\" cy=\"72\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"160\" y=\"60\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X_{(n-1)}</text><circle cx=\"200\" cy=\"72\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"200\" y=\"60\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X_{(n)}</text><text x=\"200\" y=\"86\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Max</text><rect x=\"20\" y=\"18\" width=\"96\" height=\"32\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"68.0\" y=\"33.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Max: P(X_{(n)}</text><text x=\"68.0\" y=\"42.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2264 x)\n= [F(x)]^n</text><rect x=\"124\" y=\"18\" width=\"96\" height=\"32\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"172.0\" y=\"33.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Min: P(X_{(1)} ></text><text x=\"172.0\" y=\"42.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">x)\n= [1 - F(x)]^n</text><text x=\"120\" y=\"114\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_{X_{(n)}}(x) = n [F(x)]^{n-1} f(x),   f_{X_{(1)}}(x) = n [1 - F(x)]^{n-1} f(x)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Sample extremes: Max requires all X\u1d62 \u2264 x; Min requires all X\u1d62 > x</text></svg>",
+    "drawingCaption": "The sample maximum requires every item to be below x; the sample minimum requires every item to exceed x",
+    "coreTranslation": [
+      "<strong>Ascending Sort:</strong> For i.i.d. $X_1, \\dots, X_n \\sim F$, sorting in ascending order yields order statistics $X_{(1)} \\le X_{(2)} \\le \\dots \\le X_{(n)}$.",
+      "<strong>Sample Maximum:</strong> $X_{(n)} \\le x \\iff$ every $X_i \\le x$. By independence, $F_{X_{(n)}}(x) = [F(x)]^n$, so $f_{X_{(n)}}(x) = n [F(x)]^{n-1} f(x)$.",
+      "<strong>Sample Minimum:</strong> $X_{(1)} > x \\iff$ every $X_i > x$. Thus $\\mathbb{P}(X_{(1)} > x) = [1 - F(x)]^n$, giving $F_{X_{(1)}}(x) = 1 - [1 - F(x)]^n$."
+    ],
+    "math": "$$F_{X_{(n)}}(x) = [F(x)]^n, \\qquad F_{X_{(1)}}(x) = 1 - [1 - F(x)]^n, \\qquad f_{X_{(1)}}(x) = n[1-F(x)]^{n-1} f(x)$$",
+    "personalConnection": "Weakest link of a chain: the entire chain snaps as soon as its weakest link fails (minimum X_{(1)}); a flood wall fails when the highest wave tops it (maximum X_{(n)}).",
+    "examTrap": "Differentiating 1 - [1 - F(x)]^n and losing the negative sign from the inner derivative! -n[1 - F(x)]^{n-1}(-f(x)) = +n[1 - F(x)]^{n-1}f(x)."
+  },
+  {
+    "id": 30802,
+    "subject": "StoMA",
+    "topicId": "08_Multiple_Random_Variables_and_Order_Statistics",
+    "topicTitle": "08 \u00b7 Multiple RVs & Order Statistics",
+    "cardNumber": "02",
+    "category": "ORDER DENSITIES",
+    "highlighterClass": "highlight-amber",
+    "title": "General Marginal Density of the k-th Order Statistic",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30802\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"72\" x2=\"220\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.8\"/><rect x=\"25\" y=\"45\" width=\"75\" height=\"54\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.1\" stroke-dasharray=\"2 2\"/><text x=\"62\" y=\"60\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(k - 1) items</text><text x=\"62\" y=\"80\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">prob: [F(x)]^{k-1}</text><rect x=\"105\" y=\"40\" width=\"30\" height=\"64\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"120\" y=\"58\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1 item</text><text x=\"120\" y=\"80\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f(x)dx</text><rect x=\"140\" y=\"45\" width=\"75\" height=\"54\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.1\" stroke-dasharray=\"2 2\"/><text x=\"177\" y=\"60\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(n - k) items</text><text x=\"177\" y=\"80\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">prob: [1-F(x)]^{n-k}</text><text x=\"120\" y=\"25\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_{X_{(k)}}(x) = \\frac{n!}{(k-1)!(n-k)!} [F(x)]^{k-1} [1-F(x)]^{n-k} f(x)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Multinomial placement: (k-1) to left, exactly 1 in [x, x+dx], and (n-k) to right</text></svg>",
+    "drawingCaption": "Trisection of the real line into left tail, pivot element in [x, x+dx], and right tail via multinomial counting",
+    "coreTranslation": [
+      "<strong>Trisection Probability:</strong> Probability that 1 item lies in $[x, x+dx]$ is $f(x)dx$, $(k-1)$ items lie in $(-\\infty, x)$ with probability $F(x)$, and $(n-k)$ items lie in $(x, \\infty)$ with probability $1 - F(x)$.",
+      "<strong>Combinatorial Multiplicity:</strong> There are $\\frac{n!}{(k-1)! 1! (n-k)!} = k \\binom{n}{k}$ distinct assignments of the $n$ samples to these three zones.",
+      "<strong>General Marginal PDF:</strong> $f_{X_{(k)}}(x) = \\frac{n!}{(k-1)!(n-k)!} [F(x)]^{k-1} [1 - F(x)]^{n-k} f(x)$."
+    ],
+    "math": "$$f_{X_{(k)}}(x) = \\frac{n!}{(k-1)!(n-k)!} [F(x)]^{k-1} [1 - F(x)]^{n-k} f(x) = k \\binom{n}{k} [F(x)]^{k-1} [1 - F(x)]^{n-k} f(x)$$",
+    "personalConnection": "Median score on an entrance exam: (k-1) students score below, exactly 1 student sits at the pivot cut-off, and (n-k) students score above.",
+    "examTrap": "Forgetting the trailing density factor f(x)! Without f(x), the expression is a discrete binomial probability mass, NOT a continuous probability density function."
+  },
+  {
+    "id": 30803,
+    "subject": "StoMA",
+    "topicId": "08_Multiple_Random_Variables_and_Order_Statistics",
+    "topicTitle": "08 \u00b7 Multiple RVs & Order Statistics",
+    "cardNumber": "03",
+    "category": "JOINT ORDER STATS",
+    "highlighterClass": "highlight-emerald",
+    "title": "Joint Density of All n Order Statistics & The n! Permutation",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30803\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30803)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30803)\"/><line x1=\"40\" y1=\"114\" x2=\"180\" y2=\"25\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/><text x=\"165\" y=\"25\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2081 = x\u2082</text><polygon points=\"40,114 180,114 180,25\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"130\" y=\"85\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Ordered Cone:\nx\u2081 &lt; x\u2082 &lt; ... &lt; x_n</text><rect x=\"24\" y=\"20\" width=\"100\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"74.0\" y=\"41.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Joint Density:\nn! \u220f</text><text x=\"74.0\" y=\"50.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f(x\u1d62)\non x\u2081 &lt; x\u2082 &lt; ... &lt; x_n</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Sorting folds all n! sample permutations into a single ordered cone; density scales by n!</text></svg>",
+    "drawingCaption": "Sorting folds the n-dimensional hypercube into a single ordered simplex cone, multiplying density by n!",
+    "coreTranslation": [
+      "<strong>Joint Density Formula:</strong> $f_{X_{(1)}, \\dots, X_{(n)}}(x_1, \\dots, x_n) = n! \\prod_{i=1}^n f(x_i) \\cdot \\mathbf{1}_{\\{x_1 < x_2 < \\dots < x_n\\}}$.",
+      "<strong>Origin of $n!$:</strong> There are $n!$ distinct permutations of the original unordered vector $(X_1, \\dots, X_n)$ that sort into the identical ordered list $(x_1, \\dots, x_n)$.",
+      "<strong>Induced Dependence:</strong> Even though raw samples $X_i$ are independent, order statistics $X_{(1)}, \\dots, X_{(n)}$ are STRONGLY DEPENDENT through the ordering constraints $X_{(1)} < \\dots < X_{(n)}$."
+    ],
+    "math": "$$f_{X_{(1)},\\dots,X_{(n)}}(x_1, \\dots, x_n) = n! \\prod_{i=1}^n f(x_i) \\cdot \\mathbf{1}_{\\{x_1 < x_2 < \\dots < x_n\\}}$$",
+    "personalConnection": "Folding a paper fan: folding an n-dimensional sheet along all diagonals collapses n! identical symmetric wedges into one single compact ordered cone of volume 1/n!.",
+    "examTrap": "Omitting the factor n! in joint calculations. Without n!, integrating over the ordered domain x\u2081 < ... < x_n yields 1/n! instead of the required probability 1."
+  },
+  {
+    "id": 30804,
+    "subject": "StoMA",
+    "topicId": "08_Multiple_Random_Variables_and_Order_Statistics",
+    "topicTitle": "08 \u00b7 Multiple RVs & Order Statistics",
+    "cardNumber": "04",
+    "category": "UNIFORM ORDER",
+    "highlighterClass": "highlight-purple",
+    "title": "Uniform Order Statistics & The Beta Distribution",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30804\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"72\" x2=\"220\" y2=\"72\" stroke=\"#000000\" stroke-width=\"2.0\"/><circle cx=\"20\" cy=\"72\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"20\" y=\"86\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0</text><circle cx=\"220\" cy=\"72\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"220\" y=\"86\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1</text><circle cx=\"60\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"60\" y=\"60\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">U_{(1)}</text><circle cx=\"110\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"110\" y=\"60\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">U_{(k)}</text><circle cx=\"170\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"170\" y=\"60\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">U_{(n)}</text><text x=\"110\" y=\"88\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[U_{(k)}] = k / (n + 1)</text><rect x=\"20\" y=\"20\" width=\"200\" height=\"26\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"36.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">U_{(k)} ~ Beta(k, n - k + 1)   on [0, 1]</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">n uniform points divide [0, 1] into (n+1) equal-mean spacings of length 1/(n+1)</text></svg>",
+    "drawingCaption": "Order statistics of Uniform(0, 1) follow exact Beta distributions; expected spacing between all points is 1/(n+1)",
+    "coreTranslation": [
+      "<strong>Beta Distribution Law:</strong> For $U_1, \\dots, U_n \\stackrel{\\text{i.i.d.}}{\\sim} \\text{Uniform}(0, 1)$, $f_{U_{(k)}}(u) = \\frac{n!}{(k-1)!(n-k)!} u^{k-1} (1-u)^{n-k} \\sim \\text{Beta}(k, n - k + 1)$.",
+      "<strong>Expected Position:</strong> $\\mathbb{E}[U_{(k)}] = \\frac{k}{n+1}$, and variance $\\operatorname{Var}(U_{(k)}) = \\frac{k(n - k + 1)}{(n+1)^2(n+2)}$.",
+      "<strong>Equal Mean Spacings:</strong> The $n$ order statistics partition $[0, 1]$ into $(n+1)$ sub-intervals (spacings) whose expected lengths are all IDENTICAL: $\\mathbb{E}[D_i] = \\frac{1}{n+1}$."
+    ],
+    "math": "$$U_{(k)} \\sim \\text{Beta}(k, n - k + 1), \\qquad \\mathbb{E}[U_{(k)}] = \\frac{k}{n+1}, \\qquad \\operatorname{Var}(U_{(k)}) = \\frac{k(n - k + 1)}{(n+1)^2(n+2)}$$",
+    "personalConnection": "Dropping n random markers along a 1 km running track: on average, the markers cut the track into (n+1) segments of exactly equal length 1/(n+1) km.",
+    "examTrap": "Believing edge spacings 0 to U_{(1)} and U_{(n)} to 1 behave differently from interior spacings. All (n+1) spacings are identically distributed with expected length 1/(n+1)."
+  },
+  {
+    "id": 30805,
+    "subject": "StoMA",
+    "topicId": "08_Multiple_Random_Variables_and_Order_Statistics",
+    "topicTitle": "08 \u00b7 Multiple RVs & Order Statistics",
+    "cardNumber": "05",
+    "category": "EXPONENTIAL ORDER",
+    "highlighterClass": "highlight-cyan",
+    "title": "Exponential Order Statistics & Independent Spacings",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30805\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"72\" x2=\"220\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.8\"/><circle cx=\"20\" cy=\"72\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"20\" y=\"86\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">0</text><circle cx=\"70\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"70\" y=\"60\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X_{(1)}</text><circle cx=\"130\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"130\" y=\"60\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X_{(2)}</text><circle cx=\"200\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"200\" y=\"60\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X_{(3)}</text><line x1=\"20\" y1=\"88\" x2=\"70\" y2=\"88\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"45\" y=\"100\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">W\u2081 ~ Exp(3\u03bb)</text><line x1=\"70\" y1=\"88\" x2=\"130\" y2=\"88\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"100\" y=\"100\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">W\u2082 ~ Exp(2\u03bb)</text><line x1=\"130\" y1=\"88\" x2=\"200\" y2=\"88\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"165\" y=\"100\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">W\u2083 ~ Exp(\u03bb)</text><rect x=\"20\" y=\"18\" width=\"200\" height=\"26\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"30.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Spacings W_k = X_{(k)} - X_{(k-1)}</text><text x=\"120.0\" y=\"39.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">~ Exp((n - k + 1)\u03bb) are INDEPENDENT</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Maximum mean: E[X_{(n)}] = (1/\u03bb) \u2211_{j=1}^n (1/j) \u2248 (log n + \u03b3) / \u03bb</text></svg>",
+    "drawingCaption": "Exponential order statistics decompose into mutually independent exponential spacings with accelerating rates",
+    "coreTranslation": [
+      "<strong>Exponential Setup:</strong> Let $X_1, \\dots, X_n \\stackrel{\\text{i.i.d.}}{\\sim} \\text{Exp}(\\lambda)$.",
+      "<strong>Independent Spacings:</strong> The spacings $W_k = X_{(k)} - X_{(k-1)}$ (with $X_{(0)} = 0$) are MUTUALLY INDEPENDENT Exponential RVs with parameter $(n - k + 1)\\lambda$.",
+      "<strong>Harmonic Mean Sum:</strong> $\\mathbb{E}[X_{(k)}] = \\frac{1}{\\lambda} \\sum_{j=1}^k \\frac{1}{n - j + 1}$. The maximum has expected value $\\mathbb{E}[X_{(n)}] = \\frac{1}{\\lambda} \\sum_{j=1}^n \\frac{1}{j} \\approx \\frac{\\ln n + \\gamma}{\\lambda}$."
+    ],
+    "math": "$$W_k = X_{(k)} - X_{(k-1)} \\sim \\text{Exp}((n - k + 1)\\lambda) \\text{ independent}; \\quad \\mathbb{E}[X_{(n)}] = \\frac{1}{\\lambda} \\sum_{j=1}^n \\frac{1}{j}$$",
+    "personalConnection": "Lightbulb array: all n bulbs race to burn out first at collective rate n\u03bb; once one burns out, remaining (n-1) race at rate (n-1)\u03bb, down to the final survivor.",
+    "examTrap": "Applying independent spacings to non-exponential variables! The independent spacings property is a UNIQUE signature of the memoryless exponential distribution."
+  },
+  {
+    "id": 30806,
+    "subject": "StoMA",
+    "topicId": "08_Multiple_Random_Variables_and_Order_Statistics",
+    "topicTitle": "08 \u00b7 Multiple RVs & Order Statistics",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: System Reliability via Minimum of Exponentials",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30806\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"72\" x2=\"45\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\"/><rect x=\"45\" y=\"58\" width=\"40\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"65.0\" y=\"75.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">T\u2081~Exp(\u03bb\u2081)</text><line x1=\"85\" y1=\"72\" x2=\"105\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\"/><rect x=\"105\" y=\"58\" width=\"40\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"125.0\" y=\"75.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">T\u2082~Exp(\u03bb\u2082)</text><line x1=\"145\" y1=\"72\" x2=\"165\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\"/><rect x=\"165\" y=\"58\" width=\"40\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"185.0\" y=\"75.0\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">T_n~Exp(\u03bb_n)</text><line x1=\"205\" y1=\"72\" x2=\"225\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\"/><rect x=\"20\" y=\"18\" width=\"200\" height=\"28\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"31.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">T_{sys} = min(T\u2081, ..., T_n) ~</text><text x=\"120.0\" y=\"40.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Exp(\u2211 \u03bb\u1d62),   E[T_{sys}] = 1 / \u2211 \u03bb\u1d62</text><text x=\"120\" y=\"114\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(Component k fails first) = \u03bb_k / \u2211 \u03bb\u1d62</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Series reliability: multiply survival functions P(T\u1d62 > t) = exp(-\u03bb\u1d62 t); rates sum linearly</text></svg>",
+    "drawingCaption": "The minimum of independent exponentials is exponential with sum of rates; failure identity is proportional to rate",
+    "coreTranslation": [
+      "<strong>Series Setup:</strong> System of $n$ components in series with independent lifetimes $T_i \\sim \\text{Exp}(\\lambda_i)$. System fails at $T_{\\text{sys}} = \\min(T_1, \\dots, T_n)$.",
+      "<strong>Survival Product:</strong> $\\mathbb{P}(T_{\\text{sys}} > t) = \\prod_{i=1}^n \\mathbb{P}(T_i > t) = \\prod_{i=1}^n e^{-\\lambda_i t} = \\exp(-(\\sum_{i=1}^n \\lambda_i) t)$.",
+      "<strong>Failure Probability:</strong> The system lifetime is strictly $\\text{Exp}(\\sum_{i=1}^n \\lambda_i)$, and component $k$ is the one that causes system failure with probability $\\frac{\\lambda_k}{\\sum_{i=1}^n \\lambda_i}$."
+    ],
+    "math": "$$T_{\\text{sys}} = \\min_{1 \\le i \\le n} T_i \\sim \\text{Exp}\\left(\\sum_{i=1}^n \\lambda_i\\right), \\qquad \\mathbb{P}(T_k = \\min T_i) = \\frac{\\lambda_k}{\\sum_{i=1}^n \\lambda_i}$$",
+    "personalConnection": "A sprint race among n runners: the winning time is distributed as the minimum, and each runner's chance of winning is directly proportional to their running speed \u03bb_k.",
+    "examTrap": "Attempting convolution integration to find the minimum of lifetimes! Always compute minimums via the product of survival functions P(T_i > t)\u2014convolution is for SUMS, not minimums."
+  },
+  {
+    "id": 30901,
+    "subject": "StoMA",
+    "topicId": "09_Sums_of_Random_Variables_and_Jacobian_Transformations",
+    "topicTitle": "09 \u00b7 Sums & Jacobian Transformations",
+    "cardNumber": "01",
+    "category": "CONVOLUTION",
+    "highlighterClass": "highlight-cyan",
+    "title": "The Convolution Formula for Sums of Independent RVs",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30901\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30901)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30901)\"/><line x1=\"40\" y1=\"114\" x2=\"160\" y2=\"25\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"145\" y=\"25\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">x + y = z</text><circle cx=\"100\" cy=\"70\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"125\" y=\"70\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(x, z - x)</text><line x1=\"100\" y1=\"70\" x2=\"100\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.0\" stroke-dasharray=\"2 2\"/><text x=\"100\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x</text><rect x=\"24\" y=\"20\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"72.0\" y=\"37.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Continuous:\nf_Z(z) =</text><text x=\"72.0\" y=\"45.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u222b f_X(x) f_Y(z-x) dx</text><rect x=\"128\" y=\"20\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"176.0\" y=\"37.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Discrete:\nP(Z=k) =</text><text x=\"176.0\" y=\"45.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2211 P(X=j) P(Y=k-j)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Convolution integrates joint mass along the diagonal line x + y = z</text></svg>",
+    "drawingCaption": "The density of Z = X + Y integrates joint density along the diagonal slice x + y = z",
+    "coreTranslation": [
+      "<strong>Continuous Convolution:</strong> For independent $X \\perp Y$, the density of $Z = X + Y$ is $(f_X * f_Y)(z) = \\int_{-\\infty}^\\infty f_X(x) f_Y(z - x)\\,dx$.",
+      "<strong>Discrete Convolution:</strong> For independent integer RVs, $\\mathbb{P}(Z = k) = \\sum_{j=-\\infty}^\\infty \\mathbb{P}(X = j)\\,\\mathbb{P}(Y = k - j)$.",
+      "<strong>Algebraic Properties:</strong> Convolution is commutative ($f_X * f_Y = f_Y * f_X$) and associative ($(f_X * f_Y) * f_W = f_X * (f_Y * f_W)$)."
+    ],
+    "math": "$$f_{X+Y}(z) = (f_X * f_Y)(z) = \\int_{-\\infty}^\\infty f_X(x) f_Y(z - x)\\,dx = \\int_{-\\infty}^\\infty f_X(z - y) f_Y(y)\\,dy$$",
+    "personalConnection": "Sliding an audio filter across an audio signal: reversing one signal in time (z - x) and integrating total overlap energy at time delay z.",
+    "examTrap": "Neglecting to adjust integration limits for non-negative variables! If X, Y \u2265 0, then 0 \u2264 x \u2264 z; integrating from -\u221e to \u221e without truncating limits produces severe calculation errors."
+  },
+  {
+    "id": 30902,
+    "subject": "StoMA",
+    "topicId": "09_Sums_of_Random_Variables_and_Jacobian_Transformations",
+    "topicTitle": "09 \u00b7 Sums & Jacobian Transformations",
+    "cardNumber": "02",
+    "category": "2D JACOBIAN",
+    "highlighterClass": "highlight-amber",
+    "title": "2D Multivariate Jacobian Transformation Theorem",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30902\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><polygon points=\"30,90 70,80 80,105 40,115\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"55\" y=\"98\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">dx dy</text><line x1=\"85\" y1=\"95\" x2=\"125\" y2=\"95\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-30902)\"/><text x=\"105\" y=\"85\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g(X, Y)</text><polygon points=\"140,85 195,70 210,110 155,125\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"175\" y=\"98\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">du dv = |J| dx dy</text><rect x=\"24\" y=\"20\" width=\"192\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">J(u, v) = det [ \u2202x/\u2202u  \u2202x/\u2202v ;  \u2202y/\u2202u  \u2202y/\u2202v</text><text x=\"120.0\" y=\"49.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">]\nf_{U,V}(u, v) = f_{X,Y}(x(u, v), y(u, v)) \u00b7 |J(u, v)|</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">The Jacobian determinant scales differential area: |J(u, v)| = 1 / |J(x, y)|</text></svg>",
+    "drawingCaption": "Multivariate 2D mappings scale local area elements by the absolute determinant of the coordinate Jacobian",
+    "coreTranslation": [
+      "<strong>Bijective Smooth Mapping:</strong> Let $(U, V) = g(X, Y)$ be an invertible, continuously differentiable mapping from $S \\subset \\mathbb{R}^2$ to $T \\subset \\mathbb{R}^2$.",
+      "<strong>Jacobian Determinant:</strong> $J(u, v) \\triangleq \\det \\begin{bmatrix} \\partial x/\\partial u & \\partial x/\\partial v \\\\ \\partial y/\\partial u & \\partial y/\\partial v \\end{bmatrix}$. Reciprocal identity: $J(u, v) = [J(x, y)]^{-1}$.",
+      "<strong>Transformed Density:</strong> $f_{U,V}(u, v) = f_{X,Y}(x(u, v), y(u, v)) |J(u, v)| \\cdot \\mathbf{1}_{\\{(u, v) \\in T\\}}$."
+    ],
+    "math": "$$f_{U,V}(u, v) = f_{X,Y}\\left(x(u, v), y(u, v)\\right) \\left| \\det \\frac{\\partial(x, y)}{\\partial(u, v)} \\right|$$",
+    "personalConnection": "Mercator map projection: flattening spherical latitude and longitude onto a flat map distorts area sizes by the local metric Jacobian determinant.",
+    "examTrap": "Inverting forward vs inverse Jacobian! If you calculate the forward derivative matrix \u2202(u,v)/\u2202(x,y), you must DIVIDE by its determinant rather than multiply."
+  },
+  {
+    "id": 30903,
+    "subject": "StoMA",
+    "topicId": "09_Sums_of_Random_Variables_and_Jacobian_Transformations",
+    "topicTitle": "09 \u00b7 Sums & Jacobian Transformations",
+    "cardNumber": "03",
+    "category": "RATIO & POLAR",
+    "highlighterClass": "highlight-emerald",
+    "title": "Ratio Distribution & Polar Coordinate Transformations",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30903\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"70\" cy=\"72\" rx=\"40\" ry=\"40\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(0 70 72)\"/><line x1=\"30\" y1=\"72\" x2=\"110\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30903)\"/><line x1=\"30\" y1=\"72\" x2=\"30\" y2=\"25\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30903)\"/><line x1=\"70\" y1=\"72\" x2=\"100\" y2=\"45\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"88\" y=\"54\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">r</text><text x=\"78\" y=\"68\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03b8</text><text x=\"70\" y=\"126\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">dx dy = r dr d\u03b8</text><rect x=\"125\" y=\"30\" width=\"100\" height=\"50\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"175.0\" y=\"54.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Ratio Z = Y / X:\nf_Z(z) = \u222b |x| f_{X,Y}(x,</text><text x=\"175.0\" y=\"62.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">xz) dx\n(Cauchy if X, Y ~ N(0, 1))</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Polar Jacobian is r; Ratio transformation integrates along radial rays y = xz with factor |x|</text></svg>",
+    "drawingCaption": "Polar coordinates introduce metric area factor r; ratio distributions integrate radial rays with factor |x|",
+    "coreTranslation": [
+      "<strong>Ratio Formula:</strong> For $Z = Y / X$, introduce auxiliary $W = X$. Inverse is $x = w, y = wz$ with Jacobian $|J| = |w|$, yielding $f_Z(z) = \\int_{-\\infty}^\\infty |x| f_{X,Y}(x, xz)\\,dx$.",
+      "<strong>Polar Coordinates:</strong> $(X, Y) = (R \\cos\\Theta, R \\sin\\Theta)$. The Jacobian determinant is $\\det \\begin{bmatrix} \\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta \\end{bmatrix} = r$.",
+      "<strong>Polar Density:</strong> $f_{R,\\Theta}(r, \\theta) = r f_{X,Y}(r \\cos\\theta, r \\sin\\theta)$ for $r \\ge 0, \\theta \\in [0, 2\\pi)$."
+    ],
+    "math": "$$Z = \\frac{Y}{X} \\implies f_Z(z) = \\int_{-\\infty}^\\infty |x|\\,f_{X,Y}(x, xz)\\,dx, \\qquad f_{R,\\Theta}(r, \\theta) = r\\,f_{X,Y}(r\\cos\\theta, r\\sin\\theta)$$",
+    "personalConnection": "Marine sonar sweep: scanning targets in range r and angle \u03b8; rings expand in area as 2\u03c0 r dr, introducing the linear geometric weighting factor r.",
+    "examTrap": "Forgetting the absolute value factor |x| in the ratio formula! Neglecting |x| violates physical dimensions (density must have units 1/z) and gives wrong integrals."
+  },
+  {
+    "id": 30904,
+    "subject": "StoMA",
+    "topicId": "09_Sums_of_Random_Variables_and_Jacobian_Transformations",
+    "topicTitle": "09 \u00b7 Sums & Jacobian Transformations",
+    "cardNumber": "04",
+    "category": "BOX-MULLER",
+    "highlighterClass": "highlight-purple",
+    "title": "The Box-Muller Transform: Exact Gaussian Simulation",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30904\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"96\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"64.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">U\u2081, U\u2082 ~ i.i.d. Unif(0,</text><text x=\"64.0\" y=\"46.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1)\n(Standard uniform)</text><line x1=\"112\" y1=\"38\" x2=\"136\" y2=\"38\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-30904)\"/><rect x=\"136\" y=\"20\" width=\"88\" height=\"36\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"180.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Z\u2081, Z\u2082 ~ i.i.d. N(0,</text><text x=\"180.0\" y=\"46.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1)\n(Standard normal)</text><rect x=\"16\" y=\"68\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.3\"/><text x=\"120\" y=\"82\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Z\u2081 = \u221a(-2 ln U\u2081) \u00b7 cos(2\u03c0 U\u2082)</text><text x=\"120\" y=\"98\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Z\u2082 = \u221a(-2 ln U\u2081) \u00b7 sin(2\u03c0 U\u2082)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Radius R\u00b2 = -2 ln U\u2081 ~ Exp(1/2) \u2261 \u03c7\u2082\u00b2; Angle \u0398 = 2\u03c0 U\u2082 ~ Unif(0, 2\u03c0)</text></svg>",
+    "drawingCaption": "Converts two independent Uniform(0, 1) variates into two independent standard Gaussian variates in closed form",
+    "coreTranslation": [
+      "<strong>Motivation:</strong> Gaussian quantile function $\\Phi^{-1}(u)$ has no closed form. Box-Muller bypasses 1D intractability by operating in 2D polar coordinates.",
+      "<strong>Construction:</strong> For $U_1, U_2 \\stackrel{\\text{i.i.d.}}{\\sim} \\text{Uniform}(0, 1)$, set radius $R = \\sqrt{-2\\ln U_1}$ (so $R^2 \\sim \\text{Exp}(1/2) \\equiv \\chi_2^2$) and angle $\\Theta = 2\\pi U_2 \\sim \\text{Uniform}(0, 2\\pi)$.",
+      "<strong>Exact Normals:</strong> $Z_1 = R \\cos\\Theta$ and $Z_2 = R \\sin\\Theta$ are EXACTLY independent standard normal random variables: $Z_1, Z_2 \\stackrel{\\text{i.i.d.}}{\\sim} \\mathcal{N}(0, 1)$."
+    ],
+    "math": "$$Z_1 = \\sqrt{-2\\ln U_1}\\cos(2\\pi U_2), \\quad Z_2 = \\sqrt{-2\\ln U_1}\\sin(2\\pi U_2) \\implies Z_1, Z_2 \\stackrel{\\text{i.i.d.}}{\\sim} \\mathcal{N}(0, 1)$$",
+    "personalConnection": "Dartboard simulation: choosing a radial distance from center according to a Rayleigh law and a completely random 360\u00b0 angle creates a 2D circularly symmetric Gaussian cloud.",
+    "examTrap": "Generating standard normals one at a time and discarding Z\u2082! Box-Muller generates TWO independent normal values per pair of uniforms; saving both doubles computational efficiency."
+  },
+  {
+    "id": 30905,
+    "subject": "StoMA",
+    "topicId": "09_Sums_of_Random_Variables_and_Jacobian_Transformations",
+    "topicTitle": "09 \u00b7 Sums & Jacobian Transformations",
+    "cardNumber": "05",
+    "category": "CONVOLUTION STABILITY",
+    "highlighterClass": "highlight-cyan",
+    "title": "Sum Invariants: Stability of Normal, Poisson & Gamma",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30905\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"208\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"33.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Normals: N(\u03bc\u2081, \u03c3\u2081\u00b2) + N(\u03bc\u2082,</text><text x=\"120.0\" y=\"42.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03c3\u2082\u00b2) = N(\u03bc\u2081 + \u03bc\u2082, \u03c3\u2081\u00b2 + \u03c3\u2082\u00b2)</text><rect x=\"16\" y=\"56\" width=\"208\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"73.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Poisson: Pois(\u03bb\u2081) + Pois(\u03bb\u2082) = Pois(\u03bb\u2081 + \u03bb\u2082)</text><rect x=\"16\" y=\"92\" width=\"208\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"105.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Gamma: Gamma(\u03b1\u2081, \u03b2) + Gamma(\u03b1\u2082,</text><text x=\"120.0\" y=\"114.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03b2) = Gamma(\u03b1\u2081 + \u03b1\u2082, \u03b2)  [Same \u03b2!]</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Independent sum closures: Gaussians, Poissons, and shared-scale Gammas are closed under addition</text></svg>",
+    "drawingCaption": "Independent sums of Gaussians are Gaussian, sums of Poissons are Poisson, and sums of Gammas are Gamma",
+    "coreTranslation": [
+      "<strong>Gaussian Closure:</strong> If $X_i \\sim \\mathcal{N}(\\mu_i, \\sigma_i^2)$ are independent, $\\sum_{i=1}^n X_i \\sim \\mathcal{N}(\\sum \\mu_i, \\sum \\sigma_i^2)$.",
+      "<strong>Poisson Closure:</strong> If $X_i \\sim \\text{Poisson}(\\lambda_i)$ are independent, $\\sum_{i=1}^n X_i \\sim \\text{Poisson}(\\sum \\lambda_i)$.",
+      "<strong>Gamma Closure (Shared Rate):</strong> If $X_i \\sim \\text{Gamma}(\\alpha_i, \\beta)$ are independent with IDENTICAL scale $\\beta$, then $\\sum_{i=1}^n X_i \\sim \\text{Gamma}(\\sum \\alpha_i, \\beta)$."
+    ],
+    "math": "$$\\sum_{i=1}^n \\mathcal{N}(\\mu_i, \\sigma_i^2) = \\mathcal{N}\\left(\\sum \\mu_i, \\sum \\sigma_i^2\\right), \\quad \\sum_{i=1}^n \\text{Pois}(\\lambda_i) = \\text{Pois}\\left(\\sum \\lambda_i\\right)$$",
+    "personalConnection": "Combining incoming service calls: two independent streams of Poisson calls with rates \u03bb\u2081 and \u03bb\u2082 merge into a single stream of Poisson calls with rate \u03bb\u2081 + \u03bb\u2082.",
+    "examTrap": "Adding Gamma random variables with different scale parameters \u03b2\u2081 \u2260 \u03b2\u2082! The sum of Gammas is Gamma ONLY when the rate/scale parameter is identical across all terms."
+  },
+  {
+    "id": 30906,
+    "subject": "StoMA",
+    "topicId": "09_Sums_of_Random_Variables_and_Jacobian_Transformations",
+    "topicTitle": "09 \u00b7 Sums & Jacobian Transformations",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Sum of Two Uniforms (The Triangle Law)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-30906\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30906)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-30906)\"/><path d=\"M 40,114 L 120,35 L 200,114\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"2.0\"/><line x1=\"120\" y1=\"35\" x2=\"120\" y2=\"114\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"2 2\"/><text x=\"40\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0</text><text x=\"120\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1</text><text x=\"200\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">2</text><text x=\"16\" y=\"35\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1</text><text x=\"70\" y=\"65\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_Z(z) = z</text><text x=\"170\" y=\"65\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">f_Z(z) = 2 - z</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Convolution of two independent Unif(0, 1) pulses creates a symmetric triangle distribution</text></svg>",
+    "drawingCaption": "Convolving two rectangular uniform pulses generates a symmetric triangular probability density",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Let $X, Y \\stackrel{\\text{i.i.d.}}{\\sim} \\text{Uniform}[0, 1]$. Compute the PDF of $Z = X + Y$.",
+      "<strong>Convolution Integral:</strong> $f_Z(z) = \\int_0^1 \\mathbf{1}_{\\{0 \\le z - x \\le 1\\}}\\,dx = \\int_{\\max(0, z-1)}^{\\min(1, z)} 1\\,dx$.",
+      "<strong>Piecewise Triangle:</strong> For $0 \\le z \\le 1$, $f_Z(z) = z$. For $1 < z \\le 2$, $f_Z(z) = 2 - z$. Mean is $\\mathbb{E}[Z] = 1$, variance $\\operatorname{Var}(Z) = 1/12 + 1/12 = 1/6$."
+    ],
+    "math": "$$f_{X+Y}(z) = \\begin{cases} z & 0 \\le z \\le 1 \\\\ 2 - z & 1 < z \\le 2 \\\\ 0 & \\text{otherwise} \\end{cases}, \\qquad \\mathbb{E}[Z] = 1, \\; \\operatorname{Var}(Z) = \\tfrac{1}{6}$$",
+    "personalConnection": "Rolling two fair dice: the sum of two uniform outcomes forms a triangular frequency peak at 7, tapering linearly toward 2 and 12.",
+    "examTrap": "Treating the convolution integral as a single algebraic formula over [0, 2]! The overlap geometry changes at z = 1, splitting the solution into two distinct linear regimes."
   }
 ]
 );
