@@ -3,502 +3,566 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Sirianni Method Index Cards · Photographic Memory System</title>
+  <title>Cosmic Knowledge Cards · The Sirianni Method</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- KaTeX for pristine mathematical equations -->
+  <!-- KaTeX for mathematical equations -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Permanent+Marker&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
     :root {
       --font-serif: 'Instrument Serif', Georgia, serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-hand: 'Caveat', cursive;
-      --font-marker: 'Permanent Marker', cursive;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
     body {
       font-family: var(--font-sans);
-      background-color: #12161f;
+      background: radial-gradient(circle at 50% 12%, #141a32 0%, #080c18 45%, #030409 100%);
       color: #e2e8f0;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    .font-marker { font-family: var(--font-marker); }
     .font-hand { font-family: var(--font-hand); }
     .font-serif-title { font-family: var(--font-serif); }
-    .font-mono-code { font-family: var(--font-mono); }
+    .font-mono { font-family: var(--font-mono); }
 
-    /* Authentic Sirianni Lined Index Card Styling */
-    .sirianni-card {
-      background-color: #fdfcf7;
-      background-image: 
-        linear-gradient(to right, transparent 52px, #f87171 52px, #f87171 54px, transparent 54px),
-        linear-gradient(to bottom, transparent 27px, #e2e8f0 27px, #e2e8f0 28px, transparent 28px);
-      background-size: 100% 100%, 100% 28px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      transition: all 0.25s ease-out;
+    /* Strict 16:9 Landscape Card with Blank Background */
+    .aspect-16-9 {
+      aspect-ratio: 16 / 9;
+      width: 100%;
     }
 
-    .sirianni-card:hover {
-      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.5), 0 8px 12px -4px rgba(0, 0, 0, 0.2);
-      transform: translateY(-3px);
+    /* Blank Cosmic Card (No notebook lines, no paper texture) */
+    .cosmic-card {
+      background-color: #0c101d;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(56, 189, 248, 0.04);
+      border-radius: 16px;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
     }
 
-    .sirianni-card-dark {
-      background-color: #1a2234;
-      background-image: 
-        linear-gradient(to right, transparent 52px, #e11d48 52px, #e11d48 54px, transparent 54px),
-        linear-gradient(to bottom, transparent 27px, rgba(51, 65, 85, 0.4) 27px, rgba(51, 65, 85, 0.4) 28px, transparent 28px);
-      background-size: 100% 100%, 100% 28px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
-      border: 1px solid #334155;
+    .cosmic-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.18);
     }
 
-    /* Highlighter Tape Overlays */
-    .highlight-yellow {
-      background: linear-gradient(104deg, rgba(254, 240, 138, 0.95) 0.9%, rgba(253, 224, 71, 0.9) 2.4%, rgba(254, 240, 138, 0.95) 98%);
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
-      border-radius: 3px;
-      transform: rotate(-0.6deg);
-    }
-
+    /* Cosmic Highlighters */
     .highlight-cyan {
-      background: linear-gradient(104deg, rgba(186, 230, 253, 0.95) 0.9%, rgba(125, 211, 252, 0.9) 2.4%, rgba(186, 230, 253, 0.95) 98%);
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
-      border-radius: 3px;
-      transform: rotate(0.4deg);
+      background: rgba(14, 165, 233, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: #e0f2fe;
     }
 
-    .highlight-green {
-      background: linear-gradient(104deg, rgba(187, 247, 208, 0.95) 0.9%, rgba(134, 239, 172, 0.9) 2.4%, rgba(187, 247, 208, 0.95) 98%);
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
-      border-radius: 3px;
-      transform: rotate(-0.3deg);
+    .highlight-amber {
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      color: #fef3c7;
     }
 
-    .highlight-pink {
-      background: linear-gradient(104deg, rgba(254, 205, 211, 0.95) 0.9%, rgba(253, 164, 175, 0.9) 2.4%, rgba(254, 205, 211, 0.95) 98%);
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
-      border-radius: 3px;
-      transform: rotate(0.5deg);
+    .highlight-emerald {
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      color: #d1fae5;
     }
 
-    /* Sticky tape effect */
-    .washi-tape {
-      background: rgba(254, 240, 138, 0.7);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      transform: rotate(-2deg);
+    .highlight-purple {
+      background: rgba(168, 85, 247, 0.18);
+      border: 1px solid rgba(192, 132, 252, 0.45);
+      color: #f3e8ff;
     }
 
-    /* Drawing Corner Box */
-    .drawing-corner {
-      background: #ffffff;
-      border: 1.5px dashed #cbd5e1;
-      border-radius: 10px;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+    /* Discreet Custom Cosmic Scrollbar */
+    .cosmic-scroll::-webkit-scrollbar {
+      width: 4px;
     }
-    .drawing-corner-dark {
-      background: #0f172a;
-      border: 1.5px dashed #475569;
+    .cosmic-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 4px;
+    }
+    .cosmic-scroll::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.25);
+      border-radius: 4px;
+    }
+    .cosmic-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.55);
     }
 
     /* Print styles */
     @media print {
       body { background: white !important; color: black !important; }
-      header, footer, #controls-bar { display: none !important; }
-      .sirianni-card { break-inside: avoid; box-shadow: none !important; border: 1px solid #ccc !important; }
+      header, footer, #controls-bar, #cosmos-canvas { display: none !important; }
+      .cosmic-card { break-inside: avoid; box-shadow: none !important; border: 1px solid #ccc !important; background: white !important; }
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-black">
+<body class="selection:bg-cyan-500 selection:text-black relative">
 
-  <!-- ================= TOP WIDESCREEN TOOLBAR ================= -->
-  <header class="w-full bg-[#181f2e] border-b border-slate-800 px-4 sm:px-6 py-3.5 sticky top-0 z-40 shadow-lg">
-    <div class="max-w-[1800px] mx-auto flex flex-wrap items-center justify-between gap-4">
-      
-      <!-- Logo & Concept Tag -->
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 font-bold text-xl flex items-center justify-center shadow-md font-marker">
-          S
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">
-              The Sirianni Index Card System
-            </h1>
-            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/30 uppercase tracking-wider">
-              Photographic Memory
-            </span>
+  <!-- ================= ANIMATED COSMOS CANVAS (GLOWING DOTS & STARS) ================= -->
+  <canvas id="cosmos-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Ambient Nebula Lighting -->
+  <div class="fixed top-10 left-1/4 w-[35rem] h-[35rem] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-20 right-1/4 w-[40rem] h-[40rem] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+  <!-- Content Wrapper -->
+  <div class="relative z-10 min-h-screen flex flex-col justify-between">
+
+    <!-- ================= TOP COSMIC NAVIGATION TOOLBAR ================= -->
+    <header class="w-full bg-[#080c18]/85 backdrop-blur-md border-b border-cyan-500/20 px-4 sm:px-8 py-3.5 sticky top-0 z-40 shadow-xl">
+      <div class="max-w-[1800px] mx-auto flex flex-wrap items-center justify-between gap-4">
+        
+        <!-- Cosmic Brand & Philosophy -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 text-slate-950 font-black text-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
+            ✦
           </div>
-          <p class="text-xs text-slate-400 hidden sm:block">
-            Step 1: Grab an Index Card • Step 2: Title & Highlight • Step 3: Core Info Translation • Step 4: Personal Connection • Step 5: Drawing Corner
-          </p>
+          <div>
+            <div class="flex items-center gap-2.5">
+              <h1 class="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                <span>The Sirianni Index System</span>
+                <span class="text-cyan-400 font-mono text-xs">• COSMOS EDITION</span>
+              </h1>
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest flex items-center gap-1.5">
+                <span class="relative flex h-1.5 w-1.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-500"></span>
+                </span>
+                16:9 LANDSCAPE
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 hidden sm:block">
+              Photographic Memory Architecture · Dual-Coding Geometry · Blank Minimal Surfaces
+            </p>
+          </div>
+        </div>
+
+        <!-- Center Cosmic Search -->
+        <div class="flex-1 max-w-md mx-2 hidden md:block">
+          <div class="relative">
+            <input type="text" id="search-input" oninput="filterCards()" placeholder="Search concepts, math equations, or analogies..." class="w-full bg-[#0d1326] border border-slate-700/80 rounded-xl py-1.5 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition">
+            <span class="absolute left-3 top-2 text-xs text-cyan-400 opacity-75">🔍</span>
+          </div>
+        </div>
+
+        <!-- Action Tools & Grid Controllers -->
+        <div class="flex items-center gap-2.5">
+          <!-- Columns Selector -->
+          <div class="flex items-center gap-1 bg-[#0d1326] border border-cyan-500/20 p-1 rounded-xl text-xs text-slate-300 shadow-inner">
+            <span class="px-2 text-[10px] text-slate-400 font-mono">LAYOUT:</span>
+            <button onclick="setGridCols(1)" id="col-btn-1" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">1 Wide</button>
+            <button onclick="setGridCols(2)" id="col-btn-2" class="px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition">2 Cols</button>
+            <button onclick="setGridCols(3)" id="col-btn-3" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition">3 Cols</button>
+          </div>
+
+          <!-- Print / Export -->
+          <button onclick="window.print()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#0d1326] text-slate-200 hover:bg-slate-800 transition border border-cyan-500/20 flex items-center gap-1.5">
+            <span>🖨️</span> <span class="hidden sm:inline">Print</span>
+          </button>
+
+          <!-- Add Card Button -->
+          <button onclick="openAddModal()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 transition shadow-lg shadow-cyan-400/20 flex items-center gap-1">
+            <span>+</span> Add Card
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ================= MAIN EXPANSIVE DESK ================= -->
+    <main class="w-full max-w-[1800px] mx-auto flex-1 px-4 sm:px-8 py-6">
+      
+      <!-- Topic Header Banner -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-3 border-b border-cyan-500/15">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-widest flex items-center gap-1.5">
+            <span>🪐</span> ORBITAL DECK
+          </span>
+          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            Feasible Sets, Active Constraints & Tangent Cones
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 text-xs font-mono text-slate-400">
+          <span class="flex items-center gap-1.5 text-cyan-300">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            Luenberger & Ye Reference Text
+          </span>
+          <span class="text-slate-600">•</span>
+          <span><strong id="card-count" class="text-white">6</strong> Synchronized 16:9 Plates</span>
         </div>
       </div>
 
-      <!-- Center Live Search & Filter -->
-      <div class="flex-1 max-w-md mx-2 hidden md:block">
-        <div class="relative">
-          <input type="text" id="search-input" oninput="filterCards()" placeholder="Search concepts, math, or personal analogies..." class="w-full bg-slate-900 border border-slate-700 rounded-xl py-1.5 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
-          <span class="absolute left-3 top-2 text-xs text-slate-500">🔍</span>
-        </div>
+      <!-- Uniform 16:9 Landscape Card Grid -->
+      <div id="desk-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 items-start">
+        <!-- Rendered dynamically -->
       </div>
 
-      <!-- Action Tools -->
-      <div class="flex items-center gap-2">
-        <!-- Columns Selector -->
-        <div class="hidden xl:flex items-center gap-1 bg-slate-900 border border-slate-700/80 p-0.5 rounded-lg text-xs text-slate-300">
-          <span class="px-2 text-[10px] text-slate-400 font-mono">COLS:</span>
-          <button onclick="setGridCols(2)" id="col-btn-2" class="px-2 py-0.5 rounded hover:bg-slate-800">2</button>
-          <button onclick="setGridCols(3)" id="col-btn-3" class="px-2 py-0.5 rounded bg-amber-500 text-slate-950 font-bold">3</button>
-          <button onclick="setGridCols(4)" id="col-btn-4" class="px-2 py-0.5 rounded hover:bg-slate-800">4</button>
+    </main>
+
+    <!-- ================= LIGHTBOX IMAGE MODAL ================= -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 p-4 flex items-center justify-center hidden" onclick="closeLightbox()">
+      <div class="max-w-4xl max-h-[90vh] bg-[#0c101d] border border-cyan-500/30 rounded-2xl p-5 shadow-2xl flex flex-col items-center relative" onclick="event.stopPropagation()">
+        <div class="w-full flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+          <div>
+            <h4 id="lightbox-title" class="text-sm font-bold text-white font-serif-title text-base"></h4>
+            <p id="lightbox-ref" class="text-[11px] font-mono text-cyan-400"></p>
+          </div>
+          <button onclick="closeLightbox()" class="text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 text-sm">✕ Close</button>
         </div>
-
-        <button onclick="toggleTheme()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition border border-slate-700 flex items-center gap-1.5">
-          <span>🌓</span> <span class="hidden sm:inline">Theme</span>
-        </button>
-
-        <button onclick="window.print()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition border border-slate-700 flex items-center gap-1.5">
-          <span>🖨️</span> <span class="hidden sm:inline">Print Cards</span>
-        </button>
-
-        <button onclick="openAddModal()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 hover:bg-amber-300 transition shadow flex items-center gap-1">
-          <span>+</span> Add Index Card
-        </button>
+        <div class="flex-1 flex items-center justify-center overflow-auto p-2 bg-white rounded-xl">
+          <img id="lightbox-img" src="" alt="Enlarged Specimen" class="max-h-[72vh] max-w-full object-contain">
+        </div>
+        <div class="mt-3 text-xs text-slate-400 font-mono text-center">
+          Click outside or press ✕ to return to orbital desk
+        </div>
       </div>
-
     </div>
-  </header>
 
-  <!-- ================= EXPANSIVE FULL-WIDTH DESK CANVAS ================= -->
-  <main class="w-full max-w-[1800px] mx-auto flex-1 px-4 sm:px-6 py-6">
-    
-    <!-- Topic Title Banner -->
-    <div class="flex items-center justify-between mb-6 pb-2 border-b border-slate-800/80">
-      <div class="flex items-center gap-3">
-        <span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20 uppercase tracking-widest">
-          ACTIVE DESK
-        </span>
-        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
-          Feasible Sets, Active Constraints & Tangent Cones
-        </h2>
-      </div>
-      <div class="text-xs text-slate-400 font-mono">
-        <span id="card-count">6</span> Complete Sirianni Cards
+    <!-- ================= ADD NEW CARD MODAL ================= -->
+    <div id="add-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 p-4 flex items-center justify-center hidden">
+      <div class="w-full max-w-xl bg-[#0c101d] border border-cyan-500/30 rounded-2xl p-6 shadow-2xl text-slate-200">
+        <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-800">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span>✨</span> Create a 16:9 Cosmic Knowledge Card
+          </h3>
+          <button onclick="closeAddModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
+        </div>
+
+        <form onsubmit="saveCustomCard(event)" class="space-y-3 text-xs">
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">1. Concept Title (Top Banner)</label>
+            <input type="text" id="new-title" required placeholder="e.g. Linear Independence Constraint Qualification (LICQ)" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">2. Core Plain Translation (The Feynman Mechanism)</label>
+            <textarea id="new-info" required rows="2" placeholder="Explain the concept in crisp, intuitive plain words..." class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400"></textarea>
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">3. Formal Mathematics (LaTeX equations)</label>
+            <input type="text" id="new-math" placeholder="e.g. $\nabla h_i(x^*)$ and $\nabla g_j(x^*)$ are linearly independent" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono">
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">4. Personal Memory Anchor / Analogy</label>
+            <textarea id="new-connection" required rows="2" placeholder="Real-world physical analogy (e.g. two ropes pulling along same axis)..." class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400"></textarea>
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">5. Visual Caption</label>
+            <input type="text" id="new-drawing-caption" required placeholder="e.g. Visual verification of non-degenerate gradients" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
+          </div>
+
+          <div class="flex justify-end gap-2 pt-3">
+            <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium">Cancel</button>
+            <button type="submit" class="px-5 py-2 rounded-lg bg-cyan-400 text-slate-950 font-bold hover:bg-cyan-300">Launch Card</button>
+          </div>
+        </form>
       </div>
     </div>
 
-    <!-- The Infinite Card Desk Grid (Takes full advantage of entire screen) -->
-    <div id="desk-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
-      <!-- Cards rendered here -->
-    </div>
-
-  </main>
-
-  <!-- ================= ADD NEW SIRIANNI CARD MODAL ================= -->
-  <div id="add-modal" class="fixed inset-0 bg-black/85 backdrop-blur-xs z-50 p-4 flex items-center justify-center hidden">
-    <div class="w-full max-w-xl bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl text-slate-200">
-      <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-800">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <span>📝</span> Create a Sirianni Index Card
-        </h3>
-        <button onclick="closeAddModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
+    <!-- ================= FOOTER ================= -->
+    <footer class="w-full border-t border-cyan-500/15 bg-[#080c18]/90 py-4 px-6 text-xs text-slate-500">
+      <div class="max-w-[1800px] mx-auto flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="text-cyan-400 font-bold">The Sirianni Method:</span>
+          <span>Dual-coding cognitive architecture on uniform 16:9 landscape knowledge plates.</span>
+        </div>
+        <div class="flex items-center gap-3 font-mono text-[11px]">
+          <span>Source: Luenberger & Ye (4th Edition)</span>
+          <span class="text-slate-700">•</span>
+          <span class="text-slate-400">Live via GitHub Pages · RealSenso</span>
+        </div>
       </div>
+    </footer>
 
-      <form onsubmit="saveCustomCard(event)" class="space-y-3.5 text-xs">
-        <div>
-          <label class="block font-medium text-slate-300 mb-1">1. Card Title (Highlighted on card)</label>
-          <input type="text" id="new-title" required placeholder="e.g. Linear Independence Constraint Qualification (LICQ)" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-400">
-        </div>
-
-        <div>
-          <label class="block font-medium text-slate-300 mb-1">2. Core Info Translation (Explain in Plain Words / Feynman)</label>
-          <textarea id="new-info" required rows="3" placeholder="Write down the core mechanism in simple, personal terms without textbook jargon..." class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-400"></textarea>
-        </div>
-
-        <div>
-          <label class="block font-medium text-slate-300 mb-1">3. Formal Mathematics (LaTeX equations allowed)</label>
-          <input type="text" id="new-math" placeholder="e.g. $\nabla h_i(x^*)$ and $\nabla g_j(x^*)$ are linearly independent" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-400 font-mono">
-        </div>
-
-        <div>
-          <label class="block font-medium text-slate-300 mb-1">4. Personal Connection / Analogy (The Emotional/Memory Anchor)</label>
-          <textarea id="new-connection" required rows="2" placeholder="How does this connect to real life? (e.g. Like two ropes pulling in the exact same direction...)" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-400"></textarea>
-        </div>
-
-        <div>
-          <label class="block font-medium text-slate-300 mb-1">5. Drawing Corner Caption / Icon Idea</label>
-          <input type="text" id="new-drawing-caption" required placeholder="e.g. Vector fan radiating into non-negative quadrant" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-400">
-        </div>
-
-        <div class="flex justify-end gap-2 pt-3">
-          <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium">Cancel</button>
-          <button type="submit" class="px-5 py-2 rounded-lg bg-amber-400 text-slate-950 font-bold hover:bg-amber-300">Create Card</button>
-        </div>
-      </form>
-    </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="w-full border-t border-slate-800/80 bg-[#141923] py-4 px-6 text-xs text-slate-500">
-    <div class="max-w-[1800px] mx-auto flex flex-wrap items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="font-bold text-slate-300">The Sirianni Method:</span>
-        <span>Dual-Coding Memory Architecture for Maximum Long-Term Retention.</span>
-      </div>
-      <div>
-        <span>Live via GitHub Pages • RealSenso</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Application Logic & Cards Data -->
+  <!-- ================= LOGIC & DATA ================= -->
   <script>
+    /* Default Cosmic Knowledge Deck (Luenberger & Ye 4th ed Reference) */
     const defaultDeck = [
       {
         id: 1,
         cardNumber: "01",
-        highlighter: "highlight-yellow",
+        highlighterClass: "highlight-amber",
         title: "Feasible Set & Active Constraints",
         category: "OPTIMIZATION GEOMETRY",
         textbookImg: "assets/luenberger_fig11_1.png",
         textbookRef: "Luenberger & Ye (4th ed), Sect. 11.1, Fig. 11.1 (p. 322)",
-        drawingCaption: "Luenberger Fig. 11.1: Local behavior at x* does not depend on inactive g₂ and g₃",
+        drawingCaption: "Luenberger Fig. 11.1: Inactive g₂ and g₃ are far from x* with zero local effect",
         coreTranslation: [
-          "The <strong>Feasible Set $\\Omega$</strong> is your legal playground where all equalities $h_i(x)=0$ and inequalities $g_j(x)\\le 0$ hold simultaneously.",
-          "The <strong>Active Set $\\mathcal{A}(x) = \\{j : g_j(x)=0\\}$</strong> identifies the exact constraint boundaries you are physically pressing against right now.",
-          "<strong>Inactive constraints ($g_j(x) < 0$):</strong> In Luenberger's Fig. 11.1 above, look at $x^*$. The curve $g_1(x)=0$ passes right below, but $g_2(x)=0$ and $g_3(x)=0$ are far away at the bottom! In a small neighborhood around $x^*$, $g_2$ and $g_3$ remain strictly $< 0$ and have zero local influence."
+          "The <strong>Feasible Set $\\Omega$</strong> is your legal playground where $h_i(x)=0$ and $g_j(x)\\le 0$ hold simultaneously.",
+          "The <strong>Active Set $\\mathcal{A}(x) = \\{j : g_j(x)=0\\}$</strong> identifies boundary walls you are physically pressing against right now.",
+          "<strong>Inactive constraints ($g_j(x) < 0$):</strong> In Luenberger's Fig. 11.1, candidate $x^*$ touches $g_1(x)=0$, while $g_2(x)=0$ and $g_3(x)=0$ are far away! In a local ball around $x^*$, they remain strictly $< 0$ and have zero local influence."
         ],
-        math: `$$\\Omega = \\{x \\in \\mathbb{R}^n : h_i(x)=0 \\, (i=1,\\dots,p), \\; g_j(x) \\le 0 \\, (j=1,\\dots,m)\\}$$ $$\\mathcal{A}(x) = \\{j \\in \\{1,\\dots,m\\} : g_j(x) = 0\\}$$`,
-        personalConnection: "Standing in the corner of an elevator: only the two walls your shoulders are touching restrict your immediate movement. The elevator door across the room has plenty of distance and plays zero local role in blocking your next step.",
-        examTrap: "Never include inactive constraints in local gradient calculations! $g_j(x) < 0$ has zero Lagrange multiplier impact locally."
+        math: `$$\\Omega = \\{x : h_i(x)=0, \\, g_j(x) \\le 0\\}, \\quad \\mathcal{A}(x) = \\{j : g_j(x) = 0\\}$$`,
+        personalConnection: "Standing in the corner of an elevator: only the two walls your shoulders are touching restrict immediate steps. The elevator door across the room has plenty of distance and plays zero local role.",
+        examTrap: "Never include inactive constraints in local gradient calculations! $g_j(x^*) < 0$ implies zero Lagrange multiplier impact locally."
       },
       {
         id: 2,
         cardNumber: "02",
-        highlighter: "highlight-cyan",
+        highlighterClass: "highlight-cyan",
         title: "The Tangent Vector d & Tangent Plane",
         category: "LIMIT DEFINITIONS",
         textbookImg: "assets/luenberger_fig11_2a.png",
         textbookRef: "Luenberger & Ye (4th ed), Sect. 11.2, Fig. 11.2a (p. 324)",
-        drawingCaption: "Luenberger Fig. 11.2a: Tangent plane to surface S at x* with normal ∇h(x*)ᵀ",
+        drawingCaption: "Luenberger Fig. 11.2a: Tangent plane M to surface S at x* with normal ∇h(x*)ᵀ",
         coreTranslation: [
-          "<strong>Luenberger's Curve Definition (p. 323):</strong> A curve on a surface $S$ is a family of points $x(t) \\in S$ parameterized by $t$. The derivative at $x^*$ is $\\dot{x}(t^*) = \\frac{d}{dt} x(t)|_{t=t^*}$. The tangent plane is the collection of all such derivatives!",
-          "In discrete sequence terms: $d = \\lim_{k\\to\\infty} \\frac{x_k - x}{t_k}$ with $x_k \\in \\Omega$ and $t_k \\downarrow 0$.",
-          "As shown in Fig. 11.2a, the tangent plane $M = \\{y : \\nabla h(x^*)^T y = 0\\}$ is orthogonal to the gradient vector $\\nabla h(x^*)^T$."
+          "<strong>Luenberger's Curve Definition (p. 323):</strong> A curve on surface $S$ is parameterized as $x(t) \\in S$. The derivative at $x^*$ is velocity $\\dot{x}(t^*)$. The tangent plane is the collection of all such derivatives!",
+          "Discrete sequence definition: $d = \\lim_{k\\to\\infty} \\frac{x_k - x}{t_k}$ with $x_k \\in \\Omega$ and $t_k \\downarrow 0$.",
+          "As shown in Fig. 11.2a, tangent plane $M = \\{y : \\nabla h(x^*)^T y = 0\\}$ is strictly orthogonal to normal gradient $\\nabla h(x^*)^T$."
         ],
-        math: `$$\\dot{x}(t^*) = \\lim_{t \\to t^*} \\frac{x(t) - x^*}{t - t^*}, \\quad M = \\{y : \\nabla h(x^*)^T y = 0\\}$$ $$\\text{For general sets: } \\lim_{k \\to \\infty} \\frac{x_k - x}{t_k} = d, \\quad x_k \\in \\Omega, \\; t_k \\downarrow 0$$`,
-        personalConnection: "An airplane touching down on a runway: $d$ is its exact velocity vector at the moment of touchdown. The crucial point is that the entire approach path $x_k$ remained strictly within the country's sovereign airspace $\\Omega$.",
-        examTrap: "Scalars $t_k$ MUST strictly approach 0 from the positive side ($t_k > 0$). Negative steps are forbidden because reversing direction could launch you outside the feasible boundary."
+        math: `$$\\dot{x}(t^*) = \\lim_{t \\to t^*} \\frac{x(t) - x^*}{t - t^*}, \\quad M = \\{y : \\nabla h(x^*)^T y = 0\\}$$ $$\\lim_{k \\to \\infty} \\frac{x_k - x}{t_k} = d, \\quad x_k \\in \\Omega, \\; t_k \\downarrow 0$$`,
+        personalConnection: "An airplane touching down on a runway: $d$ is its exact velocity vector at touchdown. The crucial requirement is that the entire approach path $x_k$ remained strictly within legal airspace $\\Omega$.",
+        examTrap: "Scalars $t_k$ MUST strictly approach 0 from the positive side ($t_k > 0$). Negative steps reverse direction and can launch you outside $\\Omega$."
       },
       {
         id: 3,
         cardNumber: "03",
-        highlighter: "highlight-green",
+        highlighterClass: "highlight-emerald",
         title: "The Tangent Cone T_Ω(x)",
         category: "CONE GEOMETRY",
         drawingSvg: `
-          <svg viewBox="0 0 220 140" class="w-full h-full">
-            <polygon points="35,100 190,20 190,125" fill="#fef3c7" opacity="0.75"/>
-            <line x1="35" y1="100" x2="190" y2="20" stroke="#f59e0b" stroke-width="2"/>
-            <line x1="35" y1="100" x2="190" y2="125" stroke="#f59e0b" stroke-width="2"/>
-            <circle cx="35" cy="100" r="5" fill="#0f172a"/>
-            <text x="18" y="108" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">x</text>
-            <text x="110" y="80" font-family="sans-serif" font-size="14" font-weight="bold" fill="#b45309">T_Ω(x)</text>
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <defs>
+              <radialGradient id="cone-glow" cx="20%" cy="70%" r="80%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#0284c7" stop-opacity="0.05"/>
+              </radialGradient>
+              <marker id="cone-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="amber-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+              </marker>
+            </defs>
+            <polygon points="40,110 215,25 215,135" fill="url(#cone-glow)" stroke="#0284c7" stroke-dasharray="3,3" stroke-width="1.5"/>
+            <line x1="40" y1="110" x2="208" y2="25" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#cone-arr)"/>
+            <line x1="40" y1="110" x2="208" y2="135" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#cone-arr)"/>
+            <line x1="40" y1="110" x2="175" y2="75" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#amber-arr)"/>
+            <text x="180" y="78" font-family="monospace" font-size="11" font-weight="bold" fill="#fbbf24">α d</text>
+            <circle cx="40" cy="110" r="5" fill="#f8fafc" stroke="#38bdf8" stroke-width="2"/>
+            <text x="22" y="115" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f8fafc">x</text>
+            <text x="120" y="55" font-family="sans-serif" font-size="13" font-weight="bold" fill="#7dd3fc">T_Ω(x)</text>
           </svg>
         `,
-        drawingCaption: "The fan of all admissible departure directions",
+        drawingCaption: "The fan of all admissible departure rays into Ω",
         coreTranslation: [
           "The set of all tangent vectors at $x$ is called the <strong>Tangent Cone</strong>, denoted $T_\\Omega(x)$.",
-          "<strong>Why a cone?</strong> If $d \\in T_\\Omega(x)$, then $\\alpha d \\in T_\\Omega(x)$ for all scalars $\\alpha \\ge 0$ (just re-scale the time sequence $t_k \\to t_k / \\alpha$).",
-          "$0 \\in T_\\Omega(x)$ always (simply choose constant sequence $x_k = x$).",
-          "$T_\\Omega(x)$ is always a <strong>closed set</strong>, but it is <strong>NOT</strong> necessarily convex or a linear subspace!"
+          "<strong>Why a cone?</strong> If $d \\in T_\\Omega(x)$, then re-scaling time $t_k \\to t_k / \\alpha$ proves $\\alpha d \\in T_\\Omega(x)$ for all $\\alpha \\ge 0$.",
+          "$0 \\in T_\\Omega(x)$ always (take constant sequence $x_k = x$). $T_\\Omega(x)$ is always closed, but NOT necessarily convex or a linear subspace!"
         ],
         math: `$$T_\\Omega(x) = \\{ d \\in \\mathbb{R}^n : d \\text{ is tangent to } \\Omega \\text{ at } x \\}$$ $$d \\in T_\\Omega(x) \\implies \\alpha d \\in T_\\Omega(x), \\quad \\forall \\alpha \\ge 0$$`,
-        personalConnection: "A megaphone or flashlight beam shining out from point $x$ into the open courtyard. You can walk as fast as you want along that ray ($\alpha d$), but you cannot turn 180° and walk backward into the solid wall.",
-        examTrap: "Never call $T_\\Omega(x)$ a subspace on an exam! At a corner, if $d \\in T_\\Omega$, $-d$ is prohibited. It is a CONE, not a subspace."
+        personalConnection: "A flashlight beam shining out from point $x$ into the courtyard: you can walk as fast as you want along that ray ($\alpha d$), but turning 180° backward into the solid wall is blocked.",
+        examTrap: "Never call $T_\\Omega(x)$ a subspace! At a boundary corner, if $d \\in T_\\Omega$, $-d$ is illegal. It is a CONE."
       },
       {
         id: 4,
         cardNumber: "04",
-        highlighter: "highlight-pink",
+        highlighterClass: "highlight-purple",
         title: "Computing T_Ω(0,0) for x₁, x₂ ≥ 0",
         category: "WORKED STEP-BY-STEP",
         drawingSvg: `
-          <svg viewBox="0 0 220 140" class="w-full h-full">
-            <line x1="25" y1="115" x2="195" y2="115" stroke="#64748b" stroke-width="2"/>
-            <line x1="40" y1="125" x2="40" y2="15" stroke="#64748b" stroke-width="2"/>
-            <rect x="40" y="25" width="150" height="90" fill="#dbeafe" opacity="0.6"/>
-            <circle cx="40" cy="115" r="5" fill="#ef4444"/>
-            <text x="18" y="132" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">(0,0)</text>
-            <text x="80" y="75" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e40af">T_Ω = [0,∞) × [0,∞)</text>
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <defs>
+              <marker id="axis-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b"/>
+              </marker>
+            </defs>
+            <line x1="20" y1="120" x2="225" y2="120" stroke="#475569" stroke-width="2" marker-end="url(#axis-arr)"/>
+            <line x1="45" y1="135" x2="45" y2="15" stroke="#475569" stroke-width="2" marker-end="url(#axis-arr)"/>
+            <text x="220" y="135" font-family="monospace" font-size="11" fill="#94a3b8">x₁</text>
+            <text x="32" y="22" font-family="monospace" font-size="11" fill="#94a3b8">x₂</text>
+            <rect x="45" y="25" width="165" height="95" fill="#a855f7" fill-opacity="0.18" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <circle cx="45" cy="120" r="5" fill="#ef4444"/>
+            <text x="18" y="135" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f87171">(0,0)</text>
+            <text x="75" y="75" font-family="sans-serif" font-size="12" font-weight="bold" fill="#d8b4fe">T_Ω = [0,∞) × [0,∞)</text>
           </svg>
         `,
-        drawingCaption: "At a 90° corner, the cone is the entire quadrant",
+        drawingCaption: "At a 90° corner, the cone is the entire first quadrant",
         coreTranslation: [
-          "Let $\\Omega = \\{(x_1, x_2) : x_1 \\ge 0, x_2 \\ge 0\\}$. At the origin $x = (0,0)$, both constraints are active.",
-          "Take a candidate direction $d = (d_1, d_2)$. We need $x_k = (x_{k,1}, x_{k,2}) \\in \\Omega$ with $t_k \\downarrow 0$ such that $(x_{k,1}/t_k, x_{k,2}/t_k) \\to (d_1, d_2)$.",
-          "Since $x_{k,1} \\ge 0$, $x_{k,2} \\ge 0$ and $t_k > 0$, taking limits forces $d_1 \\ge 0$ and $d_2 \\ge 0$.",
-          "Conversely, any $d \\ge 0$ is achievable via $x_k = t_k d$. Thus $T_\\Omega((0,0)) = \\mathbb{R}_+^2$."
+          "Let $\\Omega = \\{(x_1, x_2) : x_1 \\ge 0, x_2 \\ge 0\\}$. At the origin $(0,0)$, both constraints are active.",
+          "For candidate direction $d = (d_1, d_2)$, $x_k = (x_{k,1}, x_{k,2}) \\in \\Omega$ implies $(x_{k,1}/t_k, x_{k,2}/t_k) \\to (d_1, d_2)$.",
+          "Since $x_{k,i} \\ge 0$ and $t_k > 0$, taking limits forces $d_1 \\ge 0, d_2 \\ge 0$. Conversely, $x_k = t_k d$ is feasible. Thus $T_\\Omega((0,0)) = \\mathbb{R}_+^2$."
         ],
-        math: `$$x_k = (t_k d_1, t_k d_2) \\in \\Omega \\iff d_1 \\ge 0, \\, d_2 \\ge 0$$ $$T_\\Omega((0,0)) = [0, \\infty) \\times [0, \\infty)$$ $$\\text{At an edge } (1,0): T_\\Omega((1,0)) = \\mathbb{R} \\times [0, \\infty)$$`,
-        personalConnection: "Standing right at the corner flag of a soccer field: every legal kick that lands inside the pitch must have both a non-negative forward component and a non-negative lateral component.",
-        examTrap: "Common rookie blunder: answering $T_\\Omega((0,0)) = \\{0\\}$ because both walls meet. Zero is just one point; the entire non-negative quadrant is valid!"
+        math: `$$x_k = (t_k d_1, t_k d_2) \\in \\Omega \\iff d_1 \\ge 0, \\, d_2 \\ge 0$$ $$T_\\Omega((0,0)) = [0, \\infty) \\times [0, \\infty)$$`,
+        personalConnection: "Standing right at the corner flag of a soccer field: every legal kick inside the pitch must have both non-negative forward and non-negative lateral components.",
+        examTrap: "Common blunder: guessing $T_\\Omega((0,0)) = \\{0\\}$ because both walls meet. Zero is just one point; the entire quadrant is feasible!"
       },
       {
         id: 5,
         cardNumber: "05",
-        highlighter: "highlight-yellow",
+        highlighterClass: "highlight-amber",
         title: "First-Order Optimality: ∇f(x*)ᵀd ≥ 0",
         category: "OPTIMALITY THEOREM",
         drawingSvg: `
-          <svg viewBox="0 0 220 140" class="w-full h-full">
-            <polygon points="50,110 180,35 180,130" fill="#fef3c7" opacity="0.6"/>
-            <line x1="50" y1="110" x2="180" y2="35" stroke="#f59e0b" stroke-width="2"/>
-            <line x1="50" y1="110" x2="180" y2="130" stroke="#f59e0b" stroke-width="2"/>
-            <circle cx="50" cy="110" r="5" fill="#0f172a"/>
-            <!-- Gradient pointing outside -->
-            <line x1="50" y1="110" x2="10" y2="50" stroke="#ef4444" stroke-width="3"/>
-            <text x="2" y="42" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">-∇f(x*)</text>
-            <text x="95" y="90" font-family="sans-serif" font-size="12" font-weight="bold" fill="#b45309">All d ∈ T_Ω</text>
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <defs>
+              <marker id="opt-grad-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="opt-tang-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+            <polygon points="70,115 210,35 210,140" fill="#f59e0b" fill-opacity="0.15" stroke="#d97706" stroke-width="1.5"/>
+            <line x1="70" y1="115" x2="205" y2="35" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="70" y1="115" x2="205" y2="140" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="70" y1="115" x2="175" y2="85" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#opt-tang-arr)"/>
+            <text x="182" y="90" font-family="monospace" font-size="11" font-weight="bold" fill="#fbbf24">d ∈ T_Ω</text>
+            <line x1="70" y1="115" x2="15" y2="50" stroke="#f43f5e" stroke-width="3" marker-end="url(#opt-grad-arr)"/>
+            <text x="5" y="40" font-family="sans-serif" font-size="11" font-weight="bold" fill="#fb7185">-∇f(x*)</text>
+            <circle cx="70" cy="115" r="5" fill="#f8fafc" stroke="#f43f5e" stroke-width="2"/>
+            <text x="55" y="132" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">x*</text>
+            <text x="105" y="60" font-family="sans-serif" font-size="11" font-bold fill="#fcd34d">Angle ≥ 90°</text>
           </svg>
         `,
-        drawingCaption: "Negative gradient makes an obtuse angle with all tangents",
+        drawingCaption: "Negative gradient makes an obtuse angle with all feasible directions",
         coreTranslation: [
           "If $x^* \\in \\Omega$ is a local minimizer of $f$, then: $$\\nabla f(x^*)^T d \\ge 0, \\quad \\forall d \\in T_\\Omega(x^*)$$",
           "<strong>Geometric Meaning:</strong> Any movement into $\\Omega$ causes $f$ to increase or stay level. There are <strong>zero descent directions</strong> inside the tangent cone!",
-          "Consequently, $-\\nabla f(x^*)$ must lie in the <em>polar cone</em> $T_\\Omega(x^*)^\\circ$."
+          "Consequently, $-\\nabla f(x^*)$ lies in the polar cone $T_\\Omega(x^*)^\\circ$."
         ],
-        math: `$$\\nabla f(x^*)^T d \\ge 0, \\quad \\forall d \\in T_\\Omega(x^*)$$ $$\\text{Taylor expansion: } f(x + t_k d) = f(x) + t_k \\nabla f(x)^T d + o(t_k)$$`,
-        personalConnection: "A golf ball rolled into a corner of the green against the curb: gravity wants to pull it further down, but the curb physically blocks it. The only legal roll is back uphill ($\Delta f \\ge 0$).",
-        examTrap: "In constrained optimization, $\\nabla f(x^*) \\ne 0$ is the norm, not an error! It only equals zero if the minimizer is strictly in the interior ($\mathcal{A}(x) = \\emptyset$)."
+        math: `$$\\nabla f(x^*)^T d \\ge 0, \\quad \\forall d \\in T_\\Omega(x^*)$$ $$\\text{Taylor: } f(x + t_k d) = f(x) + t_k \\nabla f(x)^T d + o(t_k)$$`,
+        personalConnection: "A golf ball rolled into a corner against the curb: gravity pulls downward, but the curb blocks it. The only legal roll is back uphill ($\Delta f \\ge 0$).",
+        examTrap: "In constrained optimization, $\\nabla f(x^*) \\ne 0$ is standard! It only equals zero if the minimizer is strictly in the interior ($\mathcal{A}(x) = \\emptyset$)."
       },
       {
         id: 6,
         cardNumber: "06",
-        highlighter: "highlight-cyan",
+        highlighterClass: "highlight-cyan",
         title: "Tangent Cone vs Linearized Cone",
         category: "EXAM TRAPS & CQ",
-        drawingSvg: `
-          <svg viewBox="0 0 220 140" class="w-full h-full">
-            <path d="M 30,110 Q 110,110 110,25" fill="none" stroke="#ef4444" stroke-width="3"/>
-            <circle cx="110" cy="110" r="5" fill="#0f172a"/>
-            <text x="120" y="125" font-family="sans-serif" font-size="10" font-weight="bold" fill="#0f172a">Cusp x*</text>
-            <text x="25" y="55" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">g(x) = -x₂³ ≤ 0</text>
-          </svg>
-        `,
-        drawingCaption: "Linearized gradients can lie; true physical paths never do",
+        textbookImg: "assets/luenberger_fig12_1.png",
+        textbookRef: "Luenberger & Ye (4th ed), Sect. 12.1, Fig. 12.1 (p. 360)",
+        drawingCaption: "Luenberger Fig. 12.1: Nonlinear constraints require curved paths; straight tangents can exit Ω",
         coreTranslation: [
           "<strong>Tangent Cone $T_\\Omega(x)$</strong> is built from actual physical paths inside $\\Omega$.",
-          "<strong>Linearized Cone $L_\\Omega(x)$</strong> replaces curves with first-order gradient approximations: $$\\nabla h_i(x)^T d = 0, \\quad \\nabla g_j(x)^T d \\le 0 \\, (j \\in \\mathcal{A}(x))$$",
+          "<strong>Linearized Cone $L_\\Omega(x)$</strong> replaces curves with first-order gradient approximations: $\\nabla h_i(x)^T d = 0, \\; \\nabla g_j(x)^T d \\le 0 \\, (j \\in \\mathcal{A}(x))$.",
           "Always: $T_\\Omega(x) \\subseteq L_\\Omega(x)$. But equality holds only under <strong>Constraint Qualifications</strong> (like LICQ or Mangasarian-Fromovitz)!"
         ],
-        math: `$$L_\\Omega(x) = \\{ d \\in \\mathbb{R}^n : \\nabla h_i(x)^T d = 0, \\; \\nabla g_j(x)^T d \\le 0 \\, (j \\in \\mathcal{A}(x)) \\}$$ $$T_\\Omega(x) = L_\\Omega(x) \\iff \\text{LICQ / CQ holds}$$`,
-        personalConnection: "A paper map that shows a flat bridge because of a drawing glitch, but when you arrive in person, it is a 90-degree cliff. $T_\\Omega$ is the real physical cliff; $L_\\Omega$ is the faulty linear blueprint.",
+        math: `$$L_\\Omega(x) = \\{ d : \\nabla h_i(x)^T d = 0, \\; \\nabla g_j(x)^T d \\le 0 \\, (j \\in \\mathcal{A}(x)) \\}$$ $$T_\\Omega(x) = L_\\Omega(x) \\iff \\text{Constraint Qualification (CQ) holds}$$`,
+        personalConnection: "A blueprint map showing a flat bridge because of linear drawing errors, but when you arrive in person, there is a cliff. $T_\\Omega$ is the real physical cliff; $L_\\Omega$ is the faulty linear blueprint.",
         examTrap: "Assuming KKT multipliers always exist. If $T_\\Omega \\ne L_\\Omega$ (CQ fails), a local minimum can exist where KKT fails completely!"
       }
     ];
 
-    let deck = JSON.parse(localStorage.getItem('sirianni_index_cards_v5')) || defaultDeck;
-    let isDark = false;
-    let gridCols = 3;
+    let deck = JSON.parse(localStorage.getItem('sirianni_index_cards_cosmos_v6')) || defaultDeck;
+    let gridCols = 2;
 
+    /* Render Deck with strict 16:9 Landscape cards & Blank surfaces */
     function renderDeck() {
       const grid = document.getElementById('desk-grid');
       document.getElementById('card-count').textContent = deck.length;
 
       grid.innerHTML = deck.map((card, idx) => {
-        const darkClass = isDark ? 'sirianni-card-dark text-slate-100' : 'sirianni-card text-slate-900';
-        const drawingBoxDark = isDark ? 'drawing-corner-dark' : 'drawing-corner';
-
         return `
-          <div class="${darkClass} p-5 sm:p-6 flex flex-col justify-between relative group">
+          <div class="cosmic-card aspect-16-9 flex flex-col p-4 sm:p-5 relative overflow-hidden group">
             
-            <!-- Top Header & Card Number -->
-            <div class="flex items-start justify-between gap-3 mb-3">
-              <div>
-                <div class="flex items-center gap-2 mb-1.5">
-                  <span class="text-[11px] font-mono font-bold text-rose-500 uppercase tracking-widest">
-                    CARD #${card.cardNumber || (idx + 1)}
-                  </span>
-                  <span class="text-[10px] text-slate-400 font-mono tracking-wider">
-                    ${card.category}
-                  </span>
-                </div>
-                <!-- Highlighted Title Bar (Sirianni Step 2) -->
-                <div class="inline-block px-3 py-1 ${card.highlighter || 'highlight-yellow'}">
-                  <h3 class="text-xl sm:text-2xl font-bold font-serif-title text-slate-950 leading-tight">
-                    ${card.title}
-                  </h3>
-                </div>
+            <!-- Top Bar: Header, Card ID, Category, Highlighter Title -->
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10 shrink-0">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded font-mono font-bold text-[11px] bg-cyan-950 text-cyan-300 border border-cyan-800/80">
+                  CARD ${card.cardNumber}
+                </span>
+                <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400">
+                  ${card.category}
+                </span>
               </div>
 
-              <!-- Top Right Note Pin -->
-              <span class="text-xs text-slate-400 font-mono opacity-60">📌</span>
+              <!-- Highlighter title badge -->
+              <div class="px-2.5 py-0.5 rounded-md ${card.highlighterClass}">
+                <h3 class="text-xs sm:text-sm font-bold tracking-tight font-serif-title">
+                  ${card.title}
+                </h3>
+              </div>
+
+              <!-- Starlight icon -->
+              <span class="text-xs text-cyan-400/80 font-mono">✦</span>
             </div>
 
-            <!-- The Drawing / Textbook Corner (Sirianni Step 5) -->
-            <div class="my-3">
-              <div class="${drawingBoxDark} p-2.5 flex flex-col items-center justify-center relative">
-                ${card.textbookImg ? `
-                  <div class="w-full flex flex-col items-center">
-                    <div class="w-full flex items-center justify-between pb-1 mb-1.5 border-b border-slate-200/80 px-1">
-                      <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                        📖 TEXTBOOK: LUENBERGER & YE
-                      </span>
-                      <span class="text-[9px] font-mono text-slate-400 truncate max-w-[210px]">${card.textbookRef || ''}</span>
+            <!-- Main Card Body Split (Left: Content 57%, Right: Visual 43%) -->
+            <div class="flex-1 min-h-0 grid grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
+              
+              <!-- Left Column: Knowledge, Math, Anchors (Scrollable within 16:9 boundary) -->
+              <div class="col-span-7 flex flex-col justify-between overflow-y-auto pr-2 cosmic-scroll text-xs">
+                
+                <!-- Core Translation -->
+                <div class="space-y-1">
+                  <div class="text-[9px] font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1">
+                    <span>⚡ CORE MECHANISM</span>
+                  </div>
+                  <ul class="space-y-1 text-slate-200 leading-snug">
+                    ${card.coreTranslation.map(pt => `
+                      <li class="flex items-start gap-1.5">
+                        <span class="text-cyan-400 font-bold shrink-0">›</span>
+                        <span>${pt}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+
+                <!-- Math Block -->
+                <div class="my-1.5 p-2 rounded-lg bg-[#060812] border border-cyan-500/20 text-slate-100 font-mono text-[11px] overflow-x-auto shadow-inner">
+                  ${card.math}
+                </div>
+
+                <!-- Personal Connection / Anchor -->
+                <div class="p-2 rounded-lg bg-amber-500/10 border-l-2 border-amber-400 text-amber-200/90 text-[11px] leading-snug">
+                  <div class="text-[9px] font-bold uppercase tracking-wider text-amber-400 mb-0.5 flex items-center gap-1">
+                    <span>💡 MEMORY ANCHOR</span>
+                  </div>
+                  <p class="italic font-serif">"${card.personalConnection}"</p>
+                </div>
+
+                <!-- Exam Trap -->
+                <div class="mt-1 pt-1 border-t border-white/5 text-[10px] text-rose-300 flex items-start gap-1">
+                  <span class="font-bold shrink-0 text-rose-400">⚠️ Exam Trap:</span>
+                  <span class="text-slate-300">${card.examTrap}</span>
+                </div>
+
+              </div>
+
+              <!-- Right Column: Visual Specimen / Luenberger Figure Corner -->
+              <div class="col-span-5 flex flex-col justify-between pl-3 border-l border-white/10 overflow-hidden h-full">
+                <!-- Visual Header -->
+                <div class="flex items-center justify-between pb-1 text-[9px] font-mono text-slate-400 shrink-0">
+                  <span class="font-bold text-cyan-300 flex items-center gap-1">
+                    ${card.textbookImg ? '📖 TEXTBOOK' : '📐 DIAGRAM'}
+                  </span>
+                  <span class="text-slate-500 truncate max-w-[130px]">${card.textbookRef ? 'LUENBERGER & YE' : 'SIRIANNI DUAL-CODE'}</span>
+                </div>
+
+                <!-- Visual Content (Specimen Image or SVG) -->
+                <div class="flex-1 min-h-0 flex items-center justify-center p-1.5 rounded-xl bg-[#05070e] border border-white/10 relative group/img overflow-hidden">
+                  ${card.textbookImg ? `
+                    <img src="${card.textbookImg}" alt="${card.title}" class="max-h-full max-w-full object-contain rounded bg-white p-1 cursor-pointer transition hover:scale-105" onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')">
+                  ` : `
+                    <div class="w-full h-full flex items-center justify-center">
+                      ${card.drawingSvg}
                     </div>
-                    <img src="${card.textbookImg}" alt="${card.title}" class="max-h-52 w-auto object-contain rounded my-1 shadow-xs border border-slate-100 bg-white">
-                  </div>
-                ` : `
-                  <div class="w-full h-36 flex items-center justify-center">
-                    ${card.drawingSvg}
-                  </div>
-                `}
-                <div class="text-xs font-hand text-slate-600 font-bold text-center mt-1 text-base tracking-wide">
-                  "${card.drawingCaption}"
+                  `}
+                </div>
+
+                <!-- Caption & Lightbox hint -->
+                <div class="pt-1 shrink-0 flex items-center justify-between text-[10px] font-hand text-cyan-200">
+                  <span class="truncate">"${card.drawingCaption}"</span>
+                  ${card.textbookImg ? `<button onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')" class="text-[9px] font-mono text-slate-400 hover:text-cyan-300 underline shrink-0 ml-1">Expand 🔍</button>` : ''}
                 </div>
               </div>
+
             </div>
-
-            <!-- Core Translation & Info (Sirianni Step 3) -->
-            <div class="space-y-2 text-xs sm:text-sm my-2">
-              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
-                CORE TRANSLATION & MECHANICS:
-              </div>
-              <ul class="space-y-1.5 leading-relaxed ${isDark ? 'text-slate-200' : 'text-slate-800'}">
-                ${card.coreTranslation.map(pt => `<li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> <span>${pt}</span></li>`).join('')}
-              </ul>
-
-              <!-- Formal Math Equations -->
-              <div class="mt-2 p-2 rounded-lg ${isDark ? 'bg-slate-900/80 border border-slate-700' : 'bg-white/80 border border-slate-200'} font-mono text-xs">
-                ${card.math}
-              </div>
-            </div>
-
-            <!-- Personal Connection / Mental Model (Sirianni Step 4: The Anchor) -->
-            <div class="mt-3 p-3 rounded-lg border-l-4 border-amber-500 ${isDark ? 'bg-amber-950/20' : 'bg-amber-50/80'} text-xs">
-              <div class="text-[10px] font-bold text-amber-600 uppercase tracking-wider mb-1 flex items-center gap-1">
-                <span>💡 PERSONAL CONNECTION (MEMORY ANCHOR)</span>
-              </div>
-              <p class="italic font-serif leading-relaxed ${isDark ? 'text-amber-200' : 'text-slate-800'}">
-                "${card.personalConnection}"
-              </p>
-            </div>
-
-            <!-- Exam Trap / Warning -->
-            <div class="mt-3 pt-2 border-t border-slate-200/60 text-[11px] text-rose-700 flex items-start gap-1.5">
-              <span class="font-bold flex-shrink-0">⚠️ Exam Trap:</span>
-              <span class="${isDark ? 'text-slate-300' : 'text-slate-700'}">${card.examTrap}</span>
-            </div>
-
           </div>
         `;
       }).join('');
@@ -514,26 +578,29 @@
       }
     }
 
+    /* Grid Layout Switching */
     function setGridCols(n) {
       gridCols = n;
       const grid = document.getElementById('desk-grid');
-      grid.className = `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${n} gap-6 sm:gap-8 items-start`;
+      if (n === 1) {
+        grid.className = 'grid grid-cols-1 max-w-5xl mx-auto gap-8 items-start';
+      } else if (n === 2) {
+        grid.className = 'grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 items-start';
+      } else {
+        grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 items-start';
+      }
 
-      [2, 3, 4].forEach(num => {
+      [1, 2, 3].forEach(num => {
         const btn = document.getElementById(`col-btn-${num}`);
         if (num === n) {
-          btn.className = "px-2 py-0.5 rounded bg-amber-500 text-slate-950 font-bold";
+          btn.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition";
         } else {
-          btn.className = "px-2 py-0.5 rounded hover:bg-slate-800 text-slate-300";
+          btn.className = "px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition";
         }
       });
     }
 
-    function toggleTheme() {
-      isDark = !isDark;
-      renderDeck();
-    }
-
+    /* Filter Cards */
     function filterCards() {
       const q = document.getElementById('search-input').value.toLowerCase();
       if (!q) {
@@ -549,53 +616,209 @@
       const grid = document.getElementById('desk-grid');
       document.getElementById('card-count').textContent = filtered.length;
       grid.innerHTML = filtered.map(c => `
-        <div class="sirianni-card p-6 text-slate-900 border">
-          <h3 class="text-xl font-bold font-serif-title">${c.title}</h3>
-          <p class="text-xs text-slate-700 my-2">${c.coreTranslation[0]}</p>
-          <p class="text-xs italic font-serif text-amber-900">"${c.personalConnection}"</p>
+        <div class="cosmic-card aspect-16-9 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-cyan-400">CARD ${c.cardNumber}</span>
+              <h3 class="text-base font-bold text-white font-serif-title">${c.title}</h3>
+            </div>
+            <p class="text-xs text-slate-300 my-2">${c.coreTranslation[0]}</p>
+          </div>
+          <p class="text-xs italic font-serif text-amber-200">"${c.personalConnection}"</p>
         </div>
       `).join('');
     }
 
+    /* Lightbox Modal */
+    function openLightbox(src, title, ref) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-title').textContent = title;
+      document.getElementById('lightbox-ref').textContent = ref;
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox-modal').classList.add('hidden');
+    }
+
+    /* Add Card Modal */
     function openAddModal() {
       document.getElementById('add-modal').classList.remove('hidden');
     }
+
     function closeAddModal() {
       document.getElementById('add-modal').classList.add('hidden');
     }
 
     function saveCustomCard(e) {
       e.preventDefault();
-      const highlighters = ["highlight-yellow", "highlight-cyan", "highlight-green", "highlight-pink"];
-      const chosenHighlight = highlighters[deck.length % highlighters.length];
+      const title = document.getElementById('new-title').value;
+      const info = document.getElementById('new-info').value;
+      const math = document.getElementById('new-math').value;
+      const conn = document.getElementById('new-connection').value;
+      const caption = document.getElementById('new-drawing-caption').value;
+
+      const newId = deck.length + 1;
+      const numStr = String(newId).padStart(2, '0');
 
       const newCard = {
-        id: Date.now(),
-        cardNumber: String(deck.length + 1).padStart(2, '0'),
-        highlighter: chosenHighlight,
-        title: document.getElementById('new-title').value,
-        category: "CUSTOM TOPIC",
+        id: newId,
+        cardNumber: numStr,
+        highlighterClass: "highlight-cyan",
+        title: title,
+        category: "CUSTOM SPECIMEN",
         drawingSvg: `
-          <div class="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center text-3xl font-bold text-amber-700 border-2 border-amber-300">
-            🧠
-          </div>
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <rect x="25" y="25" width="190" height="95" rx="8" fill="#0284c7" fill-opacity="0.15" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="120" cy="72" r="14" fill="#38bdf8" fill-opacity="0.3"/>
+            <text x="120" y="77" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" text-anchor="middle">✨</text>
+          </svg>
         `,
-        drawingCaption: document.getElementById('new-drawing-caption').value,
-        coreTranslation: [document.getElementById('new-info').value],
-        math: document.getElementById('new-math').value,
-        personalConnection: document.getElementById('new-connection').value,
-        examTrap: "Pay careful attention to active constraint definitions and boundaries."
+        drawingCaption: caption,
+        coreTranslation: [info],
+        math: math ? `$$${math}$$` : `$$\\text{Formalization pending}$$`,
+        personalConnection: conn,
+        examTrap: "Check all active constraint boundary conditions!"
       };
 
       deck.push(newCard);
-      localStorage.setItem('sirianni_index_cards_v2', JSON.stringify(deck));
+      localStorage.setItem('sirianni_index_cards_cosmos_v6', JSON.stringify(deck));
       closeAddModal();
       renderDeck();
     }
 
-    window.onload = () => {
+    /* ================= BACKGROUND GLOWING DOTS & COSMOS PARTICLES ANIMATION ================= */
+    const canvas = document.getElementById('cosmos-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let stars = [];
+    const numStars = 115;
+    let mouse = { x: null, y: null, maxDist: 130 };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    class CosmicStar {
+      constructor() {
+        this.reset(true);
+      }
+      reset(init = false) {
+        this.x = Math.random() * canvas.width;
+        this.y = init ? Math.random() * canvas.height : -10;
+        this.radius = Math.random() * 2.2 + 0.8;
+        this.vx = (Math.random() - 0.5) * 0.28;
+        this.vy = Math.random() * 0.35 + 0.12;
+        this.baseAlpha = Math.random() * 0.45 + 0.4;
+        this.pulseSpeed = Math.random() * 0.03 + 0.012;
+        this.phase = Math.random() * Math.PI * 2;
+        
+        // Cosmic tints: cyan, violet, amber, celestial white
+        const tints = [
+          { r: 56, g: 189, b: 248 },  // Cyan
+          { r: 168, g: 85, b: 247 }, // Violet
+          { r: 251, g: 191, b: 36 }, // Amber
+          { r: 224, g: 242, b: 254 } // Starlight White
+        ];
+        this.color = tints[Math.floor(Math.random() * tints.length)];
+        this.glow = Math.random() > 0.35;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.phase += this.pulseSpeed;
+
+        if (this.x < -20) this.x = canvas.width + 20;
+        if (this.x > canvas.width + 20) this.x = -20;
+        if (this.y > canvas.height + 20) this.reset(false);
+      }
+      draw() {
+        const alpha = Math.max(0.15, Math.min(1, this.baseAlpha + Math.sin(this.phase) * 0.25));
+        ctx.save();
+        
+        if (this.glow) {
+          ctx.shadowBlur = this.radius * 7;
+          ctx.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${Math.min(1, alpha * 1.3)})`;
+        }
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha})`;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function initCosmos() {
+      resizeCanvas();
+      stars = [];
+      for (let i = 0; i < numStars; i++) {
+        stars.push(new CosmicStar());
+      }
+    }
+
+    function animateCosmos() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw starry constellation connections
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x;
+          const dy = stars[i].y - stars[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 80) {
+            const opacity = (1 - dist / 80) * 0.14;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(147, 197, 253, ${opacity})`;
+            ctx.lineWidth = 0.75;
+            ctx.moveTo(stars[i].x, stars[i].y);
+            ctx.lineTo(stars[j].x, stars[j].y);
+            ctx.stroke();
+          }
+        }
+
+        // Connect to mouse interaction
+        if (mouse.x !== null) {
+          const dx = stars[i].x - mouse.x;
+          const dy = stars[i].y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.maxDist) {
+            const opacity = (1 - dist / mouse.maxDist) * 0.35;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(stars[i].x, stars[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw all stars
+      stars.forEach(s => {
+        s.update();
+        s.draw();
+      });
+
+      requestAnimationFrame(animateCosmos);
+    }
+
+    // Initialize application
+    document.addEventListener("DOMContentLoaded", () => {
+      initCosmos();
+      animateCosmos();
       renderDeck();
-    };
+    });
   </script>
 </body>
 </html>
