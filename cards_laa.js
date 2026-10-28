@@ -1419,5 +1419,565 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat([
     "math": "$$A=3P_1+1\\cdot P_2,\\qquad \\sqrt{A}=\\sqrt3\\,P_1+P_2,\\qquad A^k=3^kP_1+P_2$$",
     "personalConnection": "A prism splitting white light into two pure colors: each color (eigenspace) gets its own brightness (eigenvalue).",
     "examTrap": "Verify P\u2081 + P\u2082 = I and that A = 3P\u2081 + P\u2082 reproduces the original matrix entry by entry. A wrong normalization of u\u2081 ruins both checks."
+  },
+  {
+    "id": 21401,
+    "subject": "LAA",
+    "topicId": "14_Positive_Operators_and_Isometries",
+    "topicTitle": "14 \u00b7 Positive Operators & Isometries",
+    "cardNumber": "01",
+    "category": "POSITIVE OPERATORS",
+    "highlighterClass": "highlight-cyan",
+    "title": "Positive Operators: \u27e8Tv, v\u27e9 \u2265 0",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21401\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"10\" y=\"14\" width=\"220\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"120.0\" y=\"31.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">T positive  \u21d4  T = T*  and  \u27e8Tv, v\u27e9 \u2265 0 for all v</text><text x=\"120\" y=\"62\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">equivalent:</text><text x=\"120\" y=\"78\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">all eigenvalues of T are \u2265 0</text><text x=\"120\" y=\"94\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">T = S*S for some S</text><text x=\"120\" y=\"110\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">T = R\u00b2 for a positive R</text><text x=\"120\" y=\"130\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">positive definite: \u27e8Tv,v\u27e9 > 0 for v \u2260 0 \u21d4 \u03bb > 0</text></svg>",
+    "drawingCaption": "A positive operator never turns a vector against itself: the quadratic form is never negative",
+    "coreTranslation": [
+      "<strong>Definition:</strong> $T$ is <strong>positive</strong> ($T\\succeq0$) if $T=T^*$ and $\\langle Tv,v\\rangle\\ge0$ for all $v$. It is <strong>positive definite</strong> if the inequality is strict for $v\\ne0$.",
+      "<strong>Equivalent forms:</strong> all eigenvalues $\\ge0$; $T=S^*S$ for some $S$; $T=R^2$ for some positive $R$. The matrix $A^*A$ is <strong>always positive</strong> (since $\\langle A^*Av,v\\rangle=\\|Av\\|^2$).",
+      "<strong>Geometry:</strong> positive operators stretch along perpendicular axes by non-negative factors and never reflect: they are the operator analogue of non-negative real numbers."
+    ],
+    "math": "$$T\\succeq0\\iff T=T^*,\\ \\operatorname{spec}(T)\\subseteq[0,\\infty)\\iff T=S^*S,\\qquad \\langle S^*Sv,v\\rangle=\\|Sv\\|^2\\ge0$$",
+    "personalConnection": "Stretching a rubber sheet without any flipping: every direction is lengthened (or flattened) but never turned inside out.",
+    "examTrap": "Positive requires SELF-ADJOINT first. \u27e8Tv,v\u27e9 \u2265 0 for all v over \u2102 implies it, but over \u211d a non-symmetric matrix can have \u27e8Tv,v\u27e9 \u2265 0 without being positive."
+  },
+  {
+    "id": 21402,
+    "subject": "LAA",
+    "topicId": "14_Positive_Operators_and_Isometries",
+    "topicTitle": "14 \u00b7 Positive Operators & Isometries",
+    "cardNumber": "02",
+    "category": "POSITIVE OPERATORS",
+    "highlighterClass": "highlight-amber",
+    "title": "The Unique Positive Square Root",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21402\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><text x=\"30\" y=\"28\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">T = \u03a3 \u03bb\u2c7c P\u2c7c,  \u03bb\u2c7c \u2265 0</text><line x1=\"60\" y1=\"36\" x2=\"60\" y2=\"50\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-21402)\"/><text x=\"30\" y=\"66\" font-size=\"10.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u221aT = \u03a3 \u221a\u03bb\u2c7c P\u2c7c</text><line x1=\"30\" y1=\"82\" x2=\"210\" y2=\"82\" stroke=\"#000000\" stroke-width=\"0.9\"/><text x=\"120\" y=\"100\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(\u221aT)\u00b2 = T,   \u221aT positive</text><text x=\"120\" y=\"116\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">unique among positive operators</text><text x=\"120\" y=\"132\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(many non-positive R with R\u00b2 = T exist)</text></svg>",
+    "drawingCaption": "Take the square root of each eigenvalue on the same eigenspaces",
+    "coreTranslation": [
+      "<strong>Existence:</strong> if $T\\succeq0$ with spectral decomposition $T=\\sum\\lambda_jP_j$, define $\\sqrt T=\\sum\\sqrt{\\lambda_j}\\,P_j$. Then $(\\sqrt T)^2=T$ and $\\sqrt T$ is positive.",
+      "<strong>Uniqueness:</strong> there is exactly <strong>one positive</strong> $R$ with $R^2=T$. (E.g. $I$ also equals $(-I)^2$, but $-I$ is not positive.)",
+      "<strong>Use:</strong> $\\sqrt{T^*T}$ is the 'absolute value' $|T|$, central to the <strong>polar decomposition</strong> and singular values."
+    ],
+    "math": "$$T\\succeq0\\Rightarrow\\sqrt T=\\sum_j\\sqrt{\\lambda_j}P_j\\ \\text{ unique positive with }(\\sqrt T)^2=T,\\qquad |T|:=\\sqrt{T^*T}$$",
+    "personalConnection": "Halving a recipe along each independent axis: every ingredient is rescaled by its own square root and the proportions stay aligned.",
+    "examTrap": "A positive matrix has MANY square roots (\u00b1signs on eigenvalues) but only ONE positive square root. Say 'the positive square root'."
+  },
+  {
+    "id": 21403,
+    "subject": "LAA",
+    "topicId": "14_Positive_Operators_and_Isometries",
+    "topicTitle": "14 \u00b7 Positive Operators & Isometries",
+    "cardNumber": "03",
+    "category": "ISOMETRIES",
+    "highlighterClass": "highlight-emerald",
+    "title": "Isometries: \u2016Sv\u2016 = \u2016v\u2016",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21403\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"70\" cy=\"72\" r=\"40\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"70\" y1=\"72\" x2=\"98\" y2=\"44\" stroke=\"#000000\" stroke-width=\"2.2\" marker-end=\"url(#arr-21403)\"/><line x1=\"110\" y1=\"72\" x2=\"130\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\" marker-end=\"url(#arr-21403)\"/><text x=\"120\" y=\"64\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">S</text><circle cx=\"180\" cy=\"72\" r=\"40\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"180\" y1=\"72\" x2=\"160\" y2=\"36\" stroke=\"#000000\" stroke-width=\"2.2\" marker-end=\"url(#arr-21403)\"/><text x=\"70\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">unit ball</text><text x=\"180\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">same unit ball</text><text x=\"120\" y=\"18\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">S*S = I   \u21d4   \u2016Sv\u2016 = \u2016v\u2016   \u21d4   \u27e8Su,Sv\u27e9 = \u27e8u,v\u27e9</text></svg>",
+    "drawingCaption": "Isometries rigidly move space: lengths and angles are all preserved",
+    "coreTranslation": [
+      "<strong>Definition:</strong> $S\\in\\mathcal{L}(V,W)$ is an <strong>isometry</strong> if $\\|Sv\\|=\\|v\\|$ for all $v$. Equivalent: $S^*S=I$ (columns orthonormal), and $\\langle Su,Sv\\rangle=\\langle u,v\\rangle$ (preserves angles too).",
+      "<strong>Consequences:</strong> an isometry is <strong>injective</strong>; it maps orthonormal lists to orthonormal lists; its eigenvalues have $|\\lambda|=1$.",
+      "<strong>Square case:</strong> for an operator on a finite-dimensional space, isometry $\\iff$ <strong>unitary</strong> (real: <strong>orthogonal</strong>): $S^*S=SS^*=I$, $S^{-1}=S^*$."
+    ],
+    "math": "$$S^*S=I\\iff\\|Sv\\|=\\|v\\|\\ \\forall v\\iff\\langle Su,Sv\\rangle=\\langle u,v\\rangle$$",
+    "personalConnection": "Moving a rigid object across a table: rotating or reflecting it never changes any distance or angle on it.",
+    "examTrap": "A tall matrix with orthonormal columns is an isometry (Q*Q = I) but NOT unitary (QQ* \u2260 I). Square + isometry is what makes it unitary."
+  },
+  {
+    "id": 21404,
+    "subject": "LAA",
+    "topicId": "14_Positive_Operators_and_Isometries",
+    "topicTitle": "14 \u00b7 Positive Operators & Isometries",
+    "cardNumber": "04",
+    "category": "ISOMETRIES",
+    "highlighterClass": "highlight-purple",
+    "title": "Unitary and Orthogonal Matrices",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21404\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"120\" cy=\"72\" r=\"46\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.4\"/><line x1=\"30\" y1=\"72\" x2=\"214\" y2=\"72\" stroke=\"#000000\" stroke-width=\"0.7\" stroke-dasharray=\"2 3\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"124\" stroke=\"#000000\" stroke-width=\"0.7\" stroke-dasharray=\"2 3\"/><circle cx=\"166\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"120\" cy=\"26\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"87\" cy=\"105\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"87\" cy=\"39\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"176\" y=\"62\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">|\u03bb| = 1</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">eigenvalues lie ON the unit circle</text><text x=\"16\" y=\"24\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">U*U = I</text><text x=\"16\" y=\"38\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">|det U| = 1</text><text x=\"16\" y=\"52\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">rows, cols orthonormal</text><text x=\"16\" y=\"66\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u2016U\u2016\u2082 = 1, \u03ba = 1</text></svg>",
+    "drawingCaption": "All eigenvalues of a unitary matrix sit on the unit circle in the complex plane",
+    "coreTranslation": [
+      "<strong>Definition:</strong> $U^*U=UU^*=I$ (complex) or $Q^TQ=QQ^T=I$ (real). Columns and rows each form an <strong>orthonormal basis</strong>.",
+      "<strong>Invariants:</strong> $|\\det U|=1$ (real: $\\det Q=\\pm1$: rotations have $+1$, reflections $-1$), $\\|U\\|_2=1$ and condition number $1$ (numerically perfect).",
+      "<strong>Spectrum:</strong> $|\\lambda|=1$. Unitary operators are <strong>normal</strong>, so $U=VDV^*$ with $D$ on the unit circle; a real orthogonal matrix is a mix of $2\\times2$ rotations and $\\pm1$."
+    ],
+    "math": "$$U^*U=UU^*=I,\\quad |\\lambda|=1,\\quad |\\det U|=1,\\quad \\kappa_2(U)=1$$",
+    "personalConnection": "Rotating a globe: positions move around but the shape and all distances stay exactly the same.",
+    "examTrap": "Orthogonal matrices have det \u00b11, not necessarily +1. det = \u22121 means a reflection (orientation reversal); only det = +1 is a pure rotation."
+  },
+  {
+    "id": 21405,
+    "subject": "LAA",
+    "topicId": "14_Positive_Operators_and_Isometries",
+    "topicTitle": "14 \u00b7 Positive Operators & Isometries",
+    "cardNumber": "05",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-cyan",
+    "title": "Worked Benchmark: A = [[2,\u22121],[\u22121,2]]",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21405\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"12\" y=\"14\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"26.0\" y=\"31.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">2</text><rect x=\"40\" y=\"14\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"54.0\" y=\"31.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">-1</text><rect x=\"12\" y=\"42\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"26.0\" y=\"59.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">-1</text><rect x=\"40\" y=\"42\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"54.0\" y=\"59.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">2</text><text x=\"40\" y=\"84\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A</text><text x=\"86\" y=\"24\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">tr = 4, det = 3 \u21d2 \u03bb = 3, 1</text><text x=\"86\" y=\"40\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">both > 0 \u21d2 positive definite</text><text x=\"86\" y=\"56\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u03bb=3: (1,\u22121)/\u221a2     \u03bb=1: (1,1)/\u221a2</text><text x=\"14\" y=\"104\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u221aA = \u221a3 P\u208d\u2083\u208e + 1\u00b7P\u208d\u2081\u208e</text><text x=\"14\" y=\"118\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">     = \u00bd[[\u221a3+1, 1\u2212\u221a3],[1\u2212\u221a3, \u221a3+1]]</text><text x=\"14\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">check: (\u221aA)\u00b2 = A \u2713</text><text x=\"130\" y=\"86\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u27e8Av,v\u27e9 = 2x\u00b2\u22122xy+2y\u00b2</text><text x=\"130\" y=\"100\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">= x\u00b2 + y\u00b2 + (x\u2212y)\u00b2 > 0</text></svg>",
+    "drawingCaption": "Eigenvalues 3 and 1 are positive, so A is positive definite with a positive square root",
+    "coreTranslation": [
+      "<strong>Eigenvalues:</strong> $\\operatorname{tr}A=4$, $\\det A=3$, so $\\lambda=3,1$ (both $>0$) $\\Rightarrow$ <strong>positive definite</strong>. Also directly: $\\langle Av,v\\rangle=2x^2-2xy+2y^2=x^2+y^2+(x-y)^2>0$.",
+      "<strong>Eigenvectors:</strong> $\\lambda=3$ for $(1,-1)/\\sqrt2$, $\\lambda=1$ for $(1,1)/\\sqrt2$ (orthogonal, as for any symmetric matrix).",
+      "<strong>Square root:</strong> $\\sqrt A=\\sqrt3P_3+P_1=\\tfrac12\\begin{pmatrix}\\sqrt3+1&1-\\sqrt3\\\\1-\\sqrt3&\\sqrt3+1\\end{pmatrix}$, and squaring gives back $A$ (diagonal entries $\\tfrac{(\\sqrt3+1)^2+(\\sqrt3-1)^2}{4}=2$ \u2713)."
+    ],
+    "math": "$$\\sqrt A=\\sqrt3\\,P_{(1,-1)}+1\\cdot P_{(1,1)},\\qquad (\\sqrt A)^2=A$$",
+    "personalConnection": "A springy mattress: pressing down in any direction pushes back (positive); the springs just have different strengths along two perpendicular axes.",
+    "examTrap": "Check the TOP-LEFT minors too for a quick test: 2 > 0 and det = 3 > 0 (Sylvester's criterion) confirm positive definiteness without eigenvalues."
+  },
+  {
+    "id": 21501,
+    "subject": "LAA",
+    "topicId": "15_Polar_Decomposition_and_Singular_Value_Decomposition",
+    "topicTitle": "15 \u00b7 Polar Decomposition & SVD",
+    "cardNumber": "01",
+    "category": "POLAR DECOMPOSITION",
+    "highlighterClass": "highlight-cyan",
+    "title": "Polar Decomposition: T = S \u221a(T*T)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21501\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"48\" cy=\"72\" r=\"30\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><line x1=\"52\" y1=\"72\" x2=\"84\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\" marker-end=\"url(#arr-21501)\"/><text x=\"68\" y=\"64\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u221a(T*T)</text><ellipse cx=\"120\" cy=\"72\" rx=\"38\" ry=\"20\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.8\" transform=\"rotate(0 120 72)\"/><line x1=\"158\" y1=\"72\" x2=\"184\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\" marker-end=\"url(#arr-21501)\"/><text x=\"172\" y=\"64\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">S</text><ellipse cx=\"214\" cy=\"70\" rx=\"24\" ry=\"14\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.8\" transform=\"rotate(-35 214 70)\"/><text x=\"48\" y=\"116\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">unit disk</text><text x=\"120\" y=\"116\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">stretch (positive)</text><text x=\"205.06\" y=\"116\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">rotate/reflect</text><text x=\"120\" y=\"18\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">T = S |T|     (like z = e^{i\u03b8} |z|)</text><text x=\"120\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">S isometry, |T| = \u221a(T*T) \u2265 0</text></svg>",
+    "drawingCaption": "Every operator is a stretch along perpendicular axes followed by a rotation/reflection",
+    "coreTranslation": [
+      "<strong>Theorem:</strong> every $T\\in\\mathcal{L}(V)$ can be written $T=S\\sqrt{T^*T}$ where $S$ is an <strong>isometry</strong> and $\\sqrt{T^*T}=|T|$ is <strong>positive</strong>.",
+      "<strong>Idea:</strong> $\\|Tv\\|=\\|\\sqrt{T^*T}\\,v\\|$ (since $T^*T=(\\sqrt{T^*T})^2$), so $S$ is defined by $S(\\sqrt{T^*T}v)=Tv$; it preserves lengths on the range of $|T|$ and is extended as an isometry.",
+      "<strong>Analogy:</strong> a complex number $z=e^{i\\theta}|z|$ is a magnitude (positive) times a phase; here the 'phase' is a unitary and the 'magnitude' is a positive operator."
+    ],
+    "math": "$$T=S\\sqrt{T^*T},\\quad S\\ \\text{isometry},\\quad |T|=\\sqrt{T^*T}\\succeq0$$",
+    "personalConnection": "Moving a piece of dough: first stretch it along two perpendicular axes, then rotate or flip the result.",
+    "examTrap": "S is unique only when T is invertible. For singular T the isometry part is not unique on the null space (the 'phase' of a zero stretch is arbitrary)."
+  },
+  {
+    "id": 21502,
+    "subject": "LAA",
+    "topicId": "15_Polar_Decomposition_and_Singular_Value_Decomposition",
+    "topicTitle": "15 \u00b7 Polar Decomposition & SVD",
+    "cardNumber": "02",
+    "category": "SVD",
+    "highlighterClass": "highlight-amber",
+    "title": "SVD: Circle \u2192 Ellipse",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21502\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"50\" cy=\"72\" r=\"30\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"72\" x2=\"80\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.8\" marker-end=\"url(#arr-21502)\"/><line x1=\"50\" y1=\"72\" x2=\"50\" y2=\"42\" stroke=\"#000000\" stroke-width=\"1.8\" marker-end=\"url(#arr-21502)\"/><text x=\"50\" y=\"118\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">unit circle</text><line x1=\"86\" y1=\"72\" x2=\"108\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.5\" marker-end=\"url(#arr-21502)\"/><text x=\"97\" y=\"64\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A=U\u03a3V*</text><ellipse cx=\"160\" cy=\"72\" rx=\"50\" ry=\"22\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.8\" transform=\"rotate(-30 160 72)\"/><line x1=\"160\" y1=\"72\" x2=\"196\" y2=\"42\" stroke=\"#000000\" stroke-width=\"2.4\" marker-end=\"url(#arr-21502)\"/><line x1=\"160\" y1=\"72\" x2=\"146\" y2=\"90\" stroke=\"#000000\" stroke-width=\"2.0\" marker-end=\"url(#arr-21502)\"/><text x=\"200\" y=\"36\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u03c3\u2081u\u2081</text><text x=\"146\" y=\"100\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"end\" fill=\"#000000\">\u03c3\u2082u\u2082</text><text x=\"160\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">image = ellipse</text></svg>",
+    "drawingCaption": "A maps the unit sphere to an ellipsoid whose semi-axes are \u03c3\u2c7c u\u2c7c",
+    "coreTranslation": [
+      "<strong>Theorem:</strong> every $A\\in\\mathbb{C}^{m\\times n}$ factors as $A=U\\Sigma V^*$ with $U,V$ <strong>unitary</strong> and $\\Sigma$ diagonal, with <strong>singular values</strong> $\\sigma_1\\ge\\sigma_2\\ge\\dots\\ge0$.",
+      "<strong>Geometry:</strong> $V^*$ rotates the input; $\\Sigma$ stretches the axes by $\\sigma_j$; $U$ rotates into the output. So the unit sphere becomes an <strong>ellipsoid with semi-axes $\\sigma_ju_j$</strong>.",
+      "<strong>Action form:</strong> $Av=\\sum_j\\sigma_j\\langle v,v_j\\rangle u_j$. Works for <strong>every</strong> matrix: rectangular, singular, non-normal."
+    ],
+    "math": "$$A=U\\Sigma V^*=\\sum_{j=1}^{r}\\sigma_j\\,u_jv_j^*,\\qquad \\sigma_j=\\sqrt{\\lambda_j(A^*A)}\\ge0$$",
+    "personalConnection": "Any machine, however twisted, secretly just rotates, stretches along perpendicular axes, then rotates again.",
+    "examTrap": "Singular values are the square roots of eigenvalues of A*A; they are NOT the eigenvalues of A (those can be complex or smaller)."
+  },
+  {
+    "id": 21503,
+    "subject": "LAA",
+    "topicId": "15_Polar_Decomposition_and_Singular_Value_Decomposition",
+    "topicTitle": "15 \u00b7 Polar Decomposition & SVD",
+    "cardNumber": "03",
+    "category": "SVD",
+    "highlighterClass": "highlight-emerald",
+    "title": "Computing the SVD from A*A",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21503\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"10\" y=\"14\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"60.0\" y=\"31.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A*A = V \u039b V*</text><line x1=\"110\" y1=\"28\" x2=\"128\" y2=\"28\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-21503)\"/><rect x=\"130\" y=\"14\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"180.0\" y=\"31.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03c3\u2c7c = \u221a\u03bb\u2c7c,  v\u2c7c</text><line x1=\"180\" y1=\"42\" x2=\"180\" y2=\"58\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-21503)\"/><rect x=\"130\" y=\"60\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"180.0\" y=\"77.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">u\u2c7c = A v\u2c7c / \u03c3\u2c7c</text><text x=\"60\" y=\"74\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">right singular vectors</text><text x=\"60\" y=\"88\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">= eigenvectors of A*A</text><text x=\"120\" y=\"112\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">rank A = # of nonzero \u03c3\u2c7c</text><text x=\"117.44\" y=\"128\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(complete u's for \u03c3=0 columns using an orthonormal basis)</text></svg>",
+    "drawingCaption": "Eigendecompose A*A, take square roots, and push the right vectors through A",
+    "coreTranslation": [
+      "<strong>Recipe:</strong> (1) diagonalize the positive matrix $A^*A=V\\Lambda V^*$; (2) $\\sigma_j=\\sqrt{\\lambda_j}$; (3) $u_j=Av_j/\\sigma_j$ for $\\sigma_j>0$; (4) complete $U$ to an orthonormal basis.",
+      "<strong>Why it works:</strong> $\\langle u_i,u_j\\rangle=\\frac{\\langle Av_i,Av_j\\rangle}{\\sigma_i\\sigma_j}=\\frac{\\langle A^*Av_i,v_j\\rangle}{\\sigma_i\\sigma_j}=\\delta_{ij}$, so the $u_j$ are automatically orthonormal.",
+      "<strong>Facts:</strong> $\\operatorname{rank}A=\\#\\{\\sigma_j>0\\}$; $A^*A$ and $AA^*$ share nonzero eigenvalues; $v_j$ (for $\\sigma_j=0$) span $\\operatorname{null}A$."
+    ],
+    "math": "$$A^*A\\,v_j=\\sigma_j^2v_j,\\qquad u_j=\\frac{Av_j}{\\sigma_j},\\qquad A=\\sum_{j}\\sigma_ju_jv_j^*$$",
+    "personalConnection": "Reading a machine's behavior by testing it on its own 'natural' input directions, then recording how strongly each is amplified.",
+    "examTrap": "Keep the pairing: u_j goes with v_j. Sorting the \u03c3's but not their vectors gives a wrong A. Signs of (u_j, v_j) can flip together, never separately."
+  },
+  {
+    "id": 21504,
+    "subject": "LAA",
+    "topicId": "15_Polar_Decomposition_and_Singular_Value_Decomposition",
+    "topicTitle": "15 \u00b7 Polar Decomposition & SVD",
+    "cardNumber": "04",
+    "category": "LOW-RANK APPROXIMATION",
+    "highlighterClass": "highlight-purple",
+    "title": "Eckart\u2013Young: Best Rank-k Approximation",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21504\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"108\" x2=\"214\" y2=\"108\" stroke=\"#000000\" stroke-width=\"1.2\"/><rect x=\"30\" y=\"30\" width=\"18\" height=\"78\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><rect x=\"56\" y=\"54\" width=\"18\" height=\"54\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><rect x=\"82\" y=\"74\" width=\"18\" height=\"34\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><rect x=\"108\" y=\"88\" width=\"18\" height=\"20\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"3 2\"/><rect x=\"134\" y=\"96\" width=\"18\" height=\"12\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"3 2\"/><rect x=\"160\" y=\"101\" width=\"18\" height=\"7\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"3 2\"/><rect x=\"186\" y=\"104\" width=\"18\" height=\"4\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"3 2\"/><text x=\"39\" y=\"120\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c31</text><text x=\"65\" y=\"120\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c32</text><text x=\"91\" y=\"120\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c33</text><text x=\"117\" y=\"120\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c34</text><text x=\"143\" y=\"120\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c35</text><text x=\"169\" y=\"120\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c36</text><text x=\"195\" y=\"120\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c37</text><line x1=\"110\" y1=\"14\" x2=\"110\" y2=\"108\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/><text x=\"100\" y=\"18\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"end\" fill=\"#000000\">keep k = 3</text><text x=\"120\" y=\"18\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">discard</text><text x=\"120\" y=\"136\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A_k = \u03a3_{j\u2264k} \u03c3\u2c7c u\u2c7c v\u2c7c*     \u2016A \u2212 A_k\u2016\u2082 = \u03c3_{k+1}</text></svg>",
+    "drawingCaption": "Keep the biggest singular values: no rank-k matrix is closer to A",
+    "coreTranslation": [
+      "<strong>Truncated SVD:</strong> $A_k=\\sum_{j\\le k}\\sigma_ju_jv_j^*$ keeps the $k$ largest components. It has rank $k$.",
+      "<strong>Eckart\u2013Young\u2013Mirsky:</strong> $A_k$ is the <strong>best</strong> rank-$k$ approximation: $\\|A-A_k\\|_2=\\sigma_{k+1}$ (smallest possible) and $\\|A-A_k\\|_F^2=\\sum_{j>k}\\sigma_j^2$.",
+      "<strong>Applications:</strong> image compression, PCA (principal components are the $v_j$), noise reduction, latent semantic analysis, recommender systems."
+    ],
+    "math": "$$\\min_{\\operatorname{rank}B\\le k}\\|A-B\\|_2=\\sigma_{k+1},\\qquad \\min_{\\operatorname{rank}B\\le k}\\|A-B\\|_F=\\sqrt{\\sum_{j>k}\\sigma_j^2}$$",
+    "personalConnection": "Keeping the loudest k instruments of an orchestra: the sound that remains is as close to the original as k instruments can get.",
+    "examTrap": "Best approximation is in the 2-norm AND the Frobenius norm. The decay of the \u03c3's tells you how compressible A is, not its rank alone."
+  },
+  {
+    "id": 21505,
+    "subject": "LAA",
+    "topicId": "15_Polar_Decomposition_and_Singular_Value_Decomposition",
+    "topicTitle": "15 \u00b7 Polar Decomposition & SVD",
+    "cardNumber": "05",
+    "category": "SVD",
+    "highlighterClass": "highlight-cyan",
+    "title": "Norms, Rank & Conditioning from Singular Values",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21505\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"10\" y=\"14\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"64.0\" y=\"31.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2016A\u2016\u2082 = \u03c3\u2081 (max stretch)</text><rect x=\"122\" y=\"14\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"176.0\" y=\"31.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2016A\u2016_F = \u221a\u03a3\u03c3\u2c7c\u00b2</text><rect x=\"10\" y=\"52\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"64.0\" y=\"69.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">rank = #{\u03c3\u2c7c > 0}</text><rect x=\"122\" y=\"52\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"176.0\" y=\"69.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">|det A| = \u03a0\u03c3\u2c7c</text><rect x=\"10\" y=\"90\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"64.0\" y=\"107.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03ba(A) = \u03c3\u2081/\u03c3_min</text><rect x=\"122\" y=\"90\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"176.0\" y=\"107.0\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2016A\u207b\u00b9\u2016\u2082 = 1/\u03c3_min</text><text x=\"113.03559999999999\" y=\"136\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">large \u03ba \u21d2 small input errors blow up in the solution</text></svg>",
+    "drawingCaption": "One set of numbers answers: how big, what rank, how invertible, how sensitive",
+    "coreTranslation": [
+      "<strong>Norms:</strong> the operator 2-norm is the <strong>largest singular value</strong> $\\sigma_1$; the Frobenius norm is $\\sqrt{\\sum\\sigma_j^2}=\\sqrt{\\operatorname{tr}A^*A}$.",
+      "<strong>Rank/determinant:</strong> $\\operatorname{rank}A=$ number of nonzero $\\sigma_j$; for square $A$, $|\\det A|=\\prod\\sigma_j$.",
+      "<strong>Conditioning:</strong> $\\kappa_2(A)=\\sigma_1/\\sigma_n$. Solving $Ax=b$ with relative error $\\delta$ in $b$ can produce relative error up to $\\kappa\\delta$ in $x$; $\\kappa=1$ exactly for unitary matrices."
+    ],
+    "math": "$$\\|A\\|_2=\\sigma_1,\\quad \\|A\\|_F^2=\\sum\\sigma_j^2,\\quad |\\det A|=\\prod\\sigma_j,\\quad \\kappa_2(A)=\\frac{\\sigma_1}{\\sigma_n}$$",
+    "personalConnection": "A measuring stick for a machine: the ratio of its strongest stretch to its weakest squeeze says how fragile solving with it will be.",
+    "examTrap": "Singular values \u2260 eigenvalues. For a non-normal matrix, \u2016A\u2016\u2082 can be much larger than the biggest |eigenvalue|."
+  },
+  {
+    "id": 21506,
+    "subject": "LAA",
+    "topicId": "15_Polar_Decomposition_and_Singular_Value_Decomposition",
+    "topicTitle": "15 \u00b7 Polar Decomposition & SVD",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: SVD of A = [[3,0],[4,5]]",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21506\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"10\" y=\"14\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"23.0\" y=\"30.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">3</text><rect x=\"36\" y=\"14\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"49.0\" y=\"30.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">0</text><rect x=\"10\" y=\"40\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"23.0\" y=\"56.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">4</text><rect x=\"36\" y=\"40\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"49.0\" y=\"56.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">5</text><text x=\"36\" y=\"80\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A</text><text x=\"76\" y=\"24\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">A\u1d40A = [[25,20],[20,25]]</text><text x=\"76\" y=\"40\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u03bb = 45, 5  (tr 50, det 225)</text><text x=\"76\" y=\"58\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u03c3\u2081 = \u221a45 = 3\u221a5 \u2248 6.71</text><text x=\"76\" y=\"74\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u03c3\u2082 = \u221a5 \u2248 2.24</text><text x=\"14\" y=\"98\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">check: \u03c3\u2081\u03c3\u2082 = 15 = |det A| \u2713</text><text x=\"14\" y=\"114\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u03c3\u2081\u00b2 + \u03c3\u2082\u00b2 = 50 = \u2016A\u2016_F\u00b2 = 9+16+25 \u2713</text><text x=\"14\" y=\"130\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u03ba = 3 (= \u03c3\u2081/\u03c3\u2082)</text><text x=\"150\" y=\"100\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">v\u2081 = (1,1)/\u221a2</text><text x=\"150\" y=\"114\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">v\u2082 = (1,\u22121)/\u221a2</text></svg>",
+    "drawingCaption": "\u03c3\u2081 = 3\u221a5, \u03c3\u2082 = \u221a5; their product is |det| = 15 and the squares add up to the Frobenius norm squared",
+    "coreTranslation": [
+      "<strong>Step 1:</strong> $A^TA=\\begin{pmatrix}25&20\\\\20&25\\end{pmatrix}$ with eigenvalues $45$ and $5$ (trace $50$, determinant $25\\cdot25-20\\cdot20=225=45\\cdot5$ \u2713).",
+      "<strong>Singular values:</strong> $\\sigma_1=\\sqrt{45}=3\\sqrt5\\approx6.71$, $\\sigma_2=\\sqrt5\\approx2.24$. Right vectors: $v_1=(1,1)/\\sqrt2$, $v_2=(1,-1)/\\sqrt2$; then $u_j=Av_j/\\sigma_j$.",
+      "<strong>Checks:</strong> $\\sigma_1\\sigma_2=15=|\\det A|$ \u2713 and $\\sigma_1^2+\\sigma_2^2=50=\\|A\\|_F^2=9+0+16+25$ \u2713. Condition number $\\kappa=\\sigma_1/\\sigma_2=3$."
+    ],
+    "math": "$$\\sigma_1=\\sqrt{45}=3\\sqrt5,\\ \\ \\sigma_2=\\sqrt5;\\qquad \\sigma_1\\sigma_2=15=|\\det A|,\\ \\ \\sigma_1^2+\\sigma_2^2=50=\\|A\\|_F^2$$",
+    "personalConnection": "Pressing a disk of dough through the matrix: it comes out as an ellipse whose long axis is 3\u221a5 and short axis \u221a5.",
+    "examTrap": "Eigenvalues of A are 3 and 5 (triangular matrix), nothing like the singular values 6.71 and 2.24. A is not normal, so the two sets differ."
+  },
+  {
+    "id": 21601,
+    "subject": "LAA",
+    "topicId": "16_Pseudoinverse_and_Least_Squares",
+    "topicTitle": "16 \u00b7 Pseudoinverse & Least Squares",
+    "cardNumber": "01",
+    "category": "LEAST SQUARES",
+    "highlighterClass": "highlight-cyan",
+    "title": "Least Squares = Projection onto the Column Space",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21601\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"110\" x2=\"214\" y2=\"110\" stroke=\"#000000\" stroke-width=\"0.8\" stroke-dasharray=\"2 3\"/><polygon points=\"30,112 150,112 200,62 80,62\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"70\" y=\"104\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">col(A)</text><circle cx=\"150\" cy=\"24\" r=\"4\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"156\" y=\"22\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">b</text><line x1=\"150\" y1=\"28\" x2=\"150\" y2=\"84\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"4 3\"/><circle cx=\"150\" cy=\"88\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"156\" y=\"98\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">Ax\u0302 = P b</text><rect x=\"144\" y=\"80\" width=\"8\" height=\"8\" rx=\"0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1\"/><text x=\"152.01999999999998\" y=\"54\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">residual r \u22a5 col(A)</text><text x=\"120\" y=\"134\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A\u1d40A x\u0302 = A\u1d40 b   (normal equations)</text></svg>",
+    "drawingCaption": "The closest point Ax\u0302 to b is its orthogonal projection; the leftover residual is perpendicular to every column",
+    "coreTranslation": [
+      "<strong>Problem:</strong> when $Ax=b$ has no exact solution, minimize $\\|Ax-b\\|_2$. The minimizer $\\hat x$ makes $A\\hat x$ the <strong>projection of $b$ onto $\\operatorname{col}(A)$</strong>.",
+      "<strong>Normal equations:</strong> the residual $r=b-A\\hat x$ must be $\\perp$ every column, i.e. $A^*r=0\\iff A^*A\\hat x=A^*b$. If $A$ has independent columns, $\\hat x=(A^*A)^{-1}A^*b$.",
+      "<strong>Projector:</strong> $P=A(A^*A)^{-1}A^*$ with $P^2=P=P^*$; error $\\|b-A\\hat x\\|^2=\\|b\\|^2-\\|Pb\\|^2$ (Pythagoras)."
+    ],
+    "math": "$$\\min_x\\|Ax-b\\|^2\\iff A^*A\\hat x=A^*b,\\qquad A\\hat x=Pb,\\quad P=A(A^*A)^{-1}A^*$$",
+    "personalConnection": "Shadow-matching: you can't hit b exactly, so you land at the point of your reachable plane directly beneath it.",
+    "examTrap": "The normal equations can be badly conditioned (\u03ba(A\u1d40A) = \u03ba(A)\u00b2). In practice use QR or SVD instead of forming A\u1d40A."
+  },
+  {
+    "id": 21602,
+    "subject": "LAA",
+    "topicId": "16_Pseudoinverse_and_Least_Squares",
+    "topicTitle": "16 \u00b7 Pseudoinverse & Least Squares",
+    "cardNumber": "02",
+    "category": "FOUR SUBSPACES",
+    "highlighterClass": "highlight-amber",
+    "title": "The Four Fundamental Subspaces",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21602\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"14\" y=\"16\" width=\"98\" height=\"50\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><rect x=\"14\" y=\"70\" width=\"98\" height=\"50\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"63\" y=\"36\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">row space</text><text x=\"63\" y=\"50\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">dim r</text><text x=\"63\" y=\"92\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">null space</text><text x=\"63\" y=\"106\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">dim n \u2212 r</text><rect x=\"128\" y=\"16\" width=\"98\" height=\"50\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.6\"/><rect x=\"128\" y=\"70\" width=\"98\" height=\"50\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"177\" y=\"36\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">column space</text><text x=\"177\" y=\"50\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">dim r</text><text x=\"177\" y=\"92\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">left null space</text><text x=\"177\" y=\"106\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">dim m \u2212 r</text><line x1=\"114\" y1=\"40\" x2=\"126\" y2=\"40\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-21602)\"/><text x=\"120\" y=\"34\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">A</text><text x=\"63\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">row \u22a5 null  (in \u211d\u207f)</text><text x=\"177\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">col \u22a5 left null (in \u211d\u1d50)</text></svg>",
+    "drawingCaption": "Each pair of subspaces is an orthogonal decomposition of its ambient space",
+    "coreTranslation": [
+      "<strong>In the domain $\\mathbb{R}^n$:</strong> $\\operatorname{row}(A)=\\operatorname{null}(A)^\\perp$ and $\\mathbb{R}^n=\\operatorname{row}A\\oplus\\operatorname{null}A$, with dimensions $r$ and $n-r$.",
+      "<strong>In the codomain $\\mathbb{R}^m$:</strong> $\\operatorname{col}(A)=\\operatorname{null}(A^T)^\\perp$ and $\\mathbb{R}^m=\\operatorname{col}A\\oplus\\operatorname{null}A^T$, with dimensions $r$ and $m-r$.",
+      "<strong>The SVD sees all four at once:</strong> $v_1..v_r$ span the row space, $v_{r+1..n}$ the null space, $u_1..u_r$ the column space, $u_{r+1..m}$ the left null space."
+    ],
+    "math": "$$\\mathbb{R}^n=\\operatorname{row}A\\oplus\\operatorname{null}A,\\qquad \\mathbb{R}^m=\\operatorname{col}A\\oplus\\operatorname{null}A^{T},\\qquad r=\\operatorname{rank}A$$",
+    "personalConnection": "A house with four rooms: two on the input side, two on the output side, with every pair of rooms meeting at a right angle.",
+    "examTrap": "Row space lives in the DOMAIN \u211d\u207f; column space lives in the CODOMAIN \u211d\u1d50. Their dimensions agree (= rank) but they are in different spaces."
+  },
+  {
+    "id": 21603,
+    "subject": "LAA",
+    "topicId": "16_Pseudoinverse_and_Least_Squares",
+    "topicTitle": "16 \u00b7 Pseudoinverse & Least Squares",
+    "cardNumber": "03",
+    "category": "PSEUDOINVERSE",
+    "highlighterClass": "highlight-emerald",
+    "title": "The Moore\u2013Penrose Pseudoinverse A\u207a",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21603\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"10\" y=\"16\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"60.0\" y=\"33.0\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A = U \u03a3 V*</text><line x1=\"110\" y1=\"30\" x2=\"126\" y2=\"30\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-21603)\"/><rect x=\"128\" y=\"16\" width=\"102\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"179.0\" y=\"33.0\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A\u207a = V \u03a3\u207a U*</text><text x=\"120\" y=\"66\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03a3\u207a: invert the nonzero \u03c3\u2c7c, transpose shape</text><text x=\"120\" y=\"84\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">1/\u03c3\u2081, \u2026, 1/\u03c3_r  (zeros stay zero)</text><text x=\"120\" y=\"104\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">A\u207aA = projection onto row space</text><text x=\"120\" y=\"118\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">A A\u207a = projection onto column space</text><text x=\"120\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A\u207a = A\u207b\u00b9 when A is invertible</text></svg>",
+    "drawingCaption": "Invert exactly what A can invert; send the rest to zero",
+    "coreTranslation": [
+      "<strong>Definition (via SVD):</strong> if $A=U\\Sigma V^*$ then $A^+=V\\Sigma^+U^*$, where $\\Sigma^+$ inverts the <strong>nonzero</strong> singular values and leaves zeros as zeros (and transposes the shape).",
+      "<strong>Projectors:</strong> $AA^+$ is the orthogonal projection onto $\\operatorname{col}(A)$ and $A^+A$ is the orthogonal projection onto $\\operatorname{row}(A)$.",
+      "<strong>Special cases:</strong> full column rank: $A^+=(A^*A)^{-1}A^*$ (left inverse); full row rank: $A^+=A^*(AA^*)^{-1}$ (right inverse); square invertible: $A^+=A^{-1}$."
+    ],
+    "math": "$$A^+=V\\Sigma^+U^*,\\quad (\\Sigma^+)_{jj}=\\begin{cases}1/\\sigma_j&\\sigma_j>0\\\\0&\\sigma_j=0\\end{cases},\\quad AA^+=P_{\\operatorname{col}A},\\ A^+A=P_{\\operatorname{row}A}$$",
+    "personalConnection": "Undoing a scramble as well as you possibly can: where information survived you unscramble exactly, where it was erased you leave a neutral zero.",
+    "examTrap": "A\u207a is NOT continuous in A: a tiny perturbation that makes a zero singular value nonzero changes A\u207a drastically (1/\u03c3 jumps from 0 to huge)."
+  },
+  {
+    "id": 21604,
+    "subject": "LAA",
+    "topicId": "16_Pseudoinverse_and_Least_Squares",
+    "topicTitle": "16 \u00b7 Pseudoinverse & Least Squares",
+    "cardNumber": "04",
+    "category": "PSEUDOINVERSE",
+    "highlighterClass": "highlight-purple",
+    "title": "x = A\u207ab: The Minimum-Norm Least-Squares Solution",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21604\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"118\" x2=\"214\" y2=\"118\" stroke=\"#000000\" stroke-width=\"0.8\" stroke-dasharray=\"2 3\"/><line x1=\"60\" y1=\"120\" x2=\"190\" y2=\"40\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"60\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">all least-squares solutions</text><circle cx=\"110\" cy=\"88\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"88\" x2=\"70\" y2=\"96\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><text x=\"100\" y=\"78\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"end\" fill=\"#000000\">x\u207a = A\u207ab</text><circle cx=\"70\" cy=\"96\" r=\"3\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"52\" y=\"90\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"end\" fill=\"#000000\">0</text><text x=\"158\" y=\"30\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">x\u207a \u22a5 null(A)</text><text x=\"158\" y=\"44\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">(row space)</text><text x=\"156.44\" y=\"64\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">shortest vector on</text><text x=\"158\" y=\"76\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">the solution line</text></svg>",
+    "drawingCaption": "Among all least-squares solutions, A\u207ab is the one closest to the origin",
+    "coreTranslation": [
+      "<strong>Solution set:</strong> if $A$ is rank-deficient, there are infinitely many minimizers of $\\|Ax-b\\|$: $\\hat x+\\operatorname{null}A$. All give the same $A\\hat x=Pb$.",
+      "<strong>Unique minimum-norm choice:</strong> $x^+=A^+b$ is the minimizer lying in $\\operatorname{row}(A)=\\operatorname{null}(A)^\\perp$, hence <strong>the one with smallest $\\|x\\|$</strong>.",
+      "<strong>Why it matters:</strong> in underdetermined or ill-posed problems (wide matrices, duplicate features), $A^+b$ is the canonical, stable answer (also the limit of ridge regression $\\lambda\\to0$)."
+    ],
+    "math": "$$x^+=A^+b=\\arg\\min\\{\\|x\\|:\\ x\\in\\arg\\min_z\\|Az-b\\|\\},\\qquad x^+\\in\\operatorname{row}A$$",
+    "personalConnection": "Among all equally good answers on a straight road of solutions, you choose the one nearest to home (the origin).",
+    "examTrap": "x\u207a is the shortest of the BEST fits. If Ax = b is consistent it is the shortest exact solution; if not, it is the shortest least-squares one."
+  },
+  {
+    "id": 21605,
+    "subject": "LAA",
+    "topicId": "16_Pseudoinverse_and_Least_Squares",
+    "topicTitle": "16 \u00b7 Pseudoinverse & Least Squares",
+    "cardNumber": "05",
+    "category": "PSEUDOINVERSE",
+    "highlighterClass": "highlight-cyan",
+    "title": "The Four Penrose Conditions",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21605\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"10\" y=\"14\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"64.0\" y=\"31.0\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A A\u207a A = A</text><rect x=\"122\" y=\"14\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"176.0\" y=\"31.0\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A\u207a A A\u207a = A\u207a</text><rect x=\"10\" y=\"56\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"64.0\" y=\"73.0\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(A A\u207a)* = A A\u207a</text><rect x=\"122\" y=\"56\" width=\"108\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"176.0\" y=\"73.0\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(A\u207a A)* = A\u207a A</text><text x=\"115.81759999999998\" y=\"108\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">exactly ONE matrix X satisfies all four:  X = A\u207a</text><text x=\"107.82\" y=\"124\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">(the last two say the products are orthogonal projections)</text></svg>",
+    "drawingCaption": "Four equations pin down the pseudoinverse uniquely, with no mention of the SVD",
+    "coreTranslation": [
+      "<strong>Conditions:</strong> (1) $AXA=A$, (2) $XAX=X$, (3) $(AX)^*=AX$, (4) $(XA)^*=XA$. There is <strong>exactly one</strong> $X$ satisfying all four, called $A^+$.",
+      "<strong>Meaning:</strong> (1)\u2013(2) say $X$ is a generalized (reflexive) inverse; (3)\u2013(4) say $AX$ and $XA$ are <strong>orthogonal</strong> (self-adjoint) projections onto the column and row spaces.",
+      "<strong>Use:</strong> to prove a formula equals $A^+$, check the four identities; e.g. $(A^+)^+=A$, $(A^*)^+=(A^+)^*$ and $A^+=(A^*A)^+A^*$."
+    ],
+    "math": "$$AXA=A,\\quad XAX=X,\\quad (AX)^*=AX,\\quad (XA)^*=XA\\ \\Longleftrightarrow\\ X=A^+$$",
+    "personalConnection": "Four house rules a unique tenant must obey: do the job (1,2) and stay square to the floor plan (3,4).",
+    "examTrap": "Condition 3 and 4 are what make A\u207a the ORTHOGONAL generalized inverse. Dropping them leaves many generalized inverses that give non-orthogonal projections."
+  },
+  {
+    "id": 21606,
+    "subject": "LAA",
+    "topicId": "16_Pseudoinverse_and_Least_Squares",
+    "topicTitle": "16 \u00b7 Pseudoinverse & Least Squares",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Best-Fit Line Through (0,1), (1,2), (2,2)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21606\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"118\" x2=\"214\" y2=\"118\" stroke=\"#000000\" stroke-width=\"0.8\"/><line x1=\"30\" y1=\"118\" x2=\"30\" y2=\"16\" stroke=\"#000000\" stroke-width=\"0.8\"/><circle cx=\"52\" cy=\"88\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"100\" cy=\"60\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"148\" cy=\"60\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"40\" y1=\"94\" x2=\"190\" y2=\"52\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"52\" y1=\"88\" x2=\"52\" y2=\"91\" stroke=\"#000000\" stroke-width=\"1.2\"/><line x1=\"100\" y1=\"60\" x2=\"100\" y2=\"70\" stroke=\"#000000\" stroke-width=\"1.2\"/><line x1=\"148\" y1=\"60\" x2=\"148\" y2=\"56\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"34\" y=\"130\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x=0</text><text x=\"100\" y=\"130\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">1</text><text x=\"148\" y=\"130\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">2</text><text x=\"150\" y=\"22\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u0177 = 7/6 + x/2</text><text x=\"150\" y=\"36\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">A\u1d40A = [[3,3],[3,5]]</text><text x=\"150\" y=\"98\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">A\u1d40b = (5, 6)</text><text x=\"108.30619999999999\" y=\"110\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">residuals (\u22121/6, 1/3, \u22121/6)</text></svg>",
+    "drawingCaption": "The least-squares line is y = 7/6 + x/2; its residuals sum to zero and are orthogonal to the column (1,1,1) and (0,1,2)",
+    "coreTranslation": [
+      "<strong>Setup:</strong> $A=\\begin{pmatrix}1&0\\\\1&1\\\\1&2\\end{pmatrix}$, $b=(1,2,2)^T$, so $A^TA=\\begin{pmatrix}3&3\\\\3&5\\end{pmatrix}$ and $A^Tb=(5,6)^T$.",
+      "<strong>Normal equations:</strong> $3a+3c=5$, $3a+5c=6\\Rightarrow c=\\tfrac12$, $a=\\tfrac76$. Fit: $\\hat y=\\tfrac76+\\tfrac12x$, giving $\\hat b=(\\tfrac76,\\tfrac53,\\tfrac{13}{6})$.",
+      "<strong>Residual</strong> $r=b-\\hat b=(-\\tfrac16,\\tfrac13,-\\tfrac16)$. Check $A^Tr=0$: sum $=0$ \u2713 and $0\\cdot(-\\tfrac16)+1\\cdot\\tfrac13+2\\cdot(-\\tfrac16)=0$ \u2713: <strong>the residual is orthogonal to the columns</strong>."
+    ],
+    "math": "$$\\hat x=(A^TA)^{-1}A^Tb=\\begin{pmatrix}7/6\\\\1/2\\end{pmatrix},\\qquad A^T(b-A\\hat x)=0$$",
+    "personalConnection": "Hanging a straight stick between three pegs of different heights: it settles where the up and down tugs cancel exactly.",
+    "examTrap": "Always verify A\u1d40R = 0 at the end. It catches arithmetic slips in solving the normal equations immediately."
+  },
+  {
+    "id": 21701,
+    "subject": "LAA",
+    "topicId": "17_Trace_Determinants_and_Volume",
+    "topicTitle": "17 \u00b7 Trace, Determinant & Volume",
+    "cardNumber": "01",
+    "category": "TRACE",
+    "highlighterClass": "highlight-cyan",
+    "title": "Trace: Sum of Diagonal = Sum of Eigenvalues",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21701\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"14\" y=\"18\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"27.0\" y=\"34.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">a</text><rect x=\"40\" y=\"18\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"53.0\" y=\"34.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\"></text><rect x=\"66\" y=\"18\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"79.0\" y=\"34.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\"></text><rect x=\"14\" y=\"44\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"27.0\" y=\"60.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\"></text><rect x=\"40\" y=\"44\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"53.0\" y=\"60.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">b</text><rect x=\"66\" y=\"44\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"79.0\" y=\"60.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\"></text><rect x=\"14\" y=\"70\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"27.0\" y=\"86.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\"></text><rect x=\"40\" y=\"70\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"53.0\" y=\"86.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\"></text><rect x=\"66\" y=\"70\" width=\"26\" height=\"26\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"79.0\" y=\"86.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">c</text><text x=\"54\" y=\"106\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">tr A = a + b + c</text><text x=\"150\" y=\"28\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">tr A = \u03a3 \u03bb\u2c7c</text><text x=\"150\" y=\"46\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">tr(AB) = tr(BA)</text><text x=\"150\" y=\"64\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">tr(S\u207b\u00b9AS) = tr A</text><text x=\"116.66\" y=\"82\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">linear: tr(A+B) = trA + trB</text><text x=\"150\" y=\"100\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">NOT multiplicative:</text><text x=\"150\" y=\"112\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">tr(AB) \u2260 trA trB</text></svg>",
+    "drawingCaption": "The trace equals the sum of the eigenvalues and is unchanged by any change of basis",
+    "coreTranslation": [
+      "<strong>Definition:</strong> $\\operatorname{tr}A=\\sum A_{ii}$. It is <strong>linear</strong> and satisfies $\\operatorname{tr}(AB)=\\operatorname{tr}(BA)$ (even for non-square $A,B$ when the products make sense).",
+      "<strong>Basis independence:</strong> $\\operatorname{tr}(S^{-1}AS)=\\operatorname{tr}(ASS^{-1})=\\operatorname{tr}A$, so the trace is a property of the <strong>operator</strong>; it equals the sum of eigenvalues counted with algebraic multiplicity.",
+      "<strong>Use:</strong> $\\operatorname{tr}(A^*A)=\\sum|a_{ij}|^2=\\|A\\|_F^2$, the Frobenius inner product $\\langle A,B\\rangle=\\operatorname{tr}(A^*B)$, and trace of a projection = its rank."
+    ],
+    "math": "$$\\operatorname{tr}A=\\sum_iA_{ii}=\\sum_j\\lambda_j,\\qquad \\operatorname{tr}(AB)=\\operatorname{tr}(BA),\\qquad \\operatorname{tr}(A^*A)=\\|A\\|_F^2$$",
+    "personalConnection": "The total 'weight' of a machine's stretching: it doesn't matter which way you tilt the camera to look at it, the total stays the same.",
+    "examTrap": "tr(ABC) = tr(BCA) = tr(CAB) (cyclic) but NOT tr(BAC). The cyclic property does not allow arbitrary reordering."
+  },
+  {
+    "id": 21702,
+    "subject": "LAA",
+    "topicId": "17_Trace_Determinants_and_Volume",
+    "topicTitle": "17 \u00b7 Trace, Determinant & Volume",
+    "cardNumber": "02",
+    "category": "DETERMINANT",
+    "highlighterClass": "highlight-amber",
+    "title": "Determinant: Product of Eigenvalues, and Multiplicative",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21702\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"10\" y=\"14\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"60.0\" y=\"31.0\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">det A = \u03a0 \u03bb\u2c7c</text><rect x=\"130\" y=\"14\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"180.0\" y=\"31.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">det(AB) = det A det B</text><rect x=\"10\" y=\"56\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"60.0\" y=\"73.0\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">det A\u1d40 = det A</text><rect x=\"130\" y=\"56\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"180.0\" y=\"73.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">det A\u207b\u00b9 = 1/det A</text><rect x=\"10\" y=\"98\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"60.0\" y=\"115.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">det(cA) = c\u207f det A</text><rect x=\"130\" y=\"98\" width=\"100\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"180.0\" y=\"115.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">det \u2260 0 \u21d4 invertible</text></svg>",
+    "drawingCaption": "The determinant multiplies along composition, equals the product of the eigenvalues, and detects invertibility",
+    "coreTranslation": [
+      "<strong>Meaning:</strong> $\\det A=\\prod\\lambda_j$ (with multiplicity) and $A$ is invertible $\\iff\\det A\\ne0\\iff0$ is not an eigenvalue.",
+      "<strong>Rules:</strong> $\\det(AB)=\\det A\\det B$, $\\det A^T=\\det A$, $\\det A^{-1}=1/\\det A$, $\\det(cA)=c^n\\det A$ (not $c\\det A$!), and swapping two rows flips the sign.",
+      "<strong>Basis independence:</strong> $\\det(S^{-1}AS)=\\det A$, so the determinant belongs to the operator. A block-triangular matrix has $\\det=\\det(\\text{blocks})$."
+    ],
+    "math": "$$\\det A=\\prod_j\\lambda_j,\\quad \\det(AB)=\\det A\\,\\det B,\\quad \\det(cA)=c^n\\det A,\\quad \\det(A+B)\\ne\\det A+\\det B$$",
+    "personalConnection": "A compound interest factor: composing two machines multiplies their overall scaling factors, which is exactly what det does.",
+    "examTrap": "det is multiplicative, NOT additive: det(A + B) \u2260 det A + det B. And det(cA) scales by c\u207f, a common sign/scale slip."
+  },
+  {
+    "id": 21703,
+    "subject": "LAA",
+    "topicId": "17_Trace_Determinants_and_Volume",
+    "topicTitle": "17 \u00b7 Trace, Determinant & Volume",
+    "cardNumber": "03",
+    "category": "VOLUME",
+    "highlighterClass": "highlight-emerald",
+    "title": "|det A| = Volume Scaling Factor",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21703\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"118\" x2=\"100\" y2=\"118\" stroke=\"#000000\" stroke-width=\"0.8\" marker-end=\"url(#arr-21703)\"/><line x1=\"20\" y1=\"118\" x2=\"20\" y2=\"38\" stroke=\"#000000\" stroke-width=\"0.8\" marker-end=\"url(#arr-21703)\"/><rect x=\"20\" y=\"78\" width=\"40\" height=\"40\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"40\" y=\"100\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">area 1</text><line x1=\"108\" y1=\"98\" x2=\"130\" y2=\"98\" stroke=\"#000000\" stroke-width=\"1.5\" marker-end=\"url(#arr-21703)\"/><text x=\"119\" y=\"90\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A</text><polygon points=\"140,118 190,108 210,70 160,80\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"176\" y=\"100\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">|det A|</text><line x1=\"140\" y1=\"118\" x2=\"190\" y2=\"108\" stroke=\"#000000\" stroke-width=\"1.6\" marker-end=\"url(#arr-21703)\"/><line x1=\"140\" y1=\"118\" x2=\"160\" y2=\"80\" stroke=\"#000000\" stroke-width=\"1.6\" marker-end=\"url(#arr-21703)\"/><text x=\"196\" y=\"114\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">Ae\u2081</text><text x=\"138\" y=\"78\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"end\" fill=\"#000000\">Ae\u2082</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">sign of det = orientation (flip if negative)</text><text x=\"120\" y=\"14\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">area(image) = |det A| \u00b7 area(original)</text></svg>",
+    "drawingCaption": "A maps the unit square to the parallelogram spanned by its columns; the area scales by |det A|",
+    "coreTranslation": [
+      "<strong>Geometry:</strong> for $A\\in\\mathbb{R}^{n\\times n}$, the image of the unit cube is the parallelepiped spanned by the columns; its <strong>volume is $|\\det A|$</strong>, and every region's volume is multiplied by $|\\det A|$.",
+      "<strong>Sign:</strong> $\\det A<0$ means $A$ <strong>reverses orientation</strong> (a reflection component); $\\det A=0$ flattens space onto a lower dimension (volume $0$).",
+      "<strong>Via SVD:</strong> $|\\det A|=\\prod\\sigma_j$ because $U,V$ preserve volume and $\\Sigma$ stretches axes by $\\sigma_j$. This is why $|\\det|$ appears in the change-of-variables (Jacobian) formula."
+    ],
+    "math": "$$\\operatorname{vol}(A\\Omega)=|\\det A|\\operatorname{vol}(\\Omega),\\qquad |\\det A|=\\prod_j\\sigma_j,\\qquad \\det A=0\\Rightarrow\\text{flattened}$$",
+    "personalConnection": "A photocopier with a zoom: area changes by the zoom squared, and a mirror setting (negative det) also flips left to right.",
+    "examTrap": "Volume uses |det|. The signed det carries orientation. For Jacobians in integrals always use the ABSOLUTE value."
+  },
+  {
+    "id": 21704,
+    "subject": "LAA",
+    "topicId": "17_Trace_Determinants_and_Volume",
+    "topicTitle": "17 \u00b7 Trace, Determinant & Volume",
+    "cardNumber": "04",
+    "category": "CHARACTERISTIC POLYNOMIAL",
+    "highlighterClass": "highlight-purple",
+    "title": "Coefficients of the Characteristic Polynomial",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21704\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><text x=\"120\" y=\"24\" font-size=\"10.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">p(\u03bb) = det(\u03bbI \u2212 A)</text><text x=\"120\" y=\"46\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">= \u03bb\u207f \u2212 (tr A) \u03bb\u207f\u207b\u00b9 + \u2026 + (\u22121)\u207f det A</text><line x1=\"30\" y1=\"56\" x2=\"210\" y2=\"56\" stroke=\"#000000\" stroke-width=\"0.9\"/><text x=\"60\" y=\"76\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03bb\u207d\u207f\u207b\u00b9\u207e coeff</text><text x=\"60\" y=\"92\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= \u2212 \u03a3 \u03bb\u2c7c</text><text x=\"180\" y=\"76\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">constant term</text><text x=\"180\" y=\"92\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= (\u22121)\u207f \u03a0 \u03bb\u2c7c</text><text x=\"120\" y=\"116\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">2\u00d72: \u03bb\u00b2 \u2212 tr(A) \u03bb + det(A)</text><text x=\"94.56\" y=\"132\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">the whole polynomial = elementary symmetric functions of eigenvalues</text></svg>",
+    "drawingCaption": "The first and last coefficients are the trace and the determinant: for 2\u00d72 that is everything you need",
+    "coreTranslation": [
+      "<strong>Expansion:</strong> $p_A(\\lambda)=\\lambda^n-e_1\\lambda^{n-1}+e_2\\lambda^{n-2}-\\dots+(-1)^ne_n$, where $e_k$ is the <strong>sum of all $k\\times k$ principal minors</strong> = the $k$-th elementary symmetric function of the eigenvalues.",
+      "<strong>Special coefficients:</strong> $e_1=\\operatorname{tr}A$ and $e_n=\\det A$. For $2\\times2$: <strong>$p(\\lambda)=\\lambda^2-\\operatorname{tr}(A)\\lambda+\\det A$</strong>.",
+      "<strong>Check:</strong> the roots must sum to the trace and multiply to the determinant. If your eigenvalues violate either, the arithmetic is wrong."
+    ],
+    "math": "$$p_A(\\lambda)=\\lambda^n-\\operatorname{tr}(A)\\lambda^{n-1}+\\cdots+(-1)^n\\det A,\\qquad p_{2\\times2}=\\lambda^2-\\operatorname{tr}A\\,\\lambda+\\det A$$",
+    "personalConnection": "A fingerprint made of symmetric sums of the eigenvalues: the first digit is their total and the last is their product (with a sign).",
+    "examTrap": "The sign of the constant term is (\u22121)\u207f det A. For odd n it is \u2212det A, which students often get wrong when expanding det(\u03bbI \u2212 A)."
+  },
+  {
+    "id": 21705,
+    "subject": "LAA",
+    "topicId": "17_Trace_Determinants_and_Volume",
+    "topicTitle": "17 \u00b7 Trace, Determinant & Volume",
+    "cardNumber": "05",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-cyan",
+    "title": "Worked Benchmark: A = [[2,1],[1,3]]",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21705\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"12\" y=\"16\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"26.0\" y=\"33.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">2</text><rect x=\"40\" y=\"16\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"54.0\" y=\"33.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">1</text><rect x=\"12\" y=\"44\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"26.0\" y=\"61.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">1</text><rect x=\"40\" y=\"44\" width=\"28\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"54.0\" y=\"61.0\" font-size=\"12\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">3</text><text x=\"40\" y=\"82\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">A</text><text x=\"86\" y=\"28\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">tr A = 5,  det A = 5</text><text x=\"86\" y=\"46\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u03bb\u00b2 \u2212 5\u03bb + 5 = 0</text><text x=\"86\" y=\"64\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u03bb = (5 \u00b1 \u221a5)/2 \u2248 3.62, 1.38</text><text x=\"14\" y=\"104\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">sum:  (5+\u221a5)/2 + (5\u2212\u221a5)/2 = 5 = tr \u2713</text><text x=\"14\" y=\"118\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">product: (25 \u2212 5)/4 = 5 = det \u2713</text><text x=\"4.259399999999971\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">area scales by 5; orientation preserved (det > 0)</text></svg>",
+    "drawingCaption": "Two eigenvalues (5\u00b1\u221a5)/2 sum to the trace 5 and multiply to the determinant 5",
+    "coreTranslation": [
+      "<strong>Basics:</strong> $\\operatorname{tr}A=2+3=5$ and $\\det A=6-1=5$, so $p(\\lambda)=\\lambda^2-5\\lambda+5$.",
+      "<strong>Roots:</strong> $\\lambda=\\frac{5\\pm\\sqrt{25-20}}{2}=\\frac{5\\pm\\sqrt5}{2}\\approx3.62,\\ 1.38$. Sum $=5$ \u2713 (trace) and product $=\\frac{25-5}{4}=5$ \u2713 (determinant).",
+      "<strong>Geometry:</strong> $\\det A=5>0$: <strong>areas are multiplied by $5$</strong> and orientation is preserved. $A$ is symmetric, so the eigenvectors are perpendicular and the singular values equal the eigenvalues."
+    ],
+    "math": "$$\\lambda=\\tfrac{5\\pm\\sqrt5}{2},\\qquad \\lambda_1+\\lambda_2=5=\\operatorname{tr}A,\\qquad \\lambda_1\\lambda_2=5=\\det A$$",
+    "personalConnection": "A quick sanity check for any 2\u00d72: whatever eigenvalues you find must add to the sum of the diagonal and multiply to the cross-difference.",
+    "examTrap": "A symmetric matrix has real eigenvalues even when they are irrational. Don't stop at 'discriminant not a perfect square' and conclude no real eigenvalues."
+  },
+  {
+    "id": 21801,
+    "subject": "LAA",
+    "topicId": "18_Markov_Chains_and_Consensus_Algorithms",
+    "topicTitle": "18 \u00b7 Markov Chains & Consensus",
+    "cardNumber": "01",
+    "category": "MARKOV CHAINS",
+    "highlighterClass": "highlight-cyan",
+    "title": "Stochastic Matrices: Rows Sum to 1",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21801\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"60\" cy=\"72\" r=\"24\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"60\" y=\"76\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1</text><circle cx=\"180\" cy=\"72\" r=\"24\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.8\"/><text x=\"180\" y=\"76\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">2</text><path d=\"M82 62 Q120 38 158 62\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.6\" marker-end=\"url(#arr-21801)\"/><text x=\"120\" y=\"40\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0.1</text><path d=\"M158 82 Q120 106 82 82\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.6\" marker-end=\"url(#arr-21801)\"/><text x=\"120\" y=\"112\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0.5</text><path d=\"M48 52 Q34 28 62 48\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.5\" marker-end=\"url(#arr-21801)\"/><text x=\"34\" y=\"34\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0.9</text><path d=\"M192 52 Q208 28 182 48\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.5\" marker-end=\"url(#arr-21801)\"/><text x=\"208\" y=\"34\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">0.5</text><text x=\"120\" y=\"134\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P = [[0.9, 0.1],[0.5, 0.5]]   P\u00b71 = 1</text><text x=\"120\" y=\"144\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\"></text></svg>",
+    "drawingCaption": "Each row of P is a probability distribution over next states, so P times the all-ones vector is itself",
+    "coreTranslation": [
+      "<strong>Definition:</strong> a <strong>(row-)stochastic</strong> matrix has non-negative entries and each row sums to $1$; $P_{ij}$ is the probability of moving from state $i$ to state $j$.",
+      "<strong>Eigenvalue 1:</strong> $P\\mathbf{1}=\\mathbf{1}$, so $\\lambda=1$ is always an eigenvalue (right eigenvector $\\mathbf{1}$) and every eigenvalue satisfies $|\\lambda|\\le1$.",
+      "<strong>Evolution:</strong> a row distribution $\\pi_k$ evolves by $\\pi_{k+1}=\\pi_kP$, so $\\pi_k=\\pi_0P^k$: <strong>powers of $P$</strong> describe the future."
+    ],
+    "math": "$$P_{ij}\\ge0,\\ \\ P\\mathbf 1=\\mathbf 1,\\qquad \\pi_{k+1}=\\pi_kP,\\qquad |\\lambda(P)|\\le1$$",
+    "personalConnection": "A map of one-way streets with probabilities on each: starting anywhere, your location after k steps is described by the k-th power of the map.",
+    "examTrap": "Row vs column convention: with row-stochastic P you multiply a ROW vector on the left (\u03c0P). Mixing conventions transposes everything."
+  },
+  {
+    "id": 21802,
+    "subject": "LAA",
+    "topicId": "18_Markov_Chains_and_Consensus_Algorithms",
+    "topicTitle": "18 \u00b7 Markov Chains & Consensus",
+    "cardNumber": "02",
+    "category": "MARKOV CHAINS",
+    "highlighterClass": "highlight-amber",
+    "title": "Stationary Distribution & Perron\u2013Frobenius",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21802\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><text x=\"120\" y=\"18\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">irreducible + aperiodic (primitive)</text><line x1=\"120\" y1=\"24\" x2=\"120\" y2=\"38\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-21802)\"/><rect x=\"20\" y=\"42\" width=\"200\" height=\"32\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"120.0\" y=\"61.0\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">unique \u03c0 > 0 with \u03c0P = \u03c0,  \u03a3\u03c0\u1d62 = 1</text><text x=\"120\" y=\"94\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P\u1d4f \u2192 \ud835\udfd9\u03c0   (every row converges to \u03c0)</text><text x=\"120\" y=\"112\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03c0 = left eigenvector for \u03bb = 1</text><text x=\"120\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">initial state is forgotten in the long run</text></svg>",
+    "drawingCaption": "A well-connected chain forgets its start and settles to one distribution \u03c0",
+    "coreTranslation": [
+      "<strong>Perron\u2013Frobenius:</strong> for an <strong>irreducible, aperiodic</strong> stochastic $P$ the eigenvalue $1$ is simple, there is a unique positive stationary row vector $\\pi=\\pi P$ ($\\sum\\pi_i=1$), and every other eigenvalue has $|\\lambda|<1$.",
+      "<strong>Convergence:</strong> $\\pi_0P^k\\to\\pi$ for <strong>every</strong> starting distribution, i.e. $P^k\\to\\mathbf 1\\pi$ (all rows converge to $\\pi$).",
+      "<strong>Interpretation:</strong> $\\pi_i$ is the long-run fraction of time in state $i$; for a doubly stochastic $P$, $\\pi$ is uniform."
+    ],
+    "math": "$$\\pi P=\\pi,\\ \\ \\sum\\pi_i=1\\ \\Rightarrow\\ P^k\\to\\mathbf 1\\pi\\quad(\\text{irreducible},\\ \\text{aperiodic})$$",
+    "personalConnection": "Stirring cream into coffee: after enough stirs the mixture looks the same wherever you started.",
+    "examTrap": "Both conditions are needed: periodic chains oscillate (never converge) and reducible chains can have several stationary distributions."
+  },
+  {
+    "id": 21803,
+    "subject": "LAA",
+    "topicId": "18_Markov_Chains_and_Consensus_Algorithms",
+    "topicTitle": "18 \u00b7 Markov Chains & Consensus",
+    "cardNumber": "03",
+    "category": "CONVERGENCE RATE",
+    "highlighterClass": "highlight-emerald",
+    "title": "Second Eigenvalue Sets the Mixing Speed",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21803\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"120\" x2=\"222\" y2=\"120\" stroke=\"#000000\" stroke-width=\"1\" marker-end=\"url(#arr-21803)\"/><line x1=\"24\" y1=\"120\" x2=\"24\" y2=\"14\" stroke=\"#000000\" stroke-width=\"1\" marker-end=\"url(#arr-21803)\"/><path d=\"M24.0,30.0 L48.0,66.0 L72.0,87.6 L96.0,100.6 L120.0,108.3 L144.0,113.0 L168.0,115.8 L192.0,117.5\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.2\"/><path d=\"M24.0,30.0 L48.0,39.0 L72.0,47.1 L96.0,54.4 L120.0,61.0 L144.0,66.9 L168.0,72.2 L192.0,77.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"5 3\"/><text x=\"120\" y=\"22\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">|\u03bb\u2082| = 0.9 (slow, dashed)</text><text x=\"120\" y=\"34\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">|\u03bb\u2082| = 0.6 (fast, solid)</text><text x=\"30\" y=\"16\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u2016\u03c0\u2096 \u2212 \u03c0\u2016</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">error \u2248 C\u00b7|\u03bb\u2082|\u1d4f    (steps k \u2192)</text></svg>",
+    "drawingCaption": "The farther |\u03bb\u2082| is below 1, the faster the distribution converges to \u03c0",
+    "coreTranslation": [
+      "<strong>Decay:</strong> write $P=\\mathbf 1\\pi+\\sum_{j\\ge2}\\lambda_jP_j$ (diagonalizable case); then $P^k-\\mathbf 1\\pi=\\sum_{j\\ge2}\\lambda_j^kP_j$ and the slowest term is $|\\lambda_2|^k$.",
+      "<strong>Spectral gap:</strong> $1-|\\lambda_2|$ governs convergence: error $\\approx C|\\lambda_2|^k$, mixing time $\\sim1/(1-|\\lambda_2|)$. A larger gap means faster mixing.",
+      "<strong>Same idea for consensus</strong> and for power iteration: the second-largest eigenvalue modulus is the convergence factor."
+    ],
+    "math": "$$\\|\\pi_0P^k-\\pi\\|\\le C\\,|\\lambda_2|^k,\\qquad \\text{mixing time}\\approx\\frac{1}{1-|\\lambda_2|}$$",
+    "personalConnection": "Ripples on a pond: the slowest ripple (second eigenvalue) determines how long the pond takes to go flat.",
+    "examTrap": "|\u03bb\u2082| is the second largest eigenvalue MODULUS (complex eigenvalues count), not the second largest real value."
+  },
+  {
+    "id": 21804,
+    "subject": "LAA",
+    "topicId": "18_Markov_Chains_and_Consensus_Algorithms",
+    "topicTitle": "18 \u00b7 Markov Chains & Consensus",
+    "cardNumber": "04",
+    "category": "CONSENSUS",
+    "highlighterClass": "highlight-purple",
+    "title": "Averaging Consensus: x(k+1) = W x(k)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21804\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"50\" cy=\"40\" r=\"12\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><circle cx=\"170\" cy=\"40\" r=\"12\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><circle cx=\"110\" cy=\"100\" r=\"12\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><line x1=\"62\" y1=\"40\" x2=\"158\" y2=\"40\" stroke=\"#000000\" stroke-width=\"1.4\"/><line x1=\"56\" y1=\"52\" x2=\"104\" y2=\"90\" stroke=\"#000000\" stroke-width=\"1.4\"/><line x1=\"164\" y1=\"52\" x2=\"116\" y2=\"90\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"50\" y=\"44\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">x\u2081</text><text x=\"170\" y=\"44\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">x\u2082</text><text x=\"110\" y=\"104\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">x\u2083</text><text x=\"202.61599999999999\" y=\"100\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u2192 x\u0304\u00b7\ud835\udfd9</text><text x=\"14\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">W row-stochastic: each node averages its neighbors</text><text x=\"4\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">W also column-stochastic \u21d2 converges to the average</text></svg>",
+    "drawingCaption": "Repeated local averaging drives every node to the same value",
+    "coreTranslation": [
+      "<strong>Algorithm:</strong> each node replaces its value by a weighted average of its neighbors' values: $x(k+1)=Wx(k)$ with $W$ <strong>row-stochastic</strong> and supported on the graph.",
+      "<strong>Convergence:</strong> if $W$ is primitive, $x(k)\\to(\\pi x(0))\\mathbf 1$: <strong>all nodes agree</strong> on a weighted average. If $W$ is also <strong>column-stochastic (doubly stochastic)</strong> then $\\pi=\\mathbf 1^T/n$ and the consensus value is the exact <strong>average</strong> $\\frac1n\\sum x_i(0)$.",
+      "<strong>Rate:</strong> geometric, with factor $|\\lambda_2(W)|$; a better-connected graph gives smaller $|\\lambda_2|$ and faster agreement."
+    ],
+    "math": "$$x(k+1)=Wx(k)\\ \\Rightarrow\\ x(k)\\to(\\pi x(0))\\,\\mathbf 1;\\quad W\\ \\text{doubly stochastic}\\Rightarrow\\ \\to\\bar x\\,\\mathbf 1,\\ \\bar x=\\tfrac1n\\textstyle\\sum x_i(0)$$",
+    "personalConnection": "A room of people who keep adjusting their opinion to the average of whoever they talk to: gradually the room agrees.",
+    "examTrap": "Row-stochastic gives consensus, but the value is a WEIGHTED average. Only doubly stochastic W preserves the sum and yields the plain average."
+  },
+  {
+    "id": 21805,
+    "subject": "LAA",
+    "topicId": "18_Markov_Chains_and_Consensus_Algorithms",
+    "topicTitle": "18 \u00b7 Markov Chains & Consensus",
+    "cardNumber": "05",
+    "category": "CONSENSUS",
+    "highlighterClass": "highlight-cyan",
+    "title": "Graph Laplacian & Algebraic Connectivity",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21805\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"40\" cy=\"40\" r=\"11\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><circle cx=\"120\" cy=\"40\" r=\"11\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><circle cx=\"200\" cy=\"40\" r=\"11\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><circle cx=\"120\" cy=\"100\" r=\"11\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><line x1=\"51\" y1=\"40\" x2=\"109\" y2=\"40\" stroke=\"#000000\" stroke-width=\"1.4\"/><line x1=\"131\" y1=\"40\" x2=\"189\" y2=\"40\" stroke=\"#000000\" stroke-width=\"1.4\"/><line x1=\"120\" y1=\"51\" x2=\"120\" y2=\"89\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"14\" y=\"76\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">L = D \u2212 A  (PSD)</text><text x=\"14\" y=\"92\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">L\ud835\udfd9 = 0</text><text x=\"14\" y=\"108\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u1e8b = \u2212Lx  \u21d2  x \u2192 x\u0304\ud835\udfd9</text><text x=\"130.8404\" y=\"82\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">connected \u21d4 \u03bb\u2082(L) > 0</text><text x=\"129.92000000000002\" y=\"98\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">(algebraic connectivity)</text><text x=\"150\" y=\"114\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">rate = e^{\u2212\u03bb\u2082 t}</text><text x=\"14\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\"># of zero eigenvalues = # of connected components</text></svg>",
+    "drawingCaption": "The second-smallest Laplacian eigenvalue is positive exactly when the graph is connected, and it sets the consensus speed",
+    "coreTranslation": [
+      "<strong>Laplacian:</strong> $L=D-A$ ($D$ = degree matrix, $A$ = adjacency). It is symmetric <strong>positive semidefinite</strong> with $x^TLx=\\sum_{(i,j)\\in E}(x_i-x_j)^2$, so $L\\mathbf 1=0$.",
+      "<strong>Algebraic connectivity:</strong> $0=\\lambda_1\\le\\lambda_2\\le\\cdots$; $\\lambda_2>0\\iff$ the graph is <strong>connected</strong> (the multiplicity of $0$ counts connected components).",
+      "<strong>Continuous consensus:</strong> $\\dot x=-Lx$ has solution $x(t)=e^{-Lt}x(0)\\to\\bar x\\mathbf 1$ for connected graphs, with error decaying like $e^{-\\lambda_2t}$."
+    ],
+    "math": "$$x^TLx=\\sum_{(i,j)\\in E}(x_i-x_j)^2\\ge0,\\qquad L\\mathbf 1=0,\\qquad \\text{connected}\\iff\\lambda_2(L)>0$$",
+    "personalConnection": "A network of springs between nodes: the energy is the total stretch, and the slowest relaxing mode is governed by \u03bb\u2082.",
+    "examTrap": "Laplacian eigenvalues are \u2265 0 with the all-ones vector at 0. The discrete update uses W = I \u2212 \u03b5L with \u03b5 small enough that W stays stochastic (\u03b5 \u2264 1/d_max)."
+  },
+  {
+    "id": 21806,
+    "subject": "LAA",
+    "topicId": "18_Markov_Chains_and_Consensus_Algorithms",
+    "topicTitle": "18 \u00b7 Markov Chains & Consensus",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: P = [[0.9, 0.1],[0.5, 0.5]]",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-21806\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><text x=\"14\" y=\"22\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">stationary: \u03c0 = (a, b),  a + b = 1</text><text x=\"14\" y=\"40\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u03c0P = \u03c0:  0.9a + 0.5b = a</text><text x=\"14\" y=\"54\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u21d2 0.5b = 0.1a \u21d2 a = 5b</text><text x=\"14\" y=\"72\" font-size=\"11\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u21d2 \u03c0 = (5/6, 1/6)</text><text x=\"14\" y=\"94\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">eigenvalues: 1 and tr \u2212 1 = 1.4 \u2212 1 = 0.4</text><text x=\"14\" y=\"108\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">|\u03bb\u2082| = 0.4 \u21d2 error shrinks 0.4\u1d4f</text><text x=\"14\" y=\"124\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">P\u00b2 \u2248 [[.86, .14],[.70, .30]] \u2192 rows \u2192 (.83, .17)</text><text x=\"14\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">after k = 5: 0.4\u2075 \u2248 0.01 off \u03c0</text><circle cx=\"190\" cy=\"60\" r=\"20\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"190\" y=\"64\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1</text><circle cx=\"190\" cy=\"110\" r=\"20\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.6\"/><text x=\"190\" y=\"114\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">2</text><line x1=\"190\" y1=\"80\" x2=\"190\" y2=\"90\" stroke=\"#000000\" stroke-width=\"1.3\" marker-end=\"url(#arr-21806)\"/><text x=\"222\" y=\"88\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">0.1</text></svg>",
+    "drawingCaption": "Long-run fractions are 5/6 and 1/6; the second eigenvalue 0.4 means the chain mixes in a few steps",
+    "coreTranslation": [
+      "<strong>Stationary:</strong> solve $\\pi P=\\pi$: $0.9a+0.5b=a\\Rightarrow0.5b=0.1a\\Rightarrow a=5b$, with $a+b=1$ gives <strong>$\\pi=(5/6,\\,1/6)$</strong>. Check column 2: $0.1a+0.5b=\\tfrac{0.5}{6}+\\tfrac{0.5}{6}=\\tfrac16$ \u2713.",
+      "<strong>Eigenvalues:</strong> $\\lambda_1=1$ and $\\lambda_2=\\operatorname{tr}P-1=1.4-1=\\mathbf{0.4}$ (also $\\det P=0.45-0.05=0.4$ \u2713).",
+      "<strong>Mixing:</strong> $\\pi_0P^k-\\pi\\sim0.4^k$, so after $5$ steps it is within about $1\\%$ of $\\pi$; e.g. $P^2\\approx\\begin{pmatrix}0.86&0.14\\\\0.70&0.30\\end{pmatrix}$ already has rows near $(0.83,0.17)$."
+    ],
+    "math": "$$\\pi=\\big(\\tfrac56,\\tfrac16\\big),\\qquad \\lambda_2=\\operatorname{tr}P-1=0.4,\\qquad \\|\\pi_0P^k-\\pi\\|\\propto0.4^k$$",
+    "personalConnection": "A weather model that says 'sunny stays sunny 90% of the time': in the long run about 5 of every 6 days are sunny, wherever you start.",
+    "examTrap": "\u03c0 is a LEFT eigenvector (\u03c0P = \u03c0). Solving Pv = v instead gives the all-ones vector, which is not the stationary distribution."
   }
 ]);
