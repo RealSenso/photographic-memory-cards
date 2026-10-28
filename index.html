@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261029_refine7"></script>
+  <script src="cards_data.js?v=20261029_refine8"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma15"></script>
@@ -14,14 +14,18 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 
   <style>
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Roman.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Md.otf') format('opentype'); font-weight: 500 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Bd.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Blk.otf') format('opentype'); font-weight: 800 900; font-style: normal; font-display: swap; }
     :root {
       --bg: #0b0f1a; --rail: #0f1424; --panel: #0f1527; --panel-2: #121930; --deep: #0c1122;
       --line: #1d2640; --line-2: #25314f; --line-3: #2a3a5e;
       --text: #e6ebf5; --text-2: #d3dbec; --muted: #9aa6c0; --muted-2: #b4bfd6;
       --accent: #5cc8f5; --green: #5fd3a0; --amber: #f2b84b; --red: #f5c2c2;
-      --serif: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --mono: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --serif: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --sans: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --mono: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); }
@@ -89,7 +93,7 @@
       background-color: #f8f6ef;
       background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 29px, #c9d3df 29px, #c9d3df 30px);
       box-shadow: 0 18px 40px -10px rgba(0,0,0,.75), 0 2px 0 #fff inset; color: #2b2b2b;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); column-gap: 34px; align-items: start; }
+      font-family: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif; display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); column-gap: 34px; align-items: start; }
     .paper::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #d2574a; border-radius: 6px 6px 0 0; }
     .paper-title { grid-column: 1; margin: 0 0 6px; font-family: inherit; font-weight: 700; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.1; text-transform: uppercase; letter-spacing: .4px; color: #262626;
       padding-bottom: 6px; border-bottom: 3px double #555; min-height: 60px; display: flex; align-items: flex-end; }
@@ -99,7 +103,10 @@
     .sketch-box .plate-svg { width: 100%; }
     .sketch-box .plate-svg svg { width: 100%; height: auto; display: block; }
     .sketch figcaption { margin-top: 6px; font-family: inherit; font-size: 13.5px; line-height: 1.35; color: #555; }
-    .sketch-box svg text { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    .sketch-box svg text { font-family: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    .info .pt p { margin: 0; }
+    .info h3.sub { display: inline-block; margin: 0; font-size: 15px; font-weight: 700; line-height: 30px; letter-spacing: .2px; color: #1d1b18; background: linear-gradient(transparent 58%, rgba(255, 213, 79, .6) 58%); }
+    .info .pt + .pt { margin-top: 15px; }
     .info { grid-column: 1; margin: 6px 0 0; font-size: clamp(16px, 1.25vw, 18px); line-height: 30px; color: #35322d; font-weight: 400; }
     .info strong { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255, 213, 79, .55) 62%); }
     .info .katex, .connection .katex { font-size: 1.02em; }
@@ -541,13 +548,19 @@
         : `<div class="plate-svg">${card.drawingSvg || ''}</div>`;
     }
 
-    /* The info reads as one flowing paragraph, like handwriting on the card. */
-    const LEAD = /^\s*<strong>\s*(What|How|Why|Problem|Setup|Result|Check|Pattern|Step\s*\d*|Iteration\s*\d*)[^<]{0,30}<\/strong>\s*/i;
-    function infoParagraph(card) {
+    /* Each point gets its sub-title (Definition, Why it matters, ...) on its own line. */
+    const SUB = /^\s*<strong>\s*([^<]{1,60}?)\s*:?\s*<\/strong>\s*:?\s*/;
+    const cap = t => t.replace(/^([a-z])/, m => m.toUpperCase());
+    function infoHtml(card) {
       return card.coreTranslation.map(pt => {
-        const t = pt.replace(LEAD, '').trim();
-        return t.replace(/^([a-z])/, m => m.toUpperCase());
-      }).join(' ');
+        const m = pt.match(SUB);
+        if (!m) return `<div class="pt"><p>${cap(pt.trim())}</p></div>`;
+        const rest = cap(pt.slice(m[0].length).trim());
+        return `<div class="pt"><h3 class="sub">${m[1]}</h3>${rest ? `<p>${rest}</p>` : ''}</div>`;
+      }).join('');
+    }
+    function infoParagraph(card) {   /* plain text, used for search snippets */
+      return card.coreTranslation.map(pt => pt.replace(SUB, '').trim()).join(' ');
     }
 
     function cardHtml(card) {
@@ -563,7 +576,7 @@
             <div class="sketch-box">${sketchHtml(card)}</div>
             <figcaption>${card.drawingCaption || ''}</figcaption>
           </figure>
-          <p class="info">${infoParagraph(card)}</p>
+          <div class="info">${infoHtml(card)}</div>
           <section class="connection"><h2>CONNECTION</h2><p>${card.personalConnection}</p></section>
         </article>
         <details class="formal">
