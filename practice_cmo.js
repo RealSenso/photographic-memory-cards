@@ -1,8 +1,7 @@
 /* Practice Questions Database for CMO (Topics 01-08) */
 window.PRACTICE_DATA = window.PRACTICE_DATA || [];
 
-window.PRACTICE_DATA.push(
-[
+window.PRACTICE_DATA.push([
   {
     "id": 10191,
     "subject": "CMO",
@@ -315,5 +314,4 @@ window.PRACTICE_DATA.push(
     "solution": "<p><span class=\"part\">Part (a): L-BFGS Two-Loop Recursion Algorithm</span><br>\nGiven gradient $g_k = \\nabla f(x_k)$ and past $m$ pairs $\\{s_i, y_i\\}$ with $\\rho_i = 1/(y_i^\\top s_i)$:\n<ol>\n  <li><strong>First Loop (Backward):</strong><br>\n  Set $q \\leftarrow g_k$.<br>\n  For $i = k - 1, k - 2, \\dots, k - m$:<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$\\alpha_i \\leftarrow \\rho_i s_i^\\top q$<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$q \\leftarrow q - \\alpha_i y_i$</li>\n  <li><strong>Base Scaling:</strong><br>\n  $r \\leftarrow H_k^{(0)} q = \\gamma_k q$</li>\n  <li><strong>Second Loop (Forward):</strong><br>\n  For $i = k - m, k - m + 1, \\dots, k - 1$:<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$\\beta \\leftarrow \\rho_i y_i^\\top r$<br>\n  &nbsp;&nbsp;&nbsp;&nbsp;$r \\leftarrow r + s_i (\\alpha_i - \\beta)$</li>\n  <li><strong>Return Direction:</strong><br>\n  $p_k = -r$.</li>\n</ol></p>\n\n<p><span class=\"part\">Part (b): Complexity Analysis</span><br>\n<ul>\n  <li><strong>Operations:</strong> In each loop iteration, we compute one vector dot product ($s_i^\\top q$ or $y_i^\\top r$, taking $2n$ FLOPs) and one vector saxpy update (taking $2n$ FLOPs).<br>\n  Total loop FLOPs $= 2 \\times m \\times 4n = <span class=\"ans\">8mn \\text{ FLOPs} = \\mathcal{O}(mn)</span>$.</li>\n  <li><strong>Memory:</strong> We store $m$ vectors $s_i$ and $m$ vectors $y_i$, totaling <span class=\"ans\">$2mn \\text{ floats} = \\mathcal{O}(mn)$</span>.</li>\n  <li><strong>Comparison:</strong> For $n = 10^6$ and $m = 10$, standard BFGS requires $10^{12}$ floats ($\\approx 8$ Terabytes!). L-BFGS requires only $2 \\times 10 \\times 10^6 = 20 \\times 10^6$ floats ($\\approx 80$ Megabytes!), making Newton-like convergence possible on deep networks.</li>\n</ul></p>\n\n<p><span class=\"part\">Part (c): Optimal Initial Scaling Factor $\\gamma_k$</span><br>\nThe standard initial matrix uses the most recent curvature:\n$$<span class=\"ans\">\\gamma_k = \\frac{s_{k-1}^\\top y_{k-1}}{y_{k-1}^\\top y_{k-1}}</span>$$\nThis represents the inverse of the estimated eigenvalue of the true Hessian along the most recent displacement $s_{k-1}$, ensuring unit step length $\\alpha = 1$ is accepted near the minimum without line search backtracking.</p>",
     "takeaway": "L-BFGS turns quasi-Newton optimization into a linear-time $\\mathcal{O}(mn)$ algorithm by unrolling the BFGS matrix product into two sequential vector-vector loops."
   }
-]
-);
+]);
