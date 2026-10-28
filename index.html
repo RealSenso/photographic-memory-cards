@@ -9,6 +9,7 @@
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
+  <script src="practice_cmo.js?v=20261029_p1"></script>
   <script src="topic_importance.js?v=20261028_imp1"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
@@ -120,6 +121,30 @@
     #sync-modal a { color:var(--accent); text-decoration:underline; } #sync-modal .ok { color:var(--green); } #sync-modal .small { font-size:12.5px; color:#8e9bb8; }
     #sync-modal input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2a3558; background:#0a0f1d; color:#fff; margin:6px 0 10px; }
     #sync-modal .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .chipbtn.prac { border-color: #6b5436; color: #e8c9a0; background: #241b13; }
+    .stripsep { width: 1px; height: 28px; background: var(--line-2); margin: 0 6px; align-self: center; flex: none; }
+    .flipwrap { flex: 1 0 auto; perspective: 1800px; cursor: pointer; display: flex; }
+    .flipper { position: relative; width: 100%; display: grid; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.3,.7,.2,1); }
+    .flipper.is-flipped { transform: rotateY(180deg); }
+    .pface { grid-area: 1 / 1; position: relative; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6px; padding: 34px 56px 40px; min-height: 480px;
+      background-color: #fbf8f1; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 39px, #c9d3df 39px, #c9d3df 40px);
+      color: #2b2823; font-family: 'Helvetica Neue LT Std','Helvetica Neue',Helvetica,Arial,sans-serif; box-shadow: 0 10px 34px rgba(0,0,0,.5); }
+    .pface::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #d2574a; border-radius: 6px 6px 0 0; }
+    .pback { transform: rotateY(180deg); }
+    .pback::before { background: #2f8f62; }
+    .plabel { margin: 0 0 14px; font-size: 18px; letter-spacing: 1.6px; font-weight: 700; color: #8a2f25; border-bottom: 3px double #8a2f25; display: inline-block; line-height: 1.2; }
+    .plabel.sol { color: #16603f; border-color: #16603f; }
+    .pbody { font-size: 21px; line-height: 40px; color: #2b2823; }
+    .pbody p { margin: 0 0 20px; } .pbody ul, .pbody ol { margin: 0 0 20px 26px; } .pbody ul { list-style: disc; } .pbody ol { list-style: decimal; }
+    .pbody li { margin-bottom: 8px; }
+    .pbody .part { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255,213,79,.55) 62%); }
+    .pbody .ans { font-weight: 700; color: #16603f; }
+    .pbody .katex-display { margin: 10px 0; } .pbody .katex { font-size: 1.04em; }
+    .phint { margin-top: 18px; font-size: 14px; color: #8b8478; }
+    .phint kbd { font-family: var(--mono); border: 1px solid #b9b2a3; border-radius: 4px; padding: 0 5px; }
+    .pface .connection p { font-size: 19px; line-height: 36px; }
+    .pface .connection h2 { font-size: 16px; }
+    @media (max-width: 900px) { .pface { padding: 22px 20px 28px; min-height: 360px; } .pbody { font-size: 18px; line-height: 34px; } }
     .donebtn { min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid #2c6e57; background: #11261f; color: #a9ecd0; font-size: 14.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
     .donebtn:hover { background: #16342a; }
     .donebtn.is-done { background: var(--green); border-color: var(--green); color: #06101c; }
@@ -497,7 +522,7 @@
     }
     function toggleDone() {
       const c = deck[idx];
-      if (!c) return;
+      if (!c || isPractice(c)) return;
       doneTs[c.id] = done.has(c.id) ? -Date.now() : Date.now();
       rebuildDone();
       saveDone();
@@ -582,6 +607,14 @@
     let deck = [];
     let idx = 0;
     let currentImpFilter = 'all';
+    let flipped = false;
+    /* Practice cards: PYQs and same-level questions that follow a topic's explanation cards (data: practice_*.js). */
+    function practiceFor(sub, topicId) {
+      return (window.PRACTICE_DATA || []).filter(q => q.subject === sub && q.topicId === topicId)
+        .map((q, i) => Object.assign({ kind: 'practice', cardNumber: 'P' + (i + 1) }, q));
+    }
+    const isPractice = c => c && c.kind === 'practice';
+    function flipCard() { if (!isPractice(deck[idx])) return; flipped = !flipped; const f = document.querySelector('.flipper'); if (f) f.classList.toggle('is-flipped', flipped); renderActions(); }
 
     function setImpFilter(f) {
       currentImpFilter = f;
@@ -626,7 +659,8 @@
 
     function switchTopic(topicId, keepIdx) {
       currentTopic = topicId;
-      deck = getSubjectCards(currentSubject).filter(c => topicOf(c) === topicId);
+      deck = getSubjectCards(currentSubject).filter(c => topicOf(c) === topicId).concat(practiceFor(currentSubject, topicId));
+      flipped = false;
       idx = keepIdx ? Math.max(0, Math.min(idx, deck.length - 1)) : 0;
       closeSearch();
       renderAll();
@@ -635,6 +669,7 @@
 
     function goTo(i) {
       if (!deck.length) return;
+      flipped = false;
       idx = Math.max(0, Math.min(deck.length - 1, i));
       renderAll();
     }
@@ -708,16 +743,17 @@
         : null;
       const impPill = imp ? `<span class="imp-dot imp-${imp.tier}" title="${imp.label}: ${esc(imp.reason)}" style="margin-left:5px;display:inline-block;vertical-align:middle"></span>` : '';
       document.getElementById('crumb').innerHTML = `<span>${currentSubject}</span><span aria-hidden="true">/</span>
-        <span class="t">${t ? esc(t.title) : '—'}${impPill}</span>${card ? `<span aria-hidden="true">/</span><b>Card ${esc(card.cardNumber)}</b>` : ''}`;
-      document.title = card ? `${card.title} · Plates` : 'Plates · Photographic Memory Cards';
+        <span class="t">${t ? esc(t.title) : '—'}${impPill}</span>${card ? `<span aria-hidden="true">/</span><b>${isPractice(card) ? 'Practice' : 'Card'} ${esc(card.cardNumber)}</b>` : ''}`;
+      document.title = card ? `${isPractice(card) ? 'Practice ' + card.cardNumber : stripTags(card.title)} · Plates` : 'Plates · Photographic Memory Cards';
     }
 
     function renderStrip() {
       const strip = document.getElementById('card-strip');
       if (!deck.length) { strip.innerHTML = ''; return; }
-      strip.innerHTML = deck.map((c, i) =>
-        `<button class="chipbtn ${done.has(c.id) ? 'done' : ''} ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Card ${esc(c.cardNumber)}${done.has(c.id) ? ', done' : ''}${i === idx ? ', current' : ''}">${done.has(c.id) ? '✓' : esc(c.cardNumber)}</button>`
-      ).join('') + `<span class="hint"><kbd>←</kbd> <kbd>→</kbd> turn the card · <kbd>D</kbd> mark done · <kbd>/</kbd> search</span>`;
+      strip.innerHTML = deck.map((c, i) => isPractice(c)
+        ? `${deck[i - 1] && !isPractice(deck[i - 1]) ? '<span class="stripsep" title="Practice questions"></span>' : ''}<button class="chipbtn prac ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Practice question ${esc(c.cardNumber)}${i === idx ? ', current' : ''}">${esc(c.cardNumber)}</button>`
+        : `<button class="chipbtn ${done.has(c.id) ? 'done' : ''} ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Card ${esc(c.cardNumber)}${done.has(c.id) ? ', done' : ''}${i === idx ? ', current' : ''}">${done.has(c.id) ? '✓' : esc(c.cardNumber)}</button>`
+      ).join('') + `<span class="hint"><kbd>←</kbd> <kbd>→</kbd> turn the card · <kbd>D</kbd> mark done · <kbd>F</kbd> flip practice · <kbd>/</kbd> search</span>`;
     }
 
     function sketchHtml(card) {
@@ -741,7 +777,33 @@
       return card.coreTranslation.map(pt => pt.replace(SUB, '').trim()).join(' ');
     }
 
+    function practiceHtml(q) {
+      const tag = q.kind2 === 'pyq' ? ('PYQ · ' + esc(q.source)) : 'Practice · same level as the PYQs';
+      return `
+        <div class="paper-bar">
+          <span class="chip">PRACTICE ${esc(q.cardNumber)}</span>
+          <span class="cat">${tag}</span>
+          ${q.marks ? `<span class="cat">${esc(q.marks)}</span>` : ''}
+          <button class="copy-btn" onclick="flipCard()">⟳ <span>Flip</span></button>
+        </div>
+        <div class="flipwrap" onclick="if(!event.target.closest('a,button'))flipCard()">
+          <div class="flipper ${flipped ? 'is-flipped' : ''}">
+            <article class="pface pfront" aria-label="Question">
+              <h2 class="plabel">QUESTION</h2>
+              <div class="pbody">${q.question}</div>
+              <div class="phint">Try it on paper first, then flip for the solution &nbsp;(<kbd>F</kbd> or click)</div>
+            </article>
+            <article class="pface pback" aria-label="Solution">
+              <h2 class="plabel sol">SOLUTION</h2>
+              <div class="pbody">${q.solution}</div>
+              ${q.takeaway ? `<section class="connection"><h2>REMEMBER</h2><p>${q.takeaway}</p></section>` : ''}
+            </article>
+          </div>
+        </div>`;
+    }
+
     function cardHtml(card) {
+      if (isPractice(card)) return practiceHtml(card);
       const imp = (typeof window.getTopicImportance === 'function')
         ? window.getTopicImportance(card.subject || currentSubject, card.topicId)
         : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
@@ -789,7 +851,9 @@
         <button class="nav" onclick="step(-1)">← Previous card</button>
         <div class="sp"></div>
         <span class="counter">${idx + 1} of ${deck.length}</span>
-        <button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}">${done.has(deck[idx].id) ? '✓ Done (click to undo)' : 'Mark as done'}</button>
+        ${isPractice(deck[idx])
+          ? `<button class="donebtn" onclick="flipCard()">${flipped ? '↺ Back to question' : '⟳ Show solution'}</button>`
+          : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}">${done.has(deck[idx].id) ? '✓ Done (click to undo)' : 'Mark as done'}</button>`}
         <div class="sp"></div>
         <button class="nav next" onclick="step(1)">Next card →</button>`;
     }
@@ -889,7 +953,7 @@
     function printDeck() {
       if (!deck.length) return;
       const stage = document.getElementById('stage');
-      stage.innerHTML = deck.map(cardHtml).join('');
+      stage.innerHTML = deck.filter(c => !isPractice(c)).map(cardHtml).join('');
       typesetMath(stage);
       const restore = () => { renderStage(); window.removeEventListener('afterprint', restore); };
       window.addEventListener('afterprint', restore);
@@ -912,6 +976,7 @@
       if (e.key === '/') { e.preventDefault(); input.focus(); }
       else if (e.key === 'ArrowRight') step(1);
       else if (e.key === 'd' || e.key === 'D') toggleDone();
+      else if (e.key === 'f' || e.key === 'F') flipCard();
       else if (e.key === 'ArrowLeft') step(-1);
       else if (e.key === ' ' && !(t && t.tagName === 'BUTTON')) { e.preventDefault(); step(1); }
     });
