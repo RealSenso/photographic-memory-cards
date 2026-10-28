@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photographic Memory Deck · Sirianni Method</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- KaTeX for crisp mathematical formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    :root {
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-hand: 'Caveat', cursive;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: #0d1117;
+      color: #e6edf3;
+      user-select: none;
+    }
+
+    .font-handwriting {
+      font-family: var(--font-hand);
+    }
+    .font-serif-title {
+      font-family: var(--font-serif);
+      letter-spacing: -0.01em;
+    }
+    .font-mono-code {
+      font-family: var(--font-mono);
+    }
+
+    /* 3D Card Flip Mechanics */
+    .perspective-1000 {
+      perspective: 1200px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+
+    /* Tactile Index Card Texture with Classic Lined Ruled Paper */
+    .index-card-paper {
+      background-color: #fffefb;
+      background-image: 
+        linear-gradient(to right, transparent 58px, #fca5a5 58px, #fca5a5 60px, transparent 60px),
+        linear-gradient(to bottom, transparent 32px, #e2e8f0 32px, #e2e8f0 33px, transparent 33px);
+      background-size: 100% 100%, 100% 26px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35), 0 8px 10px -6px rgba(0, 0, 0, 0.25), inset 0 0 20px rgba(245, 230, 211, 0.2);
+    }
+
+    .index-card-dark {
+      background-color: #161e2e;
+      background-image: 
+        linear-gradient(to right, transparent 58px, #e11d48 58px, #e11d48 60px, transparent 60px),
+        linear-gradient(to bottom, transparent 32px, rgba(51, 65, 85, 0.4) 32px, rgba(51, 65, 85, 0.4) 33px, transparent 33px);
+      background-size: 100% 100%, 100% 26px;
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Subtle paper corner fold effect */
+    .card-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-width: 0 24px 24px 0;
+      border-style: solid;
+      border-color: #f1f5f9 #0d1117 #f1f5f9 #0d1117;
+      box-shadow: -1px 1px 2px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-3 sm:p-6 lg:p-8 selection:bg-amber-500 selection:text-black">
+
+  <!-- Header & Navigation Bar -->
+  <header class="w-full max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-lg shadow-sm">
+        🧠
+      </div>
+      <div>
+        <h1 class="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
+          The Sirianni Memory Deck
+          <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20">
+            Photographic System
+          </span>
+        </h1>
+        <p class="text-xs text-slate-400">
+          Dual-Coding: Visual Anchor + Plain Translation + Personal Metaphor
+        </p>
+      </div>
+    </div>
+
+    <!-- Mode and Controls -->
+    <div class="flex items-center gap-2">
+      <!-- Study View vs Desk Grid View Toggle -->
+      <button onclick="setViewMode('study')" id="btn-study-view" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm">
+        🃏 Study
+      </button>
+      <button onclick="setViewMode('grid')" id="btn-grid-view" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition border border-slate-700">
+        ⊞ Desk
+      </button>
+      <button onclick="toggleTheme()" class="px-2.5 py-1.5 rounded-lg text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 transition border border-slate-700" title="Toggle Light/Dark Index Card">
+        🌓
+      </button>
+      <button onclick="openAddModal()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600/90 text-white hover:bg-blue-500 transition shadow-sm flex items-center gap-1">
+        <span>+</span> Add Card
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="w-full max-w-4xl mx-auto flex-1 flex flex-col items-center justify-center relative">
+    
+    <!-- ================= STUDY MODE (3D FLIP CARD) ================= -->
+    <div id="study-container" class="w-full flex flex-col items-center">
+      
+      <!-- Deck Progress & Box Indicator -->
+      <div class="w-full max-w-2xl flex items-center justify-between text-xs text-slate-400 mb-3 px-2">
+        <div class="flex items-center gap-2">
+          <span id="box-badge" class="px-2 py-0.5 rounded font-mono font-medium text-[11px] bg-slate-800 border border-slate-700 text-amber-300">
+            Box 1: Learning
+          </span>
+          <span id="card-category" class="font-medium text-slate-300">
+            Nonlinear Optimization
+          </span>
+        </div>
+        <div class="font-mono font-semibold text-slate-300" id="card-counter">
+          1 / 6
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full max-w-2xl h-1.5 bg-slate-800 rounded-full mb-5 overflow-hidden">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-rose-500 transition-all duration-300" style="width: 16%;"></div>
+      </div>
+
+      <!-- 3D Interactive Index Card Stage -->
+      <div class="w-full max-w-2xl h-[400px] sm:h-[430px] perspective-1000 cursor-pointer" onclick="flipCurrentCard()">
+        <div id="card-inner" class="w-full h-full transform-style-3d relative rounded-2xl">
+          
+          <!-- ================= FRONT OF INDEX CARD ================= -->
+          <div id="card-front" class="index-card-paper absolute inset-0 rounded-2xl p-6 sm:p-8 flex flex-col justify-between backface-hidden text-slate-900 border border-amber-200/60 transition-colors duration-200">
+            
+            <!-- Top Header & Index Tag -->
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-[11px] font-mono tracking-widest uppercase font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-200" id="front-index">
+                  #01 · ANCHOR
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 font-serif-title leading-tight" id="front-title">
+                  Feasible Set & The Active Wall
+                </h2>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-400 bg-white/80 px-2 py-1 rounded shadow-xs border border-slate-200">
+                  FRONT · CLICK TO FLIP
+                </span>
+              </div>
+            </div>
+
+            <!-- Center Visual Anchor (Crucial Sirianni Step: Iconic Sketch) -->
+            <div class="flex-1 flex flex-col items-center justify-center my-3 py-2">
+              <div id="front-visual" class="w-full max-w-[280px] h-[160px] flex items-center justify-center">
+                <!-- SVG / Visual Drawing injected here -->
+              </div>
+              <span class="text-xs font-handwriting text-slate-500 text-center mt-1 text-base tracking-wide" id="front-visual-caption">
+                "The invisible electric fence"
+              </span>
+            </div>
+
+            <!-- Bottom: Active Recall Challenge Prompt -->
+            <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between">
+              <div class="text-xs text-slate-600 italic">
+                <span class="font-bold text-rose-600 not-italic">Recall Trigger:</span> 
+                <span id="front-trigger">Which constraints actively dictate your next allowed move at point x?</span>
+              </div>
+              <span class="text-xs text-slate-400 font-mono flex items-center gap-1">
+                Space ⮐
+              </span>
+            </div>
+
+          </div>
+
+          <!-- ================= BACK OF INDEX CARD ================= -->
+          <div id="card-back" class="index-card-paper absolute inset-0 rounded-2xl p-6 sm:p-8 flex flex-col justify-between backface-hidden rotate-y-180 text-slate-900 border border-amber-200/60 transition-colors duration-200 overflow-y-auto">
+            
+            <!-- Top Header -->
+            <div class="flex items-start justify-between border-b border-slate-200/80 pb-2">
+              <div>
+                <span class="text-[10px] font-mono tracking-widest uppercase font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200" id="back-tag">
+                  TRANSLATION & RETENTION
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 font-serif-title mt-1" id="back-title">
+                  The Plain Translation
+                </h3>
+              </div>
+              <span class="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-400 bg-white/80 px-2 py-1 rounded shadow-xs border border-slate-200">
+                BACK
+              </span>
+            </div>
+
+            <!-- Content Quadrants -->
+            <div class="space-y-3 py-2 text-xs sm:text-sm">
+              
+              <!-- 1. The Translation (Feynman Technique) -->
+              <div class="bg-blue-50/70 border-l-4 border-blue-500 p-2.5 rounded-r">
+                <div class="text-[10px] font-bold text-blue-800 uppercase tracking-wider mb-0.5">
+                  1. The Translation (In Plain Words)
+                </div>
+                <div class="text-slate-800 leading-snug" id="back-translation">
+                  The feasible set Ω is the allowed playground. The active set 𝒜(x) represents the constraints whose boundary you are physically leaning against right now. Inactive constraints (g_j(x) &lt; 0) have room to spare and don't restrict immediate local steps.
+                </div>
+              </div>
+
+              <!-- 2. Mathematical Formalism -->
+              <div class="bg-slate-50 border border-slate-200 p-2.5 rounded font-mono text-xs text-slate-900">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-sans mb-1">
+                  2. Formal Math
+                </div>
+                <div id="back-math" class="leading-relaxed">
+                  $$\Omega = \{x \in \mathbb{R}^n : h_i(x) = 0, g_j(x) \le 0\}$$
+                  $$\mathcal{A}(x) = \{j : g_j(x) = 0\}$$
+                </div>
+              </div>
+
+              <!-- 3. Personal Analogy (The Emotional/Memory Anchor) -->
+              <div class="bg-amber-50/80 border-l-4 border-amber-500 p-2.5 rounded-r">
+                <div class="text-[10px] font-bold text-amber-800 uppercase tracking-wider mb-0.5">
+                  3. Personal Mental Model
+                </div>
+                <div class="text-slate-800 leading-snug italic font-serif" id="back-analogy">
+                  "Standing in the corner of a room: only the two walls you are touching prevent you from walking through them. The far wall across the room has zero influence on your immediate next step."
+                </div>
+              </div>
+
+              <!-- 4. Trap / Exam Pitfall -->
+              <div class="text-[11px] text-rose-800 bg-rose-50/80 p-2 rounded border border-rose-200 flex items-start gap-1.5">
+                <span class="font-bold flex-shrink-0">⚠️ Exam Trap:</span>
+                <span id="back-trap">Never plug inactive constraints into your local derivative checks. Since g_j(x) &lt; 0 is continuous, it remains valid in an open neighborhood!</span>
+              </div>
+
+            </div>
+
+            <!-- Bottom Hint -->
+            <div class="pt-2 border-t border-slate-200/80 text-[11px] text-slate-400 flex justify-between items-center">
+              <span>Rate retention below to lock into long-term memory</span>
+              <span class="font-mono">Flip: Space</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Spaced Repetition Active Recall Rating Bar -->
+      <div class="w-full max-w-2xl flex items-center justify-between gap-2 mt-5">
+        <button onclick="prevCard()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 active:scale-95 transition border border-slate-700 flex items-center gap-1">
+          <span>←</span> Prev
+        </button>
+
+        <!-- Leitner Spaced Repetition Buttons -->
+        <div class="flex items-center gap-2">
+          <button onclick="rateCard('again')" class="px-3 sm:px-4 py-2 rounded-xl text-xs font-bold bg-rose-500/15 text-rose-300 hover:bg-rose-500/25 border border-rose-500/30 transition active:scale-95 flex flex-col items-center">
+            <span>🔴 Again</span>
+            <span class="text-[9px] font-normal text-rose-400">Box 1</span>
+          </button>
+          <button onclick="rateCard('hard')" class="px-3 sm:px-4 py-2 rounded-xl text-xs font-bold bg-amber-500/15 text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 transition active:scale-95 flex flex-col items-center">
+            <span>🟡 Hard</span>
+            <span class="text-[9px] font-normal text-amber-400">Box 2</span>
+          </button>
+          <button onclick="rateCard('easy')" class="px-3 sm:px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500/25 border border-emerald-500/30 transition active:scale-95 flex flex-col items-center">
+            <span>🟢 Mastered</span>
+            <span class="text-[9px] font-normal text-emerald-400">Box 3</span>
+          </button>
+        </div>
+
+        <button onclick="nextCard()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 active:scale-95 transition border border-slate-700 flex items-center gap-1">
+          Next <span>→</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ================= DESK / GRID VIEW ================= -->
+    <div id="grid-container" class="w-full hidden">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
+          Virtual Index Desk · All Cards
+        </h3>
+        <span class="text-xs text-slate-400">
+          Click any card to study it directly
+        </span>
+      </div>
+      <div id="grid-cards-stage" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Add Custom Card Modal -->
+  <div id="add-modal" class="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 p-4 flex items-center justify-center hidden">
+    <div class="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl text-slate-200">
+      <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-800">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span>📝</span> Add a Sirianni Index Card
+        </h3>
+        <button onclick="closeAddModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
+      </div>
+
+      <form onsubmit="saveCustomCard(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-slate-300 mb-1">Concept Title</label>
+          <input type="text" id="new-title" required placeholder="e.g. Constraint Qualification (LICQ)" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-300 mb-1">The Active Recall Question (Front Trigger)</label>
+          <input type="text" id="new-trigger" required placeholder="e.g. When does the linearized cone fail to match the tangent cone?" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-300 mb-1">The Translation (Explain in Plain Words)</label>
+          <textarea id="new-translation" required rows="2" placeholder="Simple, intuitive explanation without textbook jargon..." class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+        <div>
+          <label class="block font-medium text-slate-300 mb-1">Formal Formula (LaTeX allowed: $...$)</label>
+          <input type="text" id="new-math" placeholder="e.g. $\nabla h_i(x^*)$ and $\nabla g_j(x^*)$ are linearly independent" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-500 font-mono">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-300 mb-1">Personal Metaphor / Memory Anchor</label>
+          <input type="text" id="new-analogy" required placeholder="e.g. Like two ropes pulling in the exact same direction—they don't give you two independent constraints!" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-300 mb-1">Exam Trap / Pitfall</label>
+          <input type="text" id="new-trap" placeholder="e.g. Forgetting to test active inequality gradients alongside equalities." class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3">
+          <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-amber-500 text-slate-950 font-bold hover:bg-amber-400">Save Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer Help -->
+  <footer class="w-full max-w-4xl mx-auto flex items-center justify-between text-xs text-slate-500 mt-6 pt-3 border-t border-slate-800/80">
+    <div class="flex items-center gap-2">
+      <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 font-mono text-[10px]">Space</kbd> Flip</span>
+      <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 font-mono text-[10px]">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 font-mono text-[10px]">→</kbd> Navigate</span>
+      <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 font-mono text-[10px]">1,2,3</kbd> Rate</span>
+    </div>
+    <div>
+      <span>Live Ready for GitHub Pages</span>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    // Initial Sirianni Deck covering the user's topic
+    const defaultDeck = [
+      {
+        id: 1,
+        category: "Optimization Geometry",
+        indexTag: "#01 · FEASIBILITY",
+        title: "Feasible Set & The Active Wall",
+        visualCaption: "Only the walls you touch restrict your departure",
+        trigger: "Which constraints actively dictate your next allowed move at point x?",
+        visualSvg: `
+          <svg viewBox="0 0 200 120" class="w-full h-full">
+            <rect x="20" y="20" width="160" height="80" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,2"/>
+            <text x="30" y="45" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2563eb">Ω (Feasible Set)</text>
+            <!-- Wall point -->
+            <line x1="20" y1="20" x2="20" y2="100" stroke="#ef4444" stroke-width="4"/>
+            <circle cx="20" cy="60" r="5" fill="#ef4444"/>
+            <text x="30" y="65" font-family="sans-serif" font-size="10" font-weight="bold" fill="#b91c1c">x on boundary: g_j(x)=0</text>
+            <text x="30" y="80" font-family="sans-serif" font-size="9" fill="#64748b">Inactive: g_k(x) < 0 (no local effect)</text>
+          </svg>
+        `,
+        translation: "The feasible set Ω is your boundary fence. The active set 𝒜(x) represents the specific fence posts you are physically pressed against right now. Inactive constraints (g_j(x) < 0) have room to breathe and do not block your immediate local steps.",
+        math: `$$\\Omega = \\{x \\in \\mathbb{R}^n : h_i(x) = 0, g_j(x) \\le 0\\}$$ $$\\mathcal{A}(x) = \\{j \\in \\{1,\\dots,m\\} : g_j(x) = 0\\}$$`,
+        analogy: "Leaning into the corner of an elevator: only the two walls your shoulders are touching restrict your immediate movement. The elevator door behind you is miles away and has zero local effect.",
+        trap: "Never keep inactive constraints in your local derivative equations! By continuity, g_j(x) < 0 stays strictly negative for all tiny steps."
+      },
+      {
+        id: 2,
+        category: "Tangent Mechanics",
+        indexTag: "#02 · LIMIT DEFINITION",
+        title: "The Tangent Vector d",
+        visualCaption: "Initial velocity of a feasible path heading into Ω",
+        trigger: "How is a tangent vector rigorously defined without assuming smooth manifolds?",
+        visualSvg: `
+          <svg viewBox="0 0 200 120" class="w-full h-full">
+            <path d="M 30,100 Q 60,30 170,30" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <circle cx="50" cy="55" r="5" fill="#0f172a"/>
+            <text x="35" y="50" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f172a">x</text>
+            <circle cx="85" cy="42" r="3.5" fill="#3b82f6"/>
+            <circle cx="115" cy="35" r="3.5" fill="#3b82f6"/>
+            <circle cx="145" cy="32" r="3.5" fill="#3b82f6"/>
+            <line x1="50" y1="55" x2="110" y2="35" stroke="#d97706" stroke-width="2.5" marker-end="url(#arr)"/>
+            <text x="115" y="50" font-family="sans-serif" font-size="11" font-weight="bold" fill="#d97706">d = lim (x_k - x)/t_k</text>
+          </svg>
+        `,
+        translation: "A tangent vector d is not just a touching line—it is the initial speed and direction of a sequence of feasible points x_k racing toward x in smaller and smaller time increments t_k.",
+        math: `$$\\lim_{k \\to \\infty} \\frac{x_k - x}{t_k} = d, \\quad x_k \\in \\Omega, \\quad t_k \\downarrow 0$$`,
+        analogy: "Imagine an airplane landing on a runway inside your territory: d is its velocity vector at touchdown. The entire approach path x_k stayed inside your airspace.",
+        trap: "t_k must strictly approach 0 from the positive side (t_k > 0). Negative steps are not allowed because reversing direction could shoot you outside Ω."
+      },
+      {
+        id: 3,
+        category: "Cone Geometry",
+        indexTag: "#03 · TANGENT CONE",
+        title: "The Tangent Cone T_Ω(x)",
+        visualCaption: "The fan of all admissible departure directions",
+        trigger: "Why is T_Ω(x) called a cone, and does it have to be a linear subspace?",
+        visualSvg: `
+          <svg viewBox="0 0 200 120" class="w-full h-full">
+            <polygon points="40,90 170,20 170,110" fill="#fef3c7" opacity="0.7"/>
+            <line x1="40" y1="90" x2="170" y2="20" stroke="#f59e0b" stroke-width="2"/>
+            <line x1="40" y1="90" x2="170" y2="110" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="40" cy="90" r="5" fill="#0f172a"/>
+            <text x="25" y="95" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f172a">x</text>
+            <text x="110" y="70" font-family="sans-serif" font-size="12" font-weight="bold" fill="#b45309">T_Ω(x)</text>
+          </svg>
+        `,
+        translation: "The tangent cone is the collection of all valid escape velocities from point x. If you can move in direction d at speed 1, you can also move in direction d at speed 5 (it is scale-invariant, hence a cone).",
+        math: `$$d \\in T_\\Omega(x) \\implies \\alpha d \\in T_\\Omega(x) \\quad \\forall \\alpha \\ge 0$$ $$0 \\in T_\\Omega(x) \\text{ always (choose } x_k = x)$$`,
+        analogy: "A megaphone or flashlight beam radiating out from point x into the allowed region. You can go as far along that ray as you scale it, but you cannot necessarily go backwards.",
+        trap: "T_Ω(x) is almost NEVER a subspace at a boundary corner! If d is valid, -d is usually prohibited."
+      },
+      {
+        id: 4,
+        category: "Analytical Derivation",
+        indexTag: "#04 · WORKED 2D CORNER",
+        title: "Computing T_Ω(0,0) for x₁, x₂ ≥ 0",
+        visualCaption: "At a 90° corner, the tangent cone is the full quadrant",
+        trigger: "If Ω is the non-negative quadrant, what is T_Ω at the origin vs an edge?",
+        visualSvg: `
+          <svg viewBox="0 0 200 120" class="w-full h-full">
+            <!-- Axes -->
+            <line x1="30" y1="100" x2="180" y2="100" stroke="#64748b" stroke-width="2"/>
+            <line x1="40" y1="110" x2="40" y2="15" stroke="#64748b" stroke-width="2"/>
+            <rect x="40" y="20" width="130" height="80" fill="#dbeafe" opacity="0.6"/>
+            <circle cx="40" cy="100" r="5" fill="#ef4444"/>
+            <text x="22" y="112" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">(0,0)</text>
+            <text x="80" y="65" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e40af">T_Ω = [0,∞) × [0,∞)</text>
+          </svg>
+        `,
+        translation: "At x = (0,0), you are trapped on both the bottom and left. Any candidate direction d = (d₁, d₂) must satisfy d₁ ≥ 0 and d₂ ≥ 0. At an edge point like (1, 0), x₁ is free, so T_Ω = ℝ × [0, ∞).",
+        math: `$$x_k = (t_k d_1, t_k d_2) \\in \\Omega \\iff t_k d_1 \\ge 0, \\, t_k d_2 \\ge 0$$ $$t_k > 0 \\implies d_1 \\ge 0, \\, d_2 \\ge 0 \\implies T_\\Omega((0,0)) = \\mathbb{R}_+^2$$`,
+        analogy: "Standing right in the corner of a soccer pitch: your only legal kicks into the field must have positive forward and positive lateral components.",
+        trap: "Students often write T_Ω((0,0)) = {0}. Zero is in the cone, but the entire positive quadrant is valid!"
+      },
+      {
+        id: 5,
+        category: "Optimality Condition",
+        indexTag: "#05 · FIRST-ORDER THEOREM",
+        title: "First-Order Optimality: ∇f(x*)ᵀd ≥ 0",
+        visualCaption: "The negative gradient makes an obtuse angle with all tangents",
+        trigger: "What condition must ∇f(x*) satisfy across the entire tangent cone at a local minimum?",
+        visualSvg: `
+          <svg viewBox="0 0 200 120" class="w-full h-full">
+            <polygon points="50,90 160,30 160,110" fill="#fef3c7" opacity="0.6"/>
+            <line x1="50" y1="90" x2="160" y2="30" stroke="#f59e0b" stroke-width="2"/>
+            <line x1="50" y1="90" x2="160" y2="110" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="50" cy="90" r="5" fill="#0f172a"/>
+            <!-- Gradient pointing outside -->
+            <line x1="50" y1="90" x2="10" y2="40" stroke="#ef4444" stroke-width="2.5"/>
+            <text x="0" y="35" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">-∇f(x*)</text>
+            <text x="80" y="75" font-family="sans-serif" font-size="11" font-weight="bold" fill="#b45309">All d ∈ T_Ω</text>
+          </svg>
+        `,
+        translation: "If x* is truly the lowest point on the allowed terrain, then moving in ANY allowed direction d must cause the cost to increase or stay flat (slope ≥ 0). That means no allowed direction can be a descent direction!",
+        math: `$$\\nabla f(x^*)^T d \\ge 0, \\quad \\forall d \\in T_\\Omega(x^*)$$`,
+        analogy: "A marble rolling down a bowl that hits a solid wall: gravity wants to pull it further, but the wall blocks it. The only way it can move is back up the hill (increasing f).",
+        trap: "In unconstrained problems, ∇f = 0. In constrained problems, ∇f(x*) ≠ 0 is common; it simply points outwards against the constraint boundary."
+      },
+      {
+        id: 6,
+        category: "Exam Traps & Theory",
+        indexTag: "#06 · CONSTRAINT QUALIFICATIONS",
+        title: "Tangent Cone vs. Linearized Cone",
+        visualCaption: "Linearized gradients can lie; true tangents never do",
+        trigger: "When does the linearized cone L_Ω(x) fail to equal the true tangent cone T_Ω(x)?",
+        visualSvg: `
+          <svg viewBox="0 0 200 120" class="w-full h-full">
+            <path d="M 30,90 Q 100,90 100,30" fill="none" stroke="#ef4444" stroke-width="3"/>
+            <circle cx="100" cy="90" r="5" fill="#0f172a"/>
+            <text x="105" y="105" font-family="sans-serif" font-size="10" font-weight="bold" fill="#0f172a">Cusp point</text>
+            <text x="25" y="45" font-family="sans-serif" font-size="10" font-weight="bold" fill="#ef4444">g(x) = -x₂³ ≤ 0</text>
+          </svg>
+        `,
+        translation: "The tangent cone T_Ω uses real physical paths. The linearized cone L_Ω replaces curves with their first-order gradient approximations. When gradients vanish or degenerate, L_Ω can falsely predict huge allowed zones where no real feasible path exists!",
+        math: `$$T_\\Omega(x) \\subseteq L_\\Omega(x) = \\{d : \\nabla h_i(x)^T d = 0, \\nabla g_j(x)^T d \\le 0 \\, (j \\in \\mathcal{A}(x))\\}$$ $$T_\\Omega(x) = L_\\Omega(x) \\iff \\text{LICQ / MFCQ holds}$$`,
+        analogy: "A paper map that says there is an open bridge because of a drawing error, but when you physically walk there, it's a sheer cliff. T_Ω is the real cliff; L_Ω is the flawed blueprint.",
+        trap: "Assuming KKT multipliers always exist. If T_Ω ≠ L_Ω (CQ fails), a local minimum may exist without satisfying KKT conditions!"
+      }
+    ];
+
+    // Load from localStorage or use defaults
+    let deck = JSON.parse(localStorage.getItem('sirianni_memory_deck')) || defaultDeck;
+    let currentCardIndex = 0;
+    let isFlipped = false;
+    let isDarkTheme = false;
+
+    function renderCurrentCard() {
+      const card = deck[currentCardIndex];
+      const cardInner = document.getElementById('card-inner');
+      
+      // Reset flip
+      isFlipped = false;
+      cardInner.classList.remove('rotate-y-180');
+
+      // Update Header & Counter
+      document.getElementById('card-counter').textContent = `${currentCardIndex + 1} / ${deck.length}`;
+      document.getElementById('card-category').textContent = card.category;
+      document.getElementById('progress-bar').style.width = `${((currentCardIndex + 1) / deck.length) * 100}%`;
+
+      // Front
+      document.getElementById('front-index').textContent = card.indexTag || `#${String(currentCardIndex + 1).padStart(2, '0')}`;
+      document.getElementById('front-title').textContent = card.title;
+      document.getElementById('front-visual-caption').textContent = `"${card.visualCaption}"`;
+      document.getElementById('front-trigger').textContent = card.trigger;
+      document.getElementById('front-visual').innerHTML = card.visualSvg || `
+        <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center text-2xl">💡</div>
+      `;
+
+      // Back
+      document.getElementById('back-tag').textContent = `${card.category} · RETENTION`;
+      document.getElementById('back-title').textContent = card.title;
+      document.getElementById('back-translation').textContent = card.translation;
+      document.getElementById('back-math').innerHTML = card.math;
+      document.getElementById('back-analogy').textContent = `"${card.analogy}"`;
+      document.getElementById('back-trap').textContent = card.trap;
+
+      // Render KaTeX formulas if available
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('card-back'), {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    function flipCurrentCard() {
+      isFlipped = !isFlipped;
+      const cardInner = document.getElementById('card-inner');
+      if (isFlipped) {
+        cardInner.classList.add('rotate-y-180');
+      } else {
+        cardInner.classList.remove('rotate-y-180');
+      }
+    }
+
+    function nextCard() {
+      if (currentCardIndex < deck.length - 1) {
+        currentCardIndex++;
+      } else {
+        currentCardIndex = 0; // loop
+      }
+      renderCurrentCard();
+    }
+
+    function prevCard() {
+      if (currentCardIndex > 0) {
+        currentCardIndex--;
+      } else {
+        currentCardIndex = deck.length - 1;
+      }
+      renderCurrentCard();
+    }
+
+    function rateCard(rating) {
+      // Leitner feedback visual pulse
+      const badge = document.getElementById('box-badge');
+      if (rating === 'again') {
+        badge.textContent = "Box 1: Scheduled for Tomorrow";
+        badge.className = "px-2 py-0.5 rounded font-mono font-medium text-[11px] bg-rose-950 text-rose-300 border border-rose-800";
+      } else if (rating === 'hard') {
+        badge.textContent = "Box 2: Scheduled in 3 Days";
+        badge.className = "px-2 py-0.5 rounded font-mono font-medium text-[11px] bg-amber-950 text-amber-300 border border-amber-800";
+      } else {
+        badge.textContent = "Box 3: Photographic Mastered!";
+        badge.className = "px-2 py-0.5 rounded font-mono font-medium text-[11px] bg-emerald-950 text-emerald-300 border border-emerald-800";
+      }
+      setTimeout(nextCard, 350);
+    }
+
+    function setViewMode(mode) {
+      const studyEl = document.getElementById('study-container');
+      const gridEl = document.getElementById('grid-container');
+      const btnStudy = document.getElementById('btn-study-view');
+      const btnGrid = document.getElementById('btn-grid-view');
+
+      if (mode === 'study') {
+        studyEl.classList.remove('hidden');
+        gridEl.classList.add('hidden');
+        btnStudy.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm";
+        btnGrid.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition border border-slate-700";
+        renderCurrentCard();
+      } else {
+        studyEl.classList.add('hidden');
+        gridEl.classList.remove('hidden');
+        btnGrid.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm";
+        btnStudy.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition border border-slate-700";
+        renderDeskGrid();
+      }
+    }
+
+    function renderDeskGrid() {
+      const stage = document.getElementById('grid-cards-stage');
+      stage.innerHTML = deck.map((c, i) => `
+        <div onclick="jumpToCard(${i})" class="bg-[#fffefb] border border-amber-200/80 rounded-xl p-4 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer flex flex-col justify-between text-slate-900">
+          <div>
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-500 mb-1">
+              <span class="font-bold text-rose-600">${c.indexTag || '#' + (i+1)}</span>
+              <span>${c.category}</span>
+            </div>
+            <h4 class="font-bold text-base font-serif-title text-slate-900 leading-snug">${c.title}</h4>
+            <p class="text-xs text-slate-600 mt-2 line-clamp-2 italic font-serif">"${c.analogy}"</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-slate-100 flex justify-between items-center text-[11px] text-slate-400">
+            <span>Tap to study</span>
+            <span class="text-amber-600 font-bold">Inspect ➔</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function jumpToCard(i) {
+      currentCardIndex = i;
+      setViewMode('study');
+    }
+
+    function toggleTheme() {
+      isDarkTheme = !isDarkTheme;
+      const front = document.getElementById('card-front');
+      const back = document.getElementById('card-back');
+      if (isDarkTheme) {
+        front.className = front.className.replace('index-card-paper text-slate-900', 'index-card-dark text-slate-100');
+        back.className = back.className.replace('index-card-paper text-slate-900', 'index-card-dark text-slate-100');
+      } else {
+        front.className = front.className.replace('index-card-dark text-slate-100', 'index-card-paper text-slate-900');
+        back.className = back.className.replace('index-card-dark text-slate-100', 'index-card-paper text-slate-900');
+      }
+    }
+
+    function openAddModal() {
+      document.getElementById('add-modal').classList.remove('hidden');
+    }
+    function closeAddModal() {
+      document.getElementById('add-modal').classList.add('hidden');
+    }
+
+    function saveCustomCard(e) {
+      e.preventDefault();
+      const newCard = {
+        id: Date.now(),
+        category: "Custom Topic",
+        indexTag: `#${String(deck.length + 1).padStart(2, '0')} · USER CARD`,
+        title: document.getElementById('new-title').value,
+        visualCaption: "Personal visual anchor",
+        trigger: document.getElementById('new-trigger').value,
+        visualSvg: `
+          <div class="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center text-2xl font-bold text-amber-700 border-2 border-amber-300">
+            ✨
+          </div>
+        `,
+        translation: document.getElementById('new-translation').value,
+        math: document.getElementById('new-math').value,
+        analogy: document.getElementById('new-analogy').value,
+        trap: document.getElementById('new-trap').value || "Keep attention to boundary definitions."
+      };
+
+      deck.push(newCard);
+      localStorage.setItem('sirianni_memory_deck', JSON.stringify(deck));
+      closeAddModal();
+      currentCardIndex = deck.length - 1;
+      renderCurrentCard();
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (document.getElementById('add-modal').classList.contains('hidden') === false) return;
+
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        flipCurrentCard();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextCard();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevCard();
+      } else if (e.key === '1') {
+        rateCard('again');
+      } else if (e.key === '2') {
+        rateCard('hard');
+      } else if (e.key === '3') {
+        rateCard('easy');
+      }
+    });
+
+    // Initialize
+    window.onload = () => {
+      renderCurrentCard();
+    };
+  </script>
+</body>
+</html>
