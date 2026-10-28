@@ -475,8 +475,11 @@
                 </h3>
               </div>
 
-              <!-- Starlight icon -->
-              <span class="text-lg text-cyan-400/80 font-mono">✦</span>
+              <!-- Top Right Action: Copy Card Button -->
+              <button onclick="copyCard(${card.id})" id="copy-btn-${card.id}" class="px-3.5 py-1.5 rounded-xl bg-[#0d1326]/90 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/30 text-xs sm:text-sm font-mono flex items-center gap-1.5 transition duration-200 shadow hover:shadow-cyan-500/30 active:scale-95 cursor-pointer shrink-0" title="Copy card formatted text & image to clipboard">
+                <span id="copy-icon-${card.id}">📋</span>
+                <span id="copy-text-${card.id}">Copy</span>
+              </button>
             </div>
 
             <!-- Main Card Body Split (Left: Content 56%, Right: Visual 44%) -->
@@ -647,8 +650,14 @@
           <canvas class="card-stars absolute inset-0 w-full h-full pointer-events-none z-0 rounded-[20px]"></canvas>
           <div class="relative z-10">
             <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
-              <span class="text-base font-mono font-bold text-cyan-400">CARD ${c.cardNumber}</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-white font-serif-title">${c.title}</h3>
+              <div class="flex items-center gap-3">
+                <span class="text-base font-mono font-bold text-cyan-400">CARD ${c.cardNumber}</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white font-serif-title">${c.title}</h3>
+              </div>
+              <button onclick="copyCard(${c.id})" id="copy-btn-${c.id}" class="px-3 py-1 rounded-lg bg-[#0d1326] hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/30 text-xs font-mono flex items-center gap-1.5 transition cursor-pointer">
+                <span id="copy-icon-${c.id}">📋</span>
+                <span id="copy-text-${c.id}">Copy</span>
+              </button>
             </div>
             <p class="text-base sm:text-lg text-slate-200 my-3 leading-relaxed">${c.coreTranslation[0]}</p>
           </div>
@@ -717,6 +726,209 @@
       localStorage.setItem('sirianni_index_cards_cosmos_v7', JSON.stringify(deck));
       closeAddModal();
       renderDeck();
+    }
+
+    /* ================= CLIPBOARD COPY UTILITIES ================= */
+    function getBase64FromImageUrl(url) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth || img.width;
+            canvas.height = img.naturalHeight || img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            resolve(canvas.toDataURL('image/png'));
+          } catch (e) {
+            resolve(new URL(url, window.location.href).href);
+          }
+        };
+        img.onerror = () => resolve(new URL(url, window.location.href).href);
+        img.src = url;
+      });
+    }
+
+    function getSvgAsPngDataUrl(svgString, width = 600, height = 360) {
+      return new Promise((resolve) => {
+        try {
+          const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+          const URL = window.URL || window.webkitURL || window;
+          const blobURL = URL.createObjectURL(svgBlob);
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#070b16';
+            ctx.fillRect(0, 0, width, height);
+            ctx.drawImage(img, 0, 0, width, height);
+            URL.revokeObjectURL(blobURL);
+            resolve(canvas.toDataURL('image/png'));
+          };
+          img.onerror = () => {
+            resolve("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString));
+          };
+          img.src = blobURL;
+        } catch (e) {
+          resolve("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString));
+        }
+      });
+    }
+
+    async function copyCard(cardId) {
+      const card = deck.find(c => c.id === cardId);
+      if (!card) return;
+
+      const btn = document.getElementById(`copy-btn-${cardId}`);
+      const iconEl = document.getElementById(`copy-icon-${cardId}`);
+      const textEl = document.getElementById(`copy-text-${cardId}`);
+
+      if (textEl) textEl.textContent = "Copying...";
+
+      try {
+        // 1. Plain Text / Markdown Format
+        let md = `# CARD ${card.cardNumber}: ${card.title}\n`;
+        md += `Category: ${card.category}\n\n`;
+        md += `## ⚡ Core Mechanism\n`;
+        card.coreTranslation.forEach(pt => {
+          const cleanPt = pt.replace(/<\/?[^>]+(>|$)/g, "");
+          md += `• ${cleanPt}\n`;
+        });
+        md += `\n## 📐 Mathematical Formulation\n${card.math}\n\n`;
+        md += `## 💡 Memory Anchor\n"${card.personalConnection}"\n\n`;
+        md += `## ⚠️ Exam Trap\n${card.examTrap}\n\n`;
+
+        let fullImgUrl = "";
+        let visualDataUrl = "";
+
+        if (card.textbookImg) {
+          fullImgUrl = new URL(card.textbookImg, window.location.href).href;
+          md += `## 📖 Visual Specimen (${card.textbookRef || 'Luenberger & Ye'})\n`;
+          md += `Caption: "${card.drawingCaption}"\n`;
+          md += `Image: ${fullImgUrl}\n`;
+          visualDataUrl = await getBase64FromImageUrl(card.textbookImg);
+        } else if (card.drawingSvg) {
+          md += `## 📐 Geometric Diagram\n`;
+          md += `Caption: "${card.drawingCaption}"\n`;
+          visualDataUrl = await getSvgAsPngDataUrl(card.drawingSvg);
+        }
+
+        // 2. Rich Formatted HTML
+        let visualHtml = "";
+        if (visualDataUrl) {
+          visualHtml = `
+            <div style="margin-top: 18px; text-align: center; background: #ffffff; padding: 14px; border-radius: 12px; border: 1px solid #cbd5e1;">
+              <p style="font-size: 11px; font-family: monospace; color: #475569; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase;">
+                ${card.textbookRef ? `📖 ${card.textbookRef}` : '📐 GEOMETRIC SPECIMEN'}
+              </p>
+              <img src="${visualDataUrl}" alt="${card.title}" style="max-width: 100%; max-height: 440px; display: block; margin: 0 auto; object-fit: contain;" />
+              <p style="font-size: 13px; font-style: italic; color: #334155; margin: 10px 0 0 0; font-weight: 500;">"${card.drawingCaption}"</p>
+            </div>
+          `;
+        }
+
+        const html = `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 720px; padding: 24px; background: #0c101d; color: #f1f5f9; border-radius: 16px; border: 1px solid #38bdf8;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 12px; margin-bottom: 16px;">
+              <span style="font-family: monospace; font-weight: bold; background: #083344; color: #67e8f9; padding: 4px 10px; border-radius: 6px; font-size: 12px; border: 1px solid #0e7490;">
+                CARD ${card.cardNumber} • ${card.category}
+              </span>
+              <h2 style="margin: 0; font-size: 22px; color: #ffffff; font-weight: bold;">${card.title}</h2>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <h4 style="font-size: 12px; font-family: monospace; color: #38bdf8; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">
+                ⚡ CORE MECHANISM
+              </h4>
+              <ul style="margin: 0; padding-left: 20px; line-height: 1.6; font-size: 15px; color: #e2e8f0;">
+                ${card.coreTranslation.map(pt => `<li style="margin-bottom: 8px;">${pt}</li>`).join('')}
+              </ul>
+            </div>
+
+            <div style="background: #060812; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(56,189,248,0.25); font-family: monospace; font-size: 15px; margin-bottom: 16px; color: #f8fafc; overflow-x: auto;">
+              ${card.math}
+            </div>
+
+            <div style="background: rgba(245,158,11,0.12); border-left: 4px solid #fbbf24; padding: 14px 18px; border-radius: 8px; margin-bottom: 16px;">
+              <div style="font-size: 11px; font-weight: bold; color: #fbbf24; text-transform: uppercase; margin-bottom: 4px;">
+                💡 MEMORY ANCHOR
+              </div>
+              <p style="margin: 0; font-style: italic; font-size: 15px; color: #fef3c7; line-height: 1.5;">
+                "${card.personalConnection}"
+              </p>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; font-size: 13px; color: #fca5a5;">
+              <strong style="color: #f87171;">⚠️ Exam Trap:</strong> ${card.examTrap}
+            </div>
+
+            ${visualHtml}
+          </div>
+        `;
+
+        // 3. Write to Clipboard using modern ClipboardItem API
+        if (navigator.clipboard && window.ClipboardItem) {
+          const textBlob = new Blob([md], { type: 'text/plain' });
+          const htmlBlob = new Blob([html], { type: 'text/html' });
+          const item = new ClipboardItem({
+            'text/plain': textBlob,
+            'text/html': htmlBlob
+          });
+          await navigator.clipboard.write([item]);
+        } else {
+          await navigator.clipboard.writeText(md);
+        }
+
+        // Button feedback
+        if (iconEl) iconEl.textContent = "✓";
+        if (textEl) textEl.textContent = "Copied!";
+        if (btn) {
+          btn.classList.add('bg-emerald-500', 'text-slate-950', 'border-emerald-400', 'font-bold');
+          btn.classList.remove('bg-[#0d1326]/90', 'text-cyan-300');
+        }
+
+        setTimeout(() => {
+          if (iconEl) iconEl.textContent = "📋";
+          if (textEl) textEl.textContent = "Copy";
+          if (btn) {
+            btn.classList.remove('bg-emerald-500', 'text-slate-950', 'border-emerald-400', 'font-bold');
+            btn.classList.add('bg-[#0d1326]/90', 'text-cyan-300');
+          }
+        }, 2000);
+
+        showToast(`✓ Card ${card.cardNumber} copied with text, math & images!`);
+
+      } catch (err) {
+        console.error("Copy error:", err);
+        // Fallback plain copy
+        try {
+          const plainFallback = `CARD ${card.cardNumber}: ${card.title}\n\n` +
+            card.coreTranslation.map(p => `• ${p.replace(/<\/?[^>]+(>|$)/g, "")}`).join('\n') +
+            `\n\nMath:\n${card.math}\n\nMemory Anchor:\n"${card.personalConnection}"\n\nExam Trap:\n${card.examTrap}`;
+          await navigator.clipboard.writeText(plainFallback);
+          if (textEl) textEl.textContent = "Copied Text!";
+          showToast(`✓ Card ${card.cardNumber} text copied!`);
+          setTimeout(() => { if (textEl) textEl.textContent = "Copy"; }, 2000);
+        } catch (e) {
+          alert("Clipboard access denied. Please allow clipboard permissions.");
+        }
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-msg');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
     }
 
     /* ================= BACKGROUND GLOWING DOTS & COSMOS PARTICLES ANIMATION ================= */
@@ -1035,5 +1247,11 @@
       applyLayoutAndScale();
     });
   </script>
+
+  <!-- Toast Notification for Copy -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#0c101d] border border-cyan-400/60 text-cyan-200 px-5 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-mono flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <span class="text-cyan-400 text-base">✦</span>
+    <span id="toast-msg">Card copied to clipboard!</span>
+  </div>
 </body>
 </html>
