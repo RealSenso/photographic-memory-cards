@@ -130,29 +130,34 @@
       <div class="max-w-[1920px] mx-auto flex flex-wrap items-center justify-between gap-4">
         
         <!-- Subject & Topic Selector Bar -->
-        <div class="flex flex-wrap items-center gap-2.5 flex-1 max-w-2xl">
-          <!-- Subject Badge -->
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-bold shrink-0">
-            <span>📚</span> CMO (E0 230)
+        <div class="flex flex-wrap items-center gap-2.5 flex-1 max-w-4xl">
+          <!-- Multi-Subject Tabs -->
+          <div class="flex items-center gap-1 bg-[#0d1326] border border-cyan-500/30 p-1 rounded-xl text-xs font-mono font-bold shadow-inner shrink-0">
+            <button onclick="switchSubject('CMO')" id="sub-btn-CMO" class="px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition flex items-center gap-1 cursor-pointer">
+              <span>🔵</span> CMO
+            </button>
+            <button onclick="switchSubject('LAA')" id="sub-btn-LAA" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer">
+              <span>🟣</span> LAA
+            </button>
+            <button onclick="switchSubject('StoMA')" id="sub-btn-StoMA" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer">
+              <span>🟡</span> StoMA
+            </button>
+            <button onclick="switchSubject('DIP')" id="sub-btn-DIP" class="px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer">
+              <span>🟢</span> DIP
+            </button>
           </div>
 
           <!-- Topic Dropdown -->
           <div class="flex items-center gap-1.5 bg-[#0d1326] border border-cyan-500/30 px-3 py-1.5 rounded-xl text-xs text-slate-200 flex-1 min-w-[280px]">
             <span class="text-[10px] text-cyan-400 font-mono font-bold shrink-0">TOPIC:</span>
             <select id="topic-select" onchange="switchTopic(this.value)" class="w-full bg-[#080c18] border border-cyan-500/40 rounded-lg py-1 px-2 text-xs text-white focus:outline-none focus:border-cyan-400 cursor-pointer">
-              <option value="01_Mathematical_Preliminaries_Topology_and_Weierstrass">Topic 01 · Preliminaries & Weierstrass (6 cards)</option>
-              <option value="02_Multivariate_Taylor_Series_and_Optimality_Conditions">Topic 02 · Taylor Series & Optimality (6 cards)</option>
-              <option value="03_Convexity_and_Strong_Convexity">Topic 03 · Convexity & Strong Convexity (6 cards)</option>
-              <option value="04_Line_Search_Methods_Exact_Armijo_and_Wolfe">Topic 04 · Line Search: Armijo & Wolfe (6 cards)</option>
-              <option value="05_Gradient_Descent_and_Convergence_Analysis">Topic 05 · Gradient Descent & Convergence (6 cards)</option>
-              <option value="09_Geometry_of_Constrained_Optimization_Tangent_Cone_and_LICQ">Topic 09 · Tangent Cones & LICQ Geometry (6 cards)</option>
-              <option value="all">🌟 All Available Topics (36 cards in sequence)</option>
+              <!-- Dynamically populated -->
             </select>
           </div>
 
           <!-- Search Input -->
-          <div class="relative flex-1 min-w-[220px]">
-            <input type="text" id="search-input" oninput="filterCards()" placeholder="Search formulas, mechanisms, traps..." class="w-full bg-[#0d1326] border border-slate-700/80 rounded-xl py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition">
+          <div class="relative flex-1 min-w-[180px]">
+            <input type="text" id="search-input" oninput="filterCards()" placeholder="Search formulas, traps..." class="w-full bg-[#0d1326] border border-slate-700/80 rounded-xl py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition">
             <span class="absolute left-2.5 top-2 text-xs text-cyan-400 opacity-75">🔍</span>
           </div>
         </div>
@@ -353,25 +358,21 @@
         drawingSvg: `
           <svg viewBox="0 0 240 145" class="w-full h-full">
             <defs>
-              <radialGradient id="cone-glow" cx="20%" cy="70%" r="80%">
-                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#0284c7" stop-opacity="0.05"/>
-              </radialGradient>
-              <marker id="cone-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
-              </marker>
-              <marker id="amber-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+              <marker id="arr-cone" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
               </marker>
             </defs>
-            <polygon points="40,110 215,25 215,135" fill="url(#cone-glow)" stroke="#0284c7" stroke-dasharray="3,3" stroke-width="1.5"/>
-            <line x1="40" y1="110" x2="208" y2="25" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#cone-arr)"/>
-            <line x1="40" y1="110" x2="208" y2="135" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#cone-arr)"/>
-            <line x1="40" y1="110" x2="175" y2="75" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#amber-arr)"/>
-            <text x="180" y="78" font-family="monospace" font-size="11" font-weight="bold" fill="#fbbf24">α d</text>
-            <circle cx="40" cy="110" r="5" fill="#f8fafc" stroke="#38bdf8" stroke-width="2"/>
-            <text x="22" y="115" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f8fafc">x</text>
-            <text x="120" y="55" font-family="sans-serif" font-size="13" font-weight="bold" fill="#7dd3fc">T_Ω(x)</text>
+            <!-- Cone Shaded Fan -->
+            <polygon points="50,110 205,35 205,125" fill="#f1f5f9" stroke="#000000" stroke-width="1.8"/>
+            <!-- Direction ray d -->
+            <line x1="50" y1="110" x2="175" y2="75" stroke="#000000" stroke-width="2" marker-end="url(#arr-cone)"/>
+            <text x="180" y="78" fill="#000000" font-size="9.5" font-family="serif" font-style="italic" font-weight="bold">α d</text>
+            <!-- Base point x* -->
+            <circle cx="50" cy="110" r="4" fill="#000000"/>
+            <text x="40" y="125" fill="#000000" font-size="10" font-family="serif" font-style="italic" font-weight="bold">x*</text>
+            <!-- Cone label -->
+            <text x="135" y="55" fill="#000000" font-size="11" font-family="serif" font-style="italic" font-weight="bold">T_Ω(x*)</text>
+            <text x="120" y="138" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Fan of all admissible departure rays: d ∈ T_Ω ⇒ αd ∈ T_Ω (α ≥ 0)</text>
           </svg>
         `,
         drawingCaption: "The fan of all admissible departure rays into Ω",
@@ -393,18 +394,22 @@
         drawingSvg: `
           <svg viewBox="0 0 240 145" class="w-full h-full">
             <defs>
-              <marker id="axis-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b"/>
+              <marker id="arr-axis-4" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
               </marker>
             </defs>
-            <line x1="20" y1="120" x2="225" y2="120" stroke="#475569" stroke-width="2" marker-end="url(#axis-arr)"/>
-            <line x1="45" y1="135" x2="45" y2="15" stroke="#475569" stroke-width="2" marker-end="url(#axis-arr)"/>
-            <text x="220" y="135" font-family="monospace" font-size="11" fill="#94a3b8">x₁</text>
-            <text x="32" y="22" font-family="monospace" font-size="11" fill="#94a3b8">x₂</text>
-            <rect x="45" y="25" width="165" height="95" fill="#a855f7" fill-opacity="0.18" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <circle cx="45" cy="120" r="5" fill="#ef4444"/>
-            <text x="18" y="135" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f87171">(0,0)</text>
-            <text x="75" y="75" font-family="sans-serif" font-size="12" font-weight="bold" fill="#d8b4fe">T_Ω = [0,∞) × [0,∞)</text>
+            <!-- Axes -->
+            <line x1="35" y1="115" x2="215" y2="115" stroke="#000000" stroke-width="1.5" marker-end="url(#arr-axis-4)"/>
+            <line x1="55" y1="130" x2="55" y2="20" stroke="#000000" stroke-width="1.5" marker-end="url(#arr-axis-4)"/>
+            <text x="215" y="128" fill="#000000" font-size="9" font-family="serif" font-style="italic">x₁</text>
+            <text x="42" y="25" fill="#000000" font-size="9" font-family="serif" font-style="italic">x₂</text>
+            <!-- Shaded First Quadrant -->
+            <rect x="55" y="25" width="145" height="90" fill="#f1f5f9" stroke="#000000" stroke-width="1.2" stroke-dasharray="4,3"/>
+            <!-- Origin -->
+            <circle cx="55" cy="115" r="4" fill="#000000"/>
+            <text x="40" y="128" fill="#000000" font-size="9" font-family="serif" font-style="italic">(0,0)</text>
+            <text x="125" y="65" fill="#000000" font-size="10" font-family="serif" font-style="italic" font-weight="bold">T_Ω(0,0) = ℝ²₊</text>
+            <text x="125" y="82" fill="#000000" font-size="8.5" font-family="monospace">[0, ∞) × [0, ∞)</text>
           </svg>
         `,
         drawingCaption: "At a 90° corner, the cone is the entire first quadrant",
@@ -426,23 +431,23 @@
         drawingSvg: `
           <svg viewBox="0 0 240 145" class="w-full h-full">
             <defs>
-              <marker id="opt-grad-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
-              </marker>
-              <marker id="opt-tang-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              <marker id="arr-opt" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
               </marker>
             </defs>
-            <polygon points="70,115 210,35 210,140" fill="#f59e0b" fill-opacity="0.15" stroke="#d97706" stroke-width="1.5"/>
-            <line x1="70" y1="115" x2="205" y2="35" stroke="#fbbf24" stroke-width="2"/>
-            <line x1="70" y1="115" x2="205" y2="140" stroke="#fbbf24" stroke-width="2"/>
-            <line x1="70" y1="115" x2="175" y2="85" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#opt-tang-arr)"/>
-            <text x="182" y="90" font-family="monospace" font-size="11" font-weight="bold" fill="#fbbf24">d ∈ T_Ω</text>
-            <line x1="70" y1="115" x2="15" y2="50" stroke="#f43f5e" stroke-width="3" marker-end="url(#opt-grad-arr)"/>
-            <text x="5" y="40" font-family="sans-serif" font-size="11" font-weight="bold" fill="#fb7185">-∇f(x*)</text>
-            <circle cx="70" cy="115" r="5" fill="#f8fafc" stroke="#f43f5e" stroke-width="2"/>
-            <text x="55" y="132" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">x*</text>
-            <text x="105" y="60" font-family="sans-serif" font-size="11" font-bold fill="#fcd34d">Angle ≥ 90°</text>
+            <!-- Tangent cone fan -->
+            <polygon points="110,85 195,35 195,120" fill="#f1f5f9" stroke="#000000" stroke-width="1.8"/>
+            <text x="155" y="75" fill="#000000" font-size="10" font-family="serif" font-style="italic" font-weight="bold">T_Ω(x*)</text>
+            <!-- Supporting hyperplane (dashed line) -->
+            <line x1="110" y1="25" x2="110" y2="135" stroke="#000000" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <!-- Negative gradient -∇f pointing into exterior -->
+            <line x1="110" y1="85" x2="45" y2="50" stroke="#000000" stroke-width="2" marker-end="url(#arr-opt)"/>
+            <text x="35" y="45" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold">-∇f(x*)</text>
+            <!-- Vertex x* -->
+            <circle cx="110" cy="85" r="4" fill="#000000"/>
+            <text x="100" y="100" fill="#000000" font-size="9.5" font-family="serif" font-style="italic">x*</text>
+            <text x="120" y="20" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">Optimality: ∇f(x*)ᵀd ≥ 0  (∀ d ∈ T_Ω)</text>
+            <text x="120" y="138" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">-∇f(x*) makes obtuse angle (≥ 90°) with all feasible directions</text>
           </svg>
         `,
         drawingCaption: "Negative gradient makes an obtuse angle with all feasible directions",
@@ -476,14 +481,72 @@
     ];
 
     const masterCards = window.MASTER_CARDS_DATA || defaultDeck;
-    let currentTopic = '01_Mathematical_Preliminaries_Topology_and_Weierstrass';
+    let currentSubject = 'CMO';
+    let currentTopic = '09_Geometry_of_Constrained_Optimization_Tangent_Cone_and_LICQ';
+    
+    function getSubjectCards(sub) {
+      return masterCards.filter(c => (c.subject || 'CMO') === sub);
+    }
+
     let deck = masterCards.filter(c => c.topicId === currentTopic);
+    if (deck.length === 0) {
+      deck = getSubjectCards('CMO');
+      if (deck.length > 0) currentTopic = deck[0].topicId;
+    }
     let gridCols = 1; // Default to expansive 1 Wide layout as requested
     let currentScale = 'large'; // Default to large 125% scale
 
-    function getTopicsList() {
+    function switchSubject(sub) {
+      currentSubject = sub;
+      ['CMO', 'LAA', 'StoMA', 'DIP'].forEach(s => {
+        const btn = document.getElementById(`sub-btn-${s}`);
+        if (!btn) return;
+        if (s === sub) {
+          btn.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold shadow transition flex items-center gap-1 cursor-pointer";
+        } else {
+          btn.className = "px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center gap-1 cursor-pointer";
+        }
+      });
+
+      populateTopicsDropdown(sub);
+
+      const subCards = getSubjectCards(sub);
+      if (subCards.length > 0) {
+        switchTopic(subCards[0].topicId);
+      } else {
+        deck = [];
+        const banner = document.getElementById('topic-title-banner');
+        if (banner) banner.textContent = `No cards available yet for ${sub}`;
+        renderDeck();
+      }
+    }
+
+    function populateTopicsDropdown(sub) {
+      const select = document.getElementById('topic-select');
+      if (!select) return;
+      const subCards = getSubjectCards(sub);
       const map = new Map();
-      masterCards.forEach(c => {
+      subCards.forEach(c => {
+        if (!map.has(c.topicId)) {
+          map.set(c.topicId, c.topicTitle || c.topicId);
+        }
+      });
+      
+      let html = '';
+      map.forEach((title, id) => {
+        const count = subCards.filter(c => c.topicId === id).length;
+        html += `<option value="${id}">${title} (${count} cards)</option>`;
+      });
+      if (subCards.length > 0) {
+        html += `<option value="all">🌟 All Available Topics (${subCards.length} cards in sequence)</option>`;
+      }
+      select.innerHTML = html;
+    }
+
+    function getTopicsList() {
+      const subCards = getSubjectCards(currentSubject);
+      const map = new Map();
+      subCards.forEach(c => {
         if (!map.has(c.topicId)) {
           map.set(c.topicId, c.topicTitle || c.topicId);
         }
@@ -496,12 +559,13 @@
       const searchInput = document.getElementById('search-input');
       if (searchInput) searchInput.value = '';
 
+      const subCards = getSubjectCards(currentSubject);
       if (topicId === 'all') {
-        deck = [...masterCards];
-        document.getElementById('topic-title-banner').textContent = 'All Available Topics in Sequence (CMO)';
+        deck = [...subCards];
+        document.getElementById('topic-title-banner').textContent = `All Available Topics in Sequence (${currentSubject})`;
       } else {
-        deck = masterCards.filter(c => c.topicId === topicId);
-        const match = masterCards.find(c => c.topicId === topicId);
+        deck = subCards.filter(c => c.topicId === topicId);
+        const match = subCards.find(c => c.topicId === topicId);
         document.getElementById('topic-title-banner').textContent = match ? match.topicTitle : topicId;
       }
 
@@ -516,6 +580,7 @@
 
     function navigateTopic(dir) {
       const topics = getTopicsList().map(t => t[0]);
+      if (topics.length === 0) return;
       let idx = topics.indexOf(currentTopic);
       if (idx === -1) idx = 0;
       let nextIdx = idx + dir;
@@ -619,7 +684,7 @@
                   ${card.textbookImg ? `
                     <img src="${card.textbookImg}" alt="${card.title}" class="max-h-full max-w-full object-contain rounded cursor-pointer transition-transform duration-300 hover:scale-105" onclick="openLightbox('${card.textbookImg}', '${card.title}', '${card.textbookRef || ''}')">
                   ` : `
-                    <div class="w-full h-full flex items-center justify-center bg-[#070b16] rounded-xl p-3">
+                    <div class="w-full h-full flex items-center justify-center bg-white rounded-xl p-2 sm:p-3">
                       ${card.drawingSvg}
                     </div>
                   `}
@@ -842,7 +907,7 @@
             canvas.width = width;
             canvas.height = height;
             const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#070b16';
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, width, height);
             ctx.drawImage(img, 0, 0, width, height);
             URL.revokeObjectURL(blobURL);
@@ -1323,6 +1388,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       initCosmos();
       animateCosmos();
+      populateTopicsDropdown(currentSubject);
       switchTopic(currentTopic);
       applyLayoutAndScale();
     });
