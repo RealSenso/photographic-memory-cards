@@ -1440,6 +1440,246 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "math": "$$X, Y \\sim \\mathcal{N}(0, 1), \\quad \\operatorname{Cov}(X, Y) = 0, \\quad \\text{yet } \\mathbb{P}(X + Y = 0) = \\tfrac{1}{2} \\implies (X, Y) \\text{ NOT jointly Gaussian!}$$",
     "personalConnection": "An 'X'-shaped target: projection onto either coordinate axis produces a smooth Gaussian shadow, but projection along the diagonal reveals a sharp 50% spike at the origin.",
     "examTrap": "Concluding independence because Cov(X, Y) = 0! They are uncorrelated, but |Y| = |X| (complete deterministic dependence). Joint normality is strictly required for uncorrelated \u21d4 independent."
+  },
+  {
+    "id": 31401,
+    "subject": "StoMA",
+    "topicId": "14_Random_Sums_and_Walds_Equation",
+    "topicTitle": "14 \u00b7 Random Sums & Wald\u2019s Identity",
+    "cardNumber": "01",
+    "category": "RANDOM SUMS",
+    "highlighterClass": "highlight-cyan",
+    "title": "Random Sums S_N = \u2211_{i=1}^N X_i & Stopping Times",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31401\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"72\" x2=\"220\" y2=\"72\" stroke=\"#000000\" stroke-width=\"1.8\"/><circle cx=\"35\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"35\" y=\"58\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X\u2081</text><circle cx=\"70\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"70\" y=\"58\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X\u2082</text><circle cx=\"105\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"105\" y=\"58\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X\u2083</text><circle cx=\"140\" cy=\"72\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"140\" y=\"58\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">...</text><circle cx=\"175\" cy=\"72\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"175\" y=\"58\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X_N</text><line x1=\"175\" y1=\"35\" x2=\"175\" y2=\"105\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\"/><text x=\"175\" y=\"26\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Stop N</text><rect x=\"24\" y=\"90\" width=\"192\" height=\"32\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"105.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">S_N = \u2211_{i=1}^\u221e X\u1d62 \u00b7 1_{N \u2265 i}\nEvent {N</text><text x=\"120.0\" y=\"113.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2265 i} = {N \u2264 i-1}\u1d9c is independent of X\u1d62!</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Stopping time N depends only on past history X\u2081, ..., X_{i-1}; no future peering</text></svg>",
+    "drawingCaption": "Random sums add a stochastic number of terms N; stopping times decide to halt without peering into the future",
+    "coreTranslation": [
+      "<strong>Random Sum Formulation:</strong> For i.i.d. $X_i$ with mean $\\mu$ and variance $\\sigma^2$, $S_N = \\sum_{i=1}^N X_i$ sums a random integer number of terms $N \\in \\mathbb{N}_0$.",
+      "<strong>Stopping Time Condition:</strong> $N$ is a stopping time with respect to filtration $\\mathcal{F}_n = \\sigma(X_1, \\dots, X_n)$ if $\\{N = n\\} \\in \\mathcal{F}_n$ for all $n$ (halting rule does NOT depend on future outcomes).",
+      "<strong>Indicator Independence:</strong> $S_N = \\sum_{i=1}^\\infty X_i \\mathbf{1}_{\\{N \\ge i\\}}$. Crucially, event $\\{N \\ge i\\} = \\{N \\le i-1\\}^c$ depends only on $X_1, \\dots, X_{i-1}$, and is therefore independent of $X_i$."
+    ],
+    "math": "$$S_N = \\sum_{i=1}^N X_i = \\sum_{i=1}^\\infty X_i\\,\\mathbf{1}_{\\{N \\ge i\\}}, \\qquad \\{N \\ge i\\} \\in \\sigma(X_1, \\dots, X_{i-1}) \\implies \\mathbf{1}_{\\{N \\ge i\\}} \\perp X_i$$",
+    "personalConnection": "Blackjack card strategy: deciding whether to draw another card based on your current hand is a stopping time; stopping when the next card would bust you is clairvoyant and impossible.",
+    "examTrap": "Applying Wald's identities when N looks into the future! For example, N = argmax_{1 \u2264 i \u2264 5} X_i depends on future terms; Wald's equation fails completely for anticipatory stopping rules."
+  },
+  {
+    "id": 31402,
+    "subject": "StoMA",
+    "topicId": "14_Random_Sums_and_Walds_Equation",
+    "topicTitle": "14 \u00b7 Random Sums & Wald\u2019s Identity",
+    "cardNumber": "02",
+    "category": "WALD IDENTITIES",
+    "highlighterClass": "highlight-amber",
+    "title": "Wald\u2019s First Identity: E[S_N] = E[N] \u00b7 E[X]",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31402\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"192\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"41.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Wald's First Identity (Wald's Equation):\nE[ S_N ] = E[N] \u00b7</text><text x=\"120.0\" y=\"50.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[X]\n(Valid for any stopping time with E[N] &lt; \u221e, E[|X|] &lt; \u221e)</text><rect x=\"24\" y=\"72\" width=\"192\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"92.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Indicator Proof:\nE[S_N] = \u2211 E[X\u1d62 1_{N \u2265 i}] = \u2211 E[X\u1d62]</text><text x=\"120.0\" y=\"100.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(N \u2265 i)\n= E[X] \u2211 P(N \u2265 i) = E[X] E[N]  (via tail sum!)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Expected total payout equals expected count E[N] times expected cost per event E[X]</text></svg>",
+    "drawingCaption": "The expected value of a random sum equals the expected number of terms times the expected individual value",
+    "coreTranslation": [
+      "<strong>Theorem Statement:</strong> If $X_i$ are i.i.d. with $\\mathbb{E}[|X|] < \\infty$ and $N$ is a stopping time with $\\mathbb{E}[N] < \\infty$, then $\\mathbb{E}[S_N] = \\mathbb{E}[N]\\,\\mathbb{E}[X]$.",
+      "<strong>Indicator Proof:</strong> $\\mathbb{E}[S_N] = \\mathbb{E}[\\sum_{i=1}^\\infty X_i \\mathbf{1}_{\\{N \\ge i\\}}] = \\sum_{i=1}^\\infty \\mathbb{E}[X_i] \\mathbb{P}(N \\ge i) = \\mathbb{E}[X] \\sum_{i=1}^\\infty \\mathbb{P}(N \\ge i) = \\mathbb{E}[X]\\mathbb{E}[N]$.",
+      "<strong>Tower Proof (if $N \\perp X$):</strong> By the law of total expectation, $\\mathbb{E}[S_N] = \\mathbb{E}[\\mathbb{E}[S_N \\mid N]] = \\mathbb{E}[N \\mathbb{E}[X]] = \\mathbb{E}[N]\\,\\mathbb{E}[X]$."
+    ],
+    "math": "$$\\mathbb{E}\\left[\\sum_{i=1}^N X_i\\right] = \\mathbb{E}[N]\\,\\mathbb{E}[X], \\quad \\text{provided } \\mathbb{E}[N] < \\infty, \\; \\mathbb{E}[|X|] < \\infty$$",
+    "personalConnection": "Hospital emergency room: an average of E[N] = 40 patients arrive per day, each incurring an average treatment cost of E[X] = $1,500; total expected daily expenditure is $60,000.",
+    "examTrap": "Ignoring integrability conditions: if E[N] = \u221e or E[|X|] = \u221e, Wald's equation breaks down and can yield undefined \u221e \u00d7 0 forms."
+  },
+  {
+    "id": 31403,
+    "subject": "StoMA",
+    "topicId": "14_Random_Sums_and_Walds_Equation",
+    "topicTitle": "14 \u00b7 Random Sums & Wald\u2019s Identity",
+    "cardNumber": "03",
+    "category": "WALD IDENTITIES",
+    "highlighterClass": "highlight-emerald",
+    "title": "Wald\u2019s Second Identity: Two-Source Variance Decomposition",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31403\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"36\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"37.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Wald's Second Identity:\nVar(S_N)</text><text x=\"120.0\" y=\"46.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">= E[N] Var(X) + (E[X])\u00b2 Var(N)</text><rect x=\"20\" y=\"62\" width=\"96\" height=\"46\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"68.0\" y=\"84.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[ Var(S_N | N) ]\n= E[N \u03c3\u00b2]\n=</text><text x=\"68.0\" y=\"92.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[N] Var(X)\n(Claim variability)</text><rect x=\"124\" y=\"62\" width=\"96\" height=\"46\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"172.0\" y=\"84.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Var( E[S_N | N] )\n= Var(N \u03bc)\n=</text><text x=\"172.0\" y=\"92.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc\u00b2 Var(N)\n(Count variability)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Two variance sources: randomness in each step PLUS randomness in the total number of steps</text></svg>",
+    "drawingCaption": "The variance of a random sum combines individual claim variability with count volatility via Eve\u2019s Law",
+    "coreTranslation": [
+      "<strong>Identity Statement:</strong> If $N$ is independent of i.i.d. $X_i$ with finite variances, $\\operatorname{Var}(S_N) = \\mathbb{E}[N]\\operatorname{Var}(X) + (\\mathbb{E}[X])^2 \\operatorname{Var}(N)$.",
+      "<strong>Derivation via Total Variance:</strong> $\\operatorname{Var}(S_N) = \\mathbb{E}[\\operatorname{Var}(S_N \\mid N)] + \\operatorname{Var}(\\mathbb{E}[S_N \\mid N]) = \\mathbb{E}[N\\sigma^2] + \\operatorname{Var}(N\\mu) = \\mathbb{E}[N]\\sigma^2 + \\mu^2 \\operatorname{Var}(N)$.",
+      "<strong>Zero-Mean Simplification:</strong> If $\\mathbb{E}[X] = 0$, the second term vanishes: $\\operatorname{Var}(S_N) = \\mathbb{E}[N]\\operatorname{Var}(X)$ (holds even when $N$ is a general stopping time)."
+    ],
+    "math": "$$\\operatorname{Var}\\left(\\sum_{i=1}^N X_i\\right) = \\mathbb{E}[N]\\operatorname{Var}(X) + \\left(\\mathbb{E}[X]\\right)^2 \\operatorname{Var}(N)$$",
+    "personalConnection": "Retail inventory risk: total weekly revenue variance stems from two distinct drivers: fluctuating customer foot traffic Var(N) and fluctuating basket size Var(X).",
+    "examTrap": "Using Var(S_N) = E[N]Var(X)! Omitting the second term \u03bc\u00b2 Var(N) severely underestimates risk whenever mean E[X] is non-zero."
+  },
+  {
+    "id": 31404,
+    "subject": "StoMA",
+    "topicId": "14_Random_Sums_and_Walds_Equation",
+    "topicTitle": "14 \u00b7 Random Sums & Wald\u2019s Identity",
+    "cardNumber": "04",
+    "category": "COMPOUND DISTRIBUTIONS",
+    "highlighterClass": "highlight-purple",
+    "title": "Compound Distributions: Functional Composition of PGFs & MGFs",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31404\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"24\" y=\"20\" width=\"192\" height=\"40\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"39.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Compound MGF:  M_{S_N}(t) = G_N( M_X(t) ) = M_N( ln M_X(t)</text><text x=\"120.0\" y=\"48.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">)\n(Outer function is counter N; inner function is term X)</text><rect x=\"24\" y=\"68\" width=\"192\" height=\"40\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"87.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Compound PGF:  G_{S_N}(s) = G_N( G_X(s) )   [for X\u1d62 \u2208</text><text x=\"120.0\" y=\"96.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2115\u2080]\n(Functional composition evaluates all higher moments)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Functional composition: nested generating functions mirror the nested nature of random sums</text></svg>",
+    "drawingCaption": "The generating function of a random sum is the functional composition of the parent and offspring generators",
+    "coreTranslation": [
+      "<strong>Compound MGF:</strong> $M_{S_N}(t) \\triangleq \\mathbb{E}[e^{t S_N}] = \\mathbb{E}[\\mathbb{E}[e^{t \\sum X_i} \\mid N]] = \\mathbb{E}[(M_X(t))^N] = G_N(M_X(t))$.",
+      "<strong>Compound PGF:</strong> For discrete non-negative integer RVs $X_i \\in \\mathbb{N}_0$, $G_{S_N}(s) \\triangleq \\mathbb{E}[s^{S_N}] = G_N(G_X(s))$ (exact nested functional composition).",
+      "<strong>Cumulant Generating Function:</strong> $\\log M_{S_N}(t) = \\log G_N(M_X(t))$. Successive derivatives at $t=0$ generate all higher-order cumulants and skewness."
+    ],
+    "math": "$$M_{S_N}(t) = G_N\\left(M_X(t)\\right), \\qquad G_{S_N}(s) = G_N\\left(G_X(s)\\right) \\quad (X_i \\in \\mathbb{N}_0)$$",
+    "personalConnection": "Russian nesting dolls (Matryoshka): the offspring generating function G_X(s) is packed inside the population count doll G_N.",
+    "examTrap": "Swapping the composition order: writing M_X(G_N(t)) instead of G_N(M_X(t))! The outer function is always the counter N; the inner function is the term X."
+  },
+  {
+    "id": 31405,
+    "subject": "StoMA",
+    "topicId": "14_Random_Sums_and_Walds_Equation",
+    "topicTitle": "14 \u00b7 Random Sums & Wald\u2019s Identity",
+    "cardNumber": "05",
+    "category": "BRANCHING PROCESSES",
+    "highlighterClass": "highlight-cyan",
+    "title": "Galton-Watson Branching Processes & Extinction Probability",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31405\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><circle cx=\"120\" cy=\"20\" r=\"4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"10\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Z\u2080 = 1</text><line x1=\"120\" y1=\"20\" x2=\"70\" y2=\"50\" stroke=\"#000000\" stroke-width=\"1.2\"/><line x1=\"120\" y1=\"20\" x2=\"170\" y2=\"50\" stroke=\"#000000\" stroke-width=\"1.2\"/><circle cx=\"70\" cy=\"50\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"170\" cy=\"50\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"200\" y=\"50\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Z\u2081 ~ \u03be</text><line x1=\"70\" y1=\"50\" x2=\"45\" y2=\"80\" stroke=\"#000000\" stroke-width=\"1.0\"/><line x1=\"70\" y1=\"50\" x2=\"95\" y2=\"80\" stroke=\"#000000\" stroke-width=\"1.0\"/><line x1=\"170\" y1=\"50\" x2=\"170\" y2=\"80\" stroke=\"#000000\" stroke-width=\"1.0\"/><circle cx=\"45\" cy=\"80\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"95\" cy=\"80\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"170\" cy=\"80\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"200\" y=\"80\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Z\u2082</text><rect x=\"24\" y=\"96\" width=\"192\" height=\"28\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"109.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">E[Z_n] = \u03bc\u207f (\u03bc = E[\u03be]);  Extinction</text><text x=\"120.0\" y=\"118.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03c0\u2080 = min{s \u2208 [0, 1] : s = G_\u03be(s)}</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Branching process: Subcritical \u03bc &lt; 1 \u21d2 \u03c0\u2080 = 1; Supercritical \u03bc > 1 \u21d2 \u03c0\u2080 &lt; 1</text></svg>",
+    "drawingCaption": "Population grows geometrically as E[Z_n] = \u03bc\u207f; extinction probability \u03c0\u2080 is the smallest root of s = G_\u03be(s)",
+    "coreTranslation": [
+      "<strong>Model Formulation:</strong> $Z_0 = 1$. Generation $n+1$ has size $Z_{n+1} = \\sum_{i=1}^{Z_n} \\xi_{n,i}$ where $\\xi_{n,i} \\stackrel{\\text{i.i.d.}}{\\sim} \\xi$. By Wald's equation, $\\mathbb{E}[Z_n] = \\mu^n$ with $\\mu = \\mathbb{E}[\\xi]$.",
+      "<strong>Phase Transition:</strong> (1) If $\\mu < 1$ (subcritical) or $\\mu = 1$ (critical, $\\xi \\not\\equiv 1$), extinction is CERTAIN: $\\pi_0 = 1$; (2) If $\\mu > 1$ (supercritical), survival is possible: $\\pi_0 < 1$.",
+      "<strong>Fixed-Point Theorem:</strong> The extinction probability $\\pi_0 = \\mathbb{P}(\\lim Z_n = 0)$ is the SMALLEST non-negative root of the fixed-point equation $s = G_\\xi(s)$ in $[0, 1]$."
+    ],
+    "math": "$$\\mathbb{E}[Z_n] = \\mu^n \\quad (\\mu = \\mathbb{E}[\\xi]); \\qquad \\pi_0 = \\min \\{s \\in [0, 1] : s = G_\\xi(s)\\}$$",
+    "personalConnection": "Viral chain reaction: if basic reproduction number R\u2080 = \u03bc is below 1, the epidemic dies out with 100% certainty; if R\u2080 > 1, the disease has a non-zero probability of permanent endemic survival.",
+    "examTrap": "Selecting the trivial root s = 1 when solving s = G(s). The root s = 1 is always a mathematical solution (G(1)=1); the true extinction probability is the SMALLEST root in [0, 1]."
+  },
+  {
+    "id": 31406,
+    "subject": "StoMA",
+    "topicId": "14_Random_Sums_and_Walds_Equation",
+    "topicTitle": "14 \u00b7 Random Sums & Wald\u2019s Identity",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Compound Poisson Claims (The Lundberg Model)",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31406\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31406)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31406)\"/><line x1=\"24\" y1=\"110\" x2=\"65\" y2=\"110\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"65\" y1=\"110\" x2=\"65\" y2=\"80\" stroke=\"#000000\" stroke-width=\"1.8\"/><circle cx=\"65\" cy=\"80\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"65\" y=\"70\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X\u2081</text><line x1=\"65\" y1=\"80\" x2=\"120\" y2=\"80\" stroke=\"#000000\" stroke-width=\"1.8\"/><line x1=\"120\" y1=\"80\" x2=\"120\" y2=\"45\" stroke=\"#000000\" stroke-width=\"1.8\"/><circle cx=\"120\" cy=\"45\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"35\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">X\u2082</text><line x1=\"120\" y1=\"45\" x2=\"185\" y2=\"45\" stroke=\"#000000\" stroke-width=\"1.8\"/><rect x=\"130\" y=\"60\" width=\"96\" height=\"44\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"178.0\" y=\"81.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">N ~ Pois(\u03bb), X\u1d62 ~ Exp(\u03b2)\nE[S_N] =</text><text x=\"178.0\" y=\"89.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bb / \u03b2\nVar(S_N) = 2\u03bb / \u03b2\u00b2 = \u03bb E[X\u00b2]</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Compound Poisson variance: Var(S_N) = \u03bb E[X\u00b2]; count volatility doubles the total variance</text></svg>",
+    "drawingCaption": "For compound Poisson processes, total variance equals rate \u03bb times second moment E[X\u00b2]: Var(S_N) = \u03bb E[X\u00b2]",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> Claim count $N \\sim \\text{Poisson}(\\lambda)$ (so $\\mathbb{E}[N] = \\lambda, \\operatorname{Var}(N) = \\lambda$). Individual claim amounts $X_i \\stackrel{\\text{i.i.d.}}{\\sim} \\text{Exp}(\\beta)$ with mean $1/\\beta$ and variance $1/\\beta^2$.",
+      "<strong>Expected Total Claim:</strong> $\\mathbb{E}[S_N] = \\mathbb{E}[N]\\mathbb{E}[X] = \\lambda \\cdot \\frac{1}{\\beta} = \\frac{\\lambda}{\\beta}$.",
+      "<strong>Aggregate Variance:</strong> $\\operatorname{Var}(S_N) = \\lambda(1/\\beta^2) + (1/\\beta)^2 \\lambda = \\frac{2\\lambda}{\\beta^2} = \\lambda \\mathbb{E}[X^2]$. For ANY compound Poisson sum, $\\operatorname{Var}(S_N) = \\lambda \\mathbb{E}[X^2]$!"
+    ],
+    "math": "$$N \\sim \\text{Pois}(\\lambda) \\implies \\mathbb{E}[S_N] = \\lambda \\mathbb{E}[X], \\qquad \\operatorname{Var}(S_N) = \\lambda \\mathbb{E}[X^2] = \\frac{2\\lambda}{\\beta^2}$$",
+    "personalConnection": "Insurance reserve solvency: premium inflows arrive continuously while claim payouts arrive in sudden random compound Poisson jumps, requiring reserves calibrated to \u03bb E[X\u00b2].",
+    "examTrap": "Omitting the count variance term: calculating Var(S_N) = \u03bb / \u03b2\u00b2 by treating N as a constant! Because Var(N) = \u03bb, the second term adds another \u03bb/\u03b2\u00b2, exactly doubling the variance."
+  },
+  {
+    "id": 31501,
+    "subject": "StoMA",
+    "topicId": "15_Modes_of_Convergence_and_Relations",
+    "topicTitle": "15 \u00b7 Modes of Convergence",
+    "cardNumber": "01",
+    "category": "CONVERGENCE MODES",
+    "highlighterClass": "highlight-cyan",
+    "title": "The Four Modes of Stochastic Convergence",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31501\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"60\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"46.0\" y=\"33.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Almost Sure\nX_n</text><text x=\"46.0\" y=\"42.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2192^{a.s.} X</text><line x1=\"76\" y1=\"34\" x2=\"100\" y2=\"34\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31501)\"/><rect x=\"100\" y=\"20\" width=\"60\" height=\"28\" rx=\"0\" fill=\"#e2e8f0\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"130.0\" y=\"33.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Probability\nX_n</text><text x=\"130.0\" y=\"42.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2192^{P} X</text><line x1=\"160\" y1=\"34\" x2=\"184\" y2=\"34\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31501)\"/><rect x=\"184\" y=\"20\" width=\"48\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"208.0\" y=\"37.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Dist.\n\u2192^{d}</text><rect x=\"100\" y=\"72\" width=\"60\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"130.0\" y=\"85.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">L^p Mean\nX_n</text><text x=\"130.0\" y=\"94.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2192^{L^p} X</text><line x1=\"130\" y1=\"72\" x2=\"130\" y2=\"48\" stroke=\"#000000\" stroke-width=\"1.4\" marker-end=\"url(#arr-31501)\"/><text x=\"145\" y=\"60\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">p \u2265 1</text><text x=\"120\" y=\"118\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Hierarchy: a.s. \u21d2 P \u21d2 d;   L^p \u21d2 L^r \u21d2 P (p > r \u2265 1)</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Four distinct topology strengths: a.s. is pointwise almost everywhere; d only matches CDFs</text></svg>",
+    "drawingCaption": "The fundamental implication hierarchy: Almost Sure implies Probability implies Distribution; L^p implies Probability",
+    "coreTranslation": [
+      "<strong>Almost Sure ($X_n \\xrightarrow{a.s.} X$):</strong> $\\mathbb{P}(\\{\\omega : \\lim X_n(\\omega) = X(\\omega)\\}) = 1$ (pointwise path convergence for 100% of outcomes).",
+      "<strong>In Probability ($X_n \\xrightarrow{P} X$):</strong> $\\lim_{n \\to \\infty} \\mathbb{P}(|X_n - X| \\ge \\epsilon) = 0$ for all $\\epsilon > 0$ (probability of error vanishes).",
+      "<strong>In $L^p$ Mean & Distribution:</strong> In $L^p$: $\\lim \\mathbb{E}[|X_n - X|^p] = 0$. In Distribution ($X_n \\xrightarrow{d} X$): $\\lim F_{X_n}(x) = F_X(x)$ at all continuity points of $F_X$ (weakest mode)."
+    ],
+    "math": "$$X_n \\xrightarrow{a.s.} X \\implies X_n \\xrightarrow{P} X \\implies X_n \\xrightarrow{d} X; \\qquad X_n \\xrightarrow{L^p} X \\implies X_n \\xrightarrow{L^r} X \\implies X_n \\xrightarrow{P} X \\quad (p > r)$$",
+    "personalConnection": "Target archery: almost sure means every arrow lands closer and closer to center; probability allows rare wild shots with vanishing likelihood; distribution means only the spray pattern matches the target.",
+    "examTrap": "Assuming convergence in distribution requires a shared sample space! X_n \u2192^d X depends ONLY on CDFs; variables can be defined on completely unrelated probability spaces."
+  },
+  {
+    "id": 31502,
+    "subject": "StoMA",
+    "topicId": "15_Modes_of_Convergence_and_Relations",
+    "topicTitle": "15 \u00b7 Modes of Convergence",
+    "cardNumber": "02",
+    "category": "CONVERGENCE HIERARCHY",
+    "highlighterClass": "highlight-amber",
+    "title": "Implication Hierarchy & When the Reverses Hold",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31502\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"200\" height=\"32\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"35.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Bridge 1: X_n \u2192^{d} c </text><text x=\"120.0\" y=\"44.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">(Constant limit)  \u21d4  X_n \u2192^{P} c</text><rect x=\"20\" y=\"56\" width=\"200\" height=\"32\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"71.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Bridge 2: X_n \u2192^{P} X  AND  |X_n| \u2264 Y</text><text x=\"120.0\" y=\"80.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">with E[Y^p]&lt;\u221e  \u21d2  X_n \u2192^{L^p} X (DCT)</text><rect x=\"20\" y=\"92\" width=\"200\" height=\"32\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"107.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Bridge 3: X_n \u2192^{P} X  \u21d2  \u2203 Subsequence</text><text x=\"120.0\" y=\"116.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">{n_k} s.t. X_{n_k} \u2192^{a.s.} X</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Reverses fail in general, but hold under constant limits, domination, and subsequences</text></svg>",
+    "drawingCaption": "Reverses fail in general, but hold under constant limits, Dominated Convergence (DCT), and subsequences",
+    "coreTranslation": [
+      "<strong>Constant Limit Bridge:</strong> If $X_n \\xrightarrow{d} c$ where $c$ is a deterministic CONSTANT, then $X_n \\xrightarrow{P} c$ (distribution convergence promotes to probability convergence).",
+      "<strong>Dominated Convergence Bridge:</strong> If $X_n \\xrightarrow{P} X$ and $|X_n| \\le Y$ with $\\mathbb{E}[Y^p] < \\infty$, then $X_n \\xrightarrow{L^p} X$ (Lebesgue Dominated Convergence Theorem).",
+      "<strong>Subsequential Bridge:</strong> If $X_n \\xrightarrow{P} X$, there exists a SUBSEQUENCE $\\{n_k\\}$ such that $X_{n_k} \\xrightarrow{a.s.} X$."
+    ],
+    "math": "$$X_n \\xrightarrow{d} c \\iff X_n \\xrightarrow{P} c \\quad (c \\text{ constant}); \\qquad X_n \\xrightarrow{P} X \\implies \\exists \\{n_k\\} \\text{ s.t. } X_{n_k} \\xrightarrow{a.s.} X$$",
+    "personalConnection": "Refining an optical focus: coarse adjustment (d) generally cannot ensure sharp paths (a.s.), but if you restrict to a target landmark (constant), coarse focus coincides with fine focus.",
+    "examTrap": "Assuming X_n \u2192^d X implies X_n \u2192^P X for non-constant X! E.g. let X ~ N(0, 1) and X_n = -X. Then X_n has the same normal distribution, but X_n - X = -2X never converges to 0."
+  },
+  {
+    "id": 31503,
+    "subject": "StoMA",
+    "topicId": "15_Modes_of_Convergence_and_Relations",
+    "topicTitle": "15 \u00b7 Modes of Convergence",
+    "cardNumber": "03",
+    "category": "COUNTEREXAMPLE",
+    "highlighterClass": "highlight-emerald",
+    "title": "The Sliding Typewriter: Convergence in Probability \u2260 Almost Sure",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31503\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"35\" x2=\"220\" y2=\"35\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"20\" y=\"48\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">0</text><text x=\"220\" y=\"48\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">1</text><rect x=\"20\" y=\"26\" width=\"100\" height=\"18\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"70\" y=\"37\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">I\u2081 = [0, 1/2]</text><line x1=\"20\" y1=\"70\" x2=\"220\" y2=\"70\" stroke=\"#000000\" stroke-width=\"1.4\"/><rect x=\"120\" y=\"61\" width=\"100\" height=\"18\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"170\" y=\"72\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">I\u2082 = [1/2, 1]</text><line x1=\"20\" y1=\"105\" x2=\"220\" y2=\"105\" stroke=\"#000000\" stroke-width=\"1.4\"/><rect x=\"20\" y=\"96\" width=\"67\" height=\"18\" rx=\"0\" fill=\"#d9dee7\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"53\" y=\"107\" font-size=\"7\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">I\u2083 = [0, 1/3]</text><text x=\"120\" y=\"138\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Typewriter sweeps endlessly: P(X_n = 1) = 1/k \u2192 0 (in P), yet limsup X_n(\u03c9) = 1 \u2200\u03c9 (not a.s.)</text></svg>",
+    "drawingCaption": "Indicator intervals of shrinking width sweep endlessly across [0, 1]: converges in probability, but diverges almost surely",
+    "coreTranslation": [
+      "<strong>Typewriter Construction:</strong> On $\\Omega = [0, 1]$ with uniform Lebesgue measure. Let $X_n = \\mathbf{1}_{I_n}$ where intervals $I_n$ of width $1/k$ sweep from left to right across $[0, 1]$ repeatedly.",
+      "<strong>Convergence in Probability:</strong> $\\mathbb{P}(|X_n| \\ge \\epsilon) = \\text{Length}(I_n) = 1/k \\to 0$, so $X_n \\xrightarrow{P} 0$.",
+      "<strong>Almost Sure Divergence:</strong> Because the intervals sweep past every point $\\omega \\in [0, 1]$ infinitely many times, the sequence of values $X_n(\\omega)$ oscillates between $0$ and $1$ forever for EVERY $\\omega$. Thus $\\mathbb{P}(\\lim X_n = 0) = 0$!"
+    ],
+    "math": "$$\\mathbb{P}(X_n = 1) = \\frac{1}{k} \\to 0 \\implies X_n \\xrightarrow{P} 0, \\quad \\text{yet } \\limsup_{n \\to \\infty} X_n(\\omega) = 1 \\quad \\forall \\omega \\implies X_n \\not\\xrightarrow{a.s.} 0$$",
+    "personalConnection": "A sweeping radar beam: the beam gets thinner and thinner over time (prob \u2192 0), but because it never stops rotating, every target on the radar screen is illuminated periodically forever.",
+    "examTrap": "Assuming that P(|X_n| \u2265 \u03b5) \u2192 0 guarantees sample paths settle down. Probability measures only instantaneous mass size; almost sure convergence requires mass to stop wandering across points."
+  },
+  {
+    "id": 31504,
+    "subject": "StoMA",
+    "topicId": "15_Modes_of_Convergence_and_Relations",
+    "topicTitle": "15 \u00b7 Modes of Convergence",
+    "cardNumber": "04",
+    "category": "COUNTEREXAMPLE",
+    "highlighterClass": "highlight-purple",
+    "title": "The Escaping Spike: Almost Sure Convergence \u2260 L^p Convergence",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31504\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"24\" y1=\"115\" x2=\"220\" y2=\"115\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31504)\"/><line x1=\"24\" y1=\"115\" x2=\"24\" y2=\"20\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-31504)\"/><line x1=\"160\" y1=\"114\" x2=\"160\" y2=\"30\" stroke=\"#000000\" stroke-width=\"2.2\"/><circle cx=\"160\" cy=\"30\" r=\"3.5\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"160\" y=\"20\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Height = n\u00b2</text><text x=\"160\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">n\u00b2</text><rect x=\"24\" y=\"20\" width=\"110\" height=\"48\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"79.0\" y=\"43.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">P(X_n = n\u00b2) = 1/n\nP(X_n = 0) = 1 -</text><text x=\"79.0\" y=\"51.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">1/n\nX_n(\u03c9) \u2192 0 a.s.\nE[X_n] = n\u00b2(1/n) = n \u2192 \u221e!</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Escaping spike: X_n \u2192 0 a.s., but E[X_n] = n \u2192 \u221e diverges completely (fails L\u00b9)</text></svg>",
+    "drawingCaption": "A spike of height n\u00b2 with probability 1/n vanishes almost surely, but its expectation diverges to infinity",
+    "coreTranslation": [
+      "<strong>Spike Construction:</strong> Let $\\mathbb{P}(X_n = n^2) = 1/n$ and $\\mathbb{P}(X_n = 0) = 1 - 1/n$.",
+      "<strong>Almost Sure Zero:</strong> By Borel-Cantelli (using independent trials with $\\sum 1/n^2 < \\infty$), for almost every $\\omega$, $X_n(\\omega) = 0$ for all sufficiently large $n$, so $X_n \\xrightarrow{a.s.} 0$.",
+      "<strong>$L^1$ Mean Explosion:</strong> $\\mathbb{E}[|X_n|] = n^2 \\cdot \\frac{1}{n} = n \\to \\infty$. The expectation explodes to infinity even though the variable is zero almost surely!"
+    ],
+    "math": "$$X_n(\\omega) \\to 0 \\text{ a.s.}, \\quad \\text{yet } \\mathbb{E}[|X_n|] = n \\to \\infty \\implies X_n \\not\\xrightarrow{L^1} 0$$",
+    "personalConnection": "A runaway lottery jackpot: the probability of winning shrinks toward zero, but the jackpot prize grows so exponentially that the expected ticket payout explodes to infinity.",
+    "examTrap": "Assuming almost sure convergence allows exchanging limit and expectation: lim E[X_n] = E[lim X_n] strictly requires Uniform Integrability or a Dominated Bound (DCT)."
+  },
+  {
+    "id": 31505,
+    "subject": "StoMA",
+    "topicId": "15_Modes_of_Convergence_and_Relations",
+    "topicTitle": "15 \u00b7 Modes of Convergence",
+    "cardNumber": "05",
+    "category": "ASYMPTOTIC ALGEBRA",
+    "highlighterClass": "highlight-cyan",
+    "title": "Slutsky\u2019s Theorem & The Continuous Mapping Theorem",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31505\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"208\" height=\"28\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"33.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Continuous Mapping (CMT):  X_n \u2192 X </text><text x=\"120.0\" y=\"42.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u21d2  g(X_n) \u2192 g(X)  (for continuous g)</text><rect x=\"16\" y=\"54\" width=\"208\" height=\"30\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"68.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Slutsky: X_n \u2192^{d} X   and   Y_n \u2192^{P} c (Constant</text><text x=\"120.0\" y=\"77.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">c)\n(1) X_n + Y_n \u2192^{d} X + c,    (2) X_n \u00b7 Y_n \u2192^{d} c X</text><rect x=\"16\" y=\"90\" width=\"208\" height=\"28\" rx=\"0\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"103.0\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Ratio Law: X_n / Y_n \u2192^{d}</text><text x=\"120.0\" y=\"112.5\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">X / c   (for constant c \u2260 0)</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Slutsky enables asymptotic hypothesis testing: plug in consistent estimators Y_n \u2192^P c</text></svg>",
+    "drawingCaption": "Slutsky preserves distribution convergence under algebraic operations when the second variable converges in probability to a constant",
+    "coreTranslation": [
+      "<strong>Continuous Mapping Theorem (CMT):</strong> If $X_n \\to X$ in mode (a.s., $P$, or $d$) and $g$ is continuous, then $g(X_n) \\to g(X)$ in the SAME mode.",
+      "<strong>Slutsky\u2019s Theorem:</strong> If $X_n \\xrightarrow{d} X$ and $Y_n \\xrightarrow{P} c$ (where $c$ is a deterministic constant): (1) $X_n + Y_n \\xrightarrow{d} X + c$; (2) $X_n Y_n \\xrightarrow{d} c X$; (3) $X_n / Y_n \\xrightarrow{d} X / c$ (if $c \\ne 0$).",
+      "<strong>Statistical Powerhouse:</strong> Slutsky allows replacing unknown nuisance parameters (like population variance $\\sigma$) with consistent sample estimates $S_n \\xrightarrow{P} \\sigma$."
+    ],
+    "math": "$$X_n \\xrightarrow{d} X, \\; Y_n \\xrightarrow{P} c \\implies X_n Y_n \\xrightarrow{d} cX, \\quad \\frac{X_n}{Y_n} \\xrightarrow{d} \\frac{X}{c} \\quad (c \\ne 0)$$",
+    "personalConnection": "Calibrating a precision laboratory balance: if your object weight error is Gaussian (X_n \u2192^d N), and tare calibration offset converges to true constant c (Y_n \u2192^P c), total reading error is N + c.",
+    "examTrap": "Applying Slutsky when Y_n \u2192^d Y with non-constant Y! If Y is random, X_n + Y_n does NOT necessarily converge to X + Y because distribution convergence tells you nothing about mutual joint alignment."
+  },
+  {
+    "id": 31506,
+    "subject": "StoMA",
+    "topicId": "15_Modes_of_Convergence_and_Relations",
+    "topicTitle": "15 \u00b7 Modes of Convergence",
+    "cardNumber": "06",
+    "category": "WORKED BENCHMARK",
+    "highlighterClass": "highlight-amber",
+    "title": "Worked Benchmark: Asymptotic Normality of Student's t-Statistic",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-31506\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"16\" y=\"20\" width=\"208\" height=\"42\" rx=\"0\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"40.0\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Student's t-Statistic:  T_n = \\frac{\\sqrt{n}(\\bar{X}_n - \u03bc)}{S_n} = \\frac{\\frac{\\sqrt{n}(\\bar{X}_n -</text><text x=\"120.0\" y=\"48.5\" font-size=\"7.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03bc)}{\u03c3}}{\\frac{S_n}{\u03c3}}\nNumerator: Z_n \u2192^{d} N(0, 1)  (by Central Limit Theorem)\nDenominator: S_n / \u03c3 \u2192^{P} 1  (by WLLN + CMT)</text><rect x=\"16\" y=\"68\" width=\"208\" height=\"44\" rx=\"0\" fill=\"#f8fafc\" stroke=\"#000000\" stroke-width=\"1.4\"/><text x=\"120.0\" y=\"89.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Apply Slutsky (Ratio with c = 1):\nT_n = Z_n / (S_n/\u03c3)  \u2192^{d}  N(0, 1)</text><text x=\"120.0\" y=\"98.0\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">/ 1 = N(0, 1)\nStudent's t distribution collapses to Standard Normal!</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">Asymptotic normality of Student's t: Slutsky proves T_n \u2192^d N(0, 1) as n \u2192 \u221e</text></svg>",
+    "drawingCaption": "Slutsky proves that Student\u2019s t statistic converges in distribution to the standard normal as sample size grows",
+    "coreTranslation": [
+      "<strong>Problem Setup:</strong> For i.i.d. $X_i \\sim (\\mu, \\sigma^2)$, test statistic is $T_n = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{S_n}$ where $S_n^2 = \\frac{1}{n-1}\\sum (X_i - \\bar{X}_n)^2$.",
+      "<strong>Component Decomposition:</strong> Numerator $Z_n = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{\\sigma} \\xrightarrow{d} \\mathcal{N}(0, 1)$ by Central Limit Theorem. Denominator $\\frac{S_n}{\\sigma} \\xrightarrow{P} 1$ by WLLN and Continuous Mapping Theorem.",
+      "<strong>Slutsky Ratio Law:</strong> By Slutsky's theorem with constant $c = 1$, $T_n = \\frac{Z_n}{S_n / \\sigma} \\xrightarrow{d} \\frac{\\mathcal{N}(0, 1)}{1} = \\mathcal{N}(0, 1)$. Student's $t$ statistic is asymptotically Gaussian!"
+    ],
+    "math": "$$T_n = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{S_n} = \\frac{\\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{\\sigma}}{\\frac{S_n}{\\sigma}} \\xrightarrow{d} \\frac{\\mathcal{N}(0, 1)}{1} = \\mathcal{N}(0, 1)$$",
+    "personalConnection": "Industrial sample testing: when testing more than 30 samples (n > 30), Student's t critical values become virtually indistinguishable from standard normal z-scores.",
+    "examTrap": "Assuming T_n is strictly Gaussian for finite n! T_n has heavier polynomial tails (Student's t) for finite n; it becomes Gaussian ONLY in the asymptotic limit n \u2192 \u221e."
   }
 ]
 );
