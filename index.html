@@ -112,6 +112,14 @@
     .chipbtn.done { border-color: #2c6e57; background: #11261f; color: var(--green); }
     .chipbtn.done.cur { border-color: var(--accent); }
     .donechip { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 6px; background: #11261f; border: 1px solid #2c6e57; color: var(--green); }
+    .sdot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#5b6784; margin-right:7px; }
+    .sync-ok .sdot { background: var(--green); } .sync-syncing .sdot { background: #f5b94a; } .sync-error .sdot { background: #ff6b6b; }
+    #sync-modal .syncwrap { position:fixed; inset:0; z-index:80; background:rgba(5,8,16,.8); display:flex; align-items:center; justify-content:center; padding:16px; }
+    #sync-modal .syncbox { max-width:460px; width:100%; background:#0f1426; border:1px solid #2a3558; border-radius:16px; padding:22px; color:#d8e0f2; font-size:14.5px; line-height:1.55; }
+    #sync-modal h3 { font-size:18px; font-weight:700; margin:0 0 8px; } #sync-modal p { margin:8px 0; } #sync-modal ol { margin:8px 0 8px 20px; list-style:decimal; }
+    #sync-modal a { color:var(--accent); text-decoration:underline; } #sync-modal .ok { color:var(--green); } #sync-modal .small { font-size:12.5px; color:#8e9bb8; }
+    #sync-modal input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2a3558; background:#0a0f1d; color:#fff; margin:6px 0 10px; }
+    #sync-modal .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
     .donebtn { min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid #2c6e57; background: #11261f; color: #a9ecd0; font-size: 14.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
     .donebtn:hover { background: #16342a; }
     .donebtn.is-done { background: var(--green); border-color: var(--green); color: #06101c; }
@@ -219,6 +227,7 @@
         <kbd>⌘K</kbd>
         <div class="results" id="search-results" hidden></div>
       </div>
+      <button class="btn" id="sync-btn" onclick="openSync()">Sync</button>
       <button class="btn" onclick="printDeck()" aria-label="Print this topic">Print</button>
       <button class="btn primary" onclick="openAddModal()">+ Add card</button>
       <div class="plines" id="progress-line" aria-label="Reading progress"></div>
@@ -475,16 +484,97 @@
     const POS_KEY = 'plates_pos_v1';
 
     const DONE_KEY = 'plates_done_v1';
+    const TS_KEY = 'plates_done_ts_v1';
+    /* doneTs: card id -> timestamp; positive = done, negative = un-done (last change wins when merging devices) */
+    let doneTs = {};
+    try { doneTs = JSON.parse(localStorage.getItem(TS_KEY) || 'null') || {}; } catch (e) { doneTs = {}; }
+    try { JSON.parse(localStorage.getItem(DONE_KEY) || '[]').forEach(id => { if (!(id in doneTs)) doneTs[id] = 1; }); } catch (e) {}
     let done = new Set();
-    try { done = new Set(JSON.parse(localStorage.getItem(DONE_KEY) || '[]')); } catch (e) { done = new Set(); }
-    function saveDone() { try { localStorage.setItem(DONE_KEY, JSON.stringify([...done])); } catch (e) {} }
+    function rebuildDone() { done = new Set(Object.keys(doneTs).filter(k => doneTs[k] > 0).map(k => isNaN(k) ? k : Number(k))); }
+    rebuildDone();
+    function saveDone() {
+      try { localStorage.setItem(TS_KEY, JSON.stringify(doneTs)); localStorage.setItem(DONE_KEY, JSON.stringify([...done])); } catch (e) {}
+    }
     function toggleDone() {
       const c = deck[idx];
       if (!c) return;
-      if (done.has(c.id)) done.delete(c.id); else done.add(c.id);
+      doneTs[c.id] = done.has(c.id) ? -Date.now() : Date.now();
+      rebuildDone();
       saveDone();
       renderAll();
+      syncSoon();
     }
+
+    /* ---- cross-device sync: a private GitHub Gist, reached with a token you paste on each device ---- */
+    const SYNC_KEY = 'plates_sync_v1', GIST_FILE = 'plates-progress.json', GIST_DESC = 'plates-progress (Plates study site)';
+    let syncCfg = {}; try { syncCfg = JSON.parse(localStorage.getItem(SYNC_KEY) || '{}'); } catch (e) {}
+    let syncState = syncCfg.token ? 'idle' : 'off', syncTimer = null, syncBusy = false;
+    function saveSyncCfg() { try { localStorage.setItem(SYNC_KEY, JSON.stringify(syncCfg)); } catch (e) {} }
+    function ghApi(path, opt) {
+      return fetch('https://api.github.com' + path, Object.assign({}, opt, { headers: {
+        Authorization: 'Bearer ' + syncCfg.token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' } }))
+        .then(r => { if (!r.ok) throw new Error('GitHub ' + r.status); return r.json(); });
+    }
+    function mergeTs(remote) {
+      let changed = false;
+      for (const k in remote) if (!(k in doneTs) || Math.abs(remote[k]) > Math.abs(doneTs[k])) { doneTs[k] = remote[k]; changed = true; }
+      return changed;
+    }
+    async function syncNow() {
+      if (!syncCfg.token || syncBusy) return;
+      syncBusy = true; setSync('syncing');
+      try {
+        if (!syncCfg.gist) {
+          const list = await ghApi('/gists?per_page=100');
+          const found = list.find(g => g.description === GIST_DESC && g.files[GIST_FILE]);
+          if (found) syncCfg.gist = found.id;
+          else syncCfg.gist = (await ghApi('/gists', { method: 'POST', body: JSON.stringify({ description: GIST_DESC, public: false,
+            files: { [GIST_FILE]: { content: JSON.stringify(doneTs) } } }) })).id;
+          saveSyncCfg();
+        }
+        const g = await ghApi('/gists/' + syncCfg.gist);
+        let remote = {}; try { remote = JSON.parse(g.files[GIST_FILE].content || '{}'); } catch (e) {}
+        const pulled = mergeTs(remote);
+        const needPush = Object.keys(doneTs).some(k => !(k in remote) || Math.abs(doneTs[k]) > Math.abs(remote[k]));
+        if (pulled) { rebuildDone(); saveDone(); renderAll(); }
+        if (needPush) await ghApi('/gists/' + syncCfg.gist, { method: 'PATCH', body: JSON.stringify({ files: { [GIST_FILE]: { content: JSON.stringify(doneTs) } } }) });
+        syncCfg.last = Date.now(); saveSyncCfg(); setSync('ok');
+      } catch (e) { setSync('error', e.message); }
+      syncBusy = false;
+    }
+    function syncSoon() { if (!syncCfg.token) return; clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 1200); }
+    function setSync(state, msg) {
+      syncState = state;
+      const b = document.getElementById('sync-btn'); if (!b) return;
+      const label = { off: 'Sync', idle: 'Sync', syncing: 'Syncing…', ok: 'Synced', error: 'Sync error' }[state];
+      b.className = 'btn sync-' + state;
+      b.title = msg || (syncCfg.last ? 'Last synced ' + new Date(syncCfg.last).toLocaleTimeString() : 'Sync progress across devices');
+      b.innerHTML = '<span class="sdot"></span>' + label;
+    }
+    function openSync() {
+      let m = document.getElementById('sync-modal');
+      if (!m) { m = document.createElement('div'); m.id = 'sync-modal'; document.body.appendChild(m); }
+      const on = !!syncCfg.token;
+      m.innerHTML = `<div class="syncwrap" onclick="if(event.target===this)closeSync()"><div class="syncbox">
+        <h3>Sync progress across devices</h3>
+        <p>Your “Mark as done” ticks are saved in a <b>private GitHub Gist</b> on your own account. Open this site on another device, paste the same token there, and both stay in step.</p>
+        ${on ? `<p class="ok">Sync is on${syncCfg.last ? ' · last synced ' + new Date(syncCfg.last).toLocaleTimeString() : ''}.</p>
+          <div class="row"><button class="btn primary" onclick="syncNow();closeSync()">Sync now</button><button class="btn" onclick="syncOff()">Turn off on this device</button><button class="btn" onclick="closeSync()">Close</button></div>`
+        : `<ol><li><a href="https://github.com/settings/tokens/new?scopes=gist&description=Plates%20sync" target="_blank" rel="noopener">Create a token</a> with only the <b>gist</b> permission.</li>
+          <li>Paste it here:</li></ol>
+          <input id="sync-token" type="password" placeholder="ghp_… or github_pat_…" autocomplete="off">
+          <div class="row"><button class="btn primary" onclick="syncOn()">Turn on sync</button><button class="btn" onclick="closeSync()">Cancel</button></div>
+          <p class="small">The token is stored only in this browser, never in the repo.</p>`}
+      </div></div>`;
+    }
+    function closeSync() { const m = document.getElementById('sync-modal'); if (m) m.innerHTML = ''; }
+    function syncOn() {
+      const t = document.getElementById('sync-token').value.trim(); if (!t) return;
+      syncCfg = { token: t }; saveSyncCfg(); closeSync(); syncNow();
+    }
+    function syncOff() { syncCfg = {}; saveSyncCfg(); setSync('off'); closeSync(); }
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) syncNow(); });
+    setInterval(() => { if (!document.hidden) syncNow(); }, 45000);
     function savePos() { try { localStorage.setItem(POS_KEY, JSON.stringify({ s: currentSubject, t: currentTopic, i: idx })); } catch (e) {} }
 
     let currentSubject = 'CMO';
@@ -842,6 +932,8 @@
       } else {
         switchSubject('CMO');
       }
+      setSync(syncState);
+      syncNow();
     });
 
     /* Lightbox Modal */
