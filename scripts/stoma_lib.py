@@ -121,12 +121,13 @@ def save_stoma_cards(new_cards, js_path="cards_stoma.js"):
     if os.path.exists(js_path):
         with open(js_path, "r") as f:
             text = f.read()
-        start = text.find("[")
-        end = text.rfind("]") + 1
-        if start != -1 and end != 0:
+        start = text.find("[\n")
+        end = text.rfind("}\n]") + 3
+        if start != -1 and end > start:
             try:
                 existing = json.loads(text[start:end])
-            except Exception:
+            except Exception as e:
+                print(f"Warning: could not parse existing cards: {e}")
                 existing = []
     card_map = {c["id"]: c for c in existing}
     for c in new_cards:
