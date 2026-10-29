@@ -1014,7 +1014,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Inactive constraints ($g_j(x)<0$):</strong> candidate $x^*$ touches $g_1(x)=0$, while $g_2(x)=0$ and $g_3(x)=0$ are far away! In a local ball around $x^*$, they remain strictly $<0$ and have zero local influence."
     ],
     "math": "$$\\Omega = \\{x : h_i(x)=0, \\, g_j(x) \\le 0\\}, \\quad \\mathcal{A}(x) = \\{j : g_j(x) = 0\\}$$",
-    "personalConnection": "<strong>The airplane analogy.</strong> The Feasible Set (\u03a9) is the legal airspace and runway tarmac where you are permitted to fly and taxi. The Active Set names the mountain walls your plane is physically parked against right now. The mountains on the other side of the valley (inactive constraints) have zero effect on your immediate next move.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The Feasible Set (\u03a9) is the legal airspace and runway tarmac where you are permitted to fly and taxi. The Active Set names the mountain walls your plane is physically parked against right now. The mountains on the other side of the valley (inactive constraints) have zero effect on your immediate next move.  <br><br><em>Key for the whole Midterm 3 deck.</em> $\\Omega$ = legal airspace; $f$ = altitude (gravity is $-\\nabla f$); walls $g_j\\le0$ = mountain walls; wall push = multiplier $\\mu_j$; $T_\\Omega$ = legal headings; air-traffic control = the projection operator.",
     "examTrap": "Never include inactive constraints in local gradient calculations! $g_j(x^*) < 0$ implies $\\mu_j^* = 0$ by complementary slackness. Carrying inactive constraints into gradient equations produces false stationary points.",
     "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-901\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><polygon points=\"54,36 190,24 214,92 150,126 70,122 40,80\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"2.4\"/><line x1=\"41.8\" y1=\"74.5\" x2=\"34.8\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"45.2\" y1=\"63.5\" x2=\"38.2\" y2=\"61.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"48.8\" y1=\"52.5\" x2=\"41.8\" y2=\"50.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"52.2\" y1=\"41.5\" x2=\"45.2\" y2=\"39.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"62.5\" y1=\"35.2\" x2=\"61.5\" y2=\"28.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"79.5\" y1=\"33.8\" x2=\"78.5\" y2=\"26.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"96.5\" y1=\"32.2\" x2=\"95.5\" y2=\"25.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"113.5\" y1=\"30.8\" x2=\"112.5\" y2=\"23.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"130.5\" y1=\"29.2\" x2=\"129.5\" y2=\"22.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"147.5\" y1=\"27.8\" x2=\"146.5\" y2=\"20.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"164.5\" y1=\"26.2\" x2=\"163.5\" y2=\"19.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"181.5\" y1=\"24.8\" x2=\"180.5\" y2=\"17.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"192.4\" y1=\"30.8\" x2=\"198.4\" y2=\"28.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"197.2\" y1=\"44.4\" x2=\"203.2\" y2=\"42.4\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"202.0\" y1=\"58.0\" x2=\"208.0\" y2=\"56.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"206.8\" y1=\"71.6\" x2=\"212.8\" y2=\"69.6\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"211.6\" y1=\"85.2\" x2=\"217.6\" y2=\"83.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"125\" y=\"82\" font-size=\"15\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03a9</text><circle cx=\"47\" cy=\"58\" r=\"3.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"62\" y=\"62\" font-size=\"10\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">x*</text><circle cx=\"47\" cy=\"58\" r=\"14\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 2.5\"/><text x=\"4\" y=\"42\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">g\u2081=0</text><text x=\"122\" y=\"14\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g\u2082=0</text><text x=\"213\" y=\"44\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">g\u2083=0</text><text x=\"120\" y=\"140\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">only g\u2081 is touching x*; g\u2082, g\u2083 are far away</text></svg>"
   },
@@ -1125,7 +1125,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> this is the engine behind Farkas' lemma, the KKT conditions and duality: whenever a point is outside a convex set, there is a wall that proves it."
     ],
     "math": "$$A \\cap B = \\emptyset, \\; A, B \\text{ convex} \\implies \\exists a \\ne 0, \\beta : \\sup_{x \\in A} a^T x \\le \\inf_{y \\in B} a^T y$$",
-    "personalConnection": "Sliding a flat pane of glass between two rival crowds on a plaza: as long as their territories do not overlap and both groups stay within convex boundaries, a single flat wall cleanly divides them.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Two rival airspaces (say a military zone and your civilian corridor) that do not overlap and are both convex. Air-traffic control can always draw one flat, infinite 'do-not-cross' wall that puts your corridor entirely on one side and the military zone entirely on the other.",
     "examTrap": "Strict separation strictly fails if neither set is compact! E.g. $A = \\{(x_1, x_2) : x_2 \\le 0\\}$ and $B = \\{(x_1, x_2) : x_1 x_2 \\ge 1, x_1 > 0\\}$ are closed and disjoint, but can only be weakly separated by $x_2 = 0$."
   },
   {
@@ -1145,7 +1145,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> a closed convex set is exactly the intersection of all its supporting half-spaces, and normal vectors are what become the multipliers in KKT."
     ],
     "math": "$$x_0 \\in \\partial C \\implies \\exists a \\ne 0 : a^T x \\le a^T x_0 \\quad \\forall x \\in C$$",
-    "personalConnection": "Resting a flat ruler against a billiard ball: the ruler touches at a single contact point $x_0$, and the entire ball rests completely on one side of the ruler.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The mountain wall you are parked against: a flat cliff face that touches your legal airspace at exactly your parking spot $x_0$, with the whole of the airspace lying on one side of it. That cliff face is the supporting hyperplane at the boundary point.",
     "examTrap": "At a corner the supporting hyperplane is NOT unique: there is a whole cone of valid normals (the normal cone). Uniqueness holds only at smooth boundary points."
   },
   {
@@ -1165,7 +1165,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> $y$ is a one-line <em>certificate</em> that $b$ is not in the cone. This is the tool that produces KKT multipliers and proves LP duality."
     ],
     "math": "$$\\exists x \\ge 0 : A x = b \\quad \\mathbf{XOR} \\quad \\exists y : A^T y \\ge 0, \\; b^T y < 0$$",
-    "personalConnection": "A flashlight shining into an ice cream cone: either the scoop of ice cream $b$ sits inside the cone, or you can slip a dividing cardboard card ($y$) between the scoop and the entire cone.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Gravity $b$ is pulling on your plane; the columns of $A$ are the normals of the mountain walls, and walls can only push (never pull). Either the wall pushes can add up exactly to cancel gravity ($Ax=b,\\ x\\ge0$) and the plane stays parked, or there is a heading $y$ that no wall blocks ($A^Ty\\ge0$) along which gravity still drags you downhill ($b^Ty<0$). Exactly one of the two stories is true.",
     "examTrap": "The two systems are mutually exclusive and exhaustive! They can NEVER both have a solution, and they can NEVER both fail. If you prove one holds, the other is automatically false."
   },
   {
@@ -1185,7 +1185,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Certificate for $b'$:</strong> take $y=(1,-1)$. Then $A^Ty=(y\\cdot a_1,\\ y\\cdot a_2)=(1,\\ 0)\\ge0$ and $b'^Ty=-1<0$. This proves in one line that $b'$ is not in the cone: system 2 holds."
     ],
     "math": "$$A^Ty=\\begin{pmatrix}1\\\\0\\end{pmatrix}\\ge0,\\quad b'^Ty=-1<0\\ \\Rightarrow\\ b'\\notin\\operatorname{cone}(a_1,a_2)$$",
-    "personalConnection": "Fencing a field: if a stray sheep (b\u2032) is outside the pen, you can show it with a single wall (y) that has the whole pen on one side and the sheep on the other.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Farkas with numbers is a parking check. Write gravity $b'$ and the wall normals. If $b'$ lies inside the cone of wall pushes, the walls can hold the plane. If it sits outside, exhibit one heading $y$ that every wall allows but that gravity favours: that single $y$ is the certificate that the plane rolls away.",
     "examTrap": "To prove 'b is NOT a non-negative combination' do not try all x. Exhibit one y with A\u1d40y \u2265 0 and b\u1d40y < 0. Check both inequalities, including the sign of b\u1d40y."
   },
   {
@@ -1205,7 +1205,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> Gordan is Farkas for strict inequalities. It is used to show 'no descent direction' implies $\\sum y_i\\nabla g_i=0$ (the Fritz-John conditions)."
     ],
     "math": "$$\\exists x : A x < 0 \\quad \\mathbf{XOR} \\quad \\exists y \\ge 0, \\; y \\ne 0 : A^T y = 0$$",
-    "personalConnection": "Balancing a table on $m$ legs: either you can tilt the entire table downward simultaneously ($Ax < 0$), or there exists a set of non-negative upward support forces that balance each other out ($A^T y = 0$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> Either some heading takes you strictly away from every wall at once ($Ax<0$: open sky in all directions), or the wall pushes can balance each other out with non-negative weights ($A^Ty=0,\\ y\\ge0,\\ y\\ne0$): you are boxed into a canyon whose walls cancel exactly, with no escape heading.",
     "examTrap": "Notice the strict inequality $Ax < 0$! If the question asks for $Ax \\le 0$, you must use Farkas' Lemma or Ville's theorem, NOT Gordan's theorem."
   },
   {
@@ -1225,7 +1225,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Bipolar Theorem:</strong> For any closed convex cone $K$, the double dual recovers the original cone: $(K^*)^* = K$ and $(K^\\circ)^\\circ = K$."
     ],
     "math": "$$K^* = \\{y : y^T x \\ge 0 \\, \\forall x \\in K\\}, \\quad (K^*)^* = K \\iff K \\text{ is closed and convex}$$",
-    "personalConnection": "An umbrella in a rainstorm: the umbrella ribs form cone $K$. The dry region underneath represents vectors sheltered by negative angles (the polar cone $K^\\circ$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> The legal headings from your parking spot form a cone $K$. The polar cone $K^\\circ$ is the set of 'gravity pulls' that make every legal heading go uphill or flat: pulls that can never make the plane roll anywhere legal. At a minimum, $-\\nabla f$ must lie in $K^\\circ$.",
     "examTrap": "Self-dual cones: The non-negative orthant $\\mathbb{R}_+^n$ and the cone of positive semidefinite matrices $\\mathbb{S}_+^n$ are strictly <strong>self-dual</strong> ($K^* = K$)."
   },
   {
@@ -1245,7 +1245,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Step 2 (Apply Farkas / Gordan):</strong> The failure of this inequality system implies by Farkas' Lemma that the dual system MUST have a solution: $-\\nabla f(x^*) = \\sum_{j \\in \\mathcal{A}} \\mu_j \\nabla g_j(x^*)$ with $\\mu_j \\ge 0$. This is the KKT condition!"
     ],
     "math": "$$-\\nabla f(x^*) = \\sum_{j \\in \\mathcal{A}(x^*)} \\mu_j^* \\nabla g_j(x^*), \\quad \\mu_j^* \\ge 0 \\quad (\\text{Farkas Dual of } \\nexists d : \\nabla f^T d < 0, \\nabla g_j^T d \\le 0)$$",
-    "personalConnection": "Tug-of-war in a corner: the objective pulls you downhill ($-\\nabla f$), but the two boundary walls balance you with positive normal forces ($\\mu_1 \\nabla g_1 + \\mu_2 \\nabla g_2$). Net force is zero.",
+    "personalConnection": "<strong>The airplane analogy.</strong> You are wedged in a mountain corner touching two walls. Gravity $-\\nabla f$ pulls you into the corner, the two walls push back with forces $\\mu_1\\nabla g_1$ and $\\mu_2\\nabla g_2$, and Farkas guarantees the pushes can be chosen non-negative so that the net force is zero: that is the KKT equation.",
     "examTrap": "Farkas' lemma applies to LINEARIZED directions $\\nabla g_j^T d \\le 0$. For this to match physical feasible curves in $\\Omega$, a Constraint Qualification (like LICQ) is strictly required!"
   },
   {
@@ -1267,7 +1267,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> these four conditions turn a constrained minimization into a system you can solve by cases. They are necessary at a minimizer, and sufficient when the problem is convex."
     ],
     "math": "$$\\nabla f(x^*) + \\sum_{i=1}^p \\lambda_i^* \\nabla h_i(x^*) + \\sum_{j=1}^m \\mu_j^* \\nabla g_j(x^*) = 0, \\quad \\mu_j^* \\ge 0, \\quad \\mu_j^* g_j(x^*) = 0$$",
-    "personalConnection": "Walking your dog on a leash: if the leash is loose ($g(x) < 0$), it exerts zero pulling force ($\\mu = 0$). Only when the dog hits the end of the leash ($g(x) = 0$) does tension pull back ($\\mu > 0$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> The four KKT checks are the four things a parked plane must satisfy: gravity is cancelled by wall pushes ($\\nabla f+\\sum\\mu_j\\nabla g_j=0$), you are inside legal airspace ($g\\le0$), walls only push, never pull ($\\mu\\ge0$), and a wall you are not touching pushes with zero force ($\\mu_jg_j=0$).",
     "examTrap": "Pay obsessive attention to constraint orientation! If constraints are written $g_j(x) \\le 0$, then $\\mu_j \\ge 0$ with $\\mathcal{L} = f + \\mu^T g$. If written $g_j(x) \\ge 0$, either negate the constraint or write $\\mathcal{L} = f - \\mu^T g$."
   },
   {
@@ -1287,7 +1287,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> it is an on/off switch that lets you solve KKT by guessing which constraints are active. Both $g_j=0$ and $\\mu_j=0$ can hold at once (weak complementarity, a degenerate case)."
     ],
     "math": "$$\\mu_j^* g_j(x^*) = 0 \\iff \\begin{cases} g_j(x^*) < 0 \\implies \\mu_j^* = 0 \\\\ \\mu_j^* > 0 \\implies g_j(x^*) = 0 \\end{cases}$$",
-    "personalConnection": "A car parked inside a garage: if the front bumper doesn't touch the back wall ($g < 0$), the wall exerts zero normal force ($\\mu = 0$). If you bump into the wall ($g = 0$), the wall pushes back ($\\mu > 0$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> Each mountain wall is an on/off switch. A wall across the valley ($g\\lt0$, not touching) is OFF: $\\mu=0$. A wall your wing is resting on ($g=0$) is ON and may push back with $\\mu\\gt0$. You never have both a gap and a push.",
     "examTrap": "Can BOTH $g_j(x^*) = 0$ and $\\mu_j^* = 0$? YES! This is called <strong>weak complementarity</strong> (or degeneracy). It often causes non-isolated Lagrange multipliers and numerical difficulties."
   },
   {
@@ -1307,7 +1307,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Proof:</strong> Since $\\mu_j^* \\ge 0$, $\\mathcal{L}(x, \\lambda^*, \\mu^*)$ is convex in $x$. Stationarity $\\nabla_x \\mathcal{L} = 0$ makes $x^*$ a global minimizer of $\\mathcal{L}$. Complementary slackness then sandwiches $f(x^*) \\le \\mathcal{L}(x^*, \\lambda^*, \\mu^*) \\le \\mathcal{L}(x, \\lambda^*, \\mu^*) \\le f(x)$."
     ],
     "math": "$$f, g_j \\text{ convex}, \\, h_i \\text{ affine}, \\, (x^*, \\lambda^*, \\mu^*) \\in \\text{KKT} \\implies f(x^*) \\le f(x) \\; \\forall \\, x \\in \\Omega$$",
-    "personalConnection": "Water pooling in a convex salad bowl with sliced flat bread boundaries: there is only one lowest point, and if the water settles in a stationary equilibrium, it is impossible for a deeper puddle to exist elsewhere.",
+    "personalConnection": "<strong>The airplane analogy.</strong> In a convex valley with flat walls there is only one lowest parking spot. If you are parked where the wall pushes cancel gravity (KKT holds), no deeper valley exists anywhere else in the legal airspace, so this stationary spot is already the global minimum.",
     "examTrap": "Equality constraints $h_i(x) = 0$ MUST be AFFINE ($A x = b$)! If an equality constraint is non-linear (even if $h_i$ is convex), the feasible set $\\{x : h_i(x) = 0\\}$ is NOT convex, and KKT sufficiency fails."
   },
   {
@@ -1327,7 +1327,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Classic Counterexample:</strong> $\\min x_1$ s.t. $(1-x_1)^3 - x_2 \\ge 0, x_2 \\ge 0$. At $x^* = (1, 0)$, both active gradients point along $(0, 1)^T$. They are collinear (linearly dependent). $-\\nabla f = (-1, 0)^T$ cannot be spanned by $(0, 1)^T$, so NO KKT multipliers exist!"
     ],
     "math": "$$\\operatorname{rank}\\left( [\\nabla h_i(x^*)_{i=1}^p, \\; \\nabla g_j(x^*)_{j \\in \\mathcal{A}(x^*)}] \\right) = p + |\\mathcal{A}(x^*)| \\quad (\\text{LICQ})$$",
-    "personalConnection": "Two laser beams intersecting: if the beams cross at an angle, they define a unique 3D point (LICQ holds). If both laser beams point in the identical direction, they don't form a coordinate cross, and you lose spatial stability.",
+    "personalConnection": "<strong>The airplane analogy.</strong> LICQ says the walls you are touching push in independent directions. If two touching walls have normals pointing the same way (a cusp or a knife-edge), the pilot cannot tell how gravity splits between them: the push forces are not unique and may not exist at all, so KKT can fail at a true minimum.",
     "examTrap": "Never apply KKT necessary conditions without stating that LICQ holds! If an exam question asks 'Does $x^*$ satisfy KKT?', first test if the active constraint gradients are linearly independent."
   },
   {
@@ -1347,7 +1347,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Fundamental Implication:</strong> If the primal problem is convex and Slater's condition holds, then <strong>Strong Duality holds ($d^* = p^*$)</strong>, the dual optimal value is attained, and KKT multipliers are guaranteed to exist!"
     ],
     "math": "$$\\exists \\, \\hat{x} : g_j(\\hat{x}) < 0 \\; (j=1..m), \\; A \\hat{x} = b \\implies d^* = p^* \\quad (\\text{Strong Duality})$$",
-    "personalConnection": "A fenced backyard with actual room to play: Slater's condition means the yard is not squeezed into a zero-width fence line ($g < 0$ has interior volume). You have breathing room inside the fence.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Slater's condition: the legal airspace has real volume, so there is at least one point strictly inside every wall ($g\\lt0$). It is a hangar with room to move, not a zero-thickness corridor squeezed between walls. With that breathing room, strong duality holds.",
     "examTrap": "Slater requires STRICT inequality $g_j(\\hat{x}) < 0$ only for NON-AFFINE convex constraints. For purely affine inequality constraints ($c_j^T x \\le d_j$), simple feasibility without strict inequality is sufficient!"
   },
   {
@@ -1367,7 +1367,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Case 2 (Active, $g(x) = 0$):</strong> $x_1 + x_2 = 1$. Stationarity: $2 x_1 - \\mu = 0$ and $8 x_2 - \\mu = 0 \\implies x_1 = \\mu/2, x_2 = \\mu/8$. Substitute: $\\frac{\\mu}{2} + \\frac{\\mu}{8} = 1 \\implies \\frac{5\\mu}{8} = 1 \\implies \\mu^* = 8/5 > 0$. Point $x^* = (4/5, 1/5)$. Both dual feasibility and complementary slackness hold!"
     ],
     "math": "$$\\nabla f(x^*) + \\mu^* \\nabla g(x^*) = \\begin{bmatrix} 2 x_1 \\\\ 8 x_2 \\end{bmatrix} + \\mu^* \\begin{bmatrix} -1 \\\\ -1 \\end{bmatrix} = \\mathbf{0} \\implies x^* = \\left(\\frac{4}{5}, \\frac{1}{5}\\right), \\; \\mu^* = \\frac{8}{5} > 0$$",
-    "personalConnection": "Checking light switches: if turning the switch OFF leaves you in the dark (Case 1 infeasible), flip it ON and measure the exact current flow (Case 2 $\\mu = 8/5$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> Case analysis is the pilot's two guesses. Case 1: assume you are floating free in the open (wall push $\\mu=0$); if the lowest open-air point lies outside legal airspace, that guess is dead. Case 2: assume you are pressed against the wall; solving the force balance gives a positive push $\\mu=8/5$, so the guess is consistent.",
     "examTrap": "When solving KKT by cases, NEVER stop upon finding a solution! You must verify dual feasibility ($\\mu_j \\ge 0$) and check if any other active sets could also satisfy KKT."
   },
   {
@@ -1389,7 +1389,7 @@ window.MASTER_CARDS_DATA = [
       "$$d^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*, \\mu^*) d \\ge 0 \\quad \\forall \\, d \\in M(x^*)$$, where $M(x^*) = \\{d : \\nabla h_i(x^*)^T d = 0, \\; \\nabla g_j(x^*)^T d = 0 \\; (j \\in \\mathcal{A}(x^*))\\}$."
     ],
     "math": "$$d^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*, \\mu^*) d \\ge 0 \\quad \\forall \\, d \\in M(x^*) = \\operatorname{Null}\\left( [\\nabla h(x^*)^T ; \\nabla g_{\\mathcal{A}}(x^*)^T] \\right)$$",
-    "personalConnection": "Walking along a knife-edge ridge on a mountain summit: the terrain plunges steeply on both sides (negative curvature in ambient 3D space), but as long as the trail itself remains level or curves upward, you stay safe at a constrained minimum.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The runway is the tangent subspace $M$: the only headings you can roll along while keeping your wheels on the ground. The terrain may fall steeply away on both sides of the runway (negative curvature in the full space), but what matters is that the runway itself is level or curves upward, i.e. $d^\\top\\nabla^2\\mathcal L\\,d\\ge0$ for $d\\in M$.",
     "examTrap": "The ambient Hessian $\\nabla^2 f(x^*)$ or even $\\nabla_{xx}^2 \\mathcal{L}$ DOES NOT need to be positive semidefinite everywhere! It only needs to be positive semidefinite when tested against vectors $d$ lying in the tangent subspace $M$."
   },
   {
@@ -1409,7 +1409,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why SOSC is Powerful:</strong> Unlike the first-order KKT conditions (which could pick up local maxima or saddles), SOSC eliminates all doubt by guaranteeing positive quadratic bowl curvature along every feasible escape route."
     ],
     "math": "$$d^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*, \\mu^*) d > 0 \\quad \\forall \\, d \\in M(x^*) \\setminus \\{0\\} \\implies x^* \\text{ is a strict local minimizer}$$",
-    "personalConnection": "A marble trapped at the bottom of a curved rain gutter: the roof may slope downward in 3D, but the gutter itself curves strictly upward in both directions along its length, holding the marble securely in place.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Strict version: along every runway heading in the critical cone the ground curves strictly upward under your wheels, like the bottom of a bowl-shaped runway. Then your parking spot is a strict local minimum, even if the surrounding terrain drops off sideways.",
     "examTrap": "Semidefiniteness ($d^T \\nabla_{xx}^2 \\mathcal{L} d \\ge 0$) is NECESSARY, NOT sufficient! Strict inequality ($> 0$) is mandatory for sufficiency, exactly like $f''(x) > 0$ in single-variable calculus."
   },
   {
@@ -1429,7 +1429,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> for one constraint ($p=1$) in 2D you only check one number: $\\det B<0$ means minimum. Students often expect $\\det>0$ because that is the unconstrained rule."
     ],
     "math": "$$\\operatorname{sign}(\\det B_{2p+m}) = (-1)^p \\quad (\\forall \\, m = 1, \\dots, n-p)$$",
-    "personalConnection": "Balancing a chandelier on a gimbal: the bordered Hessian computes whether the pendulum hangs stably downward (positive definite) by checking the orientation of its hinge constraints.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The bordered Hessian is the instrument-panel shortcut. You do not parametrise the runway; you border the Hessian with the wall normals, and the sign pattern of its trailing minors tells you whether the runway dips at your parking spot (a minimum) or peaks (a maximum).",
     "examTrap": "For a single equality constraint ($p=1$), $(-1)^1 = -1$, meaning the determinant of the bordered Hessian MUST BE NEGATIVE ($\\det B < 0$) for a local minimum! Students routinely confuse this with unconstrained positive definiteness."
   },
   {
@@ -1449,7 +1449,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Strict Complementarity:</strong> If $\\mu_j^* > 0$ for ALL active constraints ($j \\in \\mathcal{A}(x^*)$), the inequality conditions vanish and $C(x^*, \\mu^*)$ collapses into a <strong>pure linear subspace</strong>, making second-order checks vastly simpler!"
     ],
     "math": "$$\\text{Strict Complementarity } (\\mu_j^* > 0 \\; \\forall j \\in \\mathcal{A}) \\implies C(x^*, \\mu^*) = \\operatorname{Null}([\\nabla h(x^*)^T ; \\nabla g_{\\mathcal{A}}(x^*)^T])$$",
-    "personalConnection": "A car wedged tightly into a parallel parking spot: if both front and back bumpers press against the cars ahead and behind ($\\mu_1, \\mu_2 > 0$), you have 0 degrees of freedom (linear subspace of motion is zero).",
+    "personalConnection": "<strong>The airplane analogy.</strong> If every wall you touch pushes strictly ($\\mu\\gt0$), the plane is pinned and the only legal motions are the headings that slide along all those walls: a subspace. If a touching wall pushes with exactly zero, you can peel away from it in some headings and the critical cone is a proper cone, not a subspace. In 2D, two strictly pushing walls leave zero freedom.",
     "examTrap": "If strict complementarity fails (i.e. an active constraint has $\\mu_j^* = 0$), $C(x^*)$ is a CONE, not a subspace! You must check $d^T \\nabla^2 \\mathcal{L} d > 0$ over the full cone, not just a subspace."
   },
   {
@@ -1469,7 +1469,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Key Insight:</strong> Even if $\\nabla^2 f$ is flat or negative in the ambient space, strong curvature of the constraint surface $h(x)=0$ can make the restricted objective strictly convex!"
     ],
     "math": "$$\\frac{d^2}{dt^2} f(x(t))\\Big|_{t=0} = \\dot{x}(0)^T \\nabla^2 f(x^*) \\dot{x}(0) + \\nabla f(x^*)^T \\ddot{x}(0) = d^T \\left[ \\nabla^2 f(x^*) + \\sum_{i=1}^p \\lambda_i^* \\nabla^2 h_i(x^*) \\right] d$$",
-    "personalConnection": "Riding a bobsled on a steeply banked track: the curvature of the ice wall creates a centrifugal normal force that keeps you securely at the bottom of the curve, even when horizontal gravity tries to pull you away.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A banked, curved runway. Even if the terrain looks flat or hilltop-like in the ambient space, the curvature of the wall supplies an extra centripetal push, so the right curvature to check is that of the Lagrangian, $\\nabla^2 f+\\sum\\mu_j\\nabla^2 g_j$, restricted to the runway.",
     "examTrap": "Forgetting the $\\lambda_i \\nabla^2 h_i$ term! If you only evaluate $d^T \\nabla^2 f(x^*) d$, you are implicitly assuming the constraints are FLAT linear planes. For non-linear constraints, this yields completely wrong answers."
   },
   {
@@ -1489,7 +1489,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Cross-check:</strong> at the other candidate $+\\tfrac1{\\sqrt2}(1,1)$ we get $\\lambda^*=-\\tfrac1{\\sqrt2}$ and $\\det B=+4\\sqrt2>0$, which has the wrong sign: it is the maximum."
     ],
     "math": "$$\\det B = \\det \\begin{bmatrix} 0 & -\\sqrt{2} & -\\sqrt{2} \\\\ -\\sqrt{2} & \\sqrt{2} & 0 \\\\ -\\sqrt{2} & 0 & \\sqrt{2} \\end{bmatrix} = -4\\sqrt{2} < 0 = (-1)^1 \\implies x^* \\text{ is a strict local min}$$",
-    "personalConnection": "Walking south-west on a circular racetrack: the furthest point south-west is $(-1/\\sqrt{2}, -1/\\sqrt{2})$. Any step along the circular track carries you to higher elevations ($x_1 + x_2 > -\\sqrt{2}$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> The plane circles a circular no-fly ring and you want the lowest altitude $x_1+x_2$ on the ring. The lowest point is south-west at $(-1/\\sqrt2,-1/\\sqrt2)$: every step along the ring from there climbs, which is exactly what the bordered Hessian sign test confirms.",
     "examTrap": "If you tested the maximum at $(+1/\\sqrt{2}, +1/\\sqrt{2})$, you get $\\lambda^* = -1/\\sqrt{2}$ and $\\det B = +4\\sqrt{2} > 0$. Since $\\det B > 0 \\ne (-1)^1$, the SOSC fails, correctly detecting a local maximum!"
   },
   {
@@ -1509,7 +1509,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> this one inequality characterizes projections; it is the backbone of projected gradient, optimality conditions and every fixed-point argument that follows."
     ],
     "math": "$$p = \\Pi_C(x) \\iff p \\in C \\quad \\text{and} \\quad \\langle x - p, \\, y - p \\rangle \\le 0 \\quad \\forall \\, y \\in C$$",
-    "personalConnection": "Shining a spotlight straight down at a stone slab on the grass: the shadow point on the edge of the stone is the closest point to the light. Any step away onto the stone moves away from the light source at an obtuse angle.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Wind blows you out of legal airspace. The closest legal point $P(p)$ is where you reach the boundary by flying the shortest path. Every other legal point $y$ makes an obtuse (or right) angle at $P(p)$ with the line back to you: $(p-P(p))^\\top(y-P(p))\\le0$.",
     "examTrap": "Uniqueness STRICTLY requires convexity! If set $C$ is non-convex (e.g., the surface of a sphere, or two disconnected islands), a point equidistant from both sides has multiple distinct closest projections."
   },
   {
@@ -1529,7 +1529,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> projections can never blow errors up, which is why projected gradient and alternating projections are stable. But it is not a strict contraction: points already inside $C$ keep their distance."
     ],
     "math": "$$\\|\\Pi_C(x) - \\Pi_C(y)\\|^2 + \\|(I - \\Pi_C)(x) - (I - \\Pi_C)(y)\\|^2 \\le \\|x - y\\|^2 \\implies \\|\\Pi_C(x) - \\Pi_C(y)\\| \\le \\|x - y\\|$$",
-    "personalConnection": "Casting shadows on the floor at high noon: two birds flying at different altitudes will always cast shadows whose separation on the ground is less than or equal to their true 3D spatial distance.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Two off-course planes are each guided by ATC to their nearest legal spot. The two landing spots are never farther apart than the two planes were: projection never stretches distances, it can only squeeze them together.",
     "examTrap": "Non-expansiveness does NOT mean strictly contractive! If $x, y \\in C$, then $\\Pi_C(x) = x$ and $\\Pi_C(y) = y$, so $\\|\\Pi_C(x) - \\Pi_C(y)\\| = \\|x - y\\|$ with equality. You cannot invoke Banach fixed point directly without relaxation."
   },
   {
@@ -1549,7 +1549,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> these two formulas are the building blocks for projecting onto polyhedra (e.g. by Dykstra) and for constraint-by-constraint methods. Example: $x=(3,1)$, $a=(1,1)$, $b=2$ gives $\\Pi=(3,1)-\\tfrac{4-2}{2}(1,1)=(2,0)$."
     ],
     "math": "$$\\Pi_{\\{a^Tx=b\\}}(x)=x-\\frac{a^Tx-b}{\\|a\\|^2}a,\\qquad \\Pi_{\\{a^Tx\\le b\\}}(x)=x-\\frac{\\max(0,\\,a^Tx-b)}{\\|a\\|^2}a$$",
-    "personalConnection": "Dropping a ball straight down onto a tilted table: it lands directly below along the table's normal. If it is already on the table side that you allow, it just stays.",
+    "personalConnection": "<strong>The airplane analogy.</strong> ATC dropping you onto a flat ceiling plane (hyperplane) sends you straight along its normal. For a half-space of legal altitudes: if you are already on the allowed side you stay put, otherwise you are dropped along the normal onto the wall.",
     "examTrap": "For the halfspace use max(0, a\u1d40x \u2212 b): a feasible point must NOT move. Applying the hyperplane formula to a halfspace wrongly drags inside points onto the boundary."
   },
   {
@@ -1569,7 +1569,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> these cost only $O(n)$, which is why projected gradient is so cheap for bound constraints. Not every set is this easy: the simplex needs a sort (see the worked benchmark)."
     ],
     "math": "$$[\\Pi_{[l,u]}(x)]_i=\\min\\big(u_i,\\max(l_i,x_i)\\big),\\qquad \\Pi_{\\mathcal B(0,R)}(x)=\\frac{x}{\\max(1,\\ \\|x\\|/R)}$$",
-    "personalConnection": "An audio limiter clamps every sample to \u00b11 (box); a volume knob turns the whole signal down until its peak fits (ball).",
+    "personalConnection": "<strong>The airplane analogy.</strong> A box is a corridor with an altitude floor and ceiling and lane limits: ATC clamps each coordinate independently. A ball is a circular holding zone around the airport: if you are outside, steer straight at the centre until you touch the circle's edge, otherwise stay.",
     "examTrap": "Clamping works coordinate by coordinate only for BOXES (the constraints separate). It is wrong for the ball and for the simplex, where you cannot treat coordinates independently."
   },
   {
@@ -1589,7 +1589,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> it generalizes the split of $\\mathbb{R}^n$ into a subspace plus its orthogonal complement to cones. In 1-D it is just $x=\\max(0,x)+\\min(0,x)$."
     ],
     "math": "$$x = x_1 + x_2, \\quad x_1 \\in K, \\; x_2 \\in K^\\circ, \\quad \\langle x_1, x_2 \\rangle = 0 \\iff x_1 = \\Pi_K(x), \\; x_2 = \\Pi_{K^\\circ}(x)$$",
-    "personalConnection": "Splitting a real number into its positive and negative parts: $x = x_+ + x_-$, where $x_+ = \\max(0, x) \\in \\mathbb{R}_+$ and $x_- = \\min(0, x) \\in \\mathbb{R}_-$. Notice $x_+ x_- = 0$. That is 1D Moreau decomposition!",
+    "personalConnection": "<strong>The airplane analogy.</strong> Any wind vector splits into a part pointing inside the legal cone ($K$) and a part pointing out of it (the polar cone $K^\\circ$), and the two parts are perpendicular. One way of resolving wind into 'with the airspace' and 'against the wall' is the Moreau decomposition, like $x=x_++x_-$ in one dimension.",
     "examTrap": "Moreau's decomposition holds ONLY for CONES (sets closed under positive scaling $\\alpha K \\subseteq K$ for $\\alpha \\ge 0$). It does NOT hold for arbitrary bounded convex sets like boxes or balls!"
   },
   {
@@ -1609,7 +1609,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Dykstra's Innovation:</strong> Subtracts the outward normal correction vector before projecting at each step: $y_k = \\Pi_{C_1}(x_k + p_k)$, $p_{k+1} = x_k + p_k - y_k$, guaranteed to converge to the exact minimum Euclidean distance point."
     ],
     "math": "$$y_k = \\Pi_{C_1}(x_k + p_{k-1}), \\; p_k = x_k + p_{k-1} - y_k, \\quad x_{k+1} = \\Pi_{C_2}(y_k + q_{k-1}), \\; q_k = y_k + q_{k-1} - x_{k+1}$$",
-    "personalConnection": "Walking into a corner: if you bounce between two walls without keeping track of which direction pushed you sideways, you drift along the crease. Tracking your rebound vector pins you to the exact closest point.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Two overlapping airspaces. Plain alternating ATC projections drift along the crease and end at some point in the overlap, not the nearest one. Dykstra's algorithm remembers the sideways correction from each bounce, so the plane lands on the closest point of the overlap.",
     "examTrap": "Exam questions love to ask: 'Does alternating projection find $\\Pi_{C_1 \\cap C_2}(x)$?' Answer: ONLY if $C_1, C_2$ are linear affine subspaces! For general convex sets, you MUST use Dykstra's normal correction."
   },
   {
@@ -1629,7 +1629,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Result:</strong> $p=(1.5-0.75,\\ 1.0-0.75,\\ 0,\\ 0)=(0.75,\\ 0.25,\\ 0,\\ 0)$. Check: $p\\ge0$ and $\\sum p=1$ \u2713."
     ],
     "math": "$$\\Pi_\\Delta(x)=\\max(0,\\,x-\\tau\\mathbf 1),\\quad \\tau=\\frac{\\sum_{i\\le k}x_{(i)}-1}{k}=\\frac{2.5-1}{2}=0.75\\ \\Rightarrow\\ p=(0.75,\\,0.25,\\,0,\\,0)$$",
-    "personalConnection": "Pouring water level \u03c4 into uneven terraces: terraces higher than the water keep what sticks out above it, lower ones stay dry, and the total water is exactly 1.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A fixed fuel budget (total exactly 1) shared among tanks. Shave one common level $\\tau$ off every tank reading, clipping at empty: the tanks that stay above the level keep their excess, the rest go dry, and $\\tau$ is chosen so the leftover fuel sums to 1. That is the simplex projection.",
     "examTrap": "Do not just clip negatives and divide by the sum: that gives (1.5, 1.0, 0.2, 0)/2.7 = (0.56, 0.37, 0.07, 0), which is NOT the Euclidean projection. The threshold \u03c4 must be subtracted first. Sorting makes it O(n log n); a median-finding method gets O(n)."
   },
   {
@@ -1651,7 +1651,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> it is as easy as gradient descent but never leaves the feasible set. On curved constraint surfaces Luenberger splits it into a tangent step followed by a restoration step back onto the surface."
     ],
     "math": "$$x_{k+1} = \\Pi_\\Omega(x_k - \\alpha_k \\nabla f(x_k)) = \\arg\\min_{y \\in \\Omega} \\left\\{ \\nabla f(x_k)^T (y - x_k) + \\frac{1}{2\\alpha_k} \\|y - x_k\\|^2 \\right\\}$$",
-    "personalConnection": "Walking down a hill on a hiking trail bounded by a wooden railing: whenever the downhill gradient points off the trail into the woods, you step forward and immediately slide along the railing, staying on the trail.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Follow gravity downhill one step. If that carries you out of legal airspace into the mountain, ATC immediately projects you back to the nearest legal point: you slide along the wall instead of crashing through it.",
     "examTrap": "Step size $\\alpha_k$ must satisfy $\\alpha_k < 2/L$ (where $L$ is the Lipschitz constant of $\\nabla f$)! If $\\alpha_k$ is too large, projecting back can cause iterates to bounce back and forth indefinitely across the boundary."
   },
   {
@@ -1671,7 +1671,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> $\\|G_\\alpha(x_k)\\|\\le\\epsilon$ is the correct stopping test for constrained problems, because $\\nabla f$ itself does not vanish on the boundary."
     ],
     "math": "$$x^* \\text{ is stationary} \\iff G_\\alpha(x^*) = \\frac{x^* - \\Pi_\\Omega(x^* - \\alpha \\nabla f(x^*))}{\\alpha} = \\mathbf{0} \\iff -\\nabla f(x^*) \\in \\mathcal{N}_\\Omega(x^*)$$",
-    "personalConnection": "Pressing your hand firmly against a glass window: you push forward with full force ($-\\alpha \\nabla f$), but the glass wall projects your hand back to its exact original contact point ($x^*$). Net motion is zero.",
+    "personalConnection": "<strong>The airplane analogy.</strong> At the optimum, gravity pushes the plane into the mountain wall with full force, but ATC projects you straight back to the same parking spot: $P(x^*-\\alpha\\nabla f(x^*))=x^*$. A point that does not move under one gradient-projection step is exactly a stationary parking spot.",
     "examTrap": "Remember that unconstrained stationarity ($\\nabla f(x^*) = 0$) DOES NOT HOLD on the boundary! The physical gradient $\\nabla f(x^*)$ can be massive; stationarity only requires that its negative points outward into the normal cone."
   },
   {
@@ -1691,7 +1691,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Strongly Convex Objectives ($m$-strongly convex):</strong> With step size $\\alpha = 2/(L+m)$, the sequence converges with geometric linear rate: $\\|x_k - x^*\\| \\le \\left( \\frac{L-m}{L+m} \\right)^k \\|x_0 - x^*\\|$."
     ],
     "math": "$$f(x_k) - f^* \\le \\frac{L \\|x_0 - x^*\\|^2}{2k} \\; (\\text{Convex}), \\quad \\|x_k - x^*\\| \\le c \\cdot \\rho^k \\; (\\text{Strongly Convex, } \\rho < 1)$$",
-    "personalConnection": "Sliding down a water slide with raised protective banks: the banks constrain your lateral path, but your downward velocity toward the pool decays at the exact same physical friction rate as on an open slope.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The glide path to the lowest legal parking spot. On a merely convex (smooth) valley the approach is sublinear, $O(1/k)$. In a strongly convex bowl each leg shrinks the remaining distance by a fixed factor (linear rate). The mountain walls do not slow the glide rate.",
     "examTrap": "Projection does NOT slow down asymptotic convergence rates! The only difference is the computational cost of evaluating $\\Pi_\\Omega(x)$ at each iteration."
   },
   {
@@ -1711,7 +1711,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> the test measures progress with the displacement actually taken, $x_k-x(\\alpha)$, not with $-\\alpha\\nabla f$. The arc can bend along several faces of $\\Omega$, so many bound constraints can become active in one iteration."
     ],
     "math": "$$f(x(\\alpha)) \\le f(x_k) - \\frac{\\gamma}{\\alpha} \\|x_k - x(\\alpha)\\|^2 \\quad \\text{with } \\alpha \\in \\{\\beta^0 s, \\beta^1 s, \\beta^2 s, \\dots\\}$$",
-    "personalConnection": "Navigating a sharp highway exit: you don't drive straight into the guardrail and then turn. Your car follows the curved arc of the exit ramp, smoothly shedding speed as the curve tightens.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Armijo along the arc: as you shorten the step $\\alpha$, the points $P(x_k-\\alpha\\nabla f)$ trace an arc that bends along the mountain wall. You try points on that arc and accept the first one that gives a big enough altitude drop, the sufficient-decrease check.",
     "examTrap": "Do NOT evaluate the Armijo gradient test against $-\\alpha \\nabla f(x_k)$! You must evaluate the reduction against the actual displacement vector $x_k - x(\\alpha)$, because that is the physical step taken."
   },
   {
@@ -1731,7 +1731,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> this is how gradient projection extends from simple sets to nonlinear equality constraints. If $\\alpha$ is too large, $y$ is too far from the surface and restoration may fail or land on a different branch."
     ],
     "math": "$$y = x_k - \\alpha P_k \\nabla f(x_k), \\quad x_{k+1} = y - \\nabla h(x_k) [\\nabla h(x_k)^T \\nabla h(x_k)]^{-1} h(y) \\quad (\\text{Feasibility Restored})$$",
-    "personalConnection": "Walking along the equator on a globe: if you take a straight tangential step into outer space ($y$), you float off the planet. You must drop straight down along the radius (normal restoration) to plant your boots back on the curved earth ($x_{k+1}$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> On a curved boundary (a banked runway), flying straight ahead along the tangent takes you off the surface. Restoration is the fix: descend along the normal to put your wheels back on the curved surface before the next leg.",
     "examTrap": "If step size $\\alpha$ is chosen too large, the tangent point $y$ may fly so far from the manifold that the Newton restoration phase fails to converge (or converges to a completely different branch of the constraint surface)!"
   },
   {
@@ -1751,7 +1751,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Check optimality:</strong> at $(2,0)$, $\\nabla f=(0,3)$. A step gives $y=(2,-3)$, which projects back to $(2,0)$: a <strong>fixed point</strong>, so $(2,0)$ is optimal ($x_2$ would like to go negative but the wall stops it)."
     ],
     "math": "$$x_1=\\max\\!\\Big(0,\\ \\begin{bmatrix}1\\\\1\\end{bmatrix}-\\begin{bmatrix}-1\\\\5\\end{bmatrix}\\Big)=\\begin{bmatrix}2\\\\0\\end{bmatrix},\\qquad \\max\\!\\Big(0,\\begin{bmatrix}2\\\\0\\end{bmatrix}-\\begin{bmatrix}0\\\\3\\end{bmatrix}\\Big)=\\begin{bmatrix}2\\\\0\\end{bmatrix}\\ \\ (\\text{fixed point})$$",
-    "personalConnection": "Clipping negative audio waveform samples to zero in an electronic half-wave rectifier: the negative half of the alternating current is instantly truncated flat against the zero voltage line.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The ground is the altitude floor $x\\ge0$. After each gravity step any negative coordinate is clamped to the ground: $x_{k+1}=\\max(0,x_k-\\alpha\\nabla f(x_k))$. The plane never sinks below the tarmac.",
     "examTrap": "Notice how projected gradient immediately identifies active constraints! Unlike active set methods (which add constraints one-by-one), projected gradient can activate DOZENS of bound constraints simultaneously in a single iteration."
   },
   {
@@ -1771,7 +1771,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>The Search Step $p_k$:</strong> At each iteration, solve for the step $p_k$: $\\min_p \\frac{1}{2} p^T Q p + g_k^T p$ s.t. $a_i^T p = 0$ for $i \\in \\mathcal{W}_k$. This is solved directly via the linear KKT system $\\begin{bmatrix} Q & A_\\mathcal{W}^T \\\\ A_\\mathcal{W} & 0 \\end{bmatrix} \\begin{bmatrix} p \\\\ -\\lambda \\end{bmatrix} = \\begin{bmatrix} -g_k \\\\ 0 \\end{bmatrix}$."
     ],
     "math": "$$\\begin{bmatrix} Q & A_{\\mathcal{W}_k}^T \\\\ A_{\\mathcal{W}_k} & 0 \\end{bmatrix} \\begin{bmatrix} p_k \\\\ -\\lambda_k \\end{bmatrix} = \\begin{bmatrix} -\\nabla f(x_k) \\\\ \\mathbf{0} \\end{bmatrix} \\quad (\\text{KKT Linear System for } p_k)$$",
-    "personalConnection": "Walking with your back against a corridor wall: you don't worry about falling into the wall; the wall eliminates one lateral degree of freedom ($A_\\mathcal{W} p = 0$), so you only solve for motion along the hallway.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Lock down the walls you are touching and treat them as rails: your motion must satisfy $A_{\\mathcal W}p=0$, so you only solve for sliding along the runway between the walls. That is the equality-constrained subproblem.",
     "examTrap": "The working set $\\mathcal{W}_k$ must be linearly independent! If redundant constraints are added to $\\mathcal{W}_k$, the KKT matrix becomes singular. Active set codes must ensure LICQ on $\\mathcal{W}_k$."
   },
   {
@@ -1791,7 +1791,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> the constraint that attains the minimum is the <em>blocking constraint</em>: set $x_{k+1}=x_k+\\alpha_kp_k$ and add it to the working set."
     ],
     "math": "$$\\alpha_k = \\min\\left( 1, \\; \\min_{i \\notin \\mathcal{W}_k, a_i^T p_k < 0} \\frac{b_i - a_i^T x_k}{a_i^T p_k} \\right), \\quad \\mathcal{W}_{k+1} = \\mathcal{W}_k \\cup \\{i_{\\text{blocking}}\\}$$",
-    "personalConnection": "Walking forward in a dark room until your shin strikes a coffee table: you stop right at the edge of the table (step length $\\alpha < 1$) and add the coffee table to your mental map of active obstacles.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Rolling along the runway toward the target, a mountain wall ahead stops you before you reach it: the step length is $\\alpha\\lt1$, you halt at the wall, and add that wall to the working set (the list of walls you are touching).",
     "examTrap": "Only consider constraints with $a_i^T p_k < 0$ (direction pointing INTO the forbidden halfspace)! If $a_i^T p_k \\ge 0$, you are moving parallel to or away from constraint $i$, so it can never block your step."
   },
   {
@@ -1811,7 +1811,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> drop the constraint with the most negative multiplier. Drop only when $p_k=0$; dropping while $p_k\\ne0$ can cause cycling."
     ],
     "math": "$$p_k = \\mathbf{0} \\quad \\text{and} \\quad \\lambda_j = \\min_{i \\in \\mathcal{W}_k} \\lambda_i < 0 \\implies \\mathcal{W}_{k+1} = \\mathcal{W}_k \\setminus \\{j\\}$$",
-    "personalConnection": "Leaning against a closed door: if the door pushes you backward with negative force (someone unlocks and pulls the door open from the other side), you immediately step through into the open room.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Parked against a wall, the force calculation says the wall would have to pull you (a negative multiplier). Walls cannot pull, so gravity actually wants you off that wall: release the brakes, drop that wall from the working set and take off away from it.",
     "examTrap": "You can ONLY drop a constraint when $p_k = 0$ (at a stationary point of the current working surface)! Dropping a constraint while $p_k \\ne 0$ can cause premature release and severe algorithmic cycling."
   },
   {
@@ -1831,7 +1831,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> it is an <em>exact</em> method: no tolerance, no infinite convergence. The one danger is degeneracy, where a zero-length step leaves $f$ unchanged."
     ],
     "math": "$$Q \\succ 0 \\; \\text{ and } \\; \\alpha_k > 0 \\implies f(x_{k+1}) < f(x_k) \\implies \\text{Algorithm terminates in } \\le 2^m \\text{ steps}$$",
-    "personalConnection": "Playing a board game with non-reversing tiles: every turn you move forward into a lower-numbered rank. Since the board has a finite number of squares ($2^m$), you are guaranteed to reach the finish line.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Every leg either hits a new wall or lands at the lowest point of the current runway, and every leg lowers altitude, so you never return to a working set you already used. There are only finitely many wall subsets, so the flight must finish in finitely many legs.",
     "examTrap": "Finite termination strictly requires <strong>non-degeneracy</strong>! If $\\alpha_k = 0$ (a degenerate vertex where multiple constraints intersect), $f(x)$ does not decrease, which opens the possibility of infinite cycling."
   },
   {
@@ -1851,7 +1851,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Anti-Cycling Strategies:</strong> If zero steps persist, the algorithm can cycle endlessly through a loop of working sets without making progress. Anti-cycling rules (Bland's smallest-subscript rule, or lexicographic perturbation $b_i \\leftarrow b_i + \\epsilon^i$) guarantee finite termination even under degeneracy."
     ],
     "math": "$$\\text{Degeneracy: } b_i - a_i^T x_k = 0 \\implies \\alpha_k = 0 \\implies x_{k+1} = x_k, \\quad f(x_{k+1}) = f(x_k)$$",
-    "personalConnection": "A revolving door stuck at a three-way junction: the door spins in place without anyone moving into a new room. An anti-cycling rule pushes the door in a fixed priority sequence to break the loop.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Degenerate corner: three or more walls meet at one point, so the plane sits on the tarmac with step $\\alpha=0$ while the tower swaps which walls are officially in the working set. An anti-cycling rule (a fixed order for the tower to follow) stops it swapping in circles forever.",
     "examTrap": "Cycling cannot happen in strictly convex QP as long as $\\alpha_k > 0$. Zero-step $\\alpha_k = 0$ is the SOLE mechanism through which cycling can theoretically occur."
   },
   {
@@ -1871,7 +1871,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Step 3:</strong> at $(2,2)$ the working constraints are $x_1=2,\\ x_2=2$ and both multipliers equal $2>0$. All multipliers non-negative means KKT holds, so $x^*=(2,2)$ is optimal."
     ],
     "math": "$$x_0 = (0,0) \\xrightarrow{\\text{drop } x_1=0} x_1 = (2, 0) \\xrightarrow{\\text{drop } x_2=0} x^* = (2, 2) \\quad (\\lambda_1^* = 2 > 0, \\; \\lambda_2^* = 2 > 0)$$",
-    "personalConnection": "Walking toward a beacon outside a square room: you slide along a wall until another wall stops you, then slide along that wall, and finish in the corner nearest the beacon.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A beacon (the unconstrained minimiser) lies outside the legal airspace. The plane slides along one wall toward it until another wall stops it, drops walls whose pushes turn negative, and finally parks at the legal point nearest the beacon.",
     "examTrap": "Drop a constraint only after checking its multiplier is negative, and then check that the new direction really moves INTO the freed side (a\u2c7c\u1d40p > 0). Otherwise you re-enter the forbidden region."
   },
   {
@@ -1893,7 +1893,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> maximizing the dual means lifting that supporting hyperplane as high as possible. If $\\omega$ is convex, the highest one touches $\\omega$ at $z=0$, so the gap vanishes (strong duality)."
     ],
     "math": "$$\\omega(z) = \\inf_{x \\in \\Omega} \\{f(x) : g(x) \\le z\\}, \\quad \\phi(\\mu) = \\inf_{z} \\{\\omega(z) + \\mu^T z\\} = \\inf_{x \\in \\Omega} \\{f(x) + \\mu^T g(x)\\}$$",
-    "personalConnection": "Holding a flat wooden ruler underneath a drooping electrical wire: as you slide and tilt the ruler upward so it touches the bottom of the wire, the height where the ruler crosses the vertical pole is the dual bound $\\phi(\\mu)$.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Move a mountain wall by $z$ and record the lowest legal altitude $\\omega(z)$ you can reach. Slide a flat ruler (a hyperplane of slope $-\\mu$) up from underneath this altitude curve until it touches it: where the ruler crosses the $z=0$ pole is the dual value $\\phi(\\mu)$.",
     "examTrap": "Notice that $\\omega(z)$ is non-increasing ($z_1 \\le z_2 \\implies \\omega(z_1) \\ge \\omega(z_2)$) because relaxing constraints ($z_2 > z_1$) enlarges the feasible region, which can only lower the minimum value."
   },
   {
@@ -1913,7 +1913,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> every dual feasible point gives a certified lower bound on the best cost. It needs no assumption at all; closing the gap (strong duality) is what needs convexity and Slater."
     ],
     "math": "$$d^* = \\sup_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu) \\le \\inf_{g(x) \\le 0, h(x) = 0} f(x) = p^* \\implies p^* - d^* \\ge 0 \\quad (\\text{Universal})$$",
-    "personalConnection": "A floor and ceiling: the highest possible dual value is the highest ceiling you can construct beneath the lowest floor of the building. The ceiling can never rise higher than the floor above it.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Any wall price $\\mu\\ge0$ gives a floor beneath the lowest legal altitude. The best floor you can build (the dual optimum) can never rise above the true lowest legal altitude (the primal optimum): that gap is the duality gap.",
     "examTrap": "Weak duality requires ABSOLUTELY NO ASSUMPTIONS! It holds whether $f$ is convex, non-convex, discontinuous, or integer-valued. Strong duality ($p^* = d^*$), on the other hand, requires convexity and constraint qualifications."
   },
   {
@@ -1935,7 +1935,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Geometric Proof (Luenberger):</strong> Convexity of $f$ and $g$ guarantees that the primal function $\\omega(z)$ is a convex curve. By the Separating Hyperplane Theorem, there exists a non-vertical supporting hyperplane touching $\\omega(z)$ at $z=0$. Its intercept is $f^* = \\phi^*$, closing the gap!"
     ],
     "math": "$$\\text{Convexity } + \\text{ Slater's CQ } \\implies p^* = \\min_{x \\in \\Omega} f(x) = \\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu) = d^*$$",
-    "personalConnection": "Two hands clapping together with zero air trapped between them: the primal minimization descending from above meets the dual maximization ascending from below at the exact same dollar figure.",
+    "personalConnection": "<strong>The airplane analogy.</strong> With a convex valley and Slater's room to move, the best floor you can build touches the lowest legal altitude: zero gap. The pilot descending from above and the tower raising a floor from below meet at the same altitude.",
     "examTrap": "If Slater's condition fails (e.g., $g_1(x) = x_1^2 \\le 0$, which has no strictly interior point since $x_1$ must equal 0), strong duality can FAIL even for perfectly convex problems!"
   },
   {
@@ -1955,7 +1955,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Proof:</strong> For each fixed $x$, the function $(\\lambda, \\mu) \\mapsto f(x) + \\lambda^T h(x) + \\mu^T g(x)$ is an <strong>affine function</strong> of $(\\lambda, \\mu)$. The pointwise infimum of affine functions is always concave."
     ],
     "math": "$$q(\\alpha y_1 + (1-\\alpha) y_2) \\ge \\alpha q(y_1) + (1-\\alpha) q(y_2) \\quad (\\text{Pointwise Infimum of Affine Families})$$",
-    "personalConnection": "Carving an arch out of wood: each saw cut is a straight affine plane. By making dozens of cuts and keeping the wood below all cuts (pointwise infimum), you carve a smooth, rounded concave arch.",
+    "personalConnection": "<strong>The airplane analogy.</strong> For each fixed flight plan $x$, the quantity 'altitude + $\\mu\\cdot$wall violation' is a straight line in the price $\\mu$. The dual function takes the lowest of all these lines at each $\\mu$, and a pointwise minimum of straight lines is always concave, however wild the terrain.",
     "examTrap": "The dual function is concave, which means dual optimization is a MAXIMIZATION problem: $\\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu)$. Maximizing a concave function is equivalent to minimizing a convex function."
   },
   {
@@ -1975,7 +1975,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> a multiplier of 50 means an extra unit of that resource saves about 50 in cost, and $\\mu_j^*=0$ means that constraint isn't limiting you at all."
     ],
     "math": "$$p^*(z) \\ge p^*(0) - \\sum_{j=1}^m \\mu_j^* z_j - \\sum_{i=1}^p \\lambda_i^* w_i \\implies \\nabla_z p^*(0) = -\\mu^*$$",
-    "personalConnection": "Factory production line: if adding 1 hour of overtime ($\\Delta z = 1$) reduces total assembly cost by \\$50, the shadow price of overtime labor is exactly $\\mu^* = \\$50$/hour.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The multiplier is a shadow price. If moving a mountain wall back by one metre of extra airspace lowers your lowest legal altitude by $\\mu^*$, then $\\mu^*$ is what the wall's push is worth per metre of room.",
     "examTrap": "Remember the negative sign! Because relaxing a constraint means $z_j > 0$ (enlarging the feasible set), the cost decreases ($p^*(z) \\le p^*(0)$), which is why $\\partial p^* / \\partial z_j = -\\mu_j^* \\le 0$."
   },
   {
@@ -1995,7 +1995,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> one multiplier $\\alpha_i\\ge0$ per point gives the Lagrangian $\\mathcal{L}=\\tfrac12\\|w\\|^2-\\sum_i\\alpha_i\\big[y_i(w^Tx_i+b)-1\\big]$. Stationarity in $w$ and $b$ then gives $w=\\sum\\alpha_iy_ix_i$ and $\\sum\\alpha_iy_i=0$ (next card)."
     ],
     "math": "$$\\min_{w,b}\\ \\tfrac12\\|w\\|^2\\ \\ \\text{s.t.}\\ \\ y_i(w^Tx_i+b)\\ge1,\\qquad \\text{margin}=\\frac{2}{\\|w\\|}$$",
-    "personalConnection": "Building the widest possible road between two towns: the road must not touch any house, so the houses closest to the road decide how wide it can be.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Two opposing traffic flows must be separated. Draw the widest possible no-fly strip between them: the strip's width (the margin) is set only by the aircraft that come closest to its edges, so maximising the margin is minimising $\\tfrac12\\|w\\|^2$.",
     "examTrap": "The constraints are y_i(w\u1d40x_i + b) \u2265 1, not \u2265 0. The 1 sets the scale of w and is what makes the margin exactly 2/\u2016w\u2016."
   },
   {
@@ -2015,7 +2015,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> the data enter only through inner products $x_i^Tx_j$, so you may replace them by a kernel $K(x_i,x_j)$ and get a curved boundary at no extra cost (<em>kernel trick</em>). <strong>Check on two points:</strong> $x_1=(1,1),y_1=+1$ and $x_2=(-1,-1),y_2=-1$ give $\\alpha_1=\\alpha_2=\\tfrac14$, $w=(\\tfrac12,\\tfrac12)$, and dual value $\\tfrac14=\\tfrac12\\|w\\|^2$ (no gap)."
     ],
     "math": "$$\\max_{\\alpha\\ge0,\\ \\sum\\alpha_iy_i=0}\\ \\sum_i\\alpha_i-\\tfrac12\\sum_{i,j}\\alpha_i\\alpha_jy_iy_j\\,x_i^Tx_j,\\qquad w^*=\\sum_i\\alpha_i^*y_ix_i,\\ \\ \\alpha_i^*>0\\Rightarrow\\text{support vector}$$",
-    "personalConnection": "A bridge held up by a few cables: only the cables that carry load (support vectors) have tension; the rest of the landscape beneath carries none and can be removed without the bridge noticing.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Only the planes touching the edges of the buffer strip (the support vectors) carry non-zero weight $\\alpha_i$ in the dual; every other aircraft has $\\alpha_i=0$ and could be removed without moving the strip. The kernel trick means the radar only needs distances and dot products between aircraft, not their coordinates.",
     "examTrap": "\u03b1_i > 0 means the point is exactly ON the margin, but a point on the margin can still have \u03b1_i = 0 (a degenerate case). 'Support vector \u21d2 \u03b1 > 0' is the safe direction; 'on the margin \u21d2 \u03b1 > 0' is not."
   },
   {
@@ -2035,7 +2035,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> you never have to eliminate $x$ by hand. Note that $x$ in the Wolfe dual need not be primal feasible; only $\\nabla_x\\mathcal{L}=0$ and $\\mu\\ge0$ are required."
     ],
     "math": "$$\\max_{x, \\lambda, \\mu} \\left\\{ f(x) + \\lambda^T h(x) + \\mu^T g(x) \\right\\} \\quad \\text{subject to} \\quad \\nabla f(x) + \\nabla h(x) \\lambda + \\nabla g(x) \\mu = \\mathbf{0}, \\; \\mu \\ge 0$$",
-    "personalConnection": "Pricing an apartment: instead of searching through every possible floor plan to find the cheapest cost, you restrict your search strictly to architects who have already optimized their floor blueprints (satisfying $\\nabla_x \\mathcal{L} = 0$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> Instead of checking every possible flight plan, the Wolfe dual restricts to equilibrium states: the positions where gravity is exactly balanced by wall pushes ($\\nabla_x\\mathcal L=0$). Among those equilibria you then maximise the Lagrangian over the wall pushes.",
     "examTrap": "The variable $x$ in the Wolfe dual DOES NOT need to be primal feasible ($g(x) \\le 0$ is NOT required in the Wolfe dual)! The only constraints on $(x, \\lambda, \\mu)$ in the Wolfe dual are $\\nabla_x \\mathcal{L} = 0$ and $\\mu \\ge 0$."
   },
   {
@@ -2055,7 +2055,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> primal minimum $=$ Wolfe dual maximum, with zero gap. Solve either problem and you get the other's value for free."
     ],
     "math": "$$f, g_j \\text{ convex}, \\; h_i \\text{ affine} \\implies \\max_{(x, \\lambda, \\mu) \\in \\text{Wolfe}} \\mathcal{L}(x, \\lambda, \\mu) = f(x^*) = \\min_{x \\in \\Omega} f(x)$$",
-    "personalConnection": "Two mountain climbers ascending and descending along opposite sides of a saddle pass: under convex conditions, the lowest saddle pass seen by the descent climber is the exact highest altitude reachable by the ascent climber.",
+    "personalConnection": "<strong>The airplane analogy.</strong> For a convex valley, the best floor built from equilibrium states touches the lowest legal altitude: Wolfe duality has zero gap, so the cockpit and the control tower report the same number.",
     "examTrap": "Remember that if $f$ or $g_j$ is NOT convex, Wolfe duality completely breaks down! Because the stationarity condition $\\nabla_x \\mathcal{L} = 0$ can capture local maxima or inflection points, producing false duality bounds."
   },
   {
@@ -2075,7 +2075,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> the quadratic term flips sign and the roles of $b$ and $c$ swap, so you can check a QP solution by evaluating both objectives (they must agree)."
     ],
     "math": "$$\\max_{x, y} \\left\\{ -\\frac{1}{2} x^T Q x + b^T y \\right\\} \\quad \\text{s.t.} \\quad Q x - A^T y + c \\ge \\mathbf{0}, \\; y \\ge \\mathbf{0}$$",
-    "personalConnection": "Two sides of one trade: the primal minimizes a risk x^T Q x / 2, the dual hedges it with resources b and pays the same risk with the opposite sign. Their totals meet at the optimum.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Cockpit and tower look at the same flight. The cockpit minimises the fuel burn $\\tfrac12x^\\top Qx$ while the tower hedges with resources $b$ and pays the same quadratic cost with the opposite sign. At the optimum their totals meet.",
     "examTrap": "The dual objective is \u2212\u00bd x\u1d40Qx + b\u1d40y (note the MINUS). It comes from \u00bdx\u1d40Qx \u2212 x\u1d40Qx = \u2212\u00bdx\u1d40Qx after using stationarity x\u1d40(Qx + c \u2212 A\u1d40y \u2212 v) = 0."
   },
   {
@@ -2095,7 +2095,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it happens:</strong> $\\nabla_x\\mathcal{L}=0$ only identifies the minimum of $\\mathcal{L}$ when $\\mathcal{L}$ is convex in $x$. In general it also finds maxima and saddles, giving false bounds."
     ],
     "math": "$$f(x) = -x^2 \\implies \\min_{x \\in \\mathbb{R}} f(x) = -\\infty, \\quad \\max_{f'(x)=0} f(x) = f(0) = 0 \\implies d^* > p^* \\; (\\text{Fails!})$$",
-    "personalConnection": "A metal detector that beeps on both gold nuggets and buried landmines: if you rely on the beep without verifying that you are in a safe zone (convexity), you dig up a disaster.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Equilibrium ($\\nabla_x\\mathcal L=0$) means forces balance, but a force-balanced plane can sit at the top of a mountain peak or on a saddle. If the valley is not convex, trusting equilibrium builds a false floor, so the Wolfe dual is invalid.",
     "examTrap": "If a question gives a NON-convex problem and asks what the Wolfe dual says, the answer is: nothing reliable (it can exceed the primal value). Use ordinary Lagrangian duality, which always gives a valid lower bound."
   },
   {
@@ -2115,7 +2115,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> it works like a price adjustment: a violated constraint ($g_j>0$) gets a higher price $\\mu_j$. With steps $\\sum\\alpha_k=\\infty$, $\\sum\\alpha_k^2<\\infty$ it converges to the dual optimum, but $q(\\mu_k)$ is <em>not</em> monotone: keep the best iterate."
     ],
     "math": "$$\\mu_{k+1} = \\max\\left( \\mathbf{0}, \\; \\mu_k + \\alpha_k g(x(\\mu_k)) \\right) \\quad \\text{where } x(\\mu_k) = \\arg\\min_{x} \\mathcal{L}(x, \\mu_k)$$",
-    "personalConnection": "Adjusting water pipe valves in a city: if district $j$ experiences a water shortage ($g_j > 0$), you raise the water price ($\\mu_{k+1} > \\mu_k$) to penalize waste. If a district has surplus water ($g_j < 0$), you lower the price.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The tower raises the wall price when the plane violates the wall ($g_j\\gt0$, flying into the mountain) and lowers it when there is slack ($g_j\\lt0$), never letting it go negative: $\\mu_{k+1}=\\max(0,\\mu_k+\\alpha g_j(x_k))$.",
     "examTrap": "The subgradient method is NOT a descent method! The objective $q(\\mu_k)$ can decrease at individual iterations. You must track the best iterate encountered: $q_{\\text{best}}^{(k)} = \\max_{i=1..k} q(\\mu_i)$."
   },
   {
@@ -2135,7 +2135,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> you replace a constrained problem in $x$ by an unconstrained concave maximization in $\\lambda$, and the optimal $x$ has the exponential (Boltzmann) form."
     ],
     "math": "$$q(\\lambda) = b^T \\lambda - \\sum_{i=1}^n \\exp\\left( a_i^T \\lambda - 1 \\right) \\implies \\text{Unconstrained Smooth Concave Maximization}$$",
-    "personalConnection": "Boltzmann distribution in statistical physics: minimizing thermodynamic free energy subject to conservation of energy produces the famous exponential Maxwell-Boltzmann energy distribution.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Spread a fixed fleet of aircraft across airports so that the total fuel budget is fixed. Maximising entropy under a fixed energy constraint gives the exponential (Boltzmann) distribution, and the wall price is the inverse temperature.",
     "examTrap": "Notice that the positivity constraint $x > 0$ is AUTOMATICALLY satisfied by the exponential $x_i^* = e^{\\dots} > 0$! Duality magically eliminates both the non-negativity constraint and the linear equalities."
   },
   {
@@ -2155,7 +2155,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> if the primal has $Ax\\ge b,\\ x\\ge0$, the dual is $\\max b^Ty$ s.t. $A^Ty\\le c,\\ y\\ge0$ (inequality rows give sign-restricted dual variables). Example: min $x_1+2x_2$ s.t. $x_1+x_2\\ge3$ has dual $\\max3y$ s.t. $y\\le1,\\ y\\le2,\\ y\\ge0$, both with value $3$."
     ],
     "math": "$$\\min_{x \\ge 0, A x = b} c^T x \\iff \\max_{y \\in \\mathbb{R}^m, A^T y \\le c} b^T y \\quad (\\text{Standard Form LP Duality})$$",
-    "personalConnection": "Manufacturer vs Contractor: the manufacturer wants to minimize assembly cost $c^T x$ to fulfill order $b$. A subcontractor wants to maximize buyout revenue $b^T y$ while charging prices low enough ($A^T y \\le c$) that the manufacturer agrees to sell.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Airline vs airport authority. The airline minimises the cost $c^\\top x$ of a flight schedule that meets demand $b$. The authority picks landing fees $y$ to maximise revenue $b^\\top y$ while keeping every route no more expensive than the airline's cost ($A^\\top y\\le c$) so the airline still agrees to fly.",
     "examTrap": "If primal has inequality $A x \\ge b, x \\ge 0$, then dual is $\\max b^T y$ s.t. $A^T y \\le c, y \\ge 0$ (dual variables become non-negative). If primal has equality $A x = b$, dual variables $y$ are completely free!"
   },
   {
@@ -2175,7 +2175,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> there are at most $\\binom nm$ vertices, a finite list. A BFS with some $x_B$ entry equal to $0$ is <em>degenerate</em>: more than $n-m$ walls meet there."
     ],
     "math": "$$x=\\begin{bmatrix}x_B\\\\x_N\\end{bmatrix}=\\begin{bmatrix}B^{-1}b\\\\\\mathbf 0\\end{bmatrix},\\quad B\\ \\text{invertible},\\ \\ x_B\\ge0\\iff x\\ \\text{is a vertex of}\\ \\{Ax=b,\\ x\\ge0\\}$$",
-    "personalConnection": "Pinning a tent to the ground at its corners: each corner is where enough walls meet that there is nowhere to slide, and the tent's lowest points are always at corners.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A plane can only be pinned in place at a corner of the polygonal airspace, where enough walls meet in independent directions that there is nowhere to slide. Those corners are the basic feasible solutions.",
     "examTrap": "A vertex is not 'any point with m non-zeros'. It needs the columns of the non-zero entries to be linearly independent. Two different bases can describe the same degenerate vertex."
   },
   {
@@ -2195,7 +2195,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> you only need to search the finitely many vertices, which is what the simplex method does. A degenerate vertex (some basic variable equals 0) can make simplex pivot without moving."
     ],
     "math": "$$x = \\begin{bmatrix} x_B \\\\ x_N \\end{bmatrix} = \\begin{bmatrix} B^{-1} b \\\\ \\mathbf{0} \\end{bmatrix} \\iff x \\text{ is an Extreme Point of } \\mathcal{P} = \\{x : A x = b, x \\ge 0\\}$$",
-    "personalConnection": "Warping a flat cardboard sheet across a polygonal wireframe: the lowest point of a tilted flat sheet resting on a wire polygon must touch at least one of the sharp wire corners.",
+    "personalConnection": "<strong>The airplane analogy.</strong> With a linear altitude (a tilted flat sheet over the polygonal airspace), the lowest point of the sheet over the polygon is always at a corner of the polygon, so the best parking spot is a vertex.",
     "examTrap": "'An optimal vertex exists' does not mean every optimum is a vertex: when the objective is parallel to a face, the whole face is optimal. And a vertex is guaranteed to exist only if the feasible set has no line inside it (true when x \u2265 0)."
   },
   {
@@ -2215,7 +2215,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Computational Power:</strong> If you know which primal variables are non-zero ($x_j^* > 0$), you instantly know which dual constraints are equalities ($A_{\\cdot j}^T y = c_j$)! This allows you to solve for the dual vector $y^*$ by solving a small linear system without running an optimization algorithm."
     ],
     "math": "$$x^*, y^* \\text{ optimal} \\iff x_j^* (c_j - A_{\\cdot j}^T y^*) = 0 \\; (\\forall j) \\quad \\text{and} \\quad y_i^* (A_{i \\cdot} x^* - b_i) = 0 \\; (\\forall i)$$",
-    "personalConnection": "Running an airline: if Boeing 777 flights are actively scheduled on a route ($x_j > 0$), ticket prices on that route must exactly equal the operating cost ($A^T y = c$). If operating cost exceeds revenue ($c_j > A^T y$), you schedule zero flights ($x_j = 0$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> Complementary slackness is the airline's rulebook. If a route is flown ($x_j\\gt0$), its fee exactly equals its cost. If the fee is below cost ($c_j\\gt A_j^\\top y$), nobody flies it ($x_j=0$). If a resource wall is not touched, its price $y_i$ is zero.",
     "examTrap": "Complementary slackness allows you to check whether a proposed solution $x$ is optimal in seconds! Form the dual equality system for $x_j > 0$, solve for $y$, and check if $A^T y \\le c$. If yes, $x$ is guaranteed optimal."
   },
   {
@@ -2235,7 +2235,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> this is the proof that 'primal infeasible and dual feasible' forces 'dual unbounded'. Together with the symmetric case it gives the four outcomes of LP duality: both optimal with equal values, or one unbounded and the other infeasible, or both infeasible."
     ],
     "math": "$$A^Ty\\ge0,\\ b^Ty<0\\ \\Rightarrow\\ d=-y:\\ A^Td\\le0,\\ b^Td>0\\ \\Rightarrow\\ b^T(y_0+td)\\to+\\infty\\ \\ (t\\to\\infty)$$",
-    "personalConnection": "Throwing darts inside a target quadrant: either your dart lands inside the sector spanned by the target pins ($A x = b, x \\ge 0$), or you can hold up a wooden divider ($y$) separating the dart from the entire target.",
+    "personalConnection": "<strong>The airplane analogy.</strong> If no legal flight plan exists (the primal is infeasible), Farkas gives a heading $y$ that no wall blocks along which you can keep improving forever, so the dual can be pushed without bound: infeasible primal means unbounded dual.",
     "examTrap": "Farkas' lemma is the engine behind Strong Duality in Linear Programming! Proving that the primal has no feasible solution is mathematically equivalent to exhibiting a certificate vector $y$ solving System 2."
   },
   {
@@ -2255,7 +2255,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> it returns an <em>exact</em> vertex solution and is superb in practice (typically linear in the number of constraints). Its worst case is exponential, as the Klee-Minty cube shows."
     ],
     "math": "$$x_B=B^{-1}b\\ \\ge0,\\ \\ x_N=0;\\quad \\text{optimal if all reduced costs}\\ \\ c_N^T-c_B^TB^{-1}N\\ \\ge\\ 0$$",
-    "personalConnection": "Hiking along the ridge-lines of a mountain: at every summit-corner you look at the neighboring corners and walk to one that is higher, until none is.",
+    "personalConnection": "<strong>The airplane analogy.</strong> At each airport corner the pilot looks at the neighbouring airports along the edges, hops to one that is lower, and stops when no neighbour is lower: that corner is the optimum.",
     "examTrap": "A degenerate vertex (a basic variable equals 0) lets simplex pivot without moving and, in rare cases, cycle. Bland's rule prevents that."
   },
   {
@@ -2275,7 +2275,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> they take a few dozen iterations even for huge problems and have polynomial worst-case complexity $O(\\sqrt nL)$ iterations. The answer is only $\\epsilon$-optimal, so an exact vertex needs a 'crossover' step."
     ],
     "math": "$$x(\\mu)=\\arg\\min_{Ax=b,\\ x>0}\\Big\\{c^Tx-\\mu\\sum_{j=1}^n\\ln x_j\\Big\\}\\ \\xrightarrow{\\ \\mu\\to0\\ }\\ x^*$$",
-    "personalConnection": "Driving down the middle of a wide boulevard toward a destination at the far end instead of scraping along the curbs at every corner.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Instead of scraping along the walls from corner to corner, fly down the centre of the corridor (the central path), a safe distance from every wall, and let the clearance shrink toward zero as you approach the destination corner.",
     "examTrap": "Simplex returns an exact vertex; interior-point methods return a point inside the polyhedron within \u03b5 of optimal. Know which one a question's 'basic solution' wording requires."
   },
   {
@@ -2295,7 +2295,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Check:</strong> dual value $5(1)+7(1)=12$ equals the primal value, which proves $x^*$ is optimal. Both primal constraints are tight and both $y_i>0$, consistent with $y_i(\\text{slack}_i)=0$."
     ],
     "math": "$$z^* = 3(2) + 2(3) = 12 = 5(1) + 7(1) = w^* \\quad (\\text{Complementary Slackness } x_j > 0 \\implies A_j^T y = c_j)$$",
-    "personalConnection": "Two accountants auditing the same warehouse inventory from opposite perspectives (stock count vs invoice ledger): both reach the exact same total valuation of \\$12,000.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The pilot in the cockpit and the tower with its price list reach the same total cost: the primal and dual optimum are equal, the strong duality of LP.",
     "examTrap": "Remember that if the primal is a MAXIMIZATION problem, the dual is a MINIMIZATION problem, and primal constraints $\\le$ become dual variables $y \\ge 0$. Watch the direction of the inequalities!"
   },
   {
@@ -2317,7 +2317,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Convergence Mechanics:</strong> As penalty parameter $c_k \\to \\infty$, the sequence of unconstrained minimizers $x(c_k)$ approaches the boundary from the <strong>exterior (infeasible side)</strong>, converging to the exact constrained minimizer $x^*$."
     ],
     "math": "$$\\min_{x \\in \\mathbb{R}^n} q(c_k, x) = f(x) + \\frac{c_k}{2} \\sum_{i=1}^p h_i(x)^2 + \\frac{c_k}{2} \\sum_{j=1}^m [\\max(0, g_j(x))]^2 \\xrightarrow{c_k \\to \\infty} x^*$$",
-    "personalConnection": "An electric livestock fence: inside the pasture ($g \\le 0$), you graze freely without penalty. The moment you push against the fence into the forbidden zone, the shock penalty ($c [\\max(0, g)]^2$) grows violently, forcing you back.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Restricted airspace with fines. Inside legal airspace ($g\\le0$) you fly free; the moment you cross into the forbidden zone, the fine $c\\,[\\max(0,g)]^2$ grows quadratically. As the fine stiffens ($c\\to\\infty$) you are forced back to the boundary.",
     "examTrap": "The quadratic penalty function for inequalities $[\\max(0, g(x))]^2$ is only ONCE continuously differentiable ($C^1$)! Its second derivative has a discontinuous jump across the boundary $g(x) = 0$, which can impair pure Newton methods."
   },
   {
@@ -2339,7 +2339,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Infinite Boundary Repulsion:</strong> As $x$ approaches the boundary ($g_j(x) \\to 0^-$), $\\ln(-g_j(x)) \\to -\\infty$, creating an <strong>infinite vertical energy wall</strong> that physically prevents iterates from ever becoming infeasible. As $c \\to \\infty$, the unconstrained minimizers converge to $x^*$ from the inside!"
     ],
     "math": "$$B(x) = -\\sum_{j=1}^m \\ln(-g_j(x)) \\implies \\lim_{g_j(x) \\to 0} B(x) = +\\infty, \\quad x(c) = \\arg\\min_{x \\in \\mathcal{S}^\\circ} \\left\\{ f(x) + \\frac{1}{c} B(x) \\right\\}$$",
-    "personalConnection": "Two like magnetic poles pushing apart: as your hand approaches the boundary wall, the repelling magnetic force shoots up to infinity, making it physically impossible to touch the boundary.",
+    "personalConnection": "<strong>The airplane analogy.</strong> An invisible repulsive field around the mountains: the closer you get to a wall, the more the barrier $-\\mu\\ln(-g)$ blows up, so you can never touch the boundary and always fly strictly inside legal airspace.",
     "examTrap": "Barrier methods CANNOT handle equality constraints $h_i(x) = 0$! Because equality constraints have no strict interior ($\\{x : h_i(x) < 0\\}$ is empty). Equalities must be handled via penalties, projection, or Lagrange multipliers."
   },
   {
@@ -2359,7 +2359,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> gradient descent zig-zags and Newton systems lose accuracy. So raise $c$ gradually (e.g. $c_{k+1}=10c_k$) and warm-start each subproblem from the previous solution."
     ],
     "math": "$$\\kappa(\\nabla^2 q(c, x)) = \\frac{\\lambda_{\\max}}{\\lambda_{\\min}} \\approx \\mathcal{O}(c) \\xrightarrow{c \\to \\infty} \\infty \\implies \\text{Catastrophic Numerical Instability}$$",
-    "personalConnection": "Driving a car through an impossibly narrow, near-vertical canyon: the canyon walls rise vertically like skyscrapers ($c \\to \\infty$). The slightest steering twitch bounces you violently between the walls without moving forward.",
+    "personalConnection": "<strong>The airplane analogy.</strong> With a huge fine $c$ the valley becomes a razor-thin canyon: extremely stiff across the wall and flat along the runway, so the pilot zig-zags between the canyon walls instead of making forward progress: the Hessian has condition number growing with $c$.",
     "examTrap": "Do NOT increase penalty parameter $c$ too fast! Classical penalty codes multiply $c_{k+1} = 10 c_k$ slowly and warm-start each minimization from the previous iterate $x_k$ to survive the severe ill-conditioning."
   },
   {
@@ -2379,7 +2379,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> since $\\lambda^{(k)}\\to\\lambda^*$ (finite) while $c_k\\to\\infty$, the constraint violation is $h_i(x_k)\\approx\\lambda_i^*/c_k$: it shrinks like $1/c_k$. This is also the idea behind the augmented Lagrangian."
     ],
     "math": "$$\\lambda_i^{(k)} = c_k h_i(x(c_k)) \\xrightarrow{c_k \\to \\infty} \\lambda_i^*, \\quad \\mu_j^{(k)} = c_k \\max(0, g_j(x(c_k))) \\xrightarrow{c_k \\to \\infty} \\mu_j^*$$",
-    "personalConnection": "Measuring weight on a bathroom spring scale: your foot displaces the spring slightly ($h(x) = \\Delta x$). The spring stiffness $c$ times the displacement ($c \\cdot \\Delta x$) gives the exact upward normal contact force ($\\lambda^*$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> At each penalty iterate the plane sinks slightly into the forbidden zone. Fine times depth gives the wall's push force: $\\lambda^*\\approx c\\,\\max(0,g)$ or $c\\,h(x_k)$ for equalities, so the multiplier is recovered for free.",
     "examTrap": "Notice that because $\\lambda_k \\to \\lambda^*$ (a finite number) while $c_k \\to \\infty$, the constraint violation must decay like $\\mathcal{O}(1/c_k)$: $h_i(x_k) \\approx \\frac{\\lambda_i^*}{c_k}$. This proves the constraint error is inversely proportional to $c$."
   },
   {
@@ -2399,7 +2399,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> the multiplier does most of the work of balancing $-\\nabla f$, so $c$ only has to be large enough to make $\\mathcal{L}_c$ locally convex, a <em>finite</em> value. No $c\\to\\infty$ means no ill-conditioning."
     ],
     "math": "$$\\lambda_{k+1} = \\lambda_k + c_k h(x_k) \\quad (\\text{First-Order Dual Multiplier Update without Matrix Inverses})$$",
-    "personalConnection": "Leveling a wobbly table: ordinary penalty is jamming a stack of 50 napkins under the leg until it stops wobbling ($c \\to \\infty$). Augmented Lagrangian is adjusting the threaded screw leg ($\\lambda$) so the table sits perfectly flat with zero napkins.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Ordinary penalty needs the fine to grow forever ($c\\to\\infty$). The augmented Lagrangian lets the tower also adjust a standing reservation $\\lambda$ so that the plane lands exactly on the boundary with only a moderate fine.",
     "examTrap": "The multiplier update is $\\lambda_{k+1} = \\lambda_k + c_k h(x_k)$ (NOT minus!). Because $h(x) = \\nabla_\\lambda \\mathcal{L}_c$ is the exact gradient of the dual function with respect to $\\lambda$, this update is pure gradient ascent on the dual."
   },
   {
@@ -2419,7 +2419,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Pattern:</strong> $x^{(k)}=1-3^{-(k+1)}$ and $\\lambda_k-\\lambda^*=-2\\cdot3^{-k}$: the error drops by a factor of 3 each update while $c$ stays at 2."
     ],
     "math": "$$\\lambda_0=0\\to x^{(0)}=\\Big(\\tfrac23,\\tfrac23\\Big);\\ \\ \\lambda_1=-\\tfrac43\\to x^{(1)}=\\Big(\\tfrac89,\\tfrac89\\Big);\\ \\ \\lambda_2=-\\tfrac{16}9\\to x^{(2)}=\\Big(\\tfrac{26}{27},\\tfrac{26}{27}\\Big)\\to(1,1),\\ \\lambda^*=-2$$",
-    "personalConnection": "Tuning a guitar string: instead of tightening the peg harder and harder until the string snaps ($c \\to \\infty$), you turn the fine-tuning screw ($\\lambda$) by small corrective increments until the note is perfectly in pitch.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Instead of ever-tighter fines, the tower nudges the reservation $\\lambda_{k+1}=\\lambda_k+c\\,h(x_k)$ by small corrections until the plane touches down on the boundary exactly: tuning, not brute force.",
     "examTrap": "Compare with the plain quadratic penalty, whose minimizer is x = c/(1+c)\u00b7(1,1): the error is 1/(1+c), so 1% accuracy needs c \u2248 100 (and a terribly conditioned Hessian). The augmented Lagrangian reaches 0.4% with c = 2 after 4 multiplier updates."
   },
   {
