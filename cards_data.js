@@ -17,7 +17,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Heine-Borel Theorem:</strong> In Euclidean space $\\mathbb{R}^n$, a subset $K$ is <strong>compact</strong> if and only if it is simultaneously <strong>closed and bounded</strong>."
     ],
     "math": "$$K \\subset \\mathbb{R}^n \\text{ is compact} \\iff K \\text{ is closed and bounded}$$",
-    "personalConnection": "A walled garden with a locked gate is compact (closed boundary, finite perimeter). An infinite runway is closed but unbounded. A garden with missing fence boards is bounded but not closed.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A fenced airfield with a locked gate is compact: closed (its boundary belongs to it) and bounded (finite size). An endless runway is closed but unbounded, and an airfield with missing fence boards is bounded but not closed.",
     "examTrap": "Heine-Borel strictly fails in infinite dimensions! In infinite-dimensional function spaces (such as $L^2$ or Sobolev spaces), a closed and bounded unit ball is NEVER compact."
   },
   {
@@ -37,7 +37,7 @@ window.MASTER_CARDS_DATA = [
       "Lower semicontinuity is the exact mathematical property needed to preserve minima: limits of minimizing sequences stay within closed sublevel sets."
     ],
     "math": "$$\\liminf_{x \\to x_0} f(x) \\ge f(x_0) \\iff \\mathcal{L}_\\alpha(f) = \\{x : f(x) \\le \\alpha\\} \\text{ is closed } \\forall \\alpha$$",
-    "personalConnection": "Walking down basement stairs: if a step abruptly drops 2 inches lower, you step onto solid stone, never falling through an imaginary floor. The true value at the drop is at or below incoming heights.",
+    "personalConnection": "<strong>The airplane analogy.</strong> At a cliff edge the altimeter reports the lower of the two heights, so a plane approaching from above still lands on the true low point and never falls through an imaginary floor.",
     "examTrap": "Full continuity is NOT required for minimum attainment! Lower semicontinuity is the exact minimal condition needed for global infimum attainment. Upper semicontinuity guarantees maximum attainment."
   },
   {
@@ -57,7 +57,7 @@ window.MASTER_CARDS_DATA = [
       "This converts an abstract theoretical infimum $\\inf f(x)$ into an exact, physically reachable minimizer $\\min f(x) = f(x^*)$."
     ],
     "math": "$$K \\ne \\emptyset \\text{ compact, } f \\in C(K) \\implies \\exists x^* \\in K : f(x^*) = \\min_{x \\in K} f(x)$$",
-    "personalConnection": "A roller coaster track constructed entirely inside an enclosed stadium (compact domain): the lowest point of the track is physically reachable and touching steel, rather than tapering off into infinity.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A continuous terrain over a fenced, finite airfield always has a lowest point the plane can actually touch down on, rather than tapering off toward infinity.",
     "examTrap": "If the domain is open (e.g. $K = (0, 1)$), $f(x) = x$ has infimum 0, but attains NO minimum in $K$! Both closedness and boundedness of the domain are strictly mandatory."
   },
   {
@@ -77,7 +77,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Compactness Recovery:</strong> Pick any basepoint $x_0$. The sublevel set $S = \\{x : f(x) \\le f(x_0)\\}$ is <strong>bounded</strong> and closed, hence <strong>compact</strong>. Applying Weierstrass on $S$ guarantees global minimizer $x^*$ exists on all of $\\mathbb{R}^n$!"
     ],
     "math": "$$\\lim_{\\|x\\| \\to \\infty} f(x) = +\\infty \\implies \\mathcal{L}_\\alpha = \\{x : f(x) \\le \\alpha\\} \\text{ is compact} \\implies \\min_{x \\in \\mathbb{R}^n} f(x) \\text{ exists}$$",
-    "personalConnection": "A deep soup bowl with steep walls: no matter which direction you kick a marble, it climbs infinite walls. The marble must settle at a global low point in the finite bowl bottom.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Mountain walls rise without limit in every direction around the airport, so the lowest altitude cannot be far away: the plane never has to search to infinity.",
     "examTrap": "A function strictly bounded below by zero (like $f(x) = e^{-x^2}$ or $f(x) = \\frac{1}{1+x^2}$) is NOT coercive! It has infimum 0, but attains NO minimum anywhere on $\\mathbb{R}$."
   },
   {
@@ -98,7 +98,7 @@ window.MASTER_CARDS_DATA = [
       "Horizontal slices of $\\operatorname{epi}(f)$ at height $t = \\alpha$ are precisely the sublevel sets $\\mathcal{L}_\\alpha(f)$. If $f$ is convex, all its sublevel sets are convex."
     ],
     "math": "$$\\operatorname{epi}(f) = \\{(x, t) \\in \\mathbb{R}^{n+1} : f(x) \\le t\\}, \\quad f \\text{ is convex} \\iff \\operatorname{epi}(f) \\text{ is a convex set}$$",
-    "personalConnection": "Pouring broth into a convex bowl: the broth filling the space above the ceramic interior is the epigraph. Any straight line drawn between two soup droplets remains entirely within the soup.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The sky above the terrain is the epigraph. If the terrain is convex then any straight flight path between two points in that sky stays in the sky.",
     "examTrap": "The converse does NOT hold! A function with convex sublevel sets is NOT necessarily convex (it is only quasiconvex, e.g. $f(x) = \\sqrt{|x|}$ or $f(x) = \\log(x)$)."
   },
   {
@@ -118,7 +118,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why / where it is:</strong> setting $\\nabla f=0$ gives $x_1^3=x_2$ and $x_2^3=x_1$, so the candidates are $(0,0)$ with $f=0$ (a saddle) and $\\pm(1,1)$ with $f=-2$. The global minimum is $-2$ at $(1,1)$ <em>and</em> $(-1,-1)$ only (note $f(1,-1)=6$)."
     ],
     "math": "$$f(x)\\ge x_1^4+x_2^4-2(x_1^2+x_2^2)\\to\\infty\\ \\Rightarrow\\ \\text{a global min exists;}\\quad \\min f=f(1,1)=f(-1,-1)=-2$$",
-    "personalConnection": "Build a fence first, then search inside it: coercivity guarantees the lowest point can't be outside a big enough fence, so a search inside the fence cannot miss it.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Build the fence first: coercivity says the terrain outside a large enough fence is higher than your starting altitude, so searching inside the fence cannot miss the lowest point.",
     "examTrap": "Solving \u2207f = 0 does not prove a minimum exists, and the candidates need checking: only (1,1) and (\u22121,\u22121) are global minimizers here. (1,\u22121) and (\u22121,1) are NOT, since f = 6 there."
   },
   {
@@ -138,7 +138,7 @@ window.MASTER_CARDS_DATA = [
       "The quadratic model $m(d) = f(x) + \\nabla f(x)^T d + \\frac{1}{2} d^T B d$ forms the foundational engine for all Newton, Quasi-Newton, and trust-region algorithms."
     ],
     "math": "$$f(x+d) = f(x) + \\nabla f(x)^T d + \\frac{1}{2} d^T \\nabla^2 f(x+\\theta d) d, \\quad \\theta \\in (0, 1)$$",
-    "personalConnection": "Walking through hilly terrain in thick fog with a flashlight: your current elevation is $f(x)$, the slope under your boots is $\\nabla f(x)$, and the bowl curvature around your feet is $\\nabla^2 f(x)$.",
+    "personalConnection": "<strong>The airplane analogy.</strong> In fog the pilot has three instruments: the altimeter $f(x)$, the slope gauge $\\nabla f(x)$ and the curvature gauge $\\nabla^2f(x)$. Together they give a local model of the terrain around the plane.",
     "examTrap": "The Hessian $\\nabla^2 f(x)$ must be evaluated at an INTERMEDIATE point $x + \\theta d$ for exact equality! Evaluating at $x$ requires adding the asymptotic remainder term $o(\\|d\\|^2)$."
   },
   {
@@ -159,7 +159,7 @@ window.MASTER_CARDS_DATA = [
       "Because this holds for EVERY direction $d \\in \\mathbb{R}^n$, we choose $d = \\nabla f(x^*)$, which forces $\\|\\nabla f(x^*)\\|^2 = 0 \\implies \\nabla f(x^*) = 0$."
     ],
     "math": "$$x^* \\text{ local min of } f \\in C^1 \\implies \\nabla f(x^*) = \\mathbf{0}$$",
-    "personalConnection": "Standing at the absolute bottom of a mountain pass: in whichever compass direction you take a tiny step, the instantaneous slope is zero; you neither gain nor lose height initially.",
+    "personalConnection": "<strong>The airplane analogy.</strong> At the lowest parking spot the slope gauge reads zero: in no direction does the plane start to descend.",
     "examTrap": "FONC is strictly NECESSARY, not sufficient! A zero gradient $\\nabla f(x^*) = 0$ also occurs at local maxima and saddle points (e.g., $f(x_1, x_2) = x_1^2 - x_2^2$ at the origin)."
   },
   {
@@ -179,7 +179,7 @@ window.MASTER_CARDS_DATA = [
       "This implies that all eigenvalues of the Hessian at $x^*$ are non-negative: $\\lambda_i(\\nabla^2 f(x^*)) \\ge 0$ for all $i = 1, \\dots, n$."
     ],
     "math": "$$x^* \\text{ local min of } f \\in C^2 \\implies \\nabla f(x^*) = \\mathbf{0} \\quad \\text{and} \\quad \\nabla^2 f(x^*) \\succeq 0$$",
-    "personalConnection": "A marble resting inside a teacup: any displacement encounters an upward slope. If even one direction curved downward, gravity would immediately roll the marble away.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The curvature gauge must never read negative at the lowest spot: if even one direction curved downward, the plane would roll off that way.",
     "examTrap": "$\\nabla^2 f(x^*) \\succeq 0$ alone is NOT sufficient for a local minimum! Consider $f(x) = x^3$ at $x=0$: $f'(0)=0$ and $f''(0)=0 \\ge 0$, but $x=0$ is an inflection point, not a minimum."
   },
   {
@@ -199,7 +199,7 @@ window.MASTER_CARDS_DATA = [
       "This condition is completely decisive: no higher-order derivatives need to be evaluated once $\\lambda_{\\min} > 0$ is verified."
     ],
     "math": "$$\\nabla f(x^*) = \\mathbf{0} \\quad \\text{and} \\quad \\nabla^2 f(x^*) \\succ 0 \\implies x^* \\text{ is a strict local minimizer}$$",
-    "personalConnection": "Sitting in the center of a parabolic satellite dish: every radial direction pushes you strictly upward with nonzero quadratic curvature. You are trapped at a guaranteed strict local low point.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Every direction curves strictly upward, like the inside of a valley with steep sides, so the plane is trapped at a guaranteed strict local low point.",
     "examTrap": "SOSC requires STRICT inequality $\\nabla^2 f(x^*) \\succ 0$. If $\\lambda_{\\min} = 0$ (e.g. $f(x) = x^4$ at $x=0$), $x^*$ can still be a minimizer, but SOSC fails to prove it and 4th-order analysis is needed."
   },
   {
@@ -219,7 +219,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> at a saddle there is always a way down (an eigenvector $v$ with $v^T\\nabla^2f\\,v<0$), so an algorithm that sees negative curvature can walk off the saddle instead of getting stuck."
     ],
     "math": "$$\\text{Saddle Point} \\iff \\exists \\, i, j \\text{ s.t. } \\lambda_i(\\nabla^2 f(x^*)) > 0 \\text{ and } \\lambda_j(\\nabla^2 f(x^*)) < 0$$",
-    "personalConnection": "A horse saddle or mountain pass: you are at the lowest point along the north-south ridge, but at the highest point along the east-west trail.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The Hessian's eigenvalues are the curvature along each natural axis: all positive is a valley bottom, all negative a hilltop, mixed is a mountain pass (low along the ridge, high across the trail).",
     "examTrap": "Sylvester's Criterion for negative definiteness requires alternating leading principal minors: $(-1)^k \\Delta_k > 0$ ($\\Delta_1 < 0, \\Delta_2 > 0, \\Delta_3 < 0$). Many students erroneously check if all $\\Delta_k < 0$."
   },
   {
@@ -239,7 +239,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Step 2 (Hessian at (1, 1)):</strong> $\\nabla^2 f(1, 1) = \\begin{bmatrix} 802 & -400 \\\\ -400 & 200 \\end{bmatrix}$. Trace $= 1002 > 0$, Determinant $= 802(200) - 160000 = 400 > 0$. Both eigenvalues are strictly positive $\\implies$ unique strict local (and global) minimum!"
     ],
     "math": "$$\\nabla f(1, 1) = \\mathbf{0}, \\quad \\det(\\nabla^2 f) = 400 > 0, \\quad \\operatorname{tr}(\\nabla^2 f) = 1002 > 0 \\implies (1,1) \\text{ is strict min}$$",
-    "personalConnection": "Finding the drain in a curved sink: the valley bottom is along $y = x^2$. Moving along the valley requires tiny adjustments because the Hessian condition number $\\kappa \\approx 2500$ is massive.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Rosenbrock is a long curved banana canyon along $y=x^2$: the floor is nearly flat while the walls are steep, with condition number around 2500, so following the floor needs tiny careful legs.",
     "examTrap": "When evaluating $2 \\times 2$ Hessians, always check BOTH $\\det(H) > 0$ and $\\operatorname{tr}(H) > 0$. If $\\det(H) > 0$ and $\\operatorname{tr}(H) < 0$, both eigenvalues are negative, giving a local MAXIMUM!"
   },
   {
@@ -260,7 +260,7 @@ window.MASTER_CARDS_DATA = [
       "Geometrically, the secant line segment joining $(x, f(x))$ and $(y, f(y))$ lies completely on or above the graph of $f$."
     ],
     "math": "$$f(\\theta x + (1-\\theta)y) \\le \\theta f(x) + (1-\\theta)f(y) \\quad \\forall \\, x, y \\in C, \\; \\theta \\in [0, 1]$$",
-    "personalConnection": "A taut guitar string stretched between two frets: the vibrating string always hovers above the wooden dip of the hollow fretboard.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A convex corridor: any two points can be joined by a straight flight path that stays inside. The straight path between two points on a convex terrain always flies above the terrain.",
     "examTrap": "The domain $C$ of $f$ MUST be a convex set for the definition to even be valid! You cannot define convexity on disjoint or non-convex domains like $C = \\mathbb{R} \\setminus \\{0\\}$."
   },
   {
@@ -281,7 +281,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Critical Consequence:</strong> If $\\nabla f(x^*) = 0$, then $f(y) \\ge f(x^*) + 0^T(y - x) = f(x^*)$ for all $y$. Thus, <strong>every stationary point of a convex function is a global minimizer!</strong>"
     ],
     "math": "$$f \\text{ is convex} \\iff f(y) \\ge f(x) + \\nabla f(x)^T (y - x) \\quad \\forall \\, x, y$$",
-    "personalConnection": "Holding a stiff piece of cardboard flat against a smooth bowl: the cardboard touches the bowl at exactly one tangent point and rests strictly underneath the rest of the bowl everywhere else.",
+    "personalConnection": "<strong>The airplane analogy.</strong> At any point the flat glide plane touching the terrain there lies beneath the terrain everywhere else: the slope gauge always underestimates the true altitude of a convex terrain.",
     "examTrap": "Monotonicity of gradient is completely equivalent: $( \\nabla f(y) - \\nabla f(x) )^T (y - x) \\ge 0$. In 1D, this simply states that the derivative $f'(x)$ is non-decreasing."
   },
   {
@@ -301,7 +301,7 @@ window.MASTER_CARDS_DATA = [
       "For quadratic $f(x) = \\frac{1}{2} x^T Q x - b^T x$, $\\nabla^2 f(x) = Q$. Hence $f$ is convex if and only if the matrix $Q \\succeq 0$."
     ],
     "math": "$$f \\text{ is convex on } C \\iff \\nabla^2 f(x) \\succeq 0 \\quad \\forall \\, x \\in C$$",
-    "personalConnection": "A car driving across undulating hills: if the driver's stomach always feels pressed down into the seat (positive vertical acceleration) and never floats upward, the terrain is convex.",
+    "personalConnection": "<strong>The airplane analogy.</strong> At every point the seat is pressed up by the ground (never floats up): the terrain curves upward everywhere, which is the positive semidefinite Hessian.",
     "examTrap": "Do not confuse $\\nabla^2 f(x^*) \\succeq 0$ at a single critical point (which is merely SONC for a local min) with $\\nabla^2 f(x) \\succeq 0$ for ALL $x \\in C$ (which proves global convexity of $f$)."
   },
   {
@@ -321,7 +321,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Second-Order Equivalent:</strong> $\\nabla^2 f(x) \\succeq \\mu I$, meaning the minimum eigenvalue is uniformly bounded away from zero: $\\lambda_{\\min}(\\nabla^2 f(x)) \\ge \\mu > 0$."
     ],
     "math": "$$f \\text{ is } \\mu\\text{-strongly convex} \\iff \\nabla^2 f(x) \\succeq \\mu I \\quad \\forall \\, x$$",
-    "personalConnection": "A heavy steel spring: the further you compress or stretch it, the restoring force pushes back with strict linear resistance and quadratic energy storage $\\frac{1}{2} k x^2$.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Strong convexity means the terrain curves up at least like a bowl of fixed steepness $m$: leaving the bottom costs at least $\\tfrac m2\\|x-x^*\\|^2$ of altitude.",
     "examTrap": "Strict convexity does NOT imply strong convexity! For instance, $f(x) = x^4$ is strictly convex on $\\mathbb{R}$, but its 2nd derivative $f''(0) = 0$, so it is NOT strongly convex ($\\mu = 0$)."
   },
   {
@@ -341,7 +341,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> PL alone (no convexity needed) makes gradient descent with step $1/L$ converge <em>linearly</em>: the gap to $f^*$ shrinks by a fixed factor $(1-\\mu/L)$ every step."
     ],
     "math": "$$\\|\\nabla f(x)\\|^2\\ge2\\mu\\,(f(x)-f^*)\\ \\Longrightarrow\\ f(x_k)-f^*\\le\\Big(1-\\frac{\\mu}{L}\\Big)^{k}\\big(f(x_0)-f^*\\big)$$",
-    "personalConnection": "A ball on a hillside: wherever the ground is high above the lowest point, it is also steep, so the ball never gets stuck on a flat plateau far from the bottom.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The higher you are above the lowest point, the steeper the slope under you, so the plane can never sit on a flat plateau far above the valley floor.",
     "examTrap": "PL is weaker than strong convexity. A non-convex function such as f(x) = x\u00b2 + 3 sin\u00b2x satisfies PL (every stationary point is a global min), so gradient descent still converges linearly on it."
   },
   {
@@ -361,7 +361,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Counterexample 2 ($e^x$):</strong> $f(x) = e^x$ is strictly convex on $\\mathbb{R}$ with $f''(x) = e^x > 0$, but $\\lim_{x \\to -\\infty} f''(x) = 0$. Hence it is NOT strongly convex on $\\mathbb{R}$."
     ],
     "math": "$$\\mu\\text{-Strongly Convex } (\\nabla^2 f \\succeq \\mu I) \\implies \\text{Strictly Convex} \\implies \\text{Convex } (\\nabla^2 f \\succeq 0)$$",
-    "personalConnection": "Convex = flat surfaces allowed (e.g. ramps). Strictly convex = no flat line segments, but can flatten infinitesimally ($x^4$). Strongly convex = strictly curved everywhere like a bowling ball.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Convex allows level ramps (cruise flat forever); strictly convex has no level stretch but can flatten near the bottom ($x^4$); strongly convex is a true bowl everywhere.",
     "examTrap": "An exam question asking 'Is $f(x) = e^{-x} + x^2$ strongly convex on $\\mathbb{R}$?' Answer: YES! $f''(x) = e^{-x} + 2 \\ge 2 > 0$ for all $x$, so $\\mu = 2$."
   },
   {
@@ -382,7 +382,7 @@ window.MASTER_CARDS_DATA = [
       "This guarantees that for all sufficiently small step sizes $\\alpha > 0$, the objective strictly decreases: $f(x_k + \\alpha d_k) < f(x_k)$."
     ],
     "math": "$$x_{k+1} = x_k + \\alpha_k d_k \\quad \\text{with} \\quad \\nabla f(x_k)^T d_k < 0$$",
-    "personalConnection": "Skiing downhill: the heading of your skis d_k must point down the fall line (\u2207f\u1d40d_k < 0), and \u03b1_k is how far you glide before looking at the slope again.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Pick a heading $d_k$ that points downhill ($\\nabla f^\\top d_k\\lt0$) and decide how far $\\alpha_k$ to fly before checking the radar again.",
     "examTrap": "If $\\nabla f(x_k)^T d_k = 0$, $d_k$ is orthogonal to the gradient, meaning $f$ stays flat to 1st order. If $\\nabla f(x_k)^T d_k > 0$, taking any step $\\alpha > 0$ climbs uphill!"
   },
   {
@@ -402,7 +402,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Orthogonality Property:</strong> Under exact line search, the next gradient is strictly orthogonal to the search direction: $\\nabla f(x_{k+1})^T d_k = 0$."
     ],
     "math": "$$\\alpha_k^* = -\\frac{\\nabla f(x_k)^T d_k}{d_k^T Q d_k}, \\quad \\nabla f(x_{k+1})^T d_k = 0$$",
-    "personalConnection": "Throwing a bowling ball down a parabolic chute: the ball glides until it reaches the exact deepest point of that straight track before turning around.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Fly dead straight until the altitude stops dropping and starts rising: that is the very bottom of that straight track, found exactly for a quadratic.",
     "examTrap": "In steepest descent on quadratics ($d_k = -g_k$), successive gradients are orthogonal: $g_{k+1}^T g_k = 0$. This orthogonality forces a rigid 90-degree zig-zag trajectory that slows convergence."
   },
   {
@@ -423,7 +423,7 @@ window.MASTER_CARDS_DATA = [
       "Geometrically, it specifies a linear upper bound ray with slope $c_1 \\nabla f(x_k)^T d_k$. The step $\\alpha$ is accepted only if $f$ lies below this line, preventing overly large steps."
     ],
     "math": "$$f(x_k + \\alpha d_k) \\le f(x_k) + c_1 \\alpha \\nabla f(x_k)^T d_k, \\quad c_1 \\in (0, 1)$$",
-    "personalConnection": "Negotiating a wage bonus: you refuse to accept a long contract unless it guarantees at least a fraction $c_1$ of your initial asking price.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Armijo asks each leg for a fair altitude drop in proportion to the distance flown and the slope: refuse a leg that burns lots of fuel for little drop.",
     "examTrap": "The Armijo condition ALONE is not enough! It accepts arbitrarily small steps $\\alpha \\to 0$. If an algorithm takes $\\alpha_k = 1/2^k$, Armijo holds trivially, yet the algorithm stalls without reaching a minimum!"
   },
   {
@@ -443,7 +443,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Strong Wolfe Conditions:</strong> Replaces curvature with absolute value $|\\nabla f(x_k + \\alpha d_k)^T d_k| \\le c_2 |\\nabla f(x_k)^T d_k|$, forcing the new point to be near a stationary point of $\\phi$."
     ],
     "math": "$$|\\nabla f(x_k + \\alpha_k d_k)^T d_k| \\le c_2 |\\nabla f(x_k)^T d_k|, \\quad 0 < c_1 < c_2 < 1$$",
-    "personalConnection": "Braking a descending bicycle: Armijo ensures you don't overshoot off the cliff; the curvature condition ensures you don't ride the brakes so hard you freeze in place at the top of the hill.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Armijo stops you flying so far that you overshoot the valley; the curvature condition stops tiny hops by demanding that the slope has flattened enough after the leg.",
     "examTrap": "Constants MUST satisfy $0 < c_1 < c_2 < 1$. If $c_1 \\ge c_2$, the acceptable step size interval can become completely empty, causing line search algorithms to crash!"
   },
   {
@@ -463,7 +463,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> if the directions never turn fully sideways ($\\cos\\theta_k\\ge\\delta>0$), then $\\|\\nabla f(x_k)\\|\\to0$: the method reaches a stationary point. This one theorem proves global convergence of steepest descent, CG and BFGS."
     ],
     "math": "$$\\sum_{k=0}^\\infty \\cos^2 \\theta_k \\|\\nabla f(x_k)\\|^2 < \\infty \\implies \\lim_{k \\to \\infty} \\|\\nabla f(x_k)\\| = 0 \\quad (\\text{if } \\cos \\theta_k \\ge \\delta > 0)$$",
-    "personalConnection": "Rowing a boat across cross-currents: as long as your boat is not oriented completely sideways to the current ($\\theta_k \\ne 90^\\circ$), your strokes are guaranteed to transport you to the opposite shore.",
+    "personalConnection": "<strong>The airplane analogy.</strong> As long as your heading is not turned sideways to the slope ($\\theta_k\\ne90^\\circ$), each leg keeps taking altitude and the slope gauge is driven to zero.",
     "examTrap": "If $\\cos \\theta_k \\to 0$ (directions become orthogonal to gradient), Zoutendijk's sum can converge with $\\|\\nabla f(x_k)\\| \\ge \\epsilon > 0$, causing the algorithm to fail!"
   },
   {
@@ -483,7 +483,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why $\\alpha_0 = 1$ is Essential:</strong> For Newton and Quasi-Newton methods, starting at unit step size $\\alpha_0 = 1$ allows the algorithm to naturally adopt quadratic or superlinear convergence near $x^*$."
     ],
     "math": "$$\\alpha^{(j+1)} = \\rho \\alpha^{(j)}, \\quad \\rho \\in (0, 1), \\quad \\text{until } f(x + \\alpha d) \\le f(x) + c_1 \\alpha \\nabla f(x)^T d$$",
-    "personalConnection": "Testing water temperature with your toe: you plan a full forward step, but if the water burns, you immediately step backward halfway, repeating until the temperature is comfortable.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Plan a long leg, check the altitude drop; if it is too small, shorten the leg by half and check again until the drop is acceptable.",
     "examTrap": "Never start backtracking with $\\alpha_0 < 1$ in Newton's method! Restricting $\\alpha_0 < 1$ permanently degrades Newton's quadratic convergence to slow linear convergence."
   },
   {
@@ -494,25 +494,46 @@ window.MASTER_CARDS_DATA = [
     "cardNumber": "01",
     "category": "STEEPEST DESCENT",
     "highlighterClass": "highlight-cyan",
-    "title": "Method of Steepest Descent",
-    "textbookImg": "assets/luenberger_fig8_9.png",
-    "textbookRef": "Luenberger & Ye (4th ed), Sect. 8.2, Fig. 8.9 (p. 243)",
-    "drawingCaption": "Luenberger Fig. 8.9: Steepest descent path zig-zags orthogonally across elliptical level contours",
+    "title": "Method of Steepest Descent: The Pilot's Rule",
+    "textbookImg": "",
+    "textbookRef": "",
+    "drawingCaption": "Contour lines of the terrain: the pilot points the nose exactly opposite to the steepest upward slope, perpendicular to the contour.",
     "coreTranslation": [
-      "Steepest descent chooses search direction along the negative gradient: $d_k = -\\nabla f(x_k)$, giving update: $x_{k+1} = x_k - \\alpha_k \\nabla f(x_k)$.",
-      "<strong>Directional Optimality:</strong> $-\\nabla f(x_k)$ is the direction that maximizes the instantaneous rate of decrease per unit Euclidean step: $\\arg\\min_{\\|d\\| \\le 1} \\nabla f(x_k)^T d = -\\frac{\\nabla f(x_k)}{\\|\\nabla f(x_k)\\|}$.",
-      "Under exact line search, consecutive search directions are perpendicular: $(x_{k+2} - x_{k+1})^T (x_{k+1} - x_k) = 0$, producing a characteristic zig-zag path."
+      "<strong>The pilot's rule:</strong> steepest descent points the plane exactly opposite to the steepest upward slope, $d_k=-\\nabla f(x_k)$. Update: $x_{k+1}=x_k-\\alpha_k\\nabla f(x_k)$, where $\\alpha_k$ is how far the plane flies before checking the radar again.",
+      "<strong>Directional optimality:</strong> $-\\nabla f(x_k)$ is the direction that maximises the instantaneous rate of decrease per unit Euclidean step: $\\arg\\min_{\\|d\\|\\le1}\\nabla f(x_k)^\\top d=-\\dfrac{\\nabla f(x_k)}{\\|\\nabla f(x_k)\\|}$.",
+      "<strong>Relative stop:</strong> the algorithm stops when the current slope is a tiny fraction of the starting cliff, $\\|g_k\\|\\le\\text{tol}\\cdot\\|g_0\\|$, rather than waiting for mathematically perfect flat ground."
     ],
-    "math": "$$x_{k+1} = x_k - \\alpha_k \\nabla f(x_k), \\quad d_k = -\\nabla f(x_k)$$",
-    "personalConnection": "Pouring a drop of water on a steep roof: gravity pulls it along the steepest fall line at every millisecond, tracing the orthogonal gradient trajectory.",
-    "examTrap": "Steepest descent is only steepest locally in the EUCLIDEAN norm! Changing coordinates or using a Mahalanobis norm changes the gradient direction entirely (which is why Newton's method is superior)."
+    "math": "$$x_{k+1}=x_k-\\alpha_k\\nabla f(x_k),\\quad d_k=-\\nabla f(x_k),\\quad \\|g_k\\|\\le\\text{tol}\\cdot\\|g_0\\|$$",
+    "personalConnection": "<strong>The airplane analogy.</strong> Fly with the nose pointing exactly opposite to the steepest upward slope under your wings. Pour a drop of water on a steep roof and gravity makes it trace the same line at every millisecond. You stop when the slope gauge reads only a tiny fraction of what it read at the start (the relative stop), not when it reads exactly zero.",
+    "examTrap": "Steepest descent is only steepest locally in the EUCLIDEAN norm! Changing coordinates or using a Mahalanobis norm changes the gradient direction entirely (which is why Newton's method is superior).",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-501\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"150\" cy=\"72\" rx=\"28\" ry=\"14\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"56\" ry=\"28\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"84\" ry=\"42\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><g transform=\"translate(92.0 52.0) rotate(79.72666935837071) scale(0.8)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.50\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"92.0\" y1=\"52.0\" x2=\"99.8\" y2=\"95.3\" stroke=\"#000000\" stroke-width=\"2.8\" marker-end=\"url(#arr-501)\"/><text x=\"105.84714606065337\" y=\"105.29459895532896\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">d = \u2212\u2207f</text><line x1=\"92.0\" y1=\"52.0\" x2=\"86.6\" y2=\"22.5\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/><text x=\"30\" y=\"24\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">steepest UP</text><circle cx=\"150.0\" cy=\"72.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"150\" y=\"86\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">lowest</text><text x=\"120\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">fly opposite to the steepest upward slope</text></svg>"
+  },
+  {
+    "id": 508,
+    "subject": "CMO",
+    "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
+    "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
+    "cardNumber": "02",
+    "category": "STEEPEST DESCENT",
+    "highlighterClass": "highlight-amber",
+    "title": "Exact Line Search, Step Size & the Zig-Zag",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-508\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"150\" cy=\"72\" rx=\"18.0\" ry=\"9.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.1\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"36.0\" ry=\"18.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.1\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"56.92099788303083\" ry=\"28.460498941515414\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.1\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"84.90583018850943\" ry=\"42.45291509425471\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.1\" transform=\"rotate(0 150 72)\"/><path d=\"M78.0,49.5 L103.4,81.3 L124.9,64.2 L133.8,75.2 L141.2,69.3 L144.3,73.1 L146.9,71.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.4\"/><g transform=\"translate(78.0 37.5) rotate(0) scale(0.65)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.85\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><circle cx=\"78.0\" cy=\"49.5\" r=\"2.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"103.4\" cy=\"81.3\" r=\"2.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"124.9\" cy=\"64.2\" r=\"2.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"133.8\" cy=\"75.2\" r=\"2.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"141.2\" cy=\"69.3\" r=\"2.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"150\" y=\"14\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">right angle at every turn</text><text x=\"212\" y=\"112\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"end\" fill=\"#000000\">zig-zag</text><text x=\"120\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03b1 = \u2212g\u1d40u / u\u1d40Qu : slope over brakes</text></svg>",
+    "drawingCaption": "Under exact line search every turn is a right angle: the path zig-zags across the contour lines toward the lowest point.",
+    "coreTranslation": [
+      "<strong>Exact line search:</strong> the pilot flies perfectly straight until the altitude stops dropping and begins to curve back up.",
+      "<strong>The zig-zag:</strong> because of this, consecutive search directions are perpendicular, $(x_{k+2}-x_{k+1})^\\top(x_{k+1}-x_k)=0$, so the path zig-zags across the contour lines.",
+      "<strong>Step size for a quadratic:</strong> the exact distance to fly before hitting the bottom of the curve is $\\alpha=\\dfrac{-g^\\top u}{u^\\top Qu}$. The numerator is the downward momentum (how steep the slope is); the denominator is the brakes (how fast the terrain curves back up along that path)."
+    ],
+    "math": "$$\\alpha_k=\\frac{-g_k^\\top u_k}{u_k^\\top Q u_k},\\qquad (x_{k+2}-x_{k+1})^\\top(x_{k+1}-x_k)=0$$",
+    "personalConnection": "<strong>The airplane analogy.</strong> You fly dead straight along your heading $u$ until the altimeter stops falling, and at that moment the new downhill is exactly 90 degrees to your old heading: that is the zig-zag. The slope gauge ($-g^\\top u$) says how hard you are diving; the curvature brakes ($u^\\top Qu$) say how soon the ground curves back up, so a steep dive on gently curving ground means a long leg.",
+    "examTrap": "Perpendicular turns do NOT mean fast. In a long narrow valley (large condition number) the zig-zag wastes many legs. Also, the right-angle property holds only for an EXACT line search, not for Armijo/backtracking steps."
   },
   {
     "id": 502,
     "subject": "CMO",
     "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
     "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
-    "cardNumber": "02",
+    "cardNumber": "03",
     "category": "CONVERGENCE ANALYSIS",
     "highlighterClass": "highlight-amber",
     "title": "O(1/k) Convergence on L-Smooth Convex Objectives",
@@ -524,7 +545,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Theorem:</strong> For any convex $L$-smooth function with constant step $\\alpha = 1/L$, the suboptimality error decays as: $f(x_k) - f^* \\le \\frac{L \\|x_0 - x^*\\|^2}{2k}$."
     ],
     "math": "$$f(x_k) - f^* \\le \\frac{L \\|x_0 - x^*\\|^2}{2k} = \\mathcal{O}\\left(\\frac{1}{k}\\right)$$",
-    "personalConnection": "Filling an empty jar with sand: the first few scoops make massive progress, but getting the final grains in to reach exact capacity requires progressively more scoops.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Descending with step $1/L$: the first legs shed lots of altitude, but squeezing out the last few metres above the valley floor takes progressively more legs, so the gap shrinks only like $1/k$.",
     "examTrap": "If the step size $\\alpha \\ge 2/L$, gradient descent can violently DIVERGE! The stability threshold is strictly $\\alpha < 2/L$."
   },
   {
@@ -532,7 +553,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
     "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
-    "cardNumber": "03",
+    "cardNumber": "04",
     "category": "LINEAR CONVERGENCE",
     "highlighterClass": "highlight-emerald",
     "title": "Linear Convergence on Strongly Convex Functions",
@@ -544,7 +565,7 @@ window.MASTER_CARDS_DATA = [
       "In optimization terminology, 'linear convergence' means that the log-error $\\log \\|x_k - x^*\\|$ decreases linearly with iteration count $k$."
     ],
     "math": "$$\\|x_k - x^*\\| \\le \\left(\\frac{\\kappa - 1}{\\kappa + 1}\\right)^k \\|x_0 - x^*\\|, \\quad \\kappa = \\frac{L}{\\mu}$$",
-    "personalConnection": "Radioactive decay: every half-life, half of the remaining radioactive atoms decay. In each iteration, error is multiplied by a fixed contraction fraction $\\rho < 1$.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Each leg removes a fixed fraction of the altitude still left above the valley floor, like a glide path losing the same percentage every mile: error is multiplied by $\\rho\\lt1$ per leg, so the gap vanishes geometrically.",
     "examTrap": "Don't confuse computer science linear time $O(k)$ with optimization 'linear convergence'! Linear convergence in optimization means geometric/exponential decay $O(\\rho^k)$, which is dramatically faster than sublinear $O(1/k)$."
   },
   {
@@ -552,7 +573,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
     "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
-    "cardNumber": "04",
+    "cardNumber": "05",
     "category": "KANTOROVICH INEQUALITY",
     "highlighterClass": "highlight-violet",
     "title": "Kantorovich Inequality & Quadratic Bound",
@@ -565,7 +586,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> $\\kappa=1$ gives $0$ (one step). $\\kappa=100$ gives $(99/101)^2\\approx0.96$ per step, so it takes about 50 steps just to halve the error. The bound is tight: a worst-case start achieves it at every step."
     ],
     "math": "$$\\frac{(x^T x)^2}{(x^T Q x)(x^T Q^{-1} x)} \\ge \\frac{4 A a}{(A + a)^2} \\implies E(x_{k+1}) \\le \\left(\\frac{\\kappa - 1}{\\kappa + 1}\\right)^2 E(x_k)$$",
-    "personalConnection": "The worst-case scenario theorem: Kantorovich bounds the worst possible misalignment between the steepest descent gradient vector and the true axis of the elliptical bowl.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The worst-case guarantee: how badly can your nose ($-g$) be misaligned with the valley's long axis? Kantorovich bounds that misalignment, and with it the least altitude you must gain back per leg.",
     "examTrap": "The rate bound is TIGHT! For starting points aligned at 45 degrees to the principal eigenvectors, steepest descent achieves the exact upper bound $\\left(\\frac{\\kappa-1}{\\kappa+1}\\right)^2$ at every single iteration."
   },
   {
@@ -573,7 +594,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
     "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
-    "cardNumber": "05",
+    "cardNumber": "06",
     "category": "CONDITION NUMBER DYNAMICS",
     "highlighterClass": "highlight-indigo",
     "title": "Condition Number \u03ba & The Zig-Zag Phenomenon",
@@ -585,7 +606,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>If $\\kappa = 1000$ (Elongated Canyon):</strong> $\\frac{\\kappa-1}{\\kappa+1} = \\frac{999}{1001} \\approx 0.998$. The algorithm bounces back and forth across canyon walls, making almost zero forward progress per step."
     ],
     "math": "$$\\kappa = \\frac{\\lambda_{\\max}}{\\lambda_{\\min}}, \\quad \\lim_{\\kappa \\to \\infty} \\frac{\\kappa - 1}{\\kappa + 1} = 1 \\implies \\text{Stagnation}$$",
-    "personalConnection": "Walking through a narrow ravine: taking steps perpendicular to the canyon walls sends you slamming into the rock face across from you, rather than walking down the stream.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A narrow canyon: heading perpendicular to the contour sends you straight into the opposite canyon wall instead of down the stream. The longer and thinner the valley (large condition number $\\kappa$), the worse the zig-zag.",
     "examTrap": "Preconditioning transforms coordinates ($y = P x$) to make the condition number $\\kappa(P^{-T} Q P^{-1}) \\approx 1$, curing the zig-zag phenomenon without changing the minimum point."
   },
   {
@@ -593,7 +614,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
     "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
-    "cardNumber": "06",
+    "cardNumber": "07",
     "category": "STEP-SIZE RULES",
     "highlighterClass": "highlight-rose",
     "title": "Barzilai\u2013Borwein Step Sizes (No Line Search)",
@@ -605,7 +626,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> BB steps are cheap (no function evaluations) and converge dramatically faster than fixed steps on ill-conditioned problems. The price: the objective is <em>not</em> decreased at every step."
     ],
     "math": "$$\\alpha_k^{BB1}=\\frac{s_{k}^{T}s_{k}}{s_{k}^{T}y_{k}},\\qquad \\alpha_k^{BB2}=\\frac{s_{k}^{T}y_{k}}{y_{k}^{T}y_{k}},\\qquad s_k=x_k-x_{k-1},\\ \\ y_k=g_k-g_{k-1}$$",
-    "personalConnection": "Judging how steep a path is by comparing your two last footprints with how much the slope changed between them, and sizing your next stride to match.",
+    "personalConnection": "<strong>The airplane analogy.</strong> No radar sweeps: size your next leg from your last two footprints, how far you flew ($s$) compared with how much the slope gauge changed ($y$), so the stride matches the terrain.",
     "examTrap": "BB iterations are non-monotone: f can go up for a few steps and that is expected. Forcing a strict descent line search on top destroys the speed-up. Also check s\u1d40y > 0 before dividing."
   },
   {
@@ -613,7 +634,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "05_Gradient_Descent_and_Convergence_Analysis",
     "topicTitle": "05 \u00b7 Gradient Descent & Convergence",
-    "cardNumber": "07",
+    "cardNumber": "08",
     "category": "ACCELERATED METHODS",
     "highlighterClass": "highlight-rose",
     "title": "Heavy-Ball Momentum & Nesterov",
@@ -625,7 +646,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> with the best $\\alpha,\\beta$ on a quadratic, the rate improves from $\\frac{\\kappa-1}{\\kappa+1}$ to $\\frac{\\sqrt\\kappa-1}{\\sqrt\\kappa+1}$. For $\\kappa=100$ that is $0.98\\to0.82$ per step, about <strong>10\u00d7 fewer iterations</strong>."
     ],
     "math": "$$x_{k+1}=x_k-\\alpha\\nabla f(x_k)+\\beta(x_k-x_{k-1}),\\qquad \\text{rate}\\ \\ \\frac{\\sqrt\\kappa-1}{\\sqrt\\kappa+1}\\ \\text{ vs }\\ \\frac{\\kappa-1}{\\kappa+1}$$",
-    "personalConnection": "A heavy bowling ball rolling down a washboard road: its inertia lets it ignore the small bumps and keep rolling along the road instead of rattling into the side ditches.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A heavy airliner keeps its heading through small gusts, so it rattles less between the canyon walls and holds the line down the valley. Nesterov looks ahead along the heading before correcting.",
     "examTrap": "Heavy ball's speed-up is proven for quadratics. For general convex functions use Nesterov's version, which takes the gradient at the look-ahead point $x_k+\\beta(x_k-x_{k-1})$ and has the optimal $O(1/k^2)$ guarantee."
   },
   {
@@ -647,7 +668,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> on a quadratic it lands on the exact minimum in one step, and near a minimum it converges extremely fast. It is also <em>affine invariant</em>: rescaling the coordinates does not change its path, unlike gradient descent."
     ],
     "math": "$$x_{k+1} = x_k - [\\nabla^2 f(x_k)]^{-1} \\nabla f(x_k), \\quad \\nabla^2 f(x_k) p_k = -\\nabla f(x_k)$$",
-    "personalConnection": "A tailor fitting a suit with a flexible parabolic mold: instead of taking tiny inch-by-inch fabric measurements (gradient descent), the mold captures the full curvature of your shoulders in one shot.",
+    "personalConnection": "<strong>The airplane analogy.</strong> The autopilot fits a parabola-shaped model of the terrain from the slope and curvature gauges and flies straight to the lowest point of that model in one leg, instead of inching along with the slope alone.",
     "examTrap": "NEVER invert the Hessian matrix explicitly ($H^{-1}$)! Inverting an $n \\times n$ matrix costs $\\mathcal{O}(n^3)$ operations and destroys sparsity. Always solve the linear system $H_k p_k = -g_k$ via Cholesky factorization."
   },
   {
@@ -667,7 +688,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> squaring the error doubles the number of correct digits each step: $10^{-1}\\to10^{-2}\\to10^{-4}\\to10^{-8}$. It is called <em>quadratic</em> convergence, and it is faster than superlinear."
     ],
     "math": "$$\\|x_{k+1} - x^*\\| \\le \\frac{L}{2 m} \\|x_k - x^*\\|^2 \\quad \\implies \\quad \\lim_{k\\to\\infty} \\frac{\\|x_{k+1} - x^*\\|}{\\|x_k - x^*\\|} = 0 \\; (\\text{Superlinear})$$",
-    "personalConnection": "A laser guided missile: far away it maneuvers slowly, but inside the terminal guidance bubble, it zeroes in on the target crosshairs with exponential precision.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Far from the airfield the autopilot manoeuvres cautiously; once inside the terminal approach bubble each leg squares the remaining error, so the number of correct digits roughly doubles.",
     "examTrap": "Quadratic convergence is strictly a LOCAL property! If $x_0$ is outside the radius of attraction, Newton's method can oscillate wildly or diverge to infinity."
   },
   {
@@ -687,7 +708,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> pure Newton needs safeguards: a line search (damped Newton) and a fix for the Hessian (add $\\tau I$), covered in the next two cards."
     ],
     "math": "$$\\nabla^2 f(x_k) \\not\\succ 0 \\implies p_k^T \\nabla f(x_k) \\not\\le 0 \\quad (\\text{Not Guaranteed to be a Descent Direction})$$",
-    "personalConnection": "Walking with headlights in thick fog: if you are near a hilltop, a parabolic shape curves downward. Blindly stepping to its peak drives you directly over the summit cliff instead of into the safety of the valley.",
+    "personalConnection": "<strong>The airplane analogy.</strong> In fog near a hilltop or saddle the parabola model opens downward. The autopilot flies to the model's peak, straight over the summit, because pure Newton hunts any flat ground, not low ground.",
     "examTrap": "Pure Newton on f(x) = x\u00b3 \u2212 3x started at x\u2080 = \u22120.5 runs UPHILL: x goes \u22120.5 \u2192 \u22121.25 \u2192 \u22121.025 \u2192 \u22121 and f rises 1.375 \u2192 1.80 \u2192 2.00, converging to the local MAXIMUM at x = \u22121 (where f\u2033 = \u22126 < 0)."
   },
   {
@@ -707,7 +728,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> far from the solution the shrinking guarantees descent; near the solution the full step $\\alpha=1$ is always accepted (if $c_1<\\tfrac12$), so the method <em>automatically</em> switches back to fast quadratic convergence."
     ],
     "math": "$$x_{k+1} = x_k + \\alpha_k p_k, \\quad \\alpha_k = \\beta^m, \\quad \\text{with } c_1 \\in (0, 1/2) \\implies \\alpha_k = 1 \\text{ near } x^*$$",
-    "personalConnection": "Driving a 500-horsepower sports car: in city traffic far from your destination you tap the gas pedal with discretion (small $\\alpha_k$). On the open highway approach, you floor it at 100% capacity (unit step $\\alpha=1$).",
+    "personalConnection": "<strong>The airplane analogy.</strong> Far from the field you shorten each leg after a backtracking check (small $\\alpha_k$); on the final approach you fly the full unit step $\\alpha=1$.",
     "examTrap": "Choosing $c_1 > 1/2$ destroys the quadratic convergence! If $c_1 > 1/2$, the unit step $\\alpha_k = 1$ will be rejected even when the quadratic model is exact, permanently capping your rate at linear."
   },
   {
@@ -727,7 +748,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Interpolation Property:</strong> If $\\tau_k = 0$, you get pure Newton. As $\\tau_k \\to \\infty$, $p_k \\approx -\\frac{1}{\\tau_k} \\nabla f(x_k)$, smoothly recovering steepest descent!"
     ],
     "math": "$$(\\nabla^2 f(x_k) + \\tau_k I) p_k = -\\nabla f(x_k), \\quad \\tau_k \\ge \\max\\left(0, \\; -\\lambda_{\\min}(\\nabla^2 f(x_k)) + \\delta\\right) \\; (\\delta > 0)$$",
-    "personalConnection": "Building on soft ground: where the soil is firm (H positive definite) you use the natural shape of the ground (Newton); where it is soft or uneven you drive extra pilings (\u03c4I) until the foundation is firm.",
+    "personalConnection": "<strong>The airplane analogy.</strong> If the curvature gauge is not all positive, add a stabiliser $\\tau I$ to stiffen the terrain model into a bowl. A large $\\tau$ behaves like a short gradient leg, $\\tau\\to0$ is pure Newton.",
     "examTrap": "Choosing $\\tau_k$ too large degrades the method to slow Gradient Descent with tiny steps! Set $\\tau_k$ dynamically: decrease $\\tau$ when function value decreases rapidly, increase $\\tau$ when progress stalls."
   },
   {
@@ -747,7 +768,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Newton:</strong> $\\nabla f(0,0)=(-2,0)$ and $H^{-1}=\\mathrm{diag}(\\tfrac12,\\tfrac1{200})$, so $p=-H^{-1}g=(1,0)$: one step to $(1,0)$. Dividing by the Hessian rescales the squeezed valley into a round bowl, and a few more steps land on $(1,1)$."
     ],
     "math": "$$\\nabla f(0,0)=\\begin{bmatrix}-2\\\\0\\end{bmatrix},\\ \\ H=\\begin{bmatrix}2&0\\\\0&200\\end{bmatrix}\\ \\Rightarrow\\ p_N=-H^{-1}g=\\begin{bmatrix}1\\\\0\\end{bmatrix},\\qquad \\kappa=100$$",
-    "personalConnection": "Taking a suspension bridge directly across a deep canyon rather than hiking 500 switchbacks down to the riverbed and back up the other wall.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Newton flies a bridge straight across the banana-shaped canyon in a few legs, while gradient descent hikes down hundreds of switchbacks to the riverbed and back up the other wall.",
     "examTrap": "Far from the spine (e.g. $x = (-1.2, 1)$), Rosenbrock's Hessian has negative eigenvalues! You MUST use Hessian modification $\\tau I$ or Damped line search, otherwise Newton steps uphill and fails."
   },
   {
@@ -769,7 +790,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Decoupling Quadratic Forms:</strong> Expanding $x - x^*$ in the conjugate basis completely diagonalizes $f(x) = \\frac{1}{2} x^T Q x - b^T x$. Minimizing over $\\mathbb{R}^n$ decouples into $n$ independent 1D minimizations."
     ],
     "math": "$$d_i^T Q d_j = 0 \\quad (\\forall i \\ne j), \\quad \\alpha_k = -\\frac{g_k^T d_k}{d_k^T Q d_k} = \\frac{r_k^T d_k}{d_k^T Q d_k} \\quad (r_k = b - Q x_k = -g_k)$$",
-    "personalConnection": "Walking on an anisotropic mattress: regular orthogonal steps cause the mattress to sag sideways, but stepping along natural $Q$-eigen-axes moves you forward without sideways wobble.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Headings that are $Q$-conjugate follow the valley's own natural axes: pushing down along one heading does not undo what you gained along another, unlike plain perpendicular headings in a skewed valley.",
     "examTrap": "Conjugacy depends strictly on matrix $Q$! Directions that are orthogonal in standard Euclidean geometry ($d_i^T d_j = 0$) are generally NOT $Q$-conjugate unless $Q = I$."
   },
   {
@@ -791,7 +812,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Gradient Orthogonality:</strong> Consequently, the gradient $g_k = \\nabla f(x_k)$ is strictly orthogonal to all previously traversed directions: $g_k^T d_i = 0$ for all $i < k$."
     ],
     "math": "$$x_k = \\arg\\min_{x \\in x_0 + \\mathcal{B}_k} f(x), \\quad g_k^T d_i = 0 \\quad (\\forall i = 0, 1, \\dots, k-1)$$",
-    "personalConnection": "Leveling ground with laser graders: once a sub-plane is leveled along axis $d_0$, future leveling along $Q$-conjugate axes never tilts or spoils the work already completed.",
+    "personalConnection": "<strong>The airplane analogy.</strong> After $k$ legs you sit at the lowest point of the entire flight plane spanned by your $k$ headings, not only along the last line, and later conjugate legs never spoil the altitude already won.",
     "examTrap": "Distinguish between inner products: $g_k$ is orthogonal to $d_i$ under the standard Euclidean dot product ($g_k^T d_i = 0$), whereas the directions $d_i$ are orthogonal under the $Q$-weighted inner product ($d_i^T Q d_j = 0$)."
   },
   {
@@ -811,7 +832,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Gram-Schmidt Magic:</strong> Although $d_{k+1}$ only explicitly references $d_k$, the expanding subspace theorem guarantees that $d_{k+1}$ is automatically $Q$-conjugate to ALL previous directions $d_0, d_1, \\dots, d_{k-1}$!"
     ],
     "math": "$$d_{k+1} = -g_{k+1} + \\beta_k d_k, \\quad \\beta_k = \\frac{g_{k+1}^T g_{k+1}}{g_k^T g_k} = \\frac{\\|r_{k+1}\\|^2}{\\|r_k\\|^2}, \\quad \\alpha_k = \\frac{\\|r_k\\|^2}{d_k^T Q d_k}$$",
-    "personalConnection": "Adjusting a sailboat heading: rather than dropping anchor to recalculate your whole voyage, you trim the existing rudder angle by an exact fraction $\\beta_k$ of the new wind gust.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Instead of recalculating the whole voyage, trim the previous heading: the new heading is fresh downhill plus a fraction $\\beta_k=\\|g_{k+1}\\|^2/\\|g_k\\|^2$ of the previous heading, like keeping some momentum from the last leg.",
     "examTrap": "Remember that residual $r_k = b - Q x_k = -g_k$. In literature, $\\beta_k$ is written interchangeably as $\\frac{g_{k+1}^T g_{k+1}}{g_k^T g_k}$ or $\\frac{r_{k+1}^T r_{k+1}}{r_k^T r_k}$. Both are identical because sign cancels in squared norm."
   },
   {
@@ -831,7 +852,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Distinct Eigenvalues Super-Convergence:</strong> If $Q$ has only $m < n$ distinct eigenvalues, CG terminates in at most $m$ iterations! E.g. in 10,000 dimensions with 5 clusters of eigenvalues, CG finishes in 5 steps."
     ],
     "math": "$$\\mathcal{B}_k = \\mathcal{K}_k(Q, r_0) = \\operatorname{span}\\{r_0, Q r_0, \\dots, Q^{k-1} r_0\\}, \\quad x_m = x^* \\; \\text{for } m = |\\sigma(Q)| \\le n$$",
-    "personalConnection": "Cracking a safe with $m$ distinct internal tumblers: each conjugate step permanently aligns one full eigenvalue eigenspace. After $m$ clicks, the vault swings open.",
+    "personalConnection": "<strong>The airplane analogy.</strong> In $n$ dimensions a quadratic valley has only $n$ natural axes: each conjugate leg kills one more, so you land after at most $n$ legs (only $m$ if there are just $m$ distinct curvature values).",
     "examTrap": "In computer floating-point arithmetic with roundoff error, finite termination can fail! Directions lose $Q$-orthogonality over many steps, turning CG into an iterative method that requires restarts."
   },
   {
@@ -851,7 +872,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Polak-Ribi\u00e8re (PR) Immunity:</strong> Polak-Ribi\u00e8re sets $\\beta_k = \\frac{g_{k+1}^T (g_{k+1} - g_k)}{\\|g_k\\|^2}$. If consecutive gradients are nearly identical ($g_{k+1} \\approx g_k$), $\\beta_k \\to 0$, automatically resetting $d_{k+1} \\approx -g_{k+1}$!"
     ],
     "math": "$$\\beta_k^{PR} = \\frac{g_{k+1}^T (g_{k+1} - g_k)}{\\|g_k\\|^2}, \\quad \\beta_k^+ = \\max\\left(0, \\; \\beta_k^{PR}\\right) \\quad (\\text{Automatic Reset})$$",
-    "personalConnection": "Re-calibrating your hiking compass after passing a magnetic iron deposit: if your heading gets corrupted, the compass resets to true magnetic north rather than following the corrupted angle.",
+    "personalConnection": "<strong>The airplane analogy.</strong> When the terrain is not a perfect quadratic, Polak-Ribi\u00e8re headings can go bad. Reset the heading to straight downhill (a restart), like re-zeroing a compass after passing a magnetic deposit.",
     "examTrap": "FR guarantees descent under strong Wolfe conditions ($c_2 < 1/2$), but PR can produce an ascent direction on non-convex functions unless modified as $\\beta_k = \\max(0, \\beta_k^{PR})$."
   },
   {
@@ -871,7 +892,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Step 2:</strong> $\\beta_0=\\frac{\\|g_1\\|^2}{\\|g_0\\|^2}=\\frac{46.08}{128}=0.36$, $d_1=-g_1+\\beta_0d_0=(-7.68,\\,1.92)$, $\\alpha_1=\\frac{46.08}{d_1^TQd_1}=\\frac{46.08}{147.456}=\\frac5{16}$, giving $x_2=(0,0)$ exactly."
     ],
     "math": "$$x_0=\\begin{bmatrix}4\\\\1\\end{bmatrix}\\xrightarrow{\\ \\alpha_0=1/5\\ }x_1=\\begin{bmatrix}2.4\\\\-0.6\\end{bmatrix}\\xrightarrow{\\ \\beta_0=0.36,\\ \\alpha_1=5/16\\ }x_2=\\begin{bmatrix}0\\\\0\\end{bmatrix}=x^*$$",
-    "personalConnection": "Two cuts finish the job: the first cut removes the error along one conjugate direction, the second removes the rest, and the first cut is never spoiled.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Two legs finish the job in 2D: the first removes the error along $d_0$, the second removes the rest along $d_1$, and the first leg is never spoiled by the second.",
     "examTrap": "Always check the two identities: g\u2081\u1d40d\u2080 = 0 (exact line search) and d\u2081\u1d40Qd\u2080 = 0 (conjugacy). Here d\u2080\u1d40Qd\u2081 = 2(\u22128)(\u22127.68) + 8(\u22128)(1.92) = 122.88 \u2212 122.88 = 0 \u2713."
   },
   {
@@ -893,7 +914,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>The Secant Condition:</strong> By Taylor expansion, $g_{k+1} - g_k \\approx \\nabla^2 f(x_{k+1}) (x_{k+1} - x_k)$. Defining displacement $s_k = x_{k+1} - x_k$ and gradient difference $y_k = g_{k+1} - g_k$, the approximation MUST satisfy: $B_{k+1} s_k = y_k$ (or $H_{k+1} y_k = s_k$)."
     ],
     "math": "$$B_{k+1} s_k = y_k \\quad \\text{or} \\quad H_{k+1} y_k = s_k \\quad (s_k = x_{k+1} - x_k, \\; y_k = g_{k+1} - g_k)$$",
-    "personalConnection": "Gauging the curve of an unseen hill: by recording your odometer displacement $s_k$ and the change in tilt of your bubble level $y_k$, you deduce hill curvature without an aerial survey.",
+    "personalConnection": "<strong>The airplane analogy.</strong> From the flight log: how far you flew ($s_k$) and how much the slope gauge changed ($y_k$) reveal the terrain's curvature along that path, so you learn it without surveying the whole valley.",
     "examTrap": "The secant equation has $n$ equations for $n(n+1)/2$ unknown symmetric matrix entries. It is underdetermined! The specific update formulas (SR1, DFP, BFGS) are derived by minimizing different matrix norms."
   },
   {
@@ -913,7 +934,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Fatal Flaw:</strong> The denominator $(y_k - B_k s_k)^T s_k$ can vanish or become negative. SR1 does NOT guarantee positive definiteness ($B_{k+1} \\succ 0$), making it unstable for standard line search."
     ],
     "math": "$$B_{k+1} = B_k + \\frac{(y_k - B_k s_k)(y_k - B_k s_k)^T}{(y_k - B_k s_k)^T s_k}, \\quad H_{k+1} = H_k + \\frac{(s_k - H_k y_k)(s_k - H_k y_k)^T}{(s_k - H_k y_k)^T y_k}$$",
-    "personalConnection": "Adjusting a machine with a single set screw: it is minimal and fast, but if the screw binds against the casing ($denominator \\approx 0$), the entire mechanism jams.",
+    "personalConnection": "<strong>The airplane analogy.</strong> A single rank-one correction to the curvature estimate: quick and light, but if the denominator is near zero the update can blow up and the estimate jams.",
     "examTrap": "Never use SR1 with line search without a skip check! Production SR1 codes skip the update whenever $|s_k^T (y_k - B_k s_k)| < r \\|s_k\\| \\|y_k - B_k s_k\\|$, and pair it with Trust Region frameworks."
   },
   {
@@ -933,7 +954,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Hereditary Property:</strong> If $H_k \\succ 0$ and the curvature condition $s_k^T y_k > 0$ holds, then $H_{k+1}$ is GUARANTEED to be positive definite ($H_{k+1} \\succ 0$)."
     ],
     "math": "$$H_{k+1}^{\\text{DFP}} = H_k + \\frac{s_k s_k^T}{s_k^T y_k} - \\frac{H_k y_k y_k^T H_k}{y_k^T H_k y_k}$$",
-    "personalConnection": "Two counterbalancing weights on a spinning car tire: one adds weight along the drive axis, the second removes rotational vibration.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Two corrections to the curvature estimate: one matches the leg you just flew, the other cleans up so the estimate stays consistent.",
     "examTrap": "DFP is extremely sensitive to line search inaccuracies! If inexact line search is used, DFP's Hessian approximation tends to become ill-conditioned, which is why BFGS replaced it."
   },
   {
@@ -953,7 +974,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Self-Correcting Robustness:</strong> Unlike DFP, BFGS possesses a self-correcting property: if an inaccurate step corrupts the Hessian estimate, subsequent iterations automatically damp out the error."
     ],
     "math": "$$H_{k+1} = \\left(I - \\rho_k s_k y_k^T\\right) H_k \\left(I - \\rho_k y_k s_k^T\\right) + \\rho_k s_k s_k^T, \\quad \\rho_k = \\frac{1}{y_k^T s_k}$$",
-    "personalConnection": "A gyroscope with automatic drift compensation: small sensor vibrations are actively projected out of the attitude matrix on every refresh cycle.",
+    "personalConnection": "<strong>The airplane analogy.</strong> BFGS is the autopilot that corrects its own gyro drift: each rank-two update keeps the curvature estimate positive definite and consistent with the flight log, so it is the standard choice.",
     "examTrap": "The direction is $p_k = -H_k g_k$, which requires ONLY matrix-vector multiplication ($\\mathcal{O}(n^2)$), NEVER matrix inversion ($\\mathcal{O}(n^3)$)! This gives Newton-like superlinear convergence at a fraction of the cost."
   },
   {
@@ -973,7 +994,7 @@ window.MASTER_CARDS_DATA = [
       "Therefore, pairing BFGS with Wolfe line search guarantees that every single search direction is a descent direction."
     ],
     "math": "$$s_k^T y_k > 0 \\iff H_{k+1} \\succ 0 \\quad \\left( \\text{Wolfe: } \\nabla f(x_k + \\alpha_k p_k)^T p_k \\ge c_2 \\nabla f(x_k)^T p_k \\implies s_k^T y_k > 0 \\right)$$",
-    "personalConnection": "Testing ice thickness before stepping forward: as long as the ice pushes back positively ($s_k^T y_k > 0$), your footing is solid. If the surface sags ($s_k^T y_k \\le 0$), you refuse to commit your weight.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Only trust a leg if the terrain curved upward along it ($s_k^\\top y_k\\gt0$), which a Wolfe line search guarantees. If the ground sagged, refuse to log that leg so the estimate stays safe.",
     "examTrap": "Standard Armijo condition alone does NOT guarantee $s_k^T y_k > 0$! You MUST enforce the second Wolfe condition (curvature condition), otherwise $H_{k+1}$ can lose positive definiteness."
   },
   {
@@ -993,7 +1014,7 @@ window.MASTER_CARDS_DATA = [
       "<strong>Two-Loop Recursion:</strong> Computes the search direction $p_k = -H_k g_k$ directly via an ingenious two-pass backward-forward loop requiring ZERO matrix multiplications, costing only $4mn$ floating-point ops!"
     ],
     "math": "$$\\text{Memory: } \\mathcal{O}(m n) \\ll \\mathcal{O}(n^2), \\quad H_0^k = \\gamma_k I, \\quad \\gamma_k = \\frac{s_{k-1}^T y_{k-1}}{\\|y_{k-1}\\|^2}$$",
-    "personalConnection": "Keeping only the last 10 text messages on your phone: you retain full immediate conversational context without bloating your phone's storage with years of ancient history.",
+    "personalConnection": "<strong>The airplane analogy.</strong> Keep only the last $m$ legs of the flight log $(s,y)$ instead of a full curvature map: nearly the same guidance for a fraction of the memory.",
     "examTrap": "The initial base scaling $\\gamma_k = \\frac{s_{k-1}^T y_{k-1}}{\\|y_{k-1}\\|^2}$ is CRITICAL! It estimates the local spectral magnitude of the inverse Hessian so that the unit step $\\alpha_k = 1$ is accepted in line search."
   },
   {
