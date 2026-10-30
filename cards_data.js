@@ -18,7 +18,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$K \\subset \\mathbb{R}^n \\text{ is compact} \\iff K \\text{ is closed and bounded}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A fenced airfield with a locked gate is compact: closed (its boundary belongs to it) and bounded (finite size). An endless runway is closed but unbounded, and an airfield with missing fence boards is bounded but not closed.",
-    "examTrap": "Heine-Borel strictly fails in infinite dimensions! In infinite-dimensional function spaces (such as $L^2$ or Sobolev spaces), a closed and bounded unit ball is NEVER compact."
+    "examTrap": "Heine-Borel strictly fails in infinite dimensions! In infinite-dimensional function spaces (such as $L^2$ or Sobolev spaces), a closed and bounded unit ball is NEVER compact.",
+    "hint": "Which two properties must the airfield have so the lowest point can actually be reached?",
+    "breakdown": [
+      "<strong>Closed = the fence belongs to the airfield,</strong> so a plane heading for the boundary can really land on it.",
+      "<strong>Bounded = a finite size,</strong> so the search cannot run off to infinity.",
+      "<strong>Heine-Borel:</strong> in $\\mathbb R^n$ these two together are exactly compactness, the property Weierstrass needs."
+    ]
   },
   {
     "id": 102,
@@ -38,7 +44,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\liminf_{x \\to x_0} f(x) \\ge f(x_0) \\iff \\mathcal{L}_\\alpha(f) = \\{x : f(x) \\le \\alpha\\} \\text{ is closed } \\forall \\alpha$$",
     "personalConnection": "<strong>The airplane analogy.</strong> At a cliff edge the altimeter reports the lower of the two heights, so a plane approaching from above still lands on the true low point and never falls through an imaginary floor.",
-    "examTrap": "Full continuity is NOT required for minimum attainment! Lower semicontinuity is the exact minimal condition needed for global infimum attainment. Upper semicontinuity guarantees maximum attainment."
+    "examTrap": "Full continuity is NOT required for minimum attainment! Lower semicontinuity is the exact minimal condition needed for global infimum attainment. Upper semicontinuity guarantees maximum attainment.",
+    "hint": "What does the altimeter read at a cliff edge, and why does that keep the lowest point reachable?",
+    "breakdown": [
+      "<strong>$\\liminf_{x\\to x_0}f(x)\\ge f(x_0)$:</strong> the value at the edge is at or below everything you approach it with, so the true value sits on the low side of any jump.",
+      "<strong>Sublevel sets $\\{f\\le\\alpha\\}$:</strong> the region at or below altitude $\\alpha$; being closed means the boundary of that region is landable.",
+      "<strong>The two statements are equivalent:</strong> jumps downward are allowed, jumps upward (a hole in the floor) are not."
+    ]
   },
   {
     "id": 103,
@@ -58,7 +70,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$K \\ne \\emptyset \\text{ compact, } f \\in C(K) \\implies \\exists x^* \\in K : f(x^*) = \\min_{x \\in K} f(x)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A continuous terrain over a fenced, finite airfield always has a lowest point the plane can actually touch down on, rather than tapering off toward infinity.",
-    "examTrap": "If the domain is open (e.g. $K = (0, 1)$), $f(x) = x$ has infimum 0, but attains NO minimum in $K$! Both closedness and boundedness of the domain are strictly mandatory."
+    "examTrap": "If the domain is open (e.g. $K = (0, 1)$), $f(x) = x$ has infimum 0, but attains NO minimum in $K$! Both closedness and boundedness of the domain are strictly mandatory.",
+    "hint": "What two conditions guarantee the pilot a lowest point he can actually touch down on?",
+    "breakdown": [
+      "<strong>$K$ compact:</strong> the airfield is fenced (closed) and finite (bounded).",
+      "<strong>$f$ continuous:</strong> no cliffs or holes in the terrain.",
+      "<strong>Conclusion:</strong> a lowest point $x^*$ exists inside $K$, so a search over the airfield cannot come up empty."
+    ]
   },
   {
     "id": 104,
@@ -78,7 +96,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\lim_{\\|x\\| \\to \\infty} f(x) = +\\infty \\implies \\mathcal{L}_\\alpha = \\{x : f(x) \\le \\alpha\\} \\text{ is compact} \\implies \\min_{x \\in \\mathbb{R}^n} f(x) \\text{ exists}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Mountain walls rise without limit in every direction around the airport, so the lowest altitude cannot be far away: the plane never has to search to infinity.",
-    "examTrap": "A function strictly bounded below by zero (like $f(x) = e^{-x^2}$ or $f(x) = \\frac{1}{1+x^2}$) is NOT coercive! It has infimum 0, but attains NO minimum anywhere on $\\mathbb{R}$."
+    "examTrap": "A function strictly bounded below by zero (like $f(x) = e^{-x^2}$ or $f(x) = \\frac{1}{1+x^2}$) is NOT coercive! It has infimum 0, but attains NO minimum anywhere on $\\mathbb{R}$.",
+    "hint": "Why can the pilot stop worrying about searching to infinity when the walls rise forever?",
+    "breakdown": [
+      "<strong>$f(x)\\to+\\infty$ as $\\|x\\|\\to\\infty$:</strong> far from the airport every direction is a mountain wall.",
+      "<strong>The sublevel set $\\{f\\le\\alpha\\}$ is therefore bounded and closed:</strong> a fenced, finite airfield.",
+      "<strong>Then Weierstrass applies inside it:</strong> the lowest point exists in all of $\\mathbb R^n$."
+    ]
   },
   {
     "id": 105,
@@ -100,7 +124,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$\\operatorname{epi}(f) = \\{(x, t) \\in \\mathbb{R}^{n+1} : f(x) \\le t\\}, \\quad f \\text{ is convex} \\iff \\operatorname{epi}(f) \\text{ is a convex set}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The sky above the terrain is the epigraph. If the terrain is convex then any straight flight path between two points in that sky stays in the sky.",
     "examTrap": "The converse does NOT hold! A function with convex sublevel sets is NOT necessarily convex (it is only quasiconvex, e.g. $f(x) = \\sqrt{|x|}$ or $f(x) = \\log(x)$).",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-105\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M28.0,12.0 L28.0,23.1 L36.0,37.9 L44.0,51.4 L52.0,63.4 L60.0,74.2 L68.0,83.6 L76.0,91.7 L84.0,98.4 L92.0,103.8 L100.0,107.8 L108.0,110.5 L116.0,111.8 L124.0,111.8 L132.0,110.5 L140.0,107.8 L148.0,103.8 L156.0,98.4 L164.0,91.7 L172.0,83.6 L180.0,74.2 L188.0,63.4 L196.0,51.4 L204.0,37.9 L212.0,23.1 L212.0,12.0\" fill=\"#e5e7eb\" stroke=\"#000000\" stroke-width=\"0.8\"/><path d=\"M28.0,23.1 L32.6,31.8 L37.2,40.0 L41.8,47.8 L46.4,55.1 L51.0,62.0 L55.6,68.5 L60.2,74.5 L64.8,80.0 L69.4,85.1 L74.0,89.8 L78.6,94.0 L83.2,97.8 L87.8,101.1 L92.4,104.0 L97.0,106.4 L101.6,108.4 L106.2,110.0 L110.8,111.1 L115.4,111.8 L120.0,112.0 L124.6,111.8 L129.2,111.1 L133.8,110.0 L138.4,108.4 L143.0,106.4 L147.6,104.0 L152.2,101.1 L156.8,97.8 L161.4,94.0 L166.0,89.8 L170.6,85.1 L175.2,80.0 L179.8,74.5 L184.4,68.5 L189.0,62.0 L193.6,55.1 L198.2,47.8 L202.8,40.0 L207.4,31.8 L212.0,23.1\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><circle cx=\"60.0\" cy=\"74.2\" r=\"2.8\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"180.0\" cy=\"74.2\" r=\"2.8\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"60.0\" y1=\"74.2\" x2=\"180.0\" y2=\"74.2\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><g transform=\"translate(120.0 52.0) rotate(0) scale(0.7)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.71\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><text x=\"120\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">the sky above the terrain (epigraph)</text><text x=\"120\" y=\"144\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">straight flight paths stay in the sky</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-105\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M28.0,12.0 L28.0,23.1 L36.0,37.9 L44.0,51.4 L52.0,63.4 L60.0,74.2 L68.0,83.6 L76.0,91.7 L84.0,98.4 L92.0,103.8 L100.0,107.8 L108.0,110.5 L116.0,111.8 L124.0,111.8 L132.0,110.5 L140.0,107.8 L148.0,103.8 L156.0,98.4 L164.0,91.7 L172.0,83.6 L180.0,74.2 L188.0,63.4 L196.0,51.4 L204.0,37.9 L212.0,23.1 L212.0,12.0\" fill=\"#e5e7eb\" stroke=\"#000000\" stroke-width=\"0.8\"/><path d=\"M28.0,23.1 L32.6,31.8 L37.2,40.0 L41.8,47.8 L46.4,55.1 L51.0,62.0 L55.6,68.5 L60.2,74.5 L64.8,80.0 L69.4,85.1 L74.0,89.8 L78.6,94.0 L83.2,97.8 L87.8,101.1 L92.4,104.0 L97.0,106.4 L101.6,108.4 L106.2,110.0 L110.8,111.1 L115.4,111.8 L120.0,112.0 L124.6,111.8 L129.2,111.1 L133.8,110.0 L138.4,108.4 L143.0,106.4 L147.6,104.0 L152.2,101.1 L156.8,97.8 L161.4,94.0 L166.0,89.8 L170.6,85.1 L175.2,80.0 L179.8,74.5 L184.4,68.5 L189.0,62.0 L193.6,55.1 L198.2,47.8 L202.8,40.0 L207.4,31.8 L212.0,23.1\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><circle cx=\"60.0\" cy=\"74.2\" r=\"2.8\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"180.0\" cy=\"74.2\" r=\"2.8\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"60.0\" y1=\"74.2\" x2=\"180.0\" y2=\"74.2\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><g transform=\"translate(120.0 52.0) rotate(0) scale(0.7)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.71\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><text x=\"120\" y=\"134\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">the sky above the terrain (epigraph)</text><text x=\"120\" y=\"144\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">straight flight paths stay in the sky</text></svg>",
+    "hint": "What region is the epigraph, and how does it show whether the terrain is convex?",
+    "breakdown": [
+      "<strong>$\\operatorname{epi}(f)=\\{(x,t):f(x)\\le t\\}$</strong> is all the sky on or above the terrain, with height $t$ as the extra coordinate.",
+      "<strong>Convex terrain $\\iff$ convex sky:</strong> any straight flight path between two points in that sky stays in it.",
+      "<strong>Why it matters:</strong> it turns a statement about a function into a statement about a set, where separating hyperplanes work."
+    ]
   },
   {
     "id": 106,
@@ -120,7 +150,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f(x)\\ge x_1^4+x_2^4-2(x_1^2+x_2^2)\\to\\infty\\ \\Rightarrow\\ \\text{a global min exists;}\\quad \\min f=f(1,1)=f(-1,-1)=-2$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Build the fence first: coercivity says the terrain outside a large enough fence is higher than your starting altitude, so searching inside the fence cannot miss the lowest point.",
-    "examTrap": "Solving \u2207f = 0 does not prove a minimum exists, and the candidates need checking: only (1,1) and (\u22121,\u22121) are global minimizers here. (1,\u22121) and (\u22121,1) are NOT, since f = 6 there."
+    "examTrap": "Solving \u2207f = 0 does not prove a minimum exists, and the candidates need checking: only (1,1) and (\u22121,\u22121) are global minimizers here. (1,\u22121) and (\u22121,1) are NOT, since f = 6 there.",
+    "hint": "How do you prove a lowest point exists on all of the plane when the airfield has no fence?",
+    "breakdown": [
+      "<strong>The bound $4|x_1x_2|\\le2(x_1^2+x_2^2)$</strong> shows $f\\ge x_1^4+x_2^4-2(x_1^2+x_2^2)$, which rises without limit: $f$ is coercive.",
+      "<strong>Coercive means the lowest point is inside some finite fence,</strong> so Weierstrass guarantees a global minimum.",
+      "<strong>Setting $\\nabla f=0$</strong> gives the candidates $(0,0)$ (a saddle, $f=0$) and $\\pm(1,1)$ with $f=-2$: the true lowest points."
+    ]
   },
   {
     "id": 201,
@@ -140,7 +176,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f(x+d) = f(x) + \\nabla f(x)^T d + \\frac{1}{2} d^T \\nabla^2 f(x+\\theta d) d, \\quad \\theta \\in (0, 1)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> In fog the pilot has three instruments: the altimeter $f(x)$, the slope gauge $\\nabla f(x)$ and the curvature gauge $\\nabla^2f(x)$. Together they give a local model of the terrain around the plane.",
-    "examTrap": "The Hessian $\\nabla^2 f(x)$ must be evaluated at an INTERMEDIATE point $x + \\theta d$ for exact equality! Evaluating at $x$ requires adding the asymptotic remainder term $o(\\|d\\|^2)$."
+    "examTrap": "The Hessian $\\nabla^2 f(x)$ must be evaluated at an INTERMEDIATE point $x + \\theta d$ for exact equality! Evaluating at $x$ requires adding the asymptotic remainder term $o(\\|d\\|^2)$.",
+    "hint": "Which three instrument readings let the pilot model the terrain near his position?",
+    "breakdown": [
+      "<strong>$f(x)$ = the altimeter.</strong> Your altitude right now.",
+      "<strong>$\\nabla f(x)^\\top d$ = the slope term.</strong> The altitude change from moving $d$ at the current slope; the dot product keeps only the part of $d$ pointing along the slope.",
+      "<strong>$\\tfrac12d^\\top\\nabla^2f\\,d$ = the curvature term.</strong> The extra correction because the slope itself bends as you move; the $\\tfrac12$ and the square come from integrating a changing slope."
+    ]
   },
   {
     "id": 202,
@@ -162,7 +204,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$x^* \\text{ local min of } f \\in C^1 \\implies \\nabla f(x^*) = \\mathbf{0}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> At the lowest parking spot the slope gauge reads zero: in no direction does the plane start to descend.",
     "examTrap": "FONC is strictly NECESSARY, not sufficient! A zero gradient $\\nabla f(x^*) = 0$ also occurs at local maxima and saddle points (e.g., $f(x_1, x_2) = x_1^2 - x_2^2$ at the origin).",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-202\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M28.0,40.0 L32.6,46.8 L37.2,53.3 L41.8,59.4 L46.4,65.2 L51.0,70.6 L55.6,75.7 L60.2,80.4 L64.8,84.8 L69.4,88.8 L74.0,92.5 L78.6,95.8 L83.2,98.8 L87.8,101.4 L92.4,103.7 L97.0,105.6 L101.6,107.2 L106.2,108.4 L110.8,109.3 L115.4,109.8 L120.0,110.0 L124.6,109.8 L129.2,109.3 L133.8,108.4 L138.4,107.2 L143.0,105.6 L147.6,103.7 L152.2,101.4 L156.8,98.8 L161.4,95.8 L166.0,92.5 L170.6,88.8 L175.2,84.8 L179.8,80.4 L184.4,75.7 L189.0,70.6 L193.6,65.2 L198.2,59.4 L202.8,53.3 L207.4,46.8 L212.0,40.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><line x1=\"60.0\" y1=\"110.0\" x2=\"180.0\" y2=\"110.0\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"5 3\"/><g transform=\"translate(120.0 96.0) rotate(0) scale(0.8)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.50\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><circle cx=\"120.0\" cy=\"110.0\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"24\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">slope gauge reads 0</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">no direction goes downhill first: \u2207f(x*) = 0</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-202\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M28.0,40.0 L32.6,46.8 L37.2,53.3 L41.8,59.4 L46.4,65.2 L51.0,70.6 L55.6,75.7 L60.2,80.4 L64.8,84.8 L69.4,88.8 L74.0,92.5 L78.6,95.8 L83.2,98.8 L87.8,101.4 L92.4,103.7 L97.0,105.6 L101.6,107.2 L106.2,108.4 L110.8,109.3 L115.4,109.8 L120.0,110.0 L124.6,109.8 L129.2,109.3 L133.8,108.4 L138.4,107.2 L143.0,105.6 L147.6,103.7 L152.2,101.4 L156.8,98.8 L161.4,95.8 L166.0,92.5 L170.6,88.8 L175.2,84.8 L179.8,80.4 L184.4,75.7 L189.0,70.6 L193.6,65.2 L198.2,59.4 L202.8,53.3 L207.4,46.8 L212.0,40.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><line x1=\"60.0\" y1=\"110.0\" x2=\"180.0\" y2=\"110.0\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"5 3\"/><g transform=\"translate(120.0 96.0) rotate(0) scale(0.8)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.50\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><circle cx=\"120.0\" cy=\"110.0\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"120\" y=\"24\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">slope gauge reads 0</text><text x=\"120\" y=\"138\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">no direction goes downhill first: \u2207f(x*) = 0</text></svg>",
+    "hint": "What must the slope gauge read at the very bottom of a valley?",
+    "breakdown": [
+      "<strong>$\\nabla f(x^*)=0$:</strong> the radar sees no slope in any direction.",
+      "<strong>Why:</strong> if any component were nonzero, moving against it would lose altitude, so $x^*$ could not be a lowest point.",
+      "<strong>Warning:</strong> it is only necessary. A hilltop or a saddle also reads zero."
+    ]
   },
   {
     "id": 203,
@@ -182,7 +230,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x^* \\text{ local min of } f \\in C^2 \\implies \\nabla f(x^*) = \\mathbf{0} \\quad \\text{and} \\quad \\nabla^2 f(x^*) \\succeq 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The curvature gauge must never read negative at the lowest spot: if even one direction curved downward, the plane would roll off that way.",
-    "examTrap": "$\\nabla^2 f(x^*) \\succeq 0$ alone is NOT sufficient for a local minimum! Consider $f(x) = x^3$ at $x=0$: $f'(0)=0$ and $f''(0)=0 \\ge 0$, but $x=0$ is an inflection point, not a minimum."
+    "examTrap": "$\\nabla^2 f(x^*) \\succeq 0$ alone is NOT sufficient for a local minimum! Consider $f(x) = x^3$ at $x=0$: $f'(0)=0$ and $f''(0)=0 \\ge 0$, but $x=0$ is an inflection point, not a minimum.",
+    "hint": "What must the curvature gauge say at a lowest point so no direction rolls the marble away?",
+    "breakdown": [
+      "<strong>$\\nabla f(x^*)=0$</strong> removes the slope term of the Taylor expansion.",
+      "<strong>$\\nabla^2f(x^*)\\succeq0$ means $d^\\top\\nabla^2f\\,d\\ge0$ for every $d$:</strong> the ground curves up or stays flat in every direction.",
+      "<strong>If one direction had negative curvature,</strong> the plane would roll down it, so $x^*$ would not be a minimum."
+    ]
   },
   {
     "id": 204,
@@ -202,7 +256,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\nabla f(x^*) = \\mathbf{0} \\quad \\text{and} \\quad \\nabla^2 f(x^*) \\succ 0 \\implies x^* \\text{ is a strict local minimizer}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Every direction curves strictly upward, like the inside of a valley with steep sides, so the plane is trapped at a guaranteed strict local low point.",
-    "examTrap": "SOSC requires STRICT inequality $\\nabla^2 f(x^*) \\succ 0$. If $\\lambda_{\\min} = 0$ (e.g. $f(x) = x^4$ at $x=0$), $x^*$ can still be a minimizer, but SOSC fails to prove it and 4th-order analysis is needed."
+    "examTrap": "SOSC requires STRICT inequality $\\nabla^2 f(x^*) \\succ 0$. If $\\lambda_{\\min} = 0$ (e.g. $f(x) = x^4$ at $x=0$), $x^*$ can still be a minimizer, but SOSC fails to prove it and 4th-order analysis is needed.",
+    "hint": "What upgrade turns the necessary conditions into a guarantee of a strict valley?",
+    "breakdown": [
+      "<strong>$\\nabla f(x^*)=0$ and $\\nabla^2f(x^*)\\succ0$:</strong> zero slope and strictly positive curvature in every direction.",
+      "<strong>Strict positivity gives a bowl floor</strong> $d^\\top\\nabla^2f\\,d\\ge c\\|d\\|^2$ with $c\\gt0$, so leaving $x^*$ always raises the altitude.",
+      "<strong>It is sufficient but not necessary:</strong> $f=x^4$ has a strict minimum at 0 even though its curvature there is 0."
+    ]
   },
   {
     "id": 205,
@@ -222,7 +282,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\text{Saddle Point} \\iff \\exists \\, i, j \\text{ s.t. } \\lambda_i(\\nabla^2 f(x^*)) > 0 \\text{ and } \\lambda_j(\\nabla^2 f(x^*)) < 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The Hessian's eigenvalues are the curvature along each natural axis: all positive is a valley bottom, all negative a hilltop, mixed is a mountain pass (low along the ridge, high across the trail).",
-    "examTrap": "Sylvester's Criterion for negative definiteness requires alternating leading principal minors: $(-1)^k \\Delta_k > 0$ ($\\Delta_1 < 0, \\Delta_2 > 0, \\Delta_3 < 0$). Many students erroneously check if all $\\Delta_k < 0$."
+    "examTrap": "Sylvester's Criterion for negative definiteness requires alternating leading principal minors: $(-1)^k \\Delta_k > 0$ ($\\Delta_1 < 0, \\Delta_2 > 0, \\Delta_3 < 0$). Many students erroneously check if all $\\Delta_k < 0$.",
+    "hint": "What do the signs of the Hessian eigenvalues say about the terrain shape at a critical point?",
+    "breakdown": [
+      "<strong>Each eigenvalue is the curvature along its own eigen-direction.</strong> Positive curves up, negative curves down.",
+      "<strong>All positive = valley bottom; all negative = hilltop;</strong> at least one of each sign = saddle (low along one axis, high along another).",
+      "<strong>At a saddle there is always a way down,</strong> along an eigenvector with negative curvature."
+    ]
   },
   {
     "id": 206,
@@ -242,7 +308,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\nabla f(1, 1) = \\mathbf{0}, \\quad \\det(\\nabla^2 f) = 400 > 0, \\quad \\operatorname{tr}(\\nabla^2 f) = 1002 > 0 \\implies (1,1) \\text{ is strict min}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Rosenbrock is a long curved banana canyon along $y=x^2$: the floor is nearly flat while the walls are steep, with condition number around 2500, so following the floor needs tiny careful legs.",
-    "examTrap": "When evaluating $2 \\times 2$ Hessians, always check BOTH $\\det(H) > 0$ and $\\operatorname{tr}(H) > 0$. If $\\det(H) > 0$ and $\\operatorname{tr}(H) < 0$, both eigenvalues are negative, giving a local MAXIMUM!"
+    "examTrap": "When evaluating $2 \\times 2$ Hessians, always check BOTH $\\det(H) > 0$ and $\\operatorname{tr}(H) > 0$. If $\\det(H) > 0$ and $\\operatorname{tr}(H) < 0$, both eigenvalues are negative, giving a local MAXIMUM!",
+    "hint": "Why is $(1,1)$ a strict minimum of Rosenbrock even though the canyon is so hard to follow?",
+    "breakdown": [
+      "<strong>$\\det=400\\gt0$ and $\\operatorname{tr}=1002\\gt0$</strong> for a 2\u00d72 Hessian means both eigenvalues are positive, so $\\nabla^2f\\succ0$.",
+      "<strong>The two eigenvalues are very different</strong> (about 1000 and 0.4), so the floor is nearly flat compared with the walls.",
+      "<strong>That huge ratio is the condition number:</strong> it is why gradient methods crawl along this canyon."
+    ]
   },
   {
     "id": 301,
@@ -264,7 +336,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$f(\\theta x + (1-\\theta)y) \\le \\theta f(x) + (1-\\theta)f(y) \\quad \\forall \\, x, y \\in C, \\; \\theta \\in [0, 1]$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A convex corridor: any two points can be joined by a straight flight path that stays inside. The straight path between two points on a convex terrain always flies above the terrain.",
     "examTrap": "The domain $C$ of $f$ MUST be a convex set for the definition to even be valid! You cannot define convexity on disjoint or non-convex domains like $C = \\mathbb{R} \\setminus \\{0\\}$.",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-301\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"120\" y1=\"8\" x2=\"120\" y2=\"138\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><ellipse cx=\"60\" cy=\"66\" rx=\"44\" ry=\"32\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"2\" transform=\"rotate(0 60 66)\"/><circle cx=\"34.0\" cy=\"70.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"90.0\" cy=\"56.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"34\" y1=\"70\" x2=\"90\" y2=\"56\" stroke=\"#000000\" stroke-width=\"2\"/><text x=\"60\" y=\"112\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">convex \u2713</text><path d=\"M140,38 Q176,100 226,38 Q184,70 140,38 Z\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"2\"/><circle cx=\"146.0\" cy=\"42.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"220.0\" cy=\"42.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"146\" y1=\"42\" x2=\"220\" y2=\"42\" stroke=\"#000000\" stroke-width=\"2\" stroke-dasharray=\"4 3\"/><text x=\"182\" y=\"112\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">crescent \u2717</text><g transform=\"translate(60.0 66.0) rotate(0) scale(0.5)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2.40\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-301\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"120\" y1=\"8\" x2=\"120\" y2=\"138\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><ellipse cx=\"60\" cy=\"66\" rx=\"44\" ry=\"32\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"2\" transform=\"rotate(0 60 66)\"/><circle cx=\"34.0\" cy=\"70.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"90.0\" cy=\"56.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"34\" y1=\"70\" x2=\"90\" y2=\"56\" stroke=\"#000000\" stroke-width=\"2\"/><text x=\"60\" y=\"112\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">convex \u2713</text><path d=\"M140,38 Q176,100 226,38 Q184,70 140,38 Z\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"2\"/><circle cx=\"146.0\" cy=\"42.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><circle cx=\"220.0\" cy=\"42.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><line x1=\"146\" y1=\"42\" x2=\"220\" y2=\"42\" stroke=\"#000000\" stroke-width=\"2\" stroke-dasharray=\"4 3\"/><text x=\"182\" y=\"112\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">crescent \u2717</text><g transform=\"translate(60.0 66.0) rotate(0) scale(0.5)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2.40\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g></svg>",
+    "hint": "What does 'the string above the terrain' say about convexity?",
+    "breakdown": [
+      "<strong>$\\theta x+(1-\\theta)y$</strong> is a point on the straight flight path between $x$ and $y$.",
+      "<strong>$\\theta f(x)+(1-\\theta)f(y)$</strong> is the height of the straight string stretched between the two altitudes.",
+      "<strong>The inequality says the terrain never rises above the string,</strong> which is convexity."
+    ]
   },
   {
     "id": 302,
@@ -286,7 +364,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$f \\text{ is convex} \\iff f(y) \\ge f(x) + \\nabla f(x)^T (y - x) \\quad \\forall \\, x, y$$",
     "personalConnection": "<strong>The airplane analogy.</strong> At any point the flat glide plane touching the terrain there lies beneath the terrain everywhere else: the slope gauge always underestimates the true altitude of a convex terrain.",
     "examTrap": "Monotonicity of gradient is completely equivalent: $( \\nabla f(y) - \\nabla f(x) )^T (y - x) \\ge 0$. In 1D, this simply states that the derivative $f'(x)$ is non-decreasing.",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-302\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M30.0,36.0 L34.5,43.4 L39.0,50.4 L43.5,57.1 L48.0,63.4 L52.5,69.2 L57.0,74.8 L61.5,79.9 L66.0,84.6 L70.5,89.0 L75.0,93.0 L79.5,96.6 L84.0,99.8 L88.5,102.7 L93.0,105.2 L97.5,107.2 L102.0,109.0 L106.5,110.3 L111.0,111.2 L115.5,111.8 L120.0,112.0 L124.5,111.8 L129.0,111.2 L133.5,110.3 L138.0,109.0 L142.5,107.2 L147.0,105.2 L151.5,102.7 L156.0,99.8 L160.5,96.6 L165.0,93.0 L169.5,89.0 L174.0,84.6 L178.5,79.9 L183.0,74.8 L187.5,69.2 L192.0,63.4 L196.5,57.1 L201.0,50.4 L205.5,43.4 L210.0,36.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><line x1=\"90\" y1=\"149.53086419787508\" x2=\"200\" y2=\"66.96296296276627\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><g transform=\"translate(158.0 113.0) rotate(0) scale(0.6)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2.00\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><circle cx=\"160.0\" cy=\"97.0\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"89.1104\" y=\"134\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">the glide plane touching at your spot lies under the whole terrain</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-302\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M30.0,36.0 L34.5,43.4 L39.0,50.4 L43.5,57.1 L48.0,63.4 L52.5,69.2 L57.0,74.8 L61.5,79.9 L66.0,84.6 L70.5,89.0 L75.0,93.0 L79.5,96.6 L84.0,99.8 L88.5,102.7 L93.0,105.2 L97.5,107.2 L102.0,109.0 L106.5,110.3 L111.0,111.2 L115.5,111.8 L120.0,112.0 L124.5,111.8 L129.0,111.2 L133.5,110.3 L138.0,109.0 L142.5,107.2 L147.0,105.2 L151.5,102.7 L156.0,99.8 L160.5,96.6 L165.0,93.0 L169.5,89.0 L174.0,84.6 L178.5,79.9 L183.0,74.8 L187.5,69.2 L192.0,63.4 L196.5,57.1 L201.0,50.4 L205.5,43.4 L210.0,36.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><line x1=\"90\" y1=\"149.53086419787508\" x2=\"200\" y2=\"66.96296296276627\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><g transform=\"translate(158.0 113.0) rotate(0) scale(0.6)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2.00\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><circle cx=\"160.0\" cy=\"97.0\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"89.1104\" y=\"134\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">the glide plane touching at your spot lies under the whole terrain</text></svg>",
+    "hint": "What does the glide plane touching at your position say about the rest of the terrain?",
+    "breakdown": [
+      "<strong>$f(x)+\\nabla f(x)^\\top(y-x)$</strong> is the flat plane through your position with the radar's slope.",
+      "<strong>$f(y)\\ge$ that plane:</strong> the true terrain is never below its tangent plane.",
+      "<strong>Consequence:</strong> if $\\nabla f(x)=0$ the plane is level and the terrain is everywhere above it, so $x$ is a global minimum."
+    ]
   },
   {
     "id": 303,
@@ -306,7 +390,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f \\text{ is convex on } C \\iff \\nabla^2 f(x) \\succeq 0 \\quad \\forall \\, x \\in C$$",
     "personalConnection": "<strong>The airplane analogy.</strong> At every point the seat is pressed up by the ground (never floats up): the terrain curves upward everywhere, which is the positive semidefinite Hessian.",
-    "examTrap": "Do not confuse $\\nabla^2 f(x^*) \\succeq 0$ at a single critical point (which is merely SONC for a local min) with $\\nabla^2 f(x) \\succeq 0$ for ALL $x \\in C$ (which proves global convexity of $f$)."
+    "examTrap": "Do not confuse $\\nabla^2 f(x^*) \\succeq 0$ at a single critical point (which is merely SONC for a local min) with $\\nabla^2 f(x) \\succeq 0$ for ALL $x \\in C$ (which proves global convexity of $f$).",
+    "hint": "What does 'the seat is always pressed up' say about the Hessian?",
+    "breakdown": [
+      "<strong>$\\nabla^2f(x)\\succeq0$:</strong> in every direction the second derivative $d^\\top\\nabla^2f\\,d$ is not negative, so the ground never curves away from the seat.",
+      "<strong>It must hold at every point of the set,</strong> not only at the bottom.",
+      "<strong>It is the practical test for convexity</strong> of a smooth function."
+    ]
   },
   {
     "id": 304,
@@ -326,7 +416,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f \\text{ is } \\mu\\text{-strongly convex} \\iff \\nabla^2 f(x) \\succeq \\mu I \\quad \\forall \\, x$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Strong convexity means the terrain curves up at least like a bowl of fixed steepness $m$: leaving the bottom costs at least $\\tfrac m2\\|x-x^*\\|^2$ of altitude.",
-    "examTrap": "Strict convexity does NOT imply strong convexity! For instance, $f(x) = x^4$ is strictly convex on $\\mathbb{R}$, but its 2nd derivative $f''(0) = 0$, so it is NOT strongly convex ($\\mu = 0$)."
+    "examTrap": "Strict convexity does NOT imply strong convexity! For instance, $f(x) = x^4$ is strictly convex on $\\mathbb{R}$, but its 2nd derivative $f''(0) = 0$, so it is NOT strongly convex ($\\mu = 0$).",
+    "hint": "What bowl is the terrain guaranteed to stay above?",
+    "breakdown": [
+      "<strong>$\\nabla^2f\\succeq\\mu I$:</strong> the curvature is at least $\\mu$ in every direction, never flatter than a bowl of steepness $\\mu$.",
+      "<strong>Equivalent floor:</strong> $f(y)\\ge f(x)+\\nabla f(x)^\\top(y-x)+\\tfrac\\mu2\\|y-x\\|^2$, the tangent plane plus a quadratic bowl.",
+      "<strong>Consequence:</strong> there is a unique lowest point and leaving it always costs altitude."
+    ]
   },
   {
     "id": 305,
@@ -346,7 +442,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\|\\nabla f(x)\\|^2\\ge2\\mu\\,(f(x)-f^*)\\ \\Longrightarrow\\ f(x_k)-f^*\\le\\Big(1-\\frac{\\mu}{L}\\Big)^{k}\\big(f(x_0)-f^*\\big)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The higher you are above the lowest point, the steeper the slope under you, so the plane can never sit on a flat plateau far above the valley floor.",
-    "examTrap": "PL is weaker than strong convexity. A non-convex function such as f(x) = x\u00b2 + 3 sin\u00b2x satisfies PL (every stationary point is a global min), so gradient descent still converges linearly on it."
+    "examTrap": "PL is weaker than strong convexity. A non-convex function such as f(x) = x\u00b2 + 3 sin\u00b2x satisfies PL (every stationary point is a global min), so gradient descent still converges linearly on it.",
+    "hint": "What does the PL inequality say about slope and height above the floor?",
+    "breakdown": [
+      "<strong>$\\|\\nabla f\\|^2$ = how steep the radar reads;</strong> $f-f^*$ = how high you still are above the floor.",
+      "<strong>The inequality says steepness $\\ge2\\mu\\times$ height:</strong> the higher you are, the steeper the ground, so there are no plateaus far above the floor.",
+      "<strong>Then each leg of size $1/L$ removes a fixed fraction $\\mu/L$ of the height,</strong> giving linear convergence without needing convexity."
+    ]
   },
   {
     "id": 306,
@@ -366,7 +468,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\mu\\text{-Strongly Convex } (\\nabla^2 f \\succeq \\mu I) \\implies \\text{Strictly Convex} \\implies \\text{Convex } (\\nabla^2 f \\succeq 0)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Convex allows level ramps (cruise flat forever); strictly convex has no level stretch but can flatten near the bottom ($x^4$); strongly convex is a true bowl everywhere.",
-    "examTrap": "An exam question asking 'Is $f(x) = e^{-x} + x^2$ strongly convex on $\\mathbb{R}$?' Answer: YES! $f''(x) = e^{-x} + 2 \\ge 2 > 0$ for all $x$, so $\\mu = 2$."
+    "examTrap": "An exam question asking 'Is $f(x) = e^{-x} + x^2$ strongly convex on $\\mathbb{R}$?' Answer: YES! $f''(x) = e^{-x} + 2 \\ge 2 > 0$ for all $x$, so $\\mu = 2$.",
+    "hint": "What separates convex, strictly convex and strongly convex terrain?",
+    "breakdown": [
+      "<strong>Convex:</strong> $\\nabla^2f\\succeq0$; level ramps are allowed.",
+      "<strong>Strictly convex:</strong> no flat stretch, but the curvature may vanish at a point (for example $x^4$ at 0).",
+      "<strong>Strongly convex:</strong> $\\nabla^2f\\succeq\\mu I$ with a fixed $\\mu\\gt0$, a true bowl everywhere; each condition implies the one before it."
+    ]
   },
   {
     "id": 401,
@@ -388,7 +496,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$x_{k+1} = x_k + \\alpha_k d_k \\quad \\text{with} \\quad \\nabla f(x_k)^T d_k < 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Pick a heading $d_k$ that points downhill ($\\nabla f^\\top d_k\\lt0$) and decide how far $\\alpha_k$ to fly before checking the radar again.",
     "examTrap": "If $\\nabla f(x_k)^T d_k = 0$, $d_k$ is orthogonal to the gradient, meaning $f$ stays flat to 1st order. If $\\nabla f(x_k)^T d_k > 0$, taking any step $\\alpha > 0$ climbs uphill!",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-401\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"100\" x2=\"226\" y2=\"40\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"5 3\"/><g transform=\"translate(70.0 84.0) rotate(16.0) scale(0.8)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.50\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"80.0\" y1=\"82.0\" x2=\"176.0\" y2=\"108.0\" stroke=\"#000000\" stroke-width=\"3\" marker-end=\"url(#arr-401)\"/><text x=\"180\" y=\"118\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">d\u2096</text><line x1=\"70.0\" y1=\"76.0\" x2=\"84.0\" y2=\"24.0\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"3 2\" marker-end=\"url(#arr-401)\"/><text x=\"88\" y=\"30\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u2207f (uphill)</text><circle cx=\"176.0\" cy=\"108.0\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"176\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2096 + \u03b1\u2096d\u2096</text><text x=\"120\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2207f\u1d40d\u2096 &lt; 0: heading points downhill</text><text x=\"120\" y=\"14\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03b1: how far before checking the radar</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-401\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"100\" x2=\"226\" y2=\"40\" stroke=\"#000000\" stroke-width=\"1.4\" stroke-dasharray=\"5 3\"/><g transform=\"translate(70.0 84.0) rotate(16.0) scale(0.8)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.50\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"80.0\" y1=\"82.0\" x2=\"176.0\" y2=\"108.0\" stroke=\"#000000\" stroke-width=\"3\" marker-end=\"url(#arr-401)\"/><text x=\"180\" y=\"118\" font-size=\"10\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">d\u2096</text><line x1=\"70.0\" y1=\"76.0\" x2=\"84.0\" y2=\"24.0\" stroke=\"#000000\" stroke-width=\"1.8\" stroke-dasharray=\"3 2\" marker-end=\"url(#arr-401)\"/><text x=\"88\" y=\"30\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u2207f (uphill)</text><circle cx=\"176.0\" cy=\"108.0\" r=\"3\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"176\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2096 + \u03b1\u2096d\u2096</text><text x=\"120\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u2207f\u1d40d\u2096 &lt; 0: heading points downhill</text><text x=\"120\" y=\"14\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03b1: how far before checking the radar</text></svg>",
+    "hint": "What must be true of the heading, and what does the step size decide?",
+    "breakdown": [
+      "<strong>$d_k$ = the nose.</strong> The condition $\\nabla f(x_k)^\\top d_k\\lt0$ means the nose has a component pointing downhill.",
+      "<strong>$\\alpha_k$ = the flight distance.</strong> Multiplying turns the heading into an actual displacement.",
+      "<strong>Together:</strong> a good direction with a badly chosen distance can still overshoot or crawl, which is what line search fixes."
+    ]
   },
   {
     "id": 402,
@@ -408,7 +522,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\alpha_k^* = -\\frac{\\nabla f(x_k)^T d_k}{d_k^T Q d_k}, \\quad \\nabla f(x_{k+1})^T d_k = 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Fly dead straight until the altitude stops dropping and starts rising: that is the very bottom of that straight track, found exactly for a quadratic.",
-    "examTrap": "In steepest descent on quadratics ($d_k = -g_k$), successive gradients are orthogonal: $g_{k+1}^T g_k = 0$. This orthogonality forces a rigid 90-degree zig-zag trajectory that slows convergence."
+    "examTrap": "In steepest descent on quadratics ($d_k = -g_k$), successive gradients are orthogonal: $g_{k+1}^T g_k = 0$. This orthogonality forces a rigid 90-degree zig-zag trajectory that slows convergence.",
+    "hint": "How far should the pilot fly along a straight track on a quadratic terrain?",
+    "breakdown": [
+      "<strong>Numerator $-g^\\top d$ = the downward momentum:</strong> how steeply the heading dives down the slope.",
+      "<strong>Denominator $d^\\top Qd$ = the brakes:</strong> how fast the terrain curves back up along $d$.",
+      "<strong>The condition $\\nabla f(x_{k+1})^\\top d_k=0$:</strong> at the bottom of that track the slope along it is zero, so the new radar reading is perpendicular to the old heading."
+    ]
   },
   {
     "id": 403,
@@ -430,7 +550,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$f(x_k + \\alpha d_k) \\le f(x_k) + c_1 \\alpha \\nabla f(x_k)^T d_k, \\quad c_1 \\in (0, 1)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Armijo asks each leg for a fair altitude drop in proportion to the distance flown and the slope: refuse a leg that burns lots of fuel for little drop.",
     "examTrap": "The Armijo condition ALONE is not enough! It accepts arbitrarily small steps $\\alpha \\to 0$. If an algorithm takes $\\alpha_k = 1/2^k$, Armijo holds trivially, yet the algorithm stalls without reaching a minimum!",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-403\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"130\" x2=\"226\" y2=\"130\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-403)\"/><path d=\"M30.0,46.0 L33.0,49.1 L36.0,52.0 L39.0,55.0 L42.0,57.8 L45.0,60.5 L48.0,63.2 L51.0,65.8 L54.0,68.3 L57.0,70.8 L60.0,73.1 L63.0,75.4 L66.0,77.6 L69.0,79.8 L72.0,81.8 L75.0,83.8 L78.0,85.7 L81.0,87.5 L84.0,89.2 L87.0,90.9 L90.0,92.5 L93.0,94.0 L96.0,95.4 L99.0,96.8 L102.0,98.1 L105.0,99.3 L108.0,100.4 L111.0,101.5 L114.0,102.4 L117.0,103.3 L120.0,104.1 L123.0,104.9 L126.0,105.5 L129.0,106.1 L132.0,106.6 L135.0,107.0 L138.0,107.4 L141.0,107.7 L144.0,107.8 L147.0,108.0 L150.0,108.0 L153.0,108.0 L156.0,107.8 L159.0,107.7 L162.0,107.4 L165.0,107.0 L168.0,106.6 L171.0,106.1 L174.0,105.5 L177.0,104.9 L180.0,104.1 L183.0,103.3 L186.0,102.4 L189.0,101.5 L192.0,100.4 L195.0,99.3 L198.0,98.1 L201.0,96.8 L204.0,95.4 L207.0,94.0 L210.0,92.5\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><line x1=\"30\" y1=\"46.0\" x2=\"210\" y2=\"111.09999999999965\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><rect x=\"31\" y=\"132\" width=\"154\" height=\"6\" rx=\"0\" fill=\"#c9ced8\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"108.0\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">accept</text><g transform=\"translate(30.0 32.0) rotate(0) scale(0.6)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2.00\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><text x=\"120\" y=\"12\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Armijo: the drop must beat the dashed line</text><text x=\"216\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"end\" fill=\"#000000\">\u03b1</text><text x=\"60\" y=\"76\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">fair drop</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-403\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><line x1=\"20\" y1=\"130\" x2=\"226\" y2=\"130\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-403)\"/><path d=\"M30.0,46.0 L33.0,49.1 L36.0,52.0 L39.0,55.0 L42.0,57.8 L45.0,60.5 L48.0,63.2 L51.0,65.8 L54.0,68.3 L57.0,70.8 L60.0,73.1 L63.0,75.4 L66.0,77.6 L69.0,79.8 L72.0,81.8 L75.0,83.8 L78.0,85.7 L81.0,87.5 L84.0,89.2 L87.0,90.9 L90.0,92.5 L93.0,94.0 L96.0,95.4 L99.0,96.8 L102.0,98.1 L105.0,99.3 L108.0,100.4 L111.0,101.5 L114.0,102.4 L117.0,103.3 L120.0,104.1 L123.0,104.9 L126.0,105.5 L129.0,106.1 L132.0,106.6 L135.0,107.0 L138.0,107.4 L141.0,107.7 L144.0,107.8 L147.0,108.0 L150.0,108.0 L153.0,108.0 L156.0,107.8 L159.0,107.7 L162.0,107.4 L165.0,107.0 L168.0,106.6 L171.0,106.1 L174.0,105.5 L177.0,104.9 L180.0,104.1 L183.0,103.3 L186.0,102.4 L189.0,101.5 L192.0,100.4 L195.0,99.3 L198.0,98.1 L201.0,96.8 L204.0,95.4 L207.0,94.0 L210.0,92.5\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.6\"/><line x1=\"30\" y1=\"46.0\" x2=\"210\" y2=\"111.09999999999965\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><rect x=\"31\" y=\"132\" width=\"154\" height=\"6\" rx=\"0\" fill=\"#c9ced8\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"108.0\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">accept</text><g transform=\"translate(30.0 32.0) rotate(0) scale(0.6)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2.00\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><text x=\"120\" y=\"12\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">Armijo: the drop must beat the dashed line</text><text x=\"216\" y=\"126\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"end\" fill=\"#000000\">\u03b1</text><text x=\"60\" y=\"76\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">fair drop</text></svg>",
+    "hint": "How much altitude must a leg earn to be accepted?",
+    "breakdown": [
+      "<strong>$\\alpha\\nabla f(x_k)^\\top d_k$</strong> is the drop you would get if the slope stayed constant over the whole leg.",
+      "<strong>$c_1$</strong> demands only a fraction of that promised drop, because the terrain curves back up.",
+      "<strong>A leg that earns less than that is refused:</strong> too much fuel for too little altitude."
+    ]
   },
   {
     "id": 404,
@@ -450,7 +576,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$|\\nabla f(x_k + \\alpha_k d_k)^T d_k| \\le c_2 |\\nabla f(x_k)^T d_k|, \\quad 0 < c_1 < c_2 < 1$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Armijo stops you flying so far that you overshoot the valley; the curvature condition stops tiny hops by demanding that the slope has flattened enough after the leg.",
-    "examTrap": "Constants MUST satisfy $0 < c_1 < c_2 < 1$. If $c_1 \\ge c_2$, the acceptable step size interval can become completely empty, causing line search algorithms to crash!"
+    "examTrap": "Constants MUST satisfy $0 < c_1 < c_2 < 1$. If $c_1 \\ge c_2$, the acceptable step size interval can become completely empty, causing line search algorithms to crash!",
+    "hint": "What stops the pilot from stopping early on a slope that is still steep?",
+    "breakdown": [
+      "<strong>$|\\nabla f(x_k+\\alpha d)^\\top d|$ = the slope along the heading after the leg.</strong>",
+      "<strong>The inequality demands it be at most $c_2$ times the starting slope:</strong> the slope must have flattened enough, so tiny hops are refused.",
+      "<strong>$0\\lt c_1\\lt c_2\\lt1$</strong> keeps Armijo (not too far) and curvature (not too short) compatible: together they are the Wolfe conditions."
+    ]
   },
   {
     "id": 405,
@@ -470,7 +602,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\sum_{k=0}^\\infty \\cos^2 \\theta_k \\|\\nabla f(x_k)\\|^2 < \\infty \\implies \\lim_{k \\to \\infty} \\|\\nabla f(x_k)\\| = 0 \\quad (\\text{if } \\cos \\theta_k \\ge \\delta > 0)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> As long as your heading is not turned sideways to the slope ($\\theta_k\\ne90^\\circ$), each leg keeps taking altitude and the slope gauge is driven to zero.",
-    "examTrap": "If $\\cos \\theta_k \\to 0$ (directions become orthogonal to gradient), Zoutendijk's sum can converge with $\\|\\nabla f(x_k)\\| \\ge \\epsilon > 0$, causing the algorithm to fail!"
+    "examTrap": "If $\\cos \\theta_k \\to 0$ (directions become orthogonal to gradient), Zoutendijk's sum can converge with $\\|\\nabla f(x_k)\\| \\ge \\epsilon > 0$, causing the algorithm to fail!",
+    "hint": "What must the nose never do, to guarantee the radar eventually reads zero?",
+    "breakdown": [
+      "<strong>$\\cos\\theta_k$ measures the alignment</strong> of the heading with straight downhill. Sideways ($\\theta=90^\\circ$) means $\\cos\\theta=0$.",
+      "<strong>The sum $\\sum\\cos^2\\theta_k\\|g_k\\|^2\\lt\\infty$</strong> forces its terms to 0.",
+      "<strong>If $\\cos\\theta_k\\ge\\delta\\gt0$ always,</strong> that leaves $\\|g_k\\|\\to0$: the plane reaches flat ground."
+    ]
   },
   {
     "id": 406,
@@ -490,7 +628,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\alpha^{(j+1)} = \\rho \\alpha^{(j)}, \\quad \\rho \\in (0, 1), \\quad \\text{until } f(x + \\alpha d) \\le f(x) + c_1 \\alpha \\nabla f(x)^T d$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Plan a long leg, check the altitude drop; if it is too small, shorten the leg by half and check again until the drop is acceptable.",
-    "examTrap": "Never start backtracking with $\\alpha_0 < 1$ in Newton's method! Restricting $\\alpha_0 < 1$ permanently degrades Newton's quadratic convergence to slow linear convergence."
+    "examTrap": "Never start backtracking with $\\alpha_0 < 1$ in Newton's method! Restricting $\\alpha_0 < 1$ permanently degrades Newton's quadratic convergence to slow linear convergence.",
+    "hint": "What does the pilot do when his planned leg earns too little altitude?",
+    "breakdown": [
+      "<strong>Start with a bold step</strong> $\\alpha^{(0)}$ (often 1).",
+      "<strong>Multiply by $\\rho\\in(0,1)$ each time</strong> the Armijo test fails: 'halve it and look again'.",
+      "<strong>Stop at the first success.</strong> It always ends, because a short enough leg always earns the promised drop."
+    ]
   },
   {
     "id": 501,
@@ -512,7 +656,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$x_{k+1}=x_k-\\alpha_k\\nabla f(x_k),\\quad d_k=-\\nabla f(x_k),\\quad \\|g_k\\|\\le\\text{tol}\\cdot\\|g_0\\|$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Fly with the nose pointing exactly opposite to the steepest upward slope under your wings. Pour a drop of water on a steep roof and gravity makes it trace the same line at every millisecond. You stop when the slope gauge reads only a tiny fraction of what it read at the start (the relative stop), not when it reads exactly zero.",
     "examTrap": "Steepest descent is only steepest locally in the EUCLIDEAN norm! Changing coordinates or using a Mahalanobis norm changes the gradient direction entirely (which is why Newton's method is superior).",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-501\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"150\" cy=\"72\" rx=\"28\" ry=\"14\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"56\" ry=\"28\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"84\" ry=\"42\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><g transform=\"translate(92.0 52.0) rotate(79.72666935837071) scale(0.8)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.50\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"92.0\" y1=\"52.0\" x2=\"99.8\" y2=\"95.3\" stroke=\"#000000\" stroke-width=\"2.8\" marker-end=\"url(#arr-501)\"/><text x=\"105.84714606065337\" y=\"105.29459895532896\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">d = \u2212\u2207f</text><line x1=\"92.0\" y1=\"52.0\" x2=\"86.6\" y2=\"22.5\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/><text x=\"30\" y=\"24\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">steepest UP</text><circle cx=\"150.0\" cy=\"72.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"150\" y=\"86\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">lowest</text><text x=\"120\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">fly opposite to the steepest upward slope</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-501\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"150\" cy=\"72\" rx=\"28\" ry=\"14\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"56\" ry=\"28\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><ellipse cx=\"150\" cy=\"72\" rx=\"84\" ry=\"42\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.3\" transform=\"rotate(0 150 72)\"/><g transform=\"translate(92.0 52.0) rotate(79.72666935837071) scale(0.8)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.50\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"92.0\" y1=\"52.0\" x2=\"99.8\" y2=\"95.3\" stroke=\"#000000\" stroke-width=\"2.8\" marker-end=\"url(#arr-501)\"/><text x=\"105.84714606065337\" y=\"105.29459895532896\" font-size=\"9\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">d = \u2212\u2207f</text><line x1=\"92.0\" y1=\"52.0\" x2=\"86.6\" y2=\"22.5\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/><text x=\"30\" y=\"24\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">steepest UP</text><circle cx=\"150.0\" cy=\"72.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"150\" y=\"86\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">lowest</text><text x=\"120\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">fly opposite to the steepest upward slope</text></svg>",
+    "hint": "Which way should the nose point if the radar only tells you the slope under your wheels?",
+    "breakdown": [
+      "<strong>$\\nabla f(x_k)$ is the radar.</strong> It points up the steepest slope, so the minus sign swings the nose 180\u00b0 to point straight downhill.",
+      "<strong>$\\alpha_k$ is the flight distance.</strong> Multiplying by it turns a direction into an actual displacement: how far you fly before checking the radar again.",
+      "<strong>Why stop at $\\|g_k\\|\\le\\text{tol}\\,\\|g_0\\|$?</strong> Flat ground is never exactly 0.0000, so the landing check compares the slope now with the cliff you started on."
+    ]
   },
   {
     "id": 508,
@@ -532,7 +682,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\alpha_k=\\frac{-g_k^\\top u_k}{u_k^\\top Q u_k},\\qquad (x_{k+2}-x_{k+1})^\\top(x_{k+1}-x_k)=0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> You fly dead straight along your heading $u$ until the altimeter stops falling, and at that moment the new downhill is exactly 90 degrees to your old heading: that is the zig-zag. The slope gauge ($-g^\\top u$) says how hard you are diving; the curvature brakes ($u^\\top Qu$) say how soon the ground curves back up, so a steep dive on gently curving ground means a long leg.",
-    "examTrap": "Perpendicular turns do NOT mean fast. In a long narrow valley (large condition number) the zig-zag wastes many legs. Also, the right-angle property holds only for an EXACT line search, not for Armijo/backtracking steps."
+    "examTrap": "Perpendicular turns do NOT mean fast. In a long narrow valley (large condition number) the zig-zag wastes many legs. Also, the right-angle property holds only for an EXACT line search, not for Armijo/backtracking steps.",
+    "hint": "What tells the pilot when to stop flying straight and turn, and why is the turn exactly 90\u00b0?",
+    "breakdown": [
+      "<strong>Numerator $-g^\\top u$ = downward momentum.</strong> How steeply the heading $u$ dives down the slope: a steeper dive means a longer leg.",
+      "<strong>Denominator $u^\\top Qu$ = the brakes.</strong> How fast the terrain curves back up along $u$: a sharper curve means you must stop sooner.",
+      "<strong>Momentum over brakes = the distance to the bottom of that straight track.</strong> Right there the new slope is perpendicular to $u$, which is why every turn is 90\u00b0 and the path zig-zags."
+    ]
   },
   {
     "id": 502,
@@ -552,7 +708,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f(x_k) - f^* \\le \\frac{L \\|x_0 - x^*\\|^2}{2k} = \\mathcal{O}\\left(\\frac{1}{k}\\right)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Descending with step $1/L$: the first legs shed lots of altitude, but squeezing out the last few metres above the valley floor takes progressively more legs, so the gap shrinks only like $1/k$.",
-    "examTrap": "If the step size $\\alpha \\ge 2/L$, gradient descent can violently DIVERGE! The stability threshold is strictly $\\alpha < 2/L$."
+    "examTrap": "If the step size $\\alpha \\ge 2/L$, gradient descent can violently DIVERGE! The stability threshold is strictly $\\alpha < 2/L$.",
+    "hint": "Why can the pilot fly legs of exactly $1/L$ without ever overshooting the valley?",
+    "breakdown": [
+      "<strong>$L$ = the sharpest bend anywhere.</strong> The ground can never curve back up faster than $L$, so a leg of $1/L$ is a safe distance everywhere.",
+      "<strong>$\\|x_0-x^*\\|^2$ = how far away you start.</strong> A bigger first cliff means a bigger gap to close.",
+      "<strong>Dividing by $2k$:</strong> each extra leg trims only a shrinking share of what is left, so the error falls like $1/k$ (sublinear), not geometrically."
+    ]
   },
   {
     "id": 503,
@@ -572,7 +734,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\|x_k - x^*\\| \\le \\left(\\frac{\\kappa - 1}{\\kappa + 1}\\right)^k \\|x_0 - x^*\\|, \\quad \\kappa = \\frac{L}{\\mu}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Each leg removes a fixed fraction of the altitude still left above the valley floor, like a glide path losing the same percentage every mile: error is multiplied by $\\rho\\lt1$ per leg, so the gap vanishes geometrically.",
-    "examTrap": "Don't confuse computer science linear time $O(k)$ with optimization 'linear convergence'! Linear convergence in optimization means geometric/exponential decay $O(\\rho^k)$, which is dramatically faster than sublinear $O(1/k)$."
+    "examTrap": "Don't confuse computer science linear time $O(k)$ with optimization 'linear convergence'! Linear convergence in optimization means geometric/exponential decay $O(\\rho^k)$, which is dramatically faster than sublinear $O(1/k)$.",
+    "hint": "By what fixed fraction does each leg shrink the distance to the valley floor?",
+    "breakdown": [
+      "<strong>$\\kappa=L/\\mu$ = sharpest bend over gentlest bend.</strong> It measures how stretched the valley is.",
+      "<strong>$\\frac{\\kappa-1}{\\kappa+1}$ = the contraction per leg.</strong> A round bowl ($\\kappa=1$) gives 0 (one leg); a long thin canyon ($\\kappa$ large) gives almost 1 (almost no progress).",
+      "<strong>The power $k$:</strong> the same fraction is multiplied in again on every leg, so the error decays geometrically (linear convergence)."
+    ]
   },
   {
     "id": 504,
@@ -594,7 +762,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$\\frac{(x^T x)^2}{(x^T Q x)(x^T Q^{-1} x)} \\ge \\frac{4 A a}{(A + a)^2} \\implies E(x_{k+1}) \\le \\left(\\frac{\\kappa - 1}{\\kappa + 1}\\right)^2 E(x_k)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The worst-case guarantee: how badly can your nose ($-g$) be misaligned with the valley's long axis? Kantorovich bounds that misalignment, and with it the least altitude you must gain back per leg.",
     "examTrap": "The rate bound is TIGHT! For starting points aligned at 45 degrees to the principal eigenvectors, steepest descent achieves the exact upper bound $\\left(\\frac{\\kappa-1}{\\kappa+1}\\right)^2$ at every single iteration.",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-504\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"150\" cy=\"76\" rx=\"13.063945294843617\" ry=\"32.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(-90.0 150 76)\"/><ellipse cx=\"150\" cy=\"76\" rx=\"23.094010767585033\" ry=\"56.568542494923804\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(-90.0 150 76)\"/><ellipse cx=\"150\" cy=\"76\" rx=\"34.25395354310701\" ry=\"83.90470785361212\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(-90.0 150 76)\"/><g transform=\"translate(78.0 58.4) rotate(55.71312302279106) scale(0.75)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.60\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"78.0\" y1=\"58.4\" x2=\"99.4\" y2=\"89.8\" stroke=\"#000000\" stroke-width=\"2.6\" marker-end=\"url(#arr-504)\"/><text x=\"103.40679933637736\" y=\"101.79663902668682\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u2212g</text><line x1=\"86.0\" y1=\"54.4\" x2=\"140.0\" y2=\"74.0\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"4 3\" marker-end=\"url(#arr-504)\"/><text x=\"86\" y=\"108\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">valley axis</text><circle cx=\"150.0\" cy=\"76.0\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"188\" y=\"20\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03b8 = misalignment</text><text x=\"150\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">worst case: cos \u03b8 \u2265 2\u221a\u03ba/(\u03ba+1)</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-504\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><ellipse cx=\"150\" cy=\"76\" rx=\"13.063945294843617\" ry=\"32.0\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(-90.0 150 76)\"/><ellipse cx=\"150\" cy=\"76\" rx=\"23.094010767585033\" ry=\"56.568542494923804\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(-90.0 150 76)\"/><ellipse cx=\"150\" cy=\"76\" rx=\"34.25395354310701\" ry=\"83.90470785361212\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" transform=\"rotate(-90.0 150 76)\"/><g transform=\"translate(78.0 58.4) rotate(55.71312302279106) scale(0.75)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.60\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"78.0\" y1=\"58.4\" x2=\"99.4\" y2=\"89.8\" stroke=\"#000000\" stroke-width=\"2.6\" marker-end=\"url(#arr-504)\"/><text x=\"103.40679933637736\" y=\"101.79663902668682\" font-size=\"9.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">\u2212g</text><line x1=\"86.0\" y1=\"54.4\" x2=\"140.0\" y2=\"74.0\" stroke=\"#000000\" stroke-width=\"1.6\" stroke-dasharray=\"4 3\" marker-end=\"url(#arr-504)\"/><text x=\"86\" y=\"108\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">valley axis</text><circle cx=\"150.0\" cy=\"76.0\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"188\" y=\"20\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">\u03b8 = misalignment</text><text x=\"150\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">worst case: cos \u03b8 \u2265 2\u221a\u03ba/(\u03ba+1)</text></svg>",
+    "hint": "How badly can the nose be misaligned with the valley axis, and what does it cost per leg?",
+    "breakdown": [
+      "<strong>The ratio $\\frac{(x^\\top x)^2}{(x^\\top Qx)(x^\\top Q^{-1}x)}$</strong> compares straight downhill with the valley's two extreme curvatures; it equals 1 when the nose is perfectly aligned.",
+      "<strong>$\\frac{4Aa}{(A+a)^2}$ = the worst case.</strong> It is set by the sharpest curvature $A$ and the gentlest curvature $a$.",
+      "<strong>Result:</strong> each leg shrinks the altitude gap above the floor by at least $\\left(\\frac{\\kappa-1}{\\kappa+1}\\right)^2$, the square of the distance rate."
+    ]
   },
   {
     "id": 505,
@@ -614,7 +788,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\kappa = \\frac{\\lambda_{\\max}}{\\lambda_{\\min}}, \\quad \\lim_{\\kappa \\to \\infty} \\frac{\\kappa - 1}{\\kappa + 1} = 1 \\implies \\text{Stagnation}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A narrow canyon: heading perpendicular to the contour sends you straight into the opposite canyon wall instead of down the stream. The longer and thinner the valley (large condition number $\\kappa$), the worse the zig-zag.",
-    "examTrap": "Preconditioning transforms coordinates ($y = P x$) to make the condition number $\\kappa(P^{-T} Q P^{-1}) \\approx 1$, curing the zig-zag phenomenon without changing the minimum point."
+    "examTrap": "Preconditioning transforms coordinates ($y = P x$) to make the condition number $\\kappa(P^{-T} Q P^{-1}) \\approx 1$, curing the zig-zag phenomenon without changing the minimum point.",
+    "hint": "Why does a very long, thin canyon make the pilot zig-zag instead of flying down the middle?",
+    "breakdown": [
+      "<strong>$\\lambda_{\\max}$ = the steep canyon wall, $\\lambda_{\\min}$ = the gentle floor.</strong> Their ratio $\\kappa$ says how stretched the valley is.",
+      "<strong>The radar mostly sees the steep wall,</strong> so the nose points across the canyon and each leg slams into the opposite side.",
+      "<strong>As $\\kappa\\to\\infty$ the factor $\\frac{\\kappa-1}{\\kappa+1}\\to1$:</strong> each leg barely shrinks the error, which is the stagnation."
+    ]
   },
   {
     "id": 506,
@@ -634,7 +814,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\alpha_k^{BB1}=\\frac{s_{k}^{T}s_{k}}{s_{k}^{T}y_{k}},\\qquad \\alpha_k^{BB2}=\\frac{s_{k}^{T}y_{k}}{y_{k}^{T}y_{k}},\\qquad s_k=x_k-x_{k-1},\\ \\ y_k=g_k-g_{k-1}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> No radar sweeps: size your next leg from your last two footprints, how far you flew ($s$) compared with how much the slope gauge changed ($y$), so the stride matches the terrain.",
-    "examTrap": "BB iterations are non-monotone: f can go up for a few steps and that is expected. Forcing a strict descent line search on top destroys the speed-up. Also check s\u1d40y > 0 before dividing."
+    "examTrap": "BB iterations are non-monotone: f can go up for a few steps and that is expected. Forcing a strict descent line search on top destroys the speed-up. Also check s\u1d40y > 0 before dividing.",
+    "hint": "How can the pilot size the next leg from the last two footprints with no radar sweep?",
+    "breakdown": [
+      "<strong>$s_k$ = how far you flew; $y_k$ = how much the slope reading changed.</strong> Together they say how fast the ground curves along your path.",
+      "<strong>BB1 $=s^\\top s/s^\\top y$</strong> is distance squared over slope change: one over the local curvature, which is the bottom-of-the-curve distance.",
+      "<strong>BB2 $=s^\\top y/y^\\top y$</strong> is the same idea measured from the slope side. Neither needs a line search."
+    ]
   },
   {
     "id": 507,
@@ -654,7 +840,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_{k+1}=x_k-\\alpha\\nabla f(x_k)+\\beta(x_k-x_{k-1}),\\qquad \\text{rate}\\ \\ \\frac{\\sqrt\\kappa-1}{\\sqrt\\kappa+1}\\ \\text{ vs }\\ \\frac{\\kappa-1}{\\kappa+1}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A heavy airliner keeps its heading through small gusts, so it rattles less between the canyon walls and holds the line down the valley. Nesterov looks ahead along the heading before correcting.",
-    "examTrap": "Heavy ball's speed-up is proven for quadratics. For general convex functions use Nesterov's version, which takes the gradient at the look-ahead point $x_k+\\beta(x_k-x_{k-1})$ and has the optimal $O(1/k^2)$ guarantee."
+    "examTrap": "Heavy ball's speed-up is proven for quadratics. For general convex functions use Nesterov's version, which takes the gradient at the look-ahead point $x_k+\\beta(x_k-x_{k-1})$ and has the optimal $O(1/k^2)$ guarantee.",
+    "hint": "What lets a heavy plane keep rolling down the canyon instead of bouncing off the walls?",
+    "breakdown": [
+      "<strong>$-\\alpha\\nabla f(x_k)$</strong> is the usual radar-guided push downhill.",
+      "<strong>$\\beta(x_k-x_{k-1})$ = momentum.</strong> The last leg's displacement carries you on, so the side-to-side bounces cancel while the steady downhill part adds up.",
+      "<strong>The rate $\\frac{\\sqrt\\kappa-1}{\\sqrt\\kappa+1}$</strong> uses $\\sqrt\\kappa$ instead of $\\kappa$, so thin canyons cost far fewer legs."
+    ]
   },
   {
     "id": 601,
@@ -676,7 +868,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_{k+1} = x_k - [\\nabla^2 f(x_k)]^{-1} \\nabla f(x_k), \\quad \\nabla^2 f(x_k) p_k = -\\nabla f(x_k)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The autopilot fits a parabola-shaped model of the terrain from the slope and curvature gauges and flies straight to the lowest point of that model in one leg, instead of inching along with the slope alone.",
-    "examTrap": "NEVER invert the Hessian matrix explicitly ($H^{-1}$)! Inverting an $n \\times n$ matrix costs $\\mathcal{O}(n^3)$ operations and destroys sparsity. Always solve the linear system $H_k p_k = -g_k$ via Cholesky factorization."
+    "examTrap": "NEVER invert the Hessian matrix explicitly ($H^{-1}$)! Inverting an $n \\times n$ matrix costs $\\mathcal{O}(n^3)$ operations and destroys sparsity. Always solve the linear system $H_k p_k = -g_k$ via Cholesky factorization.",
+    "hint": "What shape does the autopilot fit to the terrain, and where does it fly?",
+    "breakdown": [
+      "<strong>$\\nabla^2f$ = the radar that sees curvature,</strong> not only the slope but how fast the slope changes.",
+      "<strong>Solving $\\nabla^2f\\,p=-\\nabla f$</strong> flies to the bottom of the parabola built from slope and curvature.",
+      "<strong>The inverse Hessian rescales the nose:</strong> steep walls get short moves, flat floors long moves, so the zig-zag disappears."
+    ]
   },
   {
     "id": 602,
@@ -696,7 +894,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\|x_{k+1} - x^*\\| \\le \\frac{L}{2 m} \\|x_k - x^*\\|^2 \\quad \\implies \\quad \\lim_{k\\to\\infty} \\frac{\\|x_{k+1} - x^*\\|}{\\|x_k - x^*\\|} = 0 \\; (\\text{Superlinear})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Far from the airfield the autopilot manoeuvres cautiously; once inside the terminal approach bubble each leg squares the remaining error, so the number of correct digits roughly doubles.",
-    "examTrap": "Quadratic convergence is strictly a LOCAL property! If $x_0$ is outside the radius of attraction, Newton's method can oscillate wildly or diverge to infinity."
+    "examTrap": "Quadratic convergence is strictly a LOCAL property! If $x_0$ is outside the radius of attraction, Newton's method can oscillate wildly or diverge to infinity.",
+    "hint": "What happens to the error once you are inside the terminal approach bubble?",
+    "breakdown": [
+      "<strong>$\\|x_k-x^*\\|^2$:</strong> the error is squared each leg, so $0.1\\to0.01\\to0.0001$ and the number of correct digits doubles.",
+      "<strong>$\\frac{L}{2m}$ = roughest bend over gentlest bend</strong> controls how small the bubble is: the bigger the ratio, the closer you must start.",
+      "<strong>Superlinear:</strong> the ratio of successive errors tends to 0, faster than any fixed geometric rate."
+    ]
   },
   {
     "id": 603,
@@ -716,7 +920,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\nabla^2 f(x_k) \\not\\succ 0 \\implies p_k^T \\nabla f(x_k) \\not\\le 0 \\quad (\\text{Not Guaranteed to be a Descent Direction})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> In fog near a hilltop or saddle the parabola model opens downward. The autopilot flies to the model's peak, straight over the summit, because pure Newton hunts any flat ground, not low ground.",
-    "examTrap": "Pure Newton on f(x) = x\u00b3 \u2212 3x started at x\u2080 = \u22120.5 runs UPHILL: x goes \u22120.5 \u2192 \u22121.25 \u2192 \u22121.025 \u2192 \u22121 and f rises 1.375 \u2192 1.80 \u2192 2.00, converging to the local MAXIMUM at x = \u22121 (where f\u2033 = \u22126 < 0)."
+    "examTrap": "Pure Newton on f(x) = x\u00b3 \u2212 3x started at x\u2080 = \u22120.5 runs UPHILL: x goes \u22120.5 \u2192 \u22121.25 \u2192 \u22121.025 \u2192 \u22121 and f rises 1.375 \u2192 1.80 \u2192 2.00, converging to the local MAXIMUM at x = \u22121 (where f\u2033 = \u22126 < 0).",
+    "hint": "What goes wrong when the radar sees the ground curving downward?",
+    "breakdown": [
+      "<strong>If $\\nabla^2f$ is not positive definite,</strong> the fitted parabola opens downward or is flat, and its 'bottom' is really a peak or a saddle.",
+      "<strong>The Newton nose $p_k$ then need not satisfy $p_k^\\top\\nabla f\\lt0$:</strong> it can point uphill.",
+      "<strong>Fix:</strong> check the curvature first and stabilise (Levenberg-Marquardt) or fall back to straight downhill when it is not all positive."
+    ]
   },
   {
     "id": 604,
@@ -736,7 +946,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_{k+1} = x_k + \\alpha_k p_k, \\quad \\alpha_k = \\beta^m, \\quad \\text{with } c_1 \\in (0, 1/2) \\implies \\alpha_k = 1 \\text{ near } x^*$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Far from the field you shorten each leg after a backtracking check (small $\\alpha_k$); on the final approach you fly the full unit step $\\alpha=1$.",
-    "examTrap": "Choosing $c_1 > 1/2$ destroys the quadratic convergence! If $c_1 > 1/2$, the unit step $\\alpha_k = 1$ will be rejected even when the quadratic model is exact, permanently capping your rate at linear."
+    "examTrap": "Choosing $c_1 > 1/2$ destroys the quadratic convergence! If $c_1 > 1/2$, the unit step $\\alpha_k = 1$ will be rejected even when the quadratic model is exact, permanently capping your rate at linear.",
+    "hint": "When does the pilot take the full unit step and when only a cautious one?",
+    "breakdown": [
+      "<strong>$\\alpha_k=\\beta^m$:</strong> start with the full step 1 and multiply by $\\beta$ until the Armijo altitude drop is achieved.",
+      "<strong>$c_1\\lt\\tfrac12$</strong> is a modest demand for altitude loss, so near the optimum the full Newton step already satisfies it.",
+      "<strong>Result:</strong> short careful legs far away and full Newton legs ($\\alpha=1$) near the valley, which keeps the fast local rate."
+    ]
   },
   {
     "id": 605,
@@ -756,7 +972,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$(\\nabla^2 f(x_k) + \\tau_k I) p_k = -\\nabla f(x_k), \\quad \\tau_k \\ge \\max\\left(0, \\; -\\lambda_{\\min}(\\nabla^2 f(x_k)) + \\delta\\right) \\; (\\delta > 0)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> If the curvature gauge is not all positive, add a stabiliser $\\tau I$ to stiffen the terrain model into a bowl. A large $\\tau$ behaves like a short gradient leg, $\\tau\\to0$ is pure Newton.",
-    "examTrap": "Choosing $\\tau_k$ too large degrades the method to slow Gradient Descent with tiny steps! Set $\\tau_k$ dynamically: decrease $\\tau$ when function value decreases rapidly, increase $\\tau$ when progress stalls."
+    "examTrap": "Choosing $\\tau_k$ too large degrades the method to slow Gradient Descent with tiny steps! Set $\\tau_k$ dynamically: decrease $\\tau$ when function value decreases rapidly, increase $\\tau$ when progress stalls.",
+    "hint": "How does the pilot make a hill-shaped terrain model safe to fly to?",
+    "breakdown": [
+      "<strong>$\\tau_kI$ adds stiffness along every axis,</strong> lifting all the curvatures by $\\tau_k$.",
+      "<strong>$\\tau_k\\ge-\\lambda_{\\min}+\\delta$</strong> is just enough that even the most negative curvature becomes strictly positive.",
+      "<strong>The dial:</strong> $\\tau\\to0$ is pure Newton (trust the curvature), $\\tau\\to\\infty$ is a tiny gradient step (trust only the slope)."
+    ]
   },
   {
     "id": 606,
@@ -776,7 +998,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\nabla f(0,0)=\\begin{bmatrix}-2\\\\0\\end{bmatrix},\\ \\ H=\\begin{bmatrix}2&0\\\\0&200\\end{bmatrix}\\ \\Rightarrow\\ p_N=-H^{-1}g=\\begin{bmatrix}1\\\\0\\end{bmatrix},\\qquad \\kappa=100$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Newton flies a bridge straight across the banana-shaped canyon in a few legs, while gradient descent hikes down hundreds of switchbacks to the riverbed and back up the other wall.",
-    "examTrap": "Far from the spine (e.g. $x = (-1.2, 1)$), Rosenbrock's Hessian has negative eigenvalues! You MUST use Hessian modification $\\tau I$ or Damped line search, otherwise Newton steps uphill and fails."
+    "examTrap": "Far from the spine (e.g. $x = (-1.2, 1)$), Rosenbrock's Hessian has negative eigenvalues! You MUST use Hessian modification $\\tau I$ or Damped line search, otherwise Newton steps uphill and fails.",
+    "hint": "Why does Newton cross the banana canyon in one leg while gradient descent switchbacks?",
+    "breakdown": [
+      "<strong>$H=\\operatorname{diag}(2,200)$:</strong> the curvature along $x_2$ is 100 times that along $x_1$ (steep walls, gentle floor), so $\\kappa=100$.",
+      "<strong>$p_N=-H^{-1}g$ divides each slope component by its own curvature,</strong> giving the move $(1,0)$ straight down the floor.",
+      "<strong>Gradient descent sees only the slope,</strong> so with $\\kappa=100$ it zig-zags between the walls."
+    ]
   },
   {
     "id": 701,
@@ -798,7 +1026,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$d_i^T Q d_j = 0 \\quad (\\forall i \\ne j), \\quad \\alpha_k = -\\frac{g_k^T d_k}{d_k^T Q d_k} = \\frac{r_k^T d_k}{d_k^T Q d_k} \\quad (r_k = b - Q x_k = -g_k)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Headings that are $Q$-conjugate follow the valley's own natural axes: pushing down along one heading does not undo what you gained along another, unlike plain perpendicular headings in a skewed valley.",
-    "examTrap": "Conjugacy depends strictly on matrix $Q$! Directions that are orthogonal in standard Euclidean geometry ($d_i^T d_j = 0$) are generally NOT $Q$-conjugate unless $Q = I$."
+    "examTrap": "Conjugacy depends strictly on matrix $Q$! Directions that are orthogonal in standard Euclidean geometry ($d_i^T d_j = 0$) are generally NOT $Q$-conjugate unless $Q = I$.",
+    "hint": "Why are Q-conjugate headings better than perpendicular ones in a skewed valley?",
+    "breakdown": [
+      "<strong>$d_i^\\top Qd_j=0$ = a $Q$-twisted right angle.</strong> The valley's own curvature $Q$ decides what counts as 'not interfering', so moving along $d_j$ does not undo the altitude already won along $d_i$.",
+      "<strong>$\\alpha_k=-g_k^\\top d_k/d_k^\\top Qd_k$:</strong> downward momentum over the brakes along that heading, exactly the bottom of that line.",
+      "<strong>$r_k=-g_k$</strong> is the residual: the same radar reading with the sign flipped."
+    ]
   },
   {
     "id": 702,
@@ -820,7 +1054,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_k = \\arg\\min_{x \\in x_0 + \\mathcal{B}_k} f(x), \\quad g_k^T d_i = 0 \\quad (\\forall i = 0, 1, \\dots, k-1)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> After $k$ legs you sit at the lowest point of the entire flight plane spanned by your $k$ headings, not only along the last line, and later conjugate legs never spoil the altitude already won.",
-    "examTrap": "Distinguish between inner products: $g_k$ is orthogonal to $d_i$ under the standard Euclidean dot product ($g_k^T d_i = 0$), whereas the directions $d_i$ are orthogonal under the $Q$-weighted inner product ($d_i^T Q d_j = 0$)."
+    "examTrap": "Distinguish between inner products: $g_k$ is orthogonal to $d_i$ under the standard Euclidean dot product ($g_k^T d_i = 0$), whereas the directions $d_i$ are orthogonal under the $Q$-weighted inner product ($d_i^T Q d_j = 0$).",
+    "hint": "After k legs, where in the whole flight plane is the pilot sitting?",
+    "breakdown": [
+      "<strong>$x_k=\\arg\\min_{x_0+\\mathcal B_k}f$:</strong> you are at the lowest point of the entire flight plane spanned by all $k$ headings so far, not just along the last line.",
+      "<strong>$g_k^\\top d_i=0$ for every earlier heading:</strong> the slope under you is perpendicular to all of them, so no earlier heading can improve the altitude any more.",
+      "<strong>Why it matters:</strong> later conjugate legs never spoil what is already won."
+    ]
   },
   {
     "id": 703,
@@ -840,7 +1080,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$d_{k+1} = -g_{k+1} + \\beta_k d_k, \\quad \\beta_k = \\frac{g_{k+1}^T g_{k+1}}{g_k^T g_k} = \\frac{\\|r_{k+1}\\|^2}{\\|r_k\\|^2}, \\quad \\alpha_k = \\frac{\\|r_k\\|^2}{d_k^T Q d_k}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Instead of recalculating the whole voyage, trim the previous heading: the new heading is fresh downhill plus a fraction $\\beta_k=\\|g_{k+1}\\|^2/\\|g_k\\|^2$ of the previous heading, like keeping some momentum from the last leg.",
-    "examTrap": "Remember that residual $r_k = b - Q x_k = -g_k$. In literature, $\\beta_k$ is written interchangeably as $\\frac{g_{k+1}^T g_{k+1}}{g_k^T g_k}$ or $\\frac{r_{k+1}^T r_{k+1}}{r_k^T r_k}$. Both are identical because sign cancels in squared norm."
+    "examTrap": "Remember that residual $r_k = b - Q x_k = -g_k$. In literature, $\\beta_k$ is written interchangeably as $\\frac{g_{k+1}^T g_{k+1}}{g_k^T g_k}$ or $\\frac{r_{k+1}^T r_{k+1}}{r_k^T r_k}$. Both are identical because sign cancels in squared norm.",
+    "hint": "Which fraction of the old heading does the pilot keep when choosing the next one?",
+    "breakdown": [
+      "<strong>$-g_{k+1}$ is the fresh downhill from the radar;</strong> $\\beta_kd_k$ is the memory of the previous flight (the GPS memory).",
+      "<strong>$\\beta_k=\\|g_{k+1}\\|^2/\\|g_k\\|^2$:</strong> if the slope has shrunk a lot, you keep little of the old heading; if not, you keep more.",
+      "<strong>$\\alpha_k=\\|r_k\\|^2/d_k^\\top Qd_k$:</strong> the leg length is still momentum over brakes, along the remembered heading."
+    ]
   },
   {
     "id": 704,
@@ -860,7 +1106,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\mathcal{B}_k = \\mathcal{K}_k(Q, r_0) = \\operatorname{span}\\{r_0, Q r_0, \\dots, Q^{k-1} r_0\\}, \\quad x_m = x^* \\; \\text{for } m = |\\sigma(Q)| \\le n$$",
     "personalConnection": "<strong>The airplane analogy.</strong> In $n$ dimensions a quadratic valley has only $n$ natural axes: each conjugate leg kills one more, so you land after at most $n$ legs (only $m$ if there are just $m$ distinct curvature values).",
-    "examTrap": "In computer floating-point arithmetic with roundoff error, finite termination can fail! Directions lose $Q$-orthogonality over many steps, turning CG into an iterative method that requires restarts."
+    "examTrap": "In computer floating-point arithmetic with roundoff error, finite termination can fail! Directions lose $Q$-orthogonality over many steps, turning CG into an iterative method that requires restarts.",
+    "hint": "How many legs does the pilot need, and what do the legs span?",
+    "breakdown": [
+      "<strong>$\\mathcal K_k=\\operatorname{span}\\{r_0,Qr_0,\\dots\\}$</strong> is the flight plane the radar and the curvature gauge can reach in $k$ legs.",
+      "<strong>Each leg kills one more natural axis of the valley,</strong> so with $m$ distinct curvature values you land after at most $m\\le n$ legs.",
+      "<strong>Why it matters:</strong> in exact arithmetic CG is a direct method, and an iterative one that is usually done long before $n$ legs."
+    ]
   },
   {
     "id": 705,
@@ -880,7 +1132,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\beta_k^{PR} = \\frac{g_{k+1}^T (g_{k+1} - g_k)}{\\|g_k\\|^2}, \\quad \\beta_k^+ = \\max\\left(0, \\; \\beta_k^{PR}\\right) \\quad (\\text{Automatic Reset})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> When the terrain is not a perfect quadratic, Polak-Ribi\u00e8re headings can go bad. Reset the heading to straight downhill (a restart), like re-zeroing a compass after passing a magnetic deposit.",
-    "examTrap": "FR guarantees descent under strong Wolfe conditions ($c_2 < 1/2$), but PR can produce an ascent direction on non-convex functions unless modified as $\\beta_k = \\max(0, \\beta_k^{PR})$."
+    "examTrap": "FR guarantees descent under strong Wolfe conditions ($c_2 < 1/2$), but PR can produce an ascent direction on non-convex functions unless modified as $\\beta_k = \\max(0, \\beta_k^{PR})$.",
+    "hint": "What stops the pilot following a corrupted heading when the terrain is not a quadratic?",
+    "breakdown": [
+      "<strong>$\\beta^{PR}=g_{k+1}^\\top(g_{k+1}-g_k)/\\|g_k\\|^2$</strong> measures how much the radar reading actually changed, instead of only its size.",
+      "<strong>$\\beta^+=\\max(0,\\beta^{PR})$:</strong> if the formula goes negative, the memory is thrown away and the pilot restarts with straight downhill.",
+      "<strong>Why it matters:</strong> restarting protects the global convergence of non-linear CG."
+    ]
   },
   {
     "id": 706,
@@ -900,7 +1158,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_0=\\begin{bmatrix}4\\\\1\\end{bmatrix}\\xrightarrow{\\ \\alpha_0=1/5\\ }x_1=\\begin{bmatrix}2.4\\\\-0.6\\end{bmatrix}\\xrightarrow{\\ \\beta_0=0.36,\\ \\alpha_1=5/16\\ }x_2=\\begin{bmatrix}0\\\\0\\end{bmatrix}=x^*$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Two legs finish the job in 2D: the first removes the error along $d_0$, the second removes the rest along $d_1$, and the first leg is never spoiled by the second.",
-    "examTrap": "Always check the two identities: g\u2081\u1d40d\u2080 = 0 (exact line search) and d\u2081\u1d40Qd\u2080 = 0 (conjugacy). Here d\u2080\u1d40Qd\u2081 = 2(\u22128)(\u22127.68) + 8(\u22128)(1.92) = 122.88 \u2212 122.88 = 0 \u2713."
+    "examTrap": "Always check the two identities: g\u2081\u1d40d\u2080 = 0 (exact line search) and d\u2081\u1d40Qd\u2080 = 0 (conjugacy). Here d\u2080\u1d40Qd\u2081 = 2(\u22128)(\u22127.68) + 8(\u22128)(1.92) = 122.88 \u2212 122.88 = 0 \u2713.",
+    "hint": "Why does the second leg finish the job in 2D?",
+    "breakdown": [
+      "<strong>Leg 1 ($\\alpha_0=1/5$):</strong> fly straight downhill from $x_0$ until the altitude stops falling, landing at $x_1$.",
+      "<strong>$\\beta_0=0.36$ blends the memory in:</strong> the second heading is fresh downhill plus 36% of the first heading, which makes it $Q$-conjugate to it.",
+      "<strong>Leg 2 ($\\alpha_1=5/16$):</strong> flying that heading removes the remaining error, so $x_2=x^*=(0,0)$ exactly: two legs for two dimensions."
+    ]
   },
   {
     "id": 801,
@@ -922,7 +1186,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$B_{k+1} s_k = y_k \\quad \\text{or} \\quad H_{k+1} y_k = s_k \\quad (s_k = x_{k+1} - x_k, \\; y_k = g_{k+1} - g_k)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> From the flight log: how far you flew ($s_k$) and how much the slope gauge changed ($y_k$) reveal the terrain's curvature along that path, so you learn it without surveying the whole valley.",
-    "examTrap": "The secant equation has $n$ equations for $n(n+1)/2$ unknown symmetric matrix entries. It is underdetermined! The specific update formulas (SR1, DFP, BFGS) are derived by minimizing different matrix norms."
+    "examTrap": "The secant equation has $n$ equations for $n(n+1)/2$ unknown symmetric matrix entries. It is underdetermined! The specific update formulas (SR1, DFP, BFGS) are derived by minimizing different matrix norms.",
+    "hint": "What does the flight log reveal about the curvature, without surveying the whole valley?",
+    "breakdown": [
+      "<strong>$s_k$ = how far you flew; $y_k$ = how much the slope reading changed.</strong>",
+      "<strong>$B_{k+1}s_k=y_k$:</strong> the curvature estimate must turn the displacement you made into the slope change you saw, which is exactly what the true Hessian does along a straight path.",
+      "<strong>$H_{k+1}y_k=s_k$ is the inverse form:</strong> it maps the slope change back to the displacement."
+    ]
   },
   {
     "id": 802,
@@ -942,7 +1212,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$B_{k+1} = B_k + \\frac{(y_k - B_k s_k)(y_k - B_k s_k)^T}{(y_k - B_k s_k)^T s_k}, \\quad H_{k+1} = H_k + \\frac{(s_k - H_k y_k)(s_k - H_k y_k)^T}{(s_k - H_k y_k)^T y_k}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A single rank-one correction to the curvature estimate: quick and light, but if the denominator is near zero the update can blow up and the estimate jams.",
-    "examTrap": "Never use SR1 with line search without a skip check! Production SR1 codes skip the update whenever $|s_k^T (y_k - B_k s_k)| < r \\|s_k\\| \\|y_k - B_k s_k\\|$, and pair it with Trust Region frameworks."
+    "examTrap": "Never use SR1 with line search without a skip check! Production SR1 codes skip the update whenever $|s_k^T (y_k - B_k s_k)| < r \\|s_k\\| \\|y_k - B_k s_k\\|$, and pair it with Trust Region frameworks.",
+    "hint": "What is the cheapest possible correction that still satisfies the secant equation?",
+    "breakdown": [
+      "<strong>$y_k-B_ks_k$ = the error:</strong> what the old estimate failed to predict about the slope change.",
+      "<strong>$vv^\\top/(v^\\top s)$ with $v=y_k-B_ks_k$</strong> adds a correction in exactly that direction, a rank-one update.",
+      "<strong>The denominator $(y_k-B_ks_k)^\\top s_k$</strong> rescales it so the secant equation holds; if it is near 0 the update blows up."
+    ]
   },
   {
     "id": 803,
@@ -962,7 +1238,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$H_{k+1}^{\\text{DFP}} = H_k + \\frac{s_k s_k^T}{s_k^T y_k} - \\frac{H_k y_k y_k^T H_k}{y_k^T H_k y_k}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Two corrections to the curvature estimate: one matches the leg you just flew, the other cleans up so the estimate stays consistent.",
-    "examTrap": "DFP is extremely sensitive to line search inaccuracies! If inexact line search is used, DFP's Hessian approximation tends to become ill-conditioned, which is why BFGS replaced it."
+    "examTrap": "DFP is extremely sensitive to line search inaccuracies! If inexact line search is used, DFP's Hessian approximation tends to become ill-conditioned, which is why BFGS replaced it.",
+    "hint": "Which two corrections does DFP apply to the inverse curvature estimate?",
+    "breakdown": [
+      "<strong>$+\\dfrac{s_ks_k^\\top}{s_k^\\top y_k}$ adds the leg you just flew,</strong> so the new estimate reproduces $H_{k+1}y_k=s_k$.",
+      "<strong>$-\\dfrac{H_ky_ky_k^\\top H_k}{y_k^\\top H_ky_k}$ removes the old estimate's opinion</strong> along $H_ky_k$, which it would otherwise double-count.",
+      "<strong>Both are rank one and symmetric,</strong> so the update stays symmetric."
+    ]
   },
   {
     "id": 804,
@@ -982,7 +1264,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$H_{k+1} = \\left(I - \\rho_k s_k y_k^T\\right) H_k \\left(I - \\rho_k y_k s_k^T\\right) + \\rho_k s_k s_k^T, \\quad \\rho_k = \\frac{1}{y_k^T s_k}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> BFGS is the autopilot that corrects its own gyro drift: each rank-two update keeps the curvature estimate positive definite and consistent with the flight log, so it is the standard choice.",
-    "examTrap": "The direction is $p_k = -H_k g_k$, which requires ONLY matrix-vector multiplication ($\\mathcal{O}(n^2)$), NEVER matrix inversion ($\\mathcal{O}(n^3)$)! This gives Newton-like superlinear convergence at a fraction of the cost."
+    "examTrap": "The direction is $p_k = -H_k g_k$, which requires ONLY matrix-vector multiplication ($\\mathcal{O}(n^2)$), NEVER matrix inversion ($\\mathcal{O}(n^3)$)! This gives Newton-like superlinear convergence at a fraction of the cost.",
+    "hint": "Why is BFGS the preferred quasi-Newton update?",
+    "breakdown": [
+      "<strong>$\\rho_k=1/y_k^\\top s_k$ is one over the curvature measured along the last leg.</strong>",
+      "<strong>$(I-\\rho sy^\\top)H(I-\\rho ys^\\top)$ filters the old estimate</strong> so it agrees with the new secant condition, and $+\\rho ss^\\top$ adds the new leg back.",
+      "<strong>If $H_k\\succ0$ and $y_k^\\top s_k\\gt0$, then $H_{k+1}\\succ0$:</strong> every nose it produces points downhill."
+    ]
   },
   {
     "id": 805,
@@ -1002,7 +1290,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$s_k^T y_k > 0 \\iff H_{k+1} \\succ 0 \\quad \\left( \\text{Wolfe: } \\nabla f(x_k + \\alpha_k p_k)^T p_k \\ge c_2 \\nabla f(x_k)^T p_k \\implies s_k^T y_k > 0 \\right)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Only trust a leg if the terrain curved upward along it ($s_k^\\top y_k\\gt0$), which a Wolfe line search guarantees. If the ground sagged, refuse to log that leg so the estimate stays safe.",
-    "examTrap": "Standard Armijo condition alone does NOT guarantee $s_k^T y_k > 0$! You MUST enforce the second Wolfe condition (curvature condition), otherwise $H_{k+1}$ can lose positive definiteness."
+    "examTrap": "Standard Armijo condition alone does NOT guarantee $s_k^T y_k > 0$! You MUST enforce the second Wolfe condition (curvature condition), otherwise $H_{k+1}$ can lose positive definiteness.",
+    "hint": "What must the slope reading do along a leg for the curvature log to stay trustworthy?",
+    "breakdown": [
+      "<strong>$s_k^\\top y_k\\gt0$:</strong> along the leg you flew, the slope reading rose, which means the terrain curved upward.",
+      "<strong>This is equivalent to $H_{k+1}$ staying positive definite,</strong> so the nose stays a descent direction.",
+      "<strong>The Wolfe curvature condition guarantees it,</strong> so a Wolfe line search makes BFGS safe."
+    ]
   },
   {
     "id": 806,
@@ -1022,7 +1316,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\text{Memory: } \\mathcal{O}(m n) \\ll \\mathcal{O}(n^2), \\quad H_0^k = \\gamma_k I, \\quad \\gamma_k = \\frac{s_{k-1}^T y_{k-1}}{\\|y_{k-1}\\|^2}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Keep only the last $m$ legs of the flight log $(s,y)$ instead of a full curvature map: nearly the same guidance for a fraction of the memory.",
-    "examTrap": "The initial base scaling $\\gamma_k = \\frac{s_{k-1}^T y_{k-1}}{\\|y_{k-1}\\|^2}$ is CRITICAL! It estimates the local spectral magnitude of the inverse Hessian so that the unit step $\\alpha_k = 1$ is accepted in line search."
+    "examTrap": "The initial base scaling $\\gamma_k = \\frac{s_{k-1}^T y_{k-1}}{\\|y_{k-1}\\|^2}$ is CRITICAL! It estimates the local spectral magnitude of the inverse Hessian so that the unit step $\\alpha_k = 1$ is accepted in line search.",
+    "hint": "What does the pilot keep from the flight log, and what does he throw away?",
+    "breakdown": [
+      "<strong>Only the last $m$ pairs $(s,y)$:</strong> memory $O(mn)$ instead of the full $O(n^2)$ curvature map.",
+      "<strong>$\\gamma_k=\\frac{s^\\top y}{y^\\top y}$ rescales the starting guess $H_0=\\gamma_kI$</strong> so it already matches the latest curvature.",
+      "<strong>Old legs are forgotten:</strong> nearly the same guidance for a fraction of the memory."
+    ]
   },
   {
     "id": 901,
@@ -1044,7 +1344,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$\\Omega = \\{x : h_i(x)=0, \\, g_j(x) \\le 0\\}, \\quad \\mathcal{A}(x) = \\{j : g_j(x) = 0\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The Feasible Set (\u03a9) is the legal airspace and runway tarmac where you are permitted to fly and taxi. The Active Set names the mountain walls your plane is physically parked against right now. The mountains on the other side of the valley (inactive constraints) have zero effect on your immediate next move.  <br><br><em>Key for the whole Midterm 3 deck.</em> $\\Omega$ = legal airspace; $f$ = altitude (gravity is $-\\nabla f$); walls $g_j\\le0$ = mountain walls; wall push = multiplier $\\mu_j$; $T_\\Omega$ = legal headings; air-traffic control = the projection operator.",
     "examTrap": "Never include inactive constraints in local gradient calculations! $g_j(x^*) < 0$ implies $\\mu_j^* = 0$ by complementary slackness. Carrying inactive constraints into gradient equations produces false stationary points.",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-901\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><polygon points=\"54,36 190,24 214,92 150,126 70,122 40,80\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"2.4\"/><line x1=\"41.8\" y1=\"74.5\" x2=\"34.8\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"45.2\" y1=\"63.5\" x2=\"38.2\" y2=\"61.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"48.8\" y1=\"52.5\" x2=\"41.8\" y2=\"50.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"52.2\" y1=\"41.5\" x2=\"45.2\" y2=\"39.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"62.5\" y1=\"35.2\" x2=\"61.5\" y2=\"28.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"79.5\" y1=\"33.8\" x2=\"78.5\" y2=\"26.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"96.5\" y1=\"32.2\" x2=\"95.5\" y2=\"25.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"113.5\" y1=\"30.8\" x2=\"112.5\" y2=\"23.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"130.5\" y1=\"29.2\" x2=\"129.5\" y2=\"22.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"147.5\" y1=\"27.8\" x2=\"146.5\" y2=\"20.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"164.5\" y1=\"26.2\" x2=\"163.5\" y2=\"19.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"181.5\" y1=\"24.8\" x2=\"180.5\" y2=\"17.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"192.4\" y1=\"30.8\" x2=\"198.4\" y2=\"28.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"197.2\" y1=\"44.4\" x2=\"203.2\" y2=\"42.4\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"202.0\" y1=\"58.0\" x2=\"208.0\" y2=\"56.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"206.8\" y1=\"71.6\" x2=\"212.8\" y2=\"69.6\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"211.6\" y1=\"85.2\" x2=\"217.6\" y2=\"83.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"125\" y=\"82\" font-size=\"15\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03a9</text><circle cx=\"47\" cy=\"58\" r=\"3.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"62\" y=\"62\" font-size=\"10\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">x*</text><circle cx=\"47\" cy=\"58\" r=\"14\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 2.5\"/><text x=\"4\" y=\"42\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">g\u2081=0</text><text x=\"122\" y=\"14\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g\u2082=0</text><text x=\"213\" y=\"44\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">g\u2083=0</text><text x=\"120\" y=\"140\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">only g\u2081 is touching x*; g\u2082, g\u2083 are far away</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-901\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><polygon points=\"54,36 190,24 214,92 150,126 70,122 40,80\" fill=\"#f1f5f9\" stroke=\"#000000\" stroke-width=\"2.4\"/><line x1=\"41.8\" y1=\"74.5\" x2=\"34.8\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"45.2\" y1=\"63.5\" x2=\"38.2\" y2=\"61.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"48.8\" y1=\"52.5\" x2=\"41.8\" y2=\"50.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"52.2\" y1=\"41.5\" x2=\"45.2\" y2=\"39.5\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"62.5\" y1=\"35.2\" x2=\"61.5\" y2=\"28.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"79.5\" y1=\"33.8\" x2=\"78.5\" y2=\"26.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"96.5\" y1=\"32.2\" x2=\"95.5\" y2=\"25.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"113.5\" y1=\"30.8\" x2=\"112.5\" y2=\"23.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"130.5\" y1=\"29.2\" x2=\"129.5\" y2=\"22.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"147.5\" y1=\"27.8\" x2=\"146.5\" y2=\"20.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"164.5\" y1=\"26.2\" x2=\"163.5\" y2=\"19.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"181.5\" y1=\"24.8\" x2=\"180.5\" y2=\"17.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"192.4\" y1=\"30.8\" x2=\"198.4\" y2=\"28.8\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"197.2\" y1=\"44.4\" x2=\"203.2\" y2=\"42.4\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"202.0\" y1=\"58.0\" x2=\"208.0\" y2=\"56.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"206.8\" y1=\"71.6\" x2=\"212.8\" y2=\"69.6\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"211.6\" y1=\"85.2\" x2=\"217.6\" y2=\"83.2\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"125\" y=\"82\" font-size=\"15\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">\u03a9</text><circle cx=\"47\" cy=\"58\" r=\"3.2\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"62\" y=\"62\" font-size=\"10\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">x*</text><circle cx=\"47\" cy=\"58\" r=\"14\" fill=\"none\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-dasharray=\"3 2.5\"/><text x=\"4\" y=\"42\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">g\u2081=0</text><text x=\"122\" y=\"14\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"middle\" fill=\"#000000\">g\u2082=0</text><text x=\"213\" y=\"44\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">g\u2083=0</text><text x=\"120\" y=\"140\" font-size=\"8\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">only g\u2081 is touching x*; g\u2082, g\u2083 are far away</text></svg>",
+    "hint": "Which walls is the plane actually touching, and which can it ignore?",
+    "breakdown": [
+      "<strong>$h_i(x)=0$ and $g_j(x)\\le0$</strong> define the legal airspace $\\Omega$: equality walls you must stay on, inequality walls you must stay behind.",
+      "<strong>$\\mathcal A(x)=\\{j:g_j(x)=0\\}$ = the walls you are pressed against right now.</strong>",
+      "<strong>Walls with $g_j\\lt0$ are far away:</strong> in a small ball around $x$ they never matter."
+    ]
   },
   {
     "id": 902,
@@ -1066,7 +1372,13 @@ window.MASTER_CARDS_DATA = [
     "math": "$$\\dot{x}(t^*) = \\lim_{t \\to t^*} \\frac{x(t) - x^*}{t - t^*}, \\quad M = \\{y : \\nabla h(x^*)^T y = 0\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Think of $x_k$ as your GPS coordinates ticking down every millisecond ($t_k\\downarrow 0$) during your final descent through legal airspace. The tangent vector $d$ is your exact, instantaneous velocity at the precise moment your tires touch the tarmac at $x^*$. The crucial requirement: the whole approach path stayed inside legal airspace ($\\Omega$).",
     "examTrap": "Scalars $t_k$ MUST strictly approach 0 from the positive side ($t_k > 0$). Negative steps reverse direction and can launch you outside $\\Omega$.",
-    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-902\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M30,115 Q120,30 210,115\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.2\"/><line x1=\"95\" y1=\"72.5\" x2=\"215\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1.1\" stroke-dasharray=\"4 3\"/><line x1=\"120\" y1=\"72.5\" x2=\"120\" y2=\"28\" stroke=\"#000000\" stroke-width=\"1.8\" marker-end=\"url(#arr-902)\"/><text x=\"128\" y=\"34\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u2207h(x*)</text><line x1=\"66\" y1=\"88\" x2=\"120\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"2 2.5\"/><circle cx=\"66\" cy=\"88\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"64\" y=\"101\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2081</text><line x1=\"84\" y1=\"79\" x2=\"120\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"2 2.5\"/><circle cx=\"84\" cy=\"79\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"82\" y=\"92\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2082</text><line x1=\"102\" y1=\"74\" x2=\"120\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"2 2.5\"/><circle cx=\"102\" cy=\"74\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"100\" y=\"87\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2083</text><circle cx=\"120\" cy=\"72.5\" r=\"3.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"113\" y=\"86\" font-size=\"10\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x*</text><line x1=\"120\" y1=\"72.5\" x2=\"182\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"3\" marker-end=\"url(#arr-902)\"/><text x=\"186\" y=\"66\" font-size=\"11\" font-family=\"serif\" font-style=\"italic\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">d</text><text x=\"214\" y=\"80\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">M</text><text x=\"38\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">t_k \u2193 0</text><text x=\"206\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">h(x)=0</text><text x=\"120\" y=\"140\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">d = lim (x_k \u2212 x*) / t_k</text></svg>"
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-902\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><path d=\"M30,115 Q120,30 210,115\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2.2\"/><line x1=\"95\" y1=\"72.5\" x2=\"215\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1.1\" stroke-dasharray=\"4 3\"/><line x1=\"120\" y1=\"72.5\" x2=\"120\" y2=\"28\" stroke=\"#000000\" stroke-width=\"1.8\" marker-end=\"url(#arr-902)\"/><text x=\"128\" y=\"34\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"start\" fill=\"#000000\">\u2207h(x*)</text><line x1=\"66\" y1=\"88\" x2=\"120\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"2 2.5\"/><circle cx=\"66\" cy=\"88\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"64\" y=\"101\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2081</text><line x1=\"84\" y1=\"79\" x2=\"120\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"2 2.5\"/><circle cx=\"84\" cy=\"79\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"82\" y=\"92\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2082</text><line x1=\"102\" y1=\"74\" x2=\"120\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"1\" stroke-dasharray=\"2 2.5\"/><circle cx=\"102\" cy=\"74\" r=\"2.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"100\" y=\"87\" font-size=\"8.5\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x\u2083</text><circle cx=\"120\" cy=\"72.5\" r=\"3.4\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.5\"/><text x=\"113\" y=\"86\" font-size=\"10\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">x*</text><line x1=\"120\" y1=\"72.5\" x2=\"182\" y2=\"72.5\" stroke=\"#000000\" stroke-width=\"3\" marker-end=\"url(#arr-902)\"/><text x=\"186\" y=\"66\" font-size=\"11\" font-family=\"serif\" font-style=\"italic\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#000000\">d</text><text x=\"214\" y=\"80\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">M</text><text x=\"38\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">t_k \u2193 0</text><text x=\"206\" y=\"128\" font-size=\"8.5\" font-family=\"sans-serif\" font-style=\"normal\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">h(x)=0</text><text x=\"120\" y=\"140\" font-size=\"9\" font-family=\"serif\" font-style=\"italic\" font-weight=\"normal\" text-anchor=\"middle\" fill=\"#000000\">d = lim (x_k \u2212 x*) / t_k</text></svg>",
+    "hint": "What is the plane's velocity at the instant of touchdown?",
+    "breakdown": [
+      "<strong>$\\dot x(t^*)$ is the limit of displacement over time.</strong> Dividing $x(t)-x^*$ by $t-t^*$ turns a small step into a velocity.",
+      "<strong>$M=\\{y:\\nabla h(x^*)^\\top y=0\\}$ = the tangent plane:</strong> every velocity perpendicular to the wall normal, i.e. along the wall.",
+      "<strong>Equality constraints allow only these sliding directions.</strong>"
+    ]
   },
   {
     "id": 903,
@@ -1088,7 +1400,13 @@ window.MASTER_CARDS_DATA = [
     "personalConnection": "<strong>The airplane analogy.</strong> This is the complete catalog of every legal runway heading available to you from your parked position. Cone property: if a heading $d$ is safe, you can throttle forward along it as far as you want ($\\lambda d$) without immediately hitting the mountain.",
     "examTrap": "Tangent cones are NOT always convex! If $\\Omega$ is a non-convex set (e.g., union of two crossing lines), $T_\\Omega(x)$ is a union of lines, which fails convexity.",
     "textbookImg": "",
-    "textbookRef": ""
+    "textbookRef": "",
+    "hint": "Which headings can the plane really take off along from its parked position?",
+    "breakdown": [
+      "<strong>$x_k\\in\\Omega$, $t_k\\downarrow0$:</strong> a sequence of legal points closing in on $x$ from inside the airspace.",
+      "<strong>$\\frac{x_k-x}{t_k}\\to d$:</strong> dividing by the shrinking step $t_k$ turns the tiny displacement into a heading $d$.",
+      "<strong>The set of all such $d$ is a cone,</strong> not a subspace: you can scale a safe heading but not reverse it."
+    ]
   },
   {
     "id": 905,
@@ -1110,7 +1428,13 @@ window.MASTER_CARDS_DATA = [
     "personalConnection": "<strong>The airplane analogy.</strong> Your objective $f$ is altitude: you want to park at the lowest elevation possible, and the negative gradient $-\\nabla f$ (gravity) points exactly downhill. At the minimum, gravity must pull the plane straight into the solid mountain wall. $\\nabla f(x^*)^\\top d\\ge0$ is the pre-flight check proving that every legal runway $d$ goes flat or uphill. If one sloped downhill, you could just release the brakes!",
     "examTrap": "This is a NECESSARY condition only. It also holds at constrained saddle points and maxima. For a convex f over a convex \u03a9 it becomes sufficient.",
     "textbookImg": "",
-    "textbookRef": ""
+    "textbookRef": "",
+    "hint": "Why must every legal heading go flat or uphill at the lowest parking spot?",
+    "breakdown": [
+      "<strong>$\\nabla f(x^*)^\\top d$ = the altitude change per unit leg along $d$.</strong>",
+      "<strong>It must be $\\ge0$ for every legal $d\\in T_\\Omega(x^*)$:</strong> if some legal heading went downhill, releasing the brakes would lower the altitude.",
+      "<strong>$\\nabla f(x^*)$ is usually not zero here:</strong> the wall is what stops the plane, not flat ground."
+    ]
   },
   {
     "id": 906,
@@ -1132,7 +1456,13 @@ window.MASTER_CARDS_DATA = [
     "personalConnection": "<strong>The airplane analogy.</strong> $L_\\Omega$ is your Nav Computer's map: it guesses the safe airspace with perfectly straight lines based only on the slope where your wheels touch. LICQ is the safety check. If the wall curves sharply inwards (a cusp), the straight-line map over-approximates the safe zone, and if you follow the computer you smash into solid rock.",
     "examTrap": "Assuming KKT multipliers always exist! If $T_\\Omega \\ne L_\\Omega$ (CQ fails), a local minimum can exist where KKT multipliers DO NOT exist at all.",
     "textbookImg": "",
-    "textbookRef": ""
+    "textbookRef": "",
+    "hint": "When can the plane trust the straight-line map of the walls?",
+    "breakdown": [
+      "<strong>$L_\\Omega$ replaces each curved wall by its tangent line at $x^*$:</strong> the Nav Computer's straight-edged map.",
+      "<strong>$T_\\Omega\\subseteq L_\\Omega$ always,</strong> but a cusp makes the map over-approximate.",
+      "<strong>LICQ (independent wall normals) forces $T_\\Omega=L_\\Omega$,</strong> so the straight-line map is exact and KKT works."
+    ]
   },
   {
     "id": 1001,
@@ -1154,7 +1484,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$A \\cap B = \\emptyset, \\; A, B \\text{ convex} \\implies \\exists a \\ne 0, \\beta : \\sup_{x \\in A} a^T x \\le \\inf_{y \\in B} a^T y$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Two rival airspaces (say a military zone and your civilian corridor) that do not overlap and are both convex. Air-traffic control can always draw one flat, infinite 'do-not-cross' wall that puts your corridor entirely on one side and the military zone entirely on the other.",
-    "examTrap": "Strict separation strictly fails if neither set is compact! E.g. $A = \\{(x_1, x_2) : x_2 \\le 0\\}$ and $B = \\{(x_1, x_2) : x_1 x_2 \\ge 1, x_1 > 0\\}$ are closed and disjoint, but can only be weakly separated by $x_2 = 0$."
+    "examTrap": "Strict separation strictly fails if neither set is compact! E.g. $A = \\{(x_1, x_2) : x_2 \\le 0\\}$ and $B = \\{(x_1, x_2) : x_1 x_2 \\ge 1, x_1 > 0\\}$ are closed and disjoint, but can only be weakly separated by $x_2 = 0$.",
+    "hint": "What guarantees one flat wall can separate two airspaces?",
+    "breakdown": [
+      "<strong>$A\\cap B=\\emptyset$, both convex:</strong> the airspaces do not overlap and have no dents.",
+      "<strong>$\\sup_Aa^\\top x\\le\\inf_Ba^\\top y$:</strong> in the direction $a$, every point of $A$ is behind every point of $B$.",
+      "<strong>The wall is $a^\\top x=\\beta$ with $\\beta$ between those two numbers.</strong>"
+    ]
   },
   {
     "id": 1002,
@@ -1174,7 +1510,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_0 \\in \\partial C \\implies \\exists a \\ne 0 : a^T x \\le a^T x_0 \\quad \\forall x \\in C$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The mountain wall you are parked against: a flat cliff face that touches your legal airspace at exactly your parking spot $x_0$, with the whole of the airspace lying on one side of it. That cliff face is the supporting hyperplane at the boundary point.",
-    "examTrap": "At a corner the supporting hyperplane is NOT unique: there is a whole cone of valid normals (the normal cone). Uniqueness holds only at smooth boundary points."
+    "examTrap": "At a corner the supporting hyperplane is NOT unique: there is a whole cone of valid normals (the normal cone). Uniqueness holds only at smooth boundary points.",
+    "hint": "Why is there always a flat wall touching a convex airspace at its edge?",
+    "breakdown": [
+      "<strong>$x_0\\in\\partial C$:</strong> you are standing on the boundary.",
+      "<strong>$a^\\top x\\le a^\\top x_0$ for all $x\\in C$:</strong> the whole airspace is on one side of the wall through $x_0$ with normal $a$.",
+      "<strong>It follows from separating $x_0$ from the interior of $C$.</strong>"
+    ]
   },
   {
     "id": 1003,
@@ -1194,7 +1536,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\exists x \\ge 0 : A x = b \\quad \\mathbf{XOR} \\quad \\exists y : A^T y \\ge 0, \\; b^T y < 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Gravity $b$ is pulling on your plane; the columns of $A$ are the normals of the mountain walls, and walls can only push (never pull). Either the wall pushes can add up exactly to cancel gravity ($Ax=b,\\ x\\ge0$) and the plane stays parked, or there is a heading $y$ that no wall blocks ($A^Ty\\ge0$) along which gravity still drags you downhill ($b^Ty<0$). Exactly one of the two stories is true.",
-    "examTrap": "The two systems are mutually exclusive and exhaustive! They can NEVER both have a solution, and they can NEVER both fail. If you prove one holds, the other is automatically false."
+    "examTrap": "The two systems are mutually exclusive and exhaustive! They can NEVER both have a solution, and they can NEVER both fail. If you prove one holds, the other is automatically false.",
+    "hint": "Either the walls can hold gravity or some heading proves they cannot. Which?",
+    "breakdown": [
+      "<strong>$Ax=b,\\ x\\ge0$:</strong> gravity $b$ is a non-negative combination of the wall normals (columns of $A$), so the walls can hold it.",
+      "<strong>$A^\\top y\\ge0,\\ b^\\top y\\lt0$:</strong> a heading $y$ no wall blocks along which gravity still drags you down.",
+      "<strong>Exactly one of the two holds:</strong> that heading is the certificate that the first story is impossible."
+    ]
   },
   {
     "id": 1007,
@@ -1214,7 +1562,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$A^Ty=\\begin{pmatrix}1\\\\0\\end{pmatrix}\\ge0,\\quad b'^Ty=-1<0\\ \\Rightarrow\\ b'\\notin\\operatorname{cone}(a_1,a_2)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Farkas with numbers is a parking check. Write gravity $b'$ and the wall normals. If $b'$ lies inside the cone of wall pushes, the walls can hold the plane. If it sits outside, exhibit one heading $y$ that every wall allows but that gravity favours: that single $y$ is the certificate that the plane rolls away.",
-    "examTrap": "To prove 'b is NOT a non-negative combination' do not try all x. Exhibit one y with A\u1d40y \u2265 0 and b\u1d40y < 0. Check both inequalities, including the sign of b\u1d40y."
+    "examTrap": "To prove 'b is NOT a non-negative combination' do not try all x. Exhibit one y with A\u1d40y \u2265 0 and b\u1d40y < 0. Check both inequalities, including the sign of b\u1d40y.",
+    "hint": "Which heading proves $b'=(0,1)$ cannot be held by the walls $a_1=(1,0),a_2=(1,1)$?",
+    "breakdown": [
+      "<strong>$A^\\top y=(1,0)\\ge0$ for $y=(1,-1)$:</strong> neither wall blocks that heading ($a_2\\cdot y=0$ is the edge of the cone).",
+      "<strong>$b'^\\top y=-1\\lt0$:</strong> gravity $b'$ still pulls along it.",
+      "<strong>So $b'$ is outside the cone,</strong> while $b=(2,1)=a_1+a_2$ sits inside it."
+    ]
   },
   {
     "id": 1004,
@@ -1234,7 +1588,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\exists x : A x < 0 \\quad \\mathbf{XOR} \\quad \\exists y \\ge 0, \\; y \\ne 0 : A^T y = 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Either some heading takes you strictly away from every wall at once ($Ax<0$: open sky in all directions), or the wall pushes can balance each other out with non-negative weights ($A^Ty=0,\\ y\\ge0,\\ y\\ne0$): you are boxed into a canyon whose walls cancel exactly, with no escape heading.",
-    "examTrap": "Notice the strict inequality $Ax < 0$! If the question asks for $Ax \\le 0$, you must use Farkas' Lemma or Ville's theorem, NOT Gordan's theorem."
+    "examTrap": "Notice the strict inequality $Ax < 0$! If the question asks for $Ax \\le 0$, you must use Farkas' Lemma or Ville's theorem, NOT Gordan's theorem.",
+    "hint": "Either some heading frees the plane from every wall, or the pushes balance. Which?",
+    "breakdown": [
+      "<strong>$Ax\\lt0$:</strong> a heading that moves you strictly away from every wall at once: open sky.",
+      "<strong>$A^\\top y=0,\\ y\\ge0,\\ y\\ne0$:</strong> the wall pushes cancel with non-negative weights: you are boxed in.",
+      "<strong>Exactly one of the two holds;</strong> this is how interior points and degenerate boxes are told apart."
+    ]
   },
   {
     "id": 1005,
@@ -1254,7 +1614,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$K^* = \\{y : y^T x \\ge 0 \\, \\forall x \\in K\\}, \\quad (K^*)^* = K \\iff K \\text{ is closed and convex}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The legal headings from your parking spot form a cone $K$. The polar cone $K^\\circ$ is the set of 'gravity pulls' that make every legal heading go uphill or flat: pulls that can never make the plane roll anywhere legal. At a minimum, $-\\nabla f$ must lie in $K^\\circ$.",
-    "examTrap": "Self-dual cones: The non-negative orthant $\\mathbb{R}_+^n$ and the cone of positive semidefinite matrices $\\mathbb{S}_+^n$ are strictly <strong>self-dual</strong> ($K^* = K$)."
+    "examTrap": "Self-dual cones: The non-negative orthant $\\mathbb{R}_+^n$ and the cone of positive semidefinite matrices $\\mathbb{S}_+^n$ are strictly <strong>self-dual</strong> ($K^* = K$).",
+    "hint": "Which pulls can never make a legal heading go downhill?",
+    "breakdown": [
+      "<strong>$K^*=\\{y:y^\\top x\\ge0\\ \\forall x\\in K\\}$:</strong> forces that never oppose any legal heading.",
+      "<strong>The polar cone $K^\\circ=-K^*$</strong> is the set of pulls that make every legal heading go flat or uphill: at a minimum, $-\\nabla f\\in K^\\circ$.",
+      "<strong>$(K^*)^*=K$ for closed convex $K$:</strong> taking the dual twice gets the original cone back."
+    ]
   },
   {
     "id": 1006,
@@ -1274,7 +1640,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$-\\nabla f(x^*) = \\sum_{j \\in \\mathcal{A}(x^*)} \\mu_j^* \\nabla g_j(x^*), \\quad \\mu_j^* \\ge 0 \\quad (\\text{Farkas Dual of } \\nexists d : \\nabla f^T d < 0, \\nabla g_j^T d \\le 0)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> You are wedged in a mountain corner touching two walls. Gravity $-\\nabla f$ pulls you into the corner, the two walls push back with forces $\\mu_1\\nabla g_1$ and $\\mu_2\\nabla g_2$, and Farkas guarantees the pushes can be chosen non-negative so that the net force is zero: that is the KKT equation.",
-    "examTrap": "Farkas' lemma applies to LINEARIZED directions $\\nabla g_j^T d \\le 0$. For this to match physical feasible curves in $\\Omega$, a Constraint Qualification (like LICQ) is strictly required!"
+    "examTrap": "Farkas' lemma applies to LINEARIZED directions $\\nabla g_j^T d \\le 0$. For this to match physical feasible curves in $\\Omega$, a Constraint Qualification (like LICQ) is strictly required!",
+    "hint": "Why must the wall pushes balance gravity at a constrained minimum?",
+    "breakdown": [
+      "<strong>No legal heading is downhill:</strong> there is no $d$ with $\\nabla f^\\top d\\lt0$ and $\\nabla g_j^\\top d\\le0$.",
+      "<strong>Farkas turns that 'no heading' statement</strong> into $-\\nabla f=\\sum\\mu_j\\nabla g_j$ with $\\mu_j\\ge0$.",
+      "<strong>Reading it back:</strong> gravity is exactly cancelled by non-negative pushes from the walls you touch."
+    ]
   },
   {
     "id": 1101,
@@ -1296,7 +1668,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\nabla f(x^*) + \\sum_{i=1}^p \\lambda_i^* \\nabla h_i(x^*) + \\sum_{j=1}^m \\mu_j^* \\nabla g_j(x^*) = 0, \\quad \\mu_j^* \\ge 0, \\quad \\mu_j^* g_j(x^*) = 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The four KKT checks are the four things a parked plane must satisfy: gravity is cancelled by wall pushes ($\\nabla f+\\sum\\mu_j\\nabla g_j=0$), you are inside legal airspace ($g\\le0$), walls only push, never pull ($\\mu\\ge0$), and a wall you are not touching pushes with zero force ($\\mu_jg_j=0$).",
-    "examTrap": "Pay obsessive attention to constraint orientation! If constraints are written $g_j(x) \\le 0$, then $\\mu_j \\ge 0$ with $\\mathcal{L} = f + \\mu^T g$. If written $g_j(x) \\ge 0$, either negate the constraint or write $\\mathcal{L} = f - \\mu^T g$."
+    "examTrap": "Pay obsessive attention to constraint orientation! If constraints are written $g_j(x) \\le 0$, then $\\mu_j \\ge 0$ with $\\mathcal{L} = f + \\mu^T g$. If written $g_j(x) \\ge 0$, either negate the constraint or write $\\mathcal{L} = f - \\mu^T g$.",
+    "hint": "What four things must a parked plane satisfy?",
+    "breakdown": [
+      "<strong>$\\nabla f+\\sum\\lambda_i\\nabla h_i+\\sum\\mu_j\\nabla g_j=0$:</strong> gravity is cancelled by the wall pushes.",
+      "<strong>$g\\le0$, $h=0$:</strong> you are inside the airspace.",
+      "<strong>$\\mu_j\\ge0$:</strong> walls only push, never pull. <strong>$\\mu_jg_j=0$:</strong> a wall you are not touching pushes with zero."
+    ]
   },
   {
     "id": 1102,
@@ -1316,7 +1694,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\mu_j^* g_j(x^*) = 0 \\iff \\begin{cases} g_j(x^*) < 0 \\implies \\mu_j^* = 0 \\\\ \\mu_j^* > 0 \\implies g_j(x^*) = 0 \\end{cases}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Each mountain wall is an on/off switch. A wall across the valley ($g\\lt0$, not touching) is OFF: $\\mu=0$. A wall your wing is resting on ($g=0$) is ON and may push back with $\\mu\\gt0$. You never have both a gap and a push.",
-    "examTrap": "Can BOTH $g_j(x^*) = 0$ and $\\mu_j^* = 0$? YES! This is called <strong>weak complementarity</strong> (or degeneracy). It often causes non-isolated Lagrange multipliers and numerical difficulties."
+    "examTrap": "Can BOTH $g_j(x^*) = 0$ and $\\mu_j^* = 0$? YES! This is called <strong>weak complementarity</strong> (or degeneracy). It often causes non-isolated Lagrange multipliers and numerical difficulties.",
+    "hint": "Which two statements does $\\mu_jg_j=0$ hide?",
+    "breakdown": [
+      "<strong>$g_j\\lt0\\Rightarrow\\mu_j=0$:</strong> a gap between wing and wall means no push (switch OFF).",
+      "<strong>$\\mu_j\\gt0\\Rightarrow g_j=0$:</strong> a wall that is pushing must be touching (switch ON).",
+      "<strong>Multiplying them is a compact way to say 'never both'.</strong>"
+    ]
   },
   {
     "id": 1103,
@@ -1336,7 +1720,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f, g_j \\text{ convex}, \\, h_i \\text{ affine}, \\, (x^*, \\lambda^*, \\mu^*) \\in \\text{KKT} \\implies f(x^*) \\le f(x) \\; \\forall \\, x \\in \\Omega$$",
     "personalConnection": "<strong>The airplane analogy.</strong> In a convex valley with flat walls there is only one lowest parking spot. If you are parked where the wall pushes cancel gravity (KKT holds), no deeper valley exists anywhere else in the legal airspace, so this stationary spot is already the global minimum.",
-    "examTrap": "Equality constraints $h_i(x) = 0$ MUST be AFFINE ($A x = b$)! If an equality constraint is non-linear (even if $h_i$ is convex), the feasible set $\\{x : h_i(x) = 0\\}$ is NOT convex, and KKT sufficiency fails."
+    "examTrap": "Equality constraints $h_i(x) = 0$ MUST be AFFINE ($A x = b$)! If an equality constraint is non-linear (even if $h_i$ is convex), the feasible set $\\{x : h_i(x) = 0\\}$ is NOT convex, and KKT sufficiency fails.",
+    "hint": "When does a balanced parking spot have to be the global lowest one?",
+    "breakdown": [
+      "<strong>$f,g_j$ convex and $h_i$ affine:</strong> a convex valley with convex airspace.",
+      "<strong>KKT then says a balanced point</strong> beats every other legal point: $f(x^*)\\le f(x)$.",
+      "<strong>It works because the tangent plane at $x^*$ lies under the terrain,</strong> and the wall pushes cannot make it better."
+    ]
   },
   {
     "id": 1104,
@@ -1356,7 +1746,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\operatorname{rank}\\left( [\\nabla h_i(x^*)_{i=1}^p, \\; \\nabla g_j(x^*)_{j \\in \\mathcal{A}(x^*)}] \\right) = p + |\\mathcal{A}(x^*)| \\quad (\\text{LICQ})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> LICQ says the walls you are touching push in independent directions. If two touching walls have normals pointing the same way (a cusp or a knife-edge), the pilot cannot tell how gravity splits between them: the push forces are not unique and may not exist at all, so KKT can fail at a true minimum.",
-    "examTrap": "Never apply KKT necessary conditions without stating that LICQ holds! If an exam question asks 'Does $x^*$ satisfy KKT?', first test if the active constraint gradients are linearly independent."
+    "examTrap": "Never apply KKT necessary conditions without stating that LICQ holds! If an exam question asks 'Does $x^*$ satisfy KKT?', first test if the active constraint gradients are linearly independent.",
+    "hint": "What do the touching walls' normals have to look like for the pushes to be well defined?",
+    "breakdown": [
+      "<strong>rank = $p+|\\mathcal A|$:</strong> the normals of all active walls are linearly independent.",
+      "<strong>Independence means the push on each wall is uniquely determined</strong> by the force balance.",
+      "<strong>If two normals line up (a cusp),</strong> the pushes are not unique or may not exist and KKT can fail at a true minimum."
+    ]
   },
   {
     "id": 1105,
@@ -1376,7 +1772,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\exists \\, \\hat{x} : g_j(\\hat{x}) < 0 \\; (j=1..m), \\; A \\hat{x} = b \\implies d^* = p^* \\quad (\\text{Strong Duality})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Slater's condition: the legal airspace has real volume, so there is at least one point strictly inside every wall ($g\\lt0$). It is a hangar with room to move, not a zero-thickness corridor squeezed between walls. With that breathing room, strong duality holds.",
-    "examTrap": "Slater requires STRICT inequality $g_j(\\hat{x}) < 0$ only for NON-AFFINE convex constraints. For purely affine inequality constraints ($c_j^T x \\le d_j$), simple feasibility without strict inequality is sufficient!"
+    "examTrap": "Slater requires STRICT inequality $g_j(\\hat{x}) < 0$ only for NON-AFFINE convex constraints. For purely affine inequality constraints ($c_j^T x \\le d_j$), simple feasibility without strict inequality is sufficient!",
+    "hint": "What kind of room does the airspace need for the dual floor to touch the lowest altitude?",
+    "breakdown": [
+      "<strong>$g_j(\\hat x)\\lt0$ for all $j$:</strong> a point strictly inside every wall.",
+      "<strong>$A\\hat x=b$:</strong> it also satisfies the equality walls.",
+      "<strong>With that room, $d^*=p^*$:</strong> zero duality gap for a convex program."
+    ]
   },
   {
     "id": 1106,
@@ -1396,7 +1798,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\nabla f(x^*) + \\mu^* \\nabla g(x^*) = \\begin{bmatrix} 2 x_1 \\\\ 8 x_2 \\end{bmatrix} + \\mu^* \\begin{bmatrix} -1 \\\\ -1 \\end{bmatrix} = \\mathbf{0} \\implies x^* = \\left(\\frac{4}{5}, \\frac{1}{5}\\right), \\; \\mu^* = \\frac{8}{5} > 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Case analysis is the pilot's two guesses. Case 1: assume you are floating free in the open (wall push $\\mu=0$); if the lowest open-air point lies outside legal airspace, that guess is dead. Case 2: assume you are pressed against the wall; solving the force balance gives a positive push $\\mu=8/5$, so the guess is consistent.",
-    "examTrap": "When solving KKT by cases, NEVER stop upon finding a solution! You must verify dual feasibility ($\\mu_j \\ge 0$) and check if any other active sets could also satisfy KKT."
+    "examTrap": "When solving KKT by cases, NEVER stop upon finding a solution! You must verify dual feasibility ($\\mu_j \\ge 0$) and check if any other active sets could also satisfy KKT.",
+    "hint": "Which of the two guesses survives: floating free or pressed to the wall?",
+    "breakdown": [
+      "<strong>$\\nabla f=(2x_1,8x_2)$:</strong> the gravity pull; $\\nabla g=(-1,-1)$ is the wall normal.",
+      "<strong>Case 1 ($\\mu=0$):</strong> $\\nabla f=0$ puts you at the origin, which breaks the wall constraint, so the guess fails.",
+      "<strong>Case 2 (on the wall):</strong> $x_1+x_2=1$ and $2x_1=8x_2$ give $x^*=(4/5,1/5)$ and $\\mu^*=8/5\\gt0$."
+    ]
   },
   {
     "id": 1201,
@@ -1418,7 +1826,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$d^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*, \\mu^*) d \\ge 0 \\quad \\forall \\, d \\in M(x^*) = \\operatorname{Null}\\left( [\\nabla h(x^*)^T ; \\nabla g_{\\mathcal{A}}(x^*)^T] \\right)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The runway is the tangent subspace $M$: the only headings you can roll along while keeping your wheels on the ground. The terrain may fall steeply away on both sides of the runway (negative curvature in the full space), but what matters is that the runway itself is level or curves upward, i.e. $d^\\top\\nabla^2\\mathcal L\\,d\\ge0$ for $d\\in M$.",
-    "examTrap": "The ambient Hessian $\\nabla^2 f(x^*)$ or even $\\nabla_{xx}^2 \\mathcal{L}$ DOES NOT need to be positive semidefinite everywhere! It only needs to be positive semidefinite when tested against vectors $d$ lying in the tangent subspace $M$."
+    "examTrap": "The ambient Hessian $\\nabla^2 f(x^*)$ or even $\\nabla_{xx}^2 \\mathcal{L}$ DOES NOT need to be positive semidefinite everywhere! It only needs to be positive semidefinite when tested against vectors $d$ lying in the tangent subspace $M$.",
+    "hint": "Along which directions must the terrain curve upward?",
+    "breakdown": [
+      "<strong>$\\nabla^2_{xx}\\mathcal L$ = the Lagrangian's curvature:</strong> the terrain's curvature plus the walls' curvature weighted by their pushes.",
+      "<strong>$d\\in M(x^*)$ = the runway:</strong> directions that keep all touching walls fixed.",
+      "<strong>$d^\\top\\nabla^2\\mathcal Ld\\ge0$ on the runway only:</strong> off the runway the ground may drop and it does not matter."
+    ]
   },
   {
     "id": 1202,
@@ -1438,7 +1852,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$d^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*, \\mu^*) d > 0 \\quad \\forall \\, d \\in M(x^*) \\setminus \\{0\\} \\implies x^* \\text{ is a strict local minimizer}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Strict version: along every runway heading in the critical cone the ground curves strictly upward under your wheels, like the bottom of a bowl-shaped runway. Then your parking spot is a strict local minimum, even if the surrounding terrain drops off sideways.",
-    "examTrap": "Semidefiniteness ($d^T \\nabla_{xx}^2 \\mathcal{L} d \\ge 0$) is NECESSARY, NOT sufficient! Strict inequality ($> 0$) is mandatory for sufficiency, exactly like $f''(x) > 0$ in single-variable calculus."
+    "examTrap": "Semidefiniteness ($d^T \\nabla_{xx}^2 \\mathcal{L} d \\ge 0$) is NECESSARY, NOT sufficient! Strict inequality ($> 0$) is mandatory for sufficiency, exactly like $f''(x) > 0$ in single-variable calculus.",
+    "hint": "What turns the necessary curvature test into a guarantee?",
+    "breakdown": [
+      "<strong>Strict $\\gt0$ for every non-zero critical direction:</strong> the runway curves strictly upward under the wheels.",
+      "<strong>Critical cone = directions that neither gain nor lose altitude to first order.</strong>",
+      "<strong>Together with the KKT conditions this proves a strict local minimum.</strong>"
+    ]
   },
   {
     "id": 1203,
@@ -1458,7 +1878,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\operatorname{sign}(\\det B_{2p+m}) = (-1)^p \\quad (\\forall \\, m = 1, \\dots, n-p)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The bordered Hessian is the instrument-panel shortcut. You do not parametrise the runway; you border the Hessian with the wall normals, and the sign pattern of its trailing minors tells you whether the runway dips at your parking spot (a minimum) or peaks (a maximum).",
-    "examTrap": "For a single equality constraint ($p=1$), $(-1)^1 = -1$, meaning the determinant of the bordered Hessian MUST BE NEGATIVE ($\\det B < 0$) for a local minimum! Students routinely confuse this with unconstrained positive definiteness."
+    "examTrap": "For a single equality constraint ($p=1$), $(-1)^1 = -1$, meaning the determinant of the bordered Hessian MUST BE NEGATIVE ($\\det B < 0$) for a local minimum! Students routinely confuse this with unconstrained positive definiteness.",
+    "hint": "How can the pilot test the runway's curvature without parametrising the runway?",
+    "breakdown": [
+      "<strong>The bordered matrix puts the wall normals around $\\nabla^2\\mathcal L$:</strong> $B=\\begin{bmatrix}0&J\\\\J^\\top&\\nabla^2\\mathcal L\\end{bmatrix}$.",
+      "<strong>Its trailing principal minors carry the sign of the curvature restricted to the runway.</strong>",
+      "<strong>The rule $\\operatorname{sign}\\det=(-1)^p$</strong> (for $p$ walls) says the runway dips: a minimum."
+    ]
   },
   {
     "id": 1204,
@@ -1478,7 +1904,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\text{Strict Complementarity } (\\mu_j^* > 0 \\; \\forall j \\in \\mathcal{A}) \\implies C(x^*, \\mu^*) = \\operatorname{Null}([\\nabla h(x^*)^T ; \\nabla g_{\\mathcal{A}}(x^*)^T])$$",
     "personalConnection": "<strong>The airplane analogy.</strong> If every wall you touch pushes strictly ($\\mu\\gt0$), the plane is pinned and the only legal motions are the headings that slide along all those walls: a subspace. If a touching wall pushes with exactly zero, you can peel away from it in some headings and the critical cone is a proper cone, not a subspace. In 2D, two strictly pushing walls leave zero freedom.",
-    "examTrap": "If strict complementarity fails (i.e. an active constraint has $\\mu_j^* = 0$), $C(x^*)$ is a CONE, not a subspace! You must check $d^T \\nabla^2 \\mathcal{L} d > 0$ over the full cone, not just a subspace."
+    "examTrap": "If strict complementarity fails (i.e. an active constraint has $\\mu_j^* = 0$), $C(x^*)$ is a CONE, not a subspace! You must check $d^T \\nabla^2 \\mathcal{L} d > 0$ over the full cone, not just a subspace.",
+    "hint": "When is the critical cone a subspace and when is it a wedge?",
+    "breakdown": [
+      "<strong>Every touching wall pushing ($\\mu_j\\gt0$):</strong> each wall's inequality becomes an equality, so the critical cone is a subspace (all directions that slide along all walls).",
+      "<strong>A touching wall pushing zero ($\\mu_j=0$):</strong> you may peel away from it in one direction, which adds a half-space and gives a proper cone.",
+      "<strong>In 2D with two strictly pushing walls the only legal direction is zero.</strong>"
+    ]
   },
   {
     "id": 1205,
@@ -1498,7 +1930,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\frac{d^2}{dt^2} f(x(t))\\Big|_{t=0} = \\dot{x}(0)^T \\nabla^2 f(x^*) \\dot{x}(0) + \\nabla f(x^*)^T \\ddot{x}(0) = d^T \\left[ \\nabla^2 f(x^*) + \\sum_{i=1}^p \\lambda_i^* \\nabla^2 h_i(x^*) \\right] d$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A banked, curved runway. Even if the terrain looks flat or hilltop-like in the ambient space, the curvature of the wall supplies an extra centripetal push, so the right curvature to check is that of the Lagrangian, $\\nabla^2 f+\\sum\\mu_j\\nabla^2 g_j$, restricted to the runway.",
-    "examTrap": "Forgetting the $\\lambda_i \\nabla^2 h_i$ term! If you only evaluate $d^T \\nabla^2 f(x^*) d$, you are implicitly assuming the constraints are FLAT linear planes. For non-linear constraints, this yields completely wrong answers."
+    "examTrap": "Forgetting the $\\lambda_i \\nabla^2 h_i$ term! If you only evaluate $d^T \\nabla^2 f(x^*) d$, you are implicitly assuming the constraints are FLAT linear planes. For non-linear constraints, this yields completely wrong answers.",
+    "hint": "What curvature actually matters on a banked runway: the terrain's or the Lagrangian's?",
+    "breakdown": [
+      "<strong>$\\dot x^\\top\\nabla^2f\\,\\dot x$:</strong> the terrain's own curvature along your velocity.",
+      "<strong>$\\nabla f^\\top\\ddot x$:</strong> the extra term because your path is curved (a bank); at a KKT point it equals $\\sum\\mu_j\\nabla g_j^\\top\\ddot x$.",
+      "<strong>Adding them gives $d^\\top[\\nabla^2f+\\sum\\mu_j\\nabla^2g_j]d$:</strong> the Lagrangian's curvature on the runway."
+    ]
   },
   {
     "id": 1206,
@@ -1518,7 +1956,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\det B = \\det \\begin{bmatrix} 0 & -\\sqrt{2} & -\\sqrt{2} \\\\ -\\sqrt{2} & \\sqrt{2} & 0 \\\\ -\\sqrt{2} & 0 & \\sqrt{2} \\end{bmatrix} = -4\\sqrt{2} < 0 = (-1)^1 \\implies x^* \\text{ is a strict local min}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The plane circles a circular no-fly ring and you want the lowest altitude $x_1+x_2$ on the ring. The lowest point is south-west at $(-1/\\sqrt2,-1/\\sqrt2)$: every step along the ring from there climbs, which is exactly what the bordered Hessian sign test confirms.",
-    "examTrap": "If you tested the maximum at $(+1/\\sqrt{2}, +1/\\sqrt{2})$, you get $\\lambda^* = -1/\\sqrt{2}$ and $\\det B = +4\\sqrt{2} > 0$. Since $\\det B > 0 \\ne (-1)^1$, the SOSC fails, correctly detecting a local maximum!"
+    "examTrap": "If you tested the maximum at $(+1/\\sqrt{2}, +1/\\sqrt{2})$, you get $\\lambda^* = -1/\\sqrt{2}$ and $\\det B = +4\\sqrt{2} > 0$. Since $\\det B > 0 \\ne (-1)^1$, the SOSC fails, correctly detecting a local maximum!",
+    "hint": "Does the sign of the bordered determinant confirm a minimum at the south-west point?",
+    "breakdown": [
+      "<strong>$B$'s border is the ring's normal;</strong> the inner block is the Lagrangian's Hessian at $x^*$.",
+      "<strong>$\\det B=-4\\sqrt2\\lt0=(-1)^1$</strong> with one constraint ($p=1$) is exactly the sign pattern for a strict local minimum.",
+      "<strong>If it were positive,</strong> the south-west point would be a maximum."
+    ]
   },
   {
     "id": 1301,
@@ -1538,7 +1982,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$p = \\Pi_C(x) \\iff p \\in C \\quad \\text{and} \\quad \\langle x - p, \\, y - p \\rangle \\le 0 \\quad \\forall \\, y \\in C$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Wind blows you out of legal airspace. The closest legal point $P(p)$ is where you reach the boundary by flying the shortest path. Every other legal point $y$ makes an obtuse (or right) angle at $P(p)$ with the line back to you: $(p-P(p))^\\top(y-P(p))\\le0$.",
-    "examTrap": "Uniqueness STRICTLY requires convexity! If set $C$ is non-convex (e.g., the surface of a sphere, or two disconnected islands), a point equidistant from both sides has multiple distinct closest projections."
+    "examTrap": "Uniqueness STRICTLY requires convexity! If set $C$ is non-convex (e.g., the surface of a sphere, or two disconnected islands), a point equidistant from both sides has multiple distinct closest projections.",
+    "hint": "Where does the nearest legal point sit relative to the plane and the rest of the airspace?",
+    "breakdown": [
+      "<strong>$x-p$ = the vector from the nearest legal spot to the plane.</strong>",
+      "<strong>$\\langle x-p,y-p\\rangle\\le0$ for every legal $y$:</strong> the angle at $p$ between that vector and any other legal point is obtuse or right.",
+      "<strong>That is the entire characterisation of the projection:</strong> $p\\in C$ and the inequality hold iff $p=\\Pi_C(x)$."
+    ]
   },
   {
     "id": 1302,
@@ -1558,7 +2008,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\|\\Pi_C(x) - \\Pi_C(y)\\|^2 + \\|(I - \\Pi_C)(x) - (I - \\Pi_C)(y)\\|^2 \\le \\|x - y\\|^2 \\implies \\|\\Pi_C(x) - \\Pi_C(y)\\| \\le \\|x - y\\|$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Two off-course planes are each guided by ATC to their nearest legal spot. The two landing spots are never farther apart than the two planes were: projection never stretches distances, it can only squeeze them together.",
-    "examTrap": "Non-expansiveness does NOT mean strictly contractive! If $x, y \\in C$, then $\\Pi_C(x) = x$ and $\\Pi_C(y) = y$, so $\\|\\Pi_C(x) - \\Pi_C(y)\\| = \\|x - y\\|$ with equality. You cannot invoke Banach fixed point directly without relaxation."
+    "examTrap": "Non-expansiveness does NOT mean strictly contractive! If $x, y \\in C$, then $\\Pi_C(x) = x$ and $\\Pi_C(y) = y$, so $\\|\\Pi_C(x) - \\Pi_C(y)\\| = \\|x - y\\|$ with equality. You cannot invoke Banach fixed point directly without relaxation.",
+    "hint": "Why can a projection never pull two planes farther apart?",
+    "breakdown": [
+      "<strong>$\\|\\Pi x-\\Pi y\\|^2+\\|(I-\\Pi)x-(I-\\Pi)y\\|^2\\le\\|x-y\\|^2$:</strong> the along-the-wall and across-the-wall parts together are at most the original distance squared.",
+      "<strong>Dropping the second (non-negative) term</strong> gives $\\|\\Pi x-\\Pi y\\|\\le\\|x-y\\|$.",
+      "<strong>That is what makes projected methods stable:</strong> the correction never amplifies errors."
+    ]
   },
   {
     "id": 1303,
@@ -1578,7 +2034,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\Pi_{\\{a^Tx=b\\}}(x)=x-\\frac{a^Tx-b}{\\|a\\|^2}a,\\qquad \\Pi_{\\{a^Tx\\le b\\}}(x)=x-\\frac{\\max(0,\\,a^Tx-b)}{\\|a\\|^2}a$$",
     "personalConnection": "<strong>The airplane analogy.</strong> ATC dropping you onto a flat ceiling plane (hyperplane) sends you straight along its normal. For a half-space of legal altitudes: if you are already on the allowed side you stay put, otherwise you are dropped along the normal onto the wall.",
-    "examTrap": "For the halfspace use max(0, a\u1d40x \u2212 b): a feasible point must NOT move. Applying the hyperplane formula to a halfspace wrongly drags inside points onto the boundary."
+    "examTrap": "For the halfspace use max(0, a\u1d40x \u2212 b): a feasible point must NOT move. Applying the hyperplane formula to a halfspace wrongly drags inside points onto the boundary.",
+    "hint": "How do you drop a plane onto a wall along its normal?",
+    "breakdown": [
+      "<strong>$a^\\top x-b$ = how far past the wall the plane is,</strong> measured along the normal direction (in units of $\\|a\\|$).",
+      "<strong>Dividing by $\\|a\\|^2$ and multiplying by $a$</strong> turns that signed excess into the displacement back along the normal.",
+      "<strong>The half-space version has $\\max(0,\\cdot)$:</strong> if you are already on the legal side, the excess is 0 and you stay put."
+    ]
   },
   {
     "id": 1307,
@@ -1598,7 +2060,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$[\\Pi_{[l,u]}(x)]_i=\\min\\big(u_i,\\max(l_i,x_i)\\big),\\qquad \\Pi_{\\mathcal B(0,R)}(x)=\\frac{x}{\\max(1,\\ \\|x\\|/R)}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A box is a corridor with an altitude floor and ceiling and lane limits: ATC clamps each coordinate independently. A ball is a circular holding zone around the airport: if you are outside, steer straight at the centre until you touch the circle's edge, otherwise stay.",
-    "examTrap": "Clamping works coordinate by coordinate only for BOXES (the constraints separate). It is wrong for the ball and for the simplex, where you cannot treat coordinates independently."
+    "examTrap": "Clamping works coordinate by coordinate only for BOXES (the constraints separate). It is wrong for the ball and for the simplex, where you cannot treat coordinates independently.",
+    "hint": "What do the box and the ball do to a plane that is outside?",
+    "breakdown": [
+      "<strong>Box:</strong> $\\min(u_i,\\max(l_i,x_i))$ clamps each coordinate to its own limits independently.",
+      "<strong>Ball:</strong> $x/\\max(1,\\|x\\|/R)$ leaves you alone inside the ball and scales you back along the ray to the centre once outside.",
+      "<strong>Both are one-line projections:</strong> cheap to compute, which is why projected gradient uses them."
+    ]
   },
   {
     "id": 1304,
@@ -1618,7 +2086,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x = x_1 + x_2, \\quad x_1 \\in K, \\; x_2 \\in K^\\circ, \\quad \\langle x_1, x_2 \\rangle = 0 \\iff x_1 = \\Pi_K(x), \\; x_2 = \\Pi_{K^\\circ}(x)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Any wind vector splits into a part pointing inside the legal cone ($K$) and a part pointing out of it (the polar cone $K^\\circ$), and the two parts are perpendicular. One way of resolving wind into 'with the airspace' and 'against the wall' is the Moreau decomposition, like $x=x_++x_-$ in one dimension.",
-    "examTrap": "Moreau's decomposition holds ONLY for CONES (sets closed under positive scaling $\\alpha K \\subseteq K$ for $\\alpha \\ge 0$). It does NOT hold for arbitrary bounded convex sets like boxes or balls!"
+    "examTrap": "Moreau's decomposition holds ONLY for CONES (sets closed under positive scaling $\\alpha K \\subseteq K$ for $\\alpha \\ge 0$). It does NOT hold for arbitrary bounded convex sets like boxes or balls!",
+    "hint": "How does Moreau split any wind vector into 'with the airspace' and 'against the wall'?",
+    "breakdown": [
+      "<strong>$x_1=\\Pi_K(x)\\in K$:</strong> the part that points into the legal cone.",
+      "<strong>$x_2=\\Pi_{K^\\circ}(x)\\in K^\\circ$:</strong> the part that points out of it.",
+      "<strong>$\\langle x_1,x_2\\rangle=0$:</strong> the two parts are perpendicular; in 1D this is $x=x_++x_-$."
+    ]
   },
   {
     "id": 1305,
@@ -1638,7 +2112,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$y_k = \\Pi_{C_1}(x_k + p_{k-1}), \\; p_k = x_k + p_{k-1} - y_k, \\quad x_{k+1} = \\Pi_{C_2}(y_k + q_{k-1}), \\; q_k = y_k + q_{k-1} - x_{k+1}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Two overlapping airspaces. Plain alternating ATC projections drift along the crease and end at some point in the overlap, not the nearest one. Dykstra's algorithm remembers the sideways correction from each bounce, so the plane lands on the closest point of the overlap.",
-    "examTrap": "Exam questions love to ask: 'Does alternating projection find $\\Pi_{C_1 \\cap C_2}(x)$?' Answer: ONLY if $C_1, C_2$ are linear affine subspaces! For general convex sets, you MUST use Dykstra's normal correction."
+    "examTrap": "Exam questions love to ask: 'Does alternating projection find $\\Pi_{C_1 \\cap C_2}(x)$?' Answer: ONLY if $C_1, C_2$ are linear affine subspaces! For general convex sets, you MUST use Dykstra's normal correction.",
+    "hint": "What does Dykstra's memory do that plain alternating projection does not?",
+    "breakdown": [
+      "<strong>$y_k=\\Pi_{C_1}(x_k+p_{k-1})$:</strong> project onto the first airspace, but first add back the correction remembered from last time.",
+      "<strong>$p_k=x_k+p_{k-1}-y_k$:</strong> remember what this projection moved you sideways by.",
+      "<strong>Without these memory vectors you end at some point of the overlap;</strong> with them you end at the nearest point of the overlap."
+    ]
   },
   {
     "id": 1306,
@@ -1658,7 +2138,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\Pi_\\Delta(x)=\\max(0,\\,x-\\tau\\mathbf 1),\\quad \\tau=\\frac{\\sum_{i\\le k}x_{(i)}-1}{k}=\\frac{2.5-1}{2}=0.75\\ \\Rightarrow\\ p=(0.75,\\,0.25,\\,0,\\,0)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A fixed fuel budget (total exactly 1) shared among tanks. Shave one common level $\\tau$ off every tank reading, clipping at empty: the tanks that stay above the level keep their excess, the rest go dry, and $\\tau$ is chosen so the leftover fuel sums to 1. That is the simplex projection.",
-    "examTrap": "Do not just clip negatives and divide by the sum: that gives (1.5, 1.0, 0.2, 0)/2.7 = (0.56, 0.37, 0.07, 0), which is NOT the Euclidean projection. The threshold \u03c4 must be subtracted first. Sorting makes it O(n log n); a median-finding method gets O(n)."
+    "examTrap": "Do not just clip negatives and divide by the sum: that gives (1.5, 1.0, 0.2, 0)/2.7 = (0.56, 0.37, 0.07, 0), which is NOT the Euclidean projection. The threshold \u03c4 must be subtracted first. Sorting makes it O(n log n); a median-finding method gets O(n).",
+    "hint": "How do you find the water level $\\tau$ that makes the leftover fuel sum to one?",
+    "breakdown": [
+      "<strong>$x-\\tau\\mathbf1$ shaves the same level off every tank;</strong> $\\max(0,\\cdot)$ lets empty tanks stay empty.",
+      "<strong>$\\tau=\\frac{\\sum_{i\\le k}x_{(i)}-1}{k}$:</strong> the extra over 1 in the $k$ largest tanks, shared equally ($\\frac{2.5-1}{2}=0.75$).",
+      "<strong>Result $(0.75,0.25,0,0)$ sums to 1 and is the nearest point of the simplex.</strong>"
+    ]
   },
   {
     "id": 1401,
@@ -1680,7 +2166,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_{k+1} = \\Pi_\\Omega(x_k - \\alpha_k \\nabla f(x_k)) = \\arg\\min_{y \\in \\Omega} \\left\\{ \\nabla f(x_k)^T (y - x_k) + \\frac{1}{2\\alpha_k} \\|y - x_k\\|^2 \\right\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Follow gravity downhill one step. If that carries you out of legal airspace into the mountain, ATC immediately projects you back to the nearest legal point: you slide along the wall instead of crashing through it.",
-    "examTrap": "Step size $\\alpha_k$ must satisfy $\\alpha_k < 2/L$ (where $L$ is the Lipschitz constant of $\\nabla f$)! If $\\alpha_k$ is too large, projecting back can cause iterates to bounce back and forth indefinitely across the boundary."
+    "examTrap": "Step size $\\alpha_k$ must satisfy $\\alpha_k < 2/L$ (where $L$ is the Lipschitz constant of $\\nabla f$)! If $\\alpha_k$ is too large, projecting back can cause iterates to bounce back and forth indefinitely across the boundary.",
+    "hint": "What does the pilot do when a gravity step would carry him into the mountain?",
+    "breakdown": [
+      "<strong>$x_k-\\alpha_k\\nabla f(x_k)$ = the plain downhill step</strong> (nose along $-\\nabla f$, flight distance $\\alpha_k$).",
+      "<strong>$\\Pi_\\Omega$ = air-traffic control:</strong> if the step lands outside the airspace, it puts you on the nearest legal point.",
+      "<strong>Equivalent form:</strong> $\\arg\\min_{y\\in\\Omega}\\{\\nabla f^\\top(y-x_k)+\\frac1{2\\alpha_k}\\|y-x_k\\|^2\\}$ = the best legal point under a linear slope plus a leash of strength $\\frac1{\\alpha_k}$."
+    ]
   },
   {
     "id": 1402,
@@ -1700,7 +2192,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x^* \\text{ is stationary} \\iff G_\\alpha(x^*) = \\frac{x^* - \\Pi_\\Omega(x^* - \\alpha \\nabla f(x^*))}{\\alpha} = \\mathbf{0} \\iff -\\nabla f(x^*) \\in \\mathcal{N}_\\Omega(x^*)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> At the optimum, gravity pushes the plane into the mountain wall with full force, but ATC projects you straight back to the same parking spot: $P(x^*-\\alpha\\nabla f(x^*))=x^*$. A point that does not move under one gradient-projection step is exactly a stationary parking spot.",
-    "examTrap": "Remember that unconstrained stationarity ($\\nabla f(x^*) = 0$) DOES NOT HOLD on the boundary! The physical gradient $\\nabla f(x^*)$ can be massive; stationarity only requires that its negative points outward into the normal cone."
+    "examTrap": "Remember that unconstrained stationarity ($\\nabla f(x^*) = 0$) DOES NOT HOLD on the boundary! The physical gradient $\\nabla f(x^*)$ can be massive; stationarity only requires that its negative points outward into the normal cone.",
+    "hint": "What does a stationary parking spot look like to the projection operator?",
+    "breakdown": [
+      "<strong>$x^*-\\alpha\\nabla f(x^*)$:</strong> gravity shoves the plane into the wall.",
+      "<strong>$\\Pi_\\Omega(\\cdot)$ puts it straight back on $x^*$,</strong> so $G_\\alpha(x^*)=0$: no net motion.",
+      "<strong>Equivalent:</strong> $-\\nabla f(x^*)$ lies in the normal cone, i.e. points straight into the wall, so no legal direction goes downhill."
+    ]
   },
   {
     "id": 1403,
@@ -1720,7 +2218,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f(x_k) - f^* \\le \\frac{L \\|x_0 - x^*\\|^2}{2k} \\; (\\text{Convex}), \\quad \\|x_k - x^*\\| \\le c \\cdot \\rho^k \\; (\\text{Strongly Convex, } \\rho < 1)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The glide path to the lowest legal parking spot. On a merely convex (smooth) valley the approach is sublinear, $O(1/k)$. In a strongly convex bowl each leg shrinks the remaining distance by a fixed factor (linear rate). The mountain walls do not slow the glide rate.",
-    "examTrap": "Projection does NOT slow down asymptotic convergence rates! The only difference is the computational cost of evaluating $\\Pi_\\Omega(x)$ at each iteration."
+    "examTrap": "Projection does NOT slow down asymptotic convergence rates! The only difference is the computational cost of evaluating $\\Pi_\\Omega(x)$ at each iteration.",
+    "hint": "How fast does the pilot close in on the best parking spot?",
+    "breakdown": [
+      "<strong>Convex, smooth terrain:</strong> $\\frac{L\\|x_0-x^*\\|^2}{2k}$, the gap shrinks like $1/k$ (sublinear).",
+      "<strong>Strongly convex terrain:</strong> $c\\rho^k$ with $\\rho\\lt1$, a fixed fraction of the distance removed each leg (linear).",
+      "<strong>The walls do not change either rate:</strong> projection is non-expansive, so it never undoes progress."
+    ]
   },
   {
     "id": 1404,
@@ -1740,7 +2244,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f(x(\\alpha)) \\le f(x_k) - \\frac{\\gamma}{\\alpha} \\|x_k - x(\\alpha)\\|^2 \\quad \\text{with } \\alpha \\in \\{\\beta^0 s, \\beta^1 s, \\beta^2 s, \\dots\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Armijo along the arc: as you shorten the step $\\alpha$, the points $P(x_k-\\alpha\\nabla f)$ trace an arc that bends along the mountain wall. You try points on that arc and accept the first one that gives a big enough altitude drop, the sufficient-decrease check.",
-    "examTrap": "Do NOT evaluate the Armijo gradient test against $-\\alpha \\nabla f(x_k)$! You must evaluate the reduction against the actual displacement vector $x_k - x(\\alpha)$, because that is the physical step taken."
+    "examTrap": "Do NOT evaluate the Armijo gradient test against $-\\alpha \\nabla f(x_k)$! You must evaluate the reduction against the actual displacement vector $x_k - x(\\alpha)$, because that is the physical step taken.",
+    "hint": "How does the pilot test a leg when the step slides along the wall?",
+    "breakdown": [
+      "<strong>$x(\\alpha)=\\Pi_\\Omega(x_k-\\alpha\\nabla f(x_k))$ traces an arc along the wall</strong> as $\\alpha$ changes.",
+      "<strong>$\\frac\\gamma\\alpha\\|x_k-x(\\alpha)\\|^2$ is the promised drop:</strong> big for a long actual displacement, scaled by the leash $\\frac1\\alpha$.",
+      "<strong>Try $\\alpha=s,\\beta s,\\beta^2s,\\dots$ and keep the first that earns it.</strong>"
+    ]
   },
   {
     "id": 1405,
@@ -1760,7 +2270,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$y = x_k - \\alpha P_k \\nabla f(x_k), \\quad x_{k+1} = y - \\nabla h(x_k) [\\nabla h(x_k)^T \\nabla h(x_k)]^{-1} h(y) \\quad (\\text{Feasibility Restored})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> On a curved boundary (a banked runway), flying straight ahead along the tangent takes you off the surface. Restoration is the fix: descend along the normal to put your wheels back on the curved surface before the next leg.",
-    "examTrap": "If step size $\\alpha$ is chosen too large, the tangent point $y$ may fly so far from the manifold that the Newton restoration phase fails to converge (or converges to a completely different branch of the constraint surface)!"
+    "examTrap": "If step size $\\alpha$ is chosen too large, the tangent point $y$ may fly so far from the manifold that the Newton restoration phase fails to converge (or converges to a completely different branch of the constraint surface)!",
+    "hint": "How does the pilot get back onto a curved runway after a straight step?",
+    "breakdown": [
+      "<strong>$y=x_k-\\alpha P_k\\nabla f(x_k)$:</strong> project gravity onto the tangent plane so you slide along the wall (nose $P_k\\nabla f$).",
+      "<strong>The straight step leaves the curved surface,</strong> so $h(y)\\ne0$ measures how far off you are.",
+      "<strong>$-\\nabla h[\\nabla h^\\top\\nabla h]^{-1}h(y)$ = drop along the normal</strong> by exactly the amount needed to restore $h=0$."
+    ]
   },
   {
     "id": 1406,
@@ -1780,7 +2296,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_1=\\max\\!\\Big(0,\\ \\begin{bmatrix}1\\\\1\\end{bmatrix}-\\begin{bmatrix}-1\\\\5\\end{bmatrix}\\Big)=\\begin{bmatrix}2\\\\0\\end{bmatrix},\\qquad \\max\\!\\Big(0,\\begin{bmatrix}2\\\\0\\end{bmatrix}-\\begin{bmatrix}0\\\\3\\end{bmatrix}\\Big)=\\begin{bmatrix}2\\\\0\\end{bmatrix}\\ \\ (\\text{fixed point})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The ground is the altitude floor $x\\ge0$. After each gravity step any negative coordinate is clamped to the ground: $x_{k+1}=\\max(0,x_k-\\alpha\\nabla f(x_k))$. The plane never sinks below the tarmac.",
-    "examTrap": "Notice how projected gradient immediately identifies active constraints! Unlike active set methods (which add constraints one-by-one), projected gradient can activate DOZENS of bound constraints simultaneously in a single iteration."
+    "examTrap": "Notice how projected gradient immediately identifies active constraints! Unlike active set methods (which add constraints one-by-one), projected gradient can activate DOZENS of bound constraints simultaneously in a single iteration.",
+    "hint": "Which coordinate gets clamped and where does the plane end up?",
+    "breakdown": [
+      "<strong>$x-\\alpha\\nabla f=(1,1)-(-1,5)=(2,-4)$:</strong> the step dives below the ground ($x_2\\lt0$).",
+      "<strong>$\\max(0,\\cdot)$ clamps the negative coordinate:</strong> the plane lands on the ground at $(2,0)$.",
+      "<strong>The second step gives $(2,0)$ again:</strong> a fixed point, so the method has found the stationary point."
+    ]
   },
   {
     "id": 1501,
@@ -1800,7 +2322,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\begin{bmatrix} Q & A_{\\mathcal{W}_k}^T \\\\ A_{\\mathcal{W}_k} & 0 \\end{bmatrix} \\begin{bmatrix} p_k \\\\ -\\lambda_k \\end{bmatrix} = \\begin{bmatrix} -\\nabla f(x_k) \\\\ \\mathbf{0} \\end{bmatrix} \\quad (\\text{KKT Linear System for } p_k)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Lock down the walls you are touching and treat them as rails: your motion must satisfy $A_{\\mathcal W}p=0$, so you only solve for sliding along the runway between the walls. That is the equality-constrained subproblem.",
-    "examTrap": "The working set $\\mathcal{W}_k$ must be linearly independent! If redundant constraints are added to $\\mathcal{W}_k$, the KKT matrix becomes singular. Active set codes must ensure LICQ on $\\mathcal{W}_k$."
+    "examTrap": "The working set $\\mathcal{W}_k$ must be linearly independent! If redundant constraints are added to $\\mathcal{W}_k$, the KKT matrix becomes singular. Active set codes must ensure LICQ on $\\mathcal{W}_k$.",
+    "hint": "What equation does the pilot solve while sliding along the walls he is touching?",
+    "breakdown": [
+      "<strong>$A_{\\mathcal W}p=0$:</strong> the move $p$ must keep every wall in the working set fixed (slide along the rails).",
+      "<strong>$Qp+g=A_{\\mathcal W}^\\top\\lambda$:</strong> inside that rail, balance the quadratic's slope against the wall pushes.",
+      "<strong>The KKT system solves both at once,</strong> giving the step $p_k$ and the pushes $\\lambda_k$."
+    ]
   },
   {
     "id": 1502,
@@ -1820,7 +2348,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\alpha_k = \\min\\left( 1, \\; \\min_{i \\notin \\mathcal{W}_k, a_i^T p_k < 0} \\frac{b_i - a_i^T x_k}{a_i^T p_k} \\right), \\quad \\mathcal{W}_{k+1} = \\mathcal{W}_k \\cup \\{i_{\\text{blocking}}\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Rolling along the runway toward the target, a mountain wall ahead stops you before you reach it: the step length is $\\alpha\\lt1$, you halt at the wall, and add that wall to the working set (the list of walls you are touching).",
-    "examTrap": "Only consider constraints with $a_i^T p_k < 0$ (direction pointing INTO the forbidden halfspace)! If $a_i^T p_k \\ge 0$, you are moving parallel to or away from constraint $i$, so it can never block your step."
+    "examTrap": "Only consider constraints with $a_i^T p_k < 0$ (direction pointing INTO the forbidden halfspace)! If $a_i^T p_k \\ge 0$, you are moving parallel to or away from constraint $i$, so it can never block your step.",
+    "hint": "How far can the pilot roll before another wall stops him?",
+    "breakdown": [
+      "<strong>$\\frac{b_i-a_i^\\top x_k}{a_i^\\top p_k}$ = distance to wall $i$:</strong> the gap divided by how fast you approach it.",
+      "<strong>Only walls with $a_i^\\top p_k\\lt0$ matter</strong> (you are heading toward them); the minimum over them is the first wall you hit.",
+      "<strong>$\\min(1,\\cdot)$:</strong> a full step $\\alpha=1$ if nothing blocks, otherwise stop at the wall and add it to $\\mathcal W$."
+    ]
   },
   {
     "id": 1503,
@@ -1840,7 +2374,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$p_k = \\mathbf{0} \\quad \\text{and} \\quad \\lambda_j = \\min_{i \\in \\mathcal{W}_k} \\lambda_i < 0 \\implies \\mathcal{W}_{k+1} = \\mathcal{W}_k \\setminus \\{j\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Parked against a wall, the force calculation says the wall would have to pull you (a negative multiplier). Walls cannot pull, so gravity actually wants you off that wall: release the brakes, drop that wall from the working set and take off away from it.",
-    "examTrap": "You can ONLY drop a constraint when $p_k = 0$ (at a stationary point of the current working surface)! Dropping a constraint while $p_k \\ne 0$ can cause premature release and severe algorithmic cycling."
+    "examTrap": "You can ONLY drop a constraint when $p_k = 0$ (at a stationary point of the current working surface)! Dropping a constraint while $p_k \\ne 0$ can cause premature release and severe algorithmic cycling.",
+    "hint": "When does the pilot release a wall, and which one?",
+    "breakdown": [
+      "<strong>$p_k=0$:</strong> sliding along the current walls goes nowhere, you are at the lowest point of that runway.",
+      "<strong>$\\lambda_j\\lt0$:</strong> that wall would have to pull, which walls cannot do: gravity actually wants you off it.",
+      "<strong>Drop the most negative $\\lambda_j$</strong> and the next step leaves that wall and gains altitude."
+    ]
   },
   {
     "id": 1504,
@@ -1860,7 +2400,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$Q \\succ 0 \\; \\text{ and } \\; \\alpha_k > 0 \\implies f(x_{k+1}) < f(x_k) \\implies \\text{Algorithm terminates in } \\le 2^m \\text{ steps}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Every leg either hits a new wall or lands at the lowest point of the current runway, and every leg lowers altitude, so you never return to a working set you already used. There are only finitely many wall subsets, so the flight must finish in finitely many legs.",
-    "examTrap": "Finite termination strictly requires <strong>non-degeneracy</strong>! If $\\alpha_k = 0$ (a degenerate vertex where multiple constraints intersect), $f(x)$ does not decrease, which opens the possibility of infinite cycling."
+    "examTrap": "Finite termination strictly requires <strong>non-degeneracy</strong>! If $\\alpha_k = 0$ (a degenerate vertex where multiple constraints intersect), $f(x)$ does not decrease, which opens the possibility of infinite cycling.",
+    "hint": "Why does the flight always end in finitely many legs?",
+    "breakdown": [
+      "<strong>$Q\\succ0$ and $\\alpha_k\\gt0$:</strong> every real leg strictly lowers the altitude.",
+      "<strong>So no working set ever repeats,</strong> because a repeat would mean the same altitude twice.",
+      "<strong>There are only $2^m$ possible working sets,</strong> hence at most $2^m$ legs."
+    ]
   },
   {
     "id": 1505,
@@ -1880,7 +2426,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\text{Degeneracy: } b_i - a_i^T x_k = 0 \\implies \\alpha_k = 0 \\implies x_{k+1} = x_k, \\quad f(x_{k+1}) = f(x_k)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Degenerate corner: three or more walls meet at one point, so the plane sits on the tarmac with step $\\alpha=0$ while the tower swaps which walls are officially in the working set. An anti-cycling rule (a fixed order for the tower to follow) stops it swapping in circles forever.",
-    "examTrap": "Cycling cannot happen in strictly convex QP as long as $\\alpha_k > 0$. Zero-step $\\alpha_k = 0$ is the SOLE mechanism through which cycling can theoretically occur."
+    "examTrap": "Cycling cannot happen in strictly convex QP as long as $\\alpha_k > 0$. Zero-step $\\alpha_k = 0$ is the SOLE mechanism through which cycling can theoretically occur.",
+    "hint": "What happens when several walls meet at the plane's position?",
+    "breakdown": [
+      "<strong>$b_i-a_i^\\top x_k=0$ for a wall outside the working set:</strong> it is already touching, so the blocking distance is 0.",
+      "<strong>$\\alpha_k=0$:</strong> the plane does not move; only the working set changes.",
+      "<strong>The altitude stays equal,</strong> so cycling is possible: an anti-cycling rule fixes the order walls enter and leave."
+    ]
   },
   {
     "id": 1506,
@@ -1900,7 +2452,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_0 = (0,0) \\xrightarrow{\\text{drop } x_1=0} x_1 = (2, 0) \\xrightarrow{\\text{drop } x_2=0} x^* = (2, 2) \\quad (\\lambda_1^* = 2 > 0, \\; \\lambda_2^* = 2 > 0)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A beacon (the unconstrained minimiser) lies outside the legal airspace. The plane slides along one wall toward it until another wall stops it, drops walls whose pushes turn negative, and finally parks at the legal point nearest the beacon.",
-    "examTrap": "Drop a constraint only after checking its multiplier is negative, and then check that the new direction really moves INTO the freed side (a\u2c7c\u1d40p > 0). Otherwise you re-enter the forbidden region."
+    "examTrap": "Drop a constraint only after checking its multiplier is negative, and then check that the new direction really moves INTO the freed side (a\u2c7c\u1d40p > 0). Otherwise you re-enter the forbidden region.",
+    "hint": "Why does the plane end at $(2,2)$ with both pushes positive?",
+    "breakdown": [
+      "<strong>Start at $(0,0)$ with walls $x_1=0,x_2=0$;</strong> the pushes say drop $x_1=0$ first.",
+      "<strong>Slide along $x_2=0$ to the blocking wall $x_1=2$,</strong> reaching $(2,0)$; then drop $x_2=0$.",
+      "<strong>At $(2,2)$ both pushes are $\\lambda=2\\gt0$,</strong> so no wall wants to be dropped: the optimum."
+    ]
   },
   {
     "id": 1601,
@@ -1922,7 +2480,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\omega(z) = \\inf_{x \\in \\Omega} \\{f(x) : g(x) \\le z\\}, \\quad \\phi(\\mu) = \\inf_{z} \\{\\omega(z) + \\mu^T z\\} = \\inf_{x \\in \\Omega} \\{f(x) + \\mu^T g(x)\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Move a mountain wall by $z$ and record the lowest legal altitude $\\omega(z)$ you can reach. Slide a flat ruler (a hyperplane of slope $-\\mu$) up from underneath this altitude curve until it touches it: where the ruler crosses the $z=0$ pole is the dual value $\\phi(\\mu)$.",
-    "examTrap": "Notice that $\\omega(z)$ is non-increasing ($z_1 \\le z_2 \\implies \\omega(z_1) \\ge \\omega(z_2)$) because relaxing constraints ($z_2 > z_1$) enlarges the feasible region, which can only lower the minimum value."
+    "examTrap": "Notice that $\\omega(z)$ is non-increasing ($z_1 \\le z_2 \\implies \\omega(z_1) \\ge \\omega(z_2)$) because relaxing constraints ($z_2 > z_1$) enlarges the feasible region, which can only lower the minimum value.",
+    "hint": "How does the ruler under the altitude curve give the dual value?",
+    "breakdown": [
+      "<strong>$\\omega(z)$ = lowest legal altitude when the wall is moved by $z$.</strong>",
+      "<strong>$\\omega(z)+\\mu^\\top z$ = that curve plus a tilted ruler of slope $\\mu$;</strong> the lowest point of the sum is $\\phi(\\mu)$, where the ruler touches the curve from below.",
+      "<strong>$\\phi(\\mu)=\\inf_x\\{f+\\mu^\\top g\\}$:</strong> the same quantity, computed directly from the Lagrangian."
+    ]
   },
   {
     "id": 1602,
@@ -1942,7 +2506,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$d^* = \\sup_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu) \\le \\inf_{g(x) \\le 0, h(x) = 0} f(x) = p^* \\implies p^* - d^* \\ge 0 \\quad (\\text{Universal})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Any wall price $\\mu\\ge0$ gives a floor beneath the lowest legal altitude. The best floor you can build (the dual optimum) can never rise above the true lowest legal altitude (the primal optimum): that gap is the duality gap.",
-    "examTrap": "Weak duality requires ABSOLUTELY NO ASSUMPTIONS! It holds whether $f$ is convex, non-convex, discontinuous, or integer-valued. Strong duality ($p^* = d^*$), on the other hand, requires convexity and constraint qualifications."
+    "examTrap": "Weak duality requires ABSOLUTELY NO ASSUMPTIONS! It holds whether $f$ is convex, non-convex, discontinuous, or integer-valued. Strong duality ($p^* = d^*$), on the other hand, requires convexity and constraint qualifications.",
+    "hint": "Why can the best floor never pass the true lowest altitude?",
+    "breakdown": [
+      "<strong>$q(\\lambda,\\mu)$ = the floor built from prices $(\\lambda,\\mu)$.</strong>",
+      "<strong>For any legal $x$ and $\\mu\\ge0$,</strong> the Lagrangian $f(x)+\\mu^\\top g(x)\\le f(x)$ because $g\\le0$, so the floor is below every legal altitude.",
+      "<strong>Hence $d^*\\le p^*$ for every problem:</strong> the gap $p^*-d^*\\ge0$ is the duality gap."
+    ]
   },
   {
     "id": 1603,
@@ -1964,7 +2534,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\text{Convexity } + \\text{ Slater's CQ } \\implies p^* = \\min_{x \\in \\Omega} f(x) = \\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu) = d^*$$",
     "personalConnection": "<strong>The airplane analogy.</strong> With a convex valley and Slater's room to move, the best floor you can build touches the lowest legal altitude: zero gap. The pilot descending from above and the tower raising a floor from below meet at the same altitude.",
-    "examTrap": "If Slater's condition fails (e.g., $g_1(x) = x_1^2 \\le 0$, which has no strictly interior point since $x_1$ must equal 0), strong duality can FAIL even for perfectly convex problems!"
+    "examTrap": "If Slater's condition fails (e.g., $g_1(x) = x_1^2 \\le 0$, which has no strictly interior point since $x_1$ must equal 0), strong duality can FAIL even for perfectly convex problems!",
+    "hint": "What two conditions make the floor touch the lowest altitude exactly?",
+    "breakdown": [
+      "<strong>Convexity:</strong> the primal function $\\omega$ is convex, so a supporting ruler exists.",
+      "<strong>Slater's room to move:</strong> a strictly interior point guarantees the ruler is not vertical.",
+      "<strong>Then $p^*=d^*$:</strong> the pilot from above and the tower from below meet."
+    ]
   },
   {
     "id": 1604,
@@ -1984,7 +2560,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$q(\\alpha y_1 + (1-\\alpha) y_2) \\ge \\alpha q(y_1) + (1-\\alpha) q(y_2) \\quad (\\text{Pointwise Infimum of Affine Families})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> For each fixed flight plan $x$, the quantity 'altitude + $\\mu\\cdot$wall violation' is a straight line in the price $\\mu$. The dual function takes the lowest of all these lines at each $\\mu$, and a pointwise minimum of straight lines is always concave, however wild the terrain.",
-    "examTrap": "The dual function is concave, which means dual optimization is a MAXIMIZATION problem: $\\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu)$. Maximizing a concave function is equivalent to minimizing a convex function."
+    "examTrap": "The dual function is concave, which means dual optimization is a MAXIMIZATION problem: $\\max_{\\mu \\ge 0, \\lambda} q(\\lambda, \\mu)$. Maximizing a concave function is equivalent to minimizing a convex function.",
+    "hint": "Why is the dual function always concave, however wild the terrain?",
+    "breakdown": [
+      "<strong>For a fixed plan $x$, $f(x)+\\mu^\\top g(x)$ is a straight line in $\\mu$.</strong>",
+      "<strong>$q$ is the lowest of all those lines</strong> (a pointwise infimum).",
+      "<strong>A pointwise minimum of straight lines bends only one way:</strong> $q(\\alpha y_1+(1-\\alpha)y_2)\\ge\\alpha q(y_1)+(1-\\alpha)q(y_2)$."
+    ]
   },
   {
     "id": 1605,
@@ -2004,7 +2586,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$p^*(z) \\ge p^*(0) - \\sum_{j=1}^m \\mu_j^* z_j - \\sum_{i=1}^p \\lambda_i^* w_i \\implies \\nabla_z p^*(0) = -\\mu^*$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The multiplier is a shadow price. If moving a mountain wall back by one metre of extra airspace lowers your lowest legal altitude by $\\mu^*$, then $\\mu^*$ is what the wall's push is worth per metre of room.",
-    "examTrap": "Remember the negative sign! Because relaxing a constraint means $z_j > 0$ (enlarging the feasible set), the cost decreases ($p^*(z) \\le p^*(0)$), which is why $\\partial p^* / \\partial z_j = -\\mu_j^* \\le 0$."
+    "examTrap": "Remember the negative sign! Because relaxing a constraint means $z_j > 0$ (enlarging the feasible set), the cost decreases ($p^*(z) \\le p^*(0)$), which is why $\\partial p^* / \\partial z_j = -\\mu_j^* \\le 0$.",
+    "hint": "What does a multiplier tell the pilot about moving a wall?",
+    "breakdown": [
+      "<strong>$p^*(z)$ = lowest legal altitude after moving the wall by $z$.</strong>",
+      "<strong>$p^*(z)\\ge p^*(0)-\\mu^{*\\top}z$:</strong> a wall moved back by $z$ cannot save more than $\\mu^*z$.",
+      "<strong>So $\\nabla_zp^*(0)=-\\mu^*$:</strong> the multiplier is the price of one unit of extra airspace."
+    ]
   },
   {
     "id": 1606,
@@ -2024,7 +2612,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\min_{w,b}\\ \\tfrac12\\|w\\|^2\\ \\ \\text{s.t.}\\ \\ y_i(w^Tx_i+b)\\ge1,\\qquad \\text{margin}=\\frac{2}{\\|w\\|}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Two opposing traffic flows must be separated. Draw the widest possible no-fly strip between them: the strip's width (the margin) is set only by the aircraft that come closest to its edges, so maximising the margin is minimising $\\tfrac12\\|w\\|^2$.",
-    "examTrap": "The constraints are y_i(w\u1d40x_i + b) \u2265 1, not \u2265 0. The 1 sets the scale of w and is what makes the margin exactly 2/\u2016w\u2016."
+    "examTrap": "The constraints are y_i(w\u1d40x_i + b) \u2265 1, not \u2265 0. The 1 sets the scale of w and is what makes the margin exactly 2/\u2016w\u2016.",
+    "hint": "What quantity does the margin strip depend on, and why do we minimise $\\|w\\|$?",
+    "breakdown": [
+      "<strong>$y_i(w^\\top x_i+b)\\ge1$:</strong> every plane is on its correct side and at least a margin away.",
+      "<strong>Margin $=2/\\|w\\|$:</strong> the strip width shrinks as $w$ grows.",
+      "<strong>Maximising the margin = minimising $\\tfrac12\\|w\\|^2$,</strong> a convex quadratic problem."
+    ]
   },
   {
     "id": 1608,
@@ -2044,7 +2638,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\max_{\\alpha\\ge0,\\ \\sum\\alpha_iy_i=0}\\ \\sum_i\\alpha_i-\\tfrac12\\sum_{i,j}\\alpha_i\\alpha_jy_iy_j\\,x_i^Tx_j,\\qquad w^*=\\sum_i\\alpha_i^*y_ix_i,\\ \\ \\alpha_i^*>0\\Rightarrow\\text{support vector}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Only the planes touching the edges of the buffer strip (the support vectors) carry non-zero weight $\\alpha_i$ in the dual; every other aircraft has $\\alpha_i=0$ and could be removed without moving the strip. The kernel trick means the radar only needs distances and dot products between aircraft, not their coordinates.",
-    "examTrap": "\u03b1_i > 0 means the point is exactly ON the margin, but a point on the margin can still have \u03b1_i = 0 (a degenerate case). 'Support vector \u21d2 \u03b1 > 0' is the safe direction; 'on the margin \u21d2 \u03b1 > 0' is not."
+    "examTrap": "\u03b1_i > 0 means the point is exactly ON the margin, but a point on the margin can still have \u03b1_i = 0 (a degenerate case). 'Support vector \u21d2 \u03b1 > 0' is the safe direction; 'on the margin \u21d2 \u03b1 > 0' is not.",
+    "hint": "Which planes carry weight in the dual, and why does the kernel trick work?",
+    "breakdown": [
+      "<strong>$w^*=\\sum\\alpha_i^*y_ix_i$:</strong> the strip's normal is a weighted sum of planes.",
+      "<strong>$\\alpha_i^*\\gt0$ only for planes on the strip's edge (support vectors);</strong> all others have weight 0.",
+      "<strong>The dual uses data only through $x_i^\\top x_j$,</strong> so replacing it by a kernel changes the geometry without changing the algorithm."
+    ]
   },
   {
     "id": 1701,
@@ -2064,7 +2664,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\max_{x, \\lambda, \\mu} \\left\\{ f(x) + \\lambda^T h(x) + \\mu^T g(x) \\right\\} \\quad \\text{subject to} \\quad \\nabla f(x) + \\nabla h(x) \\lambda + \\nabla g(x) \\mu = \\mathbf{0}, \\; \\mu \\ge 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Instead of checking every possible flight plan, the Wolfe dual restricts to equilibrium states: the positions where gravity is exactly balanced by wall pushes ($\\nabla_x\\mathcal L=0$). Among those equilibria you then maximise the Lagrangian over the wall pushes.",
-    "examTrap": "The variable $x$ in the Wolfe dual DOES NOT need to be primal feasible ($g(x) \\le 0$ is NOT required in the Wolfe dual)! The only constraints on $(x, \\lambda, \\mu)$ in the Wolfe dual are $\\nabla_x \\mathcal{L} = 0$ and $\\mu \\ge 0$."
+    "examTrap": "The variable $x$ in the Wolfe dual DOES NOT need to be primal feasible ($g(x) \\le 0$ is NOT required in the Wolfe dual)! The only constraints on $(x, \\lambda, \\mu)$ in the Wolfe dual are $\\nabla_x \\mathcal{L} = 0$ and $\\mu \\ge 0$.",
+    "hint": "Why does restricting to $\\nabla_x\\mathcal L=0$ give a usable dual problem?",
+    "breakdown": [
+      "<strong>$\\nabla_x\\mathcal L=0$ = wall pushes balance gravity:</strong> the plane is at equilibrium.",
+      "<strong>For a convex valley, equilibrium is the lowest point of $\\mathcal L(\\cdot,\\mu)$,</strong> so no inner minimisation is needed.",
+      "<strong>Maximising $\\mathcal L$ over $(x,\\lambda,\\mu)$ subject to equilibrium</strong> gives a smooth problem with the same value."
+    ]
   },
   {
     "id": 1702,
@@ -2084,7 +2690,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f, g_j \\text{ convex}, \\; h_i \\text{ affine} \\implies \\max_{(x, \\lambda, \\mu) \\in \\text{Wolfe}} \\mathcal{L}(x, \\lambda, \\mu) = f(x^*) = \\min_{x \\in \\Omega} f(x)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> For a convex valley, the best floor built from equilibrium states touches the lowest legal altitude: Wolfe duality has zero gap, so the cockpit and the control tower report the same number.",
-    "examTrap": "Remember that if $f$ or $g_j$ is NOT convex, Wolfe duality completely breaks down! Because the stationarity condition $\\nabla_x \\mathcal{L} = 0$ can capture local maxima or inflection points, producing false duality bounds."
+    "examTrap": "Remember that if $f$ or $g_j$ is NOT convex, Wolfe duality completely breaks down! Because the stationarity condition $\\nabla_x \\mathcal{L} = 0$ can capture local maxima or inflection points, producing false duality bounds.",
+    "hint": "What do the cockpit and the tower report at the optimum?",
+    "breakdown": [
+      "<strong>$f,g_j$ convex and $h_i$ affine:</strong> a convex valley.",
+      "<strong>The Wolfe dual value $\\mathcal L(x,\\lambda,\\mu)$ at the best equilibrium</strong> equals the primal lowest altitude.",
+      "<strong>Zero gap:</strong> the maximum on one side equals the minimum on the other."
+    ]
   },
   {
     "id": 1703,
@@ -2104,7 +2716,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\max_{x, y} \\left\\{ -\\frac{1}{2} x^T Q x + b^T y \\right\\} \\quad \\text{s.t.} \\quad Q x - A^T y + c \\ge \\mathbf{0}, \\; y \\ge \\mathbf{0}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Cockpit and tower look at the same flight. The cockpit minimises the fuel burn $\\tfrac12x^\\top Qx$ while the tower hedges with resources $b$ and pays the same quadratic cost with the opposite sign. At the optimum their totals meet.",
-    "examTrap": "The dual objective is \u2212\u00bd x\u1d40Qx + b\u1d40y (note the MINUS). It comes from \u00bdx\u1d40Qx \u2212 x\u1d40Qx = \u2212\u00bdx\u1d40Qx after using stationarity x\u1d40(Qx + c \u2212 A\u1d40y \u2212 v) = 0."
+    "examTrap": "The dual objective is \u2212\u00bd x\u1d40Qx + b\u1d40y (note the MINUS). It comes from \u00bdx\u1d40Qx \u2212 x\u1d40Qx = \u2212\u00bdx\u1d40Qx after using stationarity x\u1d40(Qx + c \u2212 A\u1d40y \u2212 v) = 0.",
+    "hint": "What are the cockpit and the tower each optimising for a quadratic program?",
+    "breakdown": [
+      "<strong>Primal:</strong> minimise $\\tfrac12x^\\top Qx+c^\\top x$ subject to $Ax\\ge b$.",
+      "<strong>Dual objective $-\\tfrac12x^\\top Qx+b^\\top y$:</strong> the same quadratic with the opposite sign plus the resource value.",
+      "<strong>Constraint $Qx-A^\\top y+c\\ge0$:</strong> the equilibrium condition; at the optimum the two objectives are equal."
+    ]
   },
   {
     "id": 1704,
@@ -2124,7 +2742,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$f(x) = -x^2 \\implies \\min_{x \\in \\mathbb{R}} f(x) = -\\infty, \\quad \\max_{f'(x)=0} f(x) = f(0) = 0 \\implies d^* > p^* \\; (\\text{Fails!})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Equilibrium ($\\nabla_x\\mathcal L=0$) means forces balance, but a force-balanced plane can sit at the top of a mountain peak or on a saddle. If the valley is not convex, trusting equilibrium builds a false floor, so the Wolfe dual is invalid.",
-    "examTrap": "If a question gives a NON-convex problem and asks what the Wolfe dual says, the answer is: nothing reliable (it can exceed the primal value). Use ordinary Lagrangian duality, which always gives a valid lower bound."
+    "examTrap": "If a question gives a NON-convex problem and asks what the Wolfe dual says, the answer is: nothing reliable (it can exceed the primal value). Use ordinary Lagrangian duality, which always gives a valid lower bound.",
+    "hint": "Why can the equilibrium trick fail on a hill?",
+    "breakdown": [
+      "<strong>$f=-x^2$ has $f'(x)=0$ only at 0,</strong> which is its maximum, so the 'equilibrium' value is $f(0)=0$.",
+      "<strong>True minimum $=-\\infty$:</strong> the dual value 0 is above the primal value, $d^*\\gt p^*$.",
+      "<strong>Without convexity,</strong> force balance can happen at a peak or saddle."
+    ]
   },
   {
     "id": 1705,
@@ -2144,7 +2768,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\mu_{k+1} = \\max\\left( \\mathbf{0}, \\; \\mu_k + \\alpha_k g(x(\\mu_k)) \\right) \\quad \\text{where } x(\\mu_k) = \\arg\\min_{x} \\mathcal{L}(x, \\mu_k)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The tower raises the wall price when the plane violates the wall ($g_j\\gt0$, flying into the mountain) and lowers it when there is slack ($g_j\\lt0$), never letting it go negative: $\\mu_{k+1}=\\max(0,\\mu_k+\\alpha g_j(x_k))$.",
-    "examTrap": "The subgradient method is NOT a descent method! The objective $q(\\mu_k)$ can decrease at individual iterations. You must track the best iterate encountered: $q_{\\text{best}}^{(k)} = \\max_{i=1..k} q(\\mu_i)$."
+    "examTrap": "The subgradient method is NOT a descent method! The objective $q(\\mu_k)$ can decrease at individual iterations. You must track the best iterate encountered: $q_{\\text{best}}^{(k)} = \\max_{i=1..k} q(\\mu_i)$.",
+    "hint": "How does the tower decide whether to raise or lower the price of a wall?",
+    "breakdown": [
+      "<strong>$x(\\mu_k)=\\arg\\min\\mathcal L(x,\\mu_k)$:</strong> the plane flies to its best spot under the current prices.",
+      "<strong>$g(x(\\mu_k))$ = violation:</strong> positive means the plane is flying into the wall, so $\\mu$ goes up.",
+      "<strong>$\\max(0,\\cdot)$ keeps prices non-negative:</strong> $\\alpha_kg$ is the subgradient step of the dual."
+    ]
   },
   {
     "id": 1706,
@@ -2164,7 +2794,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$q(\\lambda) = b^T \\lambda - \\sum_{i=1}^n \\exp\\left( a_i^T \\lambda - 1 \\right) \\implies \\text{Unconstrained Smooth Concave Maximization}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Spread a fixed fleet of aircraft across airports so that the total fuel budget is fixed. Maximising entropy under a fixed energy constraint gives the exponential (Boltzmann) distribution, and the wall price is the inverse temperature.",
-    "examTrap": "Notice that the positivity constraint $x > 0$ is AUTOMATICALLY satisfied by the exponential $x_i^* = e^{\\dots} > 0$! Duality magically eliminates both the non-negativity constraint and the linear equalities."
+    "examTrap": "Notice that the positivity constraint $x > 0$ is AUTOMATICALLY satisfied by the exponential $x_i^* = e^{\\dots} > 0$! Duality magically eliminates both the non-negativity constraint and the linear equalities.",
+    "hint": "What shape does the entropy-maximising traffic take?",
+    "breakdown": [
+      "<strong>$q(\\lambda)=b^\\top\\lambda-\\sum_ie^{a_i^\\top\\lambda-1}$:</strong> the dual is smooth, unconstrained and concave, easy to maximise.",
+      "<strong>The optimal primal is $x_i\\propto e^{a_i^\\top\\lambda-1}$:</strong> exponential, the Boltzmann form.",
+      "<strong>$\\lambda$ plays the role of an inverse temperature</strong> set by the energy budget."
+    ]
   },
   {
     "id": 1801,
@@ -2184,7 +2820,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\min_{x \\ge 0, A x = b} c^T x \\iff \\max_{y \\in \\mathbb{R}^m, A^T y \\le c} b^T y \\quad (\\text{Standard Form LP Duality})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Airline vs airport authority. The airline minimises the cost $c^\\top x$ of a flight schedule that meets demand $b$. The authority picks landing fees $y$ to maximise revenue $b^\\top y$ while keeping every route no more expensive than the airline's cost ($A^\\top y\\le c$) so the airline still agrees to fly.",
-    "examTrap": "If primal has inequality $A x \\ge b, x \\ge 0$, then dual is $\\max b^T y$ s.t. $A^T y \\le c, y \\ge 0$ (dual variables become non-negative). If primal has equality $A x = b$, dual variables $y$ are completely free!"
+    "examTrap": "If primal has inequality $A x \\ge b, x \\ge 0$, then dual is $\\max b^T y$ s.t. $A^T y \\le c, y \\ge 0$ (dual variables become non-negative). If primal has equality $A x = b$, dual variables $y$ are completely free!",
+    "hint": "Who is minimising what, and who is maximising what?",
+    "breakdown": [
+      "<strong>Primal (airline):</strong> $\\min c^\\top x$ with $Ax=b$, $x\\ge0$: the cheapest schedule meeting demand.",
+      "<strong>Dual (authority):</strong> $\\max b^\\top y$ with $A^\\top y\\le c$: highest revenue without pricing any route above its cost.",
+      "<strong>Weak duality:</strong> revenue never exceeds cost; at the optimum they are equal."
+    ]
   },
   {
     "id": 1807,
@@ -2204,7 +2846,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x=\\begin{bmatrix}x_B\\\\x_N\\end{bmatrix}=\\begin{bmatrix}B^{-1}b\\\\\\mathbf 0\\end{bmatrix},\\quad B\\ \\text{invertible},\\ \\ x_B\\ge0\\iff x\\ \\text{is a vertex of}\\ \\{Ax=b,\\ x\\ge0\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> A plane can only be pinned in place at a corner of the polygonal airspace, where enough walls meet in independent directions that there is nowhere to slide. Those corners are the basic feasible solutions.",
-    "examTrap": "A vertex is not 'any point with m non-zeros'. It needs the columns of the non-zero entries to be linearly independent. Two different bases can describe the same degenerate vertex."
+    "examTrap": "A vertex is not 'any point with m non-zeros'. It needs the columns of the non-zero entries to be linearly independent. Two different bases can describe the same degenerate vertex.",
+    "hint": "Why are corners the only places the plane can be pinned?",
+    "breakdown": [
+      "<strong>$x_N=0$:</strong> the non-basic variables are zero, i.e. those walls are touched.",
+      "<strong>$x_B=B^{-1}b$:</strong> the remaining variables are determined by the independent walls through the corner (needs $B$ invertible).",
+      "<strong>$x_B\\ge0$ makes the corner legal,</strong> so basic feasible solutions are exactly the vertices."
+    ]
   },
   {
     "id": 1802,
@@ -2224,7 +2872,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x = \\begin{bmatrix} x_B \\\\ x_N \\end{bmatrix} = \\begin{bmatrix} B^{-1} b \\\\ \\mathbf{0} \\end{bmatrix} \\iff x \\text{ is an Extreme Point of } \\mathcal{P} = \\{x : A x = b, x \\ge 0\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> With a linear altitude (a tilted flat sheet over the polygonal airspace), the lowest point of the sheet over the polygon is always at a corner of the polygon, so the best parking spot is a vertex.",
-    "examTrap": "'An optimal vertex exists' does not mean every optimum is a vertex: when the objective is parallel to a face, the whole face is optimal. And a vertex is guaranteed to exist only if the feasible set has no line inside it (true when x \u2265 0)."
+    "examTrap": "'An optimal vertex exists' does not mean every optimum is a vertex: when the objective is parallel to a face, the whole face is optimal. And a vertex is guaranteed to exist only if the feasible set has no line inside it (true when x \u2265 0).",
+    "hint": "Why must the lowest point of a tilted sheet over a polygon be a corner?",
+    "breakdown": [
+      "<strong>The altitude is linear,</strong> so there are no hills or valleys inside the polygon.",
+      "<strong>Moving along any direction raises or lowers the altitude at a constant rate,</strong> so you can keep going until you hit a wall, then slide, until a corner.",
+      "<strong>So an optimum can always be found among the finitely many basic feasible solutions.</strong>"
+    ]
   },
   {
     "id": 1803,
@@ -2244,7 +2898,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x^*, y^* \\text{ optimal} \\iff x_j^* (c_j - A_{\\cdot j}^T y^*) = 0 \\; (\\forall j) \\quad \\text{and} \\quad y_i^* (A_{i \\cdot} x^* - b_i) = 0 \\; (\\forall i)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Complementary slackness is the airline's rulebook. If a route is flown ($x_j\\gt0$), its fee exactly equals its cost. If the fee is below cost ($c_j\\gt A_j^\\top y$), nobody flies it ($x_j=0$). If a resource wall is not touched, its price $y_i$ is zero.",
-    "examTrap": "Complementary slackness allows you to check whether a proposed solution $x$ is optimal in seconds! Form the dual equality system for $x_j > 0$, solve for $y$, and check if $A^T y \\le c$. If yes, $x$ is guaranteed optimal."
+    "examTrap": "Complementary slackness allows you to check whether a proposed solution $x$ is optimal in seconds! Form the dual equality system for $x_j > 0$, solve for $y$, and check if $A^T y \\le c$. If yes, $x$ is guaranteed optimal.",
+    "hint": "Which pairs of statements must hold together at the optimum?",
+    "breakdown": [
+      "<strong>$x_j(c_j-A_j^\\top y)=0$:</strong> a route is flown only if its fee equals its cost.",
+      "<strong>$y_i(A_ix-b_i)=0$:</strong> a resource has a positive price only if it is fully used.",
+      "<strong>Either factor can be zero,</strong> but never both strictly positive: the same on/off switch as KKT."
+    ]
   },
   {
     "id": 1804,
@@ -2264,7 +2924,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$A^Ty\\ge0,\\ b^Ty<0\\ \\Rightarrow\\ d=-y:\\ A^Td\\le0,\\ b^Td>0\\ \\Rightarrow\\ b^T(y_0+td)\\to+\\infty\\ \\ (t\\to\\infty)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> If no legal flight plan exists (the primal is infeasible), Farkas gives a heading $y$ that no wall blocks along which you can keep improving forever, so the dual can be pushed without bound: infeasible primal means unbounded dual.",
-    "examTrap": "Farkas' lemma is the engine behind Strong Duality in Linear Programming! Proving that the primal has no feasible solution is mathematically equivalent to exhibiting a certificate vector $y$ solving System 2."
+    "examTrap": "Farkas' lemma is the engine behind Strong Duality in Linear Programming! Proving that the primal has no feasible solution is mathematically equivalent to exhibiting a certificate vector $y$ solving System 2.",
+    "hint": "What does an infeasible primal force the dual to do?",
+    "breakdown": [
+      "<strong>$A^\\top y\\ge0,\\ b^\\top y\\lt0$ (Farkas):</strong> the walls cannot hold gravity.",
+      "<strong>$d=-y$ then has $A^\\top d\\le0$ and $b^\\top d\\gt0$:</strong> a direction that keeps the dual feasible and increases its objective.",
+      "<strong>$b^\\top(y_0+td)\\to\\infty$:</strong> the dual is unbounded."
+    ]
   },
   {
     "id": 1805,
@@ -2284,7 +2950,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x_B=B^{-1}b\\ \\ge0,\\ \\ x_N=0;\\quad \\text{optimal if all reduced costs}\\ \\ c_N^T-c_B^TB^{-1}N\\ \\ge\\ 0$$",
     "personalConnection": "<strong>The airplane analogy.</strong> At each airport corner the pilot looks at the neighbouring airports along the edges, hops to one that is lower, and stops when no neighbour is lower: that corner is the optimum.",
-    "examTrap": "A degenerate vertex (a basic variable equals 0) lets simplex pivot without moving and, in rare cases, cycle. Bland's rule prevents that."
+    "examTrap": "A degenerate vertex (a basic variable equals 0) lets simplex pivot without moving and, in rare cases, cycle. Bland's rule prevents that.",
+    "hint": "How does the pilot know when to stop hopping between corners?",
+    "breakdown": [
+      "<strong>$x_B=B^{-1}b\\ge0,\\ x_N=0$:</strong> the current corner.",
+      "<strong>Reduced cost $c_N^\\top-c_B^\\top B^{-1}N$:</strong> how the objective changes per unit of moving along each edge.",
+      "<strong>If all reduced costs are $\\ge0$, no neighbouring corner is lower,</strong> so this corner is optimal."
+    ]
   },
   {
     "id": 1808,
@@ -2304,7 +2976,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$x(\\mu)=\\arg\\min_{Ax=b,\\ x>0}\\Big\\{c^Tx-\\mu\\sum_{j=1}^n\\ln x_j\\Big\\}\\ \\xrightarrow{\\ \\mu\\to0\\ }\\ x^*$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Instead of scraping along the walls from corner to corner, fly down the centre of the corridor (the central path), a safe distance from every wall, and let the clearance shrink toward zero as you approach the destination corner.",
-    "examTrap": "Simplex returns an exact vertex; interior-point methods return a point inside the polyhedron within \u03b5 of optimal. Know which one a question's 'basic solution' wording requires."
+    "examTrap": "Simplex returns an exact vertex; interior-point methods return a point inside the polyhedron within \u03b5 of optimal. Know which one a question's 'basic solution' wording requires.",
+    "hint": "What keeps the interior-point plane away from the walls?",
+    "breakdown": [
+      "<strong>$-\\mu\\sum\\ln x_j$ is the barrier:</strong> it blows up as any $x_j\\to0$, repelling the plane from the walls.",
+      "<strong>$c^\\top x$ still pulls toward lower cost.</strong>",
+      "<strong>The minimiser $x(\\mu)$ traces the central path;</strong> as $\\mu\\to0$ the barrier fades and the plane reaches the optimal corner."
+    ]
   },
   {
     "id": 1806,
@@ -2324,7 +3002,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$z^* = 3(2) + 2(3) = 12 = 5(1) + 7(1) = w^* \\quad (\\text{Complementary Slackness } x_j > 0 \\implies A_j^T y = c_j)$$",
     "personalConnection": "<strong>The airplane analogy.</strong> The pilot in the cockpit and the tower with its price list reach the same total cost: the primal and dual optimum are equal, the strong duality of LP.",
-    "examTrap": "Remember that if the primal is a MAXIMIZATION problem, the dual is a MINIMIZATION problem, and primal constraints $\\le$ become dual variables $y \\ge 0$. Watch the direction of the inequalities!"
+    "examTrap": "Remember that if the primal is a MAXIMIZATION problem, the dual is a MINIMIZATION problem, and primal constraints $\\le$ become dual variables $y \\ge 0$. Watch the direction of the inequalities!",
+    "hint": "Where do the cockpit's and the tower's numbers meet?",
+    "breakdown": [
+      "<strong>Primal:</strong> $3(2)+2(3)=12$ at $(2,3)$. <strong>Dual:</strong> $5(1)+7(1)=12$ at $(1,1)$.",
+      "<strong>Every feasible primal value is at most 12 and every feasible dual value at least 12;</strong> they meet exactly at 12.",
+      "<strong>Complementary slackness explains why:</strong> positive $x_j$ forces the matching dual constraint to be tight."
+    ]
   },
   {
     "id": 1901,
@@ -2346,7 +3030,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\min_{x \\in \\mathbb{R}^n} q(c_k, x) = f(x) + \\frac{c_k}{2} \\sum_{i=1}^p h_i(x)^2 + \\frac{c_k}{2} \\sum_{j=1}^m [\\max(0, g_j(x))]^2 \\xrightarrow{c_k \\to \\infty} x^*$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Restricted airspace with fines. Inside legal airspace ($g\\le0$) you fly free; the moment you cross into the forbidden zone, the fine $c\\,[\\max(0,g)]^2$ grows quadratically. As the fine stiffens ($c\\to\\infty$) you are forced back to the boundary.",
-    "examTrap": "The quadratic penalty function for inequalities $[\\max(0, g(x))]^2$ is only ONCE continuously differentiable ($C^1$)! Its second derivative has a discontinuous jump across the boundary $g(x) = 0$, which can impair pure Newton methods."
+    "examTrap": "The quadratic penalty function for inequalities $[\\max(0, g(x))]^2$ is only ONCE continuously differentiable ($C^1$)! Its second derivative has a discontinuous jump across the boundary $g(x) = 0$, which can impair pure Newton methods.",
+    "hint": "How big is the fine for a given amount of violation?",
+    "breakdown": [
+      "<strong>$\\max(0,g_j)^2$:</strong> no fine inside the airspace, a quadratic fine outside; squaring keeps it smooth at the wall.",
+      "<strong>$\\tfrac{c_k}2h_i^2$:</strong> equality walls are fined for any deviation in either direction.",
+      "<strong>As $c_k\\to\\infty$ the fine becomes so steep</strong> that the unconstrained minimiser is forced onto the boundary."
+    ]
   },
   {
     "id": 1902,
@@ -2368,7 +3058,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$B(x) = -\\sum_{j=1}^m \\ln(-g_j(x)) \\implies \\lim_{g_j(x) \\to 0} B(x) = +\\infty, \\quad x(c) = \\arg\\min_{x \\in \\mathcal{S}^\\circ} \\left\\{ f(x) + \\frac{1}{c} B(x) \\right\\}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> An invisible repulsive field around the mountains: the closer you get to a wall, the more the barrier $-\\mu\\ln(-g)$ blows up, so you can never touch the boundary and always fly strictly inside legal airspace.",
-    "examTrap": "Barrier methods CANNOT handle equality constraints $h_i(x) = 0$! Because equality constraints have no strict interior ($\\{x : h_i(x) < 0\\}$ is empty). Equalities must be handled via penalties, projection, or Lagrange multipliers."
+    "examTrap": "Barrier methods CANNOT handle equality constraints $h_i(x) = 0$! Because equality constraints have no strict interior ($\\{x : h_i(x) < 0\\}$ is empty). Equalities must be handled via penalties, projection, or Lagrange multipliers.",
+    "hint": "What stops the plane from ever touching the wall?",
+    "breakdown": [
+      "<strong>$-\\ln(-g_j)$ is finite inside</strong> ($g_j\\lt0$) and $\\to+\\infty$ as $g_j\\to0^-$.",
+      "<strong>Adding $\\frac1cB(x)$ to $f$ keeps the plane strictly inside;</strong> as $c$ grows the barrier weakens and the plane approaches the boundary from inside.",
+      "<strong>Needs a strict interior:</strong> that is Slater's condition again."
+    ]
   },
   {
     "id": 1903,
@@ -2388,7 +3084,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\kappa(\\nabla^2 q(c, x)) = \\frac{\\lambda_{\\max}}{\\lambda_{\\min}} \\approx \\mathcal{O}(c) \\xrightarrow{c \\to \\infty} \\infty \\implies \\text{Catastrophic Numerical Instability}$$",
     "personalConnection": "<strong>The airplane analogy.</strong> With a huge fine $c$ the valley becomes a razor-thin canyon: extremely stiff across the wall and flat along the runway, so the pilot zig-zags between the canyon walls instead of making forward progress: the Hessian has condition number growing with $c$.",
-    "examTrap": "Do NOT increase penalty parameter $c$ too fast! Classical penalty codes multiply $c_{k+1} = 10 c_k$ slowly and warm-start each minimization from the previous iterate $x_k$ to survive the severe ill-conditioning."
+    "examTrap": "Do NOT increase penalty parameter $c$ too fast! Classical penalty codes multiply $c_{k+1} = 10 c_k$ slowly and warm-start each minimization from the previous iterate $x_k$ to survive the severe ill-conditioning.",
+    "hint": "Why does a huge fine make the pilot zig-zag?",
+    "breakdown": [
+      "<strong>Across the wall the curvature grows like $c$;</strong> along the runway it stays $O(1)$.",
+      "<strong>$\\kappa=\\lambda_{\\max}/\\lambda_{\\min}\\approx O(c)\\to\\infty$:</strong> the valley becomes a razor-thin canyon.",
+      "<strong>Gradient and Newton steps then lose accuracy:</strong> catastrophic ill-conditioning."
+    ]
   },
   {
     "id": 1904,
@@ -2408,7 +3110,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\lambda_i^{(k)} = c_k h_i(x(c_k)) \\xrightarrow{c_k \\to \\infty} \\lambda_i^*, \\quad \\mu_j^{(k)} = c_k \\max(0, g_j(x(c_k))) \\xrightarrow{c_k \\to \\infty} \\mu_j^*$$",
     "personalConnection": "<strong>The airplane analogy.</strong> At each penalty iterate the plane sinks slightly into the forbidden zone. Fine times depth gives the wall's push force: $\\lambda^*\\approx c\\,\\max(0,g)$ or $c\\,h(x_k)$ for equalities, so the multiplier is recovered for free.",
-    "examTrap": "Notice that because $\\lambda_k \\to \\lambda^*$ (a finite number) while $c_k \\to \\infty$, the constraint violation must decay like $\\mathcal{O}(1/c_k)$: $h_i(x_k) \\approx \\frac{\\lambda_i^*}{c_k}$. This proves the constraint error is inversely proportional to $c$."
+    "examTrap": "Notice that because $\\lambda_k \\to \\lambda^*$ (a finite number) while $c_k \\to \\infty$, the constraint violation must decay like $\\mathcal{O}(1/c_k)$: $h_i(x_k) \\approx \\frac{\\lambda_i^*}{c_k}$. This proves the constraint error is inversely proportional to $c$.",
+    "hint": "How do you read the wall's push from the penalty iterates?",
+    "breakdown": [
+      "<strong>$h_i(x(c_k))$ = how far the plane sinks into the forbidden zone.</strong>",
+      "<strong>Multiplying by the stiffness $c_k$ gives the restoring force,</strong> like a spring: $\\lambda_i^{(k)}=c_kh_i$.",
+      "<strong>As $c_k\\to\\infty$ the depth $\\to0$ but the product converges to the true multiplier $\\lambda^*_i$.</strong>"
+    ]
   },
   {
     "id": 1905,
@@ -2428,7 +3136,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\lambda_{k+1} = \\lambda_k + c_k h(x_k) \\quad (\\text{First-Order Dual Multiplier Update without Matrix Inverses})$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Ordinary penalty needs the fine to grow forever ($c\\to\\infty$). The augmented Lagrangian lets the tower also adjust a standing reservation $\\lambda$ so that the plane lands exactly on the boundary with only a moderate fine.",
-    "examTrap": "The multiplier update is $\\lambda_{k+1} = \\lambda_k + c_k h(x_k)$ (NOT minus!). Because $h(x) = \\nabla_\\lambda \\mathcal{L}_c$ is the exact gradient of the dual function with respect to $\\lambda$, this update is pure gradient ascent on the dual."
+    "examTrap": "The multiplier update is $\\lambda_{k+1} = \\lambda_k + c_k h(x_k)$ (NOT minus!). Because $h(x) = \\nabla_\\lambda \\mathcal{L}_c$ is the exact gradient of the dual function with respect to $\\lambda$, this update is pure gradient ascent on the dual.",
+    "hint": "What does the tower adjust so the fine does not have to grow forever?",
+    "breakdown": [
+      "<strong>$h(x_k)$ = remaining violation after the current leg.</strong>",
+      "<strong>$c_kh(x_k)$ = the correction the multiplier needs:</strong> the same force-from-depth reading as penalty recovery.",
+      "<strong>$\\lambda_{k+1}=\\lambda_k+c_kh(x_k)$</strong> converges without sending $c_k\\to\\infty$, so the problem stays well conditioned."
+    ]
   },
   {
     "id": 1906,
@@ -2448,7 +3162,13 @@ window.MASTER_CARDS_DATA = [
     ],
     "math": "$$\\lambda_0=0\\to x^{(0)}=\\Big(\\tfrac23,\\tfrac23\\Big);\\ \\ \\lambda_1=-\\tfrac43\\to x^{(1)}=\\Big(\\tfrac89,\\tfrac89\\Big);\\ \\ \\lambda_2=-\\tfrac{16}9\\to x^{(2)}=\\Big(\\tfrac{26}{27},\\tfrac{26}{27}\\Big)\\to(1,1),\\ \\lambda^*=-2$$",
     "personalConnection": "<strong>The airplane analogy.</strong> Instead of ever-tighter fines, the tower nudges the reservation $\\lambda_{k+1}=\\lambda_k+c\\,h(x_k)$ by small corrections until the plane touches down on the boundary exactly: tuning, not brute force.",
-    "examTrap": "Compare with the plain quadratic penalty, whose minimizer is x = c/(1+c)\u00b7(1,1): the error is 1/(1+c), so 1% accuracy needs c \u2248 100 (and a terribly conditioned Hessian). The augmented Lagrangian reaches 0.4% with c = 2 after 4 multiplier updates."
+    "examTrap": "Compare with the plain quadratic penalty, whose minimizer is x = c/(1+c)\u00b7(1,1): the error is 1/(1+c), so 1% accuracy needs c \u2248 100 (and a terribly conditioned Hessian). The augmented Lagrangian reaches 0.4% with c = 2 after 4 multiplier updates.",
+    "hint": "How does $\\lambda$ climb to its target in the worked sequence?",
+    "breakdown": [
+      "<strong>$\\lambda_0=0$ gives $x^{(0)}=(2/3,2/3)$,</strong> a plane still short of the boundary.",
+      "<strong>$\\lambda_1=-4/3$ gives $x^{(1)}=(8/9,8/9)$, and $\\lambda_2=-16/9$ is next:</strong> each update closes a fixed fraction of the remaining gap.",
+      "<strong>The multiplier converges to $\\lambda^*$ and the plane lands on the constraint</strong> with the penalty $c$ held fixed."
+    ]
   },
   {
     "id": 20101,

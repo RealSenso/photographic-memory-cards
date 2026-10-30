@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261031_airplane_draw8"></script>
+  <script src="cards_data.js?v=20261031_format"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
@@ -189,6 +189,12 @@
     .info { margin: 6px 0 0; font-size: calc(var(--lh) * 0.56); line-height: var(--lh); color: #35322d; font-weight: 400; }
     .info strong { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255, 213, 79, .55) 62%); }
     .info .katex, .connection .katex { font-size: 1.02em; }
+    .hint { margin: 6px 0 0; font-size: calc(var(--lh) * 0.5); line-height: calc(var(--lh) * 0.9); color: #7a5410; font-style: italic; }
+    .hint b { font-style: normal; font-weight: 700; letter-spacing: 1px; font-size: .85em; color: #fff; background: #b8860b; padding: 1px 6px; border-radius: 3px; margin-right: 6px; }
+    .sect { margin-top: calc(var(--lh) * 0.5); }
+    .sect h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.55); letter-spacing: 1.2px; color: #1d1b18; border-bottom: 3px double #1d1b18; line-height: 1.1; }
+    .mathbox { margin: 4px 0 0; padding: 2px 8px; background: #f6f1e4; border-left: 4px solid #b8860b; overflow-x: auto; font-size: calc(var(--lh) * 0.5); line-height: 1.3; }
+    .mathbox .katex-display { margin: .25em 0; }
     .connection { margin-top: calc(var(--lh) * 0.6); }
     .connection h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.62); letter-spacing: 1.2px; color: #16603f; border-bottom: 3px double #16603f; line-height: 1.1; }
     .connection p { margin: 6px 0 0; font-size: calc(var(--lh) * 0.55); line-height: var(--lh); color: #1a6b46; font-weight: 500; }
@@ -839,14 +845,17 @@
         <article class="paper" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
           <div class="col-left">
             <h1 class="paper-title">${card.title}</h1>
-            <div class="info">${infoHtml(card)}</div>
+            ${card.breakdown ? `<p class="hint"><b>HINT</b>${card.hint || ''}</p>
+              <section class="sect"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
+              <section class="sect"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section>`
+              : `<div class="info">${infoHtml(card)}</div>`}
           </div>
           <div class="col-right">
             <figure class="sketch">
               <div class="sketch-box">${sketchHtml(card)}</div>
               <figcaption>${card.drawingCaption || ''}</figcaption>
             </figure>
-            <section class="connection"><h2>CONNECTION</h2><p>${card.personalConnection}</p></section>
+            <section class="connection"><h2>${card.breakdown ? 'AIRPLANE TRANSLATION' : 'CONNECTION'}</h2><p>${card.personalConnection}</p></section>
           </div>
         </article>`;
     }
@@ -944,7 +953,7 @@
       const box = document.getElementById('search-results');
       if (!q) { box.hidden = true; return; }
       const hits = masterCards.map(c => {
-        const fields = [c.title, c.category, c.topicTitle, c.personalConnection, c.examTrap, ...(c.coreTranslation || [])].map(stripTags);
+        const fields = [c.title, c.category, c.topicTitle, c.personalConnection, c.examTrap, c.hint || '', ...(c.breakdown || []), ...(c.coreTranslation || [])].map(stripTags);
         const hay = fields.join(' ').toLowerCase();
         return hay.includes(q) ? { c } : null;
       }).filter(Boolean).slice(0, 8);
