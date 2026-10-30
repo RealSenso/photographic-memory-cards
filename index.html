@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261031_format"></script>
+  <script src="cards_data.js?v=20261031_fit3"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
@@ -154,7 +154,7 @@
     .donebtn { min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid #2c6e57; background: #11261f; color: #a9ecd0; font-size: 14.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
     .donebtn:hover { background: #16342a; }
     .donebtn.is-done { background: var(--green); border-color: var(--green); color: #06101c; }
-    .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 32px 0; }
+    .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 32px 16px; }
     .chipbtn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--muted-2); font-family: var(--mono); font-size: 13px; }
     .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: var(--text); }
     .hint { margin-left: auto; font-size: 13px; color: #8e9bb8; }
@@ -168,7 +168,7 @@
     .paper-bar .chip { color: #e8c9a0; border-color: #6b5436; }
     .paper-bar .cat { color: #b8a58a; }
     .paper-bar .copy-btn { margin-left: auto; background: #241b13; border-color: #4a3a28; color: #e8d9c2; }
-    .paper { position: relative; flex: 1 0 auto; width: 100%; margin: 0; min-height: 480px; padding: 30px 48px 36px; align-content: start; border-radius: 6px;
+    .paper { position: relative; flex: 1 0 auto; width: 100%; margin: 0; min-height: 0; padding: 30px 48px 36px; align-content: start; border-radius: 6px;
       background-color: #f8f6ef;
       background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--lh) - 1px), #c9d3df calc(var(--lh) - 1px), #c9d3df var(--lh));
       box-shadow: 0 18px 40px -10px rgba(0,0,0,.75), 0 2px 0 #fff inset; color: #2b2b2b;
@@ -177,9 +177,9 @@
     .paper-title { margin: 0 0 6px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 1.1); line-height: 1.12; text-transform: uppercase; letter-spacing: .4px; color: #262626; padding-bottom: 6px; border-bottom: 3px double #555; min-height: calc(var(--lh) * 2); display: flex; align-items: flex-end; }
     .col-left, .col-right { min-width: 0; }
     .sketch { margin: 0; }
-    .sketch-box { background: #fff; border: 2.5px solid #4d4d4d; border-radius: 3px; padding: 12px; box-shadow: 2px 3px 0 rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; min-height: 220px; }
+    .sketch-box { background: #fff; border: 2.5px solid #4d4d4d; border-radius: 3px; padding: 12px; box-shadow: 2px 3px 0 rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; min-height: 0; }
     .sketch-box img { max-width: 100%; max-height: 46vh; object-fit: contain; cursor: zoom-in; }
-    .sketch-box .plate-svg { width: 100%; }
+    .sketch-box .plate-svg { width: 100%; max-width: calc(var(--lh) * 11); margin: 0 auto; }
     .sketch-box .plate-svg svg { width: 100%; height: auto; display: block; }
     .sketch figcaption { margin-top: 8px; font-family: inherit; font-size: calc(var(--lh) * 0.4); line-height: 1.35; color: #555; }
     .sketch-box svg text { font-family: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
@@ -189,11 +189,18 @@
     .info { margin: 6px 0 0; font-size: calc(var(--lh) * 0.56); line-height: var(--lh); color: #35322d; font-weight: 400; }
     .info strong { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255, 213, 79, .55) 62%); }
     .info .katex, .connection .katex { font-size: 1.02em; }
-    .hint { margin: 6px 0 0; font-size: calc(var(--lh) * 0.5); line-height: calc(var(--lh) * 0.9); color: #7a5410; font-style: italic; }
-    .hint b { font-style: normal; font-weight: 700; letter-spacing: 1px; font-size: .85em; color: #fff; background: #b8860b; padding: 1px 6px; border-radius: 3px; margin-right: 6px; }
+    .paper.two .onback { display: none; } .paper.two.is-back .onfront { display: none; } .paper.two.is-back .onback { display: block; }
+    .paper.two { cursor: pointer; }
+    .paper.two.is-back .paper-title { font-size: calc(var(--lh) * 0.8); min-height: 0; }
+    .paper.two:not(.is-back) .cardhint { font-size: calc(var(--lh) * 0.75); line-height: calc(var(--lh) * 1.25); margin-top: calc(var(--lh) * 0.6); }
+    .paper.two:not(.is-back) .sketch-box .plate-svg { max-width: calc(var(--lh) * 15); }
+    .cardhint { margin: 6px 0 0; font-size: calc(var(--lh) * 0.5); line-height: calc(var(--lh) * 0.9); color: #7a5410; font-style: italic; }
+    .flipnote { margin: calc(var(--lh)*0.6) 0 0; font-size: calc(var(--lh)*0.38); color: #8b8478; }
+    .flipnote kbd { font-family: var(--mono); border: 1px solid #b9b2a3; border-radius: 4px; padding: 0 5px; }
+    .cardhint b { font-style: normal; font-weight: 700; letter-spacing: 1px; font-size: .85em; color: #fff; background: #b8860b; padding: 1px 6px; border-radius: 3px; margin-right: 6px; }
     .sect { margin-top: calc(var(--lh) * 0.5); }
     .sect h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.55); letter-spacing: 1.2px; color: #1d1b18; border-bottom: 3px double #1d1b18; line-height: 1.1; }
-    .mathbox { margin: 4px 0 0; padding: 2px 8px; background: #f6f1e4; border-left: 4px solid #b8860b; overflow-x: auto; font-size: calc(var(--lh) * 0.5); line-height: 1.3; }
+    .mathbox { margin: 4px 0 0; padding: 2px 8px; background: #f6f1e4; border-left: 4px solid #b8860b; overflow: hidden; font-size: calc(var(--lh) * 0.5 * var(--mfit, 1)); line-height: 1.3; }
     .mathbox .katex-display { margin: .25em 0; }
     .connection { margin-top: calc(var(--lh) * 0.6); }
     .connection h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.62); letter-spacing: 1.2px; color: #16603f; border-bottom: 3px double #16603f; line-height: 1.1; }
@@ -224,6 +231,7 @@
       .hint { display: none; }
       .search kbd { display: none; }
     }
+    @media (min-width: 701px) and (max-width: 900px) { .paper { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); padding: 22px 24px 26px; column-gap: 24px; } .col-right { margin-top: 0; } }
 
     /* ---------- print: the whole topic, one card per page ---------- */
     @media print {
@@ -627,6 +635,13 @@
     }
     const isPractice = c => c && c.kind === 'practice';
     function flipCard() {
+      const two = document.querySelector('.paper.two');
+      if (two) {
+        flipped = !flipped;
+        two.classList.toggle('is-back', flipped);
+        renderActions(); fitCard();
+        return;
+      }
       if (!isPractice(deck[idx])) return;
       flipped = !flipped;
       const f = document.querySelector('.flipper');
@@ -696,6 +711,8 @@
 
     function step(dir) {
       if (!deck.length) return;
+      const two = document.querySelector('.paper.two');
+      if (two && ((dir > 0 && !flipped) || (dir < 0 && flipped))) { flipCard(); return; }
       const n = idx + dir;
       if (n >= 0 && n < deck.length) { goTo(n); return; }
       const topics = getTopicsList();
@@ -842,20 +859,22 @@
           <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy this card (text and picture) to the clipboard">
             <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
         </div>
-        <article class="paper" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
+        <article class="paper ${card.breakdown && card.__split ? 'two' : ''} ${card.breakdown && card.__split && flipped ? 'is-back' : ''}" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}"
+          ${card.breakdown && card.__split ? `onclick="if(!event.target.closest('a,button') && !(window.getSelection && window.getSelection().toString().length))flipCard()"` : ''}>
           <div class="col-left">
             <h1 class="paper-title">${card.title}</h1>
-            ${card.breakdown ? `<p class="hint"><b>HINT</b>${card.hint || ''}</p>
-              <section class="sect"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
-              <section class="sect"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section>`
+            ${card.breakdown ? `<p class="cardhint onfront"><b>HINT</b>${card.hint || ''}</p>
+              <p class="flipnote onfront">Think it through, then flip for the math (<kbd>F</kbd> or click)</p>
+              <section class="sect onback"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
+              <section class="sect onback"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section>`
               : `<div class="info">${infoHtml(card)}</div>`}
           </div>
           <div class="col-right">
-            <figure class="sketch">
+            <figure class="sketch ${card.breakdown ? 'onfront' : ''}">
               <div class="sketch-box">${sketchHtml(card)}</div>
               <figcaption>${card.drawingCaption || ''}</figcaption>
             </figure>
-            <section class="connection"><h2>${card.breakdown ? 'AIRPLANE TRANSLATION' : 'CONNECTION'}</h2><p>${card.personalConnection}</p></section>
+            <section class="connection ${card.breakdown ? 'onback' : ''}"><h2>${card.breakdown ? 'AIRPLANE TRANSLATION' : 'CONNECTION'}</h2><p>${card.personalConnection}</p></section>
           </div>
         </article>`;
     }
@@ -879,6 +898,7 @@
         <button class="nav" onclick="step(-1)">← Previous card</button>
         <div class="sp"></div>
         <span class="counter">${idx + 1} of ${deck.length}</span>
+        ${deck[idx].breakdown && deck[idx].__split ? `<button class="donebtn" onclick="flipCard()">${flipped ? '← Part 1' : 'Part 2 →'}</button>` : ''}
         ${isPractice(deck[idx])
           ? `<button class="donebtn" onclick="flipCard()">${flipped ? '↺ Back to question' : '⟳ Show solution'}</button>`
           : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}">${done.has(deck[idx].id) ? '✓ Done (click to undo)' : 'Mark as done'}</button>`}
@@ -887,21 +907,33 @@
     }
 
     /* Use the biggest text size at which the whole card still fits on screen (no scrolling). */
+    function fitMath(p) {
+      p.querySelectorAll('.mathbox').forEach(m => {
+        m.style.setProperty('--mfit', '1');
+        const w = m.clientWidth, sw = m.scrollWidth;
+        if (sw > w + 1) m.style.setProperty('--mfit', Math.max(0.4, (w / sw) * 0.96).toFixed(3));
+      });
+    }
     function fitCard() {
       const p = document.querySelector('.paper'), st = document.getElementById('stage');
       if (!p || !st) return;
-      if (window.innerWidth <= 900) { p.style.removeProperty('--lh'); return; }
+      const narrow = window.innerWidth <= 700;
       const bar = document.querySelector('.paper-bar');
       const room = st.clientHeight - parseFloat(getComputedStyle(st).paddingTop) - parseFloat(getComputedStyle(st).paddingBottom)
-        - (bar ? bar.offsetHeight + 12 : 0);
+        - (bar ? bar.offsetHeight + 12 : 0) - 6;
       const flex = p.style.flex, minH = p.style.minHeight;
       p.style.flex = 'none'; p.style.minHeight = '0';
-      let lh = Math.min(44, Math.max(30, Math.min(window.innerWidth * 0.029, window.innerHeight * 0.047)));
-      for (; lh > 24; lh -= 1) {
+      let lh = narrow ? 28 : Math.min(44, Math.max(30, Math.min(window.innerWidth * 0.029, window.innerHeight * 0.047)));
+      for (; lh > 13; lh -= 1) {
         p.style.setProperty('--lh', lh + 'px');
+        fitMath(p);
         if (p.getBoundingClientRect().height <= room) break;
       }
       p.style.flex = flex; p.style.minHeight = minH;
+      const c = deck[idx];
+      if (c && c.breakdown && !c.__split && p.getBoundingClientRect().height > room + 1 || (c && c.breakdown && !c.__split && lh < 24)) {
+        c.__split = true; flipped = false; renderStage(); renderActions();
+      }
     }
     window.addEventListener('resize', fitCard);
     window.addEventListener('load', fitCard);
