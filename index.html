@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261031_fit3"></script>
+  <script src="cards_data.js?v=20261031_fit6"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
@@ -80,7 +80,7 @@
 
     /* ---------- main column ---------- */
     .main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
-    .topbar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 14px 32px; border-bottom: 1px solid var(--line); background: rgba(13,18,32,0.94); backdrop-filter: blur(8px); }
+    .topbar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 8px 32px; border-bottom: 1px solid var(--line); background: rgba(13,18,32,0.94); backdrop-filter: blur(8px); }
     .crumb { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #8e9bb8; min-width: 0; flex: 1 1 200px; }
     .crumb b { color: var(--text); font-weight: 500; }
     .crumb span.t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -151,11 +151,11 @@
     .pface .connection p { font-size: 19px; line-height: 36px; }
     .pface .connection h2 { font-size: 16px; }
     @media (max-width: 900px) { .pface { padding: 22px 20px 28px; min-height: 360px; } .pbody { font-size: 18px; line-height: 34px; } }
-    .donebtn { min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid #2c6e57; background: #11261f; color: #a9ecd0; font-size: 14.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+    .donebtn { min-height: 40px; padding: 0 22px; border-radius: 12px; border: 1px solid #2c6e57; background: #11261f; color: #a9ecd0; font-size: 14.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
     .donebtn:hover { background: #16342a; }
     .donebtn.is-done { background: var(--green); border-color: var(--green); color: #06101c; }
-    .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 32px 16px; }
-    .chipbtn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--muted-2); font-family: var(--mono); font-size: 13px; }
+    .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 8px 32px 14px; gap: 6px 8px; }
+    .chipbtn { width: 36px; height: 36px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--muted-2); font-family: var(--mono); font-size: 13px; }
     .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: var(--text); }
     .hint { margin-left: auto; font-size: 13px; color: #8e9bb8; }
     .hint kbd { font-family: var(--mono); color: var(--muted-2); }
@@ -174,6 +174,7 @@
       box-shadow: 0 18px 40px -10px rgba(0,0,0,.75), 0 2px 0 #fff inset; color: #2b2b2b;
       font-family: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); column-gap: 40px; --lh: clamp(30px, min(2.7vw, 4.3vh), 42px); align-items: start; }
     .paper::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #d2574a; border-radius: 6px 6px 0 0; }
+    .paper-title small { font-size: .5em; letter-spacing: 1px; color: #7a5410; margin-left: 10px; white-space: nowrap; }
     .paper-title { margin: 0 0 6px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 1.1); line-height: 1.12; text-transform: uppercase; letter-spacing: .4px; color: #262626; padding-bottom: 6px; border-bottom: 3px double #555; min-height: calc(var(--lh) * 2); display: flex; align-items: flex-end; }
     .col-left, .col-right { min-width: 0; }
     .sketch { margin: 0; }
@@ -189,14 +190,7 @@
     .info { margin: 6px 0 0; font-size: calc(var(--lh) * 0.56); line-height: var(--lh); color: #35322d; font-weight: 400; }
     .info strong { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255, 213, 79, .55) 62%); }
     .info .katex, .connection .katex { font-size: 1.02em; }
-    .paper.two .onback { display: none; } .paper.two.is-back .onfront { display: none; } .paper.two.is-back .onback { display: block; }
-    .paper.two { cursor: pointer; }
-    .paper.two.is-back .paper-title { font-size: calc(var(--lh) * 0.8); min-height: 0; }
-    .paper.two:not(.is-back) .cardhint { font-size: calc(var(--lh) * 0.75); line-height: calc(var(--lh) * 1.25); margin-top: calc(var(--lh) * 0.6); }
-    .paper.two:not(.is-back) .sketch-box .plate-svg { max-width: calc(var(--lh) * 15); }
     .cardhint { margin: 6px 0 0; font-size: calc(var(--lh) * 0.5); line-height: calc(var(--lh) * 0.9); color: #7a5410; font-style: italic; }
-    .flipnote { margin: calc(var(--lh)*0.6) 0 0; font-size: calc(var(--lh)*0.38); color: #8b8478; }
-    .flipnote kbd { font-family: var(--mono); border: 1px solid #b9b2a3; border-radius: 4px; padding: 0 5px; }
     .cardhint b { font-style: normal; font-weight: 700; letter-spacing: 1px; font-size: .85em; color: #fff; background: #b8860b; padding: 1px 6px; border-radius: 3px; margin-right: 6px; }
     .sect { margin-top: calc(var(--lh) * 0.5); }
     .sect h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.55); letter-spacing: 1.2px; color: #1d1b18; border-bottom: 3px double #1d1b18; line-height: 1.1; }
@@ -210,9 +204,9 @@
     .empty h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; color: var(--text); margin: 0 0 8px; }
 
     /* ---------- action bar ---------- */
-    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px 32px 24px; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 32px 12px; }
     .actions .sp { flex: 1 1 0; min-width: 8px; }
-    .nav { min-height: 48px; padding: 0 22px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 14.5px; }
+    .nav { min-height: 40px; padding: 0 22px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 14.5px; }
     .counter { font-size: 13px; color: #8e9bb8; font-family: var(--mono); }
     .nav.next { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
 
@@ -625,6 +619,15 @@
     let currentSubject = 'CMO';
     let currentTopic = null;
     let deck = [];
+    /* A card too full for one page becomes two subtopic cards: each shows its own part of the breakdown, nothing hidden. */
+    function splitCard(c) {
+      const k = Math.min(2, c.breakdown.length - 1);
+      return [
+        Object.assign({}, c, { part: 1, cardNumber: c.cardNumber + 'a', title: c.title + ' <small>(1/2)</small>', breakdown: c.breakdown.slice(0, k), hideConn: true }),
+        Object.assign({}, c, { part: 2, cardNumber: c.cardNumber + 'b', title: c.title + ' <small>(2/2)</small>', breakdown: c.breakdown.slice(k), hint: '', hideFig: true })
+      ];
+    }
+    function expandDeck(d) { return d.flatMap(c => (c.__split && !c.part) ? splitCard(c) : [c]); }
     let idx = 0;
     let currentImpFilter = 'all';
     let flipped = false;
@@ -635,13 +638,6 @@
     }
     const isPractice = c => c && c.kind === 'practice';
     function flipCard() {
-      const two = document.querySelector('.paper.two');
-      if (two) {
-        flipped = !flipped;
-        two.classList.toggle('is-back', flipped);
-        renderActions(); fitCard();
-        return;
-      }
       if (!isPractice(deck[idx])) return;
       flipped = !flipped;
       const f = document.querySelector('.flipper');
@@ -695,6 +691,7 @@
     function switchTopic(topicId, keepIdx) {
       currentTopic = topicId;
       deck = getSubjectCards(currentSubject).filter(c => topicOf(c) === topicId).concat(practiceFor(currentSubject, topicId));
+      deck = expandDeck(deck);
       flipped = false;
       idx = keepIdx ? Math.max(0, Math.min(idx, deck.length - 1)) : 0;
       closeSearch();
@@ -711,8 +708,6 @@
 
     function step(dir) {
       if (!deck.length) return;
-      const two = document.querySelector('.paper.two');
-      if (two && ((dir > 0 && !flipped) || (dir < 0 && flipped))) { flipCard(); return; }
       const n = idx + dir;
       if (n >= 0 && n < deck.length) { goTo(n); return; }
       const topics = getTopicsList();
@@ -859,22 +854,20 @@
           <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy this card (text and picture) to the clipboard">
             <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
         </div>
-        <article class="paper ${card.breakdown && card.__split ? 'two' : ''} ${card.breakdown && card.__split && flipped ? 'is-back' : ''}" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}"
-          ${card.breakdown && card.__split ? `onclick="if(!event.target.closest('a,button') && !(window.getSelection && window.getSelection().toString().length))flipCard()"` : ''}>
+        <article class="paper" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
           <div class="col-left">
             <h1 class="paper-title">${card.title}</h1>
-            ${card.breakdown ? `<p class="cardhint onfront"><b>HINT</b>${card.hint || ''}</p>
-              <p class="flipnote onfront">Think it through, then flip for the math (<kbd>F</kbd> or click)</p>
-              <section class="sect onback"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
-              <section class="sect onback"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section>`
+            ${card.breakdown ? `${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
+              <section class="sect"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
+              <section class="sect"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section>`
               : `<div class="info">${infoHtml(card)}</div>`}
           </div>
           <div class="col-right">
-            <figure class="sketch ${card.breakdown ? 'onfront' : ''}">
+            ${card.hideFig ? '' : `<figure class="sketch">
               <div class="sketch-box">${sketchHtml(card)}</div>
               <figcaption>${card.drawingCaption || ''}</figcaption>
-            </figure>
-            <section class="connection ${card.breakdown ? 'onback' : ''}"><h2>${card.breakdown ? 'AIRPLANE TRANSLATION' : 'CONNECTION'}</h2><p>${card.personalConnection}</p></section>
+            </figure>`}
+            ${card.hideConn ? '' : `<section class="connection"><h2>${card.breakdown ? 'AIRPLANE TRANSLATION' : 'CONNECTION'}</h2><p>${card.personalConnection}</p></section>`}
           </div>
         </article>`;
     }
@@ -898,7 +891,6 @@
         <button class="nav" onclick="step(-1)">← Previous card</button>
         <div class="sp"></div>
         <span class="counter">${idx + 1} of ${deck.length}</span>
-        ${deck[idx].breakdown && deck[idx].__split ? `<button class="donebtn" onclick="flipCard()">${flipped ? '← Part 1' : 'Part 2 →'}</button>` : ''}
         ${isPractice(deck[idx])
           ? `<button class="donebtn" onclick="flipCard()">${flipped ? '↺ Back to question' : '⟳ Show solution'}</button>`
           : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}">${done.has(deck[idx].id) ? '✓ Done (click to undo)' : 'Mark as done'}</button>`}
@@ -931,8 +923,10 @@
       }
       p.style.flex = flex; p.style.minHeight = minH;
       const c = deck[idx];
-      if (c && c.breakdown && !c.__split && p.getBoundingClientRect().height > room + 1 || (c && c.breakdown && !c.__split && lh < 24)) {
-        c.__split = true; flipped = false; renderStage(); renderActions();
+      if (c && c.breakdown && !c.part && !c.__split && lh < 22) {
+        c.__split = true;
+        deck = expandDeck(deck);
+        renderAll();
       }
     }
     window.addEventListener('resize', fitCard);
