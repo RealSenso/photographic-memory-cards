@@ -1379,6 +1379,26 @@
     }
 
 
+
+    /* Auto-update: when a newer index.html (its ?v= data versions) is published, reload; the card position is already saved. */
+    (function () {
+      if (location.protocol === 'file:') return;
+      let base = null, busy = false;
+      const sig = t => (t.match(/<script[^>]+src="[^"]+"/g) || []).join('|');
+      async function check() {
+        if (busy) return; busy = true;
+        try {
+          const r = await fetch(location.pathname + '?_=' + Date.now(), { cache: 'no-store' });
+          const now = sig(await r.text());
+          if (base === null) base = now;
+          else if (now !== base) { savePos(); location.reload(); }
+        } catch (e) {} finally { busy = false; }
+      }
+      check();
+      setInterval(check, 60000);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
+      window.addEventListener('focus', check);
+    })();
   </script>
 
   <!-- Toast Notification for Copy -->
