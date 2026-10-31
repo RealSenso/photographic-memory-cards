@@ -15,6 +15,7 @@
   <script src="practice_stoma.js?v=20261029_stoma"></script>
   <script src="practice_dip.js?v=20261029_dip"></script>
   <script src="practice_laa.js?v=20261029_laa"></script>
+  <script src="story_cmo_a.js?v=20261031_s1"></script>
   <script src="topic_importance.js?v=20261028_imp1"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
@@ -183,16 +184,24 @@
     .paper-title { margin: 0 0 6px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 1.1); line-height: 1.12; text-transform: uppercase; letter-spacing: .4px; color: #262626; padding-bottom: 6px; border-bottom: 3px double #555; min-height: calc(var(--lh) * 2); display: flex; align-items: flex-end; }
     .col-left, .col-right { min-width: 0; }
     /* Plates with a breakdown: title across the top, text stack left, picture + translation right (no stretched gaps). */
-    .paper.grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: "title title" "left right"; row-gap: 0; align-content: start; }
+    .paper.grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: "title title" "story story" "left right"; row-gap: 0; align-content: start; }
     .paper.grid .col-left { display: contents; }
     .paper.grid .paper-title { grid-area: title; min-height: 0; }
     .paper.grid .lstack { grid-area: left; min-width: 0; }
     .paper.grid .col-right { grid-area: right; }
+    /* Story band: where this card sits in the big picture, with clickable links to the cards before and after it. */
+    .story { grid-area: story; margin: calc(var(--lh) * 0.25) 0 calc(var(--lh) * 0.2); padding: calc(var(--lh) * 0.12) calc(var(--lh) * 0.4); border-left: 4px solid #2f8a62; background: rgba(47,138,98,.09); font-size: calc(var(--lh) * 0.52); line-height: 1.28; color: #1f4a37; }
+    .story .stag { font-weight: 700; letter-spacing: .5px; font-size: .86em; color: #2f8a62; margin-right: .6em; }
+    .story .sbig { display: inline; margin: 0; }
+    .story .slinks { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: calc(var(--lh) * 0.06); }
+    .story .slink { border: 0; background: none; padding: 0; font: inherit; color: #1b5e94; cursor: pointer; text-align: left; }
+    .story .slink:hover { text-decoration: underline; }
+    .story .slink b { font-weight: 800; }
     .paper.grid .sketch { margin-top: calc(var(--lh) * 0.3); }
     .paper.grid .sketch-box .plate-svg { max-width: none; }
     .sketch { margin: 0; }
     .sketch-box { background: #fff; border: 2.5px solid #4d4d4d; border-radius: 3px; padding: 12px; box-shadow: 2px 3px 0 rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; min-height: 0; }
-    .sketch-box img { max-width: 100%; max-height: 46vh; object-fit: contain; cursor: zoom-in; }
+    .sketch-box img { max-width: 100%; max-height: min(46vh, calc(var(--lh) * 15)); object-fit: contain; cursor: zoom-in; }
     .sketch-box .plate-svg { width: 100%; max-width: calc(var(--lh) * 11); margin: 0 auto; }
     .sketch-box .plate-svg svg { width: 100%; height: auto; display: block; }
     .sketch figcaption { margin-top: 8px; font-family: inherit; font-size: calc(var(--lh) * 0.4); line-height: 1.35; color: #555; }
@@ -233,7 +242,7 @@
       .scrim.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50; }
       .topbar, .strip, .stage, .actions { padding-left: 16px; padding-right: 16px; }
       .paper { grid-template-columns: 1fr; padding: 22px 20px 28px; }
-      .paper.grid { grid-template-areas: "title" "left" "right"; }
+      .paper.grid { grid-template-areas: "title" "story" "left" "right"; }
       .col-right { margin-top: 10px; }
       .paper { --lh: 28px; }
       .hint { display: none; }
@@ -865,6 +874,28 @@
         </div>`;
     }
 
+    /* Big-picture story (data: story_cmo_*.js, keyed by card id): one sentence + links to the cards before and after. */
+    function storyLabel(id) {
+      const c = getSubjectCards(currentSubject).find(x => String(x.id) === String(id));
+      return c ? { tag: (parseInt(c.topicId, 10) || 0) + '.' + c.cardNumber, title: stripTags(c.title) } : null;
+    }
+    function storyHtml(card) {
+      const st = (window.STORY_DATA || {})[card.id];
+      if (!st || card.part === 2) return '';
+      const link = (arrow, [id, why]) => {
+        const l = storyLabel(id);
+        return l ? `<button class="slink" onclick="jumpToCard('${id}')" title="${esc(l.title)}">${arrow} <b>${l.tag}</b> ${why}</button>` : '';
+      };
+      const links = (st.f || []).map(x => link('←', x)).concat((st.n || []).map(x => link('→', x))).join('');
+      return `<div class="story"><span class="stag">${st.s}</span><p class="sbig">${st.b}</p>${links ? `<div class="slinks">${links}</div>` : ''}</div>`;
+    }
+    function jumpToCard(id) {
+      const c = getSubjectCards(currentSubject).find(x => String(x.id) === String(id));
+      if (!c) return;
+      if (topicOf(c) !== currentTopic) switchTopic(topicOf(c));
+      const i = deck.findIndex(x => String(x.id) === String(id));
+      goTo(i < 0 ? 0 : i);
+    }
     function cardHtml(card) {
       if (isPractice(card)) return practiceHtml(card);
       const imp = (typeof window.getTopicImportance === 'function')
@@ -883,7 +914,7 @@
         <article class="paper ${card.breakdown ? 'grid' : ''} ${card.part ? 'p' + card.part : ''}" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
           <div class="col-left">
             <h1 class="paper-title">${card.title}</h1>
-            ${card.breakdown ? `<div class="lstack">${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
+            ${card.breakdown ? `${storyHtml(card)}<div class="lstack">${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
               <section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
               <section class="sect b"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section></div>`
               : `<div class="info">${infoHtml(card)}</div>`}
@@ -908,6 +939,7 @@
       }
       typesetMath(stage);
       fitCard();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCard); // math fonts load lazily and change widths
     }
 
     function renderActions() {
@@ -955,6 +987,7 @@
         renderAll();
       }
     }
+    document.getElementById('stage').addEventListener('load', fitCard, true); // pictures arrive after the text is laid out
     window.addEventListener('resize', fitCard);
     window.addEventListener('load', fitCard);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCard);
