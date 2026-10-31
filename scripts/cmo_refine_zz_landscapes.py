@@ -69,4 +69,22 @@ def d706(c):
     return svg(c, *parts)
 D[706] = (d706, "In 2D conjugate gradient lands on the lowest point in exactly two legs: the first removes the error along d₀, the second removes the rest.")
 
+def d401(c):
+    import math
+    Y = lambda x: 105 - 75 * ((x - 150) / 120) ** 2
+    pts = [(x, Y(x)) for x in range(30, 231, 5)]
+    xk = 52; yk = Y(xk); sl = -1.25 * ((xk - 150) / 120); n = math.hypot(1, sl)
+    tx, ty = 1 / n, sl / n
+    short, good, over = 88, 150, 212
+    ax = [L(24, 112, 232, 112, 1.2), N(236, 115, "x", 8, "start")]
+    parts = ax + [poly(pts, 2.2), plane(xk - 3, yk - 10, 0, .7), arrow(xk + 4, yk - 2, xk + 4 + tx * 34, yk - 2 + ty * 34, 2.4), N(xk + 40, yk + 2, "d_k", 9, "start", "bold"),
+        dot(xk, yk, "x_k", -6, -2, 10, "end", 3)]
+    for xx, lab in ((short, "too short"), (good, "just right"), (over, "overshoot")):
+        parts += [dash(xx, Y(xx), xx, 112), dot(xx, Y(xx), None, 0, 0, 9, "middle", 2.6), N(xx, 124, lab, 8, "middle")]
+    parts += [L(xk, 118, good, 118, 1.2, ar=True), N((xk + good) / 2, 134, "α_k = how far to fly", 8.5, "middle", "bold"),
+        N(150, 14, "slope along d_k is negative: ∇f·d_k < 0", 8.5, "middle")]
+    return svg(c, *parts)
+D[401] = (d401, "Heading d_k points downhill; the step size α_k decides where the next point lands: too short, just right, or an overshoot up the far wall.")
+
 FIX = {cid: {"drawingSvg": fnc(cid), "drawingCaption": cap} for cid, (fnc, cap) in D.items()}
+FIX[401].update(textbookImg=None, textbookRef=None)
