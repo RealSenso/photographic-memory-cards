@@ -26,7 +26,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Heine-Borel:</strong> in $\\mathbb R^n$ these two together are exactly compactness, the property Weierstrass needs."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "<b>Heine\u2013Borel.</b> A subset $K\\subset\\mathbb R^n$ is compact (every sequence in $K$ has a subsequence converging to a point of $K$) if and only if $K$ is closed and bounded. Here <i>closed</i> means $K$ contains all its limit points, and <i>bounded</i> means $K\\subset\\{x:\\|x\\|\\le R\\}$ for some $R\\lt \\infty$."
   },
   {
     "id": 102,
@@ -54,7 +56,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>The two statements are equivalent:</strong> jumps downward are allowed, jumps upward (a hole in the floor) are not."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "A function $f:\\mathbb R^n\\to\\mathbb R\\cup\\{+\\infty\\}$ is <b>lower semicontinuous</b> at $x_0$ if $\\liminf_{x\\to x_0}f(x)\\ge f(x_0)$. <b>Proposition.</b> $f$ is lower semicontinuous on $\\mathbb R^n$ if and only if every sublevel set $\\mathcal L_\\alpha=\\{x: f(x)\\le\\alpha\\}$, $\\alpha\\in\\mathbb R$, is closed."
   },
   {
     "id": 103,
@@ -82,7 +86,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Conclusion:</strong> a lowest point $x^*$ exists inside $K$, so a search over the airfield cannot come up empty."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "<b>Weierstrass.</b> Let $K\\subset\\mathbb R^n$ be nonempty and compact, and let $f:K\\to\\mathbb R$ be continuous (lower semicontinuous suffices). Then $f$ attains its minimum on $K$: there exists $x^*\\in K$ with $f(x^*)\\le f(x)$ for all $x\\in K$."
   },
   {
     "id": 104,
@@ -110,7 +116,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Then Weierstrass applies inside it:</strong> the lowest point exists in all of $\\mathbb R^n$."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "Let $f:\\mathbb R^n\\to\\mathbb R$ be continuous and <b>coercive</b>, i.e. $f(x)\\to+\\infty$ whenever $\\|x\\|\\to\\infty$. Then every sublevel set $\\{x:f(x)\\le\\alpha\\}$ is compact, and $f$ has a global minimizer on $\\mathbb R^n$."
   },
   {
     "id": 105,
@@ -138,7 +146,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\operatorname{epi}(f)=\\{(x,t):f(x)\\le t\\}$</strong> is all the sky on or above the terrain, with height $t$ as the extra coordinate.",
       "<strong>Convex terrain $\\iff$ convex sky:</strong> any straight flight path between two points in that sky stays in it.",
       "<strong>Why it matters:</strong> it turns a statement about a function into a statement about a set, where separating hyperplanes work."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "The <b>epigraph</b> of $f:C\\to\\mathbb R$ is $\\operatorname{epi}f=\\{(x,t)\\in C\\times\\mathbb R: f(x)\\le t\\}$. <b>Proposition.</b> For a convex set $C$, $f$ is convex on $C$ if and only if $\\operatorname{epi}f$ is a convex subset of $\\mathbb R^{n+1}$."
   },
   {
     "id": 106,
@@ -166,7 +176,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Setting $\\nabla f=0$</strong> gives the candidates $(0,0)$ (a saddle, $f=0$) and $\\pm(1,1)$ with $f=-2$: the true lowest points."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "Let $f(x)=x_1^4+x_2^4-4x_1x_2$. Since $4|x_1x_2|\\le2(x_1^2+x_2^2)$, $f(x)\\ge x_1^4+x_2^4-2(x_1^2+x_2^2)\\to\\infty$ as $\\|x\\|\\to\\infty$, so $f$ is coercive and a global minimizer exists. Solving $\\nabla f=0$ gives $(0,0),(1,1),(-1,-1)$; the global minimum is $f(\\pm(1,1))=-2$."
   },
   {
     "id": 201,
@@ -194,7 +206,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\tfrac12d^\\top\\nabla^2f\\,d$ = the curvature term.</strong> The extra correction because the slope itself bends as you move; the $\\tfrac12$ and the square come from integrating a changing slope."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "<b>Taylor (second order).</b> Let $f\\in C^2$ on an open set containing the segment $[x,x+d]$. Then there exists $\\theta\\in(0,1)$ such that $f(x+d)=f(x)+\\nabla f(x)^\\top d+\\tfrac12 d^\\top\\nabla^2f(x+\\theta d)\\,d$. Equivalently, $f(x+d)=f(x)+\\nabla f(x)^\\top d+\\tfrac12d^\\top\\nabla^2f(x)d+o(\\|d\\|^2)$."
   },
   {
     "id": 202,
@@ -222,7 +236,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla f(x^*)=0$:</strong> the radar sees no slope in any direction.",
       "<strong>Why:</strong> if any component were nonzero, moving against it would lose altitude, so $x^*$ could not be a lowest point.",
       "<strong>Warning:</strong> it is only necessary. A hilltop or a saddle also reads zero."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>First-order necessary condition.</b> Let $f\\in C^1$ on an open set $\\Omega$. If $x^*\\in\\Omega$ is a local minimizer of $f$, then $\\nabla f(x^*)=0$."
   },
   {
     "id": 203,
@@ -250,7 +266,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>If one direction had negative curvature,</strong> the plane would roll down it, so $x^*$ would not be a minimum."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "<b>Second-order necessary conditions.</b> Let $f\\in C^2$ on an open set $\\Omega$. If $x^*\\in\\Omega$ is a local minimizer of $f$, then $\\nabla f(x^*)=0$ and $\\nabla^2f(x^*)$ is positive semidefinite: $d^\\top\\nabla^2f(x^*)d\\ge0$ for all $d$."
   },
   {
     "id": 204,
@@ -276,7 +294,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla f(x^*)=0$ and $\\nabla^2f(x^*)\\succ0$:</strong> zero slope and strictly positive curvature in every direction.",
       "<strong>Strict positivity gives a bowl floor</strong> $d^\\top\\nabla^2f\\,d\\ge c\\|d\\|^2$ with $c\\gt0$, so leaving $x^*$ always raises the altitude.",
       "<strong>It is sufficient but not necessary:</strong> $f=x^4$ has a strict minimum at 0 even though its curvature there is 0."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Second-order sufficient conditions.</b> Let $f\\in C^2$ on an open set $\\Omega$ and $x^*\\in\\Omega$. If $\\nabla f(x^*)=0$ and $\\nabla^2f(x^*)$ is positive definite, then $x^*$ is a strict local minimizer of $f$."
   },
   {
     "id": 205,
@@ -302,7 +322,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Each eigenvalue is the curvature along its own eigen-direction.</strong> Positive curves up, negative curves down.",
       "<strong>All positive = valley bottom; all negative = hilltop;</strong> at least one of each sign = saddle (low along one axis, high along another).",
       "<strong>At a saddle there is always a way down,</strong> along an eigenvector with negative curvature."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "Let $x^*$ be a critical point ($\\nabla f(x^*)=0$) of $f\\in C^2$ with Hessian eigenvalues $\\lambda_1,\\dots,\\lambda_n$. If all $\\lambda_i\\gt 0$, $x^*$ is a strict local minimizer; if all $\\lambda_i\\lt 0$, a strict local maximizer; if some $\\lambda_i\\gt 0$ and some $\\lambda_j\\lt 0$, $x^*$ is a saddle point. If the Hessian is singular and semidefinite, the test is inconclusive."
   },
   {
     "id": 206,
@@ -330,7 +352,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>That huge ratio is the condition number:</strong> it is why gradient methods crawl along this canyon."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "For Rosenbrock's $f(x)=100(x_2-x_1^2)^2+(1-x_1)^2$: $\\nabla f(1,1)=0$ and $\\nabla^2f(1,1)=\\begin{bmatrix}802&-400\\\\-400&200\\end{bmatrix}$ with $\\det=400\\gt 0$ and $\\operatorname{tr}=1002\\gt 0$, so both eigenvalues are positive and $(1,1)$ is a strict local (indeed global) minimizer, with $\\kappa\\approx2500$."
   },
   {
     "id": 301,
@@ -358,7 +382,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\theta x+(1-\\theta)y$</strong> is a point on the straight flight path between $x$ and $y$.",
       "<strong>$\\theta f(x)+(1-\\theta)f(y)$</strong> is the height of the straight string stretched between the two altitudes.",
       "<strong>The inequality says the terrain never rises above the string,</strong> which is convexity."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "A set $C$ is <b>convex</b> if $\\theta x+(1-\\theta)y\\in C$ for all $x,y\\in C$, $\\theta\\in[0,1]$. A function $f:C\\to\\mathbb R$ on a convex set is <b>convex</b> if $f(\\theta x+(1-\\theta)y)\\le\\theta f(x)+(1-\\theta)f(y)$ for all $x,y\\in C$, $\\theta\\in[0,1]$; <b>strictly convex</b> if the inequality is strict whenever $x\\ne y$, $\\theta\\in(0,1)$."
   },
   {
     "id": 302,
@@ -386,7 +412,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$f(x)+\\nabla f(x)^\\top(y-x)$</strong> is the flat plane through your position with the radar's slope.",
       "<strong>$f(y)\\ge$ that plane:</strong> the true terrain is never below its tangent plane.",
       "<strong>Consequence:</strong> if $\\nabla f(x)=0$ the plane is level and the terrain is everywhere above it, so $x$ is a global minimum."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "Let $f\\in C^1$ on an open convex set $C$. Then $f$ is convex on $C$ if and only if $f(y)\\ge f(x)+\\nabla f(x)^\\top(y-x)$ for all $x,y\\in C$."
   },
   {
     "id": 303,
@@ -414,7 +442,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>It is the practical test for convexity</strong> of a smooth function."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "Let $f\\in C^2$ on an open convex set $C$. Then $f$ is convex on $C$ if and only if $\\nabla^2f(x)$ is positive semidefinite for every $x\\in C$. (If $\\nabla^2f(x)\\succ0$ for all $x\\in C$, then $f$ is strictly convex; the converse fails, e.g. $x^4$.)"
   },
   {
     "id": 304,
@@ -442,7 +472,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Consequence:</strong> there is a unique lowest point and leaving it always costs altitude."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "$f$ is <b>$\\mu$-strongly convex</b> ($\\mu\\gt 0$) if $f(x)-\\tfrac\\mu2\\|x\\|^2$ is convex. <b>Equivalently</b> (for $f\\in C^1$): $f(y)\\ge f(x)+\\nabla f(x)^\\top(y-x)+\\tfrac\\mu2\\|y-x\\|^2$ for all $x,y$; and (for $f\\in C^2$): $\\nabla^2f(x)\\succeq\\mu I$ for all $x$."
   },
   {
     "id": 305,
@@ -470,7 +502,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Then each hop of size $1/L$ removes a fixed fraction $\\mu/L$ of the height,</strong> giving linear convergence without needing convexity."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "$f$ with minimum value $f^*$ satisfies the <b>Polyak\u2013\u0141ojasiewicz inequality</b> with constant $\\mu\\gt 0$ if $\\tfrac12\\|\\nabla f(x)\\|^2\\ge\\mu\\,(f(x)-f^*)$ for all $x$. <b>Theorem.</b> If moreover $\\nabla f$ is $L$-Lipschitz, gradient descent with step $1/L$ satisfies $f(x_k)-f^*\\le(1-\\mu/L)^k(f(x_0)-f^*)$."
   },
   {
     "id": 306,
@@ -498,7 +532,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Strongly convex:</strong> $\\nabla^2f\\succeq\\mu I$ with a fixed $\\mu\\gt0$, a true bowl everywhere; each condition implies the one before it."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "PROPOSITION",
+    "statement": "For $f\\in C^2$ on a convex set: $\\mu$-strongly convex ($\\nabla^2f\\succeq\\mu I$, $\\mu\\gt 0$) $\\Rightarrow$ strictly convex $\\Rightarrow$ convex ($\\nabla^2f\\succeq0$). Neither implication reverses: $x^4$ is strictly but not strongly convex, and a linear function is convex but not strictly convex."
   },
   {
     "id": 401,
@@ -526,7 +562,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$d_k$ = the nose.</strong> The condition $\\nabla f(x_k)^\\top d_k\\lt0$ means the nose has a component pointing downhill.",
       "<strong>$\\alpha_k$ = the flight distance.</strong> Multiplying turns the heading into an actual displacement.",
       "<strong>Together:</strong> a good direction with a badly chosen distance can still overshoot or crawl, which is what line search fixes."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "A <b>line search method</b> generates $x_{k+1}=x_k+\\alpha_kd_k$, where $d_k$ is a <b>descent direction</b>, $\\nabla f(x_k)^\\top d_k\\lt 0$, and the step length $\\alpha_k\\gt 0$ is chosen by a line search along $d_k$."
   },
   {
     "id": 402,
@@ -554,7 +592,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>The condition $\\nabla f(x_{k+1})^\\top d_k=0$:</strong> at the bottom of that track the slope along it is zero, so the new radar reading is perpendicular to the old heading."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "PROPOSITION",
+    "statement": "For $f(x)=\\tfrac12x^\\top Qx-b^\\top x$ with $Q\\succ0$ and a descent direction $d_k$, the exact minimizer of $\\phi(\\alpha)=f(x_k+\\alpha d_k)$ is $\\alpha_k^*=-\\dfrac{\\nabla f(x_k)^\\top d_k}{d_k^\\top Qd_k}$, and at $x_{k+1}=x_k+\\alpha_k^*d_k$ one has $\\nabla f(x_{k+1})^\\top d_k=0$."
   },
   {
     "id": 403,
@@ -582,7 +622,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\alpha\\nabla f(x_k)^\\top d_k$</strong> is the drop you would get if the slope stayed constant over the whole hop.",
       "<strong>$c_1$</strong> demands only a fraction of that promised drop, because the terrain curves back up.",
       "<strong>A hop that earns less than that is refused:</strong> too much fuel for too little altitude."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Armijo (sufficient decrease) condition.</b> Given $c_1\\in(0,1)$, a step $\\alpha\\gt 0$ along a descent direction $d_k$ satisfies the Armijo condition if $f(x_k+\\alpha d_k)\\le f(x_k)+c_1\\alpha\\nabla f(x_k)^\\top d_k$."
   },
   {
     "id": 404,
@@ -610,7 +652,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$0\\lt c_1\\lt c_2\\lt1$</strong> keeps Armijo (not too far) and curvature (not too short) compatible: together they are the Wolfe conditions."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Wolfe conditions.</b> With $0\\lt c_1\\lt c_2\\lt 1$, a step $\\alpha_k$ satisfies the Wolfe conditions if (i) $f(x_k+\\alpha_kd_k)\\le f(x_k)+c_1\\alpha_k\\nabla f(x_k)^\\top d_k$ and (ii) $\\nabla f(x_k+\\alpha_kd_k)^\\top d_k\\ge c_2\\nabla f(x_k)^\\top d_k$. The <b>strong Wolfe</b> conditions replace (ii) by $|\\nabla f(x_k+\\alpha_kd_k)^\\top d_k|\\le c_2|\\nabla f(x_k)^\\top d_k|$."
   },
   {
     "id": 405,
@@ -636,7 +680,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\cos\\theta_k$ measures the alignment</strong> of the heading with straight downhill. Sideways ($\\theta=90^\\circ$) means $\\cos\\theta=0$.",
       "<strong>The sum $\\sum\\cos^2\\theta_k\\|g_k\\|^2\\lt\\infty$</strong> forces its terms to 0.",
       "<strong>If $\\cos\\theta_k\\ge\\delta\\gt0$ always,</strong> that leaves $\\|g_k\\|\\to0$: the plane reaches flat ground."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Zoutendijk.</b> Let $f$ be bounded below and $C^1$ with $\\nabla f$ Lipschitz on a neighbourhood of the level set $\\{f\\le f(x_0)\\}$. For any iteration $x_{k+1}=x_k+\\alpha_kd_k$ with descent directions $d_k$ and steps satisfying the Wolfe conditions, $\\sum_k\\cos^2\\theta_k\\|\\nabla f(x_k)\\|^2\\lt \\infty$, where $\\cos\\theta_k=\\dfrac{-\\nabla f(x_k)^\\top d_k}{\\|\\nabla f(x_k)\\|\\|d_k\\|}$. Hence if $\\cos\\theta_k\\ge\\delta\\gt 0$ for all $k$, then $\\|\\nabla f(x_k)\\|\\to0$."
   },
   {
     "id": 406,
@@ -664,7 +710,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Stop at the first success.</strong> It always ends, because a short enough hop always earns the promised drop."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Backtracking line search.</b> Choose $\\bar\\alpha\\gt 0$, $\\rho\\in(0,1)$, $c_1\\in(0,1)$; set $\\alpha\\leftarrow\\bar\\alpha$. While $f(x_k+\\alpha d_k)\\gt f(x_k)+c_1\\alpha\\nabla f(x_k)^\\top d_k$, set $\\alpha\\leftarrow\\rho\\alpha$. Return $\\alpha_k=\\alpha$. For a descent direction this terminates after finitely many reductions."
   },
   {
     "id": 501,
@@ -692,7 +740,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla f(x_k)$ is the radar.</strong> It points up the steepest slope, so the minus sign swings the nose 180\u00b0 to point straight downhill.",
       "<strong>$\\alpha_k$ is the flight distance.</strong> Multiplying by it turns a direction into an actual displacement: how far you fly before checking the radar again.",
       "<strong>Why stop at $\\|g_k\\|\\le\\text{tol}\\,\\|g_0\\|$?</strong> Flat ground is never exactly 0.0000, so the landing check compares the slope now with the cliff you started on."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Steepest descent.</b> Given $x_0$ and tolerance $\\varepsilon$: for $k=0,1,\\dots$ set $d_k=-\\nabla f(x_k)$, choose $\\alpha_k\\gt 0$ by a line search, and set $x_{k+1}=x_k-\\alpha_k\\nabla f(x_k)$; stop when $\\|\\nabla f(x_k)\\|\\le\\varepsilon\\|\\nabla f(x_0)\\|$."
   },
   {
     "id": 508,
@@ -720,7 +770,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Momentum over brakes = the distance to the bottom of that straight track.</strong> Right there the new slope is perpendicular to $u$, which is why every turn is 90\u00b0 and the path zig-zags."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "PROPOSITION",
+    "statement": "For $f(x)=\\tfrac12x^\\top Qx-b^\\top x$, $Q\\succ0$, steepest descent with exact line search uses $\\alpha_k=\\dfrac{g_k^\\top g_k}{g_k^\\top Qg_k}$ (in general $\\alpha_k=\\dfrac{-g_k^\\top u_k}{u_k^\\top Qu_k}$ for direction $u_k$), and successive gradients are orthogonal: $g_{k+1}^\\top g_k=0$, i.e. $(x_{k+2}-x_{k+1})^\\top(x_{k+1}-x_k)=0$."
   },
   {
     "id": 502,
@@ -746,7 +798,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$L$ = the sharpest bend anywhere.</strong> The ground can never curve back up faster than $L$, so a hop of $1/L$ is a safe distance everywhere.",
       "<strong>$\\|x_0-x^*\\|^2$ = how far away you start.</strong> A bigger first cliff means a bigger gap to close.",
       "<strong>Dividing by $2k$:</strong> each extra hop trims only a shrinking share of what is left, so the error falls like $1/k$ (sublinear), not geometrically."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "Let $f$ be convex and differentiable with $L$-Lipschitz gradient, and let $x^*$ be a minimizer. Gradient descent with constant step $1/L$ satisfies $f(x_k)-f^*\\le\\dfrac{L\\|x_0-x^*\\|^2}{2k}$ for all $k\\ge1$."
   },
   {
     "id": 503,
@@ -774,7 +828,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>The power $k$:</strong> the same fraction is multiplied in again on every hop, so the error decays geometrically (linear convergence)."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "Let $f$ be $\\mu$-strongly convex with $L$-Lipschitz gradient, $\\kappa=L/\\mu$. Gradient descent with step $\\alpha=\\dfrac{2}{\\mu+L}$ satisfies $\\|x_k-x^*\\|\\le\\left(\\dfrac{\\kappa-1}{\\kappa+1}\\right)^k\\|x_0-x^*\\|$."
   },
   {
     "id": 504,
@@ -802,7 +858,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>The ratio $\\frac{(x^\\top x)^2}{(x^\\top Qx)(x^\\top Q^{-1}x)}$</strong> compares straight downhill with the valley's two extreme curvatures; it equals 1 when the nose is perfectly aligned.",
       "<strong>$\\frac{4Aa}{(A+a)^2}$ = the worst case.</strong> It is set by the sharpest curvature $A$ and the gentlest curvature $a$.",
       "<strong>Result:</strong> each hop shrinks the altitude gap above the floor by at least $\\left(\\frac{\\kappa-1}{\\kappa+1}\\right)^2$, the square of the distance rate."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Kantorovich inequality.</b> If $Q\\succ0$ has smallest and largest eigenvalues $a$ and $A$, then $\\dfrac{(x^\\top x)^2}{(x^\\top Qx)(x^\\top Q^{-1}x)}\\ge\\dfrac{4aA}{(a+A)^2}$ for all $x\\ne0$. <b>Corollary.</b> Steepest descent with exact line search on $\\tfrac12x^\\top Qx-b^\\top x$ satisfies $E(x_{k+1})\\le\\left(\\dfrac{A-a}{A+a}\\right)^2E(x_k)$, where $E(x)=\\tfrac12(x-x^*)^\\top Q(x-x^*)$."
   },
   {
     "id": 505,
@@ -830,7 +888,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>As $\\kappa\\to\\infty$ the factor $\\frac{\\kappa-1}{\\kappa+1}\\to1$:</strong> each hop barely shrinks the error, which is the stagnation."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "The <b>condition number</b> of $Q\\succ0$ is $\\kappa=\\lambda_{\\max}(Q)/\\lambda_{\\min}(Q)\\ge1$. The steepest-descent rate factor $\\left(\\frac{\\kappa-1}{\\kappa+1}\\right)^2\\to1$ as $\\kappa\\to\\infty$, so convergence stagnates on ill-conditioned problems."
   },
   {
     "id": 506,
@@ -858,7 +918,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>BB2 $=s^\\top y/y^\\top y$</strong> is the same idea measured from the slope side. Neither needs a line search."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Barzilai\u2013Borwein steps.</b> With $s_k=x_k-x_{k-1}$ and $y_k=\\nabla f(x_k)-\\nabla f(x_{k-1})$, the gradient iteration $x_{k+1}=x_k-\\alpha_k\\nabla f(x_k)$ uses $\\alpha_k^{BB1}=\\dfrac{s_k^\\top s_k}{s_k^\\top y_k}$ or $\\alpha_k^{BB2}=\\dfrac{s_k^\\top y_k}{y_k^\\top y_k}$; these solve $\\min_\\alpha\\|\\alpha^{-1}s_k-y_k\\|$ and $\\min_\\alpha\\|s_k-\\alpha y_k\\|$ respectively."
   },
   {
     "id": 507,
@@ -886,7 +948,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>The rate $\\frac{\\sqrt\\kappa-1}{\\sqrt\\kappa+1}$</strong> uses $\\sqrt\\kappa$ instead of $\\kappa$, so thin canyons cost far fewer hops."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Heavy-ball method.</b> $x_{k+1}=x_k-\\alpha\\nabla f(x_k)+\\beta(x_k-x_{k-1})$. For a strongly convex quadratic with optimally tuned $\\alpha,\\beta$ it converges at rate $\\dfrac{\\sqrt\\kappa-1}{\\sqrt\\kappa+1}$, compared with $\\dfrac{\\kappa-1}{\\kappa+1}$ for gradient descent."
   },
   {
     "id": 601,
@@ -914,7 +978,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla^2f$ = the radar that sees curvature,</strong> not only the slope but how fast the slope changes.",
       "<strong>Solving $\\nabla^2f\\,p=-\\nabla f$</strong> flies to the bottom of the parabola built from slope and curvature.",
       "<strong>The inverse Hessian rescales the nose:</strong> steep walls get short moves, flat floors long moves, so the zig-zag disappears."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Newton's method.</b> Given $x_k$ with $\\nabla^2f(x_k)$ nonsingular, compute the Newton step $p_k$ from $\\nabla^2f(x_k)p_k=-\\nabla f(x_k)$ and set $x_{k+1}=x_k+p_k$. Equivalently, $x_{k+1}$ minimizes (or is a critical point of) the quadratic model $m_k(p)=f(x_k)+\\nabla f(x_k)^\\top p+\\tfrac12p^\\top\\nabla^2f(x_k)p$."
   },
   {
     "id": 602,
@@ -942,7 +1008,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Superlinear:</strong> the ratio of successive errors tends to 0, faster than any fixed geometric rate."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "Let $f\\in C^2$ with $\\nabla^2f$ Lipschitz (constant $L$) near a point $x^*$ where $\\nabla f(x^*)=0$ and $\\nabla^2f(x^*)\\succeq mI\\succ0$. If $x_0$ is sufficiently close to $x^*$, Newton's method converges to $x^*$ quadratically: $\\|x_{k+1}-x^*\\|\\le\\dfrac{L}{2m}\\|x_k-x^*\\|^2$."
   },
   {
     "id": 603,
@@ -970,7 +1038,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Fix:</strong> check the curvature first and stabilise (Levenberg-Marquardt) or fall back to straight downhill when it is not all positive."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "PROPOSITION",
+    "statement": "The Newton step is a descent direction, $p_k^\\top\\nabla f(x_k)\\lt 0$, whenever $\\nabla^2f(x_k)\\succ0$ and $\\nabla f(x_k)\\ne0$. If $\\nabla^2f(x_k)$ is not positive definite, $p_k$ may fail to exist or may satisfy $p_k^\\top\\nabla f(x_k)\\ge0$, and Newton's method may converge to a saddle point or maximizer."
   },
   {
     "id": 604,
@@ -998,7 +1068,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Result:</strong> short careful hops far away and full Newton hops ($\\alpha=1$) near the valley, which keeps the fast local rate."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Damped Newton.</b> Compute $p_k$ from $\\nabla^2f(x_k)p_k=-\\nabla f(x_k)$, choose $\\alpha_k=\\beta^m$ ($\\beta\\in(0,1)$) with $m\\ge0$ the smallest integer satisfying the Armijo condition, and set $x_{k+1}=x_k+\\alpha_kp_k$. If $c_1\\in(0,\\tfrac12)$ and the iterates approach a point satisfying the second-order sufficient conditions, eventually $\\alpha_k=1$ and convergence is quadratic."
   },
   {
     "id": 605,
@@ -1026,7 +1098,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>The dial:</strong> $\\tau\\to0$ is pure Newton (trust the curvature), $\\tau\\to\\infty$ is a tiny gradient step (trust only the slope)."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Levenberg\u2013Marquardt / Hessian modification.</b> Solve $(\\nabla^2f(x_k)+\\tau_kI)p_k=-\\nabla f(x_k)$ with $\\tau_k\\ge\\max\\{0,\\,-\\lambda_{\\min}(\\nabla^2f(x_k))+\\delta\\}$, $\\delta\\gt 0$. Then $\\nabla^2f(x_k)+\\tau_kI\\succ0$ and $p_k$ is a descent direction; $\\tau_k\\to0$ recovers Newton, $\\tau_k\\to\\infty$ gives a short steepest-descent step $p_k\\approx-\\nabla f(x_k)/\\tau_k$."
   },
   {
     "id": 606,
@@ -1054,7 +1128,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Gradient descent sees only the slope,</strong> so with $\\kappa=100$ it zig-zags between the walls."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "For Rosenbrock's $f(x)=100(x_2-x_1^2)^2+(1-x_1)^2$ at $(0,0)$: $\\nabla f=(-2,0)^\\top$, $\\nabla^2f=\\operatorname{diag}(2,200)$, so $\\kappa=100$ and the Newton step is $p_N=-H^{-1}g=(1,0)^\\top$, heading straight along the canyon floor, whereas a gradient step is slowed by $\\kappa$."
   },
   {
     "id": 701,
@@ -1082,7 +1158,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$d_i^\\top Qd_j=0$ = a $Q$-twisted right angle.</strong> $Q$ is the valley's skewed curvature, the crosswinds. A plain right angle ignores them; a $Q$-conjugate angle accounts for them, so flying along $d_j$ never pushes you back up the hill you conquered along $d_i$.",
       "<strong>$\\alpha_k=-g_k^\\top d_k/d_k^\\top Qd_k$:</strong> the perfect flight distance. Downward momentum (numerator) divided by the brakes, the curvature along that heading (denominator), lands you at the bottom of that line.",
       "<strong>$r_k=-g_k$ is the residual:</strong> the radar reading of your slope with the sign flipped to point downhill."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "Given $Q\\succ0$, nonzero vectors $d_0,\\dots,d_{k}$ are <b>$Q$-conjugate</b> if $d_i^\\top Qd_j=0$ for all $i\\ne j$; they are then linearly independent. The <b>conjugate direction method</b> for $\\tfrac12x^\\top Qx-b^\\top x$ sets $x_{k+1}=x_k+\\alpha_kd_k$ with $\\alpha_k=-\\dfrac{g_k^\\top d_k}{d_k^\\top Qd_k}$, $g_k=Qx_k-b=-r_k$, and reaches $x^*$ in at most $n$ steps."
   },
   {
     "id": 702,
@@ -1110,7 +1188,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_k=\\arg\\min f$ over the flight plane $x_0+\\mathcal B_k$:</strong> step 1 is a tightrope, step 2 lays down a flat sheet of plywood holding both paths. You are not at the end of a line, you are at the lowest altitude of that whole sheet.",
       "<strong>$g_k^\\top d_i=0$ for every earlier heading:</strong> the proof of perfection. Your slope $g_k$ is flat (perpendicular) to every path you flew before, so going back along any of them would not improve your altitude.",
       "<strong>Why it matters:</strong> you have squeezed all the juice out of those dimensions, so later conjugate hops never spoil the altitude already won."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Expanding subspace theorem.</b> Let $d_0,\\dots,d_{n-1}$ be $Q$-conjugate and $x_k$ generated by the conjugate direction method from $x_0$. Then $x_k$ minimizes $f(x)=\\tfrac12x^\\top Qx-b^\\top x$ on the affine set $x_0+\\mathcal B_k$, $\\mathcal B_k=\\operatorname{span}\\{d_0,\\dots,d_{k-1}\\}$, and $g_k^\\top d_i=0$ for all $i\\lt k$."
   },
   {
     "id": 703,
@@ -1138,7 +1218,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\alpha_k=\\|r_k\\|^2/d_k^\\top Qd_k$:</strong> the hop length is still momentum over brakes, along the remembered heading."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Conjugate gradient (Fletcher\u2013Reeves form).</b> Set $d_0=-g_0$. For $k=0,1,\\dots$: $\\alpha_k=\\dfrac{g_k^\\top g_k}{d_k^\\top Qd_k}$, $x_{k+1}=x_k+\\alpha_kd_k$, $g_{k+1}=g_k+\\alpha_kQd_k$, $\\beta_k=\\dfrac{g_{k+1}^\\top g_{k+1}}{g_k^\\top g_k}$, $d_{k+1}=-g_{k+1}+\\beta_kd_k$. The directions $d_k$ are $Q$-conjugate."
   },
   {
     "id": 704,
@@ -1166,7 +1248,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> in exact arithmetic CG is a direct method, and an iterative one that is usually done long before $n$ hops."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "In conjugate gradient, $\\mathcal B_k=\\operatorname{span}\\{d_0,\\dots,d_{k-1}\\}=\\operatorname{span}\\{g_0,\\dots,g_{k-1}\\}=\\mathcal K_k(Q,r_0)=\\operatorname{span}\\{r_0,Qr_0,\\dots,Q^{k-1}r_0\\}$. If $Q$ has $m$ distinct eigenvalues, CG reaches $x^*$ in at most $m\\le n$ iterations (in exact arithmetic)."
   },
   {
     "id": 705,
@@ -1194,7 +1278,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Why it matters:</strong> restarting protects the global convergence of non-linear CG."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Nonlinear CG (Polak\u2013Ribi\u00e8re).</b> For general $f$, use $d_{k+1}=-g_{k+1}+\\beta_kd_k$ with $\\beta_k^{PR}=\\dfrac{g_{k+1}^\\top(g_{k+1}-g_k)}{\\|g_k\\|^2}$ and step $\\alpha_k$ from a line search. The <b>PR+</b> variant uses $\\beta_k^+=\\max\\{0,\\beta_k^{PR}\\}$, which restarts with steepest descent whenever $\\beta_k^{PR}\\lt 0$."
   },
   {
     "id": 706,
@@ -1222,7 +1308,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Hop 2 ($\\alpha_1=5/16$):</strong> flying that heading removes the remaining error, so $x_2=x^*=(0,0)$ exactly: two hops for two dimensions."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "Minimize $\\tfrac12x^\\top Qx$ with $Q\\succ0$ in $\\mathbb R^2$ from $x_0=(4,1)$: CG takes $\\alpha_0=1/5$ to $x_1=(2.4,-0.6)$, then $\\beta_0=0.36$, $\\alpha_1=5/16$ to $x_2=(0,0)=x^*$, terminating in $n=2$ steps as guaranteed."
   },
   {
     "id": 801,
@@ -1250,7 +1338,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$s_k$ = how far you flew; $y_k$ = how much the slope reading changed.</strong>",
       "<strong>$B_{k+1}s_k=y_k$:</strong> the curvature estimate must turn the displacement you made into the slope change you saw, which is exactly what the true Hessian does along a straight path.",
       "<strong>$H_{k+1}y_k=s_k$ is the inverse form:</strong> it maps the slope change back to the displacement."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "With $s_k=x_{k+1}-x_k$ and $y_k=\\nabla f(x_{k+1})-\\nabla f(x_k)$, a Hessian approximation $B_{k+1}$ satisfies the <b>secant equation</b> if $B_{k+1}s_k=y_k$ (equivalently $H_{k+1}y_k=s_k$ for $H=B^{-1}$). A symmetric positive definite solution exists iff the curvature condition $s_k^\\top y_k\\gt 0$ holds."
   },
   {
     "id": 802,
@@ -1276,7 +1366,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$y_k-B_ks_k$ = the error:</strong> what the old estimate failed to predict about the slope change.",
       "<strong>$vv^\\top/(v^\\top s)$ with $v=y_k-B_ks_k$</strong> adds a correction in exactly that direction, a rank-one update.",
       "<strong>The denominator $(y_k-B_ks_k)^\\top s_k$</strong> rescales it so the secant equation holds; if it is near 0 the update blows up."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Symmetric rank-one (SR1) update.</b> $B_{k+1}=B_k+\\dfrac{(y_k-B_ks_k)(y_k-B_ks_k)^\\top}{(y_k-B_ks_k)^\\top s_k}$. It is the unique symmetric rank-one correction satisfying the secant equation; it is undefined when the denominator vanishes and need not preserve positive definiteness."
   },
   {
     "id": 803,
@@ -1302,7 +1394,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$+\\dfrac{s_ks_k^\\top}{s_k^\\top y_k}$ adds the hop you just flew,</strong> so the new estimate reproduces $H_{k+1}y_k=s_k$.",
       "<strong>$-\\dfrac{H_ky_ky_k^\\top H_k}{y_k^\\top H_ky_k}$ removes the old estimate's opinion</strong> along $H_ky_k$, which it would otherwise double-count.",
       "<strong>Both are rank one and symmetric,</strong> so the update stays symmetric."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>DFP update</b> (of the inverse Hessian approximation $H_k$): $H_{k+1}=H_k-\\dfrac{H_ky_ky_k^\\top H_k}{y_k^\\top H_ky_k}+\\dfrac{s_ks_k^\\top}{y_k^\\top s_k}$. It satisfies $H_{k+1}y_k=s_k$ and preserves positive definiteness when $y_k^\\top s_k\\gt 0$."
   },
   {
     "id": 804,
@@ -1328,7 +1422,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\rho_k=1/y_k^\\top s_k$ is one over the curvature measured along the last hop.</strong>",
       "<strong>$(I-\\rho sy^\\top)H(I-\\rho ys^\\top)$ filters the old estimate</strong> so it agrees with the new secant condition, and $+\\rho ss^\\top$ adds the new hop back.",
       "<strong>If $H_k\\succ0$ and $y_k^\\top s_k\\gt0$, then $H_{k+1}\\succ0$:</strong> every nose it produces points downhill."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>BFGS update.</b> $B_{k+1}=B_k-\\dfrac{B_ks_ks_k^\\top B_k}{s_k^\\top B_ks_k}+\\dfrac{y_ky_k^\\top}{y_k^\\top s_k}$, equivalently $H_{k+1}=(I-\\rho_ks_ky_k^\\top)H_k(I-\\rho_ky_ks_k^\\top)+\\rho_ks_ks_k^\\top$ with $\\rho_k=1/(y_k^\\top s_k)$. It is the dual of DFP (swap $s\\leftrightarrow y$, $B\\leftrightarrow H$) and is self-correcting in practice."
   },
   {
     "id": 805,
@@ -1354,7 +1450,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$s_k^\\top y_k\\gt0$:</strong> along the hop you flew, the slope reading rose, which means the terrain curved upward.",
       "<strong>This is equivalent to $H_{k+1}$ staying positive definite,</strong> so the nose stays a descent direction.",
       "<strong>The Wolfe curvature condition guarantees it,</strong> so a Wolfe line search makes BFGS safe."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "If $B_k\\succ0$ and $s_k^\\top y_k\\gt 0$, then the BFGS matrix $B_{k+1}$ is positive definite. If $\\alpha_k$ satisfies the Wolfe conditions, then $s_k^\\top y_k\\ge(c_2-1)\\alpha_k\\nabla f(x_k)^\\top d_k\\gt 0$, so positive definiteness is inherited at every iteration."
   },
   {
     "id": 806,
@@ -1380,7 +1478,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Only the last $m$ pairs $(s,y)$:</strong> memory $O(mn)$ instead of the full $O(n^2)$ curvature map.",
       "<strong>$\\gamma_k=\\frac{s^\\top y}{y^\\top y}$ rescales the starting guess $H_0=\\gamma_kI$</strong> so it already matches the latest curvature.",
       "<strong>Old hops are forgotten:</strong> nearly the same guidance for a fraction of the memory."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>L-BFGS.</b> Store only the $m$ most recent pairs $\\{(s_i,y_i)\\}_{i=k-m}^{k-1}$. Compute $d_k=-H_k\\nabla f(x_k)$ by the two-loop recursion, applying the $m$ BFGS updates to an initial matrix $H_k^0=\\gamma_kI$ (e.g. $\\gamma_k=s_{k-1}^\\top y_{k-1}/y_{k-1}^\\top y_{k-1}$), at cost $O(mn)$ per iteration; discard the oldest pair after each step."
   },
   {
     "id": 901,
@@ -1408,7 +1508,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$h_i(x)=0$ and $g_j(x)\\le0$</strong> define the legal airspace $\\Omega$: equality walls you must stay on, inequality walls you must stay behind.",
       "<strong>$\\mathcal A(x)=\\{j:g_j(x)=0\\}$ = the walls you are pressed against right now.</strong>",
       "<strong>Walls with $g_j\\lt0$ are far away:</strong> in a small ball around $x$ they never matter."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "For $\\Omega=\\{x: c_i(x)=0,\\ i\\in\\mathcal E;\\ c_i(x)\\le0,\\ i\\in\\mathcal I\\}$, the <b>active set</b> at a feasible $x$ is $\\mathcal A(x)=\\mathcal E\\cup\\{i\\in\\mathcal I: c_i(x)=0\\}$. An inequality with $c_i(x)\\lt 0$ is <b>inactive</b>."
   },
   {
     "id": 902,
@@ -1436,7 +1538,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\dot x(t^*)$ is the limit of displacement over time.</strong> Dividing $x(t)-x^*$ by $t-t^*$ turns a small step into a velocity.",
       "<strong>$M=\\{y:\\nabla h(x^*)^\\top y=0\\}$ = the tangent plane:</strong> every velocity perpendicular to the wall normal, i.e. along the wall.",
       "<strong>Equality constraints allow only these sliding directions.</strong>"
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "A vector $d$ is <b>tangent</b> to $\\Omega$ at $x$ if there are feasible $z_k\\to x$ and $t_k\\downarrow0$ with $\\lim_k\\dfrac{z_k-x}{t_k}=d$. For a smooth surface $\\{h(x)=0\\}$ the tangent vectors at a regular point form the <b>tangent plane</b> $M=\\{d:\\nabla h(x)^\\top d=0\\}$."
   },
   {
     "id": 903,
@@ -1464,7 +1568,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_k\\in\\Omega$, $t_k\\downarrow0$:</strong> a sequence of legal points closing in on $x$ from inside the airspace.",
       "<strong>$\\frac{x_k-x}{t_k}\\to d$:</strong> dividing by the shrinking step $t_k$ turns the tiny displacement into a heading $d$.",
       "<strong>The set of all such $d$ is a cone,</strong> not a subspace: you can scale a safe heading but not reverse it."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "The <b>tangent cone</b> $T_\\Omega(x)$ is the set of all tangent vectors to $\\Omega$ at $x$. It is a closed cone ($d\\in T_\\Omega(x)\\Rightarrow\\lambda d\\in T_\\Omega(x)$ for $\\lambda\\ge0$), and for convex $\\Omega$ it is the closure of the cone of feasible directions."
   },
   {
     "id": 905,
@@ -1492,7 +1598,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla f(x^*)^\\top d$ = the altitude change per unit hop along $d$.</strong>",
       "<strong>It must be $\\ge0$ for every legal $d\\in T_\\Omega(x^*)$:</strong> if some legal heading went downhill, releasing the brakes would lower the altitude.",
       "<strong>$\\nabla f(x^*)$ is usually not zero here:</strong> the wall is what stops the plane, not flat ground."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Geometric first-order condition.</b> If $x^*$ is a local minimizer of $f\\in C^1$ over $\\Omega$, then $\\nabla f(x^*)^\\top d\\ge0$ for all $d\\in T_\\Omega(x^*)$."
   },
   {
     "id": 906,
@@ -1520,7 +1628,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$L_\\Omega$ replaces each curved wall by its tangent line at $x^*$:</strong> the Nav Computer's straight-edged map.",
       "<strong>$T_\\Omega\\subseteq L_\\Omega$ always,</strong> but a cusp makes the map over-approximate.",
       "<strong>LICQ (independent wall normals) forces $T_\\Omega=L_\\Omega$,</strong> so the straight-line map is exact and KKT works."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "The <b>linearized cone</b> is $\\mathcal F(x)=\\{d:\\nabla c_i(x)^\\top d=0,\\ i\\in\\mathcal E;\\ \\nabla c_i(x)^\\top d\\le0,\\ i\\in\\mathcal A(x)\\cap\\mathcal I\\}$. Always $T_\\Omega(x)\\subseteq\\mathcal F(x)$. <b>LICQ</b> holds at $x$ if $\\{\\nabla c_i(x)\\}_{i\\in\\mathcal A(x)}$ is linearly independent, and then $T_\\Omega(x)=\\mathcal F(x)$."
   },
   {
     "id": 1001,
@@ -1548,7 +1658,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$A\\cap B=\\emptyset$, both convex:</strong> the airspaces do not overlap and have no dents.",
       "<strong>$\\sup_Aa^\\top x\\le\\inf_Ba^\\top y$:</strong> in the direction $a$, every point of $A$ is behind every point of $B$.",
       "<strong>The wall is $a^\\top x=\\beta$ with $\\beta$ between those two numbers.</strong>"
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Separating hyperplane.</b> Let $C,D\\subset\\mathbb R^n$ be nonempty disjoint convex sets. Then there exist $a\\ne0$ and $b$ with $a^\\top x\\le b$ for all $x\\in C$ and $a^\\top x\\ge b$ for all $x\\in D$. If $C$ is closed and $D$ is compact, the separation can be made strict."
   },
   {
     "id": 1002,
@@ -1574,7 +1686,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_0\\in\\partial C$:</strong> you are standing on the boundary.",
       "<strong>$a^\\top x\\le a^\\top x_0$ for all $x\\in C$:</strong> the whole airspace is on one side of the wall through $x_0$ with normal $a$.",
       "<strong>It follows from separating $x_0$ from the interior of $C$.</strong>"
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Supporting hyperplane.</b> Let $C$ be convex and $x_0$ a boundary point of $C$. Then there exists $a\\ne0$ with $a^\\top x\\le a^\\top x_0$ for all $x\\in C$."
   },
   {
     "id": 1003,
@@ -1600,7 +1714,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$Ax=b,\\ x\\ge0$:</strong> gravity $b$ is a non-negative combination of the wall normals (columns of $A$), so the walls can hold it.",
       "<strong>$A^\\top y\\ge0,\\ b^\\top y\\lt0$:</strong> a heading $y$ no wall blocks along which gravity still drags you down.",
       "<strong>Exactly one of the two holds:</strong> that heading is the certificate that the first story is impossible."
-    ]
+    ],
+    "stmtKind": "LEMMA",
+    "statement": "<b>Farkas.</b> Let $A\\in\\mathbb R^{m\\times n}$, $b\\in\\mathbb R^m$. Exactly one of the following holds: (i) there is $x\\ge0$ with $Ax=b$; (ii) there is $y$ with $A^\\top y\\ge0$ and $b^\\top y\\lt 0$."
   },
   {
     "id": 1007,
@@ -1626,7 +1742,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$A^\\top y=(1,0)\\ge0$ for $y=(1,-1)$:</strong> neither wall blocks that heading ($a_2\\cdot y=0$ is the edge of the cone).",
       "<strong>$b'^\\top y=-1\\lt0$:</strong> gravity $b'$ still pulls along it.",
       "<strong>So $b'$ is outside the cone,</strong> while $b=(2,1)=a_1+a_2$ sits inside it."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "With columns $a_1=(1,0)$, $a_2=(1,1)$, is $b'=(0,1)$ in the cone $\\{x_1a_1+x_2a_2:x\\ge0\\}$? No: $y=(1,-1)$ gives $a_1^\\top y=1\\ge0$, $a_2^\\top y=0\\ge0$ and $b'^\\top y=-1\\lt 0$, so alternative (ii) of Farkas' lemma holds."
   },
   {
     "id": 1004,
@@ -1652,7 +1770,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$Ax\\lt0$:</strong> a heading that moves you strictly away from every wall at once: open sky.",
       "<strong>$A^\\top y=0,\\ y\\ge0,\\ y\\ne0$:</strong> the wall pushes cancel with non-negative weights: you are boxed in.",
       "<strong>Exactly one of the two holds;</strong> this is how interior points and degenerate boxes are told apart."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Gordan.</b> For $A\\in\\mathbb R^{m\\times n}$, exactly one holds: (i) there is $x$ with $Ax\\lt 0$ (componentwise); (ii) there is $y\\ge0$, $y\\ne0$, with $A^\\top y=0$."
   },
   {
     "id": 1005,
@@ -1678,7 +1798,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$K^*=\\{y:y^\\top x\\ge0\\ \\forall x\\in K\\}$:</strong> forces that never oppose any legal heading.",
       "<strong>The polar cone $K^\\circ=-K^*$</strong> is the set of pulls that make every legal heading go flat or uphill: at a minimum, $-\\nabla f\\in K^\\circ$.",
       "<strong>$(K^*)^*=K$ for closed convex $K$:</strong> taking the dual twice gets the original cone back."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "For a cone $K$, the <b>dual cone</b> is $K^*=\\{y: y^\\top x\\ge0\\ \\forall x\\in K\\}$ and the <b>polar cone</b> is $K^\\circ=\\{y: y^\\top x\\le0\\ \\forall x\\in K\\}=-K^*$. For a closed convex cone, $K^{**}=K$."
   },
   {
     "id": 1006,
@@ -1704,7 +1826,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>No legal heading is downhill:</strong> there is no $d$ with $\\nabla f^\\top d\\lt0$ and $\\nabla g_j^\\top d\\le0$.",
       "<strong>Farkas turns that 'no heading' statement</strong> into $-\\nabla f=\\sum\\mu_j\\nabla g_j$ with $\\mu_j\\ge0$.",
       "<strong>Reading it back:</strong> gravity is exactly cancelled by non-negative pushes from the walls you touch."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>KKT via Farkas.</b> Let $x^*$ be a local minimizer at which $T_\\Omega(x^*)=\\mathcal F(x^*)$ (e.g. under LICQ). Then $\\nabla f(x^*)^\\top d\\ge0$ for all $d\\in\\mathcal F(x^*)$, and Farkas' lemma yields multipliers $\\lambda_i$ ($\\lambda_i\\ge0$ for active inequalities) with $\\nabla f(x^*)+\\sum_{i\\in\\mathcal A(x^*)}\\lambda_i\\nabla c_i(x^*)=0$."
   },
   {
     "id": 1101,
@@ -1732,7 +1856,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla f+\\sum\\lambda_i\\nabla h_i+\\sum\\mu_j\\nabla g_j=0$:</strong> gravity is cancelled by the wall pushes.",
       "<strong>$g\\le0$, $h=0$:</strong> you are inside the airspace.",
       "<strong>$\\mu_j\\ge0$:</strong> walls only push, never pull. <strong>$\\mu_jg_j=0$:</strong> a wall you are not touching pushes with zero."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>KKT necessary conditions.</b> Consider $\\min f(x)$ s.t. $h_i(x)=0$, $g_j(x)\\le0$, all $C^1$. If $x^*$ is a local minimizer and LICQ holds at $x^*$, there exist $\\lambda,\\mu$ with: (stationarity) $\\nabla f(x^*)+\\sum_i\\lambda_i\\nabla h_i(x^*)+\\sum_j\\mu_j\\nabla g_j(x^*)=0$; (primal feasibility) $h(x^*)=0$, $g(x^*)\\le0$; (dual feasibility) $\\mu\\ge0$; (complementary slackness) $\\mu_jg_j(x^*)=0$ for all $j$."
   },
   {
     "id": 1102,
@@ -1758,7 +1884,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$g_j\\lt0\\Rightarrow\\mu_j=0$:</strong> a gap between wing and wall means no push (switch OFF).",
       "<strong>$\\mu_j\\gt0\\Rightarrow g_j=0$:</strong> a wall that is pushing must be touching (switch ON).",
       "<strong>Multiplying them is a compact way to say 'never both'.</strong>"
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Complementary slackness.</b> At a KKT point, $\\mu_jg_j(x^*)=0$ for each $j$: either $g_j(x^*)=0$ (constraint active) or $\\mu_j=0$. It is <b>strict</b> if exactly one of $\\mu_j$, $g_j(x^*)$ is zero for every $j$."
   },
   {
     "id": 1103,
@@ -1784,7 +1912,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$f,g_j$ convex and $h_i$ affine:</strong> a convex valley with convex airspace.",
       "<strong>KKT then says a balanced point</strong> beats every other legal point: $f(x^*)\\le f(x)$.",
       "<strong>It works because the tangent plane at $x^*$ lies under the terrain,</strong> and the wall pushes cannot make it better."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>KKT sufficiency.</b> If $f$ and every $g_j$ are convex, every $h_i$ is affine, and $(x^*,\\lambda,\\mu)$ satisfies the KKT conditions, then $x^*$ is a global minimizer."
   },
   {
     "id": 1104,
@@ -1810,7 +1940,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>rank = $p+|\\mathcal A|$:</strong> the normals of all active walls are linearly independent.",
       "<strong>Independence means the push on each wall is uniquely determined</strong> by the force balance.",
       "<strong>If two normals line up (a cusp),</strong> the pushes are not unique or may not exist and KKT can fail at a true minimum."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>LICQ.</b> The gradients $\\{\\nabla h_i(x^*)\\}_i\\cup\\{\\nabla g_j(x^*): g_j(x^*)=0\\}$ are linearly independent. Under LICQ the KKT multipliers at a local minimizer exist and are unique; without a constraint qualification a minimizer need not satisfy KKT."
   },
   {
     "id": 1105,
@@ -1836,7 +1968,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$g_j(\\hat x)\\lt0$ for all $j$:</strong> a point strictly inside every wall.",
       "<strong>$A\\hat x=b$:</strong> it also satisfies the equality walls.",
       "<strong>With that room, $d^*=p^*$:</strong> zero duality gap for a convex program."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Slater.</b> For a convex program ($f,g_j$ convex, $h$ affine), if there is $\\bar x$ with $g_j(\\bar x)\\lt 0$ for all $j$ and $h(\\bar x)=0$, then (i) KKT conditions are necessary at any minimizer, and (ii) strong duality holds: $p^*=d^*$, with the dual optimum attained."
   },
   {
     "id": 1106,
@@ -1864,7 +1998,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Case 2 (on the wall):</strong> $x_1+x_2=1$ and $2x_1=8x_2$ give $x^*=(4/5,1/5)$ and $\\mu^*=8/5\\gt0$."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "KKT case analysis: assume a set of active constraints, solve the stationarity and active equations, then check primal feasibility ($g\\le0$) and dual feasibility ($\\mu\\ge0$). The case that survives both checks (here: the constraint active with $\\mu^*\\gt 0$) is the KKT point."
   },
   {
     "id": 1201,
@@ -1892,7 +2028,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla^2_{xx}\\mathcal L$ = the Lagrangian's curvature:</strong> the terrain's curvature plus the walls' curvature weighted by their pushes.",
       "<strong>$d\\in M(x^*)$ = the runway:</strong> directions that keep all touching walls fixed.",
       "<strong>$d^\\top\\nabla^2\\mathcal Ld\\ge0$ on the runway only:</strong> off the runway the ground may drop and it does not matter."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Second-order necessary conditions.</b> Let $x^*$ be a local minimizer with LICQ and KKT multipliers $\\lambda^*$. Then $d^\\top\\nabla_{xx}^2L(x^*,\\lambda^*)d\\ge0$ for all $d$ in the tangent subspace $M=\\{d:\\nabla c_i(x^*)^\\top d=0,\\ i\\in\\mathcal A(x^*)\\}$ (for strictly complementary multipliers)."
   },
   {
     "id": 1202,
@@ -1918,7 +2056,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Strict $\\gt0$ for every non-zero critical direction:</strong> the runway curves strictly upward under the wheels.",
       "<strong>Critical cone = directions that neither gain nor lose altitude to first order.</strong>",
       "<strong>Together with the KKT conditions this proves a strict local minimum.</strong>"
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Second-order sufficient conditions.</b> If $(x^*,\\lambda^*)$ satisfies KKT and $d^\\top\\nabla_{xx}^2L(x^*,\\lambda^*)d\\gt 0$ for all nonzero $d$ in the critical cone $C(x^*,\\lambda^*)$, then $x^*$ is a strict local minimizer."
   },
   {
     "id": 1203,
@@ -1944,7 +2084,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>The bordered matrix puts the wall normals around $\\nabla^2\\mathcal L$:</strong> $B=\\begin{bmatrix}0&J\\\\J^\\top&\\nabla^2\\mathcal L\\end{bmatrix}$.",
       "<strong>Its trailing principal minors carry the sign of the curvature restricted to the runway.</strong>",
       "<strong>The rule $\\operatorname{sign}\\det=(-1)^p$</strong> (for $p$ walls) says the runway dips: a minimum."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Bordered Hessian test.</b> For $\\min f$ s.t. $h(x)=0$ with $m$ constraints and Jacobian $J=\\nabla h(x^*)^\\top$, form $B=\\begin{bmatrix}0&J\\\\J^\\top&\\nabla^2_{xx}L\\end{bmatrix}$. If the last $n-m$ leading principal minors of $B$ all have sign $(-1)^m$, then $\\nabla^2_{xx}L\\succ0$ on $M$ and $x^*$ is a strict local minimizer."
   },
   {
     "id": 1204,
@@ -1970,7 +2112,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Every touching wall pushing ($\\mu_j\\gt0$):</strong> each wall's inequality becomes an equality, so the critical cone is a subspace (all directions that slide along all walls).",
       "<strong>A touching wall pushing zero ($\\mu_j=0$):</strong> you may peel away from it in one direction, which adds a half-space and gives a proper cone.",
       "<strong>In 2D with two strictly pushing walls the only legal direction is zero.</strong>"
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "The <b>critical cone</b> is $C(x^*,\\lambda^*)=\\{d\\in\\mathcal F(x^*): \\nabla c_i(x^*)^\\top d=0$ for all active inequalities with $\\lambda_i^*\\gt 0\\}$. Under strict complementarity ($\\lambda_i^*\\gt 0$ for every active inequality) it equals the subspace $M$; otherwise it is a polyhedral cone."
   },
   {
     "id": 1205,
@@ -1996,7 +2140,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\dot x^\\top\\nabla^2f\\,\\dot x$:</strong> the terrain's own curvature along your velocity.",
       "<strong>$\\nabla f^\\top\\ddot x$:</strong> the extra term because your path is curved (a bank); at a KKT point it equals $\\sum\\mu_j\\nabla g_j^\\top\\ddot x$.",
       "<strong>Adding them gives $d^\\top[\\nabla^2f+\\sum\\mu_j\\nabla^2g_j]d$:</strong> the Lagrangian's curvature on the runway."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "On a curved constraint surface the relevant curvature is that of the Lagrangian, $\\nabla^2_{xx}L=\\nabla^2f+\\sum_i\\lambda_i\\nabla^2c_i$, restricted to $M$, not $\\nabla^2f$ alone: the term $\\sum\\lambda_i\\nabla^2c_i$ accounts for the bending of the surface."
   },
   {
     "id": 1206,
@@ -2022,7 +2168,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$B$'s border is the ring's normal;</strong> the inner block is the Lagrangian's Hessian at $x^*$.",
       "<strong>$\\det B=-4\\sqrt2\\lt0=(-1)^1$</strong> with one constraint ($p=1$) is exactly the sign pattern for a strict local minimum.",
       "<strong>If it were positive,</strong> the south-west point would be a maximum."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "Worked bordered-Hessian check: at the KKT point of $\\min f$ subject to one equality constraint ($m=1$, $n=2$), the sign of $\\det B$ must equal $(-1)^m=-1$; here $\\det B\\lt 0$, confirming a strict local minimum."
   },
   {
     "id": 1301,
@@ -2048,7 +2196,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x-p$ = the vector from the nearest legal spot to the plane.</strong>",
       "<strong>$\\langle x-p,y-p\\rangle\\le0$ for every legal $y$:</strong> the angle at $p$ between that vector and any other legal point is obtuse or right.",
       "<strong>That is the entire characterisation of the projection:</strong> $p\\in C$ and the inequality hold iff $p=\\Pi_C(x)$."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Projection theorem.</b> Let $C\\subset\\mathbb R^n$ be nonempty, closed and convex. For every $p$ there is a unique $P_C(p)=\\arg\\min_{x\\in C}\\|x-p\\|$, characterised by the variational inequality $(p-P_C(p))^\\top(y-P_C(p))\\le0$ for all $y\\in C$."
   },
   {
     "id": 1302,
@@ -2074,7 +2224,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\|\\Pi x-\\Pi y\\|^2+\\|(I-\\Pi)x-(I-\\Pi)y\\|^2\\le\\|x-y\\|^2$:</strong> the along-the-wall and across-the-wall parts together are at most the original distance squared.",
       "<strong>Dropping the second (non-negative) term</strong> gives $\\|\\Pi x-\\Pi y\\|\\le\\|x-y\\|$.",
       "<strong>That is what makes projected methods stable:</strong> the correction never amplifies errors."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "For closed convex $C$, the projection is <b>firmly non-expansive</b>: $\\|P(p)-P(q)\\|^2\\le(P(p)-P(q))^\\top(p-q)$, and hence non-expansive: $\\|P(p)-P(q)\\|\\le\\|p-q\\|$ for all $p,q$."
   },
   {
     "id": 1303,
@@ -2100,7 +2252,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$a^\\top x-b$ = how far past the wall the plane is,</strong> measured along the normal direction (in units of $\\|a\\|$).",
       "<strong>Dividing by $\\|a\\|^2$ and multiplying by $a$</strong> turns that signed excess into the displacement back along the normal.",
       "<strong>The half-space version has $\\max(0,\\cdot)$:</strong> if you are already on the legal side, the excess is 0 and you stay put."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "For the hyperplane $H=\\{x:a^\\top x=b\\}$, $P_H(p)=p-\\dfrac{a^\\top p-b}{\\|a\\|^2}a$. For the halfspace $\\{x:a^\\top x\\le b\\}$, $P(p)=p-\\dfrac{\\max\\{0,a^\\top p-b\\}}{\\|a\\|^2}a$."
   },
   {
     "id": 1307,
@@ -2126,7 +2280,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Box:</strong> $\\min(u_i,\\max(l_i,x_i))$ clamps each coordinate to its own limits independently.",
       "<strong>Ball:</strong> $x/\\max(1,\\|x\\|/R)$ leaves you alone inside the ball and scales you back along the ray to the centre once outside.",
       "<strong>Both are one-line projections:</strong> cheap to compute, which is why projected gradient uses them."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "For the box $[l,u]$, $P(p)_i=\\min\\{u_i,\\max\\{l_i,p_i\\}\\}$. For the ball $\\{x:\\|x-c\\|\\le r\\}$, $P(p)=c+\\dfrac{r}{\\max\\{r,\\|p-c\\|\\}}(p-c)$."
   },
   {
     "id": 1304,
@@ -2152,7 +2308,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_1=\\Pi_K(x)\\in K$:</strong> the part that points into the legal cone.",
       "<strong>$x_2=\\Pi_{K^\\circ}(x)\\in K^\\circ$:</strong> the part that points out of it.",
       "<strong>$\\langle x_1,x_2\\rangle=0$:</strong> the two parts are perpendicular; in 1D this is $x=x_++x_-$."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Moreau decomposition.</b> Let $K$ be a closed convex cone with polar $K^\\circ$. Every $x$ can be written uniquely as $x=P_K(x)+P_{K^\\circ}(x)$ with $P_K(x)^\\top P_{K^\\circ}(x)=0$."
   },
   {
     "id": 1305,
@@ -2178,7 +2336,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$y_k=\\Pi_{C_1}(x_k+p_{k-1})$:</strong> project onto the first airspace, but first add back the correction remembered from last time.",
       "<strong>$p_k=x_k+p_{k-1}-y_k$:</strong> remember what this projection moved you sideways by.",
       "<strong>Without these memory vectors you end at some point of the overlap;</strong> with them you end at the nearest point of the overlap."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Dykstra's algorithm</b> (projection onto $C_1\\cap C_2$, both closed convex). Set $x_0=p$, $p_0=q_0=0$. Repeat: $y_k=P_{C_1}(x_k+p_k)$, $p_{k+1}=x_k+p_k-y_k$, $x_{k+1}=P_{C_2}(y_k+q_k)$, $q_{k+1}=y_k+q_k-x_{k+1}$. Then $x_k\\to P_{C_1\\cap C_2}(p)$."
   },
   {
     "id": 1306,
@@ -2204,7 +2364,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x-\\tau\\mathbf1$ shaves the same level off every tank;</strong> $\\max(0,\\cdot)$ lets empty tanks stay empty.",
       "<strong>$\\tau=\\frac{\\sum_{i\\le k}x_{(i)}-1}{k}$:</strong> the extra over 1 in the $k$ largest tanks, shared equally ($\\frac{2.5-1}{2}=0.75$).",
       "<strong>Result $(0.75,0.25,0,0)$ sums to 1 and is the nearest point of the simplex.</strong>"
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "Projection onto the simplex $\\Delta=\\{x\\ge0,\\ \\mathbf 1^\\top x=1\\}$: $P_\\Delta(p)_i=\\max\\{p_i-\\tau,0\\}$, where $\\tau$ is chosen so that $\\sum_i\\max\\{p_i-\\tau,0\\}=1$."
   },
   {
     "id": 1401,
@@ -2232,7 +2394,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_k-\\alpha_k\\nabla f(x_k)$ = the plain downhill step</strong> (nose along $-\\nabla f$, flight distance $\\alpha_k$).",
       "<strong>$\\Pi_\\Omega$ = air-traffic control:</strong> if the step lands outside the airspace, it puts you on the nearest legal point.",
       "<strong>Equivalent form:</strong> $\\arg\\min_{y\\in\\Omega}\\{\\nabla f^\\top(y-x_k)+\\frac1{2\\alpha_k}\\|y-x_k\\|^2\\}$ = the best legal point under a linear slope plus a leash of strength $\\frac1{\\alpha_k}$."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Projected gradient.</b> For $\\min_{x\\in C}f(x)$ with $C$ closed convex: $x_{k+1}=P_C\\big(x_k-\\alpha_k\\nabla f(x_k)\\big)$, with $\\alpha_k$ constant (e.g. $1/L$) or chosen by a line search."
   },
   {
     "id": 1402,
@@ -2258,7 +2422,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x^*-\\alpha\\nabla f(x^*)$:</strong> gravity shoves the plane into the wall.",
       "<strong>$\\Pi_\\Omega(\\cdot)$ puts it straight back on $x^*$,</strong> so $G_\\alpha(x^*)=0$: no net motion.",
       "<strong>Equivalent:</strong> $-\\nabla f(x^*)$ lies in the normal cone, i.e. points straight into the wall, so no legal direction goes downhill."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "For convex closed $C$ and any $\\alpha\\gt 0$, $x^*$ satisfies the first-order condition $\\nabla f(x^*)^\\top(x-x^*)\\ge0\\ \\forall x\\in C$ if and only if $x^*=P_C\\big(x^*-\\alpha\\nabla f(x^*)\\big)$."
   },
   {
     "id": 1403,
@@ -2284,7 +2450,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Convex, smooth terrain:</strong> $\\frac{L\\|x_0-x^*\\|^2}{2k}$, the gap shrinks like $1/k$ (sublinear).",
       "<strong>Strongly convex terrain:</strong> $c\\rho^k$ with $\\rho\\lt1$, a fixed fraction of the distance removed each hop (linear).",
       "<strong>The walls do not change either rate:</strong> projection is non-expansive, so it never undoes progress."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "If $f$ is convex with $L$-Lipschitz gradient, projected gradient with $\\alpha=1/L$ gives $f(x_k)-f^*\\le\\dfrac{L\\|x_0-x^*\\|^2}{2k}$; if $f$ is also $\\mu$-strongly convex, $\\|x_k-x^*\\|\\le(1-\\mu/L)^{k/2}\\|x_0-x^*\\|$ (linear convergence)."
   },
   {
     "id": 1404,
@@ -2310,7 +2478,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x(\\alpha)=\\Pi_\\Omega(x_k-\\alpha\\nabla f(x_k))$ traces an arc along the wall</strong> as $\\alpha$ changes.",
       "<strong>$\\frac\\gamma\\alpha\\|x_k-x(\\alpha)\\|^2$ is the promised drop:</strong> big for a long actual displacement, scaled by the leash $\\frac1\\alpha$.",
       "<strong>Try $\\alpha=s,\\beta s,\\beta^2s,\\dots$ and keep the first that earns it.</strong>"
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Armijo along the projection arc.</b> For trial steps $\\alpha=\\bar\\alpha\\rho^m$, let $x(\\alpha)=P_C(x_k-\\alpha\\nabla f(x_k))$; accept the first $\\alpha$ with $f(x(\\alpha))\\le f(x_k)+c_1\\nabla f(x_k)^\\top(x(\\alpha)-x_k)$."
   },
   {
     "id": 1405,
@@ -2336,7 +2506,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$y=x_k-\\alpha P_k\\nabla f(x_k)$:</strong> project gravity onto the tangent plane so you slide along the wall (nose $P_k\\nabla f$).",
       "<strong>The straight step leaves the curved surface,</strong> so $h(y)\\ne0$ measures how far off you are.",
       "<strong>$-\\nabla h[\\nabla h^\\top\\nabla h]^{-1}h(y)$ = drop along the normal</strong> by exactly the amount needed to restore $h=0$."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "For nonlinear equality constraints $h(x)=0$, a step along the tangent plane leaves the surface; a <b>restoration step</b> returns to it, e.g. $x\\leftarrow x-\\nabla h(x)^\\top\\big(\\nabla h(x)\\nabla h(x)^\\top\\big)^{-1}h(x)$ (Gauss\u2013Newton step on $h(x)=0$)."
   },
   {
     "id": 1406,
@@ -2362,7 +2534,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x-\\alpha\\nabla f=(1,1)-(-1,5)=(2,-4)$:</strong> the step dives below the ground ($x_2\\lt0$).",
       "<strong>$\\max(0,\\cdot)$ clamps the negative coordinate:</strong> the plane lands on the ground at $(2,0)$.",
       "<strong>The second step gives $(2,0)$ again:</strong> a fixed point, so the method has found the stationary point."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "On $C=\\{x\\ge0\\}$, $P_C(p)=\\max(p,0)$ componentwise, so $x_{k+1}=\\max\\big(x_k-\\alpha\\nabla f(x_k),0\\big)$: coordinates pushed negative are clamped to $0$."
   },
   {
     "id": 1501,
@@ -2388,7 +2562,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$A_{\\mathcal W}p=0$:</strong> the move $p$ must keep every wall in the working set fixed (slide along the rails).",
       "<strong>$Qp+g=A_{\\mathcal W}^\\top\\lambda$:</strong> inside that rail, balance the quadratic's slope against the wall pushes.",
       "<strong>The KKT system solves both at once,</strong> giving the step $p_k$ and the pushes $\\lambda_k$."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Active-set method for convex QP</b> $\\min\\tfrac12x^\\top Gx+c^\\top x$ s.t. $a_i^\\top x\\ge b_i$. Keep a working set $W_k$; compute $p_k$ from the equality QP $\\min_p\\tfrac12p^\\top Gp+g_k^\\top p$ s.t. $a_i^\\top p=0$, $i\\in W_k$."
   },
   {
     "id": 1502,
@@ -2414,7 +2590,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\frac{b_i-a_i^\\top x_k}{a_i^\\top p_k}$ = distance to wall $i$:</strong> the gap divided by how fast you approach it.",
       "<strong>Only walls with $a_i^\\top p_k\\lt0$ matter</strong> (you are heading toward them); the minimum over them is the first wall you hit.",
       "<strong>$\\min(1,\\cdot)$:</strong> a full step $\\alpha=1$ if nothing blocks, otherwise stop at the wall and add it to $\\mathcal W$."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "If $p_k\\ne0$, take $\\alpha_k=\\min\\Big\\{1,\\ \\min_{i\\notin W_k,\\ a_i^\\top p_k\\lt 0}\\dfrac{b_i-a_i^\\top x_k}{a_i^\\top p_k}\\Big\\}$; if $\\alpha_k\\lt 1$ the minimizing (blocking) constraint is added to $W_k$."
   },
   {
     "id": 1503,
@@ -2440,7 +2618,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$p_k=0$:</strong> sliding along the current walls goes nowhere, you are at the lowest point of that runway.",
       "<strong>$\\lambda_j\\lt0$:</strong> that wall would have to pull, which walls cannot do: gravity actually wants you off it.",
       "<strong>Drop the most negative $\\lambda_j$</strong> and the next step leaves that wall and gains altitude."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "If $p_k=0$, compute the multipliers $\\hat\\lambda_i$ of the equality QP. If all $\\hat\\lambda_i\\ge0$ for inequality constraints in $W_k$, $x_k$ is optimal (KKT holds); otherwise remove a constraint with $\\hat\\lambda_j\\lt 0$ (usually the most negative) from $W_k$."
   },
   {
     "id": 1504,
@@ -2466,7 +2646,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$Q\\succ0$ and $\\alpha_k\\gt0$:</strong> every real hop strictly lowers the altitude.",
       "<strong>So no working set ever repeats,</strong> because a repeat would mean the same altitude twice.",
       "<strong>There are only $2^m$ possible working sets,</strong> hence at most $2^m$ hops."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "If $G\\succ0$ and every step with $\\alpha_k\\gt 0$ strictly decreases the objective, the active-set method terminates in finitely many iterations, since no working set can recur and there are finitely many working sets."
   },
   {
     "id": 1505,
@@ -2492,7 +2674,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$b_i-a_i^\\top x_k=0$ for a wall outside the working set:</strong> it is already touching, so the blocking distance is 0.",
       "<strong>$\\alpha_k=0$:</strong> the plane does not move; only the working set changes.",
       "<strong>The altitude stays equal,</strong> so cycling is possible: an anti-cycling rule fixes the order walls enter and leave."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "A point is <b>degenerate</b> if the active constraint gradients are linearly dependent (e.g. more than $n$ active constraints). Then a step with $\\alpha_k=0$ may occur, the working set changes without progress, and cycling is possible; anti-cycling rules (e.g. Bland's rule, perturbation) prevent it."
   },
   {
     "id": 1506,
@@ -2518,7 +2702,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Start at $(0,0)$ with walls $x_1=0,x_2=0$;</strong> the pushes say drop $x_1=0$ first.",
       "<strong>Slide along $x_2=0$ to the blocking wall $x_1=2$,</strong> reaching $(2,0)$; then drop $x_2=0$.",
       "<strong>At $(2,2)$ both pushes are $\\lambda=2\\gt0$,</strong> so no wall wants to be dropped: the optimum."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "Worked 2-D active-set run: starting feasible, the method slides along a wall, is blocked by a second constraint, drops a constraint with a negative multiplier, and terminates at $x^*=(2,2)$ where all working-set multipliers are positive."
   },
   {
     "id": 1601,
@@ -2546,7 +2732,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\omega(z)$ = lowest legal altitude when the wall is moved by $z$.</strong>",
       "<strong>$\\omega(z)+\\mu^\\top z$ = that curve plus a tilted ruler of slope $\\mu$;</strong> the lowest point of the sum is $\\phi(\\mu)$, where the ruler touches the curve from below.",
       "<strong>$\\phi(\\mu)=\\inf_x\\{f+\\mu^\\top g\\}$:</strong> the same quantity, computed directly from the Lagrangian."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "For $\\min f(x)$ s.t. $g(x)\\le0$, the <b>primal (perturbation) function</b> is $\\omega(z)=\\inf\\{f(x): g(x)\\le z\\}$. The dual value equals the intercept at $z=0$ of the best non-vertical hyperplane supporting $\\omega$ from below: $q(\\mu)=\\inf_z\\{\\omega(z)+\\mu^\\top z\\}$."
   },
   {
     "id": 1602,
@@ -2572,7 +2760,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$q(\\lambda,\\mu)$ = the floor built from prices $(\\lambda,\\mu)$.</strong>",
       "<strong>For any legal $x$ and $\\mu\\ge0$,</strong> the Lagrangian $f(x)+\\mu^\\top g(x)\\le f(x)$ because $g\\le0$, so the floor is below every legal altitude.",
       "<strong>Hence $d^*\\le p^*$ for every problem:</strong> the gap $p^*-d^*\\ge0$ is the duality gap."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Weak duality.</b> With Lagrangian $L(x,\\lambda,\\mu)=f(x)+\\lambda^\\top h(x)+\\mu^\\top g(x)$ and dual function $q(\\lambda,\\mu)=\\inf_xL(x,\\lambda,\\mu)$: for every feasible $x$ and every $\\mu\\ge0$, $q(\\lambda,\\mu)\\le f(x)$. Hence $d^*\\le p^*$; $p^*-d^*$ is the duality gap."
   },
   {
     "id": 1603,
@@ -2600,7 +2790,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Convexity:</strong> the primal function $\\omega$ is convex, so a supporting ruler exists.",
       "<strong>Slater's room to move:</strong> a strictly interior point guarantees the ruler is not vertical.",
       "<strong>Then $p^*=d^*$:</strong> the pilot from above and the tower from below meet."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Strong duality.</b> If the problem is convex and Slater's condition holds, then $d^*=p^*$ and the dual optimum is attained; $(x^*,\\lambda^*,\\mu^*)$ are primal-dual optimal iff they satisfy the KKT conditions."
   },
   {
     "id": 1604,
@@ -2626,7 +2818,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>For a fixed plan $x$, $f(x)+\\mu^\\top g(x)$ is a straight line in $\\mu$.</strong>",
       "<strong>$q$ is the lowest of all those lines</strong> (a pointwise infimum).",
       "<strong>A pointwise minimum of straight lines bends only one way:</strong> $q(\\alpha y_1+(1-\\alpha)y_2)\\ge\\alpha q(y_1)+(1-\\alpha)q(y_2)$."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "The dual function $q(\\lambda,\\mu)=\\inf_xL(x,\\lambda,\\mu)$ is concave (as a pointwise infimum of functions affine in $(\\lambda,\\mu)$), regardless of convexity of $f$, $g$, $h$."
   },
   {
     "id": 1605,
@@ -2652,7 +2846,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$p^*(z)$ = lowest legal altitude after moving the wall by $z$.</strong>",
       "<strong>$p^*(z)\\ge p^*(0)-\\mu^{*\\top}z$:</strong> a wall moved back by $z$ cannot save more than $\\mu^*z$.",
       "<strong>So $\\nabla_zp^*(0)=-\\mu^*$:</strong> the multiplier is the price of one unit of extra airspace."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Sensitivity.</b> Under strong duality and differentiability of $\\omega$ at $0$, the optimal multipliers satisfy $\\mu_j^*=-\\dfrac{\\partial\\omega}{\\partial z_j}(0)$: relaxing constraint $j$ by $\\delta$ lowers the optimal value by about $\\mu_j^*\\delta$."
   },
   {
     "id": 1606,
@@ -2678,7 +2874,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$y_i(w^\\top x_i+b)\\ge1$:</strong> every plane is on its correct side and at least a margin away.",
       "<strong>Margin $=2/\\|w\\|$:</strong> the strip width shrinks as $w$ grows.",
       "<strong>Maximising the margin = minimising $\\tfrac12\\|w\\|^2$,</strong> a convex quadratic problem."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Hard-margin SVM.</b> Given data $(x_i,y_i)$, $y_i\\in\\{\\pm1\\}$: $\\min_{w,b}\\tfrac12\\|w\\|^2$ s.t. $y_i(w^\\top x_i+b)\\ge1$; the margin width is $2/\\|w\\|$. Lagrangian: $L=\\tfrac12\\|w\\|^2-\\sum_i\\alpha_i\\big(y_i(w^\\top x_i+b)-1\\big)$, $\\alpha\\ge0$."
   },
   {
     "id": 1608,
@@ -2704,7 +2902,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$w^*=\\sum\\alpha_i^*y_ix_i$:</strong> the strip's normal is a weighted sum of planes.",
       "<strong>$\\alpha_i^*\\gt0$ only for planes on the strip's edge (support vectors);</strong> all others have weight 0.",
       "<strong>The dual uses data only through $x_i^\\top x_j$,</strong> so replacing it by a kernel changes the geometry without changing the algorithm."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>SVM dual.</b> $\\max_{\\alpha\\ge0}\\sum_i\\alpha_i-\\tfrac12\\sum_{i,j}\\alpha_i\\alpha_jy_iy_jx_i^\\top x_j$ s.t. $\\sum_i\\alpha_iy_i=0$; then $w=\\sum_i\\alpha_iy_ix_i$, and $\\alpha_i\\gt 0$ only for support vectors. Replacing $x_i^\\top x_j$ by a kernel $k(x_i,x_j)$ gives the kernel SVM."
   },
   {
     "id": 1701,
@@ -2730,7 +2930,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\nabla_x\\mathcal L=0$ = wall pushes balance gravity:</strong> the plane is at equilibrium.",
       "<strong>For a convex valley, equilibrium is the lowest point of $\\mathcal L(\\cdot,\\mu)$,</strong> so no inner minimisation is needed.",
       "<strong>Maximising $\\mathcal L$ over $(x,\\lambda,\\mu)$ subject to equilibrium</strong> gives a smooth problem with the same value."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Wolfe dual</b> of the convex program $\\min f(x)$ s.t. $g(x)\\le0$: $\\max_{x,\\mu}L(x,\\mu)=f(x)+\\mu^\\top g(x)$ s.t. $\\nabla_xL(x,\\mu)=0$, $\\mu\\ge0$."
   },
   {
     "id": 1702,
@@ -2756,7 +2958,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$f,g_j$ convex and $h_i$ affine:</strong> a convex valley.",
       "<strong>The Wolfe dual value $\\mathcal L(x,\\lambda,\\mu)$ at the best equilibrium</strong> equals the primal lowest altitude.",
       "<strong>Zero gap:</strong> the maximum on one side equals the minimum on the other."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Wolfe duality.</b> If $f,g$ are convex and $C^1$, $x^*$ solves the primal and a constraint qualification holds, then there is $\\mu^*$ such that $(x^*,\\mu^*)$ solves the Wolfe dual and the optimal values coincide."
   },
   {
     "id": 1703,
@@ -2782,7 +2986,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Primal:</strong> minimise $\\tfrac12x^\\top Qx+c^\\top x$ subject to $Ax\\ge b$.",
       "<strong>Dual objective $-\\tfrac12x^\\top Qx+b^\\top y$:</strong> the same quadratic with the opposite sign plus the resource value.",
       "<strong>Constraint $Qx-A^\\top y+c\\ge0$:</strong> the equilibrium condition; at the optimum the two objectives are equal."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "For the QP $\\min\\tfrac12x^\\top Qx+c^\\top x$ s.t. $Ax\\ge b$, $Q\\succ0$, the Wolfe dual is $\\max_{x,\\lambda}-\\tfrac12x^\\top Qx+b^\\top\\lambda$ s.t. $Qx+c-A^\\top\\lambda=0$, $\\lambda\\ge0$; eliminating $x$ gives $\\max_{\\lambda\\ge0}-\\tfrac12(A^\\top\\lambda-c)^\\top Q^{-1}(A^\\top\\lambda-c)+b^\\top\\lambda$."
   },
   {
     "id": 1704,
@@ -2808,7 +3014,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$f=-x^2$ has $f'(x)=0$ only at 0,</strong> which is its maximum, so the 'equilibrium' value is $f(0)=0$.",
       "<strong>True minimum $=-\\infty$:</strong> the dual value 0 is above the primal value, $d^*\\gt p^*$.",
       "<strong>Without convexity,</strong> force balance can happen at a peak or saddle."
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "Without convexity, $\\nabla_xL(x,\\mu)=0$ does not imply $x$ minimizes $L(\\cdot,\\mu)$ (it may be a maximizer or saddle), so the Wolfe dual can fail weak duality and its value may exceed $p^*$."
   },
   {
     "id": 1705,
@@ -2834,7 +3042,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x(\\mu_k)=\\arg\\min\\mathcal L(x,\\mu_k)$:</strong> the plane flies to its best spot under the current prices.",
       "<strong>$g(x(\\mu_k))$ = violation:</strong> positive means the plane is flying into the wall, so $\\mu$ goes up.",
       "<strong>$\\max(0,\\cdot)$ keeps prices non-negative:</strong> $\\alpha_kg$ is the subgradient step of the dual."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Dual subgradient method.</b> Given $\\mu_k\\ge0$, compute $x_k\\in\\arg\\min_xL(x,\\mu_k)$; then $g(x_k)$ is a subgradient of $q$ at $\\mu_k$; update $\\mu_{k+1}=\\max\\{0,\\ \\mu_k+t_kg(x_k)\\}$ with step sizes $t_k\\gt 0$."
   },
   {
     "id": 1706,
@@ -2860,7 +3070,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$q(\\lambda)=b^\\top\\lambda-\\sum_ie^{a_i^\\top\\lambda-1}$:</strong> the dual is smooth, unconstrained and concave, easy to maximise.",
       "<strong>The optimal primal is $x_i\\propto e^{a_i^\\top\\lambda-1}$:</strong> exponential, the Boltzmann form.",
       "<strong>$\\lambda$ plays the role of an inverse temperature</strong> set by the energy budget."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "<b>Maximum entropy.</b> $\\max-\\sum_ip_i\\log p_i$ s.t. $\\sum_ip_i=1$, $\\sum_ip_iE_i=\\bar E$. Stationarity of the Lagrangian gives the Boltzmann form $p_i=e^{-\\beta E_i}/\\sum_je^{-\\beta E_j}$, with $\\beta$ the multiplier of the energy constraint."
   },
   {
     "id": 1801,
@@ -2886,7 +3098,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Primal (airline):</strong> $\\min c^\\top x$ with $Ax=b$, $x\\ge0$: the cheapest schedule meeting demand.",
       "<strong>Dual (authority):</strong> $\\max b^\\top y$ with $A^\\top y\\le c$: highest revenue without pricing any route above its cost.",
       "<strong>Weak duality:</strong> revenue never exceeds cost; at the optimum they are equal."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Standard-form LP and its dual.</b> Primal: $\\min c^\\top x$ s.t. $Ax=b$, $x\\ge0$. Dual: $\\max b^\\top y$ s.t. $A^\\top y\\le c$."
   },
   {
     "id": 1807,
@@ -2912,7 +3126,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_N=0$:</strong> the non-basic variables are zero, i.e. those walls are touched.",
       "<strong>$x_B=B^{-1}b$:</strong> the remaining variables are determined by the independent walls through the corner (needs $B$ invertible).",
       "<strong>$x_B\\ge0$ makes the corner legal,</strong> so basic feasible solutions are exactly the vertices."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "A <b>basic feasible solution</b> of $Ax=b$, $x\\ge0$ ($A$ of rank $m$) is a feasible $x$ whose nonzero components correspond to linearly independent columns of $A$. <b>Theorem.</b> $x$ is a basic feasible solution iff it is a vertex (extreme point) of the feasible polyhedron."
   },
   {
     "id": 1802,
@@ -2940,7 +3156,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>So an optimum can always be found among the finitely many basic feasible solutions.</strong>"
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "THEOREM",
+    "statement": "<b>Fundamental theorem of LP.</b> If the feasible set is nonempty, there is a basic feasible solution; if the LP has an optimal solution, it has an optimal basic feasible solution (an optimal vertex)."
   },
   {
     "id": 1803,
@@ -2966,7 +3184,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_j(c_j-A_j^\\top y)=0$:</strong> a route is flown only if its fee equals its cost.",
       "<strong>$y_i(A_ix-b_i)=0$:</strong> a resource has a positive price only if it is fully used.",
       "<strong>Either factor can be zero,</strong> but never both strictly positive: the same on/off switch as KKT."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>Complementary slackness.</b> Feasible $x$ and $y$ are optimal for the primal and dual iff $x_j(c_j-a_j^\\top y)=0$ for all $j$ (and, for inequality-form primals, $y_i(a_i^\\top x-b_i)=0$ for all $i$)."
   },
   {
     "id": 1804,
@@ -2992,7 +3212,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$A^\\top y\\ge0,\\ b^\\top y\\lt0$ (Farkas):</strong> the walls cannot hold gravity.",
       "<strong>$d=-y$ then has $A^\\top d\\le0$ and $b^\\top d\\gt0$:</strong> a direction that keeps the dual feasible and increases its objective.",
       "<strong>$b^\\top(y_0+td)\\to\\infty$:</strong> the dual is unbounded."
-    ]
+    ],
+    "stmtKind": "THEOREM",
+    "statement": "<b>LP duality.</b> If either problem has a finite optimum, so does the other, and $c^\\top x^*=b^\\top y^*$. If the primal is infeasible, the dual is either infeasible or unbounded; via Farkas, a certificate $y$ with $A^\\top y\\le0$, $b^\\top y\\gt 0$ makes the dual unbounded whenever it is feasible."
   },
   {
     "id": 1805,
@@ -3018,7 +3240,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$x_B=B^{-1}b\\ge0,\\ x_N=0$:</strong> the current corner.",
       "<strong>Reduced cost $c_N^\\top-c_B^\\top B^{-1}N$:</strong> how the objective changes per unit of moving along each edge.",
       "<strong>If all reduced costs are $\\ge0$, no neighbouring corner is lower,</strong> so this corner is optimal."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Simplex method.</b> Move between adjacent basic feasible solutions; at each step compute reduced costs $\\bar c_j=c_j-a_j^\\top y$; if all $\\bar c_j\\ge0$ the current vertex is optimal; otherwise bring in a variable with $\\bar c_j\\lt 0$ and pivot out the variable chosen by the minimum-ratio test (unbounded if no ratio exists)."
   },
   {
     "id": 1808,
@@ -3044,7 +3268,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$-\\mu\\sum\\ln x_j$ is the barrier:</strong> it blows up as any $x_j\\to0$, repelling the plane from the walls.",
       "<strong>$c^\\top x$ still pulls toward lower cost.</strong>",
       "<strong>The minimiser $x(\\mu)$ traces the central path;</strong> as $\\mu\\to0$ the barrier fades and the plane reaches the optimal corner."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Central path.</b> For $\\mu\\gt 0$, $(x(\\mu),y(\\mu),s(\\mu))$ solves $Ax=b$, $A^\\top y+s=c$, $x_is_i=\\mu$ for all $i$, $x,s\\gt 0$. Interior-point methods follow this path as $\\mu\\to0$, where it converges to a primal-dual optimal pair."
   },
   {
     "id": 1806,
@@ -3070,7 +3296,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Primal:</strong> $3(2)+2(3)=12$ at $(2,3)$. <strong>Dual:</strong> $5(1)+7(1)=12$ at $(1,1)$.",
       "<strong>Every feasible primal value is at most 12 and every feasible dual value at least 12;</strong> they meet exactly at 12.",
       "<strong>Complementary slackness explains why:</strong> positive $x_j$ forces the matching dual constraint to be tight."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "Primal\u2013dual equality on a small LP: solve the primal graphically (optimal vertex) and the dual graphically; the two optimal values are equal, $c^\\top x^*=b^\\top y^*$, as LP duality guarantees."
   },
   {
     "id": 1901,
@@ -3098,7 +3326,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\max(0,g_j)^2$:</strong> no fine inside the airspace, a quadratic fine outside; squaring keeps it smooth at the wall.",
       "<strong>$\\tfrac{c_k}2h_i^2$:</strong> equality walls are fined for any deviation in either direction.",
       "<strong>As $c_k\\to\\infty$ the fine becomes so steep</strong> that the unconstrained minimiser is forced onto the boundary."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Quadratic penalty.</b> For $\\min f(x)$ s.t. $h(x)=0$, $g(x)\\le0$: $Q(x;c)=f(x)+\\tfrac c2\\big(\\|h(x)\\|^2+\\|\\max(0,g(x))\\|^2\\big)$. <b>Theorem.</b> If $x_k$ globally minimizes $Q(\\cdot;c_k)$ and $c_k\\to\\infty$, every limit point of $\\{x_k\\}$ solves the constrained problem."
   },
   {
     "id": 1902,
@@ -3126,7 +3356,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$-\\ln(-g_j)$ is finite inside</strong> ($g_j\\lt0$) and $\\to+\\infty$ as $g_j\\to0^-$.",
       "<strong>Adding $\\frac1cB(x)$ to $f$ keeps the plane strictly inside;</strong> as $c$ grows the barrier weakens and the plane approaches the boundary from inside.",
       "<strong>Needs a strict interior:</strong> that is Slater's condition again."
-    ]
+    ],
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Log barrier.</b> For $\\min f(x)$ s.t. $g(x)\\lt 0$ (strictly feasible interior): $B(x;\\mu)=f(x)-\\mu\\sum_j\\log(-g_j(x))$; inverse barrier: $f(x)-\\mu\\sum_j1/g_j(x)$. As $\\mu\\downarrow0$ the minimizers $x(\\mu)$ approach a solution of the constrained problem from the interior."
   },
   {
     "id": 1903,
@@ -3154,7 +3386,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>Gradient and Newton steps then lose accuracy:</strong> catastrophic ill-conditioning."
     ],
     "textbookImg": null,
-    "textbookRef": null
+    "textbookRef": null,
+    "stmtKind": "PROPOSITION",
+    "statement": "The Hessian of the quadratic penalty, $\\nabla^2Q=\\nabla^2f+c\\sum_ih_i\\nabla^2h_i+c\\,\\nabla h^\\top\\nabla h$, has $m$ eigenvalues of order $c$ and the rest of order $1$, so its condition number grows like $c$ as $c\\to\\infty$."
   },
   {
     "id": 1904,
@@ -3180,7 +3414,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$h_i(x(c_k))$ = how far the plane sinks into the forbidden zone.</strong>",
       "<strong>Multiplying by the stiffness $c_k$ gives the restoring force,</strong> like a spring: $\\lambda_i^{(k)}=c_kh_i$.",
       "<strong>As $c_k\\to\\infty$ the depth $\\to0$ but the product converges to the true multiplier $\\lambda^*_i$.</strong>"
-    ]
+    ],
+    "stmtKind": "PROPOSITION",
+    "statement": "If $x_k$ minimizes $Q(\\cdot;c_k)$ and $x_k\\to x^*$ (a regular point), then $\\lambda_k=c_kh(x_k)\\to\\lambda^*$, the Lagrange multiplier at $x^*$."
   },
   {
     "id": 1905,
@@ -3206,7 +3442,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$h(x_k)$ = remaining violation after the current hop.</strong>",
       "<strong>$c_kh(x_k)$ = the correction the multiplier needs:</strong> the same force-from-depth reading as penalty recovery.",
       "<strong>$\\lambda_{k+1}=\\lambda_k+c_kh(x_k)$</strong> converges without sending $c_k\\to\\infty$, so the problem stays well conditioned."
-    ]
+    ],
+    "stmtKind": "ALGORITHM",
+    "statement": "<b>Augmented Lagrangian (method of multipliers).</b> $L_c(x,\\lambda)=f(x)+\\lambda^\\top h(x)+\\tfrac c2\\|h(x)\\|^2$. Repeat: $x_k\\in\\arg\\min_xL_{c_k}(x,\\lambda_k)$; $\\lambda_{k+1}=\\lambda_k+c_kh(x_k)$. Convergence holds for finite (moderately large) $c$, avoiding the ill-conditioning of $c\\to\\infty$."
   },
   {
     "id": 1906,
@@ -3232,7 +3470,9 @@ window.MASTER_CARDS_DATA = [
       "<strong>$\\lambda_0=0$ gives $x^{(0)}=(2/3,2/3)$,</strong> a plane still short of the boundary.",
       "<strong>$\\lambda_1=-4/3$ gives $x^{(1)}=(8/9,8/9)$, and $\\lambda_2=-16/9$ is next:</strong> each update closes a fixed fraction of the remaining gap.",
       "<strong>The multiplier converges to $\\lambda^*$ and the plane lands on the constraint</strong> with the penalty $c$ held fixed."
-    ]
+    ],
+    "stmtKind": "WORKED EXAMPLE",
+    "statement": "Worked augmented-Lagrangian run: with fixed $c$, the update $\\lambda_{k+1}=\\lambda_k+c\\,h(x_k)$ drives $\\lambda_k$ to $\\lambda^*$ in a few outer iterations while $h(x_k)\\to0$."
   },
   {
     "id": 20101,

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261101_f25"></script>
+  <script src="cards_data.js?v=20261101_f26"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
@@ -218,6 +218,8 @@
     .cardhint b { font-style: normal; font-weight: 700; letter-spacing: 1px; font-size: .85em; color: #fff; background: #b8860b; padding: 1px 6px; border-radius: 3px; margin-right: 6px; }
     .sect { margin-top: calc(var(--lh) * 0.5); }
     .sect h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.55); letter-spacing: 1.2px; color: #1d1b18; border-bottom: 3px double #1d1b18; line-height: 1.1; }
+    /* The statement exactly as a textbook would put it: hypotheses, then conclusion. */
+    .stmt { margin: 4px 0 0; padding: 3px 10px; border: 1px solid #9a9488; background: #fbfaf5; font-family: Georgia, 'Times New Roman', serif; font-size: calc(var(--lh) * 0.56); line-height: 1.45; color: #222; }
     .mathbox { margin: 4px 0 0; padding: 2px 8px; background: #f6f1e4; border-left: 4px solid #b8860b; overflow: hidden; font-size: calc(var(--lh) * 0.5 * var(--mfit, 1)); line-height: 1.3; }
     .mathbox .katex-display { margin: .25em 0; }
     .connection { margin-top: calc(var(--lh) * 0.6); }
@@ -917,6 +919,7 @@
           <div class="col-left">
             <h1 class="paper-title">${card.title}</h1>
             ${card.breakdown ? `${storyHtml(card)}<div class="lstack">${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
+              ${card.statement && card.part !== 2 ? `<section class="sect st"><h2>${card.stmtKind || 'THEOREM'}</h2><p class="stmt">${card.statement}</p></section>` : ''}
               <section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
               <section class="sect b"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section></div>`
               : `<div class="info">${infoHtml(card)}</div>`}
