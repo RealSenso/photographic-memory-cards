@@ -3,47 +3,60 @@ from air_lib import *
 from subj_lib import poly
 from cmo_refine_airplane_draw_d import quad_contours, sd_path, cg_path, S
 
-Q7 = [[4, 3], [3, 4]]
-X0 = [-2.4, 0.7]
+Q7 = [[2.5, 1.5], [1.5, 2.5]]
+X0 = [-3.03, 1.1]
 
 CX, CY, SC, HS = 122, 100, 17.0, 5.2
 def fq(x): return 0.5 * (x[0] * (Q7[0][0] * x[0] + Q7[0][1] * x[1]) + x[1] * (Q7[1][0] * x[0] + Q7[1][1] * x[1]))
 from dip_lib import E
 
-def wy(x, c=120, bottom=106, depth=70, half=86):
-    return bottom - depth * ((x - c) / half) ** 2
+import math
+CX, CY, SC, HS = 128, 90, 17.0, 3.0
+def fq(x): return 0.5 * (x[0] * (Q7[0][0] * x[0] + Q7[0][1] * x[1]) + x[1] * (Q7[1][0] * x[0] + Q7[1][1] * x[1]))
+def pr(x, f=None):
+    f = fq(x) if f is None else f
+    return (CX + SC * x[0], CY - SC * 0.8 * x[1] - HS * f)
 
-def bowl_parts():
-    """a hand-drawable bowl: rim ellipse, U-shaped walls, two rings on the surface"""
-    out = [E(120, 36, 86, 13, 0, "none", 2.2)]
-    xs = [34 + 172 * i / 40 for i in range(41)]
-    out.append(poly([(x, wy(x)) for x in xs], 1.9))
-    for r in (0.5, 0.18):
-        out.append(E(120, 106 - 70 * r, 86 * r ** .5, 13 * r ** .5, 0, "none", 1.0))
-    return out
+def ring(level, w=1.2):
+    pts = []
+    for i in range(73):
+        th = math.radians(i * 5)
+        u = (math.cos(th), math.sin(th))
+        r = math.sqrt(2 * level / (u[0] * (Q7[0][0] * u[0] + Q7[0][1] * u[1]) + u[1] * (Q7[1][0] * u[0] + Q7[1][1] * u[1])))
+        pts.append(pr((r * u[0], r * u[1])))
+    return poly(pts, w)
 
-X0P, X1P, XSP = (48, wy(48)), (100, wy(100)), (126, 106.5)
+def bowl():
+    """the valley seen from above and a little to the side: rings of equal altitude, higher rings drawn higher up the page"""
+    return [ring(9, 2.2), ring(5), ring(2.2), ring(0.5)]
+
+def seg(a, b, w=2.8, d=None, n=24):
+    return poly([pr((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n)) for i in range(n + 1)], w, d)
 
 def d701(c):
-    W = lambda x: (x, wy(x))
-    parts = bowl_parts() + [
-        poly([X0P, W(150), W(66), W(134), W(96), XSP], 1.5, "3 3"),
-        poly([X0P, (74, (wy(48) + wy(100)) / 2 + 9), X1P], 2.8), poly([X1P, (113, 106.2), XSP], 2.8),
-        dot(*X0P, "x₀", -6, -3, 10, "end", 3), dot(*X1P, "x₁", -5, 14, 10, "end", 3), dot(*XSP, "x*", 8, 13, 10, "start", 3.4),
-        it(66, 92, "d₀", 10, "end"), it(116, 124, "d₁", 10, "middle"),
-        N(6, 9, "dashed: ⊥ legs zig-zag", 8, "start"), N(6, 19, "across the valley", 8, "start"),
-        N(120, 140, "solid: Q-conjugate d₀ᵀQd₁ = 0, two legs", 8.5, "middle", "bold")]
+    x0, x1, xs = cg_path(Q7, X0)
+    sdp = sd_path(Q7, X0, 5)
+    parts = bowl() + [seg(a, b, 1.8, "3 3") for a, b in zip(sdp, sdp[1:])] + [seg(x0, x1), seg(x1, xs)]
+    p0, p1, ps = pr(x0), pr(x1), pr(xs)
+    parts += [dot(*p0, "x₀", -6, 3, 10, "end", 3), dot(*p1, "x₁", 7, -6, 10, "start", 3), dot(*ps, "x*", 9, 4, 10, "start", 3.4),
+              it((p0[0] + p1[0]) / 2 - 5, (p0[1] + p1[1]) / 2 - 7, "d₀", 10, "end"), it((p1[0] + ps[0]) / 2 + 9, (p1[1] + ps[1]) / 2 + 3, "d₁", 10, "start"),
+              N(120, 130, "dashed: ⊥ legs zig-zag across the valley", 8, "middle"),
+              N(120, 140, "solid: Q-conjugate, d₀ᵀQd₁ = 0, two legs", 8.5, "middle", "bold")]
     return svg(c, *parts)
 
 def d702(c):
-    sheet = poly([(26, 28), (180, 28), (180, 116), (26, 116), (26, 28)], 1.3, "5 3")
-    pf = lambda x: 106 - 60 * ((x - 100) / 74) ** 2
-    prof = [(x, pf(x)) for x in [26 + 154 * i / 50 for i in range(51)]]
-    x0 = (50, pf(50))
-    parts = [sheet] + bowl_parts() + [poly(prof, 2.6), poly([(100, 106), (113, 106.4), XSP], 2.6),
-        dot(*x0, "x₀", -6, -3, 10, "end", 3), dot(100, 106, "x₁", -5, 14, 10, "end", 3), dot(*XSP, "x₂", 8, 13, 10, "start", 3.4),
-        N(236, 8, "plywood sheet = vertical slice along d₀", 8, "end"), N(236, 18, "x₁ = lowest point of the sheet", 8, "end"),
-        N(120, 140, "x₂ = lowest of the whole plane span{d₀,d₁};  g₂ ⊥ d₀, d₁", 8, "middle", "bold")]
+    x0, x1, x2 = cg_path(Q7, X0)
+    d = [x1[0] - x0[0], x1[1] - x0[1]]
+    at = lambda t: (x0[0] + t * d[0], x0[1] + t * d[1])
+    ts = [t / 50 for t in range(-250, 251) if fq(at(t / 50)) <= 9.0]
+    ta, tb = ts[0], ts[-1]
+    A, B, A0, B0 = pr(at(ta)), pr(at(tb)), pr(at(ta), 0), pr(at(tb), 0)
+    prof = [pr(at(ta + (tb - ta) * i / 40)) for i in range(41)]
+    parts = bowl() + [poly([A0, B0], 1.2, "5 3"), poly([A0, A], 1.2, "5 3"), poly([B0, B], 1.2, "5 3"), poly(prof, 1.6), seg(x0, x1, 3.0), seg(x1, x2, 3.0)]
+    p0, p1, p2 = pr(x0), pr(x1), pr(x2)
+    parts += [dot(*p0, "x₀", -6, 3, 10, "end", 3), dot(*p1, "x₁", 7, -6, 10, "start", 3), dot(*p2, "x₂", 9, 4, 10, "start", 3.4),
+              N(120, 130, "dashed edges = plywood sheet along d₀; x₁ is its lowest point", 8, "middle"),
+              N(120, 140, "x₂ = lowest of the whole plane span{d₀,d₁};  g₂ ⊥ d₀, d₁", 8, "middle", "bold")]
     return svg(c, *parts)
 
 FIX = {
