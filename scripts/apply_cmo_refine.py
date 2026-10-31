@@ -54,6 +54,15 @@ for c in cards:
         counters[c["topicId"]] = counters.get(c["topicId"], 0) + 1
         c["cardNumber"] = f"{counters[c['topicId']]:02d}"
 
+# Notebook style for every CMO diagram: no bold text and no heavy lines (idempotent).
+import re
+def _light(svg):
+    svg = svg.replace('font-weight="bold"', 'font-weight="normal"')
+    return re.sub(r'stroke-width="([\d.]+)"', lambda m: f'stroke-width="{min(float(m.group(1)), 1.2):g}"', svg)
+for c in cards:
+    if c["subject"] == "CMO" and c.get("drawingSvg"):
+        c["drawingSvg"] = _light(c["drawingSvg"])
+
 assert len({c["id"] for c in cards}) == len(cards), "duplicate ids"
 open(path, "w").write(head + json.dumps(cards, indent=2) + tail)
 print(f"patched {n_fix} cards, inserted {n_new}, total CMO {sum(1 for c in cards if c['subject']=='CMO')}")
