@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261031_fit7"></script>
+  <script src="cards_data.js?v=20261031_fit12"></script>
   <script src="cards_dip.js?v=20261028_dip"></script>
   <script src="cards_laa.js?v=20261028_laa"></script>
   <script src="cards_stoma.js?v=20261028_stoma27"></script>
@@ -182,6 +182,17 @@
     .paper-title small { font-size: .5em; letter-spacing: 1px; color: #7a5410; margin-left: 10px; white-space: nowrap; }
     .paper-title { margin: 0 0 6px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 1.1); line-height: 1.12; text-transform: uppercase; letter-spacing: .4px; color: #262626; padding-bottom: 6px; border-bottom: 3px double #555; min-height: calc(var(--lh) * 2); display: flex; align-items: flex-end; }
     .col-left, .col-right { min-width: 0; }
+    /* Plates with a breakdown: title across the top, then hint+math beside the picture, breakdown beside the airplane translation. */
+    .paper.grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: "title title" "hint fig" "math fig" "brk conn"; row-gap: 0; }
+    .paper.grid .col-left, .paper.grid .col-right { display: contents; }
+    .paper.grid.p1 { grid-template-areas: "title title" "hint fig" "math fig" "brk fig"; }
+    .paper.grid.p2 { grid-template-areas: "title title" "math conn" "brk conn"; }
+    .paper.grid .paper-title { grid-area: title; min-height: 0; }
+    .paper.grid .cardhint { grid-area: hint; }
+    .paper.grid .sect.m { grid-area: math; } .paper.grid .sect.b { grid-area: brk; }
+    .paper.grid .sketch { grid-area: fig; margin-top: calc(var(--lh) * 0.3); }
+    .paper.grid .connection { grid-area: conn; }
+    .paper.grid .sketch-box .plate-svg { max-width: none; }
     .sketch { margin: 0; }
     .sketch-box { background: #fff; border: 2.5px solid #4d4d4d; border-radius: 3px; padding: 12px; box-shadow: 2px 3px 0 rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; min-height: 0; }
     .sketch-box img { max-width: 100%; max-height: 46vh; object-fit: contain; cursor: zoom-in; }
@@ -225,6 +236,7 @@
       .scrim.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50; }
       .topbar, .strip, .stage, .actions { padding-left: 16px; padding-right: 16px; }
       .paper { grid-template-columns: 1fr; padding: 22px 20px 28px; }
+      .paper.grid { grid-template-areas: "title" "hint" "math" "fig" "brk" "conn"; }
       .col-right { margin-top: 10px; }
       .paper { --lh: 28px; }
       .hint { display: none; }
@@ -871,12 +883,12 @@
           <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy this card (text and picture) to the clipboard">
             <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
         </div>
-        <article class="paper" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
+        <article class="paper ${card.breakdown ? 'grid' : ''} ${card.part ? 'p' + card.part : ''}" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
           <div class="col-left">
             <h1 class="paper-title">${card.title}</h1>
             ${card.breakdown ? `${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
-              <section class="sect"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
-              <section class="sect"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section>`
+              <section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
+              <section class="sect b"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section>`
               : `<div class="info">${infoHtml(card)}</div>`}
           </div>
           <div class="col-right">
@@ -940,7 +952,7 @@
       }
       p.style.flex = flex; p.style.minHeight = minH;
       const c = deck[idx];
-      if (c && c.breakdown && !c.part && !c.__split && lh < 22) {
+      if (c && c.breakdown && !c.part && !c.__split && lh < 20) {
         c.__split = true;
         deck = expandDeck(deck);
         renderAll();
