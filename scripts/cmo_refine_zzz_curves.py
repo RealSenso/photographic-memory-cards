@@ -299,37 +299,103 @@ def slice_(cx, by, half, depth, px, lab, ok):
     out += [N(cx, by - depth - 8, lab, 8, "middle", "bold")]
     return out
 
+def mini(cx, by, half, depth, px):
+    f = bowl(cx, by, half, depth)
+    return [poly(g(f, cx - half, cx + half, 2), 2), dot(cx, f(cx), None, r=1.6), plane(px, f(px) - 8, math.degrees(math.atan(tangent(f, px))), .45), dot(px, f(px), None, r=2.2)]
+
 def d701(c):
-    return svg(c, N(120, 12, "after hop 2, look back along the first heading d₀:", 8.5, "middle", "bold"),
-        *slice_(62, 100, 46, 56, 82, "plain 90° headings", False), N(62, 118, "pushed off the bottom ✗", 8, "middle"), N(62, 129, "hop 2 spoiled hop 1", 7.5, "middle"),
-        L(122, 22, 122, 140, .8, d="2 3"),
-        *slice_(182, 100, 46, 56, 182, "Q-conjugate headings", True), N(182, 118, "still at the bottom ✓", 8, "middle"), N(182, 129, "d₁ᵀQd₀ = 0", 7.5, "middle"))
-D[701] = (d701, "Slice the valley along the first heading d₀ after the second hop. With plain perpendicular headings the plane has been pushed off the bottom of that slice, so hop 2 undid hop 1. With Q-conjugate headings it is still at the bottom.")
+    oy = 104
+    h = lambda a: 58 * ((a - 70) / 58) ** 2 + 6
+    y = lambda a: oy - h(a)
+    s0 = y(12.5) - y(11.5)
+    return svg(c, N(60, 11, "one hop along heading dₖ", 8.5, "middle", "bold"),
+        L(10, oy, 116, oy, 1.2, ar=True), N(116, oy + 10, "α", 8.5, "end"), poly(g(y, 12, 116, 2), 2.4),
+        plane(16, y(12) - 9, 60, .55), dash(12, y(12), 26, y(12) + 14 * s0, 1.2, "2 2"),
+        N(30, 40, "slope gₖᵀdₖ < 0", 7.5, "start", "bold"), N(30, 49, "(downward momentum)", 7, "start"),
+        N(70, 64, "curvature dₖᵀQdₖ", 7.5, "middle", "bold"), N(70, 73, "(the brakes)", 7, "middle"),
+        dot(70, y(70), None, r=2.6), dash(70, y(70) + 3, 70, oy), N(70, oy + 10, "αₖ", 9, "middle", "bold"),
+        N(62, 128, "αₖ = −gₖᵀdₖ / dₖᵀQdₖ", 8.5, "middle", "bold"), N(60, 139, "rₖ = −gₖ: radar's downhill reading", 7, "middle"),
+        L(122, 4, 122, 142, .8, d="2 3"),
+        N(180, 10, "after hop dⱼ,", 7.8, "middle", "bold"), N(180, 19, "slice along old dᵢ", 7.8, "middle", "bold"),
+        *mini(148, 62, 20, 30, 160), N(174, 38, "dᵢᵀQdⱼ ≠ 0 ✗", 8, "start", "bold"), N(174, 49, "pushed off the", 7, "start"), N(174, 58, "dᵢ bottom", 7, "start"),
+        *mini(148, 112, 20, 30, 148), N(174, 88, "dᵢᵀQdⱼ = 0 ✓", 8, "start", "bold"), N(174, 99, "still at the", 7, "start"), N(174, 108, "dᵢ bottom", 7, "start"),
+        N(180, 136, "Q-conjugate = 'no crosswind'", 7, "middle"))
+D[701] = (d701, "Left: slice the valley along the heading dₖ. The starting slope gₖᵀdₖ is the downward momentum, the curvature dₖᵀQdₖ is the brakes, and the bottom of the slice is at αₖ = −gₖᵀdₖ / dₖᵀQdₖ. Right: after flying dⱼ, look along an old heading dᵢ. If dᵢᵀQdⱼ = 0 the plane is still at the bottom of that slice; otherwise hop j undid hop i.")
 
 def d702(c):
-    parts = [N(120, 12, "after k hops: slice along every old heading", 8.5, "middle", "bold")]
-    for i, cx in enumerate((44, 120, 196)):
-        parts += slice_(cx, 92, 32, 44, cx, f"along d{'₀₁₂'[i]}", True)
-    parts += [N(120, 112, "the plane sits at the bottom of every slice", 8.5, "middle"),
-        N(120, 124, "gₖᵀdᵢ = 0 for all i < k", 8.5, "middle", "bold"),
-        N(120, 137, "= lowest point of the whole flight plane x₀ + span(d₀…dₖ₋₁)", 7.5, "middle")]
+    parts = [N(120, 11, "xₖ = lowest point of the flight plane x₀ + 𝓑ₖ", 8.5, "middle", "bold")]
+    for i, cx in enumerate((42, 120, 198)):
+        f = bowl(cx, 84, 30, 42)
+        parts += [poly(g(f, cx - 30, cx + 30, 2), 2.2), plane(cx, 72, 0, .5), dot(cx, 84, None, r=2.4), dash(cx - 18, 84, cx + 18, 84, 1.2, "3 2"),
+            N(cx, 30, f"slice along d{'₀₁₂'[i]}", 8, "middle", "bold"), N(cx, 98, f"gₖᵀd{'₀₁₂'[i]} = 0", 8.5, "middle", "bold"), N(cx, 108, "flat: no slope left", 7, "middle")]
+    parts += [N(120, 124, "the slope gₖ is perpendicular to every old heading dᵢ", 8, "middle"),
+        N(120, 137, "𝓑ₖ = span(d₀, …, dₖ₋₁): all the headings flown so far", 7.5, "middle")]
     return svg(c, *parts)
-D[702] = (d702, "After k conjugate hops, slice the valley along each earlier heading: the plane is at the bottom of every slice (gₖᵀdᵢ = 0), so it is at the lowest point of the whole flight plane those headings span.")
+D[702] = (d702, "After k conjugate hops, slice the valley along each earlier heading dᵢ: the plane is at the bottom of every slice, so the slope there is flat, gₖᵀdᵢ = 0. That makes xₖ the lowest point of the whole flight plane x₀ + 𝓑ₖ.")
 
 def d706(c):
-    ox, oy = 28, 116
-    xs = lambda k: ox + k * 32
+    ox, oy = 26, 114
+    xs = lambda k: ox + k * 30
     sd = [100, 64, 50, 40, 33, 28, 25]
-    cg = [100, 52, 0]
-    ys = lambda v: oy - 6 - v * .84
-    parts = [L(ox, oy, 232, oy, 1.2, ar=True), L(ox, oy, ox, 16, 1.2, ar=True), N(232, oy + 11, "hops flown", 7.5, "end"), N(ox + 3, 14, "altitude above floor", 7.5, "start"),
-        poly([(xs(k), ys(v)) for k, v in enumerate(sd)], 1.6, "5 3"), poly([(xs(k), ys(v)) for k, v in enumerate(cg)], 2.6)]
-    parts += [dot(xs(k), ys(v), None, r=2) for k, v in enumerate(sd)] + [dot(xs(k), ys(v), None, r=2.6) for k, v in enumerate(cg)]
+    cg = [100, 46, 0]
+    ys = lambda v: oy - 6 - v * .8
+    parts = [L(ox, oy, 232, oy, 1.2, ar=True), L(ox, oy, ox, 16, 1.2, ar=True), N(232, oy + 11, "hops", 7.5, "end"), N(ox + 3, 13, "altitude above floor", 7.5, "start"),
+        poly([(xs(k), ys(v)) for k, v in enumerate(sd)], 1.4, "5 3"), poly([(xs(k), ys(v)) for k, v in enumerate(cg)], 2.6)]
+    parts += [dot(xs(k), ys(v), None, r=1.8) for k, v in enumerate(sd)] + [dot(xs(k), ys(v), None, r=2.8) for k, v in enumerate(cg)]
     for k in range(7): parts.append(N(xs(k), oy + 10, str(k), 7.5, "middle"))
-    parts += [plane(xs(2) + 4, ys(0) - 12, 0, .6), N(xs(2) + 10, ys(0) - 2, "landed at hop 2", 8.5, "start", "bold"),
-        N(200, ys(25) - 8, "steepest descent", 7.5, "middle"), N(98, 50, "CG", 9, "middle", "bold")]
+    parts += [N(xs(0) + 6, ys(100) + 2, "x₀", 9, "start", "bold"), N(xs(1) - 6, ys(46) + 4, "x₁", 9, "end", "bold"), N(xs(2) + 6, ys(0) - 3, "x₂ = x*", 9, "start", "bold"),
+        N(150, 26, "x₀ = (4, 1)", 8, "start", "bold"), N(150, 37, "↓ α₀ = 1/5", 7.5, "start"), N(150, 48, "x₁ = (2.4, −0.6)", 8, "start", "bold"),
+        N(150, 59, "↓ β₀ = 0.36, α₁ = 5/16", 7.5, "start"), N(150, 70, "x₂ = (0, 0) = x*", 8, "start", "bold"),
+        N(xs(6), ys(25) + 13, "steepest descent", 7.5, "end"), N(xs(1) - 4, ys(20) + 4, "CG", 9, "end", "bold"), plane(xs(2) + 2, ys(0) - 14, 0, .5)]
     return svg(c, *parts)
-D[706] = (d706, "Altitude after each hop on a 2-D quadratic valley. Steepest descent (dashed) keeps zig-zagging and only creeps toward the floor; conjugate gradient (solid) lands exactly on the floor after hop 2.")
+D[706] = (d706, "Altitude after each hop on the 2-D example. CG (solid) flies x₀ = (4,1) → x₁ = (2.4, −0.6) with α₀ = 1/5, then blends in β₀ = 0.36 of the old heading and lands on x* = (0,0) with α₁ = 5/16. Steepest descent (dashed) keeps creeping.")
+
+def d703(c):
+    px, py = 28, 100
+    gx, gy = 36, -62          # fresh downhill −g_{k+1}
+    bx, by_ = 50, 8           # β_k d_k
+    return svg(c, plane(px - 6, py + 6, -40, .6),
+        L(px, py, px + gx, py + gy, 1.8, d="5 3", ar=True), N(px + gx - 4, py + gy - 4, "−gₖ₊₁ (fresh radar)", 7.8, "middle", "bold"),
+        L(px, py, px + bx, py + by_, 1.8, d="5 3", ar=True), N(px + bx + 2, py + by_ + 12, "βₖdₖ (memory)", 7.8, "middle", "bold"),
+        L(px + gx, py + gy, px + gx + bx, py + gy + by_, 1, d="2 2"), L(px + bx, py + by_, px + gx + bx, py + gy + by_, 1, d="2 2"),
+        arrow(px, py, px + gx + bx, py + gy + by_, 2.6), N(px + gx + bx + 4, py + gy + by_ - 2, "dₖ₊₁", 9.5, "start", "bold"),
+        N(70, 132, "dₖ₊₁ = −gₖ₊₁ + βₖdₖ", 8.5, "middle", "bold"),
+        L(144, 4, 144, 142, .8, d="2 3"),
+        R(156, 30, 18, 70, "#d1d5db", 1.2), R(196, 72, 18, 28, "#d1d5db", 1.2), L(150, 100, 228, 100, 1.2),
+        N(165, 112, "‖gₖ‖²", 8, "middle"), N(205, 112, "‖gₖ₊₁‖²", 8, "middle"), N(165, 24, "old slope", 7, "middle"), N(205, 66, "new slope", 7, "middle"),
+        N(190, 12, "how much memory to keep", 8, "middle", "bold"),
+        N(190, 126, "βₖ = ‖gₖ₊₁‖² / ‖gₖ‖²", 8.5, "middle", "bold"), N(190, 138, "αₖ = ‖rₖ‖² / dₖᵀQdₖ", 7.5, "middle"))
+D[703] = (d703, "Left: the new heading is the fresh downhill −gₖ₊₁ plus a fraction βₖ of the old heading dₖ (the memory). Right: βₖ compares the new slope to the old one, ‖gₖ₊₁‖²/‖gₖ‖²; the hop length αₖ is still momentum ‖rₖ‖² over brakes dₖᵀQdₖ.")
+
+def d704(c):
+    base = 104
+    errs = [[60, 40, 24], [0, 34, 20], [0, 0, 16], [0, 0, 0]]
+    parts = [N(120, 11, "each hop adds one Krylov direction and kills one axis", 8.3, "middle", "bold"), L(10, base, 232, base, 1.2)]
+    labs = ["𝒦₁: r₀", "𝒦₂: + Qr₀", "𝒦₃: + Q²r₀", "x₃ = x*"]
+    for k, e in enumerate(errs):
+        x0 = 18 + k * 56
+        for j, v in enumerate(e):
+            fill = ["#9ca3af", "#d1d5db", "#ffffff"][j]
+            parts.append(R(x0 + j * 13, base - max(v, 1), 11, max(v, 1), fill, 1.1))
+        parts += [N(x0 + 19, base + 11, f"after hop {k}", 7.2, "middle"), N(x0 + 19, base + 21, labs[k], 7.5, "middle", "bold")]
+    parts += [plane(206, 80, 0, .6), N(120, 30, "bars = error along each natural axis of Q", 7.5, "middle"),
+        N(120, 139, "m = 3 distinct curvatures |σ(Q)| → land in m ≤ n hops", 7.8, "middle")]
+    return svg(c, *parts)
+D[704] = (d704, "Bars show the remaining error along each natural axis of the valley. Hop k adds the next Krylov direction (r₀, then Qr₀, then Q²r₀) to the flight plane and kills one more axis, so with m distinct curvatures the plane lands in m ≤ n hops.")
+
+def d705(c):
+    px, py = 34, 96
+    return svg(c, arrow(px, py, px + 56, py - 6, 1.8), N(px + 58, py - 4, "gₖ (old reading)", 7.5, "start"),
+        arrow(px, py, px + 30, py - 58, 1.8), N(px + 30, py - 63, "gₖ₊₁ (new)", 7.5, "middle"),
+        L(px + 56, py - 6, px + 32, py - 56, 1.6, d="3 2", ar=True), N(px + 50, py - 36, "gₖ₊₁ − gₖ", 8, "start", "bold"), N(px + 50, py - 26, "(what changed)", 7, "start"),
+        plane(px - 8, py + 8, -30, .55),
+        N(62, 126, "βᴾᴿ = gₖ₊₁ᵀ(gₖ₊₁ − gₖ) / ‖gₖ‖²", 8, "middle", "bold"), N(62, 137, "new reading · change, scaled", 7, "middle"),
+        L(126, 4, 126, 142, .8, d="2 3"),
+        R(134, 62, 46, 18, "#d1d5db", 0), L(134, 80, 230, 80, 1.6, ar=True), L(180, 74, 180, 86, 1.6), N(180, 96, "0", 8.5, "middle"),
+        N(157, 56, "βᴾᴿ < 0", 8, "middle", "bold"), N(157, 108, "reset to 0", 7.8, "middle", "bold"), N(157, 118, "fly d = −g", 7.5, "middle"),
+        N(206, 56, "βᴾᴿ > 0", 8, "middle", "bold"), N(206, 108, "keep it", 7.8, "middle", "bold"), N(206, 118, "β⁺ = βᴾᴿ", 7.5, "middle"),
+        N(182, 12, "β⁺ = max(0, βᴾᴿ)", 8.5, "middle", "bold"), N(182, 24, "automatic reset", 7.5, "middle"))
+D[705] = (d705, "Left: Polak-Ribière looks at how much the radar reading changed, gₖ₊₁ − gₖ, measured along the new reading and scaled by ‖gₖ‖². Right: β⁺ = max(0, βᴾᴿ). A negative value means the memory would steer backwards, so it is reset to 0 and the plane flies straight downhill.")
 
 def d1106(c):
     f = bowl(175, 112, 150, 80)
