@@ -40,9 +40,9 @@ def d502(c):
     fx = lambda x: 124 - 96 / (1 + 0.16 * (x - 30) / 8)
     pts = [(30 + 8 * k, fx(30 + 8 * k)) for k in range(0, 25)]
     return svg(c, L(30, 124, 226, 124, 1.2, ar=True), L(30, 124, 30, 10, 1.2, ar=True), poly(pts, 2.6), plane(60, 22, 0, .6),
-        N(206, 76, "f(xₖ) − f*", 8.5, "end"), N(206, 90, "≤ L‖x₀−x*‖² / 2k", 8.5, "end", "bold"), N(206, 138, "k (legs flown)", 8, "end"),
-        N(40, 22, "huge drops", 8, "start") if False else "", N(150, 108, "last metres: many legs", 8.5, "middle"))
-D[502] = (d502, "Descending with step 1/L: the first legs shed lots of altitude, the last metres above the valley floor take many legs, so the gap shrinks only like 1/k.")
+        N(206, 76, "f(xₖ) − f*", 8.5, "end"), N(206, 90, "≤ L‖x₀−x*‖² / 2k", 8.5, "end", "bold"), N(206, 138, "k (hops flown)", 8, "end"),
+        N(40, 22, "huge drops", 8, "start") if False else "", N(150, 108, "last metres: many hops", 8.5, "middle"))
+D[502] = (d502, "Descending with step 1/L: the first hops shed lots of altitude, the last metres above the valley floor take many hops, so the gap shrinks only like 1/k.")
 
 def d503(c):
     parts = [L(14, 124, 226, 124, 1.2, ar=True)]
@@ -50,9 +50,9 @@ def d503(c):
         h = 90 * 0.62 ** k
         parts += [R(24 + k * 40, 124 - h, 26, h, "#f1f5f9", 1.6), N(37 + k * 40, 136, f"k={k}", 8, "middle")]
         if k < 4: parts.append(arrow(52 + k * 40, 124 - h + 6, 62 + k * 40, 124 - 90 * 0.62 ** (k + 1) - 4, 1.4)); parts.append(N(57 + k * 40, 124 - h - 4, "×ρ", 8, "middle", "bold")) if k < 3 else None
-    parts += [plane(206, 40, 180, .6), N(200, 62, "ρ = 1 − μ/L", 8.5, "end", "bold"), N(200, 76, "gap × ρ per leg", 8.5, "end")]
+    parts += [plane(206, 40, 180, .6), N(200, 62, "ρ = 1 − μ/L", 8.5, "end", "bold"), N(200, 76, "gap × ρ per hop", 8.5, "end")]
     return svg(c, *parts)
-D[503] = (d503, "Every leg removes the same fraction of the altitude still left above the valley floor: the gap is multiplied by ρ<1 each leg.")
+D[503] = (d503, "Every hop removes the same fraction of the altitude still left above the valley floor: the gap is multiplied by ρ<1 each hop.")
 
 def d504(c):
     sc = 8
@@ -63,7 +63,7 @@ def d504(c):
               arrow(s0[0] + 8, s0[1] - 4, 140, 74, 1.6, d="4 3"), N(86, 108, "valley axis", 8.5, "middle"), dot(150, 76, None, r=2.4), N(188, 20, "θ = misalignment", 8.5, "middle", "bold"),
               N(150, 140, "worst case: cos θ ≥ 2√κ/(κ+1)", 8.5, "middle", "bold")]
     return svg(c, *parts)
-D[504] = (d504, "The nose (−g) is never perfectly aligned with the valley axis; Kantorovich bounds the worst misalignment, and with it the least altitude you must gain per leg.")
+D[504] = (d504, "The nose (−g) is never perfectly aligned with the valley axis; Kantorovich bounds the worst misalignment, and with it the least altitude you must gain per hop.")
 
 def d505(c):
     sc = 8
@@ -79,7 +79,7 @@ def d506(c):
         dot(70, 126, None, r=2.4), dot(118, 126, None, r=2.4), plane(70, 114, 0, .6), N(70, 138, "xₖ₋₁", 8.5), N(118, 138, "xₖ", 8.5),
         arrow(72, 120, 116, 120, 2.2), N(94, 112, "s", 10, "middle", "bold"), L(150, 124, 150, 98, 1.6), arrow(150, 124, 150, 98, 2), N(156, 112, "y", 10, "start", "bold"),
         N(150, 56, "α = sᵀs / sᵀy", 9, "start", "bold"), N(150, 68, "(no radar sweep)", 8, "start"), N(40, 22, "how far you flew (s)", 8.5, "start"), N(40, 34, "vs how the slope changed (y)", 8.5, "start"))
-D[506] = (d506, "Size the next leg from the last two footprints: how far you flew (s) against how much the slope gauge changed (y).")
+D[506] = (d506, "Size the next hop from the last two footprints: how far you flew (s) against how much the slope gauge changed (y).")
 
 def d507(c):
     sc = 8
@@ -101,16 +101,16 @@ def d601(c):
     return svg(c, fn(f_, 20, 226, 60, 2.6), fn(par, xk - 46, xk + 66, 40, 1.6, "4 3"), plane(xk - 4, f0 - 14, 0, .6), dot(xk, f0, "xₖ", -6, 14, 9.5, "end", 2.6),
         dot(xv, par(xv), None, r=3), dash(xv, par(xv), xv, 124, 1.2, "2 2"), N(xv, 136, "xₖ₊₁", 9, "middle", "bold"), arrow(xk + 4, 124, xv - 4, 124, 2),
         N(120, 16, "fit a parabola, fly to its bottom", 8.5, "middle", "bold"))
-D[601] = (d601, "The autopilot fits a parabola to the local terrain (slope and curvature gauges) and flies straight to the bottom of that model in one leg.")
+D[601] = (d601, "The autopilot fits a parabola to the local terrain (slope and curvature gauges) and flies straight to the bottom of that model in one hop.")
 
 def d602(c):
     parts = [L(14, 124, 226, 124, 1.2, ar=True)]
     for k, h in enumerate([8, 18, 38, 78]):
-        parts += [R(30 + k * 48, 124 - h, 30, h, "#f1f5f9", 1.6), N(45 + k * 48, 136, f"leg {k+1}", 8, "middle")]
+        parts += [R(30 + k * 48, 124 - h, 30, h, "#f1f5f9", 1.6), N(45 + k * 48, 136, f"hop {k+1}", 8, "middle")]
         parts.append(N(45 + k * 48, 124 - h - 4, f"{[1, 2, 4, 8][k]} digits", 8, "middle", "bold"))
-    parts += [plane(40, 40, 0, .6), N(120, 18, "inside the final approach bubble", 8.5, "middle", "bold"), N(120, 30, "correct digits double each leg", 8.5)]
+    parts += [plane(40, 40, 0, .6), N(120, 18, "inside the final approach bubble", 8.5, "middle", "bold"), N(120, 30, "correct digits double each hop", 8.5)]
     return svg(c, *parts)
-D[602] = (d602, "Inside the terminal approach bubble each leg squares the remaining error, so the number of correct digits roughly doubles every leg.")
+D[602] = (d602, "Inside the terminal approach bubble each hop squares the remaining error, so the number of correct digits roughly doubles every hop.")
 
 def d603(c):
     f_ = lambda x: 100 - 66 * math.exp(-((x - 120) / 40) ** 2) + 0.18 * (x - 120)
@@ -127,14 +127,14 @@ def d604(c):
     for i, x in enumerate(xs):
         parts.append(dot(x, f_(x), None, r=2.6))
         if i < len(xs) - 1: parts.append(arrow(x + 2, f_(x) + 6, xs[i + 1] - 2, f_(xs[i + 1]) - 2, 1.8))
-    parts += [N(54, 62, "α<1", 8.5, "middle", "bold"), N(176, 110, "α=1", 8.5, "middle", "bold"), plane(30, 16, 0, .55), N(120, 144, "short cautious legs → full unit steps", 8.5, "middle", "bold")]
+    parts += [N(54, 62, "α<1", 8.5, "middle", "bold"), N(176, 110, "α=1", 8.5, "middle", "bold"), plane(30, 16, 0, .55), N(120, 144, "short cautious hops → full unit steps", 8.5, "middle", "bold")]
     return svg(c, *parts)
-D[604] = (d604, "Far from the field fly short, cautious legs (backtracking, α<1); on the final approach fly the full unit step α=1.")
+D[604] = (d604, "Far from the field fly short, cautious hops (backtracking, α<1); on the final approach fly the full unit step α=1.")
 
 def d605(c):
     return svg(c, fn(lambda x: 30 + 0.0045 * (x - 120) ** 2, 40, 200, 40, 1.6, "4 3"), fn(lambda x: 120 - 0.0125 * (x - 120) ** 2, 40, 200, 40, 2.6),
         plane(120, 92, 0, .6), N(120, 12, "H not positive definite: the model is a hill (dashed)", 8, "middle"), N(120, 134, "add τI: the model becomes a bowl", 8.5, "middle", "bold"),
-        N(120, 144, "τ→0 Newton · τ→∞ short gradient leg", 8))
+        N(120, 144, "τ→0 Newton · τ→∞ short gradient hop", 8))
 D[605] = (d605, "If the curvature gauge is not all positive the model is a hill (dashed). Adding the stabiliser τI stiffens it into a bowl (solid) the autopilot can safely fly to.")
 
 def d606(c):
@@ -145,9 +145,9 @@ def d606(c):
     while x < 118:
         sw.append((x, par(x) - 6)); x += 6; sw.append((x, par(x) + 6))
     parts += [poly(sw, 1.2, "2 2"), poly([(34, par(34)), (84, par(84)), (122, par(122))], 3), dot(122, par(122), None, r=3), plane(40, par(34) - 14, 20, .6),
-              N(236, 50, "Newton: 2–3 legs", 8.5, "end", "bold"), N(236, 62, "(a bridge)", 8, "end"), N(236, 82, "gradient descent:", 8.5, "end"), N(236, 94, "many switchbacks", 8.5, "end"), N(120, 142, "Rosenbrock banana canyon", 8.5, "middle")]
+              N(236, 50, "Newton: 2–3 hops", 8.5, "end", "bold"), N(236, 62, "(a bridge)", 8, "end"), N(236, 82, "gradient descent:", 8.5, "end"), N(236, 94, "many switchbacks", 8.5, "end"), N(120, 142, "Rosenbrock banana canyon", 8.5, "middle")]
     return svg(c, *parts)
-D[606] = (d606, "Newton flies a bridge across the banana canyon in a few legs; gradient descent hikes down hundreds of switchbacks along the walls.")
+D[606] = (d606, "Newton flies a bridge across the banana canyon in a few hops; gradient descent hikes down hundreds of switchbacks along the walls.")
 
 # ------------------------------------------------------------------ topic 7
 Q7 = [[3, 1], [1, 2]]
@@ -159,9 +159,9 @@ def d701(c):
     sd = [S(p, sc, 150, 74) for p in sd_path(Q7, X0, 4)]
     cg = [S(p, sc, 150, 74) for p in cg_path(Q7, X0)]
     parts += [poly(sd, 1.4, "3 3"), poly(cg, 2.8), plane(cg[0][0] - 6, cg[0][1] - 14, 0, .65), dot(*cg[1], "d₀ ends", 4, -6, 8, "start", 2.4),
-              N(120, 16, "perpendicular legs (dashed) zig-zag", 8.5, "middle"), N(120, 138, "Q-conjugate legs (solid) follow the natural axes", 8.5, "middle", "bold")]
+              N(120, 16, "perpendicular hops (dashed) zig-zag", 8.5, "middle"), N(120, 138, "Q-conjugate hops (solid) follow the natural axes", 8.5, "middle", "bold")]
     return svg(c, *parts)
-D[701] = (d701, "In a skewed valley perpendicular legs (dashed) undo each other; Q-conjugate headings (solid) follow the valley's natural axes and reach the bottom in two legs.")
+D[701] = (d701, "In a skewed valley perpendicular hops (dashed) undo each other; Q-conjugate headings (solid) follow the valley's natural axes and reach the bottom in two hops.")
 
 def d702(c):
     sc = 9
@@ -170,7 +170,7 @@ def d702(c):
     parts += [L(cg[0][0] - 40, cg[0][1] + 18, cg[1][0] + 60, cg[1][1] - 26, 1.2, d="5 3"), poly(cg, 2.8), plane(cg[0][0] - 6, cg[0][1] - 14, 0, .65), dot(*cg[2], "x₂", 5, 12, 9, "start", 3),
               N(120, 136, "lowest point of the whole flight plane span{d₀,d₁}", 8.5, "middle", "bold"), N(40, 34, "span{d₀,d₁}", 8.5, "start")]
     return svg(c, *parts)
-D[702] = (d702, "After k legs you sit at the lowest point of the whole flight plane spanned by your headings, not just along the last line.")
+D[702] = (d702, "After k hops you sit at the lowest point of the whole flight plane spanned by your headings, not just along the last line.")
 
 def d703(c):
     ox, oy = 62, 96
@@ -183,10 +183,10 @@ def d704(c):
     parts = [L(14, 124, 226, 124, 1.2, ar=True)]
     for i, (h1, h2) in enumerate([(70, 40), (0, 40), (0, 0)]):
         x = 30 + i * 70
-        parts += [R(x, 124 - max(h1, 1), 18, max(h1, 1), "#c9ced8", 1.4), R(x + 22, 124 - max(h2, 1), 18, max(h2, 1), "#f1f5f9", 1.4), N(x + 20, 136, f"after leg {i}", 8, "middle")]
-    parts += [N(120, 18, "each leg kills one more curvature axis", 8.5, "middle", "bold"), N(120, 30, "n axes → at most n legs", 8.5), plane(204, 62, 0, .6)]
+        parts += [R(x, 124 - max(h1, 1), 18, max(h1, 1), "#c9ced8", 1.4), R(x + 22, 124 - max(h2, 1), 18, max(h2, 1), "#f1f5f9", 1.4), N(x + 20, 136, f"after hop {i}", 8, "middle")]
+    parts += [N(120, 18, "each hop kills one more curvature axis", 8.5, "middle", "bold"), N(120, 30, "n axes → at most n hops", 8.5), plane(204, 62, 0, .6)]
     return svg(c, *parts)
-D[704] = (d704, "Each conjugate leg removes the error along one more natural axis (dark bar, light bar), so after n legs the error is zero: finite termination.")
+D[704] = (d704, "Each conjugate hop removes the error along one more natural axis (dark bar, light bar), so after n hops the error is zero: finite termination.")
 
 def d705(c):
     return svg(c, circ(60, 62, 30, "#f1f5f9", 1.8), L(60, 62, 76, 40, 3), arrow(60, 62, 76, 40, 3), N(60, 108, "corrupted heading", 8.5, "middle"), N(60, 120, "(wrong direction)", 8),
@@ -199,8 +199,8 @@ def d706(c):
     parts = quad_contours(Q7, [6, 18, 45], sc, 150, 74)
     cg = [S(p, sc, 150, 74) for p in cg_path(Q7, X0)]
     parts += [poly(cg, 3), plane(cg[0][0] - 6, cg[0][1] - 14, 0, .65), dot(*cg[0], "x₀", -6, 12, 9, "end", 2.8), dot(*cg[1], "x₁", 6, -6, 9, "start", 2.8), dot(*cg[2], "x*", 6, 12, 9.5, "start", 3.2),
-              N(120, 18, "2D: exactly two legs", 8.5, "middle", "bold"), N(120, 138, "leg 1 kills the error along d₀; leg 2 kills the rest", 8.5, "middle")]
+              N(120, 18, "2D: exactly two hops", 8.5, "middle", "bold"), N(120, 138, "hop 1 kills the error along d₀; hop 2 kills the rest", 8.5, "middle")]
     return svg(c, *parts)
-D[706] = (d706, "In 2D conjugate gradient lands on the optimum in exactly two legs: the first removes the error along d₀, the second removes the rest.")
+D[706] = (d706, "In 2D conjugate gradient lands on the optimum in exactly two hops: the first removes the error along d₀, the second removes the rest.")
 
 FIX = {cid: {"drawingSvg": fnc(cid), "drawingCaption": cap} for cid, (fnc, cap) in D.items()}

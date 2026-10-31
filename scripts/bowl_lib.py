@@ -1,5 +1,5 @@
 """Tilted top view of a quadratic valley f = 1/2 x'Qx: rings of equal altitude, higher rings drawn higher up the page.
-Paths are lifted onto the surface so legs, bends and zig-zags stay readable and easy to copy by hand."""
+Paths are lifted onto the surface so hops, bends and zig-zags stay readable and easy to copy by hand."""
 import math
 from air_lib import *
 

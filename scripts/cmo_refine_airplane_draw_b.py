@@ -24,9 +24,9 @@ def d1403(c):
     sub = [(ox + 8 * k, oy - 100 / (1 + 0.15 * k)) for k in range(0, 24)]
     lin = [(ox + 8 * k, oy - 100 * 0.85 ** k) for k in range(0, 24)]
     return svg(c, L(ox, oy, 226, oy, 1.2, ar=True), L(ox, oy, ox, 10, 1.2, ar=True), poly(sub, 2.4, "5 3"), poly(lin, 2.4),
-        N(190, 44, "O(1/k) merely convex", 8, "end"), N(176, 106, "ρᵏ strongly convex", 8, "end", "bold"), N(18, 18, "gap", 8, "middle"), N(212, 138, "k (legs flown)", 8, "end"),
+        N(190, 44, "O(1/k) merely convex", 8, "end"), N(176, 106, "ρᵏ strongly convex", 8, "end", "bold"), N(18, 18, "gap", 8, "middle"), N(212, 138, "k (hops flown)", 8, "end"),
         plane(54, 22, 0, .6))
-D[1403] = (d1403, "Distance to the best parking spot versus legs flown: a merely convex valley closes in like 1/k, a strongly convex bowl shrinks by a fixed factor each leg. The walls do not change the rate.")
+D[1403] = (d1403, "Distance to the best parking spot versus hops flown: a merely convex valley closes in like 1/k, a strongly convex bowl shrinks by a fixed factor each hop. The walls do not change the rate.")
 
 def d1404(c):
     xk = (170, 30)
@@ -88,7 +88,7 @@ def d1504(c):
         if i < 3: parts.append(arrow(x + 52, y + 11, xs[i + 1][0] - 2, xs[i + 1][1] + 11, 2))
     parts += [plane(234, 136, 0, .5), N(10, 112, "altitude strictly falls:", 8.5, "start"), N(10, 124, "f₀ > f₁ > f₂ > f₃", 9, "start", "bold"), N(10, 136, "no working set repeats", 8.5, "start")]
     return svg(c, *parts)
-D[1504] = (d1504, "Each leg lowers altitude, so a working set is never revisited; with only finitely many wall subsets the flight must end in finitely many legs.")
+D[1504] = (d1504, "Each hop lowers altitude, so a working set is never revisited; with only finitely many wall subsets the flight must end in finitely many hops.")
 
 def d1505(c):
     cx, cy = 120, 72

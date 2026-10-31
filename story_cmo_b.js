@@ -5,7 +5,7 @@
    methods of topics 4-8. */
 window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
   /* ---- 8 · Quasi-Newton: learn the curvature as you fly ---- */
-  "801": { s: "STORY 8 · LEARN THE CURVATURE", b: "Newton needs the Hessian (costly), CG avoids it. Third way: <b>read the curvature off your own flight log</b>. One leg gives a footprint $s$ and a slope change $y$, and the secant equation says $B s=y$.",
+  "801": { s: "STORY 8 · LEARN THE CURVATURE", b: "Newton needs the Hessian (costly), CG avoids it. Third way: <b>read the curvature off your own flight log</b>. One hop gives a footprint $s$ and a slope change $y$, and the secant equation says $B s=y$.",
     f: [["605", "Newton's cost: $n^2$ storage, $n^3$ solve"], ["506", "the footprint idea, scaled up"]], n: [["802", "cheapest update that obeys it"], ["803", "update the inverse instead"]] },
   "802": { s: "STORY 8 · LEARN THE CURVATURE", b: "The cheapest correction that still satisfies the secant equation is one rank-1 patch. Elegant, but it can lose positive definiteness.",
     f: [["801", "the equation to satisfy"]], n: [["803", "a safer two-patch update"]] },
@@ -13,7 +13,7 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     f: [["802", "rank-1 problem"]], n: [["804", "the dual update that fixes this"]] },
   "804": { s: "STORY 8 · LEARN THE CURVATURE", b: "BFGS is DFP's dual: same secant idea, far more forgiving. It is the standard way to get Newton-like speed without ever forming $H$.",
     f: [["803", "DFP, its dual"], ["601", "Newton speed it imitates"]], n: [["805", "why it stays positive definite"], ["806", "memory-saving version"]] },
-  "805": { s: "STORY 8 · LEARN THE CURVATURE", b: "BFGS stays healthy only if each leg satisfies the curvature (Wolfe) condition, so $s^T y>0$. This is why topic 4 mattered.",
+  "805": { s: "STORY 8 · LEARN THE CURVATURE", b: "BFGS stays healthy only if each hop satisfies the curvature (Wolfe) condition, so $s^T y>0$. This is why topic 4 mattered.",
     f: [["804", "the update"], ["404", "Wolfe curvature rule"]], n: [["806", "when $n$ is huge"]] },
   "806": { s: "STORY 8 · LEARN THE CURVATURE", b: "Keep only the last few footprints and slope changes: Newton-like headings at CG-like cost. It closes the open-sky story before the walls appear.",
     f: [["805", "full BFGS"], ["703", "CG's low memory"]], n: [["901", "next: walls enter the airspace"]] },
@@ -91,13 +91,13 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     f: [["1305", "composite projections"]], n: [["1401", "now use projections inside gradient descent"]] },
 
   /* ---- 14 · Projected gradient ---- */
-  "1401": { s: "STORY 14 · FLYING WITH WALLS", b: "Take the steepest-descent leg from topic 5, and if it carries the plane out of the airspace, drop it back with a projection. That is the whole algorithm.",
-    f: [["501", "steepest descent"], ["1301", "projection"]], n: [["1402", "what stopping means"], ["1403", "how fast"], ["1404", "choosing the leg"]] },
+  "1401": { s: "STORY 14 · FLYING WITH WALLS", b: "Take the steepest-descent hop from topic 5, and if it carries the plane out of the airspace, drop it back with a projection. That is the whole algorithm.",
+    f: [["501", "steepest descent"], ["1301", "projection"]], n: [["1402", "what stopping means"], ["1403", "how fast"], ["1404", "choosing the hop"]] },
   "1402": { s: "STORY 14 · FLYING WITH WALLS", b: "A stationary parking spot is a fixed point of 'step then project'. This turns KKT into a one-line stopping test.",
     f: [["1401", "iteration"], ["905", "constrained FONC"]], n: [["1403", "speed toward it"]] },
   "1403": { s: "STORY 14 · FLYING WITH WALLS", b: "The same rates as the open-sky case: $1/k$ on convex terrain, geometric on strongly convex, because projection is non-expansive.",
     f: [["502", "open-sky rates"], ["1302", "non-expansive projection"]], n: [["1404", "an Armijo test along the arc"]] },
-  "1404": { s: "STORY 14 · FLYING WITH WALLS", b: "Armijo from topic 4, but the trial points slide along the wall as the leg shrinks: a projection arc instead of a straight track.",
+  "1404": { s: "STORY 14 · FLYING WITH WALLS", b: "Armijo from topic 4, but the trial points slide along the wall as the hop shrinks: a projection arc instead of a straight track.",
     f: [["403", "Armijo"], ["1401", "projected step"]], n: [["1405", "curved walls"]] },
   "1405": { s: "STORY 14 · FLYING WITH WALLS", b: "On a curved runway a straight step leaves the surface; a restoration phase pulls the plane back onto it.",
     f: [["1404", "line search on the arc"]], n: [["1406", "worked projected GD"], ["1501", "a different strategy: stay on walls exactly"]] },
@@ -111,12 +111,12 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     f: [["1501", "subproblem"]], n: [["1503", "the opposite move"]] },
   "1503": { s: "STORY 15 · SLIDING ALONG WALLS", b: "If a wall's multiplier is negative it is pushing the wrong way: release it. Complementary slackness decides which walls matter.",
     f: [["1502", "adding walls"], ["1102", "on/off switch"]], n: [["1504", "why this ends"]] },
-  "1504": { s: "STORY 15 · SLIDING ALONG WALLS", b: "Each leg either adds a wall or finds the sub-optimum, and the objective never goes up, so the flight ends in finitely many legs, like CG's $n$ steps.",
+  "1504": { s: "STORY 15 · SLIDING ALONG WALLS", b: "Each hop either adds a wall or finds the sub-optimum, and the objective never goes up, so the flight ends in finitely many hops, like CG's $n$ steps.",
     f: [["1503", "drop rule"], ["704", "finite termination in CG"]], n: [["1505", "what breaks the argument"]] },
-  "1505": { s: "STORY 15 · SLIDING ALONG WALLS", b: "When many walls meet at one point, a leg of length zero can repeat forever. Anti-cycling rules fix this.",
+  "1505": { s: "STORY 15 · SLIDING ALONG WALLS", b: "When many walls meet at one point, a hop of length zero can repeat forever. Anti-cycling rules fix this.",
     f: [["1504", "the argument that needs this"]], n: [["1506", "a full traversal"]] },
   "1506": { s: "STORY 15 · SLIDING ALONG WALLS", b: "A 2-D flight: add a wall, slide, release a wall, land at $(2,2)$ with both pushes positive. Closes the walls-in-the-air section.",
-    f: [["1503", "release rule"], ["1505", "zero legs"]], n: [["1601", "next: view the same problem from the control tower"]] },
+    f: [["1503", "release rule"], ["1505", "zero hops"]], n: [["1601", "next: view the same problem from the control tower"]] },
 
   /* ---- 16 · Lagrangian duality ---- */
   "1601": { s: "STORY 16 · THE TOWER'S VIEW", b: "Switch seats: instead of flying, a tower sets prices on the walls. The ruler under the altitude curve gives a floor on the lowest altitude.",

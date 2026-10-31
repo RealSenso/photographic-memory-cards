@@ -165,6 +165,6 @@ def d1906(c):
         parts += [R(26 + k * 36, 124 - h, 24, h, "#f1f5f9", 1.6), N(38 + k * 36, 136, f"λ{'₀₁₂₃₄'[k]}", 8.5, "middle")]
     parts += [N(120, 20, "λₖ₊₁ = λₖ + c·h(xₖ)", 9, "middle", "bold"), plane(210, 60, 180, .6), N(120, 32, "small tuning turns, not brute force", 8.5)]
     return svg(c, *parts)
-D[1906] = (d1906, "The tower turns the fine-tuning screw by a small correction c·h(xₖ) each leg, so λₖ climbs to λ* while the fine stays moderate.")
+D[1906] = (d1906, "The tower turns the fine-tuning screw by a small correction c·h(xₖ) each hop, so λₖ climbs to λ* while the fine stays moderate.")
 
 FIX = {cid: {"drawingSvg": fnc(cid), "drawingCaption": cap} for cid, (fnc, cap) in D.items()}

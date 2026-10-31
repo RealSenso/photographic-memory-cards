@@ -90,8 +90,8 @@ def d403(c):
         L(f"{ox}", f"{y(ox):.1f}", "220", f"{arm(220):.1f}", 1.4, d="6 3"), N(222, arm(220) + 12, "Armijo line", 7.5, "end"),
         plane(ox + 6, y(ox) - 12, 30, .6), L(f"{ox + 1}", f"{oy + 8}", f"{a1}", f"{oy + 8}", 2.6),
         dash(a1, arm(a1), a1, oy + 8), N((ox + a1) / 2, oy + 19, "accepted: ends below the Armijo line", 8, "middle", "bold"),
-        N(130, 12, "a leg must earn a fraction c₁ of the promised drop", 8, "middle"))
-D[403] = (d403, "Flying along the heading, the altitude φ(α) first drops at the full slope. Armijo draws a shallower line (a fraction c₁ of that slope): a leg is accepted only if the altitude ends up below that line.")
+        N(130, 12, "a hop must earn a fraction c₁ of the promised drop", 8, "middle"))
+D[403] = (d403, "Flying along the heading, the altitude φ(α) first drops at the full slope. Armijo draws a shallower line (a fraction c₁ of that slope): a hop is accepted only if the altitude ends up below that line.")
 
 def d504(c):
     ox, oy = 30, 112
@@ -100,13 +100,13 @@ def d504(c):
     ys = lambda v: oy - v * 86
     pts = [(xs(10 ** (i / 40)), ys(r(10 ** (i / 40)))) for i in range(0, 93)]
     parts = [L(ox, oy, 228, oy, 1.2, ar=True), L(ox, oy, ox, 18, 1.2, ar=True), N(228, oy + 11, "κ (canyon thinness)", 7.5, "end"),
-        N(ox + 3, 16, "shrink per leg", 7.5, "start"), dash(ox, ys(1), 226, ys(1)), N(226, ys(1) - 3, "1 = no progress", 7, "end"),
+        N(ox + 3, 16, "shrink per hop", 7.5, "start"), dash(ox, ys(1), 226, ys(1)), N(226, ys(1) - 3, "1 = no progress", 7, "end"),
         poly(pts, 2.4)]
-    for k, lab, dx in ((1, "round bowl: one leg", 6), (10, "κ=10", 6), (100, "κ=100: crawl", -6)):
+    for k, lab, dx in ((1, "round bowl: one hop", 6), (10, "κ=10", 6), (100, "κ=100: crawl", -6)):
         x, y = xs(k), ys(r(k)); parts += [dot(x, y, None, r=2.6), N(x + dx, y + (12 if k == 1 else -6), lab, 7.5, "start" if dx > 0 else "end")]
     parts += [plane(xs(100) - 8, ys(r(100)) - 22, 0, .6), N(130, 132, "worst-case shrink = ((κ−1)/(κ+1))²", 8.5, "middle", "bold")]
     return svg(c, *parts)
-D[504] = (d504, "Kantorovich's bound: each steepest-descent leg shrinks the altitude gap by at most ((κ−1)/(κ+1))². A round bowl (κ = 1) needs one leg; a thin canyon (large κ) gives a factor close to 1, so the pilot crawls.")
+D[504] = (d504, "Kantorovich's bound: each steepest-descent hop shrinks the altitude gap by at most ((κ−1)/(κ+1))². A round bowl (κ = 1) needs one hop; a thin canyon (large κ) gives a factor close to 1, so the pilot crawls.")
 
 def d601(c):
     base = 122
@@ -137,7 +137,7 @@ def d801(c):
         L(xa, 124, xb, 124, 1.2, ar=True), N((xa + xb) / 2, 135, "s = step flown", 8, "middle"),
         N(120, 12, "the flight log measures curvature for free", 8.5, "middle", "bold"),
         N(178, 34, "y = gₖ₊₁ − gₖ", 8.5, "middle"), N(178, 46, "curvature ≈ y / s", 8.5, "middle"), N(178, 58, "secant: B s = y", 8.5, "middle", "bold"))
-D[801] = (d801, "Two slope readings, one leg apart: how much the slope changed (y) over the distance flown (s) is a curvature reading. The secant equation B s = y asks the curvature model to agree with it.")
+D[801] = (d801, "Two slope readings, one hop apart: how much the slope changed (y) over the distance flown (s) is a curvature reading. The secant equation B s = y asks the curvature model to agree with it.")
 
 # ---------- 10 · 11 · 12 ----------
 def d1001(c):
@@ -181,7 +181,7 @@ def d1401(c):
         L(out[0], out[1] - 4, px[0] + 1, px[1] + 5, 1.4, ar=True), dot(*px, "xₖ₊₁ = P(·)", 4, -8, 9, "start", 2.6),
         N(120, 14, "step downhill; if you end up in the rock,", 8.5, "middle", "bold"), N(120, 26, "drop back to the nearest legal point", 8.5, "middle", "bold"),
         N(120, 140, "xₖ₊₁ = P(xₖ − α∇f(xₖ))", 8.5, "middle"))
-D[1401] = (d1401, "Projected gradient: fly the ordinary downhill leg; if it ends inside the rock, drop straight back onto the nearest legal point.")
+D[1401] = (d1401, "Projected gradient: fly the ordinary downhill hop; if it ends inside the rock, drop straight back onto the nearest legal point.")
 
 def omega_axes(ox, oy, x1, top):
     return [L(ox - 4, oy, x1, oy, 1.2, ar=True), L(ox + 40, oy + 4, ox + 40, top, 1.2, ar=True)]
@@ -255,7 +255,7 @@ def d501(c):
 D[501] = (d501, "The slope gauge ∇f points to steepest uphill. Steepest descent points the nose exactly the other way, dₖ = −∇f. It only looks at the slope, never at how the valley curves.")
 
 def canyon_bounce(f, cx, xs):
-    """zig-zag of an exact line search seen in the canyon's cross-section: legs alternate wall to wall"""
+    """zig-zag of an exact line search seen in the canyon's cross-section: hops alternate wall to wall"""
     pts = [(x, f(x)) for x in xs]
     out = [poly(pts, 1.6, "4 2")]
     out += [dot(x, y, None, r=2.2) for x, y in pts]
@@ -267,20 +267,20 @@ def d508(c):
     f = bowl(120, 116, 70, 80)
     xs = [56, 178, 72, 160, 88, 144, 104, 130]
     return svg(c, poly(g(f, 50, 190), 2.4), *canyon_bounce(f, 120, xs), plane(56, f(56) - 12, 30, .7), N(56 - 8, f(56) + 4, "x₀", 9.5, "end"),
-        N(120, 12, "seen across the canyon: each leg stops where", 8.5, "middle", "bold"), N(120, 24, "it is flat, the next turns 90° → wall to wall", 8.5, "middle", "bold"),
+        N(120, 12, "seen across the canyon: each hop stops where", 8.5, "middle", "bold"), N(120, 24, "it is flat, the next turns 90° → wall to wall", 8.5, "middle", "bold"),
         N(120, 132, "exact line search: gₖ₊₁ ⊥ gₖ, so the path zig-zags", 8, "middle"))
-D[508] = (d508, "Look at the canyon from its end. Each exact leg flies until the ground along it is flat, which happens on the opposite wall; the next heading is at 90°, so the plane bounces wall to wall while creeping down.")
+D[508] = (d508, "Look at the canyon from its end. Each exact hop flies until the ground along it is flat, which happens on the opposite wall; the next heading is at 90°, so the plane bounces wall to wall while creeping down.")
 
 def d505(c):
     wide = bowl(58, 108, 48, 50)
     thin = bowl(176, 112, 22, 90)
     return svg(c, poly(g(wide, 12, 104), 2.4), L(30, wide(30), 56, wide(56), 2.2, ar=True), dot(30, wide(30), None, r=2.4), plane(30, wide(30) - 12, 30, .6),
-        N(58, 14, "κ ≈ 1: round bowl", 8.5, "middle", "bold"), N(58, 124, "one leg to the bottom", 8, "middle"),
+        N(58, 14, "κ ≈ 1: round bowl", 8.5, "middle", "bold"), N(58, 124, "one hop to the bottom", 8, "middle"),
         L(122, 10, 122, 140, .8, d="2 3"),
         poly(g(thin, 154, 198, 1), 2.4), *canyon_bounce(thin, 176, [157, 194, 160, 191, 163, 188, 166, 185, 170, 181]),
         plane(157, thin(157) - 10, 40, .55), N(182, 14, "κ large: thin canyon", 8.5, "middle", "bold"), N(182, 124, "bounces, crawls down", 8, "middle"),
         N(120, 139, "κ = steepest wall ÷ gentlest floor curvature", 7.8, "middle"))
-D[505] = (d505, "Cross-sections of two valleys. In a round bowl (κ ≈ 1) one steepest-descent leg reaches the bottom. In a thin canyon (large κ) the walls are much steeper than the floor, so the plane bounces wall to wall and crawls.")
+D[505] = (d505, "Cross-sections of two valleys. In a round bowl (κ ≈ 1) one steepest-descent hop reaches the bottom. In a thin canyon (large κ) the walls are much steeper than the floor, so the plane bounces wall to wall and crawls.")
 
 def d507(c):
     f1 = bowl(60, 110, 46, 80); f2 = bowl(180, 110, 46, 80)
@@ -290,7 +290,7 @@ def d507(c):
         poly(g(f2, 134, 226), 2.4), *canyon_bounce(f2, 180, [142, 206, 166, 190, 178]), plane(142, f2(142) - 10, 30, .55),
         N(180, 14, "heavy-ball momentum", 8.5, "middle", "bold"), N(180, 124, "bounces die out fast", 8, "middle"),
         N(120, 139, "xₖ₊₁ = xₖ − α∇f + β(xₖ − xₖ₋₁)", 8, "middle"))
-D[507] = (d507, "Across the canyon: plain steepest descent keeps bouncing wall to wall. A heavy plane carries part of its last leg (momentum β), the side-to-side swings cancel, and it settles to the floor quickly.")
+D[507] = (d507, "Across the canyon: plain steepest descent keeps bouncing wall to wall. A heavy plane carries part of its last hop (momentum β), the side-to-side swings cancel, and it settles to the floor quickly.")
 
 def slice_(cx, by, half, depth, px, lab, ok):
     f = bowl(cx, by, half, depth)
@@ -300,21 +300,21 @@ def slice_(cx, by, half, depth, px, lab, ok):
     return out
 
 def d701(c):
-    return svg(c, N(120, 12, "after leg 2, look back along the first heading d₀:", 8.5, "middle", "bold"),
-        *slice_(62, 100, 46, 56, 82, "plain 90° headings", False), N(62, 118, "pushed off the bottom ✗", 8, "middle"), N(62, 129, "leg 2 spoiled leg 1", 7.5, "middle"),
+    return svg(c, N(120, 12, "after hop 2, look back along the first heading d₀:", 8.5, "middle", "bold"),
+        *slice_(62, 100, 46, 56, 82, "plain 90° headings", False), N(62, 118, "pushed off the bottom ✗", 8, "middle"), N(62, 129, "hop 2 spoiled hop 1", 7.5, "middle"),
         L(122, 22, 122, 140, .8, d="2 3"),
         *slice_(182, 100, 46, 56, 182, "Q-conjugate headings", True), N(182, 118, "still at the bottom ✓", 8, "middle"), N(182, 129, "d₁ᵀQd₀ = 0", 7.5, "middle"))
-D[701] = (d701, "Slice the valley along the first heading d₀ after the second leg. With plain perpendicular headings the plane has been pushed off the bottom of that slice, so leg 2 undid leg 1. With Q-conjugate headings it is still at the bottom.")
+D[701] = (d701, "Slice the valley along the first heading d₀ after the second hop. With plain perpendicular headings the plane has been pushed off the bottom of that slice, so hop 2 undid hop 1. With Q-conjugate headings it is still at the bottom.")
 
 def d702(c):
-    parts = [N(120, 12, "after k legs: slice along every old heading", 8.5, "middle", "bold")]
+    parts = [N(120, 12, "after k hops: slice along every old heading", 8.5, "middle", "bold")]
     for i, cx in enumerate((44, 120, 196)):
         parts += slice_(cx, 92, 32, 44, cx, f"along d{'₀₁₂'[i]}", True)
     parts += [N(120, 112, "the plane sits at the bottom of every slice", 8.5, "middle"),
         N(120, 124, "gₖᵀdᵢ = 0 for all i < k", 8.5, "middle", "bold"),
         N(120, 137, "= lowest point of the whole flight plane x₀ + span(d₀…dₖ₋₁)", 7.5, "middle")]
     return svg(c, *parts)
-D[702] = (d702, "After k conjugate legs, slice the valley along each earlier heading: the plane is at the bottom of every slice (gₖᵀdᵢ = 0), so it is at the lowest point of the whole flight plane those headings span.")
+D[702] = (d702, "After k conjugate hops, slice the valley along each earlier heading: the plane is at the bottom of every slice (gₖᵀdᵢ = 0), so it is at the lowest point of the whole flight plane those headings span.")
 
 def d706(c):
     ox, oy = 28, 116
@@ -322,14 +322,14 @@ def d706(c):
     sd = [100, 64, 50, 40, 33, 28, 25]
     cg = [100, 52, 0]
     ys = lambda v: oy - 6 - v * .84
-    parts = [L(ox, oy, 232, oy, 1.2, ar=True), L(ox, oy, ox, 16, 1.2, ar=True), N(232, oy + 11, "legs flown", 7.5, "end"), N(ox + 3, 14, "altitude above floor", 7.5, "start"),
+    parts = [L(ox, oy, 232, oy, 1.2, ar=True), L(ox, oy, ox, 16, 1.2, ar=True), N(232, oy + 11, "hops flown", 7.5, "end"), N(ox + 3, 14, "altitude above floor", 7.5, "start"),
         poly([(xs(k), ys(v)) for k, v in enumerate(sd)], 1.6, "5 3"), poly([(xs(k), ys(v)) for k, v in enumerate(cg)], 2.6)]
     parts += [dot(xs(k), ys(v), None, r=2) for k, v in enumerate(sd)] + [dot(xs(k), ys(v), None, r=2.6) for k, v in enumerate(cg)]
     for k in range(7): parts.append(N(xs(k), oy + 10, str(k), 7.5, "middle"))
-    parts += [plane(xs(2) + 4, ys(0) - 12, 0, .6), N(xs(2) + 10, ys(0) - 2, "landed at leg 2", 8.5, "start", "bold"),
+    parts += [plane(xs(2) + 4, ys(0) - 12, 0, .6), N(xs(2) + 10, ys(0) - 2, "landed at hop 2", 8.5, "start", "bold"),
         N(200, ys(25) - 8, "steepest descent", 7.5, "middle"), N(98, 50, "CG", 9, "middle", "bold")]
     return svg(c, *parts)
-D[706] = (d706, "Altitude after each leg on a 2-D quadratic valley. Steepest descent (dashed) keeps zig-zagging and only creeps toward the floor; conjugate gradient (solid) lands exactly on the floor after leg 2.")
+D[706] = (d706, "Altitude after each hop on a 2-D quadratic valley. Steepest descent (dashed) keeps zig-zagging and only creeps toward the floor; conjugate gradient (solid) lands exactly on the floor after hop 2.")
 
 def d1106(c):
     f = bowl(175, 112, 150, 80)

@@ -89,7 +89,7 @@ D[205] = (d205, "Hessian eigenvalues tell the shape: all positive is a bowl, all
 def d206(c):
     par = lambda x: 124 - 0.0105 * (x - 120) ** 2
     parts = [fn(lambda x: par(x) - 12, 26, 214, 40, 1.8), fn(lambda x: par(x) + 12, 26, 214, 40, 1.8), fn(par, 26, 214, 40, 1.0, "3 3"), plane(46, par(46) - 16, 20, .6),
-             dot(120, par(120), None, r=3), N(120, 20, "banana canyon y = x²", 8.5, "middle", "bold"), N(120, 32, "κ ≈ 2500: walls far steeper than the floor", 8, "middle"), N(120, 142, "follow the floor with tiny careful legs", 8.5)]
+             dot(120, par(120), None, r=3), N(120, 20, "banana canyon y = x²", 8.5, "middle", "bold"), N(120, 32, "κ ≈ 2500: walls far steeper than the floor", 8, "middle"), N(120, 142, "follow the floor with tiny careful hops", 8.5)]
     return svg(c, *parts)
 D[206] = (d206, "Rosenbrock is a long curved canyon: the floor (dashed) is almost flat while the walls are enormously steeper, condition number about 2500.")
 
@@ -164,7 +164,7 @@ def d403(c):
     x1, x2 = min(xs), max(xs)
     return svg(c, ax(), fn(f_, 30, 210, 60, 2.6), L(30, arm(30), 210, arm(210), 1.6, d="5 3"), R(x1, 132, x2 - x1, 6, "#c9ced8", 1.2), N((x1 + x2) / 2, 128, "accept", 8.5, "middle", "bold"),
         plane(30, y0 - 14, 0, .6), N(120, 12, "Armijo: the drop must beat the dashed line", 8.5, "middle", "bold"), N(216, 126, "α", 8.5, "end"), N(60, 76, "fair drop", 8, "start"))
-D[403] = (d403, "Altitude along the leg: accept only steps where the actual altitude falls below the dashed Armijo line (a fair drop for the distance and slope).")
+D[403] = (d403, "Altitude along the hop: accept only steps where the actual altitude falls below the dashed Armijo line (a fair drop for the distance and slope).")
 
 def d404(c):
     f_ = lambda a: 108 - 62 * ((a - 150) / 120) ** 2
@@ -172,7 +172,7 @@ def d404(c):
     return svg(c, ax(), fn(f_, 30, 210, 60, 2.6), L(30, f_(30), 100, f_(30) + 70 * m0, 1.4, d="4 3"), N(60, f_(30) - 8, "initial slope", 8, "start"),
         L(a1 - 40, f_(a1), a1 + 40, f_(a1), 1.6), dot(a1, f_(a1), None, r=3), plane(a1, f_(a1) - 14, 0, .6),
         N(120, 12, "curvature: slope must have flattened enough", 8.5, "middle", "bold"), N(120, 144, "tiny hops on a steep slope are refused", 8.5), N(216, 126, "α", 8.5, "end"))
-D[404] = (d404, "After the leg the slope under you must have flattened enough compared with the starting slope; tiny hops that leave you on a steep slope are refused.")
+D[404] = (d404, "After the hop the slope under you must have flattened enough compared with the starting slope; tiny hops that leave you on a steep slope are refused.")
 
 def d405(c):
     ox, oy = 70, 100
@@ -191,7 +191,7 @@ def d406(c):
         parts += [dot(a, f_(a), None, r=3), N(a, 144, f"{nm} {m}", 8.5, "middle", "bold")]
     parts += [N(120, 12, "too big? halve it and look again", 8.5, "middle", "bold")]
     return svg(c, *parts)
-D[406] = (d406, "Plan a long leg; if the altitude drop is too small (above the dashed line), halve the leg and check again until the drop is acceptable.")
+D[406] = (d406, "Plan a long hop; if the altitude drop is too small (above the dashed line), halve the hop and check again until the drop is acceptable.")
 
 # ------------------------------------------------------------------ topic 8
 def d801(c):
@@ -210,8 +210,8 @@ def _boxes(c, items, ttl, foot, notes=""):
 
 D[802] = (lambda c: _boxes(c, [("Bₖ", 28, False), ("+", 10, False), ("(y−Bs)(y−Bs)ᵀ", 88, True), ("/", 10, False), ("(y−Bs)ᵀs", 58, False)], "SR1: one set screw (rank-1)", "fast and light", "denominator ≈ 0 → the mechanism jams"),
           "A single rank-one correction to the curvature estimate: quick and light, but if the denominator is near zero the update jams.")
-D[803] = (lambda c: _boxes(c, [("Hₖ", 26, False), ("−", 12, False), ("Hy yᵀH / yᵀHy", 78, True), ("+", 12, False), ("s sᵀ / yᵀs", 62, True)], "DFP: two counterbalancing weights", "one removes the old direction", "one adds the new leg you flew"),
-          "Two corrections to the curvature estimate: one balances out the old information along y, the other adds the leg you just flew.")
+D[803] = (lambda c: _boxes(c, [("Hₖ", 26, False), ("−", 12, False), ("Hy yᵀH / yᵀHy", 78, True), ("+", 12, False), ("s sᵀ / yᵀs", 62, True)], "DFP: two counterbalancing weights", "one removes the old direction", "one adds the new hop you flew"),
+          "Two corrections to the curvature estimate: one balances out the old information along y, the other adds the hop you just flew.")
 D[804] = (lambda c: _boxes(c, [("Bₖ", 28, False), ("−", 12, False), ("Bs sᵀB / sᵀBs", 76, True), ("+", 12, False), ("y yᵀ / yᵀs", 62, True)], "BFGS: self-correcting gyro (rank-2)", "stays positive definite", "the gold standard"),
           "BFGS's rank-two update removes the old direction and adds the new one, keeping the curvature estimate positive definite: the standard choice.")
 
@@ -221,7 +221,7 @@ def d805(c):
         N(60, 18, "ground curves up", 8.5, "middle", "bold"), N(60, 30, "sᵀy > 0 ✓ trust it", 8.5, "middle"),
         fn(lambda x: 56 + 60 * ((x - 180) / 44) ** 2 * 0 + 0, 140, 140, 2, 1) if False else fn(lambda x: 60 + 52 * ((x - 180) / 44) ** 2, 138, 224, 30, 2.4, "5 3"),
         arrow(160, 118, 198, 118, 2), N(180, 132, "s", 9, "middle", "bold"), arrow(206, 76, 206, 108, 2), N(214, 92, "y", 9, "start", "bold"), N(180, 18, "ground sags", 8.5, "middle", "bold"), N(180, 30, "sᵀy ≤ 0 ✗ refuse", 8.5, "middle"))
-D[805] = (d805, "Trust a leg only if the terrain curved upward along it (sᵀy>0), which a Wolfe line search guarantees; if the ground sagged, refuse to log that leg.")
+D[805] = (d805, "Trust a hop only if the terrain curved upward along it (sᵀy>0), which a Wolfe line search guarantees; if the ground sagged, refuse to log that hop.")
 
 def d806(c):
     parts = []
@@ -230,9 +230,9 @@ def d806(c):
         old = i < 2
         parts.append(R(x, 52, 32, 40, "#f1f5f9" if not old else "#ffffff", 1.6, 3, "3 3" if old else None))
         parts.append(N(x + 16, 70, "s", 9, "middle", "bold" if not old else "normal")); parts.append(N(x + 16, 84, "y", 9, "middle", "bold" if not old else "normal"))
-    parts += [N(120, 24, "L-BFGS: keep only the last m legs", 9, "middle", "bold"), N(50, 108, "old: forgotten", 8.5, "middle"), N(160, 108, "last m kept", 8.5, "middle", "bold"), plane(222, 24, 0, .5),
+    parts += [N(120, 24, "L-BFGS: keep only the last m hops", 9, "middle", "bold"), N(50, 108, "old: forgotten", 8.5, "middle"), N(160, 108, "last m kept", 8.5, "middle", "bold"), plane(222, 24, 0, .5),
               N(120, 130, "nearly the same guidance, a fraction of the memory", 8.5, "middle")]
     return svg(c, *parts)
-D[806] = (d806, "Keep only the last m flight-log legs (s, y) instead of a full curvature map: nearly the same guidance for a fraction of the memory.")
+D[806] = (d806, "Keep only the last m flight-log hops (s, y) instead of a full curvature map: nearly the same guidance for a fraction of the memory.")
 
 FIX = {cid: {"drawingSvg": fnc(cid), "drawingCaption": cap} for cid, (fnc, cap) in D.items()}

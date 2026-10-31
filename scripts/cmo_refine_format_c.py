@@ -13,7 +13,7 @@ B = {
    r"<strong>$\frac{x_k-x}{t_k}\to d$:</strong> dividing by the shrinking step $t_k$ turns the tiny displacement into a heading $d$.",
    r"<strong>The set of all such $d$ is a cone,</strong> not a subspace: you can scale a safe heading but not reverse it."]),
 905: (r"Why must every legal heading go flat or uphill at the lowest parking spot?",
-  [r"<strong>$\nabla f(x^*)^\top d$ = the altitude change per unit leg along $d$.</strong>",
+  [r"<strong>$\nabla f(x^*)^\top d$ = the altitude change per unit hop along $d$.</strong>",
    r"<strong>It must be $\ge0$ for every legal $d\in T_\Omega(x^*)$:</strong> if some legal heading went downhill, releasing the brakes would lower the altitude.",
    r"<strong>$\nabla f(x^*)$ is usually not zero here:</strong> the wall is what stops the plane, not flat ground."]),
 906: (r"When can the plane trust the straight-line map of the walls?",

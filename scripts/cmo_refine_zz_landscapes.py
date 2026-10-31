@@ -1,4 +1,4 @@
-"""Valley/landscape cards (topics 05-07) redrawn as a tilted top view of the bowl so the legs are visible."""
+"""Valley/landscape cards (topics 05-07) redrawn as a tilted top view of the bowl so the hops are visible."""
 from bowl_lib import *
 
 D = {}
@@ -20,7 +20,7 @@ def d508(c):
     pts = sd_pts(Q, x0_on_level(Q, 160, 8), 6)
     parts = B.rings() + [B.path(pts, 2.2)] + [dot(*B.pr(p), None, r=2.4) for p in pts[:5]]
     p0 = B.pr(pts[0])
-    parts += [plane(p0[0] - 4, p0[1] - 12, 0, .65), N(p0[0] - 6, p0[1] + 12, "x₀", 10, "end"), N(128, 130, "each leg stops where it grazes a ring,", 8, "middle"),
+    parts += [plane(p0[0] - 4, p0[1] - 12, 0, .65), N(p0[0] - 6, p0[1] + 12, "x₀", 10, "end"), N(128, 130, "each hop stops where it grazes a ring,", 8, "middle"),
               N(128, 140, "so the next heading is ⊥ → zig-zag", 8.5, "middle", "bold")]
     return svg(c, *parts)
 D[508] = (d508, "Exact line search flies until the path just grazes a ring of equal altitude, so the next heading is perpendicular to the last: the zig-zag.")
@@ -35,7 +35,7 @@ def d504(c):
         N(pt[0] + 6, pt[1] + 4, "−g", 9.5, "start", "bold"), N(pa[0] + 4, pa[1] - 6, "to the lowest point", 8, "start"), N(p0[0] + 18, p0[1] - 8, "θ", 11, "start", "bold"),
         N(128, 140, "worst case: cos θ ≥ 2√κ/(κ+1)", 8.5, "middle", "bold")]
     return svg(c, *parts)
-D[504] = (d504, "The nose (−g) is rarely aimed at the lowest point; Kantorovich bounds the worst misalignment θ, and with it the least altitude gained per leg.")
+D[504] = (d504, "The nose (−g) is rarely aimed at the lowest point; Kantorovich bounds the worst misalignment θ, and with it the least altitude gained per hop.")
 
 def d505(c):
     Q = [[1, 0], [0, 14]]; B = Bowl(Q, 128, 86, 19)
@@ -65,9 +65,9 @@ def d706(c):
     x0, x1, xs = cg_path(Q7, X0)
     p0, p1, ps = B.pr(x0), B.pr(x1), B.pr(xs)
     parts = B.rings() + [B.seg(x0, x1), B.seg(x1, xs), dot(*p0, "x₀", -6, 3, 10, "end", 3), dot(*p1, "x₁", 7, -6, 10, "start", 3), dot(*ps, "x*", 9, 4, 10, "start", 3.4),
-        N(128, 130, "2D: exactly two legs", 8, "middle"), N(128, 140, "leg 1 kills the error along d₀; leg 2 kills the rest", 8.5, "middle", "bold")]
+        N(128, 130, "2D: exactly two hops", 8, "middle"), N(128, 140, "hop 1 kills the error along d₀; hop 2 kills the rest", 8.5, "middle", "bold")]
     return svg(c, *parts)
-D[706] = (d706, "In 2D conjugate gradient lands on the lowest point in exactly two legs: the first removes the error along d₀, the second removes the rest.")
+D[706] = (d706, "In 2D conjugate gradient lands on the lowest point in exactly two hops: the first removes the error along d₀, the second removes the rest.")
 
 def d401(c):
     import math

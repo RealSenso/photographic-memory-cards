@@ -40,8 +40,8 @@ def d701(c):
     p0, p1, ps = pr(x0), pr(x1), pr(xs)
     parts += [dot(*p0, "x₀", -6, 3, 10, "end", 3), dot(*p1, "x₁", 7, -6, 10, "start", 3), dot(*ps, "x*", 9, 4, 10, "start", 3.4),
               it((p0[0] + p1[0]) / 2 - 5, (p0[1] + p1[1]) / 2 - 7, "d₀", 10, "end"), it((p1[0] + ps[0]) / 2 + 9, (p1[1] + ps[1]) / 2 + 3, "d₁", 10, "start"),
-              N(120, 130, "dashed: ⊥ legs zig-zag across the valley", 8, "middle"),
-              N(120, 140, "solid: Q-conjugate, d₀ᵀQd₁ = 0, two legs", 8.5, "middle", "bold")]
+              N(120, 130, "dashed: ⊥ hops zig-zag across the valley", 8, "middle"),
+              N(120, 140, "solid: Q-conjugate, d₀ᵀQd₁ = 0, two hops", 8.5, "middle", "bold")]
     return svg(c, *parts)
 
 def d702(c):
@@ -63,7 +63,7 @@ FIX = {
 701: {
  "textbookImg": None, "textbookRef": None,
  "drawingSvg": d701(701),
- "drawingCaption": "Dashed perpendicular legs zig-zag and undo each other; solid Q-conjugate legs cut straight to the centre along the valley's natural axes.",
+ "drawingCaption": "Dashed perpendicular hops zig-zag and undo each other; solid Q-conjugate hops cut straight to the centre along the valley's natural axes.",
  "hint": "Why are Q-conjugate headings better than plain perpendicular ones in a skewed valley with crosswinds?",
  "breakdown": [
   r"<strong>$d_i^\top Qd_j=0$ = a $Q$-twisted right angle.</strong> $Q$ is the valley's skewed curvature, the crosswinds. A plain right angle ignores them; a $Q$-conjugate angle accounts for them, so flying along $d_j$ never pushes you back up the hill you conquered along $d_i$.",
@@ -75,12 +75,12 @@ FIX = {
 702: {
  "textbookImg": None, "textbookRef": None,
  "drawingSvg": d702(702),
- "drawingCaption": "The sheet of plywood: after two legs you sit at the lowest point of the whole plane x₀ + span{d₀,d₁}, not just the lowest point of the last line.",
- "hint": "After k sequential legs, where in the whole flight plane is the pilot sitting?",
+ "drawingCaption": "The sheet of plywood: after two hops you sit at the lowest point of the whole plane x₀ + span{d₀,d₁}, not just the lowest point of the last line.",
+ "hint": "After k sequential hops, where in the whole flight plane is the pilot sitting?",
  "breakdown": [
   r"<strong>$x_k=\arg\min f$ over the flight plane $x_0+\mathcal B_k$:</strong> step 1 is a tightrope, step 2 lays down a flat sheet of plywood holding both paths. You are not at the end of a line, you are at the lowest altitude of that whole sheet.",
   r"<strong>$g_k^\top d_i=0$ for every earlier heading:</strong> the proof of perfection. Your slope $g_k$ is flat (perpendicular) to every path you flew before, so going back along any of them would not improve your altitude.",
-  r"<strong>Why it matters:</strong> you have squeezed all the juice out of those dimensions, so later conjugate legs never spoil the altitude already won.",
+  r"<strong>Why it matters:</strong> you have squeezed all the juice out of those dimensions, so later conjugate hops never spoil the altitude already won.",
  ],
  "personalConnection": r"<strong>Securing the airspace.</strong> After $k$ maneuvers you have conquered $k$ dimensions of airspace: you sit at the lowest point of the entire flight plane spanned by your previous headings. Your new slope is flat relative to all of them, so later conjugate maneuvers never spoil the altitude you already won.",
 },
