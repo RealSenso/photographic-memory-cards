@@ -8,61 +8,42 @@ X0 = [-2.4, 0.7]
 
 CX, CY, SC, HS = 122, 100, 17.0, 5.2
 def fq(x): return 0.5 * (x[0] * (Q7[0][0] * x[0] + Q7[0][1] * x[1]) + x[1] * (Q7[1][0] * x[0] + Q7[1][1] * x[1]))
-def pr(x, f=None):
-    f = fq(x) if f is None else f
-    return (CX + SC * 0.87 * (x[0] - x[1]), CY + SC * 0.35 * (x[0] + x[1]) - HS * f)
+from dip_lib import E
 
-def bowl(fmax=12.0):
-    """wire-frame of the valley surface f = 1/2 x'Qx, clipped at altitude fmax, plus its rim"""
-    out = []
-    n = 60
-    for k in range(-4, 5, 2):
-        v = k * 0.65
-        for horiz in (True, False):
-            run = []
-            for i in range(n + 1):
-                t = -3 + 6 * i / n
-                x = (t, v) if horiz else (v, t)
-                if fq(x) <= fmax: run.append(pr(x))
-                elif len(run) > 1: out.append(poly(run, 0.9)); run = []
-                else: run = []
-            if len(run) > 1: out.append(poly(run, 0.9))
-    import math
-    rim = []
-    for i in range(0, 73):
-        th = math.radians(i * 5)
-        u = (math.cos(th), math.sin(th)); r = math.sqrt(2 * fmax / (u[0] * (Q7[0][0] * u[0] + Q7[0][1] * u[1]) + u[1] * (Q7[1][0] * u[0] + Q7[1][1] * u[1])))
-        rim.append(pr((r * u[0], r * u[1])))
-    out.append(poly(rim, 2.0))
+def wy(x, c=120, bottom=106, depth=70, half=86):
+    return bottom - depth * ((x - c) / half) ** 2
+
+def bowl_parts():
+    """a hand-drawable bowl: rim ellipse, U-shaped walls, two rings on the surface"""
+    out = [E(120, 36, 86, 13, 0, "none", 2.2)]
+    xs = [34 + 172 * i / 40 for i in range(41)]
+    out.append(poly([(x, wy(x)) for x in xs], 1.9))
+    for r in (0.5, 0.18):
+        out.append(E(120, 106 - 70 * r, 86 * r ** .5, 13 * r ** .5, 0, "none", 1.0))
     return out
 
-def lift(a, b, n=24):
-    """the straight leg a->b in the floor plane, drawn as it sits on the valley surface"""
-    return poly([pr((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n)) for i in range(n + 1)], 2.8)
+X0P, X1P, XSP = (48, wy(48)), (100, wy(100)), (126, 106.5)
 
 def d701(c):
-    sdp = sd_path(Q7, X0, 6)
-    cgp = cg_path(Q7, X0)
-    cg = [pr(p) for p in cgp]
-    parts = bowl() + [poly([q for a, b in zip(sdp, sdp[1:]) for q in [pr(a), pr(b)]], 1.5, "3 3"), lift(cgp[0], cgp[1]), lift(cgp[1], cgp[2]),
-              dot(*cg[0], "x₀", -5, -4, 10, "end", 2.8), dot(*cg[1], "x₁", -7, 14, 10, "end", 2.8), dot(*cg[2], "x*", 6, 13, 10, "start", 3.2),
-              N(6, 12, "dashed: ⊥ legs zig-zag", 8, "start"), N(6, 22, "up the valley wall", 8, "start"),
-              N(120, 139, "solid: Q-conjugate d₀ᵀQd₁ = 0, two legs", 8.5, "middle", "bold")]
+    W = lambda x: (x, wy(x))
+    parts = bowl_parts() + [
+        poly([X0P, W(150), W(66), W(134), W(96), XSP], 1.5, "3 3"),
+        poly([X0P, (74, (wy(48) + wy(100)) / 2 + 9), X1P], 2.8), poly([X1P, (113, 106.2), XSP], 2.8),
+        dot(*X0P, "x₀", -6, -3, 10, "end", 3), dot(*X1P, "x₁", -5, 14, 10, "end", 3), dot(*XSP, "x*", 8, 13, 10, "start", 3.4),
+        it(66, 92, "d₀", 10, "end"), it(116, 124, "d₁", 10, "middle"),
+        N(6, 9, "dashed: ⊥ legs zig-zag", 8, "start"), N(6, 19, "across the valley", 8, "start"),
+        N(120, 140, "solid: Q-conjugate d₀ᵀQd₁ = 0, two legs", 8.5, "middle", "bold")]
     return svg(c, *parts)
 
 def d702(c):
-    cg3 = cg_path(Q7, X0)
-    x0, x1, x2 = cg3
-    d0 = [x1[0] - x0[0], x1[1] - x0[1]]
-    okt = [t / 100 for t in range(-400, 401) if fq((x0[0] + t / 100 * d0[0], x0[1] + t / 100 * d0[1])) <= 11.5]
-    ts = [okt[0] + (okt[-1] - okt[0]) * i / 40 for i in range(41)]
-    curve_pts = [pr((x0[0] + t * d0[0], x0[1] + t * d0[1])) for t in ts]
-    ea, eb = (x0[0] + ts[0] * d0[0], x0[1] + ts[0] * d0[1]), (x0[0] + ts[-1] * d0[0], x0[1] + ts[-1] * d0[1])
-    fa, fb = pr(ea, 0), pr(eb, 0)
-    parts = bowl(12.0) + [L(fa[0], fa[1], fb[0], fb[1], 1.2, d="4 3"), poly(curve_pts, 1.4), lift(x0, x1), lift(x1, x2),
-              dot(*pr(x0), "x₀", -5, -4, 10, "end", 2.6), dot(*pr(x1), "x₁", -7, 14, 10, "end", 2.6), dot(*pr(x2), "x₂", 6, 13, 10, "start", 3.2),
-              N(6, 12, "plywood sheet along d₀:", 8, "start"), N(6, 22, "x₁ = its lowest point", 8, "start"),
-              N(120, 139, "x₂ = lowest of the whole plane span{d₀,d₁}; g₂ ⊥ d₀, d₁", 8, "middle", "bold")]
+    sheet = poly([(26, 28), (180, 28), (180, 116), (26, 116), (26, 28)], 1.3, "5 3")
+    pf = lambda x: 106 - 60 * ((x - 100) / 74) ** 2
+    prof = [(x, pf(x)) for x in [26 + 154 * i / 50 for i in range(51)]]
+    x0 = (50, pf(50))
+    parts = [sheet] + bowl_parts() + [poly(prof, 2.6), poly([(100, 106), (113, 106.4), XSP], 2.6),
+        dot(*x0, "x₀", -6, -3, 10, "end", 3), dot(100, 106, "x₁", -5, 14, 10, "end", 3), dot(*XSP, "x₂", 8, 13, 10, "start", 3.4),
+        N(236, 8, "plywood sheet = vertical slice along d₀", 8, "end"), N(236, 18, "x₁ = lowest point of the sheet", 8, "end"),
+        N(120, 140, "x₂ = lowest of the whole plane span{d₀,d₁};  g₂ ⊥ d₀, d₁", 8, "middle", "bold")]
     return svg(c, *parts)
 
 FIX = {
