@@ -71,20 +71,20 @@ D[706] = (d706, "In 2D conjugate gradient lands on the lowest point in exactly t
 
 def d401(c):
     import math
-    Y = lambda x: 105 - 75 * ((x - 150) / 120) ** 2
-    pts = [(x, Y(x)) for x in range(30, 231, 5)]
-    xk = 52; yk = Y(xk); sl = -1.25 * ((xk - 150) / 120); n = math.hypot(1, sl)
-    tx, ty = 1 / n, sl / n
-    short, good, over = 88, 150, 212
-    ax = [L(24, 112, 232, 112, 1.2), N(236, 115, "x", 8, "start")]
-    parts = ax + [poly(pts, 2.2), plane(xk - 3, yk - 10, 0, .7), arrow(xk + 4, yk - 2, xk + 4 + tx * 34, yk - 2 + ty * 34, 2.4), N(xk + 40, yk + 2, "d_k", 9, "start", "bold"),
-        dot(xk, yk, "x_k", -6, -2, 10, "end", 3)]
-    for xx, lab in ((short, "too short"), (good, "just right"), (over, "overshoot")):
-        parts += [dash(xx, Y(xx), xx, 112), dot(xx, Y(xx), None, 0, 0, 9, "middle", 2.6), N(xx, 124, lab, 8, "middle")]
-    parts += [L(xk, 118, good, 118, 1.2, ar=True), N((xk + good) / 2, 134, "α_k = how far to fly", 8.5, "middle", "bold"),
-        N(150, 14, "slope along d_k is negative: ∇f·d_k < 0", 8.5, "middle")]
+    Y = lambda x: 40 + 70 * (1 - ((x - 125) / 100) ** 2)
+    xk = 45; yk = Y(xk); ang = math.atan(70 * 2 * 0.8 / 100); ux, uy = math.cos(ang), math.sin(ang)
+    px, py = xk + 2, yk - 20
+    parts = [poly([(x, Y(x)) for x in range(25, 226, 4)], 2.4), N(225, 34, "ground = f", 7.5, "end"),
+        N(120, 12, "nose points downhill: ∇fᵀdₖ < 0", 9, "middle", "bold"),
+        dot(xk, yk, None, 0, 0, 9, "start", 2.6), N(xk - 2, yk + 14, "xₖ", 9.5, "middle"), dash(px, py + 5, xk, yk - 3, 1, "2 2"),
+        plane(px, py, math.degrees(ang), .95),
+        arrow(px + 14 * ux, py + 14 * uy, px + 40 * ux, py + 40 * uy, 2.4), N(px + 42 * ux + 3, py + 40 * uy - 2, "dₖ ✓", 9, "start", "bold"),
+        arrow(px - 14 * ux, py - 14 * uy, px - 26 * ux, py - 26 * uy, 1.1), N(px - 26 * ux - 2, py - 26 * uy - 2, "uphill ✗", 7.5, "end")]
+    for x, lab, dx, a in ((80, "too short", -5, "end"), (125, "just right", 0, "middle"), (190, "overshoot", 6, "start")):
+        parts += [C(f"{x:.1f}", f"{Y(x):.1f}", 3.2), N(x + dx, Y(x) + 13, lab, 8, a)]
+    parts += [L(xk, 138, 125, 138, 1.4, ar=True), N(131, 141, "αₖ = how far to fly", 8.5, "start", "bold")]
     return svg(c, *parts)
-D[401] = (d401, "Heading d_k points downhill; the step size α_k decides where the next point lands: too short, just right, or an overshoot up the far wall.")
+D[401] = (d401, "Side view of the valley. The plane sits at xₖ; its nose dₖ must point downhill (that is ∇fᵀdₖ < 0). The step αₖ is how far it flies before reading the radar again: too short barely helps, just right reaches the bottom, too far climbs the other side.")
 
 FIX = {cid: {"drawingSvg": fnc(cid), "drawingCaption": cap} for cid, (fnc, cap) in D.items()}
 FIX[401].update(textbookImg=None, textbookRef=None)
