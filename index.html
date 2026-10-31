@@ -931,13 +931,27 @@
         </article>`;
     }
 
+    /* Highlights written inside $$..$$ (e.g. <span class="ans">) split the formula so KaTeX shows raw LaTeX.
+       Turn them into KaTeX colour and drop any other tag inside the math. */
+    function fixMath(html) {
+      // backslashes eaten when the data was saved: \a(pprox) -> BEL, \f(rac) -> form feed, \t(heta) -> tab, \r(ight) -> CR, \b(eta) -> backspace
+      html = html.replace(/\x07/g, '\\a').replace(/\x0c/g, '\\f').replace(/\x08/g, '\\b').replace(/\x0b/g, '\\v')
+        .replace(/\t(?=ext|imes|heta|au|op\b|riangle|ilde|o\b)/g, '\\t').replace(/\r(?=ho|ight)/g, '\\r');
+      const tag = () => /<\/?[a-zA-Z][^>]*>/g;
+      const inMath = s => s.replace(/<span class="ans">([\s\S]*?)<\/span>/g, '\\color{#16603f}{$1}').replace(tag(), ' ');
+      const pct = s => s.replace(/(^|[^\\])%/g, '$1\\%'); // a bare % starts a TeX comment
+      html = html.replace(/\$\$([\s\S]*?)\$\$/g, (m, s) => '$$' + pct(tag().test(s) ? inMath(s) : s) + '$$');
+      return html.replace(/(^|[^$])\$([^$\n]{1,300}?)\$(?!\$)/g, (m, pre, s) =>
+        (/<span class="ans">/.test(s) && /[=\\]/.test(s.split('<span')[0]) && !/<\/?(p|b|em|strong|br|div|i)\b/.test(s))
+          ? pre + '$' + inMath(s) + '$' : m);
+    }
     function renderStage() {
       const stage = document.getElementById('stage');
       if (!deck.length) {
         stage.innerHTML = `<div class="empty"><h2>No cards for ${currentSubject} yet</h2>
           <p>Cards for this subject will show up here, grouped by topic.</p></div>`;
       } else {
-        stage.innerHTML = cardHtml(deck[idx]);
+        stage.innerHTML = fixMath(cardHtml(deck[idx]));
       }
       typesetMath(stage);
       fitCard();
