@@ -478,5 +478,593 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: polynomials of an edit"
    ]
   ]
+ },
+ "20501": {
+  "s": "STORY 5 · STEP 1 · REPEAT THE EDIT",
+  "b": "To understand one edit deeply, apply it again and again: <b>polynomials of $T$</b> are recipes of repeated edits.",
+  "f": [
+   [
+    "20405",
+    "the edit itself, independent of the grid"
+   ]
+  ],
+  "n": [
+   [
+    "20502",
+    "repeats force an eigenvalue"
+   ],
+   [
+    "20503",
+    "the shortest wiping recipe"
+   ]
+  ]
+ },
+ "20502": {
+  "s": "STORY 5 · STEP 2 · SOME ARROW ONLY STRETCHES",
+  "b": "Over $\\mathbb C$ repeated edits must become dependent, and factoring the recipe forces an <b>eigenvalue</b> to exist.",
+  "f": [
+   [
+    "20501",
+    "p(T)"
+   ],
+   [
+    "20201",
+    "dependence"
+   ]
+  ],
+  "n": [
+   [
+    "20601",
+    "eigenvectors in detail"
+   ]
+  ]
+ },
+ "20503": {
+  "s": "STORY 5 · STEP 3 · THE FINGERPRINT",
+  "b": "The <b>minimal polynomial</b> is the shortest recipe that wipes everything; every other wiping recipe is a multiple of it.",
+  "f": [
+   [
+    "20501",
+    "recipes"
+   ]
+  ],
+  "n": [
+   [
+    "20504",
+    "Cayley–Hamilton"
+   ],
+   [
+    "20505",
+    "diagonalizable test"
+   ]
+  ]
+ },
+ "20504": {
+  "s": "STORY 5 · STEP 4 · TWO FINGERPRINTS",
+  "b": "The characteristic polynomial also wipes the edit, so the minimal polynomial divides it, and <b>both have the eigenvalues as roots</b>.",
+  "f": [
+   [
+    "20503",
+    "minimal polynomial"
+   ]
+  ],
+  "n": [
+   [
+    "20602",
+    "compute the characteristic polynomial"
+   ],
+   [
+    "20904",
+    "read both off the Jordan form"
+   ]
+  ]
+ },
+ "20505": {
+  "s": "STORY 5 · STEP 5 · THE TEST",
+  "b": "An edit is a pure stretch along some grid exactly when its minimal polynomial has <b>no repeated root</b>.",
+  "f": [
+   [
+    "20503",
+    "minimal polynomial"
+   ]
+  ],
+  "n": [
+   [
+    "20506",
+    "an example of each"
+   ],
+   [
+    "20604",
+    "diagonalizability in other words"
+   ]
+  ]
+ },
+ "20506": {
+  "s": "STORY 5 · STEP 6 · WITH NUMBERS",
+  "b": "Same characteristic polynomial, different minimal polynomials: only one of the two edits is diagonal.",
+  "f": [
+   [
+    "20505",
+    "the test"
+   ]
+  ],
+  "n": [
+   [
+    "20601",
+    "now: arrows the edit only stretches"
+   ]
+  ]
+ },
+ "20601": {
+  "s": "STORY 6 · STEP 1 · ARROWS THAT DON'T TURN",
+  "b": "The key idea of the course: look for arrows the edit only <b>stretches</b>. Those are eigenvectors, and their stretch factors are eigenvalues.",
+  "f": [
+   [
+    "20502",
+    "they exist over ℂ"
+   ],
+   [
+    "20403",
+    "not invertible ⇔ squashes something"
+   ]
+  ],
+  "n": [
+   [
+    "20602",
+    "find the factors"
+   ],
+   [
+    "20603",
+    "they never tangle"
+   ]
+  ]
+ },
+ "20602": {
+  "s": "STORY 6 · STEP 2 · FIND THE FACTORS",
+  "b": "The <b>characteristic polynomial</b> finds the stretch factors; trace and determinant check them.",
+  "f": [
+   [
+    "20601",
+    "eigenvalues"
+   ],
+   [
+    "20405",
+    "trace and det are grid-free"
+   ]
+  ],
+  "n": [
+   [
+    "20603",
+    "independence"
+   ],
+   [
+    "20606",
+    "do it by hand"
+   ]
+  ]
+ },
+ "20603": {
+  "s": "STORY 6 · STEP 3 · THEY NEVER TANGLE",
+  "b": "Arrows with <b>different stretch factors are independent</b>, so there are at most $n$ factors.",
+  "f": [
+   [
+    "20601",
+    "eigenvectors"
+   ],
+   [
+    "20201",
+    "independence"
+   ]
+  ],
+  "n": [
+   [
+    "20604",
+    "enough of them make a grid"
+   ]
+  ]
+ },
+ "20604": {
+  "s": "STORY 6 · STEP 4 · THE BEST GRID",
+  "b": "When the eigen-arrows fill the space, use them as the grid: the edit becomes a <b>diagonal</b> stretch, $A=PDP^{-1}$.",
+  "f": [
+   [
+    "20603",
+    "independent eigenvectors"
+   ],
+   [
+    "20404",
+    "change of basis"
+   ]
+  ],
+  "n": [
+   [
+    "20605",
+    "when there are too few"
+   ],
+   [
+    "20703",
+    "two edits, one grid"
+   ]
+  ]
+ },
+ "20605": {
+  "s": "STORY 6 · STEP 5 · TOO FEW ARROWS",
+  "b": "Sometimes the polynomial promises more eigen-arrows than exist: <b>geometric &lt; algebraic</b> multiplicity, and no eigen-grid exists.",
+  "f": [
+   [
+    "20604",
+    "diagonalizable"
+   ],
+   [
+    "20505",
+    "the minimal-polynomial test"
+   ]
+  ],
+  "n": [
+   [
+    "20802",
+    "generalized eigenvectors fill the gap"
+   ]
+  ]
+ },
+ "20606": {
+  "s": "STORY 6 · STEP 6 · WITH NUMBERS",
+  "b": "A full diagonalization by hand.",
+  "f": [
+   [
+    "20602",
+    "characteristic polynomial"
+   ],
+   [
+    "20604",
+    "PDP⁻¹"
+   ]
+  ],
+  "n": [
+   [
+    "20701",
+    "subspaces an edit keeps"
+   ]
+  ]
+ },
+ "20701": {
+  "s": "STORY 7 · STEP 1 · SUBSPACES IT KEEPS",
+  "b": "An edit may keep some lines or sheets inside themselves; these <b>invariant subspaces</b> split the edit into smaller pieces.",
+  "f": [
+   [
+    "20601",
+    "eigen-lines are 1-D invariant subspaces"
+   ]
+  ],
+  "n": [
+   [
+    "20702",
+    "commuting edits keep each other's"
+   ],
+   [
+    "20803",
+    "the big split into generalized eigenspaces"
+   ]
+  ]
+ },
+ "20702": {
+  "s": "STORY 7 · STEP 2 · RESPECT",
+  "b": "If two edits commute, each one <b>keeps the other's eigenspaces</b>.",
+  "f": [
+   [
+    "20701",
+    "invariant subspaces"
+   ]
+  ],
+  "n": [
+   [
+    "20703",
+    "one grid for both"
+   ]
+  ]
+ },
+ "20703": {
+  "s": "STORY 7 · STEP 3 · ONE GRID FOR TWO",
+  "b": "Two diagonalizable edits share an eigen-grid <b>exactly when they commute</b>.",
+  "f": [
+   [
+    "20702",
+    "eigenspaces are kept"
+   ],
+   [
+    "20604",
+    "diagonalization"
+   ]
+  ],
+  "n": [
+   [
+    "20704",
+    "even without diagonalizing"
+   ],
+   [
+    "21305",
+    "commuting ⇔ normal in the spectral world"
+   ]
+  ]
+ },
+ "20704": {
+  "s": "STORY 7 · STEP 4 · A SHARED DIRECTION",
+  "b": "Over $\\mathbb C$ commuting edits always share an eigen-arrow, and can be made triangular together.",
+  "f": [
+   [
+    "20703",
+    "simultaneous diagonalization"
+   ],
+   [
+    "20502",
+    "eigenvalues exist over ℂ"
+   ]
+  ],
+  "n": [
+   [
+    "20705",
+    "an example"
+   ]
+  ]
+ },
+ "20705": {
+  "s": "STORY 7 · STEP 5 · WITH NUMBERS",
+  "b": "A polynomial in $A$ commutes with $A$ and shares its eigen-arrows.",
+  "f": [
+   [
+    "20704",
+    "common eigenvector"
+   ],
+   [
+    "20501",
+    "p(A)v = p(λ)v"
+   ]
+  ],
+  "n": [
+   [
+    "20801",
+    "edits that eventually flatten everything"
+   ]
+  ]
+ },
+ "20801": {
+  "s": "STORY 8 · STEP 1 · EDITS THAT FLATTEN",
+  "b": "When eigen-arrows run out, a new ingredient appears: <b>nilpotent</b> edits that flatten everything after a few repeats.",
+  "f": [
+   [
+    "20605",
+    "too few eigen-arrows"
+   ]
+  ],
+  "n": [
+   [
+    "20802",
+    "arrows that die after k steps"
+   ],
+   [
+    "20805",
+    "follow one arrow"
+   ]
+  ]
+ },
+ "20802": {
+  "s": "STORY 8 · STEP 2 · ALMOST EIGEN",
+  "b": "A <b>generalized eigenvector</b> is killed by a few repeats of $T-\\lambda I$; they fill in for missing eigenvectors.",
+  "f": [
+   [
+    "20801",
+    "nilpotent"
+   ],
+   [
+    "20601",
+    "eigenvectors"
+   ]
+  ],
+  "n": [
+   [
+    "20803",
+    "they fill the whole space"
+   ]
+  ]
+ },
+ "20803": {
+  "s": "STORY 8 · STEP 3 · THE BIG SPLIT",
+  "b": "Over $\\mathbb C$ the space splits into <b>generalized eigenspaces</b>; on each, the edit is a stretch plus a nilpotent part.",
+  "f": [
+   [
+    "20802",
+    "generalized eigenspaces"
+   ],
+   [
+    "20701",
+    "invariant subspaces"
+   ]
+  ],
+  "n": [
+   [
+    "20804",
+    "how big each piece is"
+   ],
+   [
+    "20902",
+    "Jordan form"
+   ]
+  ]
+ },
+ "20804": {
+  "s": "STORY 8 · STEP 4 · HOW BIG",
+  "b": "Each generalized eigenspace has dimension equal to the <b>root multiplicity</b>; diagonalizable means $E=G$ everywhere.",
+  "f": [
+   [
+    "20803",
+    "decomposition"
+   ],
+   [
+    "20605",
+    "algebraic multiplicity"
+   ]
+  ],
+  "n": [
+   [
+    "20805",
+    "chains inside each piece"
+   ]
+  ]
+ },
+ "20805": {
+  "s": "STORY 8 · STEP 5 · CHAINS",
+  "b": "Inside a nilpotent piece, follow one arrow: its images form a <b>chain</b>, and the matrix is a Jordan block.",
+  "f": [
+   [
+    "20801",
+    "nilpotent"
+   ]
+  ],
+  "n": [
+   [
+    "20806",
+    "count chains"
+   ],
+   [
+    "20901",
+    "the Jordan block"
+   ]
+  ]
+ },
+ "20806": {
+  "s": "STORY 8 · STEP 6 · WITH NUMBERS",
+  "b": "Read chain lengths from the null-space sizes of $N,N^2,N^3$.",
+  "f": [
+   [
+    "20805",
+    "chains"
+   ]
+  ],
+  "n": [
+   [
+    "20903",
+    "the same counting for Jordan blocks"
+   ]
+  ]
+ },
+ "20901": {
+  "s": "STORY 9 · STEP 1 · ZOOM WITH A LEAN",
+  "b": "The building block of every complex edit: a <b>Jordan block</b>, a zoom by $\\lambda$ plus a lean.",
+  "f": [
+   [
+    "20805",
+    "chains give Jordan blocks"
+   ]
+  ],
+  "n": [
+   [
+    "20902",
+    "every edit is made of them"
+   ]
+  ]
+ },
+ "20902": {
+  "s": "STORY 9 · STEP 2 · THE UNIVERSAL GRID",
+  "b": "<b>Jordan form</b>: in a suitable grid every complex edit is a list of Jordan blocks, unique up to order.",
+  "f": [
+   [
+    "20803",
+    "generalized eigenspaces"
+   ],
+   [
+    "20901",
+    "Jordan blocks"
+   ]
+  ],
+  "n": [
+   [
+    "20903",
+    "count the blocks"
+   ],
+   [
+    "20905",
+    "functions of the edit"
+   ]
+  ]
+ },
+ "20903": {
+  "s": "STORY 9 · STEP 3 · COUNT THE BLOCKS",
+  "b": "Block sizes come from the <b>null-space dimensions</b> of powers of $A-\\lambda I$.",
+  "f": [
+   [
+    "20902",
+    "Jordan form"
+   ],
+   [
+    "20806",
+    "chain counting"
+   ]
+  ],
+  "n": [
+   [
+    "20904",
+    "the polynomials"
+   ],
+   [
+    "20906",
+    "do it with numbers"
+   ]
+  ]
+ },
+ "20904": {
+  "s": "STORY 9 · STEP 4 · THE POLYNOMIALS",
+  "b": "Characteristic exponent = <b>sum</b> of block sizes; minimal exponent = <b>largest</b> block.",
+  "f": [
+   [
+    "20903",
+    "block sizes"
+   ],
+   [
+    "20504",
+    "two fingerprints"
+   ]
+  ],
+  "n": [
+   [
+    "20905",
+    "functions of matrices"
+   ]
+  ]
+ },
+ "20905": {
+  "s": "STORY 9 · STEP 5 · PLAY IT AS A VIDEO",
+  "b": "Functions like $e^{tA}$ are computed block by block; the lean adds powers of $t$.",
+  "f": [
+   [
+    "20902",
+    "A = PJP⁻¹"
+   ]
+  ],
+  "n": [
+   [
+    "20906",
+    "practice"
+   ],
+   [
+    "21001",
+    "next: measuring lengths and angles"
+   ]
+  ]
+ },
+ "20906": {
+  "s": "STORY 9 · STEP 6 · WITH NUMBERS",
+  "b": "Read a Jordan form straight from kernel dimensions.",
+  "f": [
+   [
+    "20903",
+    "block counting"
+   ]
+  ],
+  "n": [
+   [
+    "21001",
+    "angles and lengths enter the story"
+   ]
+  ]
  }
 });
