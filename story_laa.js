@@ -114,5 +114,369 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "symmetric edits return as self-adjoint"
    ]
   ]
+ },
+ "20201": {
+  "s": "STORY 2 · STEP 1 · SLIDERS",
+  "b": "To describe every arrow on the canvas we need a few <b>slider arrows</b> to mix; the useful ones are <b>independent</b>: none is a mix of the others.",
+  "f": [
+   [
+    "20103",
+    "the same zero test for subspaces"
+   ]
+  ],
+  "n": [
+   [
+    "20202",
+    "independent and spanning"
+   ],
+   [
+    "20206",
+    "spot a dependence"
+   ]
+  ]
+ },
+ "20202": {
+  "s": "STORY 2 · STEP 2 · ADDRESSES",
+  "b": "A <b>basis</b> reaches every point in exactly one way, giving every arrow an address $[v]_B$: this is how arrows become columns of numbers.",
+  "f": [
+   [
+    "20201",
+    "independence and span"
+   ]
+  ],
+  "n": [
+   [
+    "20203",
+    "all bases have the same size"
+   ],
+   [
+    "20305",
+    "edits become matrices"
+   ]
+  ]
+ },
+ "20203": {
+  "s": "STORY 2 · STEP 3 · SAME SIZE",
+  "b": "Swapping argument: an independent list is never longer than a spanning list, so <b>every basis has the same length</b>.",
+  "f": [
+   [
+    "20202",
+    "what a basis is"
+   ]
+  ],
+  "n": [
+   [
+    "20204",
+    "dimension of familiar spaces"
+   ]
+  ]
+ },
+ "20204": {
+  "s": "STORY 2 · STEP 4 · COUNT THE KNOBS",
+  "b": "That common length is the <b>dimension</b>; for the usual spaces it is easy to count.",
+  "f": [
+   [
+    "20203",
+    "why dimension is well defined"
+   ],
+   [
+    "20105",
+    "dimension of a sum"
+   ]
+  ],
+  "n": [
+   [
+    "20205",
+    "build a basis"
+   ],
+   [
+    "20303",
+    "rank–nullity counts with it"
+   ]
+  ]
+ },
+ "20205": {
+  "s": "STORY 2 · STEP 5 · BUILD A BASIS",
+  "b": "Trim a spanning list or grow an independent one: either way you get a basis, and every subspace gets a <b>complement</b>.",
+  "f": [
+   [
+    "20204",
+    "dimension"
+   ],
+   [
+    "20102",
+    "direct sums"
+   ]
+  ],
+  "n": [
+   [
+    "20206",
+    "do it with numbers"
+   ],
+   [
+    "20303",
+    "proof of rank–nullity"
+   ]
+  ]
+ },
+ "20206": {
+  "s": "STORY 2 · STEP 6 · WITH NUMBERS",
+  "b": "A worked example: find the dependence, drop the redundant arrow, read off a basis and the dimension.",
+  "f": [
+   [
+    "20205",
+    "reducing a list"
+   ]
+  ],
+  "n": [
+   [
+    "20301",
+    "now let an edit act on the arrows"
+   ]
+  ]
+ },
+ "20301": {
+  "s": "STORY 3 · STEP 1 · THE EDIT",
+  "b": "Now the main character arrives: a <b>linear map</b>, an edit applied to every arrow at once that keeps the pin fixed and respects mixing.",
+  "f": [
+   [
+    "20206",
+    "the canvas and its bases"
+   ]
+  ],
+  "n": [
+   [
+    "20302",
+    "what an edit loses and what it reaches"
+   ],
+   [
+    "20305",
+    "write the edit as a matrix"
+   ]
+  ]
+ },
+ "20302": {
+  "s": "STORY 3 · STEP 2 · LOST AND REACHED",
+  "b": "Every edit has a <b>null space</b> (arrows squashed to the pin) and a <b>range</b> (pictures it can produce).",
+  "f": [
+   [
+    "20301",
+    "linear maps"
+   ]
+  ],
+  "n": [
+   [
+    "20303",
+    "count them"
+   ],
+   [
+    "20304",
+    "one-to-one and onto"
+   ]
+  ]
+ },
+ "20303": {
+  "s": "STORY 3 · STEP 3 · THE COUNT",
+  "b": "<b>Rank–nullity</b>: squashed directions plus surviving directions equal all directions.",
+  "f": [
+   [
+    "20302",
+    "null space and range"
+   ],
+   [
+    "20205",
+    "extending a basis"
+   ]
+  ],
+  "n": [
+   [
+    "20304",
+    "dimension tests"
+   ],
+   [
+    "20403",
+    "square edits: one-to-one ⇔ onto"
+   ]
+  ]
+ },
+ "20304": {
+  "s": "STORY 3 · STEP 4 · CAN IT BE UNDONE?",
+  "b": "One-to-one means only the zero arrow is squashed; onto means the range is everything. Dimensions limit both.",
+  "f": [
+   [
+    "20303",
+    "rank–nullity"
+   ]
+  ],
+  "n": [
+   [
+    "20401",
+    "both together: invertible"
+   ]
+  ]
+ },
+ "20305": {
+  "s": "STORY 3 · STEP 5 · THE RECIPE CARD",
+  "b": "With bases on both sides, an edit becomes a <b>matrix</b>: column $j$ is where basis arrow $j$ goes, and composing edits multiplies matrices.",
+  "f": [
+   [
+    "20202",
+    "addresses"
+   ],
+   [
+    "20301",
+    "linear maps"
+   ]
+  ],
+  "n": [
+   [
+    "20306",
+    "compute one"
+   ],
+   [
+    "20404",
+    "change the grid, change the matrix"
+   ]
+  ]
+ },
+ "20306": {
+  "s": "STORY 3 · STEP 6 · WITH NUMBERS",
+  "b": "A full example: matrix, null space, rank, and the rank–nullity check.",
+  "f": [
+   [
+    "20303",
+    "rank–nullity"
+   ],
+   [
+    "20305",
+    "the matrix"
+   ]
+  ],
+  "n": [
+   [
+    "20401",
+    "when can an edit be undone?"
+   ]
+  ]
+ },
+ "20401": {
+  "s": "STORY 4 · STEP 1 · UNDO",
+  "b": "An edit that loses nothing and reaches everything can be <b>undone</b>; the undo is linear too.",
+  "f": [
+   [
+    "20304",
+    "one-to-one and onto"
+   ]
+  ],
+  "n": [
+   [
+    "20402",
+    "spaces that are secretly the same"
+   ],
+   [
+    "20403",
+    "square edits: one check suffices"
+   ]
+  ]
+ },
+ "20402": {
+  "s": "STORY 4 · STEP 2 · SAME SPACE, NEW NAME",
+  "b": "An undoable edit between two spaces means they are the same space in disguise; only the <b>dimension</b> matters.",
+  "f": [
+   [
+    "20401",
+    "invertible maps"
+   ],
+   [
+    "20202",
+    "coordinates"
+   ]
+  ],
+  "n": [
+   [
+    "20404",
+    "the coordinate map in action"
+   ]
+  ]
+ },
+ "20403": {
+  "s": "STORY 4 · STEP 3 · ONE CHECK",
+  "b": "For an edit of a space to itself, <b>one-to-one, onto and invertible are the same thing</b>.",
+  "f": [
+   [
+    "20303",
+    "rank–nullity"
+   ],
+   [
+    "20401",
+    "invertible"
+   ]
+  ],
+  "n": [
+   [
+    "20601",
+    "λ is an eigenvalue ⇔ T − λI is not invertible"
+   ]
+  ]
+ },
+ "20404": {
+  "s": "STORY 4 · STEP 4 · REDRAW THE GRID",
+  "b": "Changing the grid changes the matrix to $S^{-1}AS$ but not the edit. The rest of the course looks for the <b>grid that makes the matrix simple</b>.",
+  "f": [
+   [
+    "20305",
+    "matrix of a map"
+   ],
+   [
+    "20402",
+    "coordinates"
+   ]
+  ],
+  "n": [
+   [
+    "20405",
+    "what stays the same"
+   ],
+   [
+    "20606",
+    "diagonalize: the best grid"
+   ]
+  ]
+ },
+ "20405": {
+  "s": "STORY 4 · STEP 5 · INVARIANTS",
+  "b": "Trace, determinant, rank and eigenvalues belong to the edit itself, so <b>similar matrices share them</b>.",
+  "f": [
+   [
+    "20404",
+    "similarity"
+   ]
+  ],
+  "n": [
+   [
+    "20406",
+    "practise a change of grid"
+   ],
+   [
+    "20501",
+    "the edit's polynomial"
+   ]
+  ]
+ },
+ "20406": {
+  "s": "STORY 4 · STEP 6 · WITH NUMBERS",
+  "b": "A worked change of basis: read the point $(3,1)$ in a 45° grid.",
+  "f": [
+   [
+    "20404",
+    "change of basis"
+   ]
+  ],
+  "n": [
+   [
+    "20501",
+    "next: polynomials of an edit"
+   ]
+  ]
  }
 });
