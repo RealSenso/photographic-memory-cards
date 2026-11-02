@@ -1210,5 +1210,257 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "chains with memory"
    ]
   ]
+ },
+ "31101": {
+  "s": "STORY 11 · STEP 1 · THE TABLE OF SPREADS",
+  "b": "All variances and covariances live in one <b>covariance matrix</b>, and every direction's spread is non-negative.",
+  "f": [
+   [
+    "30503",
+    "covariance of a sum"
+   ]
+  ],
+  "n": [
+   [
+    "31102",
+    "using it to estimate"
+   ],
+   [
+    "31301",
+    "the Gaussian density"
+   ]
+  ]
+ },
+ "31102": {
+  "s": "STORY 11 · STEP 2 · THE SHORTEST MISS",
+  "b": "The best linear guess is the one whose <b>error is orthogonal</b> to everything observed.",
+  "f": [
+   [
+    "31101",
+    "covariances as inner products"
+   ],
+   [
+    "30605",
+    "Cauchy–Schwarz geometry"
+   ]
+  ],
+  "n": [
+   [
+    "31103",
+    "the formula"
+   ],
+   [
+    "31202",
+    "the nonlinear version"
+   ]
+  ]
+ },
+ "31103": {
+  "s": "STORY 11 · STEP 3 · THE FORMULA",
+  "b": "Orthogonality gives the <b>LLSE</b>: the mean plus a gain times the surprise.",
+  "f": [
+   [
+    "31102",
+    "orthogonality"
+   ]
+  ],
+  "n": [
+   [
+    "31104",
+    "how good it is"
+   ],
+   [
+    "31105",
+    "the scalar case"
+   ]
+  ]
+ },
+ "31104": {
+  "s": "STORY 11 · STEP 4 · WHAT IS LEFT",
+  "b": "The error covariance is the total spread <b>minus the explained part</b> (a Schur complement).",
+  "f": [
+   [
+    "31103",
+    "the LLSE"
+   ]
+  ],
+  "n": [
+   [
+    "31304",
+    "Gaussian conditioning gives the same"
+   ]
+  ]
+ },
+ "31105": {
+  "s": "STORY 11 · STEP 5 · ONE NUMBER",
+  "b": "In one dimension, <b>correlation ρ</b> sets both the slope and the error 1 − ρ².",
+  "f": [
+   [
+    "31103",
+    "LLSE"
+   ]
+  ],
+  "n": [
+   [
+    "31106",
+    "a noisy measurement"
+   ],
+   [
+    "32502",
+    "kernels for Brownian paths"
+   ]
+  ]
+ },
+ "31106": {
+  "s": "STORY 11 · STEP 6 · NOISY READING",
+  "b": "The <b>Wiener filter</b> shrinks a noisy reading by signal over signal-plus-noise.",
+  "f": [
+   [
+    "31105",
+    "scalar LLSE"
+   ]
+  ],
+  "n": [
+   [
+    "31201",
+    "the unconstrained best guess"
+   ],
+   [
+    "32506",
+    "Gaussian process regression"
+   ]
+  ]
+ },
+ "31201": {
+  "s": "STORY 12 · STEP 1 · THE BEST GUESS",
+  "b": "With no restriction on form, the best guess is <b>the average of Y on each slice of X</b>.",
+  "f": [
+   [
+    "31103",
+    "the best line"
+   ],
+   [
+    "30704",
+    "conditional density"
+   ]
+  ],
+  "n": [
+   [
+    "31202",
+    "why it is best"
+   ],
+   [
+    "31205",
+    "line versus curve"
+   ]
+  ]
+ },
+ "31202": {
+  "s": "STORY 12 · STEP 2 · THE SHORTEST MISS, AGAIN",
+  "b": "The error is orthogonal to <b>every function</b> of X, not just lines.",
+  "f": [
+   [
+    "31102",
+    "linear orthogonality"
+   ],
+   [
+    "31201",
+    "conditional expectation"
+   ]
+  ],
+  "n": [
+   [
+    "31203",
+    "rules for computing"
+   ]
+  ]
+ },
+ "31203": {
+  "s": "STORY 12 · STEP 3 · RULES",
+  "b": "Refining then forgetting information returns the coarse guess; <b>known factors come out</b>.",
+  "f": [
+   [
+    "31202",
+    "projection onto information"
+   ]
+  ],
+  "n": [
+   [
+    "31204",
+    "splitting the variance"
+   ],
+   [
+    "32601",
+    "martingales"
+   ]
+  ]
+ },
+ "31204": {
+  "s": "STORY 12 · STEP 4 · SIGNAL AND NOISE",
+  "b": "<b>Eve's law</b>: total variance is the noise within slices plus the variance of the slice averages.",
+  "f": [
+   [
+    "31203",
+    "the tower property"
+   ],
+   [
+    "30503",
+    "variance"
+   ]
+  ],
+  "n": [
+   [
+    "31205",
+    "comparing estimators"
+   ],
+   [
+    "31403",
+    "variance of random sums"
+   ]
+  ]
+ },
+ "31205": {
+  "s": "STORY 12 · STEP 5 · LINE OR CURVE",
+  "b": "The best curve beats the best line, which beats ignoring X; they agree for <b>Gaussian</b> pairs.",
+  "f": [
+   [
+    "31201",
+    "MMSE"
+   ],
+   [
+    "31103",
+    "LLSE"
+   ]
+  ],
+  "n": [
+   [
+    "31304",
+    "Gaussian conditioning"
+   ],
+   [
+    "31206",
+    "an example using Eve's law"
+   ]
+  ]
+ },
+ "31206": {
+  "s": "STORY 12 · STEP 6 · THINNING",
+  "b": "Eve's law gives mean = variance for a <b>thinned Poisson</b> count.",
+  "f": [
+   [
+    "31204",
+    "total variance"
+   ]
+  ],
+  "n": [
+   [
+    "31402",
+    "Wald's identities"
+   ],
+   [
+    "32404",
+    "Poisson thinning in processes"
+   ]
+  ]
  }
 });

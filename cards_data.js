@@ -3879,7 +3879,7 @@ window.MASTER_CARDS_DATA = [
     "coreTranslation": [
       "<strong>Boole's Inequality (Countable Subadditivity):</strong> For ANY sequence of events $A_1, A_2, \\dots$ (disjoint or overlapping): $\\mathbb{P}\\left( \\bigcup_{i=1}^\\infty A_i \\right) \\le \\sum_{i=1}^\\infty \\mathbb{P}(A_i)$.",
       "<strong>Bonferroni Bounds:</strong> Truncating the inclusion-exclusion series produces alternating upper and lower bounds:",
-      "$\\mathbb{P}\\left( \\bigcup_{i=1}^n A_i \\right) \\ge \\sum \\mathbb{P}(A_i) - \\sum_{i < j} \\mathbb{P}(A_i \\cap A_j)$, and $\\le$ the 3-term sum."
+      "$\\mathbb{P}\\left( \\bigcup_{i=1}^n A_i \\right) \\ge \\sum \\mathbb{P}(A_i) - \\sum_{i \\lt  j} \\mathbb{P}(A_i \\cap A_j)$, and $\\le$ the 3-term sum."
     ],
     "math": "$$\\mathbb{P}\\left( \\bigcup_{i=1}^\\infty A_i \\right) \\le \\sum_{i=1}^\\infty \\mathbb{P}(A_i), \\quad \\mathbb{P}(A \\cup B) = \\mathbb{P}(A) + \\mathbb{P}(B) - \\mathbb{P}(A \\cap B)$$",
     "personalConnection": "<strong>A safe ceiling on being late.</strong> Rain 10%, a breakdown 5%, a strike 3%: the chance that something goes wrong is at most 18%. It is less if bad days overlap, because the overlap is counted twice in the sum.",
@@ -3906,10 +3906,10 @@ window.MASTER_CARDS_DATA = [
     "drawingCaption": "Three overlapping events: add the singles \u2211\u2119(A\u1d62), subtract the pairs \u2119(A\u1d62\u2229A\u2c7c), add back the triple. The shaded centre is the triple overlap, with sign (\u22121)\u207f\u207b\u00b9.",
     "coreTranslation": [
       "For $n$ arbitrary events $A_1, \\dots, A_n$, the probability of their union is given by the exact alternating sum:",
-      "$$\\mathbb{P}\\left( \\bigcup_{i=1}^n A_i \\right) = \\sum_{k=1}^n (-1)^{k-1} S_k, \\quad \\text{where } S_k = \\sum_{1 \\le i_1 < \\dots < i_k \\le n} \\mathbb{P}(A_{i_1} \\cap \\dots \\cap A_{i_k})$$",
+      "$$\\mathbb{P}\\left( \\bigcup_{i=1}^n A_i \\right) = \\sum_{k=1}^n (-1)^{k-1} S_k, \\quad \\text{where } S_k = \\sum_{1 \\le i_1 \\lt  \\dots \\lt  i_k \\le n} \\mathbb{P}(A_{i_1} \\cap \\dots \\cap A_{i_k})$$",
       "For $n = 3$: $\\mathbb{P}(A_1 \\cup A_2 \\cup A_3) = \\sum \\mathbb{P}(A_i) - \\sum \\mathbb{P}(A_i \\cap A_j) + \\mathbb{P}(A_1 \\cap A_2 \\cap A_3)$."
     ],
-    "math": "$$\\mathbb{P}\\left(\\bigcup_{i=1}^n A_i\\right) = \\sum_{i} \\mathbb{P}(A_i) - \\sum_{i<j} \\mathbb{P}(A_i \\cap A_j) + \\dots + (-1)^{n-1} \\mathbb{P}\\left(\\bigcap_{i=1}^n A_i\\right)$$",
+    "math": "$$\\mathbb{P}\\left(\\bigcup_{i=1}^n A_i\\right) = \\sum_{i} \\mathbb{P}(A_i) - \\sum_{i\\lt j} \\mathbb{P}(A_i \\cap A_j) + \\dots + (-1)^{n-1} \\mathbb{P}\\left(\\bigcap_{i=1}^n A_i\\right)$$",
     "personalConnection": "<strong>Counting each late morning once.</strong> Mornings with two causes were counted twice, so subtract them; the rare triple-cause mornings were then removed once too often, so add them back.",
     "examTrap": "Remember that the sign of the full intersection $\\mathbb{P}(\\bigcap_{i=1}^n A_i)$ is $(-1)^{n-1}$. For $n=2$, it's negative $(-)$; for $n=3$, it's positive $(+)$; for $n=4$, it's negative $(-)$.",
     "stmtKind": "THEOREM",
