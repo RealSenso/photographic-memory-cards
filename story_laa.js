@@ -1650,5 +1650,453 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: every edit = rotate × stretch"
    ]
   ]
+ },
+ "21501": {
+  "s": "STORY 15 · STEP 1 · STRETCH THEN ROTATE",
+  "b": "Now <b>any</b> edit, not just normal ones: it is a positive stretch followed by an isometry, $T=S|T|$.",
+  "f": [
+   [
+    "21402",
+    "|T| = √(T*T)"
+   ],
+   [
+    "21403",
+    "isometries"
+   ]
+  ],
+  "n": [
+   [
+    "21502",
+    "the SVD"
+   ]
+  ]
+ },
+ "21502": {
+  "s": "STORY 15 · STEP 2 · CIRCLE TO ELLIPSE",
+  "b": "The <b>SVD</b>: rotate, stretch the axes by $\\sigma_j$, rotate. Every edit turns circles into ellipses.",
+  "f": [
+   [
+    "21501",
+    "polar decomposition"
+   ],
+   [
+    "21302",
+    "spectral theorem for A*A"
+   ]
+  ],
+  "n": [
+   [
+    "21503",
+    "compute it"
+   ],
+   [
+    "21504",
+    "compress with it"
+   ]
+  ]
+ },
+ "21503": {
+  "s": "STORY 15 · STEP 3 · COMPUTE IT",
+  "b": "Diagonalize $A^*A$, take square roots, push the axes through $A$.",
+  "f": [
+   [
+    "21502",
+    "SVD"
+   ]
+  ],
+  "n": [
+   [
+    "21506",
+    "a full example"
+   ]
+  ]
+ },
+ "21504": {
+  "s": "STORY 15 · STEP 4 · COMPRESS",
+  "b": "Keeping the biggest singular pieces gives the <b>best low-rank approximation</b>.",
+  "f": [
+   [
+    "21502",
+    "A = Σσⱼuⱼvⱼ*"
+   ]
+  ],
+  "n": [
+   [
+    "21505",
+    "what else σ tells you"
+   ]
+  ]
+ },
+ "21505": {
+  "s": "STORY 15 · STEP 5 · READ THE ELLIPSE",
+  "b": "Norm, rank, determinant and condition number are all <b>read off the singular values</b>.",
+  "f": [
+   [
+    "21504",
+    "truncation"
+   ]
+  ],
+  "n": [
+   [
+    "21603",
+    "invert the nonzero σ: pseudoinverse"
+   ],
+   [
+    "21703",
+    "|det| as volume"
+   ]
+  ]
+ },
+ "21506": {
+  "s": "STORY 15 · STEP 6 · WITH NUMBERS",
+  "b": "An SVD by hand, checked with the determinant and the Frobenius norm.",
+  "f": [
+   [
+    "21503",
+    "recipe"
+   ]
+  ],
+  "n": [
+   [
+    "21601",
+    "next: solving the unsolvable"
+   ]
+  ]
+ },
+ "21601": {
+  "s": "STORY 16 · STEP 1 · AIM FOR THE SHADOW",
+  "b": "When $Ax=b$ has no solution, solve the nearest one: project $b$ onto the column space (<b>least squares</b>).",
+  "f": [
+   [
+    "21104",
+    "best approximation"
+   ],
+   [
+    "21202",
+    "null T* ⊥ range T"
+   ]
+  ],
+  "n": [
+   [
+    "21602",
+    "the four subspaces"
+   ],
+   [
+    "21606",
+    "fit a line"
+   ]
+  ]
+ },
+ "21602": {
+  "s": "STORY 16 · STEP 2 · THE FULL MAP",
+  "b": "Row, null, column and left-null spaces split inputs and outputs into <b>perpendicular pairs</b>.",
+  "f": [
+   [
+    "21202",
+    "null and range of T*"
+   ],
+   [
+    "20303",
+    "rank–nullity"
+   ]
+  ],
+  "n": [
+   [
+    "21603",
+    "undo on the row space"
+   ]
+  ]
+ },
+ "21603": {
+  "s": "STORY 16 · STEP 3 · BEST UNDO",
+  "b": "The <b>pseudoinverse</b> undoes every nonzero stretch and leaves flattened directions at 0.",
+  "f": [
+   [
+    "21502",
+    "SVD"
+   ],
+   [
+    "21602",
+    "four subspaces"
+   ]
+  ],
+  "n": [
+   [
+    "21604",
+    "the minimum-norm solution"
+   ],
+   [
+    "21605",
+    "four conditions"
+   ]
+  ]
+ },
+ "21604": {
+  "s": "STORY 16 · STEP 4 · SHORTEST SOLUTION",
+  "b": "Among all least-squares solutions, $A^+b$ is the <b>shortest</b>: the one in the row space.",
+  "f": [
+   [
+    "21603",
+    "A⁺"
+   ],
+   [
+    "21601",
+    "least squares"
+   ]
+  ],
+  "n": [
+   [
+    "21605",
+    "characterize A⁺"
+   ]
+  ]
+ },
+ "21605": {
+  "s": "STORY 16 · STEP 5 · FOUR CHECKS",
+  "b": "The <b>Penrose conditions</b> characterize $A^+$ uniquely.",
+  "f": [
+   [
+    "21603",
+    "A⁺"
+   ]
+  ],
+  "n": [
+   [
+    "21606",
+    "practice"
+   ]
+  ]
+ },
+ "21606": {
+  "s": "STORY 16 · STEP 6 · WITH NUMBERS",
+  "b": "Fit a straight line to three points with the normal equations.",
+  "f": [
+   [
+    "21601",
+    "normal equations"
+   ]
+  ],
+  "n": [
+   [
+    "21701",
+    "next: trace, determinant, volume"
+   ]
+  ]
+ },
+ "21701": {
+  "s": "STORY 17 · STEP 1 · TOTAL STRETCH",
+  "b": "Two numbers summarize an edit regardless of the grid. The first: the <b>trace</b>, the sum of the stretch factors.",
+  "f": [
+   [
+    "20405",
+    "similarity invariants"
+   ]
+  ],
+  "n": [
+   [
+    "21702",
+    "the determinant"
+   ],
+   [
+    "21704",
+    "both in the polynomial"
+   ]
+  ]
+ },
+ "21702": {
+  "s": "STORY 17 · STEP 2 · PRODUCT OF STRETCHES",
+  "b": "The second: the <b>determinant</b>, the product of the stretch factors; it multiplies when edits are stacked.",
+  "f": [
+   [
+    "21701",
+    "trace"
+   ],
+   [
+    "20602",
+    "characteristic polynomial"
+   ]
+  ],
+  "n": [
+   [
+    "21703",
+    "it is a volume"
+   ]
+  ]
+ },
+ "21703": {
+  "s": "STORY 17 · STEP 3 · AREA OF THE STICKER",
+  "b": "$|\\det A|$ is the <b>area (volume) scale factor</b>; its sign says whether the photo was mirrored.",
+  "f": [
+   [
+    "21702",
+    "determinant"
+   ],
+   [
+    "21505",
+    "|det| = Πσ"
+   ]
+  ],
+  "n": [
+   [
+    "21704",
+    "back to the polynomial"
+   ]
+  ]
+ },
+ "21704": {
+  "s": "STORY 17 · STEP 4 · THE COEFFICIENTS",
+  "b": "Trace and determinant are the first and last coefficients of the <b>characteristic polynomial</b>.",
+  "f": [
+   [
+    "21701",
+    "trace"
+   ],
+   [
+    "21702",
+    "determinant"
+   ]
+  ],
+  "n": [
+   [
+    "21705",
+    "an example"
+   ]
+  ]
+ },
+ "21705": {
+  "s": "STORY 17 · STEP 5 · WITH NUMBERS",
+  "b": "Eigenvalues of a 2×2 edit from its trace and determinant.",
+  "f": [
+   [
+    "21704",
+    "p(λ) = λ² − trλ + det"
+   ]
+  ],
+  "n": [
+   [
+    "21801",
+    "last: edits that move probability"
+   ]
+  ]
+ },
+ "21801": {
+  "s": "STORY 18 · STEP 1 · THE BLUR",
+  "b": "The final application: a <b>stochastic matrix</b> is a blur filter that moves ink (probability) between pixels without creating or losing any.",
+  "f": [
+   [
+    "20601",
+    "eigenvalues"
+   ],
+   [
+    "21705",
+    "trace and determinant"
+   ]
+  ],
+  "n": [
+   [
+    "21802",
+    "where the ink settles"
+   ],
+   [
+    "21804",
+    "blur until flat"
+   ]
+  ]
+ },
+ "21802": {
+  "s": "STORY 18 · STEP 2 · STEADY PATTERN",
+  "b": "<b>Perron–Frobenius</b>: repeated blurs converge to a unique steady pattern $\\pi$.",
+  "f": [
+   [
+    "21801",
+    "stochastic matrices"
+   ]
+  ],
+  "n": [
+   [
+    "21803",
+    "how fast"
+   ],
+   [
+    "21806",
+    "compute one"
+   ]
+  ]
+ },
+ "21803": {
+  "s": "STORY 18 · STEP 3 · HOW FAST",
+  "b": "The <b>second eigenvalue</b> decides how many blurs it takes to settle.",
+  "f": [
+   [
+    "21802",
+    "convergence"
+   ],
+   [
+    "20604",
+    "diagonalization"
+   ]
+  ],
+  "n": [
+   [
+    "21804",
+    "consensus"
+   ]
+  ]
+ },
+ "21804": {
+  "s": "STORY 18 · STEP 4 · CONSENSUS",
+  "b": "Blur forever and every pixel agrees on one shade: the <b>average</b> if the blur is symmetric.",
+  "f": [
+   [
+    "21802",
+    "Pᵏ → 1π"
+   ]
+  ],
+  "n": [
+   [
+    "21805",
+    "the Laplacian view"
+   ]
+  ]
+ },
+ "21805": {
+  "s": "STORY 18 · STEP 5 · MEASURING EDGES",
+  "b": "The <b>graph Laplacian</b> measures how edgy a pattern is; $\\lambda_2$ says how well connected the network is.",
+  "f": [
+   [
+    "21804",
+    "consensus"
+   ],
+   [
+    "21401",
+    "positive semidefinite"
+   ]
+  ],
+  "n": [
+   [
+    "21806",
+    "a full example"
+   ]
+  ]
+ },
+ "21806": {
+  "s": "STORY 18 · STEP 6 · WITH NUMBERS",
+  "b": "A two-state chain: stationary distribution and mixing rate.",
+  "f": [
+   [
+    "21802",
+    "πP = π"
+   ],
+   [
+    "21803",
+    "λ₂"
+   ]
+  ],
+  "n": [
+   [
+    "20101",
+    "back to the start: it all began with arrows on a canvas"
+   ]
+  ]
  }
 });

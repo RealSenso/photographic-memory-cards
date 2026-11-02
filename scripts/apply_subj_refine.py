@@ -34,9 +34,20 @@ for p in sorted(glob.glob(os.path.join(here, f"subj_{key}_*.py"))):
         n_fix += 1
     story.update({str(k): v for k, v in getattr(mod, "STORY", {}).items()})
 
+# a bare "<" inside $...$ (e.g. j<k) is read by the browser as the start of a tag and cuts the formula
+_TAG = re.compile(r"<(?=/?(span|b|strong|em|i|br|sup|sub)\b)")
+def _lt(s):
+    fix = lambda m: re.sub(r"<(?!/?(span|b|strong|em|i|br|sup|sub)\b)", r"\\lt ", m.group(0))
+    return re.sub(r"\$\$[\s\S]*?\$\$|\$[^$]+\$", fix, s)
+
 for c in by_id.values():
-    if c["subject"] == subject and c.get("drawingSvg"):
+    if c["subject"] != subject: continue
+    if c.get("drawingSvg"):
         c["drawingSvg"] = _light(c["drawingSvg"])
+    for k in ("math", "statement", "personalConnection", "examTrap", "hint"):
+        if isinstance(c.get(k), str): c[k] = _lt(c[k])
+    for k in ("breakdown", "coreTranslation"):
+        if isinstance(c.get(k), list): c[k] = [_lt(x) for x in c[k]]
 
 for p, (head, cards, tail) in files.items():
     open(os.path.join(root, p), "w").write(head + json.dumps(cards, indent=2) + tail)
