@@ -570,5 +570,133 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: look at neighbouring pixels, not one pixel"
    ]
   ]
+ },
+ "3051": {
+  "s": "STORY 3 · STEP 1 · THE LENS AS A SYSTEM",
+  "b": "A lens that treats every part of the frame alike is <b>linear and shift-invariant</b>, so one smear $h$ describes it and the output is a convolution.",
+  "f": [
+   [
+    "3046",
+    "from single-pixel curves to neighbourhoods"
+   ],
+   [
+    "40105",
+    "the frame"
+   ]
+  ],
+  "n": [
+   [
+    "3052",
+    "the flip"
+   ],
+   [
+    "3053",
+    "cheap kernels"
+   ],
+   [
+    "3101",
+    "undoing the blur"
+   ]
+  ]
+ },
+ "3052": {
+  "s": "STORY 3 · STEP 2 · THE FLIP",
+  "b": "<b>Convolution</b> flips the kernel; <b>correlation</b> does not. Symmetric kernels hide the difference.",
+  "f": [
+   [
+    "3051",
+    "convolution"
+   ]
+  ],
+  "n": [
+   [
+    "3053",
+    "kernel structure"
+   ],
+   [
+    "3056",
+    "a small example"
+   ]
+  ]
+ },
+ "3053": {
+  "s": "STORY 3 · STEP 3 · CHEAP KERNELS",
+  "b": "A rank-1 kernel splits into a row pass and a column pass: <b>$2K$ instead of $K^2$</b>.",
+  "f": [
+   [
+    "3051",
+    "the sum over a kernel"
+   ]
+  ],
+  "n": [
+   [
+    "3054",
+    "the Gaussian is separable"
+   ],
+   [
+    "3133",
+    "LoG"
+   ]
+  ]
+ },
+ "3054": {
+  "s": "STORY 3 · STEP 4 · SMOOTH",
+  "b": "<b>Averaging</b> removes noise but blurs edges; the Gaussian averages smoothly and is separable.",
+  "f": [
+   [
+    "3053",
+    "separable"
+   ]
+  ],
+  "n": [
+   [
+    "3055",
+    "the opposite: sharpen"
+   ],
+   [
+    "3132",
+    "Sobel's smoothing"
+   ],
+   [
+    "3161",
+    "scale space"
+   ]
+  ]
+ },
+ "3055": {
+  "s": "STORY 3 · STEP 5 · SHARPEN",
+  "b": "Subtract a blur to find the detail, then <b>add it back stronger</b>: unsharp mask and Laplacian.",
+  "f": [
+   [
+    "3054",
+    "the blur"
+   ]
+  ],
+  "n": [
+   [
+    "3056",
+    "a small example"
+   ],
+   [
+    "3133",
+    "Laplacian of Gaussian"
+   ]
+  ]
+ },
+ "3056": {
+  "s": "STORY 3 · STEP 6 · CHECK BY HAND",
+  "b": "A four-pixel strip through a derivative kernel: <b>steady slope inside, padding at the ends</b>.",
+  "f": [
+   [
+    "3052",
+    "the flip"
+   ]
+  ],
+  "n": [
+   [
+    "3061",
+    "next: the same filters in the frequency view"
+   ]
+  ]
  }
 });
