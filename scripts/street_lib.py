@@ -63,3 +63,12 @@ def build_fix(CARDS):
     return {cid: {"stmtKind": v["stmtKind"], "statement": v["statement"], "hint": v["hint"], "breakdown": v["breakdown"],
                   "personalConnection": v["conn"], "drawingSvg": v["d"](cid), "drawingCaption": v["cap"],
                   "textbookImg": None, "textbookRef": None} for cid, v in CARDS.items()}
+
+import math
+def bell(x0, x1, c, w, h, base, lw=1, d=None, n=40):
+    """smooth bump centred at c"""
+    pts = [(x0 + (x1 - x0) * i / n, base - h * math.exp(-((x0 + (x1 - x0) * i / n - c) / w) ** 2)) for i in range(n + 1)]
+    return poly(pts, lw, d)
+
+def curve(fx, a, b, n=50, lw=1, d=None):
+    return poly([(a + (b - a) * i / n, fx(a + (b - a) * i / n)) for i in range(n + 1)], lw, d)

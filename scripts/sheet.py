@@ -6,4 +6,4 @@ for p in ('cards_data.js','cards_dip.js'):
     for c in json.loads(t[i:j]):
         if c['subject']=='DIP' and int(c['topicId'][:2])==n:
             out.append(f"<div style='width:480px;display:inline-block;margin:6px;font:11px sans-serif'><div style='border:1px solid #ccc;background:#fff'>{c['drawingSvg']}</div>{c['id']} {c['title']}<br>{c.get('drawingCaption','')}</div>")
-open(f"sheet_dip_{n:02d}.html","w").write("<body style='background:#eee'>"+"".join(out))
+open(f"sheet_dip_{n:02d}.html","w").write("<meta charset=utf-8><body style='background:#eee'>"+"".join(out))

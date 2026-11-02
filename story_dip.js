@@ -114,5 +114,117 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: what colour each pixel holds"
    ]
   ]
+ },
+ "3011": {
+  "s": "STORY 1 · STEP 7 · SEEING COLOUR",
+  "b": "Every pixel the street camera saves is <b>three numbers</b>, because only three channels weigh the light and matching them is linear.",
+  "f": [
+   [
+    "40106",
+    "after geometry: what each pixel holds"
+   ]
+  ],
+  "n": [
+   [
+    "3012",
+    "a standard set of three weights"
+   ],
+   [
+    "3014",
+    "turn them into brightness and colour"
+   ]
+  ]
+ },
+ "3012": {
+  "s": "STORY 1 · STEP 8 · A STANDARD RULER",
+  "b": "The CIE gives three fixed weighing curves, so any lamp spectrum becomes <b>X, Y, Z</b>, with Y the brightness.",
+  "f": [
+   [
+    "3011",
+    "three channels"
+   ]
+  ],
+  "n": [
+   [
+    "3013",
+    "drop the brightness to get a colour map"
+   ]
+  ]
+ },
+ "3013": {
+  "s": "STORY 1 · STEP 9 · THE COLOUR MAP",
+  "b": "Dividing by $X+Y+Z$ leaves a flat map of <b>pure colour</b>, and a screen's gamut is a triangle on it.",
+  "f": [
+   [
+    "3012",
+    "X, Y, Z"
+   ]
+  ],
+  "n": [
+   [
+    "3014",
+    "a practical split of brightness and colour"
+   ],
+   [
+    "3015",
+    "the colour wheel view"
+   ]
+  ]
+ },
+ "3014": {
+  "s": "STORY 1 · STEP 10 · BRIGHTNESS VS COLOUR",
+  "b": "A fixed matrix splits the frame into a sharp <b>Y</b> plane and two colour planes that can be stored at half size.",
+  "f": [
+   [
+    "3011",
+    "linear mixing"
+   ]
+  ],
+  "n": [
+   [
+    "3016",
+    "a worked number"
+   ],
+   [
+    "3022",
+    "brightness work on Y only"
+   ],
+   [
+    "3082",
+    "JPEG uses this split"
+   ]
+  ]
+ },
+ "3015": {
+  "s": "STORY 1 · STEP 11 · NAMING COLOUR",
+  "b": "The HSI view says <b>which colour, how pure, how bright</b>, so brightness can be changed alone.",
+  "f": [
+   [
+    "3013",
+    "pure colour"
+   ]
+  ],
+  "n": [
+   [
+    "3041",
+    "equalise only the intensity I"
+   ]
+  ]
+ },
+ "3016": {
+  "s": "STORY 1 · STEP 12 · ONE NUMBER CHECK",
+  "b": "Pure red worked through the matrix: <b>low Y, low Cb, maximum Cr</b>.",
+  "f": [
+   [
+    "3014",
+    "the matrix"
+   ]
+  ],
+  "n": [
+   [
+    "3021",
+    "next: the brightness histogram of the frame"
+   ]
+  ]
  }
 });
