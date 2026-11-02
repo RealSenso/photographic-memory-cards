@@ -342,5 +342,117 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: clean up the mask"
    ]
   ]
+ },
+ "3031": {
+  "s": "STORY 2 · STEP 7 · SHRINK THE MASK",
+  "b": "The mask from thresholding is rough. <b>Erosion</b> slides a small probe and keeps only where it fits, deleting specks.",
+  "f": [
+   [
+    "3023",
+    "the mask from a cut"
+   ]
+  ],
+  "n": [
+   [
+    "3032",
+    "its twin grows"
+   ],
+   [
+    "3033",
+    "combine them"
+   ]
+  ]
+ },
+ "3032": {
+  "s": "STORY 2 · STEP 8 · GROW THE MASK",
+  "b": "<b>Dilation</b> pastes the probe at every object pixel, closing gaps; it is the dual of erosion, not its inverse.",
+  "f": [
+   [
+    "3031",
+    "erosion"
+   ]
+  ],
+  "n": [
+   [
+    "3033",
+    "erode then dilate"
+   ]
+  ]
+ },
+ "3033": {
+  "s": "STORY 2 · STEP 9 · CLEAN THE MASK",
+  "b": "<b>Opening</b> removes specks and <b>closing</b> fills holes, each without changing the rest much.",
+  "f": [
+   [
+    "3031",
+    "erosion"
+   ],
+   [
+    "3032",
+    "dilation"
+   ]
+  ],
+  "n": [
+   [
+    "3034",
+    "outline of the cleaned mask"
+   ],
+   [
+    "3036",
+    "a worked case"
+   ]
+  ]
+ },
+ "3034": {
+  "s": "STORY 2 · STEP 10 · THE OUTLINE",
+  "b": "Subtract the eroded mask from the mask to get its <b>boundary</b>.",
+  "f": [
+   [
+    "3031",
+    "erosion"
+   ]
+  ],
+  "n": [
+   [
+    "3035",
+    "count the pieces"
+   ],
+   [
+    "3131",
+    "edges from gradients instead"
+   ]
+  ]
+ },
+ "3035": {
+  "s": "STORY 2 · STEP 11 · COUNT THE PIECES",
+  "b": "<b>Connected-component labelling</b> gives each separate blob its own name, with 4- or 8-connectivity deciding what is one blob.",
+  "f": [
+   [
+    "3033",
+    "cleaned mask"
+   ]
+  ],
+  "n": [
+   [
+    "3036",
+    "worked example"
+   ]
+  ]
+ },
+ "3036": {
+  "s": "STORY 2 · STEP 12 · CHECK BY HAND",
+  "b": "A square with a spur: opening removes the spur and returns the square.",
+  "f": [
+   [
+    "3033",
+    "opening"
+   ]
+  ],
+  "n": [
+   [
+    "3041",
+    "next: reshape the grey levels with the CDF"
+   ]
+  ]
  }
 });

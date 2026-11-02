@@ -72,3 +72,12 @@ def bell(x0, x1, c, w, h, base, lw=1, d=None, n=40):
 
 def curve(fx, a, b, n=50, lw=1, d=None):
     return poly([(a + (b - a) * i / n, fx(a + (b - a) * i / n)) for i in range(n + 1)], lw, d)
+
+def bgrid(x, y, rows, cell=8, fill="#b8c0cc", lw=.6, mark=None):
+    """binary pixel grid: '#' object, '.' background, 'o' = object cell shown in white with a dot (removed)"""
+    out = ""
+    for r, row in enumerate(rows):
+        for c, ch in enumerate(row):
+            fl = fill if ch == "#" else ("#7b8494" if ch == "p" else "#ffffff")
+            out += R(f(x + c * cell), f(y + r * cell), cell, cell, fl, lw)
+    return out
