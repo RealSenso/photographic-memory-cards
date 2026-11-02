@@ -47,7 +47,7 @@ def _unscore(svg_text):
     """no underscores in drawing text: use a real Unicode subscript if one exists, else just drop the underscore"""
     def fix(m):
         s = m.group(0)
-        return re.sub(r"_\(?([A-Za-z0-9])\)?", lambda k: _SUB.get(k.group(1), k.group(1)), s)
+        return re.sub(r"_\(?(\w)\)?", lambda k: _SUB.get(k.group(1), k.group(1)), s)
     return re.sub(r">[^<]*<", fix, svg_text)
 
 def _lt(s):

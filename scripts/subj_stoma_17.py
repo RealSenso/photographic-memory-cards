@@ -110,10 +110,10 @@ CARDS = {
 31706: dict(d=d6, kind="WORKED EXAMPLE",
   stmt=r"<b>Failure for the Cauchy law.</b> If $X_i$ are i.i.d. standard Cauchy, $\phi_X(t)=e^{-|t|}$, so $\phi_{\bar X_n}(t)=\bigl[e^{-|t|/n}\bigr]^n=e^{-|t|}$ and $\bar X_n\overset d=X_1$ for every $n$. Hence $\bar X_n$ does not converge to a constant: the laws of large numbers fail since $\mathbb E|X|=\infty$ (Grimmett 5.10).",
   hint="What happens to the average if single days can be so extreme that no mean exists?",
-  bd=[r"<strong>$\phi_{\bar X_n}(t)=\bigl[\phi_X(t/n)\bigr]^n$ = the average's characteristic function.</strong> Independence turns the sum into a product of $n$ equal factors.",
-      r"<strong>$\bigl[e^{-|t|/n}\bigr]^n=e^{-|t|}$ = nothing changes.</strong> The $n$ factors combine exactly back to $e^{-|t|}$, the characteristic function of one day.",
-      r"<strong>$\bar X_n\overset d=X_1$ = averaging does not help.</strong> The average of $n$ days is as wild as one day, so it never settles."],
-  conn=r"<strong>Days with freak outliers.</strong> If occasionally a day is so extreme that it dwarfs everything before it, the running average keeps being thrown off, however many days you average.",
+  bd=[r"<strong>$\phi_{\bar X_n}(t)=[\phi_X(t/n)]^n$ = the average's transform.</strong> Independence gives $n$ equal factors.",
+      r"<strong>$[e^{-|t|/n}]^n=e^{-|t|}$ = nothing changes.</strong> The factors recombine into one day's transform.",
+      r"<strong>$\bar X_n\overset d=X_1$ = averaging does not help.</strong> The average is as wild as a single day."],
+  conn=r"<strong>Days with freak outliers.</strong> If now and then a day is so extreme that it dwarfs all before it, the running average is thrown off however many days you average.",
   cap="The running average of Cauchy days keeps jumping instead of settling at a mean, because φ(X̄ₙ)(t) = e^(−|t|) for every n: the average is no tamer than one day."),
 }
 
