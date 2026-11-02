@@ -2010,10 +2010,6 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "3171",
     "bag of words"
-   ],
-   [
-    "3084",
-    "variance and means"
    ]
   ],
   "n": [
@@ -2094,5 +2090,204 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: recognising a face"
    ]
   ]
+ },
+ "3181": {
+  "s": "STORY 7 · STEP 13 · A FACE IS A POINT",
+  "b": "Crops of passers-by lie near a <b>low-dimensional subspace</b>: PCA finds it.",
+  "f": [
+   [
+    "3171",
+    "descriptors and bags"
+   ],
+   [
+    "3084",
+    "KLT is PCA"
+   ]
+  ],
+  "n": [
+   [
+    "3182",
+    "computing it cheaply"
+   ]
+  ]
+ },
+ "3182": {
+  "s": "STORY 7 · STEP 14 · THE SMALL PROBLEM",
+  "b": "Solve the <b>N × N</b> problem and map back with $A$.",
+  "f": [
+   [
+    "3181",
+    "covariance of faces"
+   ]
+  ],
+  "n": [
+   [
+    "3183",
+    "using the eigenfaces"
+   ]
+  ]
+ },
+ "3183": {
+  "s": "STORY 7 · STEP 15 · WHO IS IT?",
+  "b": "Project, rebuild, compare: <b>ε says face, nearest Ω says whose</b>.",
+  "f": [
+   [
+    "3182",
+    "the eigenfaces"
+   ]
+  ],
+  "n": [
+   [
+    "3184",
+    "finding faces in the frame"
+   ]
+  ]
+ },
+ "3184": {
+  "s": "STORY 7 · STEP 16 · FAST FEATURES",
+  "b": "The <b>integral image</b> makes every rectangle sum four reads.",
+  "f": [
+   [
+    "3183",
+    "the face test"
+   ]
+  ],
+  "n": [
+   [
+    "3185",
+    "choose and chain them"
+   ],
+   [
+    "3186",
+    "numbers"
+   ]
+  ]
+ },
+ "3185": {
+  "s": "STORY 7 · STEP 17 · BOOST AND CASCADE",
+  "b": "<b>AdaBoost</b> picks the best features; a <b>cascade</b> rejects non-faces early.",
+  "f": [
+   [
+    "3184",
+    "Haar features"
+   ]
+  ],
+  "n": [
+   [
+    "3191",
+    "learned features instead"
+   ]
+  ]
+ },
+ "3186": {
+  "s": "STORY 7 · STEP 18 · CHECK BY HAND",
+  "b": "$45-6-12+1=28$.",
+  "f": [
+   [
+    "3184",
+    "four lookups"
+   ]
+  ],
+  "n": [
+   [
+    "3191",
+    "next: deep nets"
+   ]
+  ]
+ },
+ "3191": {
+  "s": "STORY 7 · STEP 19 · LEARNED FILTERS",
+  "b": "Let the network <b>learn the filters</b> instead of designing them, and slide them over the frame.",
+  "f": [
+   [
+    "3185",
+    "hand-made Haar features"
+   ],
+   [
+    "3051",
+    "spatial filtering"
+   ]
+  ],
+  "n": [
+   [
+    "3192",
+    "how far it sees"
+   ]
+  ]
+ },
+ "3192": {
+  "s": "STORY 7 · STEP 20 · HOW FAR IT SEES",
+  "b": "Stacked layers and <b>pooling</b> widen each unit's view.",
+  "f": [
+   [
+    "3191",
+    "one layer"
+   ]
+  ],
+  "n": [
+   [
+    "3193",
+    "the nonlinearity"
+   ]
+  ]
+ },
+ "3193": {
+  "s": "STORY 7 · STEP 21 · KEEP THE SIGNAL",
+  "b": "<b>ReLU</b> keeps gradients alive; sigmoids let them fade.",
+  "f": [
+   [
+    "3192",
+    "deep stacks"
+   ]
+  ],
+  "n": [
+   [
+    "3194",
+    "the history"
+   ]
+  ]
+ },
+ "3194": {
+  "s": "STORY 7 · STEP 22 · DEEPER, BUT HOW",
+  "b": "From LeNet to ResNet: each step solved a problem, <b>skip connections</b> solved depth.",
+  "f": [
+   [
+    "3193",
+    "gradients"
+   ]
+  ],
+  "n": [
+   [
+    "3195",
+    "the residual block"
+   ]
+  ]
+ },
+ "3195": {
+  "s": "STORY 7 · STEP 23 · LEARN THE CORRECTION",
+  "b": "<b>y = F(x) + x</b>: the shortcut keeps gradients flowing.",
+  "f": [
+   [
+    "3194",
+    "degradation"
+   ]
+  ],
+  "n": [
+   [
+    "3196",
+    "numbers"
+   ]
+  ]
+ },
+ "3196": {
+  "s": "STORY 7 · STEP 24 · CHECK BY HAND",
+  "b": "$112\\times112\\times64$ and $9\\,472$ parameters: the end of the series.",
+  "f": [
+   [
+    "3191",
+    "size and parameter formulas"
+   ]
+  ],
+  "n": []
  }
 });

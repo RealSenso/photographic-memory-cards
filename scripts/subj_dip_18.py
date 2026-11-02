@@ -125,7 +125,7 @@ STORY = {
  3171: dict(s="STORY 7 · STEP 7 · A BAG OF WORDS", b="Describe a frame by <b>which visual words it contains</b>, ignoring where: a signature that is easy to compare and search.",
    f=[["3164", "SIFT descriptors are the words"]], n=[["3172", "where the words come from"], ["3173", "counting"]]),
  3172: dict(s="STORY 7 · STEP 8 · THE VOCABULARY", b="<b>k-means</b> clusters thousands of descriptors; each centroid is a visual word.",
-   f=[["3171", "bag of words"], ["3084", "variance and means"]], n=[["3173", "assign and count"]]),
+   f=[["3171", "bag of words"]], n=[["3173", "assign and count"]]),
  3173: dict(s="STORY 7 · STEP 9 · COUNT THEM", b="Map each patch to its nearest word, count, and <b>normalise</b> so frames compare fairly.",
    f=[["3172", "the codebook"]], n=[["3174", "weight the words"], ["3176", "numbers"]]),
  3174: dict(s="STORY 7 · STEP 10 · WEIGHT AND SEARCH", b="<b>TF-IDF</b> down-weights words found everywhere; an <b>inverted index</b> finds candidate frames fast.",
