@@ -77,7 +77,6 @@ KEY = (" <br><br><em>Key for the whole Midterm 3 deck.</em> $\\Omega$ = legal ai
 
 FIX = {cid: {"personalConnection": A + t} for cid, t in _TXT.items()}
 
-_BASE_901 = ("<strong>The airplane analogy.</strong> The Feasible Set (Ω) is the legal airspace and runway tarmac where you are permitted to fly and taxi. "
-             "The Active Set names the mountain walls your plane is physically parked against right now. The mountains on the other side of the valley "
-             "(inactive constraints) have zero effect on your immediate next move. ")
+_BASE_901 = ("<strong>The airplane analogy.</strong> The feasible set (Ω) is every place the plane is allowed to be: all the points that obey every rule at once. "
+             "The active set is just the walls you are touching right now; walls far away do not affect your next move. ")
 FIX[901] = {"personalConnection": _BASE_901 + KEY}

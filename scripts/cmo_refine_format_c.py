@@ -1,7 +1,7 @@
 """Flashcard format (hint + the math + airplane translation + breakdown): CMO topics 09-13."""
 B = {
 901: (r"Which walls is the plane actually touching, and which can it ignore?",
-  [r"<strong>$h_i(x)=0$ and $g_j(x)\le0$</strong> define the legal airspace $\Omega$: equality walls you must stay on, inequality walls you must stay behind.",
+  [r"<strong>$\Omega$ = the feasible set: every spot where all the rules hold at once.</strong> Stay on $h_i=0$, behind $g_j\le0$.",
    r"<strong>$\mathcal A(x)=\{j:g_j(x)=0\}$ = the walls you are pressed against right now.</strong>",
    r"<strong>Walls with $g_j\lt0$ are far away:</strong> in a small ball around $x$ they never matter."]),
 902: (r"What is the plane's velocity at the instant of touchdown?",
