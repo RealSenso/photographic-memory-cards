@@ -1626,5 +1626,125 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: turn edge points into lines"
    ]
   ]
+ },
+ "3141": {
+  "s": "STORY 6 · STEP 7 · NAMING A LINE",
+  "b": "A line is named by $(\\rho,\\theta)$: its distance from the origin and the angle of its normal; vertical lines are no problem.",
+  "f": [
+   [
+    "3135",
+    "edge points"
+   ],
+   [
+    "3065",
+    "the same $(\\rho,\\theta)$ slice picture"
+   ]
+  ],
+  "n": [
+   [
+    "3142",
+    "voting"
+   ]
+  ]
+ },
+ "3142": {
+  "s": "STORY 6 · STEP 8 · VOTE",
+  "b": "Each edge point votes for every line through it; <b>sinusoids cross</b> at the true line.",
+  "f": [
+   [
+    "3141",
+    "the parameters"
+   ]
+  ],
+  "n": [
+   [
+    "3143",
+    "the full algorithm"
+   ],
+   [
+    "3144",
+    "circles"
+   ]
+  ]
+ },
+ "3143": {
+  "s": "STORY 6 · STEP 9 · THE ALGORITHM",
+  "b": "Edges, vote, find peaks, draw lines: robust to gaps because <b>no connectivity is needed</b>.",
+  "f": [
+   [
+    "3142",
+    "accumulator"
+   ],
+   [
+    "3135",
+    "Canny edges"
+   ]
+  ],
+  "n": [
+   [
+    "3144",
+    "other shapes"
+   ],
+   [
+    "3146",
+    "numbers"
+   ]
+  ]
+ },
+ "3144": {
+  "s": "STORY 6 · STEP 10 · CIRCLES",
+  "b": "A circle has three parameters; the gradient direction cuts the voting to <b>one cell per radius</b>.",
+  "f": [
+   [
+    "3143",
+    "line Hough"
+   ],
+   [
+    "3131",
+    "gradient direction"
+   ]
+  ],
+  "n": [
+   [
+    "3145",
+    "any shape"
+   ]
+  ]
+ },
+ "3145": {
+  "s": "STORY 6 · STEP 11 · ANY SHAPE",
+  "b": "The <b>R-table</b> stores arrows to a reference point, so any shape can vote for its location.",
+  "f": [
+   [
+    "3144",
+    "circles"
+   ]
+  ],
+  "n": [
+   [
+    "3146",
+    "numbers"
+   ],
+   [
+    "3151",
+    "finding points instead of shapes"
+   ]
+  ]
+ },
+ "3146": {
+  "s": "STORY 6 · STEP 12 · CHECK BY HAND",
+  "b": "Three diagonal points agree only at $\\theta=135^\\circ$.",
+  "f": [
+   [
+    "3142",
+    "voting"
+   ]
+  ],
+  "n": [
+   [
+    "3151",
+    "next: corners as landmarks"
+   ]
+  ]
  }
 });
