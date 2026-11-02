@@ -698,5 +698,121 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: the same filters in the frequency view"
    ]
   ]
+ },
+ "3061": {
+  "s": "STORY 3 · STEP 7 · THE FREQUENCY VIEW",
+  "b": "The <b>DFT</b> rewrites the frame as stripe patterns of every frequency; a fence is just a pair of bright dots.",
+  "f": [
+   [
+    "3051",
+    "filters seen in space"
+   ]
+  ],
+  "n": [
+   [
+    "3062",
+    "how to read the spectrum"
+   ],
+   [
+    "3064",
+    "filtering by multiplying"
+   ]
+  ]
+ },
+ "3062": {
+  "s": "STORY 3 · STEP 8 · READING THE SPECTRUM",
+  "b": "The spectrum repeats and mirrors for real frames; <b>centring</b> puts DC in the middle.",
+  "f": [
+   [
+    "3061",
+    "the DFT"
+   ]
+  ],
+  "n": [
+   [
+    "3063",
+    "magnitude and phase"
+   ]
+  ]
+ },
+ "3063": {
+  "s": "STORY 3 · STEP 9 · WHAT CARRIES THE PICTURE",
+  "b": "<b>Phase</b> carries edges and positions; magnitude carries how much of each frequency.",
+  "f": [
+   [
+    "3062",
+    "the spectrum"
+   ]
+  ],
+  "n": [
+   [
+    "3064",
+    "using the spectrum to filter"
+   ],
+   [
+    "3141",
+    "lines have frequency-plane fingerprints"
+   ]
+  ]
+ },
+ "3064": {
+  "s": "STORY 3 · STEP 10 · FILTER BY MULTIPLYING",
+  "b": "Convolution becomes <b>multiplication</b>, as long as you <b>zero-pad</b> to stop the wraparound.",
+  "f": [
+   [
+    "3061",
+    "the DFT"
+   ],
+   [
+    "3051",
+    "convolution"
+   ]
+  ],
+  "n": [
+   [
+    "3065",
+    "another use of the spectrum"
+   ],
+   [
+    "3103",
+    "restoration filters"
+   ]
+  ]
+ },
+ "3065": {
+  "s": "STORY 3 · STEP 11 · SCANNER VIEW",
+  "b": "The sum along parallel rays is one <b>slice</b> of the 2D spectrum; many angles rebuild the frame.",
+  "f": [
+   [
+    "3061",
+    "the DFT"
+   ]
+  ],
+  "n": [
+   [
+    "3066",
+    "a small calculation"
+   ],
+   [
+    "3141",
+    "Hough also votes over angles"
+   ]
+  ]
+ },
+ "3066": {
+  "s": "STORY 3 · STEP 12 · CHECK BY HAND",
+  "b": "A $2\\times2$ patch worked through: DC and three contrasts.",
+  "f": [
+   [
+    "3061",
+    "the DFT"
+   ]
+  ],
+  "n": [
+   [
+    "3071",
+    "next: what happens when the frame is only sampled"
+   ]
+  ]
  }
 });
