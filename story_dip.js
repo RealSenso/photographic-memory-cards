@@ -814,5 +814,125 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: what happens when the frame is only sampled"
    ]
   ]
+ },
+ "3071": {
+  "s": "STORY 3 · STEP 13 · THE CAMERA SAMPLES",
+  "b": "Recording a frame every $\\Delta$ <b>pastes copies of the spectrum</b> at every multiple of the sampling frequency.",
+  "f": [
+   [
+    "3061",
+    "the spectrum"
+   ],
+   [
+    "40103",
+    "the pixel grid"
+   ]
+  ],
+  "n": [
+   [
+    "3072",
+    "when the copies stay apart"
+   ]
+  ]
+ },
+ "3072": {
+  "s": "STORY 3 · STEP 14 · HOW FINE IS FINE ENOUGH",
+  "b": "If the copies do not overlap ($f_s\\ge2f_{\\max}$) the frame can be rebuilt exactly with a <b>sinc</b>.",
+  "f": [
+   [
+    "3071",
+    "copies"
+   ]
+  ],
+  "n": [
+   [
+    "3073",
+    "when they overlap"
+   ]
+  ]
+ },
+ "3073": {
+  "s": "STORY 3 · STEP 15 · WHEN THEY OVERLAP",
+  "b": "Too few samples: a fast wave <b>masquerades as a slow one</b> (the crawling wheel, moiré).",
+  "f": [
+   [
+    "3072",
+    "the limit"
+   ]
+  ],
+  "n": [
+   [
+    "3074",
+    "shrinking the frame safely"
+   ],
+   [
+    "3076",
+    "a number"
+   ]
+  ]
+ },
+ "3074": {
+  "s": "STORY 3 · STEP 16 · SHRINK SAFELY",
+  "b": "<b>Decimation</b> = low-pass, then keep every $M$-th sample.",
+  "f": [
+   [
+    "3073",
+    "aliasing"
+   ],
+   [
+    "3054",
+    "the blur"
+   ]
+  ],
+  "n": [
+   [
+    "3075",
+    "enlarging"
+   ],
+   [
+    "3161",
+    "scale pyramids"
+   ]
+  ]
+ },
+ "3075": {
+  "s": "STORY 3 · STEP 17 · ENLARGE SAFELY",
+  "b": "<b>Interpolation</b> = insert zeros, then low-pass with gain $L$.",
+  "f": [
+   [
+    "3074",
+    "shrinking"
+   ],
+   [
+    "40105",
+    "blending when warping"
+   ]
+  ],
+  "n": [
+   [
+    "3076",
+    "a number"
+   ],
+   [
+    "3093",
+    "two-channel filter banks use both"
+   ]
+  ]
+ },
+ "3076": {
+  "s": "STORY 3 · STEP 18 · CHECK BY HAND",
+  "b": "90 Hz at 100 Hz folds to 10 Hz: the <b>nearest multiple</b> of $f_s$ sets the alias.",
+  "f": [
+   [
+    "3073",
+    "aliasing"
+   ]
+  ],
+  "n": [
+   [
+    "3081",
+    "next: compress the frame"
+   ]
+  ]
  }
 });
