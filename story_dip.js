@@ -1162,5 +1162,117 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: undo a blur"
    ]
   ]
+ },
+ "3101": {
+  "s": "STORY 5 · STEP 1 · THE DAMAGE",
+  "b": "The recorded frame is the true scene <b>blurred</b> and then <b>noisy</b>: $g=h\\ast f+\\eta$. Restoration needs a model of both.",
+  "f": [
+   [
+    "3051",
+    "convolution is the blur"
+   ],
+   [
+    "3064",
+    "product in frequency"
+   ]
+  ],
+  "n": [
+   [
+    "3102",
+    "the naive fix"
+   ],
+   [
+    "3105",
+    "what $H$ looks like"
+   ]
+  ]
+ },
+ "3102": {
+  "s": "STORY 5 · STEP 2 · THE NAIVE FIX",
+  "b": "Dividing by $H$ undoes the blur but turns the noise into snow where $H\\to0$.",
+  "f": [
+   [
+    "3101",
+    "the model"
+   ]
+  ],
+  "n": [
+   [
+    "3103",
+    "a safer fix"
+   ]
+  ]
+ },
+ "3103": {
+  "s": "STORY 5 · STEP 3 · THE SAFE FIX",
+  "b": "The <b>Wiener filter</b> acts like $1/H$ where the signal is strong and backs off where the noise would win.",
+  "f": [
+   [
+    "3102",
+    "inverse filtering"
+   ]
+  ],
+  "n": [
+   [
+    "3104",
+    "without power spectra"
+   ],
+   [
+    "3106",
+    "by numbers"
+   ]
+  ]
+ },
+ "3104": {
+  "s": "STORY 5 · STEP 4 · THE SMOOTH FIX",
+  "b": "<b>CLS</b> asks for the smoothest estimate that explains the frame to within the noise.",
+  "f": [
+   [
+    "3103",
+    "Wiener"
+   ]
+  ],
+  "n": [
+   [
+    "3105",
+    "what H is"
+   ]
+  ]
+ },
+ "3105": {
+  "s": "STORY 5 · STEP 5 · KNOWING H",
+  "b": "Motion blur gives a sinc with <b>zeros</b>: some information is lost forever.",
+  "f": [
+   [
+    "3101",
+    "the model"
+   ]
+  ],
+  "n": [
+   [
+    "3106",
+    "worked example"
+   ],
+   [
+    "3111",
+    "non-linear alternatives"
+   ]
+  ]
+ },
+ "3106": {
+  "s": "STORY 5 · STEP 6 · CHECK BY HAND",
+  "b": "At a weak frequency Wiener's gain is $1.67$ against the inverse's $10$.",
+  "f": [
+   [
+    "3103",
+    "Wiener"
+   ]
+  ],
+  "n": [
+   [
+    "3111",
+    "next: noise that blurring cannot fix"
+   ]
+  ]
  }
 });
