@@ -1858,5 +1858,129 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: landmarks at every scale"
    ]
   ]
+ },
+ "3161": {
+  "s": "STORY 7 · STEP 1 · EVERY SIZE AT ONCE",
+  "b": "Harris is not scale invariant, so SIFT looks for features in a <b>stack of blurs</b> and their differences (DoG).",
+  "f": [
+   [
+    "3155",
+    "scale is a problem"
+   ],
+   [
+    "3134",
+    "DoG ≈ LoG"
+   ],
+   [
+    "3074",
+    "downsample each octave"
+   ]
+  ],
+  "n": [
+   [
+    "3162",
+    "pick the keypoints"
+   ]
+  ]
+ },
+ "3162": {
+  "s": "STORY 7 · STEP 2 · PICK THE SPOTS",
+  "b": "Keep the extremum among 26 neighbours, refine it, and reject faint and <b>edge-like</b> points.",
+  "f": [
+   [
+    "3161",
+    "the DoG stack"
+   ],
+   [
+    "3152",
+    "edges have one large curvature"
+   ]
+  ],
+  "n": [
+   [
+    "3163",
+    "give each spot an orientation"
+   ]
+  ]
+ },
+ "3163": {
+  "s": "STORY 7 · STEP 3 · A SENSE OF UP",
+  "b": "The dominant gradient direction becomes the keypoint's orientation: <b>rotation invariance</b>.",
+  "f": [
+   [
+    "3162",
+    "keypoints"
+   ],
+   [
+    "3131",
+    "gradient direction"
+   ]
+  ],
+  "n": [
+   [
+    "3164",
+    "describe the patch"
+   ]
+  ]
+ },
+ "3164": {
+  "s": "STORY 7 · STEP 4 · A FINGERPRINT",
+  "b": "A rotated patch becomes <b>128 numbers</b> (4×4 cells × 8 orientation bins), normalised for lighting.",
+  "f": [
+   [
+    "3163",
+    "orientation"
+   ]
+  ],
+  "n": [
+   [
+    "3165",
+    "match them"
+   ],
+   [
+    "3171",
+    "bag of words uses these"
+   ]
+  ]
+ },
+ "3165": {
+  "s": "STORY 7 · STEP 5 · MATCH",
+  "b": "Match by nearest neighbour, accept with the <b>ratio test</b>, verify with RANSAC.",
+  "f": [
+   [
+    "3164",
+    "descriptors"
+   ],
+   [
+    "40106",
+    "homography from matches"
+   ]
+  ],
+  "n": [
+   [
+    "3166",
+    "numbers"
+   ],
+   [
+    "3171",
+    "matching without geometry"
+   ]
+  ]
+ },
+ "3166": {
+  "s": "STORY 7 · STEP 6 · CHECK BY HAND",
+  "b": "$0.6$ passes, $0.9$ fails; remember $128$, $12.1$, $0.03$.",
+  "f": [
+   [
+    "3165",
+    "ratio test"
+   ]
+  ],
+  "n": [
+   [
+    "3171",
+    "next: the whole frame as a bag of visual words"
+   ]
+  ]
  }
 });
