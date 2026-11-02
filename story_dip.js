@@ -1746,5 +1746,117 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: corners as landmarks"
    ]
   ]
+ },
+ "3151": {
+  "s": "STORY 6 · STEP 13 · LANDMARKS",
+  "b": "Slide a small window: only at a <b>corner</b> does it change in every direction, so only corners can be pinned down.",
+  "f": [
+   [
+    "3131",
+    "edges"
+   ],
+   [
+    "3146",
+    "lines"
+   ]
+  ],
+  "n": [
+   [
+    "3152",
+    "the shape of the change"
+   ]
+  ]
+ },
+ "3152": {
+  "s": "STORY 6 · STEP 14 · THE SHAPE OF CHANGE",
+  "b": "The window-shift energy is an <b>ellipse</b> set by the eigenvalues of the structure tensor $M$.",
+  "f": [
+   [
+    "3151",
+    "window shift"
+   ],
+   [
+    "3084",
+    "eigenvectors"
+   ]
+  ],
+  "n": [
+   [
+    "3153",
+    "a score"
+   ]
+  ]
+ },
+ "3153": {
+  "s": "STORY 6 · STEP 15 · ONE SCORE",
+  "b": "<b>$R=\\det M-k\\,\\mathrm{tr}^2M$</b> separates corner, edge, flat without eigenvalues.",
+  "f": [
+   [
+    "3152",
+    "the ellipse"
+   ]
+  ],
+  "n": [
+   [
+    "3154",
+    "the whole pipeline"
+   ]
+  ]
+ },
+ "3154": {
+  "s": "STORY 6 · STEP 16 · THE PIPELINE",
+  "b": "Gradients, products, Gaussian smoothing, response, local maxima.",
+  "f": [
+   [
+    "3153",
+    "R"
+   ],
+   [
+    "3054",
+    "Gaussian smoothing"
+   ]
+  ],
+  "n": [
+   [
+    "3155",
+    "what it survives"
+   ]
+  ]
+ },
+ "3155": {
+  "s": "STORY 6 · STEP 17 · WHAT IT SURVIVES",
+  "b": "Rotation and brightness offset: yes. <b>Scale</b>: no, so we need scale space.",
+  "f": [
+   [
+    "3154",
+    "the detector"
+   ]
+  ],
+  "n": [
+   [
+    "3156",
+    "numbers"
+   ],
+   [
+    "3161",
+    "SIFT adds scale"
+   ]
+  ]
+ },
+ "3156": {
+  "s": "STORY 6 · STEP 18 · CHECK BY HAND",
+  "b": "$R=80$ (corner), $-5$ (edge), $0$ (flat).",
+  "f": [
+   [
+    "3153",
+    "R"
+   ]
+  ],
+  "n": [
+   [
+    "3161",
+    "next: landmarks at every scale"
+   ]
+  ]
  }
 });
