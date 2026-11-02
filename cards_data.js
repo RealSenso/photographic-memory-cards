@@ -3910,15 +3910,15 @@ window.MASTER_CARDS_DATA = [
       "For $n = 3$: $\\mathbb{P}(A_1 \\cup A_2 \\cup A_3) = \\sum \\mathbb{P}(A_i) - \\sum \\mathbb{P}(A_i \\cap A_j) + \\mathbb{P}(A_1 \\cap A_2 \\cap A_3)$."
     ],
     "math": "$$\\mathbb{P}\\left(\\bigcup_{i=1}^n A_i\\right) = \\sum_{i} \\mathbb{P}(A_i) - \\sum_{i<j} \\mathbb{P}(A_i \\cap A_j) + \\dots + (-1)^{n-1} \\mathbb{P}\\left(\\bigcap_{i=1}^n A_i\\right)$$",
-    "personalConnection": "<strong>Counting each late morning once.</strong> You list rain-lates, breakdown-lates, strike-lates. Mornings with two causes got counted twice, so you subtract them; the rare triple-cause mornings then got removed once too often, so you add them back.",
+    "personalConnection": "<strong>Counting each late morning once.</strong> Mornings with two causes were counted twice, so subtract them; the rare triple-cause mornings were then removed once too often, so add them back.",
     "examTrap": "Remember that the sign of the full intersection $\\mathbb{P}(\\bigcap_{i=1}^n A_i)$ is $(-1)^{n-1}$. For $n=2$, it's negative $(-)$; for $n=3$, it's positive $(+)$; for $n=4$, it's negative $(-)$.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Inclusion\u2013exclusion.</b> For events $A_1,\\ldots,A_n$, $\\mathbb P\\!\\left(\\bigcup_{i=1}^nA_i\\right)=\\sum_{k=1}^n(-1)^{k-1}S_k$, where $S_k=\\sum_{i_1<\\cdots<i_k}\\mathbb P(A_{i_1}\\cap\\cdots\\cap A_{i_k})$. Partial sums alternate between upper and lower bounds (Bonferroni) (Ross 2.4; Grimmett 1.3).",
+    "statement": "<b>Inclusion\u2013exclusion.</b> For events $A_1,\\ldots,A_n$, $\\mathbb P(\\bigcup_iA_i)=\\sum_{k=1}^n(-1)^{k-1}S_k$, where $S_k=\\sum_{i_1<\\cdots<i_k}\\mathbb P(A_{i_1}\\cap\\cdots\\cap A_{i_k})$. Partial sums alternate as upper and lower (Bonferroni) bounds (Ross 2.4; Grimmett 1.3).",
     "hint": "How do you correct the sum of single chances so every morning is counted exactly once?",
     "breakdown": [
-      "<strong>$\\sum\\mathbb P(A_i)$ = start by adding every event.</strong> Mornings in two events are now counted twice.",
-      "<strong>$-\\sum_{i<j}\\mathbb P(A_i\\cap A_j)$ = subtract the pairs.</strong> Mornings in exactly two events are fixed, but ones in three are now counted zero times.",
-      "<strong>$(-1)^{n-1}\\mathbb P(\\bigcap A_i)$ = the last correction alternates.</strong> Add back the triples, subtract the quadruples, and so on, until every morning is counted once."
+      "<strong>$\\sum\\mathbb P(A_i)$ = add every event.</strong> Mornings in two events are counted twice.",
+      "<strong>$-\\sum_{i<j}\\mathbb P(A_i\\cap A_j)$ = subtract the pairs.</strong> Now mornings in three events are counted zero times.",
+      "<strong>$(-1)^{n-1}\\mathbb P(\\bigcap A_i)$ = alternate to the end.</strong> Add the triples back, subtract the quadruples, until each morning counts once."
     ],
     "textbookImg": null,
     "textbookRef": null

@@ -1502,5 +1502,129 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: find the edges in the frame"
    ]
   ]
+ },
+ "3131": {
+  "s": "STORY 6 · STEP 1 · WHERE THINGS CHANGE",
+  "b": "An edge is where brightness changes fast: the <b>gradient</b> gives its strength $M$ and its direction $\\theta$.",
+  "f": [
+   [
+    "3055",
+    "derivatives sharpen"
+   ],
+   [
+    "3034",
+    "mask outlines"
+   ]
+  ],
+  "n": [
+   [
+    "3132",
+    "a practical kernel"
+   ]
+  ]
+ },
+ "3132": {
+  "s": "STORY 6 · STEP 2 · A STEADY DERIVATIVE",
+  "b": "<b>Sobel</b> = smoothing times a difference, so noise is averaged along the edge.",
+  "f": [
+   [
+    "3131",
+    "the gradient"
+   ],
+   [
+    "3053",
+    "separable kernels"
+   ]
+  ],
+  "n": [
+   [
+    "3133",
+    "second derivative"
+   ],
+   [
+    "3135",
+    "Canny's gradient stage"
+   ]
+  ]
+ },
+ "3133": {
+  "s": "STORY 6 · STEP 3 · ZERO-CROSSINGS",
+  "b": "Blur then take the Laplacian: edges are the <b>zero-crossings</b>; $\\sigma$ picks the scale.",
+  "f": [
+   [
+    "3132",
+    "first derivatives"
+   ],
+   [
+    "3054",
+    "Gaussian"
+   ]
+  ],
+  "n": [
+   [
+    "3134",
+    "a cheaper form"
+   ]
+  ]
+ },
+ "3134": {
+  "s": "STORY 6 · STEP 4 · TWO BLURS",
+  "b": "<b>DoG</b> $\\approx$ LoG: subtract two Gaussian blurs.",
+  "f": [
+   [
+    "3133",
+    "LoG"
+   ]
+  ],
+  "n": [
+   [
+    "3135",
+    "Canny"
+   ],
+   [
+    "3161",
+    "SIFT's scale space"
+   ]
+  ]
+ },
+ "3135": {
+  "s": "STORY 6 · STEP 5 · THE FULL DETECTOR",
+  "b": "<b>Canny</b>: blur, gradient, thin by non-maximum suppression, link by hysteresis.",
+  "f": [
+   [
+    "3132",
+    "gradient"
+   ],
+   [
+    "3134",
+    "scale"
+   ]
+  ],
+  "n": [
+   [
+    "3136",
+    "hysteresis by hand"
+   ],
+   [
+    "3141",
+    "lines from edge points"
+   ]
+  ]
+ },
+ "3136": {
+  "s": "STORY 6 · STEP 6 · CHECK BY HAND",
+  "b": "Hysteresis keeps $45,95,40$ and drops the lone $60$.",
+  "f": [
+   [
+    "3135",
+    "Canny"
+   ]
+  ],
+  "n": [
+   [
+    "3141",
+    "next: turn edge points into lines"
+   ]
+  ]
  }
 });
