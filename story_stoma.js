@@ -470,5 +470,253 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "the law of large numbers fails for Cauchy"
    ]
   ]
+ },
+ "30501": {
+  "s": "STORY 5 · STEP 1 · THE AVERAGE",
+  "b": "The <b>mean</b> weights each value by its density, and <b>means always add</b>, whatever the dependence between the pieces.",
+  "f": [
+   [
+    "30303",
+    "the density"
+   ],
+   [
+    "30306",
+    "atoms and densities together"
+   ]
+  ],
+  "n": [
+   [
+    "30502",
+    "reading the mean as an area"
+   ],
+   [
+    "30503",
+    "how spreads add"
+   ]
+  ]
+ },
+ "30502": {
+  "s": "STORY 5 · STEP 2 · THE MEAN AS AN AREA",
+  "b": "The mean of a non-negative quantity is the <b>area under its survival curve</b>.",
+  "f": [
+   [
+    "30501",
+    "expectation"
+   ]
+  ],
+  "n": [
+   [
+    "30601",
+    "Markov's inequality"
+   ]
+  ]
+ },
+ "30503": {
+  "s": "STORY 5 · STEP 3 · SPREAD",
+  "b": "Variances add only up to <b>cross terms</b>: covariance measures how legs move together.",
+  "f": [
+   [
+    "30501",
+    "linearity of means"
+   ]
+  ],
+  "n": [
+   [
+    "30506",
+    "zero covariance is not independence"
+   ],
+   [
+    "30602",
+    "Chebyshev"
+   ],
+   [
+    "31101",
+    "covariance matrices"
+   ]
+  ]
+ },
+ "30504": {
+  "s": "STORY 5 · STEP 4 · ONE FUNCTION FOR ALL MOMENTS",
+  "b": "The <b>MGF</b> stores every moment and turns independent sums into products.",
+  "f": [
+   [
+    "30501",
+    "moments from expectations"
+   ]
+  ],
+  "n": [
+   [
+    "30603",
+    "Chernoff bound"
+   ],
+   [
+    "31404",
+    "MGF of a random sum"
+   ]
+  ]
+ },
+ "30505": {
+  "s": "STORY 5 · STEP 5 · COUNTS",
+  "b": "For whole-number counts, the <b>PGF</b> is the same idea: a polynomial whose coefficients are the chances.",
+  "f": [
+   [
+    "30302",
+    "the PMF"
+   ],
+   [
+    "30504",
+    "the MGF idea"
+   ]
+  ],
+  "n": [
+   [
+    "31404",
+    "composition for random sums"
+   ],
+   [
+    "31405",
+    "branching processes"
+   ]
+  ]
+ },
+ "30506": {
+  "s": "STORY 5 · STEP 6 · THE TRAP",
+  "b": "<b>Uncorrelated does not mean independent</b>: Y = X² is fixed by X yet has zero covariance with it.",
+  "f": [
+   [
+    "30503",
+    "covariance"
+   ]
+  ],
+  "n": [
+   [
+    "31303",
+    "where it does hold: jointly Gaussian"
+   ]
+  ]
+ },
+ "30601": {
+  "s": "STORY 6 · STEP 1 · THE CEILING FROM THE MEAN",
+  "b": "Knowing only the average, <b>Markov</b> caps the chance of an extreme: it cannot be common.",
+  "f": [
+   [
+    "30502",
+    "the mean as an area"
+   ]
+  ],
+  "n": [
+   [
+    "30602",
+    "adding the spread"
+   ]
+  ]
+ },
+ "30602": {
+  "s": "STORY 6 · STEP 2 · ADD THE SPREAD",
+  "b": "With the variance too, <b>Chebyshev</b> caps the chance of being far from the average.",
+  "f": [
+   [
+    "30601",
+    "Markov"
+   ],
+   [
+    "30503",
+    "variance"
+   ]
+  ],
+  "n": [
+   [
+    "30603",
+    "using the whole MGF"
+   ],
+   [
+    "31701",
+    "the weak law"
+   ]
+  ]
+ },
+ "30603": {
+  "s": "STORY 6 · STEP 3 · TIGHTEN WITH THE MGF",
+  "b": "Applying Markov to the exponential tilt and picking the best t gives the exponentially small <b>Chernoff bound</b>.",
+  "f": [
+   [
+    "30504",
+    "the MGF"
+   ],
+   [
+    "30601",
+    "Markov"
+   ]
+  ],
+  "n": [
+   [
+    "30605",
+    "bounded legs"
+   ],
+   [
+    "30606",
+    "against Chebyshev"
+   ]
+  ]
+ },
+ "30604": {
+  "s": "STORY 6 · STEP 4 · CURVES AND AVERAGES",
+  "b": "<b>Jensen</b>: averaging does not commute with a curve, and the direction is set by convexity.",
+  "f": [
+   [
+    "30501",
+    "expectation of g(X)"
+   ]
+  ],
+  "n": [
+   [
+    "31205",
+    "MMSE beats LLSE"
+   ],
+   [
+    "32604",
+    "submartingales"
+   ]
+  ]
+ },
+ "30605": {
+  "s": "STORY 6 · STEP 5 · PRODUCTS AND SUMS",
+  "b": "<b>Cauchy–Schwarz</b> bounds a product's average; <b>Hoeffding</b> bounds a sum of bounded independent legs exponentially.",
+  "f": [
+   [
+    "30603",
+    "Chernoff"
+   ]
+  ],
+  "n": [
+   [
+    "32606",
+    "Azuma-Hoeffding"
+   ],
+   [
+    "31102",
+    "orthogonality in estimation"
+   ]
+  ]
+ },
+ "30606": {
+  "s": "STORY 6 · STEP 6 · THE COMPARISON",
+  "b": "On coin flips, the <b>exponential bound beats Chebyshev</b> once many days are in.",
+  "f": [
+   [
+    "30602",
+    "Chebyshev"
+   ],
+   [
+    "30603",
+    "Chernoff"
+   ]
+  ],
+  "n": [
+   [
+    "31803",
+    "the CLT as the exact picture"
+   ]
+  ]
  }
 });

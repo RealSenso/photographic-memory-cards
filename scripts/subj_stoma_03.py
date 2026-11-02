@@ -66,7 +66,7 @@ def d6(c):
         L(24, 112, 24, 60, 1.1), C(24, 112, 2.4, "#ffffff"), C(24, 60, 2.4),
         fn(lambda x: 60 - 32 * (1 - math.exp(-0.022 * (x - 24))), 24, 226, 50, 1.1),
         N(30, 80, "jump α = bus already there (wait 0)", 7, "start"), N(110, 54, "(1−α)F_cont: bus still to come", 7, "start"),
-        N(120, 138, "F = α F_disc + (1−α) F_cont: point mass plus density", 7))
+        N(120, 138, "F = α·F(step) + (1−α)·F(smooth): point mass plus density", 7))
 
 CARDS = {
 30301: dict(d=d1, kind="DEFINITION",

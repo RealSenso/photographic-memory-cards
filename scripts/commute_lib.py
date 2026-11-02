@@ -41,6 +41,15 @@ def area(fx, a, b, base, n=30, fill="#d9dee7"):
 def label(x, y, s, sz=7.5, a="middle"):
     return N(round(x, 1), round(y, 1), s, sz, a)
 
+_SUB = dict(zip("0123456789aehijklmnoprstuvx", "₀₁₂₃₄₅₆₇₈₉ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ"))
+
+def _unscore(svg_text):
+    """no underscores in drawing text: use a real Unicode subscript if one exists, else just drop the underscore"""
+    def fix(m):
+        s = m.group(0)
+        return re.sub(r"_\(?([A-Za-z0-9])\)?", lambda k: _SUB.get(k.group(1), k.group(1)), s)
+    return re.sub(r">[^<]*<", fix, svg_text)
+
 def build(subject_cards):
     """CARDS = {id: dict(d=draw_fn, kind=..., stmt=..., hint=..., bd=[3 bullets], conn=..., cap=...)} -> FIX"""
     fix = {}
@@ -48,7 +57,7 @@ def build(subject_cards):
         assert len(v["bd"]) == 3, cid
         assert "_" not in re.sub(r"\$[^$]*\$|\\[a-z]+", "", "".join(re.findall(r">[^<]*<", v["d"](cid)))) or True
         fix[cid] = {"stmtKind": v["kind"], "statement": v["stmt"], "hint": v["hint"], "breakdown": v["bd"],
-                    "personalConnection": v["conn"], "drawingSvg": v["d"](cid), "drawingCaption": v["cap"],
+                    "personalConnection": v["conn"], "drawingSvg": _unscore(v["d"](cid)), "drawingCaption": v["cap"],
                     "textbookImg": None, "textbookRef": None}
     return fix
 import re
