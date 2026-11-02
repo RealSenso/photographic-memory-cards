@@ -970,5 +970,245 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "competing exponential clocks in CTMCs"
    ]
   ]
+ },
+ "30901": {
+  "s": "STORY 9 · STEP 1 · ADDING LEGS",
+  "b": "The density of a sum of independent legs is a <b>convolution</b>: add over every split of the total.",
+  "f": [
+   [
+    "30705",
+    "independence as factorising"
+   ],
+   [
+    "30703",
+    "marginals"
+   ]
+  ],
+  "n": [
+   [
+    "30902",
+    "changing coordinates"
+   ],
+   [
+    "30905",
+    "families closed under sums"
+   ]
+  ]
+ },
+ "30902": {
+  "s": "STORY 9 · STEP 2 · NEW COORDINATES",
+  "b": "Changing coordinates multiplies the density by the <b>area-stretch factor</b> |det|.",
+  "f": [
+   [
+    "30402",
+    "the one-dimensional stretch"
+   ],
+   [
+    "30702",
+    "joint density"
+   ]
+  ],
+  "n": [
+   [
+    "30903",
+    "ratio and polar"
+   ],
+   [
+    "31301",
+    "the Gaussian density"
+   ]
+  ]
+ },
+ "30903": {
+  "s": "STORY 9 · STEP 3 · RATIOS AND POLAR",
+  "b": "A ratio keeps only the <b>direction</b> of a point; polar coordinates add the factor r.",
+  "f": [
+   [
+    "30902",
+    "the Jacobian"
+   ]
+  ],
+  "n": [
+   [
+    "30904",
+    "Box–Muller"
+   ]
+  ]
+ },
+ "30904": {
+  "s": "STORY 9 · STEP 4 · SIMULATING A NORMAL",
+  "b": "A random radius and a uniform angle through the polar Jacobian give <b>exact normal samples</b>.",
+  "f": [
+   [
+    "30903",
+    "polar coordinates"
+   ],
+   [
+    "30404",
+    "inverse-CDF sampling"
+   ]
+  ],
+  "n": [
+   [
+    "32502",
+    "Brownian increments are normal"
+   ]
+  ]
+ },
+ "30905": {
+  "s": "STORY 9 · STEP 5 · FAMILIES THAT STAY",
+  "b": "<b>Normal, Poisson and Gamma</b> stay in their family under independent sums: only the parameters add.",
+  "f": [
+   [
+    "30901",
+    "convolution"
+   ],
+   [
+    "30504",
+    "MGF products"
+   ]
+  ],
+  "n": [
+   [
+    "31302",
+    "linear combinations of Gaussians"
+   ],
+   [
+    "32404",
+    "merging Poisson streams"
+   ]
+  ]
+ },
+ "30906": {
+  "s": "STORY 9 · STEP 6 · THE TENT",
+  "b": "Two flat legs add into a <b>triangle</b>: a first look at how sums get bell-shaped.",
+  "f": [
+   [
+    "30901",
+    "convolution"
+   ]
+  ],
+  "n": [
+   [
+    "31803",
+    "the central limit theorem"
+   ]
+  ]
+ },
+ "31001": {
+  "s": "STORY 10 · STEP 1 · NO CALENDAR",
+  "b": "<b>Exchangeable</b> days have a joint law that ignores their order: weaker than independence, but still a symmetry.",
+  "f": [
+   [
+    "30206",
+    "independence is not the only structure"
+   ],
+   [
+    "30705",
+    "i.i.d. as the special case"
+   ]
+  ],
+  "n": [
+   [
+    "31002",
+    "what the symmetry forces on moments"
+   ]
+  ]
+ },
+ "31002": {
+  "s": "STORY 10 · STEP 2 · EQUAL MOMENTS",
+  "b": "Reshuffling forces <b>one variance and one correlation</b> for all pairs.",
+  "f": [
+   [
+    "31001",
+    "exchangeability"
+   ],
+   [
+    "30503",
+    "covariance"
+   ]
+  ],
+  "n": [
+   [
+    "31003",
+    "a limit on negative links"
+   ]
+  ]
+ },
+ "31003": {
+  "s": "STORY 10 · STEP 3 · A LIMIT ON NEGATIVE LINKS",
+  "b": "A non-negative variance of the total gives <b>ρ ≥ −1/(n−1)</b>.",
+  "f": [
+   [
+    "31002",
+    "equal correlation"
+   ],
+   [
+    "30503",
+    "variance of a sum"
+   ]
+  ],
+  "n": [
+   [
+    "31004",
+    "taking n to infinity"
+   ]
+  ]
+ },
+ "31004": {
+  "s": "STORY 10 · STEP 4 · FOREVER",
+  "b": "Letting n grow forces <b>ρ ≥ 0</b>: an infinite exchangeable record has no negative links.",
+  "f": [
+   [
+    "31003",
+    "the finite bound"
+   ]
+  ],
+  "n": [
+   [
+    "31005",
+    "the hidden common cause"
+   ]
+  ]
+ },
+ "31005": {
+  "s": "STORY 10 · STEP 5 · THE HIDDEN CAUSE",
+  "b": "<b>de Finetti</b>: an infinite exchangeable record is i.i.d. given a hidden random parameter.",
+  "f": [
+   [
+    "31004",
+    "non-negative links"
+   ],
+   [
+    "30203",
+    "mixing over cases"
+   ]
+  ],
+  "n": [
+   [
+    "31006",
+    "a concrete example"
+   ],
+   [
+    "31701",
+    "laws of large numbers"
+   ]
+  ]
+ },
+ "31006": {
+  "s": "STORY 10 · STEP 6 · HABIT",
+  "b": "<b>Pólya's urn</b>: reinforcement makes the draws exchangeable but dependent, with a Beta-distributed hidden share.",
+  "f": [
+   [
+    "31005",
+    "de Finetti"
+   ]
+  ],
+  "n": [
+   [
+    "31901",
+    "chains with memory"
+   ]
+  ]
  }
 });
