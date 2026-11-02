@@ -454,5 +454,121 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: reshape the grey levels with the CDF"
    ]
   ]
+ },
+ "3041": {
+  "s": "STORY 2 · STEP 13 · FLATTEN THE HISTOGRAM",
+  "b": "A dark frame crowds a few levels. <b>Equalization</b> uses the frame's own running total as the curve, spreading the levels.",
+  "f": [
+   [
+    "3022",
+    "a point operation"
+   ],
+   [
+    "3021",
+    "the histogram"
+   ],
+   [
+    "3015",
+    "work on intensity only"
+   ]
+  ],
+  "n": [
+   [
+    "3042",
+    "why it flattens"
+   ],
+   [
+    "3043",
+    "the real discrete recipe"
+   ]
+  ]
+ },
+ "3042": {
+  "s": "STORY 2 · STEP 14 · WHY IT WORKS",
+  "b": "The curve's slope is the crowding, so crowding cancels and the output density is flat: a <b>probability integral transform</b>.",
+  "f": [
+   [
+    "3041",
+    "the CDF curve"
+   ]
+  ],
+  "n": [
+   [
+    "3043",
+    "the discrete case"
+   ]
+  ]
+ },
+ "3043": {
+  "s": "STORY 2 · STEP 15 · THE RECIPE",
+  "b": "Cumulate, multiply by $L-1$, round: a <b>lookup table</b> that may merge levels.",
+  "f": [
+   [
+    "3042",
+    "the idea"
+   ]
+  ],
+  "n": [
+   [
+    "3044",
+    "aim at a chosen histogram"
+   ],
+   [
+    "3046",
+    "numbers"
+   ]
+  ]
+ },
+ "3044": {
+  "s": "STORY 2 · STEP 16 · AIM THE HISTOGRAM",
+  "b": "<b>Specification</b> equalizes both the input and a target, then joins them: $z=G^{-1}(T(r))$.",
+  "f": [
+   [
+    "3043",
+    "T from equalization"
+   ]
+  ],
+  "n": [
+   [
+    "3045",
+    "do it locally"
+   ]
+  ]
+ },
+ "3045": {
+  "s": "STORY 2 · STEP 17 · DO IT LOCALLY",
+  "b": "<b>CLAHE</b> equalizes tiles with a clipped histogram so local contrast improves without amplifying noise.",
+  "f": [
+   [
+    "3044",
+    "matching"
+   ],
+   [
+    "3043",
+    "equalization"
+   ]
+  ],
+  "n": [
+   [
+    "3046",
+    "numbers"
+   ]
+  ]
+ },
+ "3046": {
+  "s": "STORY 2 · STEP 18 · CHECK BY HAND",
+  "b": "A 3-bit frame worked through: eight levels become five.",
+  "f": [
+   [
+    "3043",
+    "the recipe"
+   ]
+  ],
+  "n": [
+   [
+    "3051",
+    "next: look at neighbouring pixels, not one pixel"
+   ]
+  ]
  }
 });
