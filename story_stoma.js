@@ -718,5 +718,257 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "the CLT as the exact picture"
    ]
   ]
+ },
+ "30701": {
+  "s": "STORY 7 · STEP 1 · TWO NUMBERS AT ONCE",
+  "b": "Wait and ride together live on a plane; the <b>joint CDF</b> gives the chance of a lower-left quadrant, and four corners give a rectangle.",
+  "f": [
+   [
+    "30301",
+    "the one-variable CDF"
+   ]
+  ],
+  "n": [
+   [
+    "30702",
+    "the joint density"
+   ]
+  ]
+ },
+ "30702": {
+  "s": "STORY 7 · STEP 2 · THE HILL",
+  "b": "Chances over the plane are <b>volumes under a density surface</b>.",
+  "f": [
+   [
+    "30303",
+    "area under a density"
+   ],
+   [
+    "30701",
+    "the joint CDF"
+   ]
+  ],
+  "n": [
+   [
+    "30703",
+    "collapse a dimension"
+   ],
+   [
+    "30902",
+    "change of variables in 2D"
+   ]
+  ]
+ },
+ "30703": {
+  "s": "STORY 7 · STEP 3 · FORGET ONE",
+  "b": "Adding up all values of one variable gives the <b>marginal</b> of the other.",
+  "f": [
+   [
+    "30702",
+    "the joint density"
+   ],
+   [
+    "30203",
+    "total probability, in continuous form"
+   ]
+  ],
+  "n": [
+   [
+    "30704",
+    "fixing instead of forgetting"
+   ]
+  ]
+ },
+ "30704": {
+  "s": "STORY 7 · STEP 4 · GIVEN THE OTHER",
+  "b": "Slice the joint at a known value and renormalise: the <b>conditional density</b>.",
+  "f": [
+   [
+    "30703",
+    "the marginal as normaliser"
+   ],
+   [
+    "30201",
+    "conditional probability"
+   ]
+  ],
+  "n": [
+   [
+    "30705",
+    "when slicing changes nothing"
+   ],
+   [
+    "31201",
+    "conditional expectation"
+   ]
+  ]
+ },
+ "30705": {
+  "s": "STORY 7 · STEP 5 · NO LINK",
+  "b": "<b>Independent</b> means the joint factorises <b>and</b> the support is a product set.",
+  "f": [
+   [
+    "30704",
+    "slices all alike"
+   ],
+   [
+    "30205",
+    "independent events"
+   ]
+  ],
+  "n": [
+   [
+    "30706",
+    "a worked dependent case"
+   ],
+   [
+    "30901",
+    "sums of independent variables"
+   ]
+  ]
+ },
+ "30706": {
+  "s": "STORY 7 · STEP 6 · A WORKED CASE",
+  "b": "A flat density on a triangle shows marginals, slices and dependence in one picture.",
+  "f": [
+   [
+    "30703",
+    "marginals"
+   ],
+   [
+    "30705",
+    "support test"
+   ]
+  ],
+  "n": [
+   [
+    "31104",
+    "error covariance for estimates"
+   ]
+  ]
+ },
+ "30801": {
+  "s": "STORY 8 · STEP 1 · FIRST AND LAST",
+  "b": "With several competing arrivals, the <b>first</b> and <b>last</b> have simple laws from products of CDFs and survival functions.",
+  "f": [
+   [
+    "30301",
+    "the CDF"
+   ],
+   [
+    "30705",
+    "independent variables multiply"
+   ]
+  ],
+  "n": [
+   [
+    "30802",
+    "any rank k"
+   ],
+   [
+    "30806",
+    "minimum of exponentials"
+   ]
+  ]
+ },
+ "30802": {
+  "s": "STORY 8 · STEP 2 · ANY RANK",
+  "b": "The <b>k-th arrival</b> needs k−1 before, n−k after, and one right at x.",
+  "f": [
+   [
+    "30801",
+    "extremes"
+   ]
+  ],
+  "n": [
+   [
+    "30803",
+    "all ranks together"
+   ],
+   [
+    "30804",
+    "the uniform case"
+   ]
+  ]
+ },
+ "30803": {
+  "s": "STORY 8 · STEP 3 · SORTED TOGETHER",
+  "b": "The whole sorted list has density <b>n! times the product</b> on the ordered cone.",
+  "f": [
+   [
+    "30802",
+    "single ranks"
+   ]
+  ],
+  "n": [
+   [
+    "30804",
+    "Beta marginals"
+   ],
+   [
+    "32403",
+    "Poisson arrival times given the count"
+   ]
+  ]
+ },
+ "30804": {
+  "s": "STORY 8 · STEP 4 · THE UNIFORM CASE",
+  "b": "Uniform points give <b>Beta</b> ranks and equal-mean gaps.",
+  "f": [
+   [
+    "30803",
+    "joint order density"
+   ]
+  ],
+  "n": [
+   [
+    "32403",
+    "arrival times are uniform order statistics"
+   ]
+  ]
+ },
+ "30805": {
+  "s": "STORY 8 · STEP 5 · THE EXPONENTIAL CASE",
+  "b": "Exponential arrivals have <b>independent</b> gaps whose rates drop as buses run out.",
+  "f": [
+   [
+    "30304",
+    "memorylessness"
+   ],
+   [
+    "30803",
+    "joint order density"
+   ]
+  ],
+  "n": [
+   [
+    "30806",
+    "the first arrival"
+   ]
+  ]
+ },
+ "30806": {
+  "s": "STORY 8 · STEP 6 · THE RACE",
+  "b": "The minimum of independent exponentials is exponential with <b>summed rates</b>, and the winner is picked in proportion to rate.",
+  "f": [
+   [
+    "30801",
+    "extremes"
+   ],
+   [
+    "30805",
+    "exponential gaps"
+   ]
+  ],
+  "n": [
+   [
+    "32404",
+    "merging Poisson streams"
+   ],
+   [
+    "32701",
+    "competing exponential clocks in CTMCs"
+   ]
+  ]
  }
 });
