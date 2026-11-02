@@ -1274,5 +1274,121 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: noise that blurring cannot fix"
    ]
   ]
+ },
+ "3111": {
+  "s": "STORY 5 · STEP 7 · SPECKLE",
+  "b": "Isolated bright and dark pixels are not helped by blurring. The <b>median</b> never picks an outlier.",
+  "f": [
+   [
+    "3054",
+    "averaging smears it"
+   ],
+   [
+    "3106",
+    "linear restoration"
+   ]
+  ],
+  "n": [
+   [
+    "3112",
+    "what it does to edges"
+   ],
+   [
+    "3113",
+    "any noise density"
+   ]
+  ]
+ },
+ "3112": {
+  "s": "STORY 5 · STEP 8 · EDGES",
+  "b": "The median keeps a step edge <b>exactly sharp</b>, but removes lines thinner than half the window.",
+  "f": [
+   [
+    "3111",
+    "median"
+   ]
+  ],
+  "n": [
+   [
+    "3113",
+    "adapt the window"
+   ],
+   [
+    "3114",
+    "weights instead of ranks"
+   ]
+  ]
+ },
+ "3113": {
+  "s": "STORY 5 · STEP 9 · ADAPT THE WINDOW",
+  "b": "Grow the window only where the noise needs it, and <b>leave good pixels alone</b>.",
+  "f": [
+   [
+    "3112",
+    "median"
+   ]
+  ],
+  "n": [
+   [
+    "3114",
+    "smooth with edge awareness"
+   ]
+  ]
+ },
+ "3114": {
+  "s": "STORY 5 · STEP 10 · SMOOTH, KEEP EDGES",
+  "b": "The <b>bilateral filter</b> multiplies a spatial weight by a range weight so edges are not blurred.",
+  "f": [
+   [
+    "3054",
+    "the Gaussian"
+   ],
+   [
+    "3112",
+    "edge preservation"
+   ]
+  ],
+  "n": [
+   [
+    "3115",
+    "look farther away"
+   ]
+  ]
+ },
+ "3115": {
+  "s": "STORY 5 · STEP 11 · LOOK ALIKE",
+  "b": "<b>Non-local means</b> averages pixels whose <b>patches</b> look alike, anywhere in the frame.",
+  "f": [
+   [
+    "3114",
+    "similar-value weights"
+   ]
+  ],
+  "n": [
+   [
+    "3116",
+    "numbers"
+   ],
+   [
+    "3121",
+    "how to score the result"
+   ]
+  ]
+ },
+ "3116": {
+  "s": "STORY 5 · STEP 12 · CHECK BY HAND",
+  "b": "One salt pixel: mean $32$, median $11$.",
+  "f": [
+   [
+    "3111",
+    "median"
+   ]
+  ],
+  "n": [
+   [
+    "3121",
+    "next: how good is the cleaned frame"
+   ]
+  ]
  }
 });
