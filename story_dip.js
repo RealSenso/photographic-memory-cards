@@ -934,5 +934,117 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: compress the frame"
    ]
   ]
+ },
+ "3081": {
+  "s": "STORY 4 · STEP 1 · COSINES FOR BLOCKS",
+  "b": "To store the street frame in small blocks, mirror each block and use <b>cosines</b>: no jump at the edges, real coefficients.",
+  "f": [
+   [
+    "3061",
+    "the DFT"
+   ],
+   [
+    "3014",
+    "work on the Y plane"
+   ]
+  ],
+  "n": [
+   [
+    "3082",
+    "JPEG"
+   ],
+   [
+    "3083",
+    "the 64 patterns"
+   ]
+  ]
+ },
+ "3082": {
+  "s": "STORY 4 · STEP 2 · JPEG",
+  "b": "Smooth blocks put their energy in a few low coefficients; <b>quantizing</b> and zig-zag scanning leave long runs of zeros.",
+  "f": [
+   [
+    "3081",
+    "the DCT"
+   ]
+  ],
+  "n": [
+   [
+    "3083",
+    "the basis images"
+   ],
+   [
+    "3121",
+    "how much quality is lost"
+   ]
+  ]
+ },
+ "3083": {
+  "s": "STORY 4 · STEP 3 · THE 64 PATTERNS",
+  "b": "The 2D DCT is <b>orthonormal</b>: $C=AfA^\\top$, inverse is the transpose, energy is kept.",
+  "f": [
+   [
+    "3081",
+    "the 1D DCT"
+   ]
+  ],
+  "n": [
+   [
+    "3084",
+    "a data-driven basis"
+   ]
+  ]
+ },
+ "3084": {
+  "s": "STORY 4 · STEP 4 · THE BEST BASIS",
+  "b": "The <b>KLT</b> uses the eigenvectors of the data's covariance: the best compaction, but it depends on the data.",
+  "f": [
+   [
+    "3083",
+    "a fixed basis"
+   ]
+  ],
+  "n": [
+   [
+    "3085",
+    "the DCT is nearly as good"
+   ],
+   [
+    "3181",
+    "eigenfaces use the same idea"
+   ]
+  ]
+ },
+ "3085": {
+  "s": "STORY 4 · STEP 5 · WHY THE DCT",
+  "b": "For smooth images ($\\rho\\approx1$) the KLT basis is nearly the DCT: <b>fixed basis, near-best compaction</b>.",
+  "f": [
+   [
+    "3084",
+    "KLT"
+   ]
+  ],
+  "n": [
+   [
+    "3086",
+    "two-pixel example"
+   ]
+  ]
+ },
+ "3086": {
+  "s": "STORY 4 · STEP 6 · CHECK BY HAND",
+  "b": "Two pixels: the sum and difference are the KLT, with $75\\%$ of the variance in the first.",
+  "f": [
+   [
+    "3084",
+    "KLT"
+   ]
+  ],
+  "n": [
+   [
+    "3091",
+    "next: look at several scales at once"
+   ]
+  ]
  }
 });

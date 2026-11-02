@@ -58,7 +58,7 @@ def d3045(c):
             bell(110, 228, 140, 10, 62, b, 1),
             L(110, 36, 228, 36, .8, "3 2"), N(228, 46, "β (clip)", 7, "end"),
             R(131, 24, 18, 12, "#d9dee7", .6), N(158, 26, "excess ⇒ spread", 7, "start"), N(176, 36, "over all bins", 7, "start") if False else "",
-            N(120, 112, "h_clip(k) = min(h(k), β)", 8), N(120, 126, "excess = Σ (h(k) − β)⁺ , redistributed evenly", 7.5),
+            N(120, 112, "hclip(k) = min(h(k), β)", 8), N(120, 126, "excess = Σ (h(k) − β)⁺ , redistributed evenly", 7.5),
             N(120, 140, "without the clip, flat tiles turn into noise", 7)]
     return svg(c, *out)
 
