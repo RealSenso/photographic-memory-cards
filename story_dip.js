@@ -1982,5 +1982,117 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: the whole frame as a bag of visual words"
    ]
   ]
+ },
+ "3171": {
+  "s": "STORY 7 · STEP 7 · A BAG OF WORDS",
+  "b": "Describe a frame by <b>which visual words it contains</b>, ignoring where: a signature that is easy to compare and search.",
+  "f": [
+   [
+    "3164",
+    "SIFT descriptors are the words"
+   ]
+  ],
+  "n": [
+   [
+    "3172",
+    "where the words come from"
+   ],
+   [
+    "3173",
+    "counting"
+   ]
+  ]
+ },
+ "3172": {
+  "s": "STORY 7 · STEP 8 · THE VOCABULARY",
+  "b": "<b>k-means</b> clusters thousands of descriptors; each centroid is a visual word.",
+  "f": [
+   [
+    "3171",
+    "bag of words"
+   ],
+   [
+    "3084",
+    "variance and means"
+   ]
+  ],
+  "n": [
+   [
+    "3173",
+    "assign and count"
+   ]
+  ]
+ },
+ "3173": {
+  "s": "STORY 7 · STEP 9 · COUNT THEM",
+  "b": "Map each patch to its nearest word, count, and <b>normalise</b> so frames compare fairly.",
+  "f": [
+   [
+    "3172",
+    "the codebook"
+   ]
+  ],
+  "n": [
+   [
+    "3174",
+    "weight the words"
+   ],
+   [
+    "3176",
+    "numbers"
+   ]
+  ]
+ },
+ "3174": {
+  "s": "STORY 7 · STEP 10 · WEIGHT AND SEARCH",
+  "b": "<b>TF-IDF</b> down-weights words found everywhere; an <b>inverted index</b> finds candidate frames fast.",
+  "f": [
+   [
+    "3173",
+    "histograms"
+   ]
+  ],
+  "n": [
+   [
+    "3175",
+    "put position back"
+   ]
+  ]
+ },
+ "3175": {
+  "s": "STORY 7 · STEP 11 · WHERE THE WORDS ARE",
+  "b": "A <b>spatial pyramid</b> keeps a bag per cell, partly restoring layout.",
+  "f": [
+   [
+    "3174",
+    "weighted bags"
+   ]
+  ],
+  "n": [
+   [
+    "3176",
+    "numbers"
+   ],
+   [
+    "3181",
+    "faces as points in a space"
+   ]
+  ]
+ },
+ "3176": {
+  "s": "STORY 7 · STEP 12 · CHECK BY HAND",
+  "b": "Two bags: dot product $19$, cosine $\\approx0.535$.",
+  "f": [
+   [
+    "3173",
+    "comparing"
+   ]
+  ],
+  "n": [
+   [
+    "3181",
+    "next: recognising a face"
+   ]
+  ]
  }
 });
