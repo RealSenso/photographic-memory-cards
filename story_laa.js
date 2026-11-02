@@ -1066,5 +1066,589 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "angles and lengths enter the story"
    ]
   ]
+ },
+ "21001": {
+  "s": "STORY 10 · STEP 1 · MEASURING",
+  "b": "So far arrows had no length or angle. The <b>inner product</b> adds a ruler: how much one arrow points along another.",
+  "f": [
+   [
+    "20906",
+    "the algebra of edits is done"
+   ]
+  ],
+  "n": [
+   [
+    "21002",
+    "lengths and angles"
+   ],
+   [
+    "21004",
+    "perpendicular"
+   ]
+  ]
+ },
+ "21002": {
+  "s": "STORY 10 · STEP 2 · SHADOWS ARE SHORTER",
+  "b": "<b>Cauchy–Schwarz</b>: a shadow is never longer than its arrow, so angles make sense.",
+  "f": [
+   [
+    "21001",
+    "inner product"
+   ]
+  ],
+  "n": [
+   [
+    "21003",
+    "triangle and parallelogram"
+   ],
+   [
+    "21006",
+    "compute an angle"
+   ]
+  ]
+ },
+ "21003": {
+  "s": "STORY 10 · STEP 3 · TRIANGLES AND FRAMES",
+  "b": "The triangle inequality, the parallelogram law, and recovering $\\langle u,v\\rangle$ from lengths.",
+  "f": [
+   [
+    "21002",
+    "Cauchy–Schwarz"
+   ]
+  ],
+  "n": [
+   [
+    "21004",
+    "the right-angle case"
+   ]
+  ]
+ },
+ "21004": {
+  "s": "STORY 10 · STEP 4 · RIGHT ANGLES",
+  "b": "When $\\langle u,v\\rangle=0$ the cross term disappears: <b>Pythagoras</b> in any inner product space.",
+  "f": [
+   [
+    "21003",
+    "the general identity"
+   ]
+  ],
+  "n": [
+   [
+    "21005",
+    "a grid of right angles"
+   ]
+  ]
+ },
+ "21005": {
+  "s": "STORY 10 · STEP 5 · A SQUARE GRID",
+  "b": "With an <b>orthonormal basis</b>, coordinates are just shadows: no equations to solve.",
+  "f": [
+   [
+    "21004",
+    "orthogonality"
+   ],
+   [
+    "20202",
+    "coordinates"
+   ]
+  ],
+  "n": [
+   [
+    "21101",
+    "shadows on a line"
+   ],
+   [
+    "21102",
+    "build such a grid"
+   ]
+  ]
+ },
+ "21006": {
+  "s": "STORY 10 · STEP 6 · WITH NUMBERS",
+  "b": "Inner product, lengths, angle and a shadow for two concrete arrows.",
+  "f": [
+   [
+    "21002",
+    "angle formula"
+   ]
+  ],
+  "n": [
+   [
+    "21101",
+    "projection in general"
+   ]
+  ]
+ },
+ "21101": {
+  "s": "STORY 11 · STEP 1 · SHADOW ON A LINE",
+  "b": "With a ruler we can cast <b>shadows</b>: the projection onto a line is the closest point on it.",
+  "f": [
+   [
+    "21005",
+    "shadows give coordinates"
+   ]
+  ],
+  "n": [
+   [
+    "21102",
+    "straighten a grid"
+   ],
+   [
+    "21104",
+    "shadow on a sheet"
+   ]
+  ]
+ },
+ "21102": {
+  "s": "STORY 11 · STEP 2 · STRAIGHTEN THE GRID",
+  "b": "<b>Gram–Schmidt</b> removes earlier shadows one ruler at a time, turning any basis into an orthonormal one.",
+  "f": [
+   [
+    "21101",
+    "projection on a line"
+   ]
+  ],
+  "n": [
+   [
+    "21105",
+    "keep the recipe: QR"
+   ],
+   [
+    "21106",
+    "do it by hand"
+   ]
+  ]
+ },
+ "21103": {
+  "s": "STORY 11 · STEP 3 · SHEET AND POLE",
+  "b": "Every subspace has a perpendicular partner $U^\\perp$, and $V=U\\oplus U^\\perp$.",
+  "f": [
+   [
+    "21102",
+    "orthonormal bases exist"
+   ],
+   [
+    "20102",
+    "direct sums"
+   ]
+  ],
+  "n": [
+   [
+    "21104",
+    "the closest point"
+   ],
+   [
+    "21202",
+    "null T* ⊥ range T"
+   ]
+  ]
+ },
+ "21104": {
+  "s": "STORY 11 · STEP 4 · CLOSEST POINT",
+  "b": "The projection onto a subspace is the <b>best approximation</b>: the straight drop is the shortest.",
+  "f": [
+   [
+    "21103",
+    "U ⊕ U⊥"
+   ]
+  ],
+  "n": [
+   [
+    "21601",
+    "least squares = project b"
+   ],
+   [
+    "21105",
+    "QR"
+   ]
+  ]
+ },
+ "21105": {
+  "s": "STORY 11 · STEP 5 · QR",
+  "b": "Gram–Schmidt as a factorization: $A=QR$, which makes solving systems triangular.",
+  "f": [
+   [
+    "21102",
+    "Gram–Schmidt"
+   ]
+  ],
+  "n": [
+   [
+    "21603",
+    "least squares via QR"
+   ]
+  ]
+ },
+ "21106": {
+  "s": "STORY 11 · STEP 6 · WITH NUMBERS",
+  "b": "Gram–Schmidt on two concrete arrows in $\\mathbb R^3$.",
+  "f": [
+   [
+    "21102",
+    "the algorithm"
+   ]
+  ],
+  "n": [
+   [
+    "21201",
+    "next: the adjoint edit"
+   ]
+  ]
+ },
+ "21201": {
+  "s": "STORY 12 · STEP 1 · THE PARTNER",
+  "b": "Every edit has a <b>measuring partner</b> $T^*$: measuring after the edit equals measuring against the partner-edited ruler.",
+  "f": [
+   [
+    "21001",
+    "inner products"
+   ],
+   [
+    "20305",
+    "matrices"
+   ]
+  ],
+  "n": [
+   [
+    "21202",
+    "its null space and range"
+   ],
+   [
+    "21203",
+    "edits that are their own partner"
+   ]
+  ]
+ },
+ "21202": {
+  "s": "STORY 12 · STEP 2 · FOUR SUBSPACES",
+  "b": "The partner's null space and range are the <b>perpendiculars</b> of the edit's range and null space.",
+  "f": [
+   [
+    "21201",
+    "adjoint"
+   ],
+   [
+    "21103",
+    "orthogonal complements"
+   ]
+  ],
+  "n": [
+   [
+    "21602",
+    "normal equations"
+   ]
+  ]
+ },
+ "21203": {
+  "s": "STORY 12 · STEP 3 · PURE STRETCH",
+  "b": "A <b>self-adjoint</b> edit has real stretch factors along perpendicular axes.",
+  "f": [
+   [
+    "21201",
+    "adjoint"
+   ],
+   [
+    "20106",
+    "symmetric matrices"
+   ]
+  ],
+  "n": [
+   [
+    "21302",
+    "real spectral theorem"
+   ],
+   [
+    "21401",
+    "positive edits"
+   ]
+  ]
+ },
+ "21204": {
+  "s": "STORY 12 · STEP 4 · COMMUTES WITH ITS PARTNER",
+  "b": "A <b>normal</b> edit commutes with its partner; its eigen-arrows are perpendicular.",
+  "f": [
+   [
+    "21201",
+    "adjoint"
+   ],
+   [
+    "20702",
+    "commuting edits"
+   ]
+  ],
+  "n": [
+   [
+    "21205",
+    "the zoo"
+   ],
+   [
+    "21301",
+    "complex spectral theorem"
+   ]
+  ]
+ },
+ "21205": {
+  "s": "STORY 12 · STEP 5 · THE ZOO",
+  "b": "Self-adjoint, unitary and skew edits are all normal; they differ in <b>where the eigenvalues live</b>.",
+  "f": [
+   [
+    "21204",
+    "normal"
+   ]
+  ],
+  "n": [
+   [
+    "21206",
+    "an example"
+   ],
+   [
+    "21403",
+    "isometries"
+   ]
+  ]
+ },
+ "21206": {
+  "s": "STORY 12 · STEP 6 · WITH NUMBERS",
+  "b": "A complex self-adjoint matrix with real eigenvalues and orthogonal eigenvectors.",
+  "f": [
+   [
+    "21203",
+    "self-adjoint"
+   ]
+  ],
+  "n": [
+   [
+    "21301",
+    "the spectral theorem"
+   ]
+  ]
+ },
+ "21301": {
+  "s": "STORY 13 · STEP 1 · THE PERFECT GRID (ℂ)",
+  "b": "The highlight of the course: <b>normal</b> edits are exactly the ones that are pure stretches in a <b>square grid</b>.",
+  "f": [
+   [
+    "21204",
+    "normal operators"
+   ],
+   [
+    "20604",
+    "diagonalization"
+   ]
+  ],
+  "n": [
+   [
+    "21302",
+    "the real version"
+   ],
+   [
+    "21303",
+    "as a sum of shadows"
+   ]
+  ]
+ },
+ "21302": {
+  "s": "STORY 13 · STEP 2 · THE PERFECT GRID (ℝ)",
+  "b": "Over $\\mathbb R$ the condition is <b>symmetry</b>: $A=Q\\Lambda Q^\\top$.",
+  "f": [
+   [
+    "21203",
+    "self-adjoint"
+   ]
+  ],
+  "n": [
+   [
+    "21303",
+    "spectral decomposition"
+   ],
+   [
+    "21305",
+    "the trap"
+   ]
+  ]
+ },
+ "21303": {
+  "s": "STORY 13 · STEP 3 · SHADOWS AND FACTORS",
+  "b": "Equivalently, $T=\\sum\\lambda_jP_j$: shadows on the eigenspaces, each stretched.",
+  "f": [
+   [
+    "21301",
+    "orthonormal eigenbasis"
+   ],
+   [
+    "21104",
+    "projections"
+   ]
+  ],
+  "n": [
+   [
+    "21304",
+    "functions of T"
+   ],
+   [
+    "21306",
+    "an example"
+   ]
+  ]
+ },
+ "21304": {
+  "s": "STORY 13 · STEP 4 · NEW FACTORS",
+  "b": "Any function of the edit is the <b>same grid with new stretch factors</b> $f(\\lambda_j)$.",
+  "f": [
+   [
+    "21303",
+    "spectral decomposition"
+   ]
+  ],
+  "n": [
+   [
+    "21402",
+    "the square root"
+   ],
+   [
+    "20905",
+    "functions via Jordan form"
+   ]
+  ]
+ },
+ "21305": {
+  "s": "STORY 13 · STEP 5 · THE TRAP",
+  "b": "Normal is enough over $\\mathbb C$, but over $\\mathbb R$ you need <b>symmetric</b>: a rotation is the classic counterexample.",
+  "f": [
+   [
+    "21301",
+    "complex version"
+   ],
+   [
+    "21302",
+    "real version"
+   ]
+  ],
+  "n": [
+   [
+    "21403",
+    "rotations are isometries"
+   ]
+  ]
+ },
+ "21306": {
+  "s": "STORY 13 · STEP 6 · WITH NUMBERS",
+  "b": "A full spectral decomposition, with $\\sqrt A$ and $A^k$.",
+  "f": [
+   [
+    "21303",
+    "decomposition"
+   ],
+   [
+    "21304",
+    "f(A)"
+   ]
+  ],
+  "n": [
+   [
+    "21401",
+    "positive edits"
+   ]
+  ]
+ },
+ "21401": {
+  "s": "STORY 14 · STEP 1 · STRETCH, NO FLIP",
+  "b": "Among self-adjoint edits, the <b>positive</b> ones never flip: all stretch factors $\\ge0$, and every $S^*S$ is one.",
+  "f": [
+   [
+    "21302",
+    "spectral theorem"
+   ]
+  ],
+  "n": [
+   [
+    "21402",
+    "square roots"
+   ],
+   [
+    "21501",
+    "polar decomposition"
+   ]
+  ]
+ },
+ "21402": {
+  "s": "STORY 14 · STEP 2 · HALF A STRETCH",
+  "b": "A positive edit has a unique <b>positive square root</b>; $|T|=\\sqrt{T^*T}$ is the stretch part of any edit.",
+  "f": [
+   [
+    "21401",
+    "positive"
+   ],
+   [
+    "21304",
+    "f(T)"
+   ]
+  ],
+  "n": [
+   [
+    "21501",
+    "T = S|T|"
+   ]
+  ]
+ },
+ "21403": {
+  "s": "STORY 14 · STEP 3 · THE ROTATE TOOL",
+  "b": "<b>Isometries</b> keep lengths and angles: $S^*S=I$.",
+  "f": [
+   [
+    "21205",
+    "unitary operators"
+   ]
+  ],
+  "n": [
+   [
+    "21404",
+    "unitary matrices"
+   ],
+   [
+    "21501",
+    "the rotation part"
+   ]
+  ]
+ },
+ "21404": {
+  "s": "STORY 14 · STEP 4 · ROTATE OR FLIP",
+  "b": "Unitary and orthogonal matrices: $|\\lambda|=1$, $\\det=\\pm1$, perfectly conditioned.",
+  "f": [
+   [
+    "21403",
+    "isometries"
+   ]
+  ],
+  "n": [
+   [
+    "21405",
+    "a positive example"
+   ],
+   [
+    "21701",
+    "det as volume"
+   ]
+  ]
+ },
+ "21405": {
+  "s": "STORY 14 · STEP 5 · WITH NUMBERS",
+  "b": "Check positive definiteness two ways and take the square root.",
+  "f": [
+   [
+    "21401",
+    "positive"
+   ],
+   [
+    "21402",
+    "square root"
+   ]
+  ],
+  "n": [
+   [
+    "21501",
+    "next: every edit = rotate × stretch"
+   ]
+  ]
  }
 });
