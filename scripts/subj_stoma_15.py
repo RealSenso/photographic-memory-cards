@@ -98,7 +98,7 @@ CARDS = {
   conn=r"<strong>A fixed number can ride along.</strong> If your average delay has a limiting bell shape and the typical ride length settles to a constant, the delay per minute of ride has the same bell shape scaled by that constant.",
   cap="The limit law X of Xₙ and, dashed, the law of cX when Yₙ → c in probability: Xₙ·Yₙ → cX and Xₙ/Yₙ → X/c."),
 31506: dict(d=d6, kind="WORKED EXAMPLE",
-  stmt=r"<b>Asymptotic normality of the $t$-statistic.</b> For i.i.d. $X_i$ with mean $\mu$ and variance $\sigma^2\in(0,\infty)$, let $S_n^2=\frac1{n-1}\sum(X_i-\bar X_n)^2$. By the CLT, $\sqrt n(\bar X_n-\mu)/\sigma\xrightarrow{d}\mathcal N(0,1)$, and by the law of large numbers $S_n/\sigma\xrightarrow{P}1$. By Slutsky, $T_n=\dfrac{\sqrt n(\bar X_n-\mu)}{S_n}\xrightarrow{d}\mathcal N(0,1)$ (Grimmett 5.10; Ross 8.3).",
+  stmt=r"<b>Asymptotic normality of the $t$-statistic.</b> For i.i.d. $X_i$ with mean $\mu$, variance $\sigma^2\in(0,\infty)$ and sample variance $S_n^2$: $\sqrt n(\bar X_n-\mu)/\sigma\xrightarrow{d}\mathcal N(0,1)$ (CLT) and $S_n/\sigma\xrightarrow{P}1$ (LLN), so by Slutsky $T_n=\frac{\sqrt n(\bar X_n-\mu)}{S_n}\xrightarrow{d}\mathcal N(0,1)$ (Grimmett 5.10).",
   hint="If you do not know the spread of your commute and use the sample spread, does the bell shape survive?",
   bd=[r"<strong>$\sqrt n(\bar X_n-\mu)/\sigma\xrightarrow{d}\mathcal N(0,1)$ = the numerator.</strong> The standardised average delay over $n$ days tends to a standard bell (CLT).",
       r"<strong>$S_n/\sigma\xrightarrow{P}1$ = the denominator.</strong> The sample spread settles to the true spread (law of large numbers).",

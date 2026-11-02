@@ -1942,5 +1942,1300 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "laws of large numbers"
    ]
   ]
+ },
+ "31701": {
+  "s": "STORY 17 · STEP 1 · THE SPREAD COLLAPSES",
+  "b": "The <b>weak law</b>: the average of many independent days has variance σ²/n, so it concentrates at μ.",
+  "f": [
+   [
+    "30602",
+    "Chebyshev"
+   ],
+   [
+    "30503",
+    "variance of a sum"
+   ],
+   [
+    "31501",
+    "convergence in probability"
+   ]
+  ],
+  "n": [
+   [
+    "31702",
+    "a statement about whole runs"
+   ],
+   [
+    "31705",
+    "snapshot versus path"
+   ]
+  ]
+ },
+ "31702": {
+  "s": "STORY 17 · STEP 2 · EVERY RUN SETTLES",
+  "b": "The <b>strong law</b>: almost every infinite run's running average converges to the mean.",
+  "f": [
+   [
+    "31701",
+    "weak law"
+   ],
+   [
+    "31605",
+    "limits of events"
+   ]
+  ],
+  "n": [
+   [
+    "31703",
+    "a proof from the fourth moment"
+   ],
+   [
+    "31704",
+    "the sharp condition"
+   ]
+  ]
+ },
+ "31703": {
+  "s": "STORY 17 · STEP 3 · A PROOF",
+  "b": "A fourth moment gives <b>summable</b> miss chances, and BC1 converts them into a.s. convergence.",
+  "f": [
+   [
+    "31605",
+    "a.s. via Borel–Cantelli"
+   ],
+   [
+    "30601",
+    "Markov's inequality"
+   ]
+  ],
+  "n": [
+   [
+    "31704",
+    "removing the fourth-moment assumption"
+   ]
+  ]
+ },
+ "31704": {
+  "s": "STORY 17 · STEP 4 · THE SHARP LAW",
+  "b": "<b>Truncation</b> shows the strong law holds exactly when 𝔼|X| is finite.",
+  "f": [
+   [
+    "31703",
+    "the fourth-moment proof"
+   ],
+   [
+    "31602",
+    "first Borel–Cantelli"
+   ]
+  ],
+  "n": [
+   [
+    "31706",
+    "what fails without it"
+   ]
+  ]
+ },
+ "31705": {
+  "s": "STORY 17 · STEP 5 · SNAPSHOT VERSUS TRAJECTORY",
+  "b": "Weak is about <b>each day separately</b>, strong is about the <b>whole future path</b>.",
+  "f": [
+   [
+    "31701",
+    "WLLN"
+   ],
+   [
+    "31702",
+    "SLLN"
+   ],
+   [
+    "31503",
+    "probability versus a.s."
+   ]
+  ],
+  "n": [
+   [
+    "31706",
+    "failure case"
+   ]
+  ]
+ },
+ "31706": {
+  "s": "STORY 17 · STEP 6 · WHEN AVERAGING FAILS",
+  "b": "For the <b>Cauchy</b> law the average has the same law as one day: no law of large numbers.",
+  "f": [
+   [
+    "30406",
+    "the Cauchy law"
+   ],
+   [
+    "31704",
+    "needing 𝔼|X| < ∞"
+   ]
+  ],
+  "n": [
+   [
+    "31801",
+    "characteristic functions"
+   ]
+  ]
+ },
+ "31801": {
+  "s": "STORY 18 · STEP 1 · A TRANSFORM THAT ALWAYS EXISTS",
+  "b": "The <b>characteristic function</b> is the average of points on a circle: it exists for every law and multiplies over independent sums.",
+  "f": [
+   [
+    "30504",
+    "the MGF, which may not exist"
+   ],
+   [
+    "30905",
+    "sums of independent variables"
+   ]
+  ],
+  "n": [
+   [
+    "31802",
+    "convergence through transforms"
+   ],
+   [
+    "31706",
+    "the Cauchy case used it"
+   ]
+  ]
+ },
+ "31802": {
+  "s": "STORY 18 · STEP 2 · SETTLING VIA TRANSFORMS",
+  "b": "<b>Lévy</b>: laws converge exactly when their transforms converge pointwise.",
+  "f": [
+   [
+    "31801",
+    "characteristic function"
+   ],
+   [
+    "31501",
+    "convergence in distribution"
+   ]
+  ],
+  "n": [
+   [
+    "31803",
+    "the central limit theorem"
+   ]
+  ]
+ },
+ "31803": {
+  "s": "STORY 18 · STEP 3 · THE BELL",
+  "b": "The <b>CLT</b>: the standardised total of many independent days tends to the bell, whatever one day looks like.",
+  "f": [
+   [
+    "31802",
+    "Lévy continuity"
+   ],
+   [
+    "31701",
+    "law of large numbers"
+   ],
+   [
+    "30305",
+    "the bell curve"
+   ]
+  ],
+  "n": [
+   [
+    "31804",
+    "how fast"
+   ],
+   [
+    "31805",
+    "non-identical legs"
+   ]
+  ]
+ },
+ "31804": {
+  "s": "STORY 18 · STEP 4 · HOW FAST",
+  "b": "<b>Berry–Esseen</b>: the gap to the bell shrinks like 1/√n; use a continuity correction for counts.",
+  "f": [
+   [
+    "31803",
+    "the CLT"
+   ]
+  ],
+  "n": [
+   [
+    "31806",
+    "a worked example"
+   ]
+  ]
+ },
+ "31805": {
+  "s": "STORY 18 · STEP 5 · DIFFERENT LEGS",
+  "b": "The CLT holds for non-identical legs as long as <b>no leg dominates</b> (Lyapunov, Lindeberg).",
+  "f": [
+   [
+    "31803",
+    "the CLT"
+   ]
+  ],
+  "n": [
+   [
+    "32502",
+    "Brownian motion as the limit of random walks"
+   ]
+  ]
+ },
+ "31806": {
+  "s": "STORY 18 · STEP 6 · A COUNT",
+  "b": "<b>De Moivre–Laplace</b>: the bell approximates a count of on-time days among 100.",
+  "f": [
+   [
+    "31804",
+    "continuity correction"
+   ]
+  ],
+  "n": [
+   [
+    "31901",
+    "chains of dependent days"
+   ]
+  ]
+ },
+ "31901": {
+  "s": "STORY 19 · STEP 1 · TOMORROW FROM TODAY",
+  "b": "A <b>Markov chain</b> remembers only today; its rows of chances add to one.",
+  "f": [
+   [
+    "30201",
+    "conditional probability"
+   ],
+   [
+    "31806",
+    "a count of independent days"
+   ]
+  ],
+  "n": [
+   [
+    "31902",
+    "many days ahead"
+   ]
+  ]
+ },
+ "31902": {
+  "s": "STORY 19 · STEP 2 · MANY DAYS AHEAD",
+  "b": "<b>Chapman–Kolmogorov</b>: n-day chances are the n-th power of the one-day table.",
+  "f": [
+   [
+    "31901",
+    "transition matrix"
+   ],
+   [
+    "30203",
+    "total probability"
+   ]
+  ],
+  "n": [
+   [
+    "31903",
+    "which states connect"
+   ],
+   [
+    "32001",
+    "the long run"
+   ]
+  ]
+ },
+ "31903": {
+  "s": "STORY 19 · STEP 3 · WHO CONNECTS",
+  "b": "States that reach each other form a <b>class</b>; the state space splits into classes.",
+  "f": [
+   [
+    "31902",
+    "n-step chances"
+   ]
+  ],
+  "n": [
+   [
+    "31904",
+    "return or not"
+   ]
+  ]
+ },
+ "31904": {
+  "s": "STORY 19 · STEP 4 · RETURN OR VANISH",
+  "b": "A state is <b>recurrent</b> if you return for sure, <b>transient</b> otherwise.",
+  "f": [
+   [
+    "31903",
+    "classes"
+   ],
+   [
+    "31605",
+    "Borel–Cantelli"
+   ]
+  ],
+  "n": [
+   [
+    "31905",
+    "rhythm of returns"
+   ],
+   [
+    "31906",
+    "the random walk"
+   ]
+  ]
+ },
+ "31905": {
+  "s": "STORY 19 · STEP 5 · RHYTHM",
+  "b": "The <b>period</b> is the gcd of return times; it is shared by the whole class.",
+  "f": [
+   [
+    "31904",
+    "recurrence"
+   ]
+  ],
+  "n": [
+   [
+    "32002",
+    "convergence needs aperiodicity"
+   ]
+  ]
+ },
+ "31906": {
+  "s": "STORY 19 · STEP 6 · A WALK",
+  "b": "The fair 1D walk is <b>recurrent</b>; any bias makes it transient.",
+  "f": [
+   [
+    "31904",
+    "return sums"
+   ],
+   [
+    "31806",
+    "binomial counts"
+   ]
+  ],
+  "n": [
+   [
+    "32501",
+    "random walks and Brownian motion"
+   ]
+  ]
+ },
+ "32001": {
+  "s": "STORY 20 · STEP 1 · THE STEADY SPLIT",
+  "b": "A <b>stationary distribution</b> is a split of states that one step of the chain leaves unchanged.",
+  "f": [
+   [
+    "31902",
+    "one-step update pᵀP"
+   ]
+  ],
+  "n": [
+   [
+    "32002",
+    "does the chain converge to it"
+   ],
+   [
+    "32004",
+    "finding it by balance"
+   ]
+  ]
+ },
+ "32002": {
+  "s": "STORY 20 · STEP 2 · THE START IS FORGOTTEN",
+  "b": "Under irreducibility, aperiodicity and positive recurrence, <b>Pⁿ → π</b> and π = 1/(mean return time).",
+  "f": [
+   [
+    "32001",
+    "stationary law"
+   ],
+   [
+    "31905",
+    "aperiodicity"
+   ],
+   [
+    "31904",
+    "recurrence"
+   ]
+  ],
+  "n": [
+   [
+    "32003",
+    "when it fails"
+   ],
+   [
+    "32005",
+    "periodic chains"
+   ]
+  ]
+ },
+ "32003": {
+  "s": "STORY 20 · STEP 3 · SURE TO RETURN, TOO SLOWLY",
+  "b": "<b>Null recurrent</b> states return for sure but with infinite mean time: no steady share.",
+  "f": [
+   [
+    "32002",
+    "limit theorem"
+   ],
+   [
+    "31906",
+    "the symmetric walk"
+   ]
+  ],
+  "n": [
+   [
+    "32004",
+    "what balance needs"
+   ]
+  ]
+ },
+ "32004": {
+  "s": "STORY 20 · STEP 4 · BALANCE THE FLOW",
+  "b": "<b>Cut equations</b> and <b>detailed balance</b> find π by balancing flows.",
+  "f": [
+   [
+    "32001",
+    "stationary law"
+   ]
+  ],
+  "n": [
+   [
+    "32204",
+    "MCMC uses detailed balance"
+   ]
+  ]
+ },
+ "32005": {
+  "s": "STORY 20 · STEP 5 · RHYTHM STILL AVERAGES",
+  "b": "With a fixed rhythm, Pⁿ oscillates but its <b>Cesàro average</b> still converges to π.",
+  "f": [
+   [
+    "32002",
+    "limit theorem"
+   ],
+   [
+    "31905",
+    "period"
+   ]
+  ],
+  "n": [
+   [
+    "32006",
+    "time averages"
+   ]
+  ]
+ },
+ "32006": {
+  "s": "STORY 20 · STEP 6 · ONE RUN IS ENOUGH",
+  "b": "The <b>ergodic theorem</b>: time averages along one run equal averages under π.",
+  "f": [
+   [
+    "32005",
+    "Cesàro limit"
+   ],
+   [
+    "31702",
+    "the strong law"
+   ]
+  ],
+  "n": [
+   [
+    "32101",
+    "chains that end in absorption"
+   ]
+  ]
+ },
+ "32101": {
+  "s": "STORY 21 · STEP 1 · REACH IT FIRST",
+  "b": "<b>First-step analysis</b>: condition on the next move to get a linear system for the chance of absorption.",
+  "f": [
+   [
+    "31902",
+    "chances over steps"
+   ],
+   [
+    "30201",
+    "conditioning"
+   ]
+  ],
+  "n": [
+   [
+    "32102",
+    "how long it takes"
+   ]
+  ]
+ },
+ "32102": {
+  "s": "STORY 21 · STEP 2 · HOW LONG",
+  "b": "<b>Mean hitting times</b> satisfy μ = 1 + Qμ: pay one step, then continue.",
+  "f": [
+   [
+    "32101",
+    "first-step equations"
+   ]
+  ],
+  "n": [
+   [
+    "32103",
+    "all at once with a matrix"
+   ]
+  ]
+ },
+ "32103": {
+  "s": "STORY 21 · STEP 3 · A VISIT COUNTER",
+  "b": "The <b>fundamental matrix</b> N = (I − Q)⁻¹ counts expected visits before absorption.",
+  "f": [
+   [
+    "32102",
+    "hitting times"
+   ]
+  ],
+  "n": [
+   [
+    "32104",
+    "destinations and durations"
+   ]
+  ]
+ },
+ "32104": {
+  "s": "STORY 21 · STEP 4 · DESTINATION AND DURATION",
+  "b": "<b>B = NR</b> gives where you end up; <b>t = N1</b> how long it takes.",
+  "f": [
+   [
+    "32103",
+    "fundamental matrix"
+   ]
+  ],
+  "n": [
+   [
+    "32105",
+    "gambler's ruin"
+   ]
+  ]
+ },
+ "32105": {
+  "s": "STORY 21 · STEP 5 · THE FAIR STREET",
+  "b": "<b>Gambler's ruin</b>: linear for a fair walk, bent by drift; the duration is i(N − i).",
+  "f": [
+   [
+    "32101",
+    "boundary equations"
+   ],
+   [
+    "31906",
+    "the random walk"
+   ]
+  ],
+  "n": [
+   [
+    "32106",
+    "patterns"
+   ],
+   [
+    "32201",
+    "birth–death chains"
+   ]
+  ]
+ },
+ "32106": {
+  "s": "STORY 21 · STEP 6 · WAITING FOR A PATTERN",
+  "b": "Self-overlapping patterns take <b>longer</b> to appear: Conway's formula.",
+  "f": [
+   [
+    "32102",
+    "mean hitting time"
+   ]
+  ],
+  "n": [
+   [
+    "32201",
+    "chains with a one-step ladder"
+   ]
+  ]
+ },
+ "32201": {
+  "s": "STORY 22 · STEP 1 · A LADDER OF QUEUE LENGTHS",
+  "b": "In a <b>birth–death chain</b> the flow up each rung balances the flow down.",
+  "f": [
+   [
+    "32004",
+    "cut equations"
+   ],
+   [
+    "32001",
+    "stationary law"
+   ]
+  ],
+  "n": [
+   [
+    "32202",
+    "the steady queue"
+   ]
+  ]
+ },
+ "32202": {
+  "s": "STORY 22 · STEP 2 · DOES THE QUEUE SETTLE",
+  "b": "The steady law is a <b>product of up/down ratios</b>, and exists iff their sum is finite.",
+  "f": [
+   [
+    "32201",
+    "balance recursion"
+   ]
+  ],
+  "n": [
+   [
+    "32203",
+    "reversibility"
+   ],
+   [
+    "32705",
+    "continuous-time queues"
+   ]
+  ]
+ },
+ "32203": {
+  "s": "STORY 22 · STEP 3 · THE FILM RUN BACKWARDS",
+  "b": "<b>Kolmogorov's criterion</b>: reversible iff every loop has equal chance both ways.",
+  "f": [
+   [
+    "32004",
+    "detailed balance"
+   ]
+  ],
+  "n": [
+   [
+    "32204",
+    "building reversible samplers"
+   ]
+  ]
+ },
+ "32204": {
+  "s": "STORY 22 · STEP 4 · SAMPLING BY A CHAIN",
+  "b": "<b>Metropolis–Hastings</b> accepts moves so that detailed balance holds for the target.",
+  "f": [
+   [
+    "32203",
+    "reversibility"
+   ],
+   [
+    "32002",
+    "convergence to π"
+   ]
+  ],
+  "n": [
+   [
+    "32205",
+    "tuning"
+   ],
+   [
+    "32206",
+    "never rejecting"
+   ]
+  ]
+ },
+ "32205": {
+  "s": "STORY 22 · STEP 5 · THE STEP SIZE",
+  "b": "<b>Random-walk Metropolis</b> trades acceptance against movement; aim near 23.4%.",
+  "f": [
+   [
+    "32204",
+    "MH"
+   ]
+  ],
+  "n": [
+   [
+    "32206",
+    "Gibbs"
+   ]
+  ]
+ },
+ "32206": {
+  "s": "STORY 22 · STEP 6 · ONE COORDINATE AT A TIME",
+  "b": "<b>Gibbs sampling</b> redraws from full conditionals; every move is accepted.",
+  "f": [
+   [
+    "32204",
+    "MH with α ≡ 1"
+   ],
+   [
+    "30704",
+    "conditional laws"
+   ]
+  ],
+  "n": [
+   [
+    "32301",
+    "stationary random signals"
+   ]
+  ]
+ },
+ "32301": {
+  "s": "STORY 23 · STEP 1 · A STEADY SIGNAL",
+  "b": "<b>Wide-sense stationary</b>: constant mean, correlation depending only on the lag.",
+  "f": [
+   [
+    "31901",
+    "a process whose law is steady"
+   ],
+   [
+    "32001",
+    "stationary law"
+   ]
+  ],
+  "n": [
+   [
+    "32302",
+    "which correlations are legal"
+   ]
+  ]
+ },
+ "32302": {
+  "s": "STORY 23 · STEP 2 · LEGAL CORRELATIONS",
+  "b": "An autocorrelation peaks at zero lag, is symmetric, and is <b>non-negative definite</b>.",
+  "f": [
+   [
+    "32301",
+    "WSS"
+   ],
+   [
+    "30605",
+    "Cauchy–Schwarz"
+   ]
+  ],
+  "n": [
+   [
+    "32303",
+    "its spectrum"
+   ]
+  ]
+ },
+ "32303": {
+  "s": "STORY 23 · STEP 3 · POWER BY FREQUENCY",
+  "b": "<b>Wiener–Khinchin</b>: the power spectrum is the Fourier transform of the autocorrelation.",
+  "f": [
+   [
+    "32302",
+    "non-negative definite R"
+   ],
+   [
+    "31801",
+    "characteristic function (a Fourier transform)"
+   ]
+  ],
+  "n": [
+   [
+    "32304",
+    "a pure rhythm"
+   ],
+   [
+    "32305",
+    "through a filter"
+   ]
+  ]
+ },
+ "32304": {
+  "s": "STORY 23 · STEP 4 · A PURE RHYTHM",
+  "b": "A <b>random cosine</b> has two spectral spikes, and needs a uniform phase to be stationary.",
+  "f": [
+   [
+    "32303",
+    "spectrum"
+   ]
+  ],
+  "n": [
+   [
+    "32305",
+    "filtering"
+   ]
+  ]
+ },
+ "32305": {
+  "s": "STORY 23 · STEP 5 · THROUGH A FILTER",
+  "b": "A <b>linear filter</b> multiplies the spectrum by |H(ω)|².",
+  "f": [
+   [
+    "32303",
+    "spectrum"
+   ],
+   [
+    "32304",
+    "spikes pass or die"
+   ]
+  ],
+  "n": [
+   [
+    "32306",
+    "estimating from one run"
+   ]
+  ]
+ },
+ "32306": {
+  "s": "STORY 23 · STEP 6 · ONE RECORDING",
+  "b": "<b>Mean ergodicity</b>: a time average equals the mean if the covariance fades.",
+  "f": [
+   [
+    "32006",
+    "ergodic theorem"
+   ],
+   [
+    "31701",
+    "law of large numbers"
+   ]
+  ],
+  "n": [
+   [
+    "32401",
+    "counting arrivals"
+   ]
+  ]
+ },
+ "32401": {
+  "s": "STORY 24 · STEP 1 · BUSES AT RANDOM",
+  "b": "A <b>Poisson process</b> counts arrivals: independent, stationary, rate λ, Poisson(λt) in [0, t].",
+  "f": [
+   [
+    "30302",
+    "counting laws"
+   ],
+   [
+    "30304",
+    "the exponential law"
+   ]
+  ],
+  "n": [
+   [
+    "32402",
+    "the gaps"
+   ]
+  ]
+ },
+ "32402": {
+  "s": "STORY 24 · STEP 2 · THE GAPS",
+  "b": "Gaps are <b>i.i.d. exponential</b>, so the n-th arrival is Gamma(n, λ).",
+  "f": [
+   [
+    "32401",
+    "the process"
+   ]
+  ],
+  "n": [
+   [
+    "32403",
+    "where arrivals fall"
+   ]
+  ]
+ },
+ "32403": {
+  "s": "STORY 24 · STEP 3 · WHERE THEY FALL",
+  "b": "Given n arrivals, they are <b>uniform order statistics</b>.",
+  "f": [
+   [
+    "32402",
+    "gaps and arrival times"
+   ]
+  ],
+  "n": [
+   [
+    "32404",
+    "splitting and merging"
+   ]
+  ]
+ },
+ "32404": {
+  "s": "STORY 24 · STEP 4 · SPLIT AND MERGE",
+  "b": "<b>Thinning</b> gives independent Poisson streams; <b>merging</b> adds rates.",
+  "f": [
+   [
+    "32403",
+    "uniform positions"
+   ]
+  ],
+  "n": [
+   [
+    "32405",
+    "a changing rate"
+   ]
+  ]
+ },
+ "32405": {
+  "s": "STORY 24 · STEP 5 · RUSH HOUR",
+  "b": "A <b>non-homogeneous</b> process has mean count m(t) = area under the rate.",
+  "f": [
+   [
+    "32401",
+    "constant rate"
+   ],
+   [
+    "32404",
+    "thinning with time-varying p"
+   ]
+  ],
+  "n": [
+   [
+    "32406",
+    "a surprising gap"
+   ]
+  ]
+ },
+ "32406": {
+  "s": "STORY 24 · STEP 6 · THE LONGER GAP",
+  "b": "The <b>inspection paradox</b>: the gap you arrive in is twice the average gap.",
+  "f": [
+   [
+    "32402",
+    "exponential gaps"
+   ],
+   [
+    "31706",
+    "long tails"
+   ]
+  ],
+  "n": [
+   [
+    "32501",
+    "walks"
+   ]
+  ]
+ },
+ "32501": {
+  "s": "STORY 25 · STEP 1 · COMING HOME",
+  "b": "<b>Pólya</b>: a symmetric walk returns for sure in 1D and 2D, but not in 3D.",
+  "f": [
+   [
+    "31906",
+    "the 1D walk"
+   ],
+   [
+    "31904",
+    "recurrence"
+   ]
+  ],
+  "n": [
+   [
+    "32502",
+    "the continuous limit"
+   ]
+  ]
+ },
+ "32502": {
+  "s": "STORY 25 · STEP 2 · SMALLER STEPS",
+  "b": "<b>Brownian motion</b> is the limit of rescaled random walks (Donsker).",
+  "f": [
+   [
+    "31803",
+    "the CLT"
+   ],
+   [
+    "32501",
+    "random walks"
+   ]
+  ],
+  "n": [
+   [
+    "32503",
+    "its covariance"
+   ]
+  ]
+ },
+ "32503": {
+  "s": "STORY 25 · STEP 3 · SHARED HISTORY",
+  "b": "Covariance is <b>min(s, t)</b>, and the path is self-similar.",
+  "f": [
+   [
+    "32502",
+    "Brownian motion"
+   ]
+  ],
+  "n": [
+   [
+    "32504",
+    "jitter adds up"
+   ],
+   [
+    "32505",
+    "reaching a level"
+   ]
+  ]
+ },
+ "32504": {
+  "s": "STORY 25 · STEP 4 · JITTER ADDS UP",
+  "b": "<b>Quadratic variation</b> [B]ₜ = t gives Itô's rule (dB)² = dt.",
+  "f": [
+   [
+    "32503",
+    "scaling"
+   ]
+  ],
+  "n": [
+   [
+    "32505",
+    "hitting levels"
+   ]
+  ]
+ },
+ "32505": {
+  "s": "STORY 25 · STEP 5 · HITTING A LEVEL",
+  "b": "The <b>reflection principle</b>: ℙ(M(t) ≥ a) = 2ℙ(B(t) ≥ a).",
+  "f": [
+   [
+    "32504",
+    "path properties"
+   ],
+   [
+    "32105",
+    "gambler's ruin"
+   ]
+  ],
+  "n": [
+   [
+    "32506",
+    "Gaussian processes"
+   ],
+   [
+    "32601",
+    "martingales"
+   ]
+  ]
+ },
+ "32506": {
+  "s": "STORY 25 · STEP 6 · PREDICTING A CURVE",
+  "b": "A <b>Gaussian process</b> gives a mean curve and an uncertainty band from noisy readings.",
+  "f": [
+   [
+    "32503",
+    "covariance kernels"
+   ]
+  ],
+  "n": [
+   [
+    "32601",
+    "martingales"
+   ]
+  ]
+ },
+ "32601": {
+  "s": "STORY 26 · STEP 1 · A FAIR TALLY",
+  "b": "A <b>martingale</b> is a fair game: the expected next value, given the past, is today's.",
+  "f": [
+   [
+    "31201",
+    "conditional expectation"
+   ],
+   [
+    "32501",
+    "walks"
+   ]
+  ],
+  "n": [
+   [
+    "32602",
+    "examples"
+   ]
+  ]
+ },
+ "32602": {
+  "s": "STORY 26 · STEP 2 · REMOVE THE DRIFT",
+  "b": "Centred sums, compensated squares and forecasts are <b>martingales</b>.",
+  "f": [
+   [
+    "32601",
+    "definition"
+   ],
+   [
+    "30503",
+    "variance of a sum"
+   ]
+  ],
+  "n": [
+   [
+    "32603",
+    "stopping"
+   ]
+  ]
+ },
+ "32603": {
+  "s": "STORY 26 · STEP 3 · STOPPING",
+  "b": "Stopping with <b>only the past</b> leaves a fair game fair at every fixed time.",
+  "f": [
+   [
+    "32602",
+    "families of martingales"
+   ]
+  ],
+  "n": [
+   [
+    "32604",
+    "stopping at a random time"
+   ]
+  ]
+ },
+ "32604": {
+  "s": "STORY 26 · STEP 4 · WHEN YOU MAY STOP",
+  "b": "<b>Optional stopping</b>: 𝔼[M_τ] = 𝔼[M₀] under boundedness conditions.",
+  "f": [
+   [
+    "32603",
+    "stopped martingale"
+   ]
+  ],
+  "n": [
+   [
+    "32605",
+    "applications"
+   ]
+  ]
+ },
+ "32605": {
+  "s": "STORY 26 · STEP 5 · THE CORRIDOR",
+  "b": "<b>Wald/OST</b> gives a/(a + b) and ab for the fair walk.",
+  "f": [
+   [
+    "32604",
+    "OST"
+   ],
+   [
+    "32105",
+    "gambler's ruin by equations"
+   ]
+  ],
+  "n": [
+   [
+    "32606",
+    "tail bounds"
+   ]
+  ]
+ },
+ "32606": {
+  "s": "STORY 26 · STEP 6 · STAYING CLOSE",
+  "b": "<b>Doob</b> and <b>Azuma–Hoeffding</b> bound how far a martingale strays.",
+  "f": [
+   [
+    "30601",
+    "Markov's inequality"
+   ],
+   [
+    "32602",
+    "capped moves"
+   ]
+  ],
+  "n": [
+   [
+    "32701",
+    "continuous time"
+   ]
+  ]
+ },
+ "32701": {
+  "s": "STORY 27 · STEP 1 · RATES NOT CHANCES",
+  "b": "The <b>generator Q</b> holds jump rates; holding times are exponential.",
+  "f": [
+   [
+    "31901",
+    "the discrete chain"
+   ],
+   [
+    "32402",
+    "exponential gaps"
+   ]
+  ],
+  "n": [
+   [
+    "32702",
+    "chances from rates"
+   ]
+  ]
+ },
+ "32702": {
+  "s": "STORY 27 · STEP 2 · CHANCES FROM RATES",
+  "b": "<b>Kolmogorov's equations</b> give P(t) = e^(Qt).",
+  "f": [
+   [
+    "32701",
+    "generator"
+   ],
+   [
+    "31902",
+    "Chapman–Kolmogorov"
+   ]
+  ],
+  "n": [
+   [
+    "32703",
+    "a worked case"
+   ],
+   [
+    "32706",
+    "computing it"
+   ]
+  ]
+ },
+ "32703": {
+  "s": "STORY 27 · STEP 3 · TWO STATES",
+  "b": "A two-state chain <b>forgets its start</b> at rate λ + μ.",
+  "f": [
+   [
+    "32702",
+    "matrix exponential"
+   ]
+  ],
+  "n": [
+   [
+    "32704",
+    "the long-run split"
+   ]
+  ]
+ },
+ "32704": {
+  "s": "STORY 27 · STEP 4 · BALANCE OF RATES",
+  "b": "The stationary law solves <b>πQ = 0</b>; detailed balance is a sufficient shortcut.",
+  "f": [
+   [
+    "32703",
+    "limit π₁"
+   ],
+   [
+    "32001",
+    "stationary law, discrete time"
+   ]
+  ],
+  "n": [
+   [
+    "32705",
+    "queues"
+   ]
+  ]
+ },
+ "32705": {
+  "s": "STORY 27 · STEP 5 · THE QUEUE",
+  "b": "The <b>M/M/1 queue</b> is geometric with mean ρ/(1 − ρ).",
+  "f": [
+   [
+    "32704",
+    "balance"
+   ],
+   [
+    "32202",
+    "birth–death chains"
+   ]
+  ],
+  "n": [
+   [
+    "32706",
+    "simulation by clock"
+   ]
+  ]
+ },
+ "32706": {
+  "s": "STORY 27 · STEP 6 · A CLOCK AND A CHAIN",
+  "b": "<b>Uniformization</b>: run a discrete chain on Poisson clock ticks.",
+  "f": [
+   [
+    "32702",
+    "e^(Qt)"
+   ],
+   [
+    "32401",
+    "Poisson process"
+   ]
+  ],
+  "n": []
  }
 });
