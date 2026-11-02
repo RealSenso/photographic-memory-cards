@@ -1046,5 +1046,121 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: look at several scales at once"
    ]
   ]
+ },
+ "3091": {
+  "s": "STORY 4 · STEP 7 · SEVERAL SCALES AT ONCE",
+  "b": "Fourier says <i>which</i> frequencies, not <i>where</i>. <b>Wavelets</b> use tiles that are narrow for fine detail and wide for smooth areas.",
+  "f": [
+   [
+    "3061",
+    "Fourier"
+   ],
+   [
+    "3081",
+    "block transforms"
+   ]
+  ],
+  "n": [
+   [
+    "3092",
+    "the ladder of pictures"
+   ]
+  ]
+ },
+ "3092": {
+  "s": "STORY 4 · STEP 8 · THE LADDER",
+  "b": "Each finer picture is the coarser one plus <b>new details</b>: $V_{j+1}=V_j\\oplus W_j$.",
+  "f": [
+   [
+    "3091",
+    "scaled wavelets"
+   ]
+  ],
+  "n": [
+   [
+    "3093",
+    "the filters that do it"
+   ]
+  ]
+ },
+ "3093": {
+  "s": "STORY 4 · STEP 9 · THE FILTER BANK",
+  "b": "A low-pass and a high-pass, each followed by $\\downarrow2$, split the signal; the synthesis bank <b>cancels the aliasing</b> and rebuilds it.",
+  "f": [
+   [
+    "3092",
+    "MRA"
+   ],
+   [
+    "3074",
+    "downsampling"
+   ],
+   [
+    "3075",
+    "upsampling"
+   ]
+  ],
+  "n": [
+   [
+    "3094",
+    "in two dimensions"
+   ],
+   [
+    "3096",
+    "by hand"
+   ]
+  ]
+ },
+ "3094": {
+  "s": "STORY 4 · STEP 10 · IN 2D",
+  "b": "Rows then columns give <b>LL, HL, LH, HH</b>; recurse on LL for a pyramid.",
+  "f": [
+   [
+    "3093",
+    "1D bank"
+   ]
+  ],
+  "n": [
+   [
+    "3095",
+    "clean the detail bands"
+   ]
+  ]
+ },
+ "3095": {
+  "s": "STORY 4 · STEP 11 · DENOISE",
+  "b": "Real edges are <b>few and large</b>, noise is <b>many and small</b>: threshold the detail bands.",
+  "f": [
+   [
+    "3094",
+    "subbands"
+   ]
+  ],
+  "n": [
+   [
+    "3101",
+    "noise in restoration"
+   ],
+   [
+    "3111",
+    "other ways to clean noise"
+   ]
+  ]
+ },
+ "3096": {
+  "s": "STORY 4 · STEP 12 · CHECK BY HAND",
+  "b": "Four pixels through two Haar levels and back.",
+  "f": [
+   [
+    "3093",
+    "Haar"
+   ]
+  ],
+  "n": [
+   [
+    "3101",
+    "next: undo a blur"
+   ]
+  ]
  }
 });
