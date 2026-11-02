@@ -1462,5 +1462,249 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "Poisson thinning in processes"
    ]
   ]
+ },
+ "31301": {
+  "s": "STORY 13 · STEP 1 · THE BELL IN MANY DIMENSIONS",
+  "b": "The <b>multivariate normal</b> is a cloud whose density falls with the spread-aware distance from the centre.",
+  "f": [
+   [
+    "31101",
+    "the covariance matrix"
+   ],
+   [
+    "30305",
+    "the one-dimensional bell"
+   ]
+  ],
+  "n": [
+   [
+    "31302",
+    "its linear mixes"
+   ],
+   [
+    "31305",
+    "reading Σ from the exponent"
+   ]
+  ]
+ },
+ "31302": {
+  "s": "STORY 13 · STEP 2 · EVERY MIX IS A BELL",
+  "b": "Every <b>weighted total</b> of jointly Gaussian legs is normal, with mean and variance from μ and Σ.",
+  "f": [
+   [
+    "31301",
+    "the joint density"
+   ],
+   [
+    "30905",
+    "sums of normals"
+   ]
+  ],
+  "n": [
+   [
+    "31303",
+    "zero covariance"
+   ],
+   [
+    "31304",
+    "conditioning"
+   ]
+  ]
+ },
+ "31303": {
+  "s": "STORY 13 · STEP 3 · NO TILT",
+  "b": "For jointly Gaussian pairs, <b>uncorrelated means independent</b>.",
+  "f": [
+   [
+    "31302",
+    "linear projections"
+   ],
+   [
+    "30506",
+    "the general failure"
+   ]
+  ],
+  "n": [
+   [
+    "31306",
+    "when joint Gaussianity fails"
+   ]
+  ]
+ },
+ "31304": {
+  "s": "STORY 13 · STEP 4 · SLICING",
+  "b": "Slicing a Gaussian cloud gives a Gaussian whose mean is the <b>LLSE</b>: <b>MMSE = LLSE</b>.",
+  "f": [
+   [
+    "31103",
+    "the LLSE"
+   ],
+   [
+    "31205",
+    "line versus curve"
+   ]
+  ],
+  "n": [
+   [
+    "32506",
+    "Gaussian process regression"
+   ]
+  ]
+ },
+ "31305": {
+  "s": "STORY 13 · STEP 5 · A RECIPE",
+  "b": "The matrix in the exponent is the <b>inverse</b> covariance: invert it to read variances.",
+  "f": [
+   [
+    "31301",
+    "the density"
+   ]
+  ],
+  "n": [
+   [
+    "32506",
+    "kernel matrices"
+   ]
+  ]
+ },
+ "31306": {
+  "s": "STORY 13 · STEP 6 · THE TRAP",
+  "b": "Normal marginals do <b>not</b> make a normal pair: a random sign gives a cross-shaped cloud.",
+  "f": [
+   [
+    "31303",
+    "uncorrelated vs independent"
+   ]
+  ],
+  "n": [
+   [
+    "31502",
+    "convergence in distribution is only marginal"
+   ]
+  ]
+ },
+ "31401": {
+  "s": "STORY 14 · STEP 1 · A RANDOM NUMBER OF STOPS",
+  "b": "A <b>random sum</b> adds a random number of random terms; switching terms on and off turns it into a fixed-length sum.",
+  "f": [
+   [
+    "30501",
+    "linearity of expectation"
+   ],
+   [
+    "30505",
+    "counts"
+   ]
+  ],
+  "n": [
+   [
+    "31402",
+    "its mean"
+   ],
+   [
+    "31403",
+    "its variance"
+   ]
+  ]
+ },
+ "31402": {
+  "s": "STORY 14 · STEP 2 · THE MEAN",
+  "b": "<b>Wald I</b>: the mean of a random sum is mean count times mean term.",
+  "f": [
+   [
+    "31401",
+    "random sums"
+   ]
+  ],
+  "n": [
+   [
+    "31403",
+    "the variance"
+   ],
+   [
+    "32605",
+    "Wald from optional stopping"
+   ]
+  ]
+ },
+ "31403": {
+  "s": "STORY 14 · STEP 3 · THE VARIANCE",
+  "b": "<b>Wald II</b>: two sources of randomness, the terms and the count.",
+  "f": [
+   [
+    "31402",
+    "Wald I"
+   ],
+   [
+    "31204",
+    "Eve's law"
+   ]
+  ],
+  "n": [
+   [
+    "31404",
+    "the whole distribution"
+   ]
+  ]
+ },
+ "31404": {
+  "s": "STORY 14 · STEP 4 · THE WHOLE LAW",
+  "b": "Generating functions of random sums are <b>compositions</b> G_N(M_X(t)).",
+  "f": [
+   [
+    "30504",
+    "MGFs"
+   ],
+   [
+    "30505",
+    "PGFs"
+   ]
+  ],
+  "n": [
+   [
+    "31405",
+    "iterating the composition"
+   ],
+   [
+    "31406",
+    "the Poisson case"
+   ]
+  ]
+ },
+ "31405": {
+  "s": "STORY 14 · STEP 5 · CASCADES",
+  "b": "Iterating random sums gives <b>branching</b>: extinction is the smallest root of s = G(s).",
+  "f": [
+   [
+    "31404",
+    "composition of PGFs"
+   ]
+  ],
+  "n": [
+   [
+    "31901",
+    "chains as dynamic processes"
+   ]
+  ]
+ },
+ "31406": {
+  "s": "STORY 14 · STEP 6 · INCIDENTS",
+  "b": "A Poisson count of random costs gives the <b>compound Poisson</b> total, with variance from the second moment.",
+  "f": [
+   [
+    "31403",
+    "Wald II"
+   ],
+   [
+    "30304",
+    "exponential sizes"
+   ]
+  ],
+  "n": [
+   [
+    "32404",
+    "thinning and superposition"
+   ]
+  ]
  }
 });
