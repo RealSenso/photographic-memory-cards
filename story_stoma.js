@@ -1706,5 +1706,241 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "thinning and superposition"
    ]
   ]
+ },
+ "31501": {
+  "s": "STORY 15 · STEP 1 · FOUR WAYS TO SETTLE",
+  "b": "Convergence of random variables has <b>four modes</b> in a fixed hierarchy: a.s. and L^p are strongest, in law is weakest.",
+  "f": [
+   [
+    "30301",
+    "random variables"
+   ],
+   [
+    "30602",
+    "Chebyshev, for in-probability"
+   ]
+  ],
+  "n": [
+   [
+    "31502",
+    "partial converses"
+   ],
+   [
+    "31701",
+    "laws of large numbers"
+   ]
+  ]
+ },
+ "31502": {
+  "s": "STORY 15 · STEP 2 · WHEN THE REVERSE HOLDS",
+  "b": "With a <b>constant limit</b>, law and probability agree, and a <b>subsequence</b> of a probability limit converges a.s.",
+  "f": [
+   [
+    "31501",
+    "the hierarchy"
+   ]
+  ],
+  "n": [
+   [
+    "31503",
+    "why not in general"
+   ],
+   [
+    "31605",
+    "proving a.s. via Borel–Cantelli"
+   ]
+  ]
+ },
+ "31503": {
+  "s": "STORY 15 · STEP 3 · PROBABILITY IS NOT A.S.",
+  "b": "The <b>sliding typewriter</b>: always shrinking, never settling for any one run.",
+  "f": [
+   [
+    "31502",
+    "the reverse that does hold"
+   ]
+  ],
+  "n": [
+   [
+    "31504",
+    "the other failure"
+   ],
+   [
+    "31602",
+    "first Borel–Cantelli to repair it"
+   ]
+  ]
+ },
+ "31504": {
+  "s": "STORY 15 · STEP 4 · A.S. IS NOT L^p",
+  "b": "The <b>escaping spike</b>: every run settles, yet the averages blow up.",
+  "f": [
+   [
+    "31503",
+    "probability vs a.s."
+   ]
+  ],
+  "n": [
+   [
+    "31505",
+    "limits in law and their algebra"
+   ]
+  ]
+ },
+ "31505": {
+  "s": "STORY 15 · STEP 5 · ALGEBRA OF LIMITS",
+  "b": "<b>Slutsky</b>: sums, products and ratios of an in-law limit with an in-probability constant.",
+  "f": [
+   [
+    "31501",
+    "modes"
+   ]
+  ],
+  "n": [
+   [
+    "31506",
+    "the t-statistic"
+   ],
+   [
+    "31803",
+    "CLT"
+   ]
+  ]
+ },
+ "31506": {
+  "s": "STORY 15 · STEP 6 · NOT KNOWING THE SPREAD",
+  "b": "The <b>t-statistic</b> is asymptotically normal: Slutsky and the CLT together.",
+  "f": [
+   [
+    "31505",
+    "Slutsky"
+   ]
+  ],
+  "n": [
+   [
+    "31701",
+    "the law of large numbers for the denominator"
+   ]
+  ]
+ },
+ "31601": {
+  "s": "STORY 16 · STEP 1 · FOREVER OR ONLY FINITELY OFTEN",
+  "b": "<b>limsup</b> is “infinitely often” and <b>liminf</b> is “all but finitely often”, built from unions and intersections of events.",
+  "f": [
+   [
+    "30103",
+    "limits of events"
+   ]
+  ],
+  "n": [
+   [
+    "31602",
+    "when infinitely often has chance 0"
+   ],
+   [
+    "31603",
+    "when it has chance 1"
+   ]
+  ]
+ },
+ "31602": {
+  "s": "STORY 16 · STEP 2 · FADING BAD LUCK",
+  "b": "<b>BC1</b>: summable chances mean only <b>finitely many</b> events happen, with no independence.",
+  "f": [
+   [
+    "31601",
+    "limsup"
+   ],
+   [
+    "30104",
+    "Boole's inequality"
+   ]
+  ],
+  "n": [
+   [
+    "31605",
+    "proving a.s. convergence"
+   ]
+  ]
+ },
+ "31603": {
+  "s": "STORY 16 · STEP 3 · BAD LUCK THAT PERSISTS",
+  "b": "<b>BC2</b>: independent events with divergent chances happen <b>infinitely often</b>.",
+  "f": [
+   [
+    "31602",
+    "BC1"
+   ],
+   [
+    "30205",
+    "independence"
+   ]
+  ],
+  "n": [
+   [
+    "31604",
+    "zero-one behaviour"
+   ],
+   [
+    "31606",
+    "a worked example"
+   ]
+  ]
+ },
+ "31604": {
+  "s": "STORY 16 · STEP 4 · ALL OR NOTHING",
+  "b": "<b>Kolmogorov's zero–one law</b>: tail events of independent days have chance 0 or 1.",
+  "f": [
+   [
+    "31603",
+    "BC2"
+   ]
+  ],
+  "n": [
+   [
+    "31702",
+    "strong law is a tail event"
+   ]
+  ]
+ },
+ "31605": {
+  "s": "STORY 16 · STEP 5 · A TOOL",
+  "b": "Summable miss chances give <b>almost sure convergence</b> through BC1.",
+  "f": [
+   [
+    "31602",
+    "BC1"
+   ],
+   [
+    "31503",
+    "why a.s. needs more"
+   ]
+  ],
+  "n": [
+   [
+    "31703",
+    "the fourth-moment strong law"
+   ]
+  ]
+ },
+ "31606": {
+  "s": "STORY 16 · STEP 6 · STREAKS",
+  "b": "Both lemmas decide how long a <b>streak</b> can keep recurring in an endless record.",
+  "f": [
+   [
+    "31602",
+    "BC1"
+   ],
+   [
+    "31603",
+    "BC2"
+   ]
+  ],
+  "n": [
+   [
+    "31701",
+    "laws of large numbers"
+   ]
+  ]
  }
 });
