@@ -50,14 +50,18 @@ def _unscore(svg_text):
         return re.sub(r"_\(?([A-Za-z0-9])\)?", lambda k: _SUB.get(k.group(1), k.group(1)), s)
     return re.sub(r">[^<]*<", fix, svg_text)
 
+def _lt(s):
+    """inside $...$ math, '<' and '>' must be \\lt and \\gt (a bare '<' starts an HTML tag)"""
+    return re.sub(r"\$[^$]*\$", lambda m: m.group(0).replace("<", r"\lt ").replace(">", r"\gt "), s)
+
 def build(subject_cards):
     """CARDS = {id: dict(d=draw_fn, kind=..., stmt=..., hint=..., bd=[3 bullets], conn=..., cap=...)} -> FIX"""
     fix = {}
     for cid, v in subject_cards.items():
         assert len(v["bd"]) == 3, cid
         assert "_" not in re.sub(r"\$[^$]*\$|\\[a-z]+", "", "".join(re.findall(r">[^<]*<", v["d"](cid)))) or True
-        fix[cid] = {"stmtKind": v["kind"], "statement": v["stmt"], "hint": v["hint"], "breakdown": v["bd"],
-                    "personalConnection": v["conn"], "drawingSvg": _unscore(v["d"](cid)), "drawingCaption": v["cap"],
+        fix[cid] = {"stmtKind": v["kind"], "statement": _lt(v["stmt"]), "hint": _lt(v["hint"]), "breakdown": [_lt(b) for b in v["bd"]],
+                    "personalConnection": _lt(v["conn"]), "drawingSvg": _unscore(v["d"](cid)), "drawingCaption": v["cap"],
                     "textbookImg": None, "textbookRef": None}
     return fix
 import re

@@ -102,12 +102,12 @@ CARDS = {
   conn=r"<strong>The unknown reliability of this bus line.</strong> Before you know how reliable the line is, one day's lateness tells you about the next. If you knew its reliability, days would be independent coin flips. Not knowing it makes the days exchangeable but linked.",
   cap="A hidden on-time chance Θ points at the days X₁, X₂, X₃. Given Θ = θ they are independent Bernoulli(θ) flips, and the joint law averages that product over the law of Θ."),
 31006: dict(d=d6, kind="WORKED EXAMPLE",
-  stmt=r"<b>Pólya's urn.</b> An urn has $w$ white and $b$ black balls. A ball is drawn at random and returned together with $c$ more of the same colour; repeat. With $X_i=1$ if the $i$-th draw is white, $\mathbb P(X_1=x_1,\ldots,X_n=x_n)=\dfrac{\prod_{j=0}^{k-1}(w+jc)\prod_{j=0}^{n-k-1}(b+jc)}{\prod_{j=0}^{n-1}(w+b+jc)}$ with $k=\sum x_i$. It depends only on $k$, so the draws are exchangeable, and $\Theta\sim\mathrm{Beta}\bigl(\tfrac wc,\tfrac bc\bigr)$ in de Finetti's theorem (Ross 3.6; Grimmett 7.2).",
+  stmt=r"<b>Pólya's urn.</b> An urn has $w$ white and $b$ black balls; a ball is drawn and returned with $c$ more of its colour. With $k=\sum x_i$ white draws, $\mathbb P(X_1=x_1,\ldots,X_n=x_n)=\frac{\prod_{j<k}(w+jc)\prod_{j<n-k}(b+jc)}{\prod_{j<n}(w+b+jc)}$, which depends only on $k$: the draws are exchangeable, and $\Theta\sim\mathrm{Beta}(\frac wc,\frac bc)$ (Ross 3.6; Grimmett 7.2).",
   hint="If every time you use a route you make it more likely next time, are the days independent? Exchangeable?",
-  bd=[r"<strong>$\prod_{j<k}(w+jc)$ = the white draws.</strong> The $j$-th white draw happens when white has grown by $jc$; the same product appears no matter in which positions the white draws fall.",
-      r"<strong>$\prod_{j<n}(w+b+jc)$ = the growing urn.</strong> Each draw adds $c$ balls, so the denominator is the same for every sequence.",
-      r"<strong>$\Theta\sim\mathrm{Beta}(w/c,b/c)$ = the long-run share.</strong> The chance depends on the number of white draws $k$, not on their order: exchangeable but not independent, and its limit share is random."],
-  conn=r"<strong>Habit builds on itself.</strong> Each time a route works, you favour it a bit more next time. The sequence of routes is not independent, but the order of the days does not matter, only how many times each route was used.",
+  bd=[r"<strong>$\prod_{j<k}(w+jc)$ = the white draws.</strong> The $j$-th white draw sees white grown by $jc$, in whatever positions they fall.",
+      r"<strong>$\prod_{j<n}(w+b+jc)$ = the growing urn.</strong> Each draw adds $c$ balls, the same for every sequence.",
+      r"<strong>$\Theta\sim\mathrm{Beta}(w/c,b/c)$ = the long-run share.</strong> The chance depends on the count $k$, not the order: exchangeable, not independent."],
+  conn=r"<strong>Habit builds on itself.</strong> Each time a route works you favour it a bit more; the order of days does not matter, only how often each route was used.",
   cap="An urn of route A (white) and route B (black). After each draw the drawn route is put back with c more of its kind, so the chance of a sequence depends only on counts, and Θ ~ Beta(w/c, b/c) is the long-run share."),
 }
 

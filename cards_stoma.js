@@ -21,11 +21,11 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Looking out of the window.</strong> Seeing rain throws away every dry morning. Among the rainy mornings that are left, you ask what share of them ends late. Same mornings, smaller universe, rescaled to 1.",
     "examTrap": "Conditioning on events with P(B) = 0 is undefined in Kolmogorov's elementary setting. Continuous conditioning requires conditional expectation on \u03c3-algebras (Borel-Kolmogorov paradox).",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Conditional probability.</b> Let $B\\in\\mathcal F$ with $\\mathbb P(B)>0$. The conditional probability of $A\\in\\mathcal F$ given $B$ is $\\mathbb P(A\\mid B)=\\dfrac{\\mathbb P(A\\cap B)}{\\mathbb P(B)}$. The map $A\\mapsto\\mathbb P(A\\mid B)$ is itself a probability measure on $(\\Omega,\\mathcal F)$, with $\\mathbb P(B\\mid B)=1$ (Ross 3.2; Grimmett 1.4).",
+    "statement": "<b>Conditional probability.</b> Let $B\\in\\mathcal F$ with $\\mathbb P(B)\\gt 0$. The conditional probability of $A\\in\\mathcal F$ given $B$ is $\\mathbb P(A\\mid B)=\\dfrac{\\mathbb P(A\\cap B)}{\\mathbb P(B)}$. The map $A\\mapsto\\mathbb P(A\\mid B)$ is itself a probability measure on $(\\Omega,\\mathcal F)$, with $\\mathbb P(B\\mid B)=1$ (Ross 3.2; Grimmett 1.4).",
     "hint": "If you already know it is raining, which mornings are still in play, and what is your chance of being late among them?",
     "breakdown": [
       "<strong>$\\mathbb P(A\\cap B)$ = mornings that are both late and rainy.</strong> This is the part of the rainy mornings in which you were also late.",
-      "<strong>$\\mathbb P(B)>0$ = the condition must be possible.</strong> It is the size of the new, smaller set of mornings; dividing by it rescales that set to total 1.",
+      "<strong>$\\mathbb P(B)\\gt 0$ = the condition must be possible.</strong> It is the size of the new, smaller set of mornings; dividing by it rescales that set to total 1.",
       "<strong>$\\mathbb P(B\\mid B)=1$ = the new universe is certain.</strong> Once you know it rains, only rainy mornings remain, and they now have total chance 1."
     ],
     "textbookImg": null,
@@ -48,15 +48,15 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
       "<strong>Permutation Invariance:</strong> Any permutation of indices yields mathematically identical joint probability, but choosing causal/chronological orders simplifies computation."
     ],
     "math": "$$\\mathbb{P}\\left(\\bigcap_{i=1}^n A_i\\right) = \\mathbb{P}(A_1) \\prod_{k=2}^n \\mathbb{P}\\left(A_k \\;\\middle|\\; \\bigcap_{j=1}^{k-1} A_j\\right)$$",
-    "personalConnection": "<strong>A morning built step by step.</strong> Out of the door on time, bus within five minutes, no jam on the bridge: the chance of all three is the chance of the first, times the chance of the second given the first, times the third given both.",
+    "personalConnection": "<strong>A morning built step by step.</strong> Out on time, bus within five minutes, no jam on the bridge: first chance, times second given first, times third given both.",
     "examTrap": "Forgetting to check whether intermediate conditioning histories have strictly positive probability: P(A\u2081 \u2229 ... \u2229 A_{k-1}) > 0 is mandatory at every step.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Multiplication rule (chain rule).</b> For events $A_1,\\ldots,A_n$ with $\\mathbb P(A_1\\cap\\cdots\\cap A_{n-1})>0$, $\\mathbb P\\!\\left(\\bigcap_{i=1}^nA_i\\right)=\\mathbb P(A_1)\\prod_{k=2}^n\\mathbb P\\!\\left(A_k\\,\\middle|\\,\\bigcap_{j=1}^{k-1}A_j\\right)$. For two events, $\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B\\mid A)$ (Ross 3.2; Grimmett 1.4).",
+    "statement": "<b>Chain rule.</b> For events with $\\mathbb P(A_1\\cap\\cdots\\cap A_{n-1})\\gt 0$, $\\mathbb P(\\bigcap_{i=1}^nA_i)=\\mathbb P(A_1)\\prod_{k=2}^n\\mathbb P(A_k\\mid\\bigcap_{j\\lt k}A_j)$. For two events, $\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B\\mid A)$ (Ross 3.2; Grimmett 1.4).",
     "hint": "How do you get the chance of a whole morning going a certain way from the chances of its steps?",
     "breakdown": [
-      "<strong>$\\mathbb P(A_1)$ = how likely the first step is.</strong> For instance, leaving the house on time.",
-      "<strong>$\\mathbb P(A_k\\mid\\bigcap_{j<k}A_j)$ = each next step given the whole past.</strong> The chance the bus comes depends on what has happened so far this morning.",
-      "<strong>$\\prod_k$ = multiply the steps.</strong> The chance that everything happens is the product of these stepwise chances; every earlier history must have positive probability."
+      "<strong>$\\mathbb P(A_1)$ = the first step.</strong> For instance, leaving the house on time.",
+      "<strong>$\\mathbb P(A_k\\mid\\bigcap_{j\\lt k}A_j)$ = each step given the whole past.</strong> The bus's chance depends on this morning so far.",
+      "<strong>$\\prod_k$ = multiply the steps.</strong> The chance that everything happens is the product of the stepwise chances."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -81,7 +81,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Late in each kind of weather.</strong> You know how often you are late when it is dry, rainy and stormy, and how often each weather occurs. The overall chance of being late is the average of the three, weighted by the weather's frequency.",
     "examTrap": "Overlooking missing partition coverage: if \u2211 P(B\u1d62) < 1, the partition has an uncounted gap, strictly underestimating P(A).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Law of total probability.</b> Let $B_1,\\ldots,B_n$ be a partition of $\\Omega$ ($B_i\\cap B_j=\\emptyset$ for $i\\ne j$, $\\bigcup_iB_i=\\Omega$) with $\\mathbb P(B_i)>0$. Then for every event $A$, $\\mathbb P(A)=\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)$ (Ross 3.3; Grimmett 1.4).",
+    "statement": "<b>Law of total probability.</b> Let $B_1,\\ldots,B_n$ be a partition of $\\Omega$ ($B_i\\cap B_j=\\emptyset$ for $i\\ne j$, $\\bigcup_iB_i=\\Omega$) with $\\mathbb P(B_i)\\gt 0$. Then for every event $A$, $\\mathbb P(A)=\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)$ (Ross 3.3; Grimmett 1.4).",
     "hint": "If the weather is dry, rainy or stormy, how do you build the chance of being late from the chance in each weather?",
     "breakdown": [
       "<strong>$B_i$ = the weather types.</strong> Every morning is exactly one of them: they cover $\\Omega$ and do not overlap.",
@@ -111,7 +111,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Late, so why?</strong> You walk into class late and the question flips from \u201cwhat does each cause do to me\u201d to \u201cwhich cause did this\u201d. A rare cause that nearly always makes you late can still be the likeliest explanation.",
     "examTrap": "The Base Rate Fallacy: confusing test reliability P(A|B) with disease certainty P(B|A). If the prior P(B) is 0.1%, a 99% accurate test still yields >95% false alarms!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Bayes' theorem.</b> Let $B_1,\\ldots,B_n$ partition $\\Omega$ with $\\mathbb P(B_i)>0$, and let $\\mathbb P(A)>0$. Then $\\mathbb P(B_k\\mid A)=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)}=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\mathbb P(A)}$ (Ross 3.3; Grimmett 1.4).",
+    "statement": "<b>Bayes' theorem.</b> Let $B_1,\\ldots,B_n$ partition $\\Omega$ with $\\mathbb P(B_i)\\gt 0$, and let $\\mathbb P(A)\\gt 0$. Then $\\mathbb P(B_k\\mid A)=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)}=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\mathbb P(A)}$ (Ross 3.3; Grimmett 1.4).",
     "hint": "You arrive late. How do you turn \u201chow often does each cause make me late\u201d into \u201cwhich cause was it?\u201d",
     "breakdown": [
       "<strong>$\\mathbb P(B_k)$ = prior, how common the cause is.</strong> Rain, breakdown and oversleeping each happen with some base frequency.",
@@ -141,7 +141,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two people late on the same bus.</strong> Whether you and a friend on the same route are late are linked, because of the jam. Once you know there was a jam, your lateness says nothing more about theirs.",
     "examTrap": "Berkson's Paradox: conditioning on common success (e.g. college admissions) creates artificial negative correlation between two independent skills.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Independence and conditional independence.</b> Events $A,B$ are independent if $\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B)$ (equivalently $\\mathbb P(A\\mid B)=\\mathbb P(A)$ when $\\mathbb P(B)>0$). Given an event $C$ with $\\mathbb P(C)>0$, $A$ and $B$ are conditionally independent given $C$ if $\\mathbb P(A\\cap B\\mid C)=\\mathbb P(A\\mid C)\\mathbb P(B\\mid C)$. Neither implies the other (Ross 3.4; Grimmett 1.5).",
+    "statement": "<b>Independence and conditional independence.</b> Events $A,B$ are independent if $\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B)$ (equivalently $\\mathbb P(A\\mid B)=\\mathbb P(A)$ when $\\mathbb P(B)\\gt 0$). Given an event $C$ with $\\mathbb P(C)\\gt 0$, $A$ and $B$ are conditionally independent given $C$ if $\\mathbb P(A\\cap B\\mid C)=\\mathbb P(A\\mid C)\\mathbb P(B\\mid C)$. Neither implies the other (Ross 3.4; Grimmett 1.5).",
     "hint": "When does learning that B happened tell you nothing about A, and how can a third fact change that?",
     "breakdown": [
       "<strong>$\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B)$ = knowing B leaves A unchanged.</strong> The joint chance is just the product of the two separate chances.",
@@ -291,12 +291,12 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The bus that never owes you.</strong> You have stood at the stop for ten minutes. If buses come at random, the next one is no closer than when you arrived: your wasted wait buys you nothing.",
     "examTrap": "Applying the memoryless property to aging physical machinery (car engines, human organs). Most real systems exhibit wear-out (Weibull with shape k > 1), where hazard rate strictly increases.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Exponential distribution and memorylessness.</b> $X\\sim\\mathrm{Exp}(\\lambda)$ has density $f_X(t)=\\lambda e^{-\\lambda t}$ for $t\\ge0$, so $\\mathbb P(X>t)=e^{-\\lambda t}$. Then for all $s,t\\ge0$, $\\mathbb P(X>t+s\\mid X>t)=\\dfrac{e^{-\\lambda(t+s)}}{e^{-\\lambda t}}=e^{-\\lambda s}=\\mathbb P(X>s)$. It is the only continuous distribution on $[0,\\infty)$ with this property (Ross 5.5).",
+    "statement": "<b>Exponential distribution and memorylessness.</b> $X\\sim\\mathrm{Exp}(\\lambda)$ has density $f_X(t)=\\lambda e^{-\\lambda t}$ for $t\\ge0$, so $\\mathbb P(X\\gt t)=e^{-\\lambda t}$. Then for all $s,t\\ge0$, $\\mathbb P(X\\gt t+s\\mid X\\gt t)=\\dfrac{e^{-\\lambda(t+s)}}{e^{-\\lambda t}}=e^{-\\lambda s}=\\mathbb P(X\\gt s)$. It is the only continuous distribution on $[0,\\infty)$ with this property (Ross 5.5).",
     "hint": "You have already waited t minutes for the bus. What is the chance you wait s more?",
     "breakdown": [
       "<strong>$\\lambda e^{-\\lambda t}$ = the waiting-time curve.</strong> Short waits are most likely, and $\\lambda$ is how many buses per minute come on average.",
-      "<strong>$\\mathbb P(X>t)=e^{-\\lambda t}$ = still waiting after $t$.</strong> Each extra minute multiplies this chance by the same factor.",
-      "<strong>$\\mathbb P(X>t+s\\mid X>t)=\\mathbb P(X>s)$ = no memory.</strong> Having already waited $t$ minutes changes nothing: the remaining wait has the same law as a fresh wait."
+      "<strong>$\\mathbb P(X\\gt t)=e^{-\\lambda t}$ = still waiting after $t$.</strong> Each extra minute multiplies this chance by the same factor.",
+      "<strong>$\\mathbb P(X\\gt t+s\\mid X\\gt t)=\\mathbb P(X\\gt s)$ = no memory.</strong> Having already waited $t$ minutes changes nothing: the remaining wait has the same law as a fresh wait."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -351,7 +351,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Sometimes the bus is just there.</strong> Some mornings you walk up and the bus is open at the stop: wait 0. On the others you wait some random time. The waiting time is part \u201cexactly 0\u201d and part \u201cany positive amount\u201d.",
     "examTrap": "Applying \u222b x f(x)dx alone without accounting for point mass jumps! Disregarding atoms F(x) - F(x\u207b) completely invalidates expected values and variances.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Mixed random variable.</b> A random variable whose CDF has the form $F_X=\\alpha F_{\\rm disc}+(1-\\alpha)F_{\\rm cont}$, $0<\\alpha<1$, with $F_{\\rm disc}$ a step function and $F_{\\rm cont}$ continuous, is mixed. Its mean is $\\mathbb E[X]=\\sum_kx_k\\,\\mathbb P(X=x_k)+\\int_{-\\infty}^\\infty x\\,f_c(x)\\,dx$, the atoms plus the continuous part, where $f_c$ is the density of the continuous part (Ross 5.1; Grimmett 4.1).",
+    "statement": "<b>Mixed random variable.</b> A random variable whose CDF has the form $F_X=\\alpha F_{\\rm disc}+(1-\\alpha)F_{\\rm cont}$, $0\\lt \\alpha\\lt 1$, with $F_{\\rm disc}$ a step function and $F_{\\rm cont}$ continuous, is mixed. Its mean is $\\mathbb E[X]=\\sum_kx_k\\,\\mathbb P(X=x_k)+\\int_{-\\infty}^\\infty x\\,f_c(x)\\,dx$, the atoms plus the continuous part, where $f_c$ is the density of the continuous part (Ross 5.1; Grimmett 4.1).",
     "hint": "With some chance the bus is already waiting, otherwise you wait a continuous time. How does that shape the CDF?",
     "breakdown": [
       "<strong>$\\alpha F_{\\rm disc}$ = the bus is already there.</strong> With chance $\\alpha$ the wait is exactly 0, so the CDF jumps at 0 by $\\alpha$.",
@@ -408,15 +408,15 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
       "<strong>Reciprocal Derivative Form:</strong> Expressing via derivative of $g$: $f_Y(y) = \\frac{f_X(g^{-1}(y))}{|g'(g^{-1}(y))|}$ for all $y$ in the image of $g$."
     ],
     "math": "$$f_Y(y) = f_X\\left(g^{-1}(y)\\right) \\left| \\frac{d}{dy} g^{-1}(y) \\right| = \\frac{f_X(g^{-1}(y))}{|g'(g^{-1}(y))|}, \\quad y \\in g(\\text{supp}(X))$$",
-    "personalConnection": "<strong>Minutes into speed.</strong> A band of ride times near 20 minutes turns into a band of speeds. The chance in the band is the same; the speeds in it are more squeezed or spread out, so the density changes by the stretch factor.",
+    "personalConnection": "<strong>Minutes into speed.</strong> The chance in a band of ride times is the same chance in the matching band of speeds; the density changes by the stretch factor.",
     "examTrap": "Omitting the absolute value |dx/dy| for strictly decreasing functions (e.g. Y = -X or Y = 1/X). Probabilities and densities must NEVER be negative!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Change of variables (one dimension).</b> Let $X$ have density $f_X$ and let $g$ be strictly monotone and differentiable on the support of $X$, with inverse $g^{-1}$. Then $Y=g(X)$ has density $f_Y(y)=f_X\\bigl(g^{-1}(y)\\bigr)\\left|\\dfrac{d}{dy}g^{-1}(y)\\right|=\\dfrac{f_X(g^{-1}(y))}{|g'(g^{-1}(y))|}$ for $y\\in g(\\operatorname{supp}X)$ (Ross 5.7; Grimmett 4.7).",
+    "statement": "<b>Monotone change of variables.</b> If $g$ is strictly monotone and differentiable on the support of $X$, then $Y=g(X)$ has density $f_Y(y)=f_X(g^{-1}(y))\\left|\\frac{d}{dy}g^{-1}(y)\\right|$ for $y\\in g(\\operatorname{supp}X)$ (Ross 5.7; Grimmett 4.7).",
     "hint": "If speed is distance over ride time, how does the density of the ride time turn into the density of the speed?",
     "breakdown": [
-      "<strong>$f_X(g^{-1}(y))$ = the density at the ride time that gives $y$.</strong> Undo $g$ to find which ride time $x$ produces the speed $y$, and read off its density.",
-      "<strong>$\\left|\\dfrac{d}{dy}g^{-1}(y)\\right|$ = how much the axis stretches.</strong> A small band of speeds $dy$ comes from a band of ride times $dx$; this factor converts widths.",
-      "<strong>$|\\cdot|$ = widths are positive.</strong> For a decreasing $g$ (like speed from ride time), $dx/dy$ is negative, so the absolute value keeps the density non-negative."
+      "<strong>$f_X(g^{-1}(y))$ = density at the ride time that gives $y$.</strong> Undo $g$ to find which ride time $x$ produces speed $y$.",
+      "<strong>$|\\frac{d}{dy}g^{-1}(y)|$ = how the axis stretches.</strong> A band $dy$ of speeds comes from a band $dx$ of ride times.",
+      "<strong>$|\\cdot|$ = widths are positive.</strong> For decreasing $g$, $dx/dy$ is negative; the absolute value keeps the density non-negative."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -441,7 +441,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two ways to the same number.</strong> Deviation from the usual ride time: running 5 minutes early or 5 minutes late both give a squared deviation of 25. The chance of that squared value counts both.",
     "examTrap": "Missing branches when g(x) is even or periodic (e.g. Y = |X|, Y = X\u2074, Y = cos X). Every real root x_k contributing to y must be included in the sum!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Many-to-one transformations.</b> Let $g$ be piecewise strictly monotone and differentiable, and let $y$ have preimages $x_1,\\ldots,x_m$ with $g'(x_k)\\ne0$. Then $f_Y(y)=\\sum_{k}\\dfrac{f_X(x_k)}{|g'(x_k)|}$. In particular for $Y=X^2$, $f_Y(y)=\\dfrac{f_X(\\sqrt y)+f_X(-\\sqrt y)}{2\\sqrt y}\\,\\mathbf 1_{\\{y>0\\}}$ (Ross 5.7; Grimmett 4.7).",
+    "statement": "<b>Many-to-one transformations.</b> Let $g$ be piecewise strictly monotone and differentiable, and let $y$ have preimages $x_1,\\ldots,x_m$ with $g'(x_k)\\ne0$. Then $f_Y(y)=\\sum_{k}\\dfrac{f_X(x_k)}{|g'(x_k)|}$. In particular for $Y=X^2$, $f_Y(y)=\\dfrac{f_X(\\sqrt y)+f_X(-\\sqrt y)}{2\\sqrt y}\\,\\mathbf 1_{\\{y\\gt 0\\}}$ (Ross 5.7; Grimmett 4.7).",
     "hint": "If two different values of X give the same Y, how do you count the chance at that Y?",
     "breakdown": [
       "<strong>$x_k\\in g^{-1}(y)$ = every input that lands on $y$.</strong> For $Y=X^2$ both $+\\sqrt y$ and $-\\sqrt y$ do; one must find every real root.",
@@ -501,7 +501,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How far off, squared.</strong> Take the standardised deviation of your ride from usual and square it. Early or late both count as the same squared distance, so everything folds onto positive values, with a pile-up of near-zero deviations.",
     "examTrap": "Worrying that f_Y(y) \u2192 \u221e as y \u2192 0\u207a. An integrable pole (y^{-1/2}) is completely legal for continuous probability densities; the integral remains strictly equal to 1.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chi-square with one degree of freedom.</b> If $Z\\sim\\mathcal N(0,1)$ then $Y=Z^2$ has density $f_Y(y)=\\dfrac1{\\sqrt{2\\pi y}}e^{-y/2}\\mathbf 1_{\\{y>0\\}}$, that is $Y\\sim\\chi^2_1=\\mathrm{Gamma}\\bigl(\\tfrac12,\\tfrac12\\bigr)$. Proof: $F_Y(y)=\\mathbb P(-\\sqrt y\\le Z\\le\\sqrt y)=2\\Phi(\\sqrt y)-1$ for $y>0$; differentiate (Ross 5.7; Grimmett 4.4).",
+    "statement": "<b>Chi-square with one degree of freedom.</b> If $Z\\sim\\mathcal N(0,1)$ then $Y=Z^2$ has density $f_Y(y)=\\dfrac1{\\sqrt{2\\pi y}}e^{-y/2}\\mathbf 1_{\\{y\\gt 0\\}}$, that is $Y\\sim\\chi^2_1=\\mathrm{Gamma}\\bigl(\\tfrac12,\\tfrac12\\bigr)$. Proof: $F_Y(y)=\\mathbb P(-\\sqrt y\\le Z\\le\\sqrt y)=2\\Phi(\\sqrt y)-1$ for $y\\gt 0$; differentiate (Ross 5.7; Grimmett 4.4).",
     "hint": "What law does the squared deviation of a standardised ride time follow, and why does its density blow up at zero?",
     "breakdown": [
       "<strong>$F_Y(y)=2\\Phi(\\sqrt y)-1$ = the middle strip of the bell.</strong> $Z^2\\le y$ means $Z$ lies between $-\\sqrt y$ and $\\sqrt y$; both sides of the bell count.",
@@ -561,7 +561,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The average trip is the sum of the average parts.</strong> Average walk, average wait, average ride: add them and you have the average door-to-door time, with no need to know how the three are tangled together.",
     "examTrap": "Assuming E[g(X)] = g(E[X]). By Jensen's inequality, this holds only for linear/affine functions; for non-linear convex g, E[g(X)] \u2265 g(E[X]).",
     "stmtKind": "THEOREM",
-    "statement": "<b>LOTUS and linearity of expectation.</b> If $X$ has density $f_X$ (or pmf $p_X$) and $\\mathbb E|g(X)|<\\infty$, then $\\mathbb E[g(X)]=\\int_{-\\infty}^\\infty g(x)f_X(x)\\,dx$ (respectively $\\sum_xg(x)p_X(x)$). For random variables $X_1,\\ldots,X_n$ with finite means and constants $c_i$, $\\mathbb E\\bigl[\\sum_ic_iX_i\\bigr]=\\sum_ic_i\\mathbb E[X_i]$, with no independence needed (Ross 4.4, 7.2; Grimmett 3.3).",
+    "statement": "<b>LOTUS and linearity of expectation.</b> If $X$ has density $f_X$ (or pmf $p_X$) and $\\mathbb E|g(X)|\\lt \\infty$, then $\\mathbb E[g(X)]=\\int_{-\\infty}^\\infty g(x)f_X(x)\\,dx$ (respectively $\\sum_xg(x)p_X(x)$). For random variables $X_1,\\ldots,X_n$ with finite means and constants $c_i$, $\\mathbb E\\bigl[\\sum_ic_iX_i\\bigr]=\\sum_ic_i\\mathbb E[X_i]$, with no independence needed (Ross 4.4, 7.2; Grimmett 3.3).",
     "hint": "Can you add the average of the walk, the wait and the ride to get the average trip, and do you need to know the law of the sum?",
     "breakdown": [
       "<strong>$\\int g(x)f_X(x)\\,dx$ = weight each value by its density.</strong> To average a function of the ride time, you do not need the law of $g(X)$: use the density of $X$ itself.",
@@ -591,10 +591,10 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Counting rider-minutes.</strong> Each minute of a typical day, you ask whether the ride is still going. Adding up those yes-chances minute by minute gives the average ride length.",
     "examTrap": "Applying the one-sided tail integral to random variables with negative values. For general RVs on \u211d, E[X] = \u222b\u2080^\u221e P(X > t)dt - \u222b_{-\u221e}^0 P(X < t)dt.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Tail-sum formula.</b> If $X\\ge0$ then $\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X>t)\\,dt$. If $X$ takes values in $\\{0,1,2,\\ldots\\}$ then $\\mathbb E[X]=\\sum_{k=1}^\\infty\\mathbb P(X\\ge k)$. For general $X$, $\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X>t)\\,dt-\\int_{-\\infty}^0\\mathbb P(X<t)\\,dt$ (Ross 5.3; Grimmett 4.3).",
+    "statement": "<b>Tail-sum formula.</b> If $X\\ge0$ then $\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X\\gt t)\\,dt$. If $X$ takes values in $\\{0,1,2,\\ldots\\}$ then $\\mathbb E[X]=\\sum_{k=1}^\\infty\\mathbb P(X\\ge k)$. For general $X$, $\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X\\gt t)\\,dt-\\int_{-\\infty}^0\\mathbb P(X\\lt t)\\,dt$ (Ross 5.3; Grimmett 4.3).",
     "hint": "How can the average ride be read as an area under the curve \u201cstill on the bus after t minutes\u201d?",
     "breakdown": [
-      "<strong>$\\mathbb P(X>t)$ = chance the ride is still going at minute $t$.</strong> It starts at 1 and falls to 0 as $t$ grows.",
+      "<strong>$\\mathbb P(X\\gt t)$ = chance the ride is still going at minute $t$.</strong> It starts at 1 and falls to 0 as $t$ grows.",
       "<strong>$\\int_0^\\infty\\ldots dt$ = the area under that curve.</strong> Each minute $t$ contributes the chance that the ride lasts at least that long.",
       "<strong>$=\\mathbb E[X]$ = the area is the mean.</strong> Slicing the ride time into minutes instead of values gives the same average; for counts, $\\sum_{k\\ge1}\\mathbb P(X\\ge k)$."
     ],
@@ -618,15 +618,15 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
       "<strong>Bilinear Expansion:</strong> $\\operatorname{Var}(\\sum_{i=1}^n X_i) = \\sum_{i=1}^n \\operatorname{Var}(X_i) + 2 \\sum_{i < j} \\operatorname{Cov}(X_i, X_j)$. If pairwise uncorrelated, cross-terms vanish."
     ],
     "math": "$$\\operatorname{Var}\\left(\\sum_{i=1}^n X_i\\right) = \\sum_{i=1}^n \\operatorname{Var}(X_i) + 2 \\sum_{1 \\le i < j \\le n} \\operatorname{Cov}(X_i, X_j)$$",
-    "personalConnection": "<strong>A bad morning stacks up.</strong> If rain makes the wait longer and the ride longer, the total trip varies more than the pieces suggest: the covariance term adds to the variance. Independent legs would just add their variances.",
+    "personalConnection": "<strong>A bad morning stacks up.</strong> If rain lengthens both wait and ride, the total varies more than the pieces suggest; independent legs just add variances.",
     "examTrap": "Assuming Cov(X, Y) = 0 implies independence! Zero covariance only means no LINEAR relationship. Deterministic non-linear pairs (e.g. Y = X\u00b2) can have Cov(X, Y) = 0.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Variance of a sum.</b> For $X_1,\\ldots,X_n$ with finite second moments, $\\operatorname{Var}\\!\\left(\\sum_{i=1}^nX_i\\right)=\\sum_{i=1}^n\\operatorname{Var}(X_i)+2\\sum_{i<j}\\operatorname{Cov}(X_i,X_j)$, where $\\operatorname{Var}(X)=\\mathbb E[(X-\\mathbb EX)^2]$ and $\\operatorname{Cov}(X,Y)=\\mathbb E[(X-\\mathbb EX)(Y-\\mathbb EY)]$. If the $X_i$ are independent (or just uncorrelated) the covariance terms vanish (Ross 7.4; Grimmett 3.6).",
+    "statement": "<b>Variance of a sum.</b> For $X_1,\\ldots,X_n$ with finite second moments, $\\operatorname{Var}(\\sum_iX_i)=\\sum_i\\operatorname{Var}(X_i)+2\\sum_{i\\lt j}\\operatorname{Cov}(X_i,X_j)$, where $\\operatorname{Cov}(X,Y)=\\mathbb E[(X-\\mathbb EX)(Y-\\mathbb EY)]$ (Ross 7.4; Grimmett 3.6).",
     "hint": "If your wait and your ride tend to be long on the same mornings, what does the variance of the total look like?",
     "breakdown": [
-      "<strong>$\\sum\\operatorname{Var}(X_i)$ = each piece's own spread.</strong> The squares on the diagonal: how much each leg of the trip varies by itself.",
-      "<strong>$\\operatorname{Cov}(X_i,X_j)$ = how two legs move together.</strong> Positive if long waits come with long rides, negative if one makes up for the other.",
-      "<strong>$2\\sum_{i<j}$ = every pair appears twice.</strong> Expanding $(\\sum X_i)^2$ gives each cross term $X_iX_j$ and $X_jX_i$, so the covariances are doubled."
+      "<strong>$\\sum\\operatorname{Var}(X_i)$ = each leg's own spread.</strong> The squares on the diagonal.",
+      "<strong>$\\operatorname{Cov}(X_i,X_j)$ = how two legs move together.</strong> Positive if long waits come with long rides.",
+      "<strong>$2\\sum_{i\\lt j}$ = each pair twice.</strong> Expanding $(\\sum X_i)^2$ gives both $X_iX_j$ and $X_jX_i$."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -741,7 +741,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Long mornings cannot be everywhere.</strong> If your ride averages 30 minutes, at most one morning in three can take 90 minutes or more, however the rest are spread. It is a crude but always valid ceiling.",
     "examTrap": "Applying Markov directly to random variables with negative values! Markov strictly requires X \u2265 0. For general variables, apply Markov to |X|, (X - \u03bc)\u00b2, or e^{tX}.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Markov's inequality.</b> If $X\\ge0$ is a random variable with finite mean and $a>0$, then $\\mathbb P(X\\ge a)\\le\\dfrac{\\mathbb E[X]}{a}$. Proof: $a\\mathbf 1_{\\{X\\ge a\\}}\\le X$ pointwise; take expectations. For general $X$, apply the bound to $|X|$, $(X-\\mu)^2$ or $e^{tX}$ (Ross 8.2; Grimmett 7.3).",
+    "statement": "<b>Markov's inequality.</b> If $X\\ge0$ is a random variable with finite mean and $a\\gt 0$, then $\\mathbb P(X\\ge a)\\le\\dfrac{\\mathbb E[X]}{a}$. Proof: $a\\mathbf 1_{\\{X\\ge a\\}}\\le X$ pointwise; take expectations. For general $X$, apply the bound to $|X|$, $(X-\\mu)^2$ or $e^{tX}$ (Ross 8.2; Grimmett 7.3).",
     "hint": "Knowing only the average ride, what is the most you can say about the chance of a really long one?",
     "breakdown": [
       "<strong>$a\\mathbf 1_{\\{X\\ge a\\}}\\le X$ = a step stays under the line.</strong> The step is $0$ for rides under $a$ and $a$ for rides of at least $a$; the ride time $X$ itself lies above both pieces.",
@@ -771,7 +771,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How far from a typical day.</strong> With an average of 30 minutes and a spread of 5, a ride more than 15 minutes off (three spreads) happens on at most a ninth of mornings, whatever the shape.",
     "examTrap": "Using Chebyshev when a 1-sided bound is required. For 1-sided deviations P(X - \u03bc \u2265 \u03b5), Cantelli's inequality gives the strictly sharper bound \u03c3\u00b2 / (\u03c3\u00b2 + \u03b5\u00b2).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chebyshev's inequality.</b> If $X$ has finite mean $\\mu$ and variance $\\sigma^2$, then for every $\\varepsilon>0$, $\\mathbb P(|X-\\mu|\\ge\\varepsilon)\\le\\dfrac{\\operatorname{Var}(X)}{\\varepsilon^2}$. Equivalently $\\mathbb P(|X-\\mu|\\ge k\\sigma)\\le1/k^2$. It is Markov's inequality applied to $(X-\\mu)^2$ (Ross 8.2; Grimmett 7.3).",
+    "statement": "<b>Chebyshev's inequality.</b> If $X$ has finite mean $\\mu$ and variance $\\sigma^2$, then for every $\\varepsilon\\gt 0$, $\\mathbb P(|X-\\mu|\\ge\\varepsilon)\\le\\dfrac{\\operatorname{Var}(X)}{\\varepsilon^2}$. Equivalently $\\mathbb P(|X-\\mu|\\ge k\\sigma)\\le1/k^2$. It is Markov's inequality applied to $(X-\\mu)^2$ (Ross 8.2; Grimmett 7.3).",
     "hint": "Knowing the average and the spread of the ride, how likely is it to stray far from the average?",
     "breakdown": [
       "<strong>$|X-\\mu|\\ge\\varepsilon$ = the ride is far from usual.</strong> More than $\\varepsilon$ minutes off the average, early or late: the two shaded tails.",
@@ -801,12 +801,12 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Tuning the ceiling.</strong> You try different ways of weighing long rides in the average, each giving a valid ceiling on \u201ca ride this long\u201d. The smallest ceiling over all weights is the one you keep, and it often shrinks exponentially.",
     "examTrap": "Forgetting the constraint t > 0 for upper tails (and t < 0 for lower tails P(X \u2264 a)). Plugging negative t into an upper-tail bound flips the inequality direction!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chernoff bound.</b> If $M_X(t)=\\mathbb E[e^{tX}]$ is finite for some $t>0$, then for every $a$, $\\mathbb P(X\\ge a)\\le\\inf_{t>0}e^{-ta}M_X(t)=\\exp\\bigl(-\\sup_{t>0}[ta-\\Lambda_X(t)]\\bigr)$, where $\\Lambda_X=\\ln M_X$. For the lower tail, use $t<0$ (Ross 8.3; Grimmett 5.11).",
+    "statement": "<b>Chernoff bound.</b> If $M_X(t)=\\mathbb E[e^{tX}]$ is finite for some $t\\gt 0$, then for every $a$, $\\mathbb P(X\\ge a)\\le\\inf_{t\\gt 0}e^{-ta}M_X(t)=\\exp\\bigl(-\\sup_{t\\gt 0}[ta-\\Lambda_X(t)]\\bigr)$, where $\\Lambda_X=\\ln M_X$. For the lower tail, use $t\\lt 0$ (Ross 8.3; Grimmett 5.11).",
     "hint": "How do you squeeze the best possible bound on a very long ride out of Markov's inequality?",
     "breakdown": [
-      "<strong>$e^{-ta}M_X(t)$ = Markov applied to $e^{tX}$.</strong> The event $X\\ge a$ is the same as $e^{tX}\\ge e^{ta}$ for $t>0$, so Markov gives this bound for each $t$.",
-      "<strong>$\\inf_{t>0}$ = keep the best $t$.</strong> Every $t>0$ gives a valid bound; the smallest one is the tightest, at the bottom of the bowl.",
-      "<strong>$\\exp(-\\sup[ta-\\Lambda_X(t)])$ = the exponential rate.</strong> The tail falls exponentially, at a rate set by the log-MGF; $t>0$ is needed for an upper tail."
+      "<strong>$e^{-ta}M_X(t)$ = Markov applied to $e^{tX}$.</strong> The event $X\\ge a$ is the same as $e^{tX}\\ge e^{ta}$ for $t\\gt 0$, so Markov gives this bound for each $t$.",
+      "<strong>$\\inf_{t\\gt 0}$ = keep the best $t$.</strong> Every $t\\gt 0$ gives a valid bound; the smallest one is the tightest, at the bottom of the bowl.",
+      "<strong>$\\exp(-\\sup[ta-\\Lambda_X(t)])$ = the exponential rate.</strong> The tail falls exponentially, at a rate set by the log-MGF; $t\\gt 0$ is needed for an upper tail."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -861,7 +861,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Many small, bounded delays.</strong> If each stop adds a delay between 0 and 2 minutes and the stops are independent, the total delay rarely ends far above its average: the chance falls off exponentially with the excess.",
     "examTrap": "Applying Hoeffding to dependent variables! Mutual independence of X\u2081,...,X_n is strictly mandatory to factorize the joint MGF in Hoeffding's proof.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Cauchy\u2013Schwarz and Hoeffding.</b> For $X,Y$ with finite second moments, $|\\mathbb E[XY]|^2\\le\\mathbb E[X^2]\\,\\mathbb E[Y^2]$. If $X_1,\\ldots,X_n$ are independent with $a_i\\le X_i\\le b_i$, then for $t>0$, $\\mathbb P\\!\\left(\\sum_{i=1}^n(X_i-\\mathbb EX_i)\\ge t\\right)\\le\\exp\\!\\left(-\\dfrac{2t^2}{\\sum_i(b_i-a_i)^2}\\right)$ (Ross 8.5; Grimmett 7.3, 12.2).",
+    "statement": "<b>Cauchy\u2013Schwarz and Hoeffding.</b> For $X,Y$ with finite second moments, $|\\mathbb E[XY]|^2\\le\\mathbb E[X^2]\\,\\mathbb E[Y^2]$. If $X_1,\\ldots,X_n$ are independent with $a_i\\le X_i\\le b_i$, then for $t\\gt 0$, $\\mathbb P\\!\\left(\\sum_{i=1}^n(X_i-\\mathbb EX_i)\\ge t\\right)\\le\\exp\\!\\left(-\\dfrac{2t^2}{\\sum_i(b_i-a_i)^2}\\right)$ (Ross 8.5; Grimmett 7.3, 12.2).",
     "hint": "How do you bound the average of a product, and the chance that a sum of bounded legs strays far above its mean?",
     "breakdown": [
       "<strong>$|\\mathbb E[XY]|^2\\le\\mathbb E[X^2]\\mathbb E[Y^2]$ = the inner product is at most the product of lengths.</strong> Random variables act as vectors, and the cosine of the angle between them is at most 1.",
@@ -921,7 +921,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Wait and ride on one plane.</strong> Each morning is one point: how long you waited and how long you rode. The CDF at a point says how much of the plane lies to its lower left; a rectangle of pairs needs four such corners.",
     "examTrap": "Assuming coordinate-wise monotonicity guarantees a valid 2D CDF. Functions exist where \u2202F/\u2202x \u2265 0 and \u2202F/\u2202y \u2265 0, yet the rectangle measure evaluates to a negative number!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Joint CDF.</b> For random variables $X,Y$ on the same space, $F_{X,Y}(x,y)=\\mathbb P(X\\le x,\\,Y\\le y)$. It is non-decreasing in each variable, right-continuous, tends to $0$ as either argument $\\to-\\infty$ and to $1$ as both $\\to\\infty$, and for $a<b$, $c<d$: $\\mathbb P(a<X\\le b,\\,c<Y\\le d)=F_{X,Y}(b,d)-F_{X,Y}(a,d)-F_{X,Y}(b,c)+F_{X,Y}(a,c)\\ge0$ (Ross 6.1; Grimmett 4.5).",
+    "statement": "<b>Joint CDF.</b> For random variables $X,Y$ on the same space, $F_{X,Y}(x,y)=\\mathbb P(X\\le x,\\,Y\\le y)$. It is non-decreasing in each variable, right-continuous, tends to $0$ as either argument $\\to-\\infty$ and to $1$ as both $\\to\\infty$, and for $a\\lt b$, $c\\lt d$: $\\mathbb P(a\\lt X\\le b,\\,c\\lt Y\\le d)=F_{X,Y}(b,d)-F_{X,Y}(a,d)-F_{X,Y}(b,c)+F_{X,Y}(a,c)\\ge0$ (Ross 6.1; Grimmett 4.5).",
     "hint": "Wait and ride together: how do you get the chance of a rectangle of (wait, ride) pairs from the joint CDF alone?",
     "breakdown": [
       "<strong>$F_{X,Y}(x,y)=\\mathbb P(X\\le x,Y\\le y)$ = both at most their limits.</strong> The chance that the wait is at most $x$ and the ride at most $y$ at once.",
@@ -1011,7 +1011,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Given that I waited exactly x.</strong> Of the mornings with that wait, you ask how the ride is spread. You slice the joint picture at your wait and rescale the slice so that it has total chance 1.",
     "examTrap": "Borel-Kolmogorov Paradox: conditioning continuous distributions on measure-zero curves g(X,Y)=0 depends on the coordinate parametrization! Slicing is well-defined along coordinate projections.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Conditional density.</b> If $f_X(x)>0$, the conditional density of $Y$ given $X=x$ is $f_{Y\\mid X}(y\\mid x)=\\dfrac{f_{X,Y}(x,y)}{f_X(x)}$. For each such $x$, $f_{Y\\mid X}(\\cdot\\mid x)$ is a density: $\\int f_{Y\\mid X}(y\\mid x)\\,dy=1$, and $f_{X,Y}(x,y)=f_X(x)f_{Y\\mid X}(y\\mid x)$ (Ross 6.5; Grimmett 4.6).",
+    "statement": "<b>Conditional density.</b> If $f_X(x)\\gt 0$, the conditional density of $Y$ given $X=x$ is $f_{Y\\mid X}(y\\mid x)=\\dfrac{f_{X,Y}(x,y)}{f_X(x)}$. For each such $x$, $f_{Y\\mid X}(\\cdot\\mid x)$ is a density: $\\int f_{Y\\mid X}(y\\mid x)\\,dy=1$, and $f_{X,Y}(x,y)=f_X(x)f_{Y\\mid X}(y\\mid x)$ (Ross 6.5; Grimmett 4.6).",
     "hint": "You know the wait was exactly x. How do you slice the joint hill to get the law of the ride?",
     "breakdown": [
       "<strong>$f_{X,Y}(x,y)$ = the cut through the hill at $x$.</strong> Hold the wait fixed and read the height along the ride direction.",
@@ -1158,15 +1158,15 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
       "<strong>Induced Dependence:</strong> Even though raw samples $X_i$ are independent, order statistics $X_{(1)}, \\dots, X_{(n)}$ are STRONGLY DEPENDENT through the ordering constraints $X_{(1)} < \\dots < X_{(n)}$."
     ],
     "math": "$$f_{X_{(1)},\\dots,X_{(n)}}(x_1, \\dots, x_n) = n! \\prod_{i=1}^n f(x_i) \\cdot \\mathbf{1}_{\\{x_1 < x_2 < \\dots < x_n\\}}$$",
-    "personalConnection": "<strong>Sorting the arrivals.</strong> Many different bus-by-bus orders lead to the same sorted arrival list. Collecting all of them onto the one sorted list multiplies the chance by the number of orders, $n!$.",
+    "personalConnection": "<strong>Sorting the arrivals.</strong> Many bus-by-bus orders lead to the same sorted arrival list; collecting them multiplies the chance by $n!$.",
     "examTrap": "Omitting the factor n! in joint calculations. Without n!, integrating over the ordered domain x\u2081 < ... < x_n yields 1/n! instead of the required probability 1.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Joint density of the order statistics.</b> For i.i.d. $X_1,\\ldots,X_n$ with density $f$, the vector $(X_{(1)},\\ldots,X_{(n)})$ has density $f_{X_{(1)},\\ldots,X_{(n)}}(x_1,\\ldots,x_n)=n!\\prod_{i=1}^nf(x_i)\\,\\mathbf 1_{\\{x_1<x_2<\\cdots<x_n\\}}$ (Ross 6.6; Grimmett 4.14).",
+    "statement": "<b>Joint density of order statistics.</b> For i.i.d. $X_i$ with density $f$, $(X_{(1)},\\ldots,X_{(n)})$ has density $n!\\prod_{i=1}^nf(x_i)\\mathbf 1_{\\{x_1\\lt \\cdots\\lt x_n\\}}$ (Ross 6.6; Grimmett 4.14).",
     "hint": "If you sort n arrival times, why is the joint density of the sorted list n! times the product of the densities?",
     "breakdown": [
-      "<strong>$\\prod f(x_i)$ = the density of one particular unsorted list.</strong> Independent arrivals multiply.",
-      "<strong>$\\mathbf 1_{\\{x_1<\\cdots<x_n\\}}$ = only sorted lists.</strong> The sorted vector lives on one cone of the space; all other orderings are folded onto it.",
-      "<strong>$n!$ = every ordering gives the same sorted list.</strong> There are $n!$ ways to assign the arrival times to the buses, so the density on the cone is multiplied by $n!$; otherwise it integrates to $1/n!$."
+      "<strong>$\\prod f(x_i)$ = one particular unsorted list.</strong> Independent arrivals multiply.",
+      "<strong>$\\mathbf 1_{\\{x_1\\lt \\cdots\\lt x_n\\}}$ = only sorted lists.</strong> The sorted vector lives on one cone; other orderings fold onto it.",
+      "<strong>$n!$ = every ordering gives the same sorted list.</strong> Without it the density integrates to $1/n!$."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -1188,15 +1188,15 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
       "<strong>Equal Mean Spacings:</strong> The $n$ order statistics partition $[0, 1]$ into $(n+1)$ sub-intervals (spacings) whose expected lengths are all IDENTICAL: $\\mathbb{E}[D_i] = \\frac{1}{n+1}$."
     ],
     "math": "$$U_{(k)} \\sim \\text{Beta}(k, n - k + 1), \\qquad \\mathbb{E}[U_{(k)}] = \\frac{k}{n+1}, \\qquad \\operatorname{Var}(U_{(k)}) = \\frac{k(n - k + 1)}{(n+1)^2(n+2)}$$",
-    "personalConnection": "<strong>Buses spread across the morning.</strong> If $n$ buses show up at random times within one hour, the first comes after about $\\tfrac1{n+1}$ of the hour on average. With four buses, after twelve minutes, and the same goes for each gap.",
+    "personalConnection": "<strong>Buses spread across the hour.</strong> With four buses at random times in an hour, the first comes after about a fifth of the hour, twelve minutes, and every gap averages the same.",
     "examTrap": "Believing edge spacings 0 to U_{(1)} and U_{(n)} to 1 behave differently from interior spacings. All (n+1) spacings are identically distributed with expected length 1/(n+1).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Uniform order statistics.</b> If $U_1,\\ldots,U_n$ are i.i.d. $\\mathrm{Unif}(0,1)$, then $U_{(k)}\\sim\\mathrm{Beta}(k,\\,n-k+1)$, with $\\mathbb E[U_{(k)}]=\\dfrac k{n+1}$ and $\\operatorname{Var}(U_{(k)})=\\dfrac{k(n-k+1)}{(n+1)^2(n+2)}$. The $n+1$ spacings $U_{(k)}-U_{(k-1)}$ (with $U_{(0)}=0$, $U_{(n+1)}=1$) are identically distributed, each with mean $\\dfrac1{n+1}$ (Ross 6.6; Grimmett 4.14).",
+    "statement": "<b>Uniform order statistics.</b> If $U_i$ are i.i.d. $\\mathrm{Unif}(0,1)$, then $U_{(k)}\\sim\\mathrm{Beta}(k,n-k+1)$ with $\\mathbb E[U_{(k)}]=\\frac{k}{n+1}$. The $n+1$ spacings are identically distributed, each of mean $\\frac1{n+1}$ (Ross 6.6; Grimmett 4.14).",
     "hint": "If n arrivals fall at random in one interval, where does the k-th one sit on average, and how big are the gaps?",
     "breakdown": [
-      "<strong>$U_{(k)}\\sim\\mathrm{Beta}(k,n-k+1)$ = the $k$-th point's law.</strong> The $k$-th density is a bump with $k-1$ points on its left and $n-k$ on its right.",
-      "<strong>$\\mathbb E[U_{(k)}]=k/(n+1)$ = evenly spaced on average.</strong> The $n$ points cut the interval into $n+1$ pieces, so the $k$-th point sits $k$ gaps along.",
-      "<strong>All $n+1$ spacings alike.</strong> The first and last gaps, to the ends, are distributed exactly like the interior gaps: each has mean $1/(n+1)$."
+      "<strong>$\\mathrm{Beta}(k,n-k+1)$ = the $k$-th point's law.</strong> A bump with $k-1$ points to its left and $n-k$ to its right.",
+      "<strong>$\\mathbb E[U_{(k)}]=\\frac k{n+1}$ = evenly spread on average.</strong> $n$ points cut the interval into $n+1$ gaps; the $k$-th sits $k$ gaps along.",
+      "<strong>All $n+1$ spacings alike.</strong> The gaps to the two ends behave exactly like the interior gaps."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -1251,10 +1251,10 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Three routes race.</strong> A frequent route is more likely to produce the first bus, in proportion to its rate, and having three routes makes the first arrival come sooner than any one route alone.",
     "examTrap": "Attempting convolution integration to find the minimum of lifetimes! Always compute minimums via the product of survival functions P(T_i > t)\u2014convolution is for SUMS, not minimums.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Minimum of independent exponentials.</b> If $T_1,\\ldots,T_n$ are independent with $T_i\\sim\\mathrm{Exp}(\\lambda_i)$, then $T=\\min_iT_i\\sim\\mathrm{Exp}\\!\\left(\\sum_i\\lambda_i\\right)$, since $\\mathbb P(T>t)=\\prod_ie^{-\\lambda_it}$, and $\\mathbb P(T_k=\\min_iT_i)=\\dfrac{\\lambda_k}{\\sum_i\\lambda_i}$. A series system of components with these lifetimes fails at time $T$ (Ross 5.5, 6.6).",
+    "statement": "<b>Minimum of independent exponentials.</b> If $T_1,\\ldots,T_n$ are independent with $T_i\\sim\\mathrm{Exp}(\\lambda_i)$, then $T=\\min_iT_i\\sim\\mathrm{Exp}\\!\\left(\\sum_i\\lambda_i\\right)$, since $\\mathbb P(T\\gt t)=\\prod_ie^{-\\lambda_it}$, and $\\mathbb P(T_k=\\min_iT_i)=\\dfrac{\\lambda_k}{\\sum_i\\lambda_i}$. A series system of components with these lifetimes fails at time $T$ (Ross 5.5, 6.6).",
     "hint": "Several routes race to the stop. How long until the first one, and which route wins?",
     "breakdown": [
-      "<strong>$\\mathbb P(T>t)=\\prod_ie^{-\\lambda_it}$ = nobody has come yet.</strong> The first bus is later than $t$ only if every bus is; survival chances multiply.",
+      "<strong>$\\mathbb P(T\\gt t)=\\prod_ie^{-\\lambda_it}$ = nobody has come yet.</strong> The first bus is later than $t$ only if every bus is; survival chances multiply.",
       "<strong>$\\mathrm{Exp}(\\sum\\lambda_i)$ = rates add.</strong> The product is $e^{-(\\sum\\lambda_i)t}$, an exponential with the summed rate: more routes, faster first arrival.",
       "<strong>$\\lambda_k/\\sum\\lambda_i$ = the winner is proportional to rate.</strong> The chance that route $k$ is first is its share of the total rate."
     ],
@@ -1341,7 +1341,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Share of the trip versus size of the trip.</strong> The ratio of ride to wait only depends on the direction of the point in the (wait, ride) plane, not on how far from the origin it is. Direction and distance are the polar coordinates.",
     "examTrap": "Forgetting the absolute value factor |x| in the ratio formula! Neglecting |x| violates physical dimensions (density must have units 1/z) and gives wrong integrals.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Ratios and polar coordinates.</b> If $(X,Y)$ has density $f_{X,Y}$, then $Z=Y/X$ has density $f_Z(z)=\\int_{-\\infty}^\\infty|x|\\,f_{X,Y}(x,xz)\\,dx$. In polar coordinates $X=R\\cos\\Theta$, $Y=R\\sin\\Theta$, the density of $(R,\\Theta)$ is $f_{R,\\Theta}(r,\\theta)=r\\,f_{X,Y}(r\\cos\\theta,r\\sin\\theta)$ for $r>0$ (Ross 6.7; Grimmett 4.7).",
+    "statement": "<b>Ratios and polar coordinates.</b> If $(X,Y)$ has density $f_{X,Y}$, then $Z=Y/X$ has density $f_Z(z)=\\int_{-\\infty}^\\infty|x|\\,f_{X,Y}(x,xz)\\,dx$. In polar coordinates $X=R\\cos\\Theta$, $Y=R\\sin\\Theta$, the density of $(R,\\Theta)$ is $f_{R,\\Theta}(r,\\theta)=r\\,f_{X,Y}(r\\cos\\theta,r\\sin\\theta)$ for $r\\gt 0$ (Ross 6.7; Grimmett 4.7).",
     "hint": "How does a ratio of two random times, or a switch to polar coordinates, change the density of the pair?",
     "breakdown": [
       "<strong>$Z=Y/X$ = the slope of the ray to the point.</strong> Each value $z$ picks a line through the origin; the density of $Z$ adds up the joint density along that whole line.",
@@ -1428,15 +1428,15 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
       "<strong>Piecewise Triangle:</strong> For $0 \\le z \\le 1$, $f_Z(z) = z$. For $1 < z \\le 2$, $f_Z(z) = 2 - z$. Mean is $\\mathbb{E}[Z] = 1$, variance $\\operatorname{Var}(Z) = 1/12 + 1/12 = 1/6$."
     ],
     "math": "$$f_{X+Y}(z) = \\begin{cases} z & 0 \\le z \\le 1 \\\\ 2 - z & 1 < z \\le 2 \\\\ 0 & \\text{otherwise} \\end{cases}, \\qquad \\mathbb{E}[Z] = 1, \\; \\operatorname{Var}(Z) = \\tfrac{1}{6}$$",
-    "personalConnection": "<strong>Two delays, each equally likely anywhere.</strong> If each of two delays is equally likely to be anything between 0 and 1 minute, a total near 1 minute is the most likely, because there are the most ways to make it, and totals near 0 or 2 are rare.",
+    "personalConnection": "<strong>Two flat delays.</strong> A total near 1 minute is most likely, because there are the most ways to make it; totals near 0 or 2 are rare.",
     "examTrap": "Treating the convolution integral as a single algebraic formula over [0, 2]! The overlap geometry changes at z = 1, splitting the solution into two distinct linear regimes.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Sum of two uniforms.</b> If $X,Y$ are independent $\\mathrm{Unif}(0,1)$, the convolution gives $f_{X+Y}(z)=z$ for $0\\le z\\le1$, $f_{X+Y}(z)=2-z$ for $1<z\\le2$, and $0$ otherwise (the triangular density). Hence $\\mathbb E[X+Y]=1$ and $\\operatorname{Var}(X+Y)=\\tfrac1{12}+\\tfrac1{12}=\\tfrac16$ (Ross 6.3; Grimmett 4.8).",
+    "statement": "<b>Sum of two uniforms.</b> If $X,Y$ are independent $\\mathrm{Unif}(0,1)$, then $f_{X+Y}(z)=z$ on $[0,1]$, $2-z$ on $(1,2]$, and $0$ otherwise (the triangular law); $\\mathbb E[X+Y]=1$, $\\operatorname{Var}(X+Y)=\\frac16$ (Ross 6.3; Grimmett 4.8).",
     "hint": "Two independent flat delays add. What shape does the total take, and why does it peak in the middle?",
     "breakdown": [
-      "<strong>$f(z)=z$ for $0\\le z\\le1$ = the overlap grows.</strong> At small totals $z$, the flat densities overlap on a stretch of length $z$, so the density rises linearly.",
-      "<strong>$f(z)=2-z$ for $1<z\\le2$ = the overlap shrinks.</strong> Past the peak at $z=1$, the overlap shortens by the same amount, so the density falls linearly: a tent.",
-      "<strong>$\\mathbb E=1$, $\\operatorname{Var}=\\tfrac16$ = means and variances add.</strong> Each flat leg has mean $\\tfrac12$ and variance $\\tfrac1{12}$, and independence adds them."
+      "<strong>$f(z)=z$ on $[0,1]$ = the overlap grows.</strong> At small totals the flat densities overlap on a stretch of length $z$.",
+      "<strong>$f(z)=2-z$ on $(1,2]$ = the overlap shrinks.</strong> Past the peak at $z=1$ it falls linearly: a tent.",
+      "<strong>$\\mathbb E=1,\\ \\operatorname{Var}=\\frac16$ = means and variances add.</strong> Each leg has mean $\\frac12$ and variance $\\frac1{12}$."
     ],
     "textbookImg": null,
     "textbookRef": null
@@ -1521,7 +1521,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Not everyone can make up for everyone else.</strong> A late Monday can be balanced by an early Tuesday. But with five equal days, each day cannot offset all four others strongly: the average negative link is at best \u2212\u00bc.",
     "examTrap": "Believing correlation can never be negative in exchangeable systems. For finite n, negative correlation is completely valid down to the barrier -1/(n-1).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Correlation bound for finite exchangeable sequences.</b> If $X_1,\\ldots,X_n$ are exchangeable with common variance $\\sigma^2>0$ and pairwise correlation $\\rho$, then $\\rho\\ge-\\dfrac1{n-1}$. Proof: $0\\le\\operatorname{Var}\\bigl(\\sum_iX_i\\bigr)=n\\sigma^2+n(n-1)\\rho\\sigma^2=n\\sigma^2\\bigl[1+(n-1)\\rho\\bigr]$ (Grimmett 7.2).",
+    "statement": "<b>Correlation bound for finite exchangeable sequences.</b> If $X_1,\\ldots,X_n$ are exchangeable with common variance $\\sigma^2\\gt 0$ and pairwise correlation $\\rho$, then $\\rho\\ge-\\dfrac1{n-1}$. Proof: $0\\le\\operatorname{Var}\\bigl(\\sum_iX_i\\bigr)=n\\sigma^2+n(n-1)\\rho\\sigma^2=n\\sigma^2\\bigl[1+(n-1)\\rho\\bigr]$ (Grimmett 7.2).",
     "hint": "How negatively can n exchangeable days be linked, if their total must have a non-negative variance?",
     "breakdown": [
       "<strong>$\\operatorname{Var}(\\sum X_i)\\ge0$ = a variance is never negative.</strong> The total over all days can vary, or not at all, but not less than that.",
@@ -1608,15 +1608,15 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
       "<strong>Limiting Law:</strong> As $n \\to \\infty$, the proportion of white balls converges almost surely to random variable $\\Theta \\sim \\text{Beta}\\left(\\frac{w}{c}, \\frac{b}{c}\\right)$. For $w=1, b=1, c=1$, $\\Theta \\sim \\text{Uniform}(0, 1)$."
     ],
     "math": "$$\\mathbb{P}(X_1=x_1, \\dots, X_n=x_n) = \\frac{\\prod_{j=0}^{k-1}(w + jc) \\prod_{j=0}^{n-k-1}(b + jc)}{\\prod_{j=0}^{n-1}(w + b + jc)}, \\quad \\Theta \\sim \\text{Beta}\\left(\\tfrac{w}{c}, \\tfrac{b}{c}\\right)$$",
-    "personalConnection": "<strong>Habit builds on itself.</strong> Each time a route works, you favour it a bit more next time. The sequence of routes is not independent, but the order of the days does not matter, only how many times each route was used.",
+    "personalConnection": "<strong>Habit builds on itself.</strong> Each time a route works you favour it a bit more; the order of days does not matter, only how often each route was used.",
     "examTrap": "Assuming P\u00f3lya's urn trials are independent. The draws are heavily dependent (positive feedback reinforcement), yet perfectly exchangeable!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>P\u00f3lya's urn.</b> An urn has $w$ white and $b$ black balls. A ball is drawn at random and returned together with $c$ more of the same colour; repeat. With $X_i=1$ if the $i$-th draw is white, $\\mathbb P(X_1=x_1,\\ldots,X_n=x_n)=\\dfrac{\\prod_{j=0}^{k-1}(w+jc)\\prod_{j=0}^{n-k-1}(b+jc)}{\\prod_{j=0}^{n-1}(w+b+jc)}$ with $k=\\sum x_i$. It depends only on $k$, so the draws are exchangeable, and $\\Theta\\sim\\mathrm{Beta}\\bigl(\\tfrac wc,\\tfrac bc\\bigr)$ in de Finetti's theorem (Ross 3.6; Grimmett 7.2).",
+    "statement": "<b>P\u00f3lya's urn.</b> An urn has $w$ white and $b$ black balls; a ball is drawn and returned with $c$ more of its colour. With $k=\\sum x_i$ white draws, $\\mathbb P(X_1=x_1,\\ldots,X_n=x_n)=\\frac{\\prod_{j\\lt k}(w+jc)\\prod_{j\\lt n-k}(b+jc)}{\\prod_{j\\lt n}(w+b+jc)}$, which depends only on $k$: the draws are exchangeable, and $\\Theta\\sim\\mathrm{Beta}(\\frac wc,\\frac bc)$ (Ross 3.6; Grimmett 7.2).",
     "hint": "If every time you use a route you make it more likely next time, are the days independent? Exchangeable?",
     "breakdown": [
-      "<strong>$\\prod_{j<k}(w+jc)$ = the white draws.</strong> The $j$-th white draw happens when white has grown by $jc$; the same product appears no matter in which positions the white draws fall.",
-      "<strong>$\\prod_{j<n}(w+b+jc)$ = the growing urn.</strong> Each draw adds $c$ balls, so the denominator is the same for every sequence.",
-      "<strong>$\\Theta\\sim\\mathrm{Beta}(w/c,b/c)$ = the long-run share.</strong> The chance depends on the number of white draws $k$, not on their order: exchangeable but not independent, and its limit share is random."
+      "<strong>$\\prod_{j\\lt k}(w+jc)$ = the white draws.</strong> The $j$-th white draw sees white grown by $jc$, in whatever positions they fall.",
+      "<strong>$\\prod_{j\\lt n}(w+b+jc)$ = the growing urn.</strong> Each draw adds $c$ balls, the same for every sequence.",
+      "<strong>$\\Theta\\sim\\mathrm{Beta}(w/c,b/c)$ = the long-run share.</strong> The chance depends on the count $k$, not the order: exchangeable, not independent."
     ],
     "textbookImg": null,
     "textbookRef": null

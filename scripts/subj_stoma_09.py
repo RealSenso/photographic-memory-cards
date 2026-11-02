@@ -97,12 +97,12 @@ CARDS = {
   conn=r"<strong>Adding legs of the trip.</strong> A normal walk, a normal wait and a normal ride add up to a normal door-to-door time, with the means and the variances added. The family never changes, only its centre and width.",
   cap="Bell curves for the walk and the wait, and the wider bell of their total at the summed centre: 𝒩(μ₁,σ₁²) + 𝒩(μ₂,σ₂²) = 𝒩(μ₁+μ₂, σ₁²+σ₂²). Poisson counts add the same way."),
 30906: dict(d=d6, kind="WORKED EXAMPLE",
-  stmt=r"<b>Sum of two uniforms.</b> If $X,Y$ are independent $\mathrm{Unif}(0,1)$, the convolution gives $f_{X+Y}(z)=z$ for $0\le z\le1$, $f_{X+Y}(z)=2-z$ for $1<z\le2$, and $0$ otherwise (the triangular density). Hence $\mathbb E[X+Y]=1$ and $\operatorname{Var}(X+Y)=\tfrac1{12}+\tfrac1{12}=\tfrac16$ (Ross 6.3; Grimmett 4.8).",
+  stmt=r"<b>Sum of two uniforms.</b> If $X,Y$ are independent $\mathrm{Unif}(0,1)$, then $f_{X+Y}(z)=z$ on $[0,1]$, $2-z$ on $(1,2]$, and $0$ otherwise (the triangular law); $\mathbb E[X+Y]=1$, $\operatorname{Var}(X+Y)=\frac16$ (Ross 6.3; Grimmett 4.8).",
   hint="Two independent flat delays add. What shape does the total take, and why does it peak in the middle?",
-  bd=[r"<strong>$f(z)=z$ for $0\le z\le1$ = the overlap grows.</strong> At small totals $z$, the flat densities overlap on a stretch of length $z$, so the density rises linearly.",
-      r"<strong>$f(z)=2-z$ for $1<z\le2$ = the overlap shrinks.</strong> Past the peak at $z=1$, the overlap shortens by the same amount, so the density falls linearly: a tent.",
-      r"<strong>$\mathbb E=1$, $\operatorname{Var}=\tfrac16$ = means and variances add.</strong> Each flat leg has mean $\tfrac12$ and variance $\tfrac1{12}$, and independence adds them."],
-  conn=r"<strong>Two delays, each equally likely anywhere.</strong> If each of two delays is equally likely to be anything between 0 and 1 minute, a total near 1 minute is the most likely, because there are the most ways to make it, and totals near 0 or 2 are rare.",
+  bd=[r"<strong>$f(z)=z$ on $[0,1]$ = the overlap grows.</strong> At small totals the flat densities overlap on a stretch of length $z$.",
+      r"<strong>$f(z)=2-z$ on $(1,2]$ = the overlap shrinks.</strong> Past the peak at $z=1$ it falls linearly: a tent.",
+      r"<strong>$\mathbb E=1,\ \operatorname{Var}=\frac16$ = means and variances add.</strong> Each leg has mean $\frac12$ and variance $\frac1{12}$."],
+  conn=r"<strong>Two flat delays.</strong> A total near 1 minute is most likely, because there are the most ways to make it; totals near 0 or 2 are rare.",
   cap="Two flat densities on [0,1] convolve into the tent f(z): rising as z on [0,1], falling as 2 − z on [1,2], with peak at z = 1, mean 1 and variance 1/6."),
 }
 

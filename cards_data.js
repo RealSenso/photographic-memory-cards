@@ -3913,11 +3913,11 @@ window.MASTER_CARDS_DATA = [
     "personalConnection": "<strong>Counting each late morning once.</strong> Mornings with two causes were counted twice, so subtract them; the rare triple-cause mornings were then removed once too often, so add them back.",
     "examTrap": "Remember that the sign of the full intersection $\\mathbb{P}(\\bigcap_{i=1}^n A_i)$ is $(-1)^{n-1}$. For $n=2$, it's negative $(-)$; for $n=3$, it's positive $(+)$; for $n=4$, it's negative $(-)$.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Inclusion\u2013exclusion.</b> For events $A_1,\\ldots,A_n$, $\\mathbb P(\\bigcup_iA_i)=\\sum_{k=1}^n(-1)^{k-1}S_k$, where $S_k=\\sum_{i_1<\\cdots<i_k}\\mathbb P(A_{i_1}\\cap\\cdots\\cap A_{i_k})$. Partial sums alternate as upper and lower (Bonferroni) bounds (Ross 2.4; Grimmett 1.3).",
+    "statement": "<b>Inclusion\u2013exclusion.</b> For events $A_1,\\ldots,A_n$, $\\mathbb P(\\bigcup_iA_i)=\\sum_{k=1}^n(-1)^{k-1}S_k$, where $S_k=\\sum_{i_1\\lt \\cdots\\lt i_k}\\mathbb P(A_{i_1}\\cap\\cdots\\cap A_{i_k})$. Partial sums alternate as upper and lower (Bonferroni) bounds (Ross 2.4; Grimmett 1.3).",
     "hint": "How do you correct the sum of single chances so every morning is counted exactly once?",
     "breakdown": [
       "<strong>$\\sum\\mathbb P(A_i)$ = add every event.</strong> Mornings in two events are counted twice.",
-      "<strong>$-\\sum_{i<j}\\mathbb P(A_i\\cap A_j)$ = subtract the pairs.</strong> Now mornings in three events are counted zero times.",
+      "<strong>$-\\sum_{i\\lt j}\\mathbb P(A_i\\cap A_j)$ = subtract the pairs.</strong> Now mornings in three events are counted zero times.",
       "<strong>$(-1)^{n-1}\\mathbb P(\\bigcap A_i)$ = alternate to the end.</strong> Add the triples back, subtract the quadruples, until each morning counts once."
     ],
     "textbookImg": null,
