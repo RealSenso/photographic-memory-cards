@@ -1390,5 +1390,117 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: how good is the cleaned frame"
    ]
   ]
+ },
+ "3121": {
+  "s": "STORY 5 · STEP 13 · HOW GOOD IS THE FRAME",
+  "b": "After cleaning or compressing, we need a score. <b>MSE</b> is simple but blind to structure.",
+  "f": [
+   [
+    "3082",
+    "compression"
+   ],
+   [
+    "3106",
+    "restoration"
+   ],
+   [
+    "3116",
+    "denoising"
+   ]
+  ],
+  "n": [
+   [
+    "3122",
+    "a log scale"
+   ],
+   [
+    "3123",
+    "a perceptual score"
+   ]
+  ]
+ },
+ "3122": {
+  "s": "STORY 5 · STEP 14 · A RULER IN dB",
+  "b": "<b>PSNR</b> puts the error on a log scale: $+10$ dB means $\\mathrm{MSE}\\div10$.",
+  "f": [
+   [
+    "3121",
+    "MSE"
+   ]
+  ],
+  "n": [
+   [
+    "3126",
+    "numbers"
+   ]
+  ]
+ },
+ "3123": {
+  "s": "STORY 5 · STEP 15 · LOOK LIKE A PERSON",
+  "b": "<b>SSIM</b> compares brightness, contrast and structure in each patch.",
+  "f": [
+   [
+    "3121",
+    "MSE's blind spot"
+   ],
+   [
+    "3054",
+    "local means and variances"
+   ]
+  ],
+  "n": [
+   [
+    "3124",
+    "a map of where"
+   ]
+  ]
+ },
+ "3124": {
+  "s": "STORY 5 · STEP 16 · WHERE IS THE DAMAGE",
+  "b": "The <b>SSIM map</b> shows where distortion is visible; its mean ranks frames.",
+  "f": [
+   [
+    "3123",
+    "SSIM"
+   ]
+  ],
+  "n": [
+   [
+    "3125",
+    "when there is no original"
+   ]
+  ]
+ },
+ "3125": {
+  "s": "STORY 5 · STEP 17 · NO ORIGINAL",
+  "b": "<b>FR, RR, NR</b> metrics, all validated against human scores.",
+  "f": [
+   [
+    "3124",
+    "FR metrics"
+   ]
+  ],
+  "n": [
+   [
+    "3126",
+    "numbers"
+   ]
+  ]
+ },
+ "3126": {
+  "s": "STORY 5 · STEP 18 · CHECK BY HAND",
+  "b": "MSE $100$ at 8-bit is $28.13$ dB.",
+  "f": [
+   [
+    "3122",
+    "PSNR"
+   ]
+  ],
+  "n": [
+   [
+    "3131",
+    "next: find the edges in the frame"
+   ]
+  ]
  }
 });
