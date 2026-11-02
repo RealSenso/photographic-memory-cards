@@ -226,5 +226,121 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
     "next: the brightness histogram of the frame"
    ]
   ]
+ },
+ "3021": {
+  "s": "STORY 2 · STEP 1 · COUNT THE LEVELS",
+  "b": "Before changing the frame we tally how many pixels sit at each grey level: the <b>histogram</b>. It shows exposure but forgets where things are.",
+  "f": [
+   [
+    "3016",
+    "pixels hold numbers"
+   ]
+  ],
+  "n": [
+   [
+    "3022",
+    "bend the levels with a curve"
+   ],
+   [
+    "3023",
+    "split by level"
+   ],
+   [
+    "3041",
+    "flatten the histogram"
+   ]
+  ]
+ },
+ "3022": {
+  "s": "STORY 2 · STEP 2 · BEND THE LEVELS",
+  "b": "A <b>point operation</b> pushes every pixel through the same curve $T$: brighten, darken, stretch.",
+  "f": [
+   [
+    "3021",
+    "read the histogram"
+   ]
+  ],
+  "n": [
+   [
+    "3023",
+    "a step curve gives a mask"
+   ],
+   [
+    "3043",
+    "the best curve is the CDF"
+   ]
+  ]
+ },
+ "3023": {
+  "s": "STORY 2 · STEP 3 · SPLIT BY A CUT",
+  "b": "If the histogram has two humps, a single cut $T$ in the valley turns the frame into a <b>binary mask</b>.",
+  "f": [
+   [
+    "3022",
+    "a point operation"
+   ],
+   [
+    "3021",
+    "two humps"
+   ]
+  ],
+  "n": [
+   [
+    "3024",
+    "choose the cut automatically"
+   ],
+   [
+    "3031",
+    "clean the mask with morphology"
+   ]
+  ]
+ },
+ "3024": {
+  "s": "STORY 2 · STEP 4 · THE BEST CUT",
+  "b": "<b>Otsu</b> tries every cut and keeps the one that separates the two groups best (largest between-class variance).",
+  "f": [
+   [
+    "3023",
+    "a cut"
+   ]
+  ],
+  "n": [
+   [
+    "3025",
+    "compute it fast"
+   ]
+  ]
+ },
+ "3025": {
+  "s": "STORY 2 · STEP 5 · ONE PASS",
+  "b": "Running totals $\\omega(k),\\mu(k)$ give every cut's score in <b>one sweep</b> over the histogram.",
+  "f": [
+   [
+    "3024",
+    "Otsu's score"
+   ]
+  ],
+  "n": [
+   [
+    "3026",
+    "a worked example"
+   ]
+  ]
+ },
+ "3026": {
+  "s": "STORY 2 · STEP 6 · CHECK BY HAND",
+  "b": "Ten pixels worked through: the best cut sits in the <b>empty gap</b>, so report the middle of the tie.",
+  "f": [
+   [
+    "3025",
+    "the formula"
+   ]
+  ],
+  "n": [
+   [
+    "3031",
+    "next: clean up the mask"
+   ]
+  ]
  }
 });
