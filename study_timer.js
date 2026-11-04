@@ -202,7 +202,7 @@
       ${notice ? `<p class="tm-warn">${E(notice)}</p>` : ''}
       ${logs.length ? `<p class="tm-small"><b>Recent slots:</b> ${logs.map(l => E(new Date(l.ts).toLocaleDateString() + ' ' + (T.MODE_LABEL[l.mode] || l.mode) + ' · ' + l.summary)).join(' | ')}</p>` : ''}
       <div class="tm-row tm-actions">
-        ${active ? '<span class="tm-small">A slot is already running; end it to start another.</span>' : '<button class="btn primary" onclick="StudyTimer.start()">Start</button>'}
+        ${active ? '<span class="tm-small">A slot is already running; end it to start another.</span>' : '<button class="btn primary" onclick="StudyTimer.start()">Start</button><button class="btn" onclick="StudyTimer.addPlanned()" title="Save this slot as Ready without starting the clock">Add planned slot</button>'}
         <button class="btn" onclick="StudyTimer.closeAll()">Close</button>
       </div>`);
   }
@@ -248,6 +248,15 @@
     if (r.error) return r;
     saveState(r.state); st = loadState(); missedNote = ''; ensureLoop(); render(); syncSoon();
     return { ok: true, id: r.state.id, status: r.state.status };
+  }
+  /* Save the slot as "Ready" through addSlot: nothing runs until Start is tapped on it. */
+  function addPlanned() {
+    if (!form || busy()) return;
+    const r = addSlot({ mode: form.mode, subject: form.subject, topic: form.topic, recap: form.recap, cards: form.cards, make: form.make, minutes: prefs[form.mode] });
+    if (r.error) { notice = r.error; return renderSetup(); }
+    lsSet(PREF + '_plan', { mode: form.mode });
+    form = null; modal(''); notice = '';
+    showToast('Planned slot added. Tap Start on it when you are ready.');
   }
   function start() {
     if (!form || busy()) return;
@@ -417,7 +426,7 @@
     if (sb && !document.getElementById('timer-btn')) { const b = document.createElement('button'); b.className = 'btn'; b.id = 'timer-btn'; b.textContent = 'Timer'; b.onclick = openSetup; sb.parentNode.insertBefore(b, sb); }
     if (st) { tick(); } else render();
   }
-  window.StudyTimer = { placeBar, addSlot, beginPlanned, syncMerge, openSetup, closeAll, setField, setCard, setLen, resetLens, suggest, enableNotif, start, pause, resume, skip, stay, endEarly, dismiss, setMute, setVol, testSound,
+  window.StudyTimer = { addPlanned, placeBar, addSlot, beginPlanned, syncMerge, openSetup, closeAll, setField, setCard, setLen, resetLens, suggest, enableNotif, start, pause, resume, skip, stay, endEarly, dismiss, setMute, setVol, testSound,
     openLog, logSet, saveLog, askMark, openCard: openCardAndKeep, tick, cueTimes, _state: () => st };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();
