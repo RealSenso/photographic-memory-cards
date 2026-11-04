@@ -22,7 +22,7 @@
   <script src="story_stoma.js?v=20261102_cmo12"></script>
   <script src="story_dip.js?v=20261102_d2"></script>
   <script src="topic_importance.js?v=20261028_imp1"></script>
-  <script src="study_timer_core.js?v=20261105_timer4"></script>
+  <script src="study_timer_core.js?v=20261105_timer8"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -733,7 +733,10 @@
         const files = {};
         if (needPush) files[GIST_FILE] = { content: JSON.stringify(doneTs) };
         if (tm && tm.push) files[TIMER_FILE] = { content: tm.content };
-        if (Object.keys(files).length) await ghApi('/gists/' + syncCfg.gist, { method: 'PATCH', body: JSON.stringify({ files }) });
+        if (Object.keys(files).length) {
+          const t0 = Date.now(), w = await ghApi('/gists/' + syncCfg.gist, { method: 'PATCH', body: JSON.stringify({ files }) });
+          if (w && w.updated_at) window.__clockSkewMs = Date.parse(w.updated_at) - (t0 + Date.now()) / 2;   // GitHub's clock minus ours; the study timer warns if it is far off
+        }
         syncCfg.last = Date.now(); saveSyncCfg(); setSync('ok');
       } catch (e) { setSync('error', e.message); }
       syncBusy = false;
@@ -1607,7 +1610,7 @@
     })();
   </script>
 
-  <script src="study_timer.js?v=20261105_timer7"></script>
+  <script src="study_timer.js?v=20261105_timer9"></script>
 
   <!-- Toast Notification for Copy -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#0c101d] border border-cyan-400/60 text-cyan-200 px-5 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-mono flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">

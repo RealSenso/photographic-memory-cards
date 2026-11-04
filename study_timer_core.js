@@ -69,7 +69,7 @@
     const end = s.pausedAt != null ? s.pausedAt : now;
     return Math.max(0, (end - s.startedAt - s.pausedMs) / 1000) * s.speed;
   }
-  function position(s, now) { return Math.max(0, elapsed(s, now) + s.adjust); }
+  function position(s, now) { return s.status === 'planned' ? 0 : Math.max(0, elapsed(s, now) + s.adjust); }   // a slot that has not been started has used no time
 
   /* index of the phase pos is in; phases.length once the slot is over. A boundary belongs to the phase it opens. */
   function phaseIndex(sched, pos) {

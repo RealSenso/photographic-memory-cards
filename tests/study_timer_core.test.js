@@ -187,4 +187,8 @@ test('a slot carrying a foreign speed is run at this page speed; too-early cues 
   assert.strictEqual(T.sanitize(fixed, 1, t0), fixed);              // already right: untouched
   const p = T.newState('learn', null, {}, t0, { planned: true }); assert.strictEqual(T.sanitize(p, 1, t0), p);
 });
+test('a planned slot stays at position 0 however long it waits (no countdown before Start)', () => {
+  const p = T.newState('learn', null, {}, t0, { planned: true });
+  assert.strictEqual(T.position(p, t0 + 300 * S), 0); assert.strictEqual(T.position(p, t0 + 9999 * S), 0);
+});
 console.log('\n' + passed + ' tests passed');

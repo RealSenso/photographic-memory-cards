@@ -111,7 +111,10 @@
   const clearSlot = () => { saveState(T.cleared(st, Date.now())); st = null; ensureLoop(); render(); syncSoon(); };
   function pause() { mutate(s => T.pause(s, Date.now())); }
   function resume() { unlockAudio(); mutate(s => T.resume(s, Date.now())); }
-  function skip() { mutate(s => T.skip(s, Date.now())); }
+  function skip() {
+    confirmBox('Skip to the next phase?', 'The rest of this phase is dropped and the clock jumps ahead. This cannot be undone (use +2 min to stay longer instead).',
+      [['Skip phase', () => { closeBox(); mutate(s => T.skip(s, Date.now())); }], ['Keep this phase', closeBox]]);
+  }
   function stay() { mutate(s => T.extend(s, Date.now(), 120)); }
   function setMute(m) { prefs.muted = !!m; savePrefs(); render(); if (form) renderSetup(); }
   function setVol(v) { prefs.vol = Math.max(0, Math.min(100, Number(v) || 0)); savePrefs(); }
@@ -352,7 +355,7 @@
     const nextTxt = planned ? 'Added for you. The clock starts only when you tap Start.' : over || ended ? '' : i + 1 < n ? `Next cue: ${E(phaseLabel(sched, i + 1))}` : 'Next cue: end of break';
     const cue = st.lastCue && (now - st.lastCue.firedAt < 60000 || over) ? st.lastCue.text : '';
     const base = (st.plan.topicTitle || '').replace(/^\d+_/, '').replace(/_/g, ' ');
-    const key = [st.id, st.status, i, ended, over, flashUntil > now, audioBlocked, prefs.muted, cue, missedNote].join('|');
+    const key = [skewNote(), st.id, st.status, i, ended, over, flashUntil > now, audioBlocked, prefs.muted, cue, missedNote].join('|');
     const clock = over ? '–' : T.fmt(left);
     if (btn) btn.textContent = ended ? 'Timer · ended' : over ? 'Timer · done' : '⏱ ' + clock;
     document.title = (planned ? 'Ready' : over ? 'Slot complete' : clock + ' · ' + phaseLabel(sched, Math.min(i, n - 1))) + ' · ' + BASE_TITLE;
@@ -373,9 +376,15 @@
           <input class="tb-vol" type="range" min="0" max="100" value="${prefs.vol}" oninput="StudyTimer.setVol(this.value)" aria-label="Volume">
           <button class="btn tm-sm" onclick="StudyTimer.openSetup()" title="Settings and cue times">⚙</button>
         </span>
-        ${cue || missedNote || audioBlocked ? `<span class="tb-cue">${cue ? '<b>' + E(cue) + '</b> ' : ''}${E(missedNote)}${audioBlocked && !prefs.muted ? ' Sound is blocked until you tap the page once.' : ''}</span>` : ''}`;
+        ${cue || missedNote || audioBlocked || skewNote() ? `<span class="tb-cue">${cue ? '<b>' + E(cue) + '</b> ' : ''}${E(missedNote)}${audioBlocked && !prefs.muted ? ' Sound is blocked until you tap the page once.' : ''}${skewNote()}</span>` : ''}`;
       refit(true);
     } else { const c = document.getElementById('tb-clock'); if (c) c.textContent = clock; const nx = bar.querySelector('.tb-next'); if (nx) nx.innerHTML = nextTxt; }
+  }
+  /* Slots are stamped with each device's own clock, so a device whose clock is off shows a synced slot shifted by that much. GitHub's answer to our own
+     write carries its clock, which is the only trustworthy reference available without a server of our own. */
+  function skewNote() {
+    const k = window.__clockSkewMs;
+    return typeof k === 'number' && Math.abs(k) > 20000 ? ' This device\'s clock is about ' + (Math.abs(k) >= 90000 ? Math.round(Math.abs(k) / 60000) + ' min' : Math.round(Math.abs(k) / 1000) + ' s') + (k > 0 ? ' behind' : ' ahead of') + ' GitHub\'s, so a slot synced from another device can look shifted by that much. Turn on automatic date and time.' : '';
   }
   let barShown = false;
   const bar_in_rail = () => { const b = document.getElementById('timer-bar'); return !!b && b.classList.contains('in-rail'); };
