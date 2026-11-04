@@ -35,6 +35,8 @@
   /* A card reference is "07" (this slot's topic), "10/07" (topic 10) or "LAA:06/03" (another subject's topic 6). Card numbers repeat from topic to topic, so a slot that
      reaches across topics has to say which one. Only references that match a real card resolve. */
   function findCard(sub, topic, ref) {
+    const byId = String(ref == null ? '' : ref).trim().replace(/^#/, '').match(/^(?:id:?)?(\d{3,})$/i);   // a card id such as 1007 (card numbers are always 1-2 digits, so no clash)
+    if (byId) return masterCards.find(c => String(c.id) === byId[1]) || null;
     const m = String(ref == null ? '' : ref).trim().replace(/^#/, '').match(/^(?:([A-Za-z]+):)?(?:(\d+)\/)?(.+)$/);
     if (!m) return null;
     const subj = m[1] ? (SUBJECTS.find(x => x.id.toLowerCase() === m[1].toLowerCase()) || {}).id : sub;
@@ -172,10 +174,10 @@
         <label>Recap: this slot's prerequisite card numbers <input value="${E(form.recap)}" placeholder="physical-card numbers, e.g. 03, 04" oninput="StudyTimer.setField('recap',this.value,1)"></label>
         <div class="tm-cards">${form.cards.map((c, i) => `<label>Card ${i + 1}<input value="${E(c)}" placeholder="no." oninput="StudyTimer.setCard(${i},this.value)"></label>`).join('')}</div>
         <div class="tm-small">${learnNums.length ? learnNums.map(chk).join(' · ') : 'Type the card numbers you plan to cover. Nothing is filled in for you; leave boxes empty for fewer cards.'}</div>
-        <div class="tm-small">Cards from other topics: <b>10/05</b> = topic 10, card 05 · other subject: <b>LAA:06/03</b>.</div>
+        <div class="tm-small">Other topics: <b>10/05</b> = topic 10, card 05 · other subject: <b>LAA:06/03</b> · by card id: <b>1007</b>.</div>
         <button class="btn" onclick="StudyTimer.suggest()">Suggest the next unfinished cards in this topic</button>`
       : `
-        <label>Cards to make (numbers) <input value="${E(form.make)}" placeholder="e.g. 03, 04, 10/05, LAA:06/03" oninput="StudyTimer.setField('make',this.value,1)"></label>
+        <label>Cards to make (numbers) <input value="${E(form.make)}" placeholder="e.g. 03, 10/05, LAA:06/03, 1007" oninput="StudyTimer.setField('make',this.value,1)"></label>
         <div class="tm-small">${madeHere.length ? 'Already made, will not be remade: ' + E(hashes(madeHere.map(c => c.cardNumber))) : 'No physical card marked as made in this topic yet.'}</div>
         <button class="btn" onclick="StudyTimer.suggest()">Suggest: done but no physical card yet</button>`}
       <details class="tm-det"><summary>Phase lengths (minutes) · total ${sched.total / 60}</summary>
@@ -225,7 +227,7 @@
   /* One builder for the dialog and for outside callers (e.g. an assistant adding slots through StudyTimer.addSlot). Only the numbers given are used. */
   function buildSlot(spec, planned) {
     spec = spec || {};
-    const mode = spec.mode === 'make' ? 'make' : 'learn', list = x => Array.isArray(x) ? x.map(String) : parseNums(x);
+    const mode = spec.mode === 'make' ? 'make' : 'learn', list = x => Array.isArray(x) ? x.map(v => String(v).trim().replace(/^#/, '')) : parseNums(x);
     if (!SUBJECTS.some(x => x.id === spec.subject)) return { error: 'Unknown subject: ' + spec.subject };
     if (!getTopicsList(spec.subject).some(t => t.id === spec.topic)) return { error: 'Unknown topic for ' + spec.subject + ': ' + spec.topic };
     const plan = { subject: spec.subject, topic: spec.topic, topicTitle: topicTitle(spec.subject, spec.topic), mode };
