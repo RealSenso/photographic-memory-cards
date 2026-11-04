@@ -32,7 +32,18 @@
   const norm = x => String(x == null ? '' : x).trim().toLowerCase().replace(/^#/, '').replace(/^0+(?=\d)/, '').replace(/[ab]$/, '');
   const parseNums = t => String(t || '').split(/[\s,;]+/).map(x => x.trim().replace(/^#/, '')).filter(Boolean);
   const topicCards = (sub, topic) => masterCards.filter(c => (c.subject || 'CMO') === sub && topicOf(c) === topic && !isPractice(c));
-  const findCard = (sub, topic, num) => topicCards(sub, topic).find(c => norm(c.cardNumber) === norm(num)) || null;
+  /* A card reference is "07" (this slot's topic), "10/07" (topic 10) or "LAA:06/03" (another subject's topic 6). Card numbers repeat from topic to topic, so a slot that
+     reaches across topics has to say which one. Only references that match a real card resolve. */
+  function findCard(sub, topic, ref) {
+    const m = String(ref == null ? '' : ref).trim().replace(/^#/, '').match(/^(?:([A-Za-z]+):)?(?:(\d+)\/)?(.+)$/);
+    if (!m) return null;
+    const subj = m[1] ? (SUBJECTS.find(x => x.id.toLowerCase() === m[1].toLowerCase()) || {}).id : sub;
+    if (!subj) return null;
+    let top = topic;
+    if (m[2]) { const t = getTopicsList(subj).find(t => Number((String(t.id).match(/^\d+/) || [-1])[0]) === Number(m[2])); if (!t) return null; top = t.id; }
+    else if (subj !== sub) return null;
+    return topicCards(subj, top).find(c => norm(c.cardNumber) === norm(m[3])) || null;
+  }
   const topicTitle = (sub, topic) => { const t = window.getTopicsList(sub).find(x => x.id === topic); return t ? t.title : ''; };
   const plain = s => String(s || '').replace(/<\/?[^>]+(>|$)/g, '').replace(/\$/g, '');
   const hashes = list => list.filter(Boolean).map(n => '#' + n).join(' ');
@@ -140,8 +151,9 @@
     const active = busy();
     const mode = form.mode, sched = T.buildSchedule(mode, prefs[mode]), cardsHere = topicCards(form.subject, form.topic);
     const madeHere = cardsHere.filter(c => phys.has(c.id));
-    const chk = n => { const c = findCard(form.subject, form.topic, n); return c ? `<span class="ok">#${E(n)} ${E(plain(c.title)).slice(0, 48)}</span>` : `<span class="bad">#${E(n)} not found in this topic</span>`; };
-    const learnNums = [...new Set([form.recap, ...form.cards].flatMap(parseNums).map(norm))];
+    const where = c => ((c.subject || 'CMO') !== form.subject ? (c.subject || 'CMO') + ' ' : '') + (topicOf(c) !== form.topic ? 'topic ' + (String(topicOf(c)).match(/^\d+/) || [''])[0] + ' · ' : '');
+    const chk = n => { const c = findCard(form.subject, form.topic, n); return c ? `<span class="ok">#${E(n)} ${E(where(c))}${E(plain(c.title)).slice(0, 44)}</span>` : `<span class="bad">#${E(n)} not found</span>`; };
+    const learnNums = [...new Set([form.recap, ...form.cards].flatMap(parseNums).map(x => x.toLowerCase()))];
     const ns = notifState();
     const nTxt = { unsupported: 'Not supported in this browser. You still get the in-page banner and sound.', default: 'Not enabled. Sound and the in-page banner still work.', granted: 'Enabled. Shown only when this tab is in the background and still running.', denied: 'Blocked in the browser settings for this site. The timer still works with the banner and sound; re-allow it in the site settings if you want notifications.' }[ns];
     const logs = lsGet(LOGK, []).slice(-3).reverse();
@@ -160,9 +172,10 @@
         <label>Recap: this slot's prerequisite card numbers <input value="${E(form.recap)}" placeholder="physical-card numbers, e.g. 03, 04" oninput="StudyTimer.setField('recap',this.value,1)"></label>
         <div class="tm-cards">${form.cards.map((c, i) => `<label>Card ${i + 1}<input value="${E(c)}" placeholder="no." oninput="StudyTimer.setCard(${i},this.value)"></label>`).join('')}</div>
         <div class="tm-small">${learnNums.length ? learnNums.map(chk).join(' · ') : 'Type the card numbers you plan to cover. Nothing is filled in for you; leave boxes empty for fewer cards.'}</div>
+        <div class="tm-small">Cards from other topics: <b>10/05</b> = topic 10, card 05 · other subject: <b>LAA:06/03</b>.</div>
         <button class="btn" onclick="StudyTimer.suggest()">Suggest the next unfinished cards in this topic</button>`
       : `
-        <label>Cards to make (numbers) <input value="${E(form.make)}" placeholder="e.g. 03, 04, 05" oninput="StudyTimer.setField('make',this.value,1)"></label>
+        <label>Cards to make (numbers) <input value="${E(form.make)}" placeholder="e.g. 03, 04, 10/05, LAA:06/03" oninput="StudyTimer.setField('make',this.value,1)"></label>
         <div class="tm-small">${madeHere.length ? 'Already made, will not be remade: ' + E(hashes(madeHere.map(c => c.cardNumber))) : 'No physical card marked as made in this topic yet.'}</div>
         <button class="btn" onclick="StudyTimer.suggest()">Suggest: done but no physical card yet</button>`}
       <details class="tm-det"><summary>Phase lengths (minutes) · total ${sched.total / 60}</summary>
