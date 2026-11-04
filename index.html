@@ -22,6 +22,7 @@
   <script src="story_stoma.js?v=20261102_cmo12"></script>
   <script src="story_dip.js?v=20261102_d2"></script>
   <script src="topic_importance.js?v=20261028_imp1"></script>
+  <script src="study_timer_core.js?v=20261104_timer1"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -105,6 +106,14 @@
     .btn { min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; }
     .btn:hover { background: #17203d; }
     .btn.primary { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
+    .rail-collapse { margin-left: auto; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line-2); background: transparent; display: inline-flex; align-items: center; justify-content: center; }
+    .rail-collapse:hover { background: #121930; }
+    .rail-open { display: none; width: 44px; padding: 0; justify-content: center; }
+    @media (min-width: 901px) {
+      .app.rail-collapsed .rail { display: none; }
+      .app.rail-collapsed .rail-open { display: inline-flex; }
+    }
+    @media (max-width: 900px) { .rail-collapse { display: none; } }
     .menu-btn { display: none; width: 44px; padding: 0; justify-content: center; }
 
     .plines { flex-basis: 100%; display: flex; align-items: flex-start; gap: 16px; margin-top: -2px; }
@@ -157,6 +166,48 @@
     #sync-modal a { color:var(--accent); text-decoration:underline; } #sync-modal .ok { color:var(--green); } #sync-modal .small { font-size:12.5px; color:#8e9bb8; }
     #sync-modal input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2a3558; background:#0a0f1d; color:#fff; margin:6px 0 10px; }
     #sync-modal .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+
+    /* ---------- study-slot timer ---------- */
+    #timer-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 8px 32px 0; padding: 8px 14px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--panel); }
+    #timer-bar[hidden] { display: none; }
+    #timer-bar.flash { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .tb-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .8px; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line-3); color: var(--accent); white-space: nowrap; }
+    .tb-tag.p { color: var(--amber); border-color: #7a5a1c; } .tb-tag.f { color: var(--green); border-color: #2c6e57; }
+    .tb-phase { font-size: 14px; font-weight: 600; color: var(--text); display: flex; flex-direction: column; min-width: 0; }
+    .tb-phase small { font-weight: 400; font-size: 11px; color: var(--muted); max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tb-clock { font-family: var(--mono); font-size: 26px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; min-width: 72px; }
+    .tb-next { font-size: 12.5px; color: var(--muted); flex: 1 1 180px; min-width: 0; }
+    .tb-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: auto; }
+    .tb-vol { width: 76px; accent-color: var(--accent); }
+    .tb-cue { flex-basis: 100%; font-size: 13px; color: var(--text-2); }
+    .btn.tm-sm { min-height: 36px; padding: 0 10px; font-size: 12.5px; border-radius: 10px; }
+    #timer-bar .btn { min-height: 36px; padding: 0 12px; }
+    .tm-wrap { position: fixed; inset: 0; z-index: 80; background: rgba(5,8,16,.8); display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
+    .tm-wrap.tm-top { z-index: 90; }
+    .tm-box { max-width: 560px; width: 100%; max-height: calc(100vh - 32px); overflow-y: auto; background: #0f1426; border: 1px solid #2a3558; border-radius: 16px; padding: 22px; color: #d8e0f2; font-size: 14.5px; line-height: 1.5; }
+    .tm-box h3 { font-size: 18px; font-weight: 700; margin: 0 0 8px; } .tm-box p { margin: 8px 0; }
+    .tm-box label { display: block; font-size: 12.5px; color: #8e9bb8; margin-top: 10px; }
+    .tm-box input[type=text], .tm-box input:not([type]), .tm-box input[type=number], .tm-box select, .tm-box textarea { width: 100%; padding: 9px 11px; border-radius: 10px; border: 1px solid #2a3558; background: #0a0f1d; color: #fff; margin-top: 4px; font-size: 14px; font-family: inherit; }
+    .tm-box .tm-inl { display: inline-flex; align-items: center; gap: 6px; margin: 0 12px 0 0; color: #d8e0f2; }
+    .tm-box .tm-inl input { width: auto; margin: 0; accent-color: var(--accent); }
+    .tm-seg { display: inline-flex; border: 1px solid #2a3558; border-radius: 12px; overflow: hidden; margin: 4px 0; }
+    .tm-seg button { min-height: 40px; padding: 0 18px; border: 0; background: transparent; color: var(--muted-2); font-size: 14px; }
+    .tm-seg button.on { background: var(--accent); color: #06101c; font-weight: 600; }
+    .tm-grid2 { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+    .tm-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 4px 0 8px; } .tm-cards label { margin-top: 4px; }
+    .tm-lens { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin: 8px 0; }
+    .tm-det { margin: 12px 0; border-top: 1px solid #1d2640; padding-top: 8px; } .tm-det summary { cursor: pointer; color: var(--muted-2); }
+    .tm-pre { white-space: pre-wrap; font-family: var(--mono); font-size: 12px; color: var(--muted-2); margin: 6px 0 0; }
+    .tm-small { font-size: 12.5px; color: #8e9bb8; margin: 6px 0; } .tm-small .ok, .tm-log .ok { color: var(--green); } .tm-small .bad { color: #f5a3a3; }
+    .tm-warn { color: var(--amber); font-size: 13px; }
+    .tm-sound { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 12px 0 4px; }
+    .tm-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; align-items: center; }
+    .tm-actions { position: sticky; bottom: -22px; background: #0f1426; padding: 12px 0 2px; margin-bottom: -2px; border-top: 1px solid #1d2640; }
+    .tm-log { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1d2640; font-size: 13.5px; flex-wrap: wrap; }
+    .tm-log select { width: auto; margin: 0; }
+    @media (max-width: 900px) { #timer-bar { margin: 8px 16px 0; } .tm-grid2 { grid-template-columns: 1fr; } .tm-cards { grid-template-columns: repeat(3, 1fr); } .tb-ctl { margin-left: 0; } }
+    @media (max-width: 700px) { .tb-vol { display: none; } #timer-bar { gap: 4px 10px; padding: 8px 10px; } .tb-clock { font-size: 24px; } }
+    @media print { #timer-bar, #timer-modal, #timer-confirm { display: none !important; } }
     .chipbtn.prac { border-color: #6b5436; color: #e8c9a0; background: #241b13; }
     .stripsep { width: 1px; height: 28px; background: var(--line-2); margin: 0 6px; align-self: center; flex: none; }
     .flipwrap { flex: 1 0 auto; perspective: 1800px; cursor: pointer; display: flex; }
@@ -302,7 +353,7 @@
 
 <div class="app">
   <aside class="rail" id="rail" aria-label="Subjects and topics">
-    <div class="brand"><div class="logo" aria-hidden="true">P</div><div class="brand-name">Plates</div></div>
+    <div class="brand"><div class="logo" aria-hidden="true">P</div><div class="brand-name">Plates</div><button class="rail-collapse" onclick="setRailCollapsed(true)" aria-label="Collapse sidebar" title="Collapse sidebar ( [ )"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button></div>
     <div>
       <div class="label">SUBJECTS</div>
       <div id="subject-list"></div>
@@ -319,6 +370,7 @@
       <button class="btn menu-btn" onclick="toggleRail(true)" aria-label="Open navigation">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h12M3 9h12M3 13h12"/></svg>
       </button>
+      <button class="btn rail-open" onclick="setRailCollapsed(false)" aria-label="Show sidebar" title="Show sidebar ( [ )"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h12M3 9h12M3 13h12"/></svg></button>
       <div class="crumb" id="crumb"></div>
       <div class="search">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#8e9bb8" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
@@ -622,6 +674,14 @@
       syncSoon();
     }
 
+    /* used by the study timer after you confirm: adds marks through the same doneTs path as the buttons, never removes one */
+    function applyMarks(kind, ids) {
+      const now = Date.now(); let n = 0;
+      ids.forEach(id => { const k = kind === 'phys' ? 'phys:' + id : id; if (!(doneTs[k] > 0)) { doneTs[k] = now; n++; } });
+      rebuildDone(); saveDone(); renderAll(); syncSoon();
+      return n;
+    }
+
     /* ---- cross-device sync: a private GitHub Gist, reached with a token you paste on each device ---- */
     const SYNC_KEY = 'plates_sync_v1', GIST_FILE = 'plates-progress.json', GIST_DESC = 'plates-progress (Plates study site)';
     let syncCfg = {}; try { syncCfg = JSON.parse(localStorage.getItem(SYNC_KEY) || '{}'); } catch (e) {}
@@ -795,6 +855,13 @@
       if (dir < 0) goTo(deck.length - 1);
     }
 
+    /* sidebar collapse (wide screens); the choice is remembered, narrow screens keep their slide-in drawer */
+    function setRailCollapsed(on) {
+      document.querySelector('.app').classList.toggle('rail-collapsed', !!on);
+      try { localStorage.setItem('plates_rail_collapsed', on ? '1' : '0'); } catch (e) {}
+      setTimeout(() => { if (typeof fitCard === 'function') fitCard(); }, 0);
+    }
+    try { if (localStorage.getItem('plates_rail_collapsed') === '1') document.querySelector('.app').classList.add('rail-collapsed'); } catch (e) {}
     function toggleRail(open) {
       document.getElementById('rail').classList.toggle('open', open);
       document.getElementById('scrim').classList.toggle('open', open);
@@ -1205,6 +1272,7 @@
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.key === '/') { e.preventDefault(); input.focus(); }
+      else if (e.key === '[') setRailCollapsed(!document.querySelector('.app').classList.contains('rail-collapsed'));
       else if (e.key === 'ArrowRight') step(1);
       else if (e.key === 'd' || e.key === 'D') toggleDone();
       else if (e.key === 'p' || e.key === 'P') togglePhys();
@@ -1518,6 +1586,8 @@
       window.addEventListener('focus', check);
     })();
   </script>
+
+  <script src="study_timer.js?v=20261104_timer1"></script>
 
   <!-- Toast Notification for Copy -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#0c101d] border border-cyan-400/60 text-cyan-200 px-5 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-mono flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
