@@ -689,7 +689,7 @@
     function saveSyncCfg() { try { localStorage.setItem(SYNC_KEY, JSON.stringify(syncCfg)); } catch (e) {} }
     function ghApi(path, opt) {
       return fetch('https://api.github.com' + path, Object.assign({}, opt, { headers: {
-        Authorization: 'Bearer ' + syncCfg.token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' } }))
+        Authorization: 'Bearer ' + syncCfg.token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }, cache: 'no-store' }))
         .then(r => { if (!r.ok) throw new Error('GitHub ' + r.status); return r.json(); });
     }
     function mergeTs(remote) {

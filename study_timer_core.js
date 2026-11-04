@@ -137,6 +137,18 @@
   }
 
 
+  /* The speed multiplier is a testing aid of one page (?timerSpeed=), never part of a slot. If a slot arrives carrying a speed this page
+     did not ask for (e.g. a slot another device made while testing), run it at this page's speed and drop the cues that were fired too early. */
+  function sanitize(s, speed, now) {
+    if (!s || s.status === 'cleared' || s.status === 'planned' || (s.speed || 1) === speed) return s;
+    const x = clone(s); x.speed = speed;
+    const sched = buildSchedule(x.mode, x.minutes), pos = position(x, now), n = sched.phases.length;
+    x.fired = (x.fired || []).filter(i => (i < n ? sched.phases[i].start : sched.total) <= pos);
+    if (x.status === 'finished' && !x.fired.includes(n)) x.status = 'running';
+    x.upd = now;
+    return x;
+  }
+
   /* ---- cross-device sync: pure merge rules; the page stores the result in the user's own sync gist ---- */
   const validState = s => !!s && typeof s === 'object' && s.v === 1 && typeof s.id === 'string' && typeof s.upd === 'number' && (s.status === 'cleared' || (!!DEFAULTS[s.mode] && typeof s.startedAt === 'number' && Array.isArray(s.fired)));
   /* a closed slot leaves a tombstone so "closed" travels to the other device instead of the old slot coming back */
@@ -160,7 +172,7 @@
     return Array.from(seen.values()).sort((p, q) => p.ts - q.ts).slice(-200);
   }
 
-  const api = { begin, validState, cleared, merge, mergeLogs, DEFAULTS, MODE_LABEL, FOCUS_END_TEXT, FINAL_TEXT, defaultMinutes, cleanMinutes, buildSchedule, cueText, newState, elapsed, position,
+  const api = { sanitize, begin, validState, cleared, merge, mergeLogs, DEFAULTS, MODE_LABEL, FOCUS_END_TEXT, FINAL_TEXT, defaultMinutes, cleanMinutes, buildSchedule, cueText, newState, elapsed, position,
                 phaseIndex, tick, pause, resume, end, skip, extend, cueClock, fmt };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.StudyTimerCore = api;
 })(typeof window !== 'undefined' ? window : globalThis);

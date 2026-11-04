@@ -14,8 +14,11 @@
   const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
   let memState = null;                          // fallback if storage is blocked: the timer still works until the page closes
   function loadState() {
-    const s = rawState();
-    return s && s.status !== 'cleared' && T.validState(s) ? s : null;
+    let s = rawState();
+    if (!s || s.status === 'cleared' || !T.validState(s)) return null;
+    const fixed = T.sanitize(s, speedParam, Date.now());         // a speed carried in from another device is ignored
+    if (fixed !== s) { s = fixed; saveState(s); }
+    return s;
   }
   const rawState = () => lsGet(KEY, null) || memState;
   function saveState(s) { memState = s; if (s) lsSet(KEY, s); else try { localStorage.removeItem(KEY); } catch (e) {} }
@@ -218,7 +221,7 @@
       const asked = list(spec.make), dup = asked.filter(n => { const c = findCard(spec.subject, spec.topic, n); return c && phys.has(c.id); });
       plan.cards = asked.filter(n => !dup.includes(n)); plan.skippedMade = dup;
     }
-    return { state: T.newState(mode, spec.minutes || prefs[mode], plan, Date.now(), { speed: speedParam, planned }) };
+    return { state: T.newState(mode, spec.minutes || prefs[mode], plan, Date.now(), { planned }) };
   }
   const busy = () => st && (st.status === 'running' || st.status === 'paused' || st.status === 'planned');
   function addSlot(spec) {   // always lands as 'planned': the clock only ever starts from a tap on Start
@@ -358,7 +361,7 @@
   const canon = v => JSON.stringify(v, (k, x) => x && typeof x === 'object' && !Array.isArray(x) ? Object.keys(x).sort().reduce((o, key) => (o[key] = x[key], o), {}) : x);
   function syncMerge(remote) {
     remote = remote && typeof remote === 'object' ? remote : {};
-    const local = rawState(), merged = T.merge(local, remote.timer);
+    const local = rawState(), rt = validRemote(remote.timer) ? T.sanitize(remote.timer, speedParam, Date.now()) : null, merged = T.merge(local, rt);
     if (merged && canon(merged) !== canon(local)) { saveState(merged); st = loadState(); ensureLoop(); if (st) tick(); else render(); }
     const logs = T.mergeLogs(lsGet(LOGK, []), remote.logs);
     if (canon(logs) !== canon(lsGet(LOGK, []))) lsSet(LOGK, logs);

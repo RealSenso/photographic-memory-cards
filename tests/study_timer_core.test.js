@@ -176,4 +176,15 @@ test('mergeLogs: union by time+mode, oldest dropped past 200', () => {
   assert.deepStrictEqual(T.mergeLogs([l(1), l(2)], [l(2), l(3)]).map(x => x.ts), [1, 2, 3]);
   assert.strictEqual(T.mergeLogs(Array.from({ length: 250 }, (_, i) => l(i)), []).length, 200);
 });
+test('a slot carrying a foreign speed is run at this page speed; too-early cues are un-fired', () => {
+  const bad = T.newState('learn', null, {}, t0, { speed: 60 });
+  const ringed = run(bad, t0 + 30 * M).state;                       // 30 real minutes x60 => everything "fired", finished
+  assert.strictEqual(ringed.status, 'finished');
+  const fixed = T.sanitize(ringed, 1, t0 + 30 * M);
+  assert.strictEqual(fixed.speed, 1); assert.strictEqual(fixed.status, 'running');
+  assert.deepStrictEqual(fixed.fired, [1, 2, 3, 4]);                // only cues up to minute 26 are really behind us
+  assert.strictEqual(run(fixed, t0 + 34 * M).alert.index, 5);       // minute-34 cue still rings on time
+  assert.strictEqual(T.sanitize(fixed, 1, t0), fixed);              // already right: untouched
+  const p = T.newState('learn', null, {}, t0, { planned: true }); assert.strictEqual(T.sanitize(p, 1, t0), p);
+});
 console.log('\n' + passed + ' tests passed');
