@@ -312,9 +312,23 @@
     if (!b) { b = document.createElement('div'); b.id = 'timer-bar'; const strip = document.getElementById('card-strip'); strip.parentNode.insertBefore(b, strip); }
     return b;
   }
+  /* On wide screens with the sidebar open the timer lives in the sidebar; with it collapsed, or on a phone, it sits above the card strip. */
+  function placeBar() {
+    const slot = document.getElementById('timer-slot'), bar = barEl(), strip = document.getElementById('card-strip');
+    const inRail = !!slot && innerWidth > 900 && !document.querySelector('.app').classList.contains('rail-collapsed');
+    let rb = document.getElementById('timer-rail-btn');
+    if (slot && !rb) { rb = document.createElement('button'); rb.id = 'timer-rail-btn'; rb.className = 'btn'; rb.textContent = '⏱ Study timer'; rb.onclick = openSetup; slot.appendChild(rb); }
+    bar.classList.toggle('in-rail', inRail);
+    let moved = false;
+    if (inRail && bar.parentNode !== slot) { slot.appendChild(bar); moved = true; }
+    else if (!inRail && bar.parentNode === slot) { strip.parentNode.insertBefore(bar, strip); moved = true; }
+    if (rb) rb.hidden = !inRail || !!st;
+    if (moved && typeof window.fitCard === 'function') setTimeout(window.fitCard, 0);
+  }
+  window.addEventListener('resize', () => placeBar());
   let lastBarKey = '';
   function render() {
-    ensureLoop();
+    ensureLoop(); placeBar();
     const btn = document.getElementById('timer-btn'), bar = barEl(), now = Date.now();
     if (!st) { bar.hidden = true; bar.innerHTML = ''; lastBarKey = ''; if (btn) btn.textContent = 'Timer'; if (document.title !== BASE_TITLE) document.title = BASE_TITLE; refit(false); return; }
     const sched = T.buildSchedule(st.mode, st.minutes), pos = T.position(st, now), i = T.phaseIndex(sched, pos), n = sched.phases.length;
@@ -329,7 +343,7 @@
     document.title = (planned ? 'Ready' : over ? 'Slot complete' : clock + ' · ' + phaseLabel(sched, Math.min(i, n - 1))) + ' · ' + BASE_TITLE;
     if (key !== lastBarKey || !bar.firstChild) {
       lastBarKey = key; bar.hidden = false;
-      bar.className = flashUntil > now ? 'flash' : '';
+      bar.classList.toggle('flash', flashUntil > now);
       bar.innerHTML = `
         <span class="tb-tag ${paused ? 'p' : over ? 'f' : ''}">${E(tag)}</span>
         <span class="tb-phase" title="${E(base)}">${E(over ? 'Slot complete' : phaseLabel(sched, i))}<small>${E(base)}</small></span>
@@ -349,7 +363,8 @@
     } else { const c = document.getElementById('tb-clock'); if (c) c.textContent = clock; const nx = bar.querySelector('.tb-next'); if (nx) nx.innerHTML = nextTxt; }
   }
   let barShown = false;
-  function refit(on) { if (on === barShown) return; barShown = on; if (typeof window.fitCard === 'function') setTimeout(window.fitCard, 0); }
+  const bar_in_rail = () => { const b = document.getElementById('timer-bar'); return !!b && b.classList.contains('in-rail'); };
+  function refit(on) { on = on && !bar_in_rail(); if (on === barShown) return; barShown = on; if (typeof window.fitCard === 'function') setTimeout(window.fitCard, 0); }
 
   /* backup phone-alarm times, shown in the settings dialog while a slot runs */
   function cueTimes() {
@@ -378,7 +393,7 @@
     if (sb && !document.getElementById('timer-btn')) { const b = document.createElement('button'); b.className = 'btn'; b.id = 'timer-btn'; b.textContent = 'Timer'; b.onclick = openSetup; sb.parentNode.insertBefore(b, sb); }
     if (st) { tick(); } else render();
   }
-  window.StudyTimer = { addSlot, beginPlanned, syncMerge, openSetup, closeAll, setField, setCard, setLen, resetLens, suggest, enableNotif, start, pause, resume, skip, stay, endEarly, dismiss, setMute, setVol, testSound,
+  window.StudyTimer = { placeBar, addSlot, beginPlanned, syncMerge, openSetup, closeAll, setField, setCard, setLen, resetLens, suggest, enableNotif, start, pause, resume, skip, stay, endEarly, dismiss, setMute, setVol, testSound,
     openLog, logSet, saveLog, askMark, openCard: openCardAndKeep, tick, cueTimes, _state: () => st };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();

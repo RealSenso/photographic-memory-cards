@@ -168,6 +168,18 @@
     #sync-modal .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
 
     /* ---------- study-slot timer ---------- */
+    #timer-slot:empty { display: none; }
+    #timer-slot { margin-top: -6px; }
+    #timer-rail-btn { width: 100%; justify-content: center; }
+    #timer-bar.in-rail { margin: 0; flex-direction: column; align-items: stretch; gap: 6px; padding: 10px 12px; }
+    #timer-bar.in-rail .tb-tag { align-self: flex-start; }
+    #timer-bar.in-rail .tb-phase small { max-width: 100%; }
+    #timer-bar.in-rail .tb-clock { font-size: 30px; }
+    #timer-bar.in-rail .tb-next { flex: 0 0 auto; }
+    #timer-bar.in-rail .tb-ctl { margin-left: 0; }
+    #timer-bar.in-rail .tb-vol { flex: 1 1 80px; width: auto; }
+    #timer-bar.in-rail .btn { padding: 0 10px; }
+    @media (min-width: 901px) { .app:not(.rail-collapsed) #timer-btn { display: none; } }
     #timer-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 8px 32px 0; padding: 8px 14px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--panel); }
     #timer-bar[hidden] { display: none; }
     #timer-bar.flash { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
@@ -354,6 +366,7 @@
 <div class="app">
   <aside class="rail" id="rail" aria-label="Subjects and topics">
     <div class="brand"><div class="logo" aria-hidden="true">P</div><div class="brand-name">Plates</div><button class="rail-collapse" onclick="setRailCollapsed(true)" aria-label="Collapse sidebar" title="Collapse sidebar ( [ )"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button></div>
+    <div id="timer-slot"></div>
     <div>
       <div class="label">SUBJECTS</div>
       <div id="subject-list"></div>
@@ -865,6 +878,7 @@
     function setRailCollapsed(on) {
       document.querySelector('.app').classList.toggle('rail-collapsed', !!on);
       try { localStorage.setItem('plates_rail_collapsed', on ? '1' : '0'); } catch (e) {}
+      if (window.StudyTimer) StudyTimer.placeBar();
       setTimeout(() => { if (typeof fitCard === 'function') fitCard(); }, 0);
     }
     try { if (localStorage.getItem('plates_rail_collapsed') === '1') document.querySelector('.app').classList.add('rail-collapsed'); } catch (e) {}
