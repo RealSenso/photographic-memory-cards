@@ -129,4 +129,51 @@ test('phaseIndex boundaries', () => {
 test('countdown format rounds up so it hits 0:00 at the boundary', () => {
   assert.strictEqual(T.fmt(119.2), '2:00'); assert.strictEqual(T.fmt(0.01), '0:01'); assert.strictEqual(T.fmt(0), '0:00');
 });
+
+/* ---- cross-device sync ---- */
+const slot = (extra) => T.newState('learn', null, { cards: ['1'] }, t0, extra);
+test('planned slot never ticks or alarms until begin(), which starts the clock at that moment', () => {
+  const p = slot({ planned: true });
+  assert.strictEqual(p.status, 'planned'); assert.strictEqual(run(p, t0 + 500 * M).alert, null);
+  assert.strictEqual(T.pause(p, t0 + M), p); assert.strictEqual(T.skip(p, t0 + M), p);
+  const s = T.begin(p, t0 + 100 * M); assert.strictEqual(s.status, 'running');
+  assert.strictEqual(T.position(s, t0 + 100 * M), 0); assert.strictEqual(run(s, t0 + 102 * M).alert.index, 1);
+  assert.strictEqual(T.begin(s, t0 + 200 * M), s);
+});
+test('merge: newest user action wins (pause on one device reaches the other)', () => {
+  const a = slot(); const b = T.pause(a, t0 + 5 * M);
+  assert.strictEqual(T.merge(a, b).status, 'paused'); assert.strictEqual(T.merge(b, a).status, 'paused');
+  const c = T.resume(b, t0 + 9 * M);
+  assert.strictEqual(T.merge(b, c).status, 'running'); assert.strictEqual(T.merge(b, c).pausedMs, 4 * M);
+});
+test('merge: fired cues from both devices are unioned so a later device does not ring them again', () => {
+  const base = slot(); const a = run(base, t0 + 2 * M).state, b = run(base, t0 + 10 * M).state;   // a fired [1], b fired [1,2]
+  const m = T.merge(a, b); assert.deepStrictEqual(m.fired, [1, 2]);
+  assert.strictEqual(run(m, t0 + 10 * M + S).alert, null);
+});
+test('merge: a slot finished on one device is finished everywhere; never auto-starts anything', () => {
+  const base = slot(), fin = run(base, t0 + 61 * M).state;
+  const m = T.merge(base, fin); assert.strictEqual(m.status, 'finished');
+});
+test('merge: a closed slot (tombstone) beats the old slot; a newer slot beats the tombstone', () => {
+  const s = slot(), gone = T.cleared(s, t0 + 70 * M);
+  assert.strictEqual(T.merge(s, gone).status, 'cleared'); assert.strictEqual(T.merge(gone, s).status, 'cleared');
+  const next = T.newState('make', null, {}, t0 + 90 * M); assert.strictEqual(T.merge(gone, next).id, next.id);
+});
+test('merge: different slots - the newer action wins whole; garbage remote is ignored', () => {
+  const old = slot(), neu = T.newState('make', null, {}, t0 + 5 * M);
+  assert.strictEqual(T.merge(old, neu).mode, 'make');
+  assert.strictEqual(T.merge(old, { junk: 1 }).id, old.id); assert.strictEqual(T.merge(null, null), null);
+});
+test('merge is symmetric and idempotent', () => {
+  const a = run(slot(), t0 + 3 * M).state, b = T.pause(slot(), t0 + M);
+  const x = T.merge(a, b), y = T.merge(b, a);
+  assert.deepStrictEqual(x.fired, y.fired); assert.strictEqual(x.status, y.status);
+  assert.deepStrictEqual(T.merge(x, x), x);
+});
+test('mergeLogs: union by time+mode, oldest dropped past 200', () => {
+  const l = (ts) => ({ ts, mode: 'learn' });
+  assert.deepStrictEqual(T.mergeLogs([l(1), l(2)], [l(2), l(3)]).map(x => x.ts), [1, 2, 3]);
+  assert.strictEqual(T.mergeLogs(Array.from({ length: 250 }, (_, i) => l(i)), []).length, 200);
+});
 console.log('\n' + passed + ' tests passed');

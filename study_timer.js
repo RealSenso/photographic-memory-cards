@@ -14,9 +14,10 @@
   const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
   let memState = null;                          // fallback if storage is blocked: the timer still works until the page closes
   function loadState() {
-    const s = lsGet(KEY, null) || memState;
-    return s && s.v === 1 && T.DEFAULTS[s.mode] && typeof s.startedAt === 'number' ? s : null;
+    const s = rawState();
+    return s && s.status !== 'cleared' && T.validState(s) ? s : null;
   }
+  const rawState = () => lsGet(KEY, null) || memState;
   function saveState(s) { memState = s; if (s) lsSet(KEY, s); else try { localStorage.removeItem(KEY); } catch (e) {} }
   const prefs = Object.assign({ learn: T.defaultMinutes('learn'), make: T.defaultMinutes('make'), vol: 70, muted: false }, lsGet(PREF, {}));
   const savePrefs = () => lsSet(PREF, prefs);
@@ -77,7 +78,7 @@
     const cur = loadState();
     if (!cur) { if (st) { st = null; render(); } return; }
     const r = T.tick(cur, Date.now());
-    if (r.state !== cur) saveState(r.state);
+    if (r.state !== cur) { saveState(r.state); syncSoon(); }
     st = r.state;
     if (r.alert) fire(r.alert, r.missed);
     render();
@@ -90,7 +91,8 @@
   window.addEventListener('storage', e => { if (e.key === KEY) { st = loadState(); ensureLoop(); render(); } });
 
   /* ---------- controls ---------- */
-  const mutate = f => { const cur = loadState(); if (!cur) return; saveState(f(cur)); st = loadState(); tick(); };
+  const mutate = f => { const cur = loadState(); if (!cur) return; saveState(f(cur)); st = loadState(); syncSoon(); tick(); };
+  const clearSlot = () => { saveState(T.cleared(st, Date.now())); st = null; ensureLoop(); render(); syncSoon(); };
   function pause() { mutate(s => T.pause(s, Date.now())); }
   function resume() { unlockAudio(); mutate(s => T.resume(s, Date.now())); }
   function skip() { mutate(s => T.skip(s, Date.now())); }
@@ -102,8 +104,9 @@
     unlockAudio(); audioBlocked = false;
     setTimeout(() => { playSound('phase'); notice = ctx && ctx.state === 'running' ? '' : 'This browser is blocking sound until you tap the page. Tap once more.'; renderSetup(); }, 80);
   }
-  function endEarly() { confirmBox('End this slot now?', 'The clock stops. You can then log what you actually did.', [['End and log progress', () => { saveState(T.end(st)); st = loadState(); closeBox(); render(); openLog(); }], ['End without logging', () => { saveState(null); st = null; closeBox(); render(); ensureLoop(); }], ['Keep going', closeBox]]); }
-  function dismiss() { saveState(null); st = null; ensureLoop(); render(); }
+  function endEarly() { confirmBox('End this slot now?', 'The clock stops. You can then log what you actually did.', [['End and log progress', () => { saveState(T.end(st, Date.now())); st = loadState(); syncSoon(); closeBox(); render(); openLog(); }], ['End without logging', () => { closeBox(); clearSlot(); }], ['Keep going', closeBox]]); }
+  function dismiss() { clearSlot(); }
+  function beginPlanned() { unlockAudio(); mutate(s => T.begin(s, Date.now())); }
 
   /* ---------- small dialogs ---------- */
   function modal(html) {
@@ -131,7 +134,7 @@
   }
   function renderSetup() {
     if (!form) return;
-    const active = st && (st.status === 'running' || st.status === 'paused');
+    const active = busy();
     const mode = form.mode, sched = T.buildSchedule(mode, prefs[mode]), cardsHere = topicCards(form.subject, form.topic);
     const madeHere = cardsHere.filter(c => phys.has(c.id));
     const chk = n => { const c = findCard(form.subject, form.topic, n); return c ? `<span class="ok">#${E(n)} ${E(plain(c.title)).slice(0, 48)}</span>` : `<span class="bad">#${E(n)} not found in this topic</span>`; };
@@ -203,18 +206,36 @@
     try { await Notification.requestPermission(); } catch (e) { notice = 'The browser did not show the permission prompt.'; }
     renderSetup();
   }
-  function start() {
-    if (!form || (st && (st.status === 'running' || st.status === 'paused'))) return;
-    const plan = { subject: form.subject, topic: form.topic, topicTitle: topicTitle(form.subject, form.topic), mode: form.mode };
-    if (form.mode === 'learn') { plan.recap = parseNums(form.recap); plan.cards = form.cards.map(c => parseNums(c)[0] || ''); }
+  /* One builder for the dialog and for outside callers (e.g. an assistant adding slots through StudyTimer.addSlot). Only the numbers given are used. */
+  function buildSlot(spec, planned) {
+    spec = spec || {};
+    const mode = spec.mode === 'make' ? 'make' : 'learn', list = x => Array.isArray(x) ? x.map(String) : parseNums(x);
+    if (!SUBJECTS.some(x => x.id === spec.subject)) return { error: 'Unknown subject: ' + spec.subject };
+    if (!getTopicsList(spec.subject).some(t => t.id === spec.topic)) return { error: 'Unknown topic for ' + spec.subject + ': ' + spec.topic };
+    const plan = { subject: spec.subject, topic: spec.topic, topicTitle: topicTitle(spec.subject, spec.topic), mode };
+    if (mode === 'learn') { plan.recap = list(spec.recap); plan.cards = [0, 1, 2, 3, 4].map(i => list(spec.cards)[i] || ''); }
     else {
-      const asked = parseNums(form.make), dup = asked.filter(n => { const c = findCard(form.subject, form.topic, n); return c && phys.has(c.id); });
+      const asked = list(spec.make), dup = asked.filter(n => { const c = findCard(spec.subject, spec.topic, n); return c && phys.has(c.id); });
       plan.cards = asked.filter(n => !dup.includes(n)); plan.skippedMade = dup;
     }
+    return { state: T.newState(mode, spec.minutes || prefs[mode], plan, Date.now(), { speed: speedParam, planned }) };
+  }
+  const busy = () => st && (st.status === 'running' || st.status === 'paused' || st.status === 'planned');
+  function addSlot(spec) {   // always lands as 'planned': the clock only ever starts from a tap on Start
+    if (busy()) return { error: 'A slot is already running or waiting; close it first.' };
+    const r = buildSlot(spec, true);
+    if (r.error) return r;
+    saveState(r.state); st = loadState(); missedNote = ''; ensureLoop(); render(); syncSoon();
+    return { ok: true, id: r.state.id, status: r.state.status };
+  }
+  function start() {
+    if (!form || busy()) return;
+    const r = buildSlot({ mode: form.mode, subject: form.subject, topic: form.topic, recap: form.recap, cards: form.cards, make: form.make }, false);
+    if (r.error) { notice = r.error; return renderSetup(); }
     unlockAudio();
-    saveState(Object.assign(T.newState(form.mode, prefs[form.mode], plan, Date.now(), { speed: speedParam })));
+    saveState(r.state);
     lsSet(PREF + '_plan', { mode: form.mode });
-    st = loadState(); form = null; modal(''); notice = ''; missedNote = ''; ensureLoop(); render();
+    st = loadState(); form = null; modal(''); notice = ''; missedNote = ''; ensureLoop(); render(); syncSoon();
   }
 
   /* ---------- log + confirm-before-marking ---------- */
@@ -268,7 +289,7 @@
     entry.summary = learn ? `${cnt('ok')} understood, ${cnt('unclear')} unclear, ${cnt('none')} not reached` : `${cnt('made')} made, ${cnt('remaining')} remaining`;
     const all = lsGet(LOGK, []); all.push(entry); lsSet(LOGK, all.slice(-200));
     logForm = null; modal('');
-    if (st.status === 'ended') dismiss(); else { saveState(Object.assign({}, st, { logged: true })); st = loadState(); render(); }
+    if (st.status === 'ended') dismiss(); else { saveState(Object.assign({}, st, { logged: true, upd: Date.now() })); st = loadState(); syncSoon(); render(); }
     showToast('Slot log saved');
   }
 
@@ -294,15 +315,15 @@
     const btn = document.getElementById('timer-btn'), bar = barEl(), now = Date.now();
     if (!st) { bar.hidden = true; bar.innerHTML = ''; lastBarKey = ''; if (btn) btn.textContent = 'Timer'; if (document.title !== BASE_TITLE) document.title = BASE_TITLE; refit(false); return; }
     const sched = T.buildSchedule(st.mode, st.minutes), pos = T.position(st, now), i = T.phaseIndex(sched, pos), n = sched.phases.length;
-    const over = st.status === 'finished' || i >= n, ended = st.status === 'ended', paused = st.status === 'paused';
-    const cur = sched.phases[Math.min(i, n - 1)], left = over ? 0 : cur.end - pos, tag = over ? 'Finished' : ended ? 'Ended' : paused ? 'Paused' : T.MODE_LABEL[st.mode];
-    const nextTxt = over || ended ? '' : i + 1 < n ? `Next cue: ${E(phaseLabel(sched, i + 1))}` : 'Next cue: end of break';
+    const over = st.status === 'finished' || i >= n, ended = st.status === 'ended', paused = st.status === 'paused', planned = st.status === 'planned', idle = over || ended || planned;
+    const cur = sched.phases[Math.min(i, n - 1)], left = over ? 0 : cur.end - pos, tag = over ? 'Finished' : ended ? 'Ended' : paused ? 'Paused' : planned ? 'Ready · ' + T.MODE_LABEL[st.mode] : T.MODE_LABEL[st.mode];
+    const nextTxt = planned ? 'Added for you. The clock starts only when you tap Start.' : over || ended ? '' : i + 1 < n ? `Next cue: ${E(phaseLabel(sched, i + 1))}` : 'Next cue: end of break';
     const cue = st.lastCue && (now - st.lastCue.firedAt < 60000 || over) ? st.lastCue.text : '';
     const base = (st.plan.topicTitle || '').replace(/^\d+_/, '').replace(/_/g, ' ');
-    const key = [st.status, i, ended, over, flashUntil > now, audioBlocked, prefs.muted, cue, missedNote].join('|');
+    const key = [st.id, st.status, i, ended, over, flashUntil > now, audioBlocked, prefs.muted, cue, missedNote].join('|');
     const clock = over ? '–' : T.fmt(left);
     if (btn) btn.textContent = ended ? 'Timer · ended' : over ? 'Timer · done' : '⏱ ' + clock;
-    document.title = (over ? 'Slot complete' : clock + ' · ' + phaseLabel(sched, Math.min(i, n - 1))) + ' · ' + BASE_TITLE;
+    document.title = (planned ? 'Ready' : over ? 'Slot complete' : clock + ' · ' + phaseLabel(sched, Math.min(i, n - 1))) + ' · ' + BASE_TITLE;
     if (key !== lastBarKey || !bar.firstChild) {
       lastBarKey = key; bar.hidden = false;
       bar.className = flashUntil > now ? 'flash' : '';
@@ -312,10 +333,10 @@
         <span class="tb-clock" id="tb-clock" aria-live="off">${clock}</span>
         <span class="tb-next">${nextTxt}</span>
         <span class="tb-ctl">
-          ${over || ended ? '' : paused ? '<button class="btn" onclick="StudyTimer.resume()">Resume</button>' : '<button class="btn" onclick="StudyTimer.pause()">Pause</button>'}
-          ${over || ended ? '' : '<button class="btn tm-sm" onclick="StudyTimer.skip()" title="Move to the next phase now">Next phase</button><button class="btn tm-sm" onclick="StudyTimer.stay()" title="Stay longer on this phase">+2 min</button>'}
-          <button class="btn tm-sm" onclick="StudyTimer.openLog()">Log progress</button>
-          ${over || ended ? '<button class="btn" onclick="StudyTimer.dismiss()">Close</button><button class="btn primary" onclick="StudyTimer.openSetup()">New slot</button>' : '<button class="btn tm-sm" onclick="StudyTimer.endEarly()">End early</button>'}
+          ${planned ? '<button class="btn primary" onclick="StudyTimer.beginPlanned()">Start</button><button class="btn" onclick="StudyTimer.dismiss()">Discard</button>' : over || ended ? '' : paused ? '<button class="btn" onclick="StudyTimer.resume()">Resume</button>' : '<button class="btn" onclick="StudyTimer.pause()">Pause</button>'}
+          ${idle ? '' : '<button class="btn tm-sm" onclick="StudyTimer.skip()" title="Move to the next phase now">Next phase</button><button class="btn tm-sm" onclick="StudyTimer.stay()" title="Stay longer on this phase">+2 min</button>'}
+          ${planned ? '' : '<button class="btn tm-sm" onclick="StudyTimer.openLog()">Log progress</button>'}
+          ${planned ? '' : over || ended ? '<button class="btn" onclick="StudyTimer.dismiss()">Close</button><button class="btn primary" onclick="StudyTimer.openSetup()">New slot</button>' : '<button class="btn tm-sm" onclick="StudyTimer.endEarly()">End early</button>'}
           <button class="btn tm-sm" onclick="StudyTimer.setMute(${!prefs.muted})" aria-pressed="${prefs.muted}" title="${prefs.muted ? 'Unmute' : 'Mute'}">${prefs.muted ? '🔇' : '🔊'}</button>
           <input class="tb-vol" type="range" min="0" max="100" value="${prefs.vol}" oninput="StudyTimer.setVol(this.value)" aria-label="Volume">
           <button class="btn tm-sm" onclick="StudyTimer.openSetup()" title="Settings and cue times">⚙</button>
@@ -333,13 +354,28 @@
     return c ? c.filter(x => !x.fired).map(x => new Date(x.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + '  ' + x.text).join('\n') : '';
   }
 
+  /* ---- cross-device sync: index.html's syncNow hands over the remote copy and stores what this returns in the same private gist ---- */
+  const canon = v => JSON.stringify(v, (k, x) => x && typeof x === 'object' && !Array.isArray(x) ? Object.keys(x).sort().reduce((o, key) => (o[key] = x[key], o), {}) : x);
+  function syncMerge(remote) {
+    remote = remote && typeof remote === 'object' ? remote : {};
+    const local = rawState(), merged = T.merge(local, remote.timer);
+    if (merged && canon(merged) !== canon(local)) { saveState(merged); st = loadState(); ensureLoop(); if (st) tick(); else render(); }
+    const logs = T.mergeLogs(lsGet(LOGK, []), remote.logs);
+    if (canon(logs) !== canon(lsGet(LOGK, []))) lsSet(LOGK, logs);
+    const payload = { v: 1, timer: merged || null, logs };
+    return { content: JSON.stringify(payload), push: canon(payload) !== canon({ v: 1, timer: validRemote(remote.timer), logs: remote.logs || [] }) };
+  }
+  const validRemote = t => T.validState(t) ? t : null;
+  /* while a slot is open, look for changes made on another device every 15 s (the normal sync poll is 45 s) */
+  setInterval(() => { if (st && !document.hidden && typeof syncCfg !== 'undefined' && syncCfg.token) syncNow(); }, 15000);
+
   /* ---------- boot ---------- */
   function boot() {
     const sb = document.getElementById('sync-btn');
     if (sb && !document.getElementById('timer-btn')) { const b = document.createElement('button'); b.className = 'btn'; b.id = 'timer-btn'; b.textContent = 'Timer'; b.onclick = openSetup; sb.parentNode.insertBefore(b, sb); }
     if (st) { tick(); } else render();
   }
-  window.StudyTimer = { openSetup, closeAll, setField, setCard, setLen, resetLens, suggest, enableNotif, start, pause, resume, skip, stay, endEarly, dismiss, setMute, setVol, testSound,
+  window.StudyTimer = { addSlot, beginPlanned, syncMerge, openSetup, closeAll, setField, setCard, setLen, resetLens, suggest, enableNotif, start, pause, resume, skip, stay, endEarly, dismiss, setMute, setVol, testSound,
     openLog, logSet, saveLog, askMark, openCard: openCardAndKeep, tick, cueTimes, _state: () => st };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();

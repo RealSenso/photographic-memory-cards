@@ -683,7 +683,7 @@
     }
 
     /* ---- cross-device sync: a private GitHub Gist, reached with a token you paste on each device ---- */
-    const SYNC_KEY = 'plates_sync_v1', GIST_FILE = 'plates-progress.json', GIST_DESC = 'plates-progress (Plates study site)';
+    const SYNC_KEY = 'plates_sync_v1', GIST_FILE = 'plates-progress.json', TIMER_FILE = 'plates-timer.json', GIST_DESC = 'plates-progress (Plates study site)';
     let syncCfg = {}; try { syncCfg = JSON.parse(localStorage.getItem(SYNC_KEY) || '{}'); } catch (e) {}
     let syncState = syncCfg.token ? 'idle' : 'off', syncTimer = null, syncBusy = false;
     function saveSyncCfg() { try { localStorage.setItem(SYNC_KEY, JSON.stringify(syncCfg)); } catch (e) {} }
@@ -714,7 +714,13 @@
         const pulled = mergeTs(remote);
         const needPush = Object.keys(doneTs).some(k => !(k in remote) || Math.abs(doneTs[k]) > Math.abs(remote[k]));
         if (pulled) { rebuildDone(); saveDone(); renderAll(); }
-        if (needPush) await ghApi('/gists/' + syncCfg.gist, { method: 'PATCH', body: JSON.stringify({ files: { [GIST_FILE]: { content: JSON.stringify(doneTs) } } }) });
+        /* the study timer keeps its slot and logs in a second file of the same gist, so the progress file's format is untouched */
+        let remoteT = null; try { if (g.files[TIMER_FILE]) remoteT = JSON.parse(g.files[TIMER_FILE].content || 'null'); } catch (e) {}
+        const tm = window.StudyTimer && StudyTimer.syncMerge ? StudyTimer.syncMerge(remoteT) : null;
+        const files = {};
+        if (needPush) files[GIST_FILE] = { content: JSON.stringify(doneTs) };
+        if (tm && tm.push) files[TIMER_FILE] = { content: tm.content };
+        if (Object.keys(files).length) await ghApi('/gists/' + syncCfg.gist, { method: 'PATCH', body: JSON.stringify({ files }) });
         syncCfg.last = Date.now(); saveSyncCfg(); setSync('ok');
       } catch (e) { setSync('error', e.message); }
       syncBusy = false;
@@ -734,7 +740,7 @@
       const on = !!syncCfg.token;
       m.innerHTML = `<div class="syncwrap" onclick="if(event.target===this)closeSync()"><div class="syncbox">
         <h3>Sync progress across devices</h3>
-        <p>Your “Mark as done” ticks are saved in a <b>private GitHub Gist</b> on your own account. Open this site on another device, paste the same token there, and both stay in step.</p>
+        <p>Your “Mark as done” ticks, and the study timer’s slot and logs, are saved in a <b>private GitHub Gist</b> on your own account. Open this site on another device, paste the same token there, and both stay in step.</p>
         ${on ? `<p class="ok">Sync is on${syncCfg.last ? ' · last synced ' + new Date(syncCfg.last).toLocaleTimeString() : ''}.</p>
           <div class="row"><button class="btn primary" onclick="syncNow();closeSync()">Sync now</button><button class="btn" onclick="syncOff()">Turn off on this device</button><button class="btn" onclick="closeSync()">Close</button></div>`
         : `<ol><li><a href="https://github.com/settings/tokens/new?scopes=gist&description=Plates%20sync" target="_blank" rel="noopener">Create a token</a> with only the <b>gist</b> permission.</li>

@@ -54,9 +54,14 @@
     return 'Minute ' + at + ': check the cards, record what was made and what remains.';
   }
 
+  /* opts.planned: a slot another client added; it waits as 'planned' until someone taps Start, and only then does the clock begin */
   function newState(mode, minutes, plan, now, opts) {
     return { v: 1, id: String(now), mode, minutes: cleanMinutes(mode, minutes), plan: plan || {}, startedAt: now, pausedAt: null, pausedMs: 0,
-             adjust: 0, speed: (opts && opts.speed) || 1, fired: [], status: 'running', lastCue: null, logged: false };
+             adjust: 0, speed: (opts && opts.speed) || 1, fired: [], status: opts && opts.planned ? 'planned' : 'running', lastCue: null, logged: false, upd: now };
+  }
+  function begin(s, now) {
+    if (s.status !== 'planned') return s;
+    const x = clone(s); x.status = 'running'; x.startedAt = now; x.pausedAt = null; x.pausedMs = 0; x.adjust = 0; x.fired = []; x.lastCue = null; x.upd = now; return x;
   }
 
   /* running time with pauses removed (x speed, only for testing), then the manual skip / stay adjustment */
@@ -95,19 +100,19 @@
     return { state: next, alert, missed };
   }
 
-  function pause(s, now) { if (s.status !== 'running') return s; const x = clone(s); x.pausedAt = now; x.status = 'paused'; return x; }
+  function pause(s, now) { if (s.status !== 'running') return s; const x = clone(s); x.pausedAt = now; x.status = 'paused'; x.upd = now; return x; }
   function resume(s, now) {
     if (s.status !== 'paused') return s;
-    const x = clone(s); x.pausedMs += Math.max(0, now - x.pausedAt); x.pausedAt = null; x.status = 'running'; return x;
+    const x = clone(s); x.pausedMs += Math.max(0, now - x.pausedAt); x.pausedAt = null; x.status = 'running'; x.upd = now; return x;
   }
-  function end(s) { if (s.status === 'ended') return s; const x = clone(s); x.status = 'ended'; return x; }
+  function end(s, now) { if (s.status === 'ended') return s; const x = clone(s); x.status = 'ended'; x.upd = now; return x; }
 
   /* manual advance: jump to the start of the next phase; the boundary crossed is marked fired without an alarm */
   function skip(s, now) {
     if (s.status !== 'running' && s.status !== 'paused') return s;
     const sched = buildSchedule(s.mode, s.minutes), pos = position(s, now), i = phaseIndex(sched, pos), x = clone(s);
     const target = i + 1 < sched.phases.length ? sched.phases[i + 1].start : sched.total;
-    x.adjust += target - pos;
+    x.adjust += target - pos; x.upd = now;
     if (!x.fired.includes(i + 1)) x.fired.push(i + 1);
     if (i + 1 >= sched.phases.length) x.status = 'finished';
     return x;
@@ -117,7 +122,7 @@
     if (s.status !== 'running' && s.status !== 'paused') return s;
     const sched = buildSchedule(s.mode, s.minutes), pos = position(s, now), i = phaseIndex(sched, pos);
     if (i >= sched.phases.length) return s;
-    const x = clone(s); x.adjust -= Math.min(sec || 120, pos - sched.phases[i].start); return x;
+    const x = clone(s); x.adjust -= Math.min(sec || 120, pos - sched.phases[i].start); x.upd = now; return x;
   }
 
   /* when each cue is due on the clock, for a backup phone alarm; null while paused */
@@ -131,7 +136,31 @@
     return out;
   }
 
-  const api = { DEFAULTS, MODE_LABEL, FOCUS_END_TEXT, FINAL_TEXT, defaultMinutes, cleanMinutes, buildSchedule, cueText, newState, elapsed, position,
+
+  /* ---- cross-device sync: pure merge rules; the page stores the result in the user's own sync gist ---- */
+  const validState = s => !!s && typeof s === 'object' && s.v === 1 && typeof s.id === 'string' && typeof s.upd === 'number' && (s.status === 'cleared' || (!!DEFAULTS[s.mode] && typeof s.startedAt === 'number' && Array.isArray(s.fired)));
+  /* a closed slot leaves a tombstone so "closed" travels to the other device instead of the old slot coming back */
+  function cleared(s, now) { return { v: 1, id: s ? s.id : String(now), status: 'cleared', upd: now }; }
+  /* The newest user action (start, pause, resume, skip, stay, end, close) wins. Cues already fired on either device stay fired, so a cue
+     is not rung again by a device that syncs later, and a slot one device saw finish is finished everywhere. */
+  function merge(a, b) {
+    a = validState(a) ? a : null; b = validState(b) ? b : null;
+    if (!a || !b) return clone(a || b) || null;
+    const win = (a.upd || 0) >= (b.upd || 0) ? a : b, lose = win === a ? b : a, x = clone(win);
+    if (a.id !== b.id || x.status === 'cleared') return x;
+    x.fired = Array.from(new Set((a.fired || []).concat(b.fired || []))).sort((p, q) => p - q);
+    x.logged = !!(a.logged || b.logged);
+    if (lose.lastCue && (!x.lastCue || lose.lastCue.firedAt > x.lastCue.firedAt)) x.lastCue = clone(lose.lastCue);
+    if ((x.status === 'running' || x.status === 'paused') && x.fired.includes(DEFAULTS[x.mode].length)) x.status = 'finished';
+    return x;
+  }
+  function mergeLogs(a, b) {
+    const seen = new Map();
+    (a || []).concat(b || []).forEach(l => { if (l && typeof l.ts === 'number') seen.set(l.ts + ':' + l.mode, l); });
+    return Array.from(seen.values()).sort((p, q) => p.ts - q.ts).slice(-200);
+  }
+
+  const api = { begin, validState, cleared, merge, mergeLogs, DEFAULTS, MODE_LABEL, FOCUS_END_TEXT, FINAL_TEXT, defaultMinutes, cleanMinutes, buildSchedule, cueText, newState, elapsed, position,
                 phaseIndex, tick, pause, resume, end, skip, extend, cueClock, fmt };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.StudyTimerCore = api;
 })(typeof window !== 'undefined' ? window : globalThis);
