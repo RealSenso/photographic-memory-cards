@@ -890,7 +890,7 @@
       const on = !!syncCfg.token;
       m.innerHTML = `<div class="syncwrap" onclick="if(event.target===this)closeSync()"><div class="syncbox">
         <h3>Sync progress across devices</h3>
-        <p>Your “Mark as done” ticks and card study times are saved in a <b>private GitHub Gist</b> on your own account. Open this site on another device, paste the same token there, and both stay in step.</p>
+        <p>Your “Understood” ticks and card study times are saved in a <b>private GitHub Gist</b> on your own account. Open this site on another device, paste the same token there, and both stay in step.</p>
         ${on ? `<p class="ok">Sync is on${syncCfg.last ? ' · last synced ' + new Date(syncCfg.last).toLocaleTimeString() : ''}.</p>
           <div class="row"><button class="btn primary" onclick="syncNow();closeSync()">Sync now</button><button class="btn" onclick="syncOff()">Turn off on this device</button><button class="btn" onclick="closeSync()">Close</button></div>`
         : `<ol><li><a href="https://github.com/settings/tokens/new?scopes=gist&description=Plates%20sync" target="_blank" rel="noopener">Create a token</a> with only the <b>gist</b> permission.</li>
@@ -1188,7 +1188,7 @@
           <span class="cat">${esc(card.category)}</span>
           <span class="imp-badge imp-${imp.tier}" title="${esc(imp.reason)}">${impSymbol} ${esc(imp.label.toUpperCase())}</span>
           ${window.CardTime ? CardTime.barHtml(card) : ''}
-          ${both(card.id) ? '<span class="donechip physchip">✓ Done · ✎ Physical card</span>' : done.has(card.id) ? '<span class="donechip">✓ Done</span>' : ''}
+          ${both(card.id) ? '<span class="donechip physchip">✓ Understood · ✎ Physical card</span>' : done.has(card.id) ? '<span class="donechip">✓ Understood</span>' : ''}
           <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy this card (text and picture) to the clipboard">
             <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
         </div>
@@ -1292,10 +1292,10 @@
       bar.innerHTML = `
         <button class="nav" onclick="step(-1)">← Previous card</button>
         <div class="sp"></div>
-        <span class="counter" title="Keys: ← → turn the card · D done · P physical card · F flip practice · T card timer · / search · [ sidebar">${idx + 1} / ${deck.length}</span>
+        <span class="counter" title="Keys: ← → turn the card · D understood · P physical card · F flip practice · T card timer · / search · [ sidebar">${idx + 1} / ${deck.length}</span>
         ${isPractice(deck[idx])
           ? `<button class="donebtn" onclick="flipCard()">${twin(flipped, '⟳ Show solution', '↺ Back to question')}</button>`
-          : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}" title="${done.has(deck[idx].id) ? 'Click to undo' : 'Mark this card as done (D)'}">${twin(done.has(deck[idx].id), 'Mark as done', '✓ Done')}</button>
+          : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}" title="${done.has(deck[idx].id) ? 'Understood: click to go back to studying' : 'Studying: click once you understand it (D)'}">${twin(done.has(deck[idx].id), 'Studying', '✓ Understood')}</button>
              <button class="donebtn physbtn ${phys.has(deck[idx].id) ? 'is-done' : ''}" onclick="togglePhys()" aria-pressed="${phys.has(deck[idx].id)}" title="${phys.has(deck[idx].id) ? 'Click to undo' : 'Mark that you made the physical card (P)'}">${twin(phys.has(deck[idx].id), 'Made physical card', '✎ Physical card made')}</button>`}
         <div class="sp"></div>
         <button class="nav next" onclick="step(1)">Next card →</button>`;
@@ -1356,14 +1356,14 @@
         return { sub, n: cs.length, k };
       }).filter(x => x.n);
       const pct = (k, n) => n ? Math.round(k / n * 100) : 0;
-      const tip = x => `${x.sub.id}: ${x.k} of ${x.n} done (${pct(x.k, x.n)}%)`;
+      const tip = x => `${x.sub.id}: ${x.k} of ${x.n} understood (${pct(x.k, x.n)}%)`;
       el.innerHTML = `<div class="pwrap">
-          <div class="pbar" role="img" aria-label="${got} of ${total} cards done">${segs.filter(x => x.k).map(x =>
+          <div class="pbar" role="img" aria-label="${got} of ${total} cards understood">${segs.filter(x => x.k).map(x =>
             `<span class="pfill" style="--c:${x.sub.color};flex:${x.k} 1 0" title="${tip(x)}"></span>`).join('')}<span class="prest" style="flex:${Math.max(total - got, 0)} 1 0"></span></div>
           <div class="plabels">${segs.map(x =>
             `<button class="${x.sub.id === currentSubject ? 'cur' : ''}" style="--c:${x.sub.color}" onclick="switchSubject('${x.sub.id}')" title="${tip(x)}"><i></i>${x.sub.id} <b>${x.k}</b>/${x.n} · ${pct(x.k, x.n)}%</button>`).join('')}</div>
         </div>
-        <span class="ptext"><b>${got}</b> / ${total} done · ${(got / (total || 1) * 100).toFixed(1)}%</span>`;
+        <span class="ptext"><b>${got}</b> / ${total} understood · ${(got / (total || 1) * 100).toFixed(1)}%</span>`;
     }
 
     function renderAll() {
