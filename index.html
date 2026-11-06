@@ -33,10 +33,11 @@
     @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Bd.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Blk.otf') format('opentype'); font-weight: 800 900; font-style: normal; font-display: swap; }
     :root {
-      --bg: #0b0f1a; --rail: #0f1424; --panel: #0f1527; --panel-2: #121930; --deep: #0c1122;
-      --line: #1d2640; --line-2: #25314f; --line-3: #2a3a5e;
-      --text: #e6ebf5; --text-2: #d3dbec; --muted: #9aa6c0; --muted-2: #b4bfd6;
-      --accent: #5cc8f5; --green: #5fd3a0; --amber: #f2b84b; --red: #f5c2c2;
+      --bg: #0a0a0a; --rail: #0c0c0c; --panel: #121212; --panel-2: #171717; --deep: #0e0e0e;
+      --line: #1f1f1f; --line-2: #2a2a2a; --line-3: #363636;
+      --text: #f4f4f4; --text-2: #dcdcdc; --muted: #8a8a8a; --muted-2: #b3b3b3;
+      --accent: #e5484d; --accent-soft: rgba(229,72,77,.14); --green: #f4f4f4; --amber: #b3b3b3; --red: #e5484d;
+      --radius: 10px;
       --serif: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       --sans: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       --mono: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -305,6 +306,147 @@
     }
     @media (min-width: 701px) and (max-width: 900px) { .paper { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); padding: 22px 24px 26px; column-gap: 24px; } .col-right { margin-top: 0; } }
 
+
+    /* ================= theme: black, white and a hint of red ================= */
+    html, body { -webkit-font-smoothing: antialiased; }
+    ::selection { background: var(--accent); color: #fff; }
+    /* sidebar */
+    .rail { background: var(--rail); border-right: 1px solid var(--line); padding: 18px 12px; gap: 20px; }
+    .brand { padding: 0 6px; }
+    .logo { border: 0; background: #fff; color: #0a0a0a; border-radius: 7px; font-weight: 800; font-size: 16px; }
+    .brand-name { font-size: 19px; font-weight: 700; letter-spacing: -.3px; }
+    .label { color: #6b6b6b; font-size: 10.5px; letter-spacing: 1.6px; font-weight: 600; padding: 0 6px 8px; }
+    #subject-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .subj { flex-direction: column; align-items: flex-start; gap: 2px; min-height: 0; padding: 9px 10px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); color: var(--muted-2); font-size: 13px; }
+    .subj:hover { background: var(--panel-2); border-color: var(--line-2); }
+    .subj.active { background: #fff; border-color: #fff; color: #0a0a0a; }
+    .subj .dot { display: none; }
+    .subj .sname { font-weight: 700; font-size: 13.5px; letter-spacing: .2px; }
+    .subj .n, .subj .stime { margin: 0; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .subj.active .n, .subj.active .stime { color: #555; }
+    .subj .srow { display: flex; width: 100%; justify-content: space-between; gap: 6px; }
+    .stime + .n, .stime:empty + .n { margin-left: 0; }
+    .topic { border-radius: 8px; min-height: 36px; padding: 6px 10px; color: var(--muted-2); font-size: 13px; }
+    .topic:hover { background: var(--panel); }
+    .topic.active { background: var(--panel-2); color: var(--text); box-shadow: inset 2px 0 0 var(--accent); }
+    .topic .cnt { color: #6b6b6b; font-variant-numeric: tabular-nums; }
+    .rail-collapse { border-color: var(--line-2); }
+    .rail-collapse:hover, .imp-filter-btn:hover { background: var(--panel-2); }
+    /* importance: red, light grey, dark grey */
+    .imp-dot.imp-red { background: var(--accent); box-shadow: 0 0 0 3px rgba(229,72,77,.18); }
+    .imp-dot.imp-orange { background: #d4d4d4; box-shadow: none; }
+    .imp-dot.imp-yellow { background: #5a5a5a; box-shadow: none; }
+    .imp-filter-btn { display: inline-flex; align-items: center; gap: 5px; }
+    .imp-badge .imp-dot { width: 6px; height: 6px; }
+    .imp-filter-btn { border-color: var(--line-2); color: var(--muted); border-radius: 999px; padding: 3px 9px; }
+    .imp-filter-btn.active { background: var(--panel-2); border-color: #fff; color: #fff; }
+    .imp-filter-btn.f-red.active { border-color: var(--accent); color: #fff; }
+    .imp-filter-btn.f-orange.active, .imp-filter-btn.f-yellow.active { border-color: #bdbdbd; color: #fff; }
+    .imp-badge { border-radius: 999px; padding: 3px 10px; letter-spacing: .4px; }
+    .imp-badge.imp-red { background: var(--accent-soft); border: 1px solid rgba(229,72,77,.55); color: #ff8a8d; }
+    .imp-badge.imp-orange { background: #1b1b1b; border: 1px solid #3a3a3a; color: #e0e0e0; }
+    .imp-badge.imp-yellow { background: #141414; border: 1px solid #2c2c2c; color: #9a9a9a; }
+    /* top bar: one row, progress as a hairline along its bottom edge */
+    .topbar { flex-wrap: nowrap; gap: 10px; padding: 10px 28px; background: rgba(10,10,10,.86); border-bottom: 1px solid var(--line); position: sticky; }
+    .crumb { color: var(--muted); font-size: 13px; }
+    .crumb b { color: var(--text); font-weight: 600; }
+    .search { flex: 0 1 380px; }
+    .search input { min-height: 38px; border-radius: 999px; background: var(--panel); border-color: var(--line-2); font-size: 13.5px; padding-left: 38px; }
+    .search input:focus { outline: none; border-color: #fff; }
+    .search svg { top: 11px; } .search kbd { top: 8px; border-color: var(--line-3); color: var(--muted); }
+    .results { background: #111; border-color: var(--line-2); border-radius: 14px; top: 46px; }
+    .res:hover, .res:focus-visible { background: #1c1c1c; }
+    .btn { min-height: 38px; padding: 0 14px; border-radius: 999px; background: transparent; border-color: var(--line-2); color: var(--text-2); font-size: 13px; }
+    .btn:hover { background: var(--panel-2); border-color: var(--line-3); }
+    .btn.primary { background: #fff; border-color: #fff; color: #0a0a0a; font-weight: 700; }
+    .btn.primary:hover { background: #e6e6e6; }
+    .menu-btn, .rail-open { width: 38px; }
+    .plines { position: absolute; left: 0; right: 0; bottom: -1px; margin: 0; height: 2px; display: block; pointer-events: none; }
+    .pwrap { height: 2px; } .pbar { height: 2px; border-radius: 0; background: transparent; }
+    .pfill { min-width: 0; background: var(--accent) !important; } .pfill + .pfill { border-left: 0; }
+    .plabels, .ptext { display: none; }
+    .sdot { background: #4a4a4a; } .sync-ok .sdot { background: #fff; } .sync-syncing .sdot { background: #9a9a9a; } .sync-error .sdot { background: var(--accent); }
+    /* card strip: one scrolling row of small pills */
+    .strip { flex-wrap: nowrap; overflow-x: auto; padding: 12px 28px 10px; gap: 6px; scrollbar-width: none; }
+    .strip::-webkit-scrollbar { display: none; }
+    .strip .hint { display: none; }
+    .chipbtn { flex: none; width: auto; min-width: 34px; height: 30px; padding: 0 8px; border-radius: 999px; border-color: var(--line-2); background: transparent; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .chipbtn:hover { color: var(--text); border-color: var(--line-3); }
+    .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: #fff; background: var(--accent-soft); }
+    .chipbtn.done { border-color: #3a3a3a; background: #1a1a1a; color: #fff; }
+    .chipbtn.done.phys { border-color: #fff; background: #fff; color: #0a0a0a; }
+    .chipbtn.prac { border-color: #2c2c2c; background: transparent; color: #8a8a8a; font-style: italic; }
+    .stripsep { background: var(--line-3); height: 18px; }
+    /* stage and card header */
+    .stage { background: var(--bg); border-top: 0; padding: 6px 28px 12px; }
+    .paper-bar { gap: 10px; }
+    .paper-bar .chip { color: #fff; border-color: transparent; font-weight: 700; letter-spacing: .6px; }
+    .paper-bar .chip { white-space: nowrap; }
+    .paper-bar .chip.prac { color: #bdbdbd; }
+    .paper-bar .cat { color: var(--muted); text-transform: uppercase; font-size: 12px; letter-spacing: .8px; }
+    .paper-bar .copy-btn { background: transparent; border: 1px solid var(--line-2); color: var(--text-2); border-radius: 999px; padding: 4px 12px; }
+    .paper-bar .copy-btn:hover { border-color: var(--line-3); background: var(--panel-2); }
+    .ctime-btn { border-radius: 999px; border-color: var(--line-2); background: transparent; color: #fff; }
+    .ctime-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 0 4px rgba(229,72,77,.18); }
+    .ctime { color: #fff; font-weight: 600; }
+    .donechip { border-radius: 999px; background: #1a1a1a; border-color: #3a3a3a; color: #fff; }
+    .donechip.physchip { background: #fff; border-color: #fff; color: #0a0a0a; }
+    /* the paper: white, faint rules, red top edge */
+    .paper, .pface { border-radius: 8px; box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 24px 60px -20px rgba(0,0,0,.9); }
+    .paper { background-color: #fff; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--lh) - 1px), #ededed calc(var(--lh) - 1px), #ededed var(--lh)); color: #161616; }
+    .pface { background-color: #fff; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 39px, #ededed 39px, #ededed 40px); color: #161616; }
+    .paper::before, .pface::before { background: var(--accent); height: 3px; border-radius: 8px 8px 0 0; }
+    .pback::before { background: #161616; }
+    .paper-title { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; letter-spacing: -.2px; }
+    .paper-title small { color: var(--accent); }
+    .info, .pbody { color: #222; }
+    .info strong, .info h3.sub, .pbody .part { color: #0a0a0a; background: linear-gradient(transparent 60%, rgba(229,72,77,.22) 60%); }
+    .sect h2 { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; }
+    .plabel { color: var(--accent); border-bottom: 2px solid var(--accent); }
+    .plabel.sol, .pbody .ans { color: #0a0a0a; border-color: #0a0a0a; }
+    .story { border-left: 3px solid var(--accent); background: #f5f5f5; color: #333; }
+    .story .stag { color: var(--accent); }
+    .story .slink { color: #0a0a0a; text-decoration: underline; text-decoration-color: rgba(229,72,77,.5); text-underline-offset: 2px; }
+    .mathbox { background: #f6f6f6; border-left: 3px solid #0a0a0a; }
+    .stmt { border-color: #cfcfcf; background: #fafafa; color: #111; }
+    .cardhint { color: #555; } .cardhint b { background: var(--accent); color: #fff; }
+    .connection h2 { color: #0a0a0a; border-bottom: 2px solid var(--accent); }
+    .connection p { color: #2a2a2a; }
+    .sketch-box, .pfig .sketch-box { border: 1.5px solid #161616; border-radius: 6px; box-shadow: none; }
+    .sketch figcaption, .pfig figcaption { color: #666; }
+    .phint { color: #888; }
+    /* footer: previous / next at the ends, progress buttons centred */
+    .actions { padding: 10px 28px 14px; gap: 10px; border-top: 1px solid var(--line); background: var(--bg); }
+    .nav { min-height: 40px; border-radius: 999px; background: transparent; border-color: var(--line-2); color: var(--text-2); font-size: 13.5px; }
+    .nav:hover { background: var(--panel-2); }
+    .nav.next { background: #fff; border-color: #fff; color: #0a0a0a; font-weight: 700; }
+    .nav.next:hover { background: #e6e6e6; }
+    .counter { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .donebtn { min-height: 40px; border-radius: 999px; border: 1px solid var(--line-3); background: transparent; color: #fff; font-size: 13.5px; }
+    .donebtn:hover { background: var(--panel-2); }
+    .donebtn.is-done { background: #fff; border-color: #fff; color: #0a0a0a; }
+    .physbtn { border-color: rgba(229,72,77,.6); background: transparent; color: #ff8a8d; }
+    .physbtn:hover { background: var(--accent-soft); }
+    .physbtn.is-done { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .donebtn:hover, .nav:hover { box-shadow: none; }
+    /* dialogs */
+    #sync-modal .syncbox { background: #111; border-color: var(--line-2); color: var(--text-2); border-radius: 16px; }
+    #sync-modal input { background: #0a0a0a; border-color: var(--line-2); }
+    #sync-modal a { color: #fff; } #sync-modal .ok { color: #fff; }
+    @media (max-width: 900px) {
+      .topbar { flex-wrap: wrap; padding: 10px 16px; }
+      .search { order: 5; flex: 1 1 100%; max-width: none; }
+      .crumb { flex: 1 1 0; min-width: 0; white-space: nowrap; overflow: hidden; }
+      .crumb > span:first-child, .crumb > span[aria-hidden] { display: none; }
+      .crumb .t { flex: 1 1 auto; min-width: 0; } .crumb b { flex: none; }
+      .topbar .btn[aria-label="Print this topic"] { display: none; }
+      .topbar .btn { padding: 0 12px; }
+      .paper-bar .cat { display: none; }
+      .strip, .stage, .actions { padding-left: 16px; padding-right: 16px; }
+      .actions .sp { display: none; }
+      .actions { justify-content: space-between; }
+    }
+
     /* ---------- print: the whole topic, one card per page ---------- */
     @media print {
       html, body { background: #fff !important; }
@@ -315,7 +457,7 @@
     }
   </style>
 </head>
-<body class="selection:bg-cyan-500 selection:text-black">
+<body class="selection:bg-red-500 selection:text-white">
 <div class="scrim" id="scrim" onclick="toggleRail(false)"></div>
 
 <div class="app">
@@ -359,11 +501,11 @@
 
     <!-- ================= LIGHTBOX IMAGE MODAL ================= -->
     <div id="lightbox-modal" class="fixed inset-0 bg-black/92 backdrop-blur-md z-50 p-4 flex items-center justify-center hidden" onclick="closeLightbox()">
-      <div class="max-w-5xl max-h-[92vh] w-full bg-[#0c101d] border border-cyan-500/40 rounded-2xl p-6 shadow-2xl flex flex-col items-center relative" onclick="event.stopPropagation()">
+      <div class="max-w-5xl max-h-[92vh] w-full bg-[#111111] border border-neutral-800 rounded-2xl p-6 shadow-2xl flex flex-col items-center relative" onclick="event.stopPropagation()">
         <div class="w-full flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
           <div>
             <h4 id="lightbox-title" class="text-base sm:text-lg font-bold text-white font-serif-title"></h4>
-            <p id="lightbox-ref" class="text-xs font-mono text-cyan-400"></p>
+            <p id="lightbox-ref" class="text-xs font-mono text-red-400"></p>
           </div>
           <button onclick="closeLightbox()" class="text-slate-300 hover:text-white px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm">✕ Close</button>
         </div>
@@ -378,7 +520,7 @@
 
     <!-- ================= ADD NEW CARD MODAL ================= -->
     <div id="add-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 p-4 flex items-center justify-center hidden">
-      <div class="w-full max-w-xl bg-[#0c101d] border border-cyan-500/30 rounded-2xl p-6 shadow-2xl text-slate-200">
+      <div class="w-full max-w-xl bg-[#111111] border border-neutral-800 rounded-2xl p-6 shadow-2xl text-slate-200">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-800">
           <h3 class="text-base font-bold text-white flex items-center gap-2">
             <span>✨</span> Make a new index card
@@ -389,32 +531,32 @@
         <form onsubmit="saveCustomCard(event)" class="space-y-3.5 text-xs">
           <div>
             <label class="block font-medium text-slate-300 mb-1">1. Title it with what you want to remember</label>
-            <input type="text" id="new-title" required placeholder="e.g. Linear Independence Constraint Qualification (LICQ)" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
+            <input type="text" id="new-title" required placeholder="e.g. Linear Independence Constraint Qualification (LICQ)" class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white">
           </div>
 
           <div>
             <label class="block font-medium text-slate-300 mb-1">2. Fill it with info. Make it sound personal and VERY informal</label>
-            <textarea id="new-info" required rows="2" placeholder="Explain the concept in crisp, intuitive plain words..." class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400"></textarea>
+            <textarea id="new-info" required rows="2" placeholder="Explain the concept in crisp, intuitive plain words..." class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white"></textarea>
           </div>
 
           <div>
             <label class="block font-medium text-slate-300 mb-1">3. Formula (optional)</label>
-            <input type="text" id="new-math" placeholder="e.g. $\nabla h_i(x^*)$ and $\nabla g_j(x^*)$ are linearly independent" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono">
+            <input type="text" id="new-math" placeholder="e.g. $\nabla h_i(x^*)$ and $\nabla g_j(x^*)$ are linearly independent" class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white font-mono">
           </div>
 
           <div>
             <label class="block font-medium text-slate-300 mb-1">4. Write your own connection (or a personal example)</label>
-            <textarea id="new-connection" required rows="2" placeholder="Real-world physical analogy (e.g. two ropes pulling along same axis)..." class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400"></textarea>
+            <textarea id="new-connection" required rows="2" placeholder="Real-world physical analogy (e.g. two ropes pulling along same axis)..." class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white"></textarea>
           </div>
 
           <div>
             <label class="block font-medium text-slate-300 mb-1">5. Draw a pic: say what you would draw</label>
-            <input type="text" id="new-drawing-caption" required placeholder="e.g. Visual verification of non-degenerate gradients" class="w-full bg-[#12182b] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
+            <input type="text" id="new-drawing-caption" required placeholder="e.g. Visual verification of non-degenerate gradients" class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white">
           </div>
 
           <div class="flex justify-end gap-2 pt-3">
             <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium">Cancel</button>
-            <button type="submit" class="px-5 py-2 rounded-lg bg-cyan-400 text-slate-950 font-bold hover:bg-cyan-300">Launch Card</button>
+            <button type="submit" class="px-5 py-2 rounded-lg bg-white text-black font-bold hover:bg-neutral-200">Launch Card</button>
           </div>
         </form>
       </div>
@@ -594,10 +736,10 @@
 
     const masterCards = window.MASTER_CARDS_DATA || defaultDeck;
     const SUBJECTS = [
-      { id: 'CMO', color: '#5cc8f5' },
-      { id: 'LAA', color: '#b79cf5' },
-      { id: 'StoMA', color: '#f2b84b' },
-      { id: 'DIP', color: '#5fd3a0' }
+      { id: 'CMO', color: '#f4f4f4' },
+      { id: 'LAA', color: '#bdbdbd' },
+      { id: 'StoMA', color: '#8a8a8a' },
+      { id: 'DIP', color: '#5a5a5a' }
     ];
     const POS_KEY = 'plates_pos_v1';
 
@@ -775,7 +917,7 @@
     /* ---------- navigation ---------- */
     function applyAccent() {
       const s = SUBJECTS.find(x => x.id === currentSubject);
-      document.documentElement.style.setProperty('--accent', s ? s.color : '#5cc8f5');
+      document.documentElement.style.setProperty('--accent', '#e5484d');   // one red accent for every subject
     }
 
     function switchSubject(sub) {
@@ -836,9 +978,9 @@
     /* ---------- rendering ---------- */
     function renderRail() {
       document.getElementById('subject-list').innerHTML = SUBJECTS.map(s => {
-        const n = getSubjectCards(s.id).length;
-        return `<button class="subj ${s.id === currentSubject ? 'active' : ''}" onclick="switchSubject('${s.id}')">
-          <span class="dot" style="background:${s.color}"></span><span>${s.id}</span>${window.CardTime ? CardTime.subjHtml(s.id) : ''}<span class="n">${n || ''}</span></button>`;
+        const cs = getSubjectCards(s.id), n = cs.length, k = cs.filter(c => done.has(c.id)).length;
+        return `<button class="subj ${s.id === currentSubject ? 'active' : ''}" onclick="switchSubject('${s.id}')" title="${s.id}: ${k} of ${n} done">
+          <span class="dot" style="background:${s.color}"></span><span class="sname">${s.id}</span><span class="srow"><span class="n">${n ? k + '/' + n : ''}</span>${window.CardTime ? CardTime.subjHtml(s.id) : ''}</span></button>`;
       }).join('');
 
       document.getElementById('topics-label').textContent = `${currentSubject} TOPICS`;
@@ -852,9 +994,9 @@
       if (filterBar) {
         filterBar.innerHTML = `
           <button class="imp-filter-btn ${currentImpFilter === 'all' ? 'active' : ''}" onclick="setImpFilter('all')">All (${allSubjTopics.length})</button>
-          <button class="imp-filter-btn f-red ${currentImpFilter === 'red' ? 'active' : ''}" onclick="setImpFilter('red')" title="Extremely Important (High PYQ Weight)">🔴 ${nRed}</button>
-          <button class="imp-filter-btn f-orange ${currentImpFilter === 'orange' ? 'active' : ''}" onclick="setImpFilter('orange')" title="Medium Importance">🟠 ${nOrange}</button>
-          <button class="imp-filter-btn f-yellow ${currentImpFilter === 'yellow' ? 'active' : ''}" onclick="setImpFilter('yellow')" title="Lowest Importance / Foundational">🟡 ${nYellow}</button>
+          <button class="imp-filter-btn f-red ${currentImpFilter === 'red' ? 'active' : ''}" onclick="setImpFilter('red')" title="Extremely Important (High PYQ Weight)"><i class="imp-dot imp-red"></i> ${nRed}</button>
+          <button class="imp-filter-btn f-orange ${currentImpFilter === 'orange' ? 'active' : ''}" onclick="setImpFilter('orange')" title="Medium Importance"><i class="imp-dot imp-orange"></i> ${nOrange}</button>
+          <button class="imp-filter-btn f-yellow ${currentImpFilter === 'yellow' ? 'active' : ''}" onclick="setImpFilter('yellow')" title="Lowest Importance / Foundational"><i class="imp-dot imp-yellow"></i> ${nYellow}</button>
         `;
       }
 
@@ -896,7 +1038,7 @@
       strip.innerHTML = deck.map((c, i) => isPractice(c)
         ? `${deck[i - 1] && !isPractice(deck[i - 1]) ? '<span class="stripsep" title="Practice questions"></span>' : ''}<button class="chipbtn prac ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Practice question ${esc(c.cardNumber)}${i === idx ? ', current' : ''}">${esc(c.cardNumber)}</button>`
         : `<button class="chipbtn ${done.has(c.id) ? 'done' : ''} ${both(c.id) ? 'phys' : ''} ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Card ${esc(c.cardNumber)}${done.has(c.id) ? ', done' : ''}${phys.has(c.id) ? ', physical card made' : ''}${i === idx ? ', current' : ''}">${both(c.id) ? '✎' : done.has(c.id) ? '✓' : esc(c.cardNumber)}</button>`
-      ).join('') + `<span class="hint"><kbd>←</kbd> <kbd>→</kbd> turn the card · <kbd>D</kbd> mark done · <kbd>P</kbd> physical card made · <kbd>F</kbd> flip practice · <kbd>/</kbd> search</span>`;
+      ).join('');
     }
 
     function sketchHtml(card) {
@@ -936,10 +1078,10 @@
       const imp = (typeof window.getTopicImportance === 'function')
         ? window.getTopicImportance(q.subject || currentSubject, q.topicId)
         : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
-      const impSymbol = imp.tier === 'red' ? '🔴' : (imp.tier === 'orange' ? '🟠' : '🟡');
+      const impSymbol = `<i class="imp-dot imp-${imp.tier}"></i>`;
       return `
         <div class="paper-bar">
-          <span class="chip" style="background:#241b13;color:#e8c9a0;border-color:#6b5436">PRACTICE ${esc(q.cardNumber)}</span>
+          <span class="chip prac">PRACTICE ${esc(q.cardNumber)}</span>
           <span class="cat">${tag}</span>
           ${q.marks ? `<span class="cat">${esc(q.marks)}</span>` : ''}
           <span class="imp-badge imp-${imp.tier}" title="${esc(imp.reason)}">${impSymbol} ${esc(imp.label.toUpperCase())}</span>
@@ -990,7 +1132,7 @@
       const imp = (typeof window.getTopicImportance === 'function')
         ? window.getTopicImportance(card.subject || currentSubject, card.topicId)
         : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
-      const impSymbol = imp.tier === 'red' ? '🔴' : (imp.tier === 'orange' ? '🟠' : '🟡');
+      const impSymbol = `<i class="imp-dot imp-${imp.tier}"></i>`;
       return `
         <div class="paper-bar">
           <span class="chip">CARD ${esc(card.cardNumber)}</span>
@@ -1069,7 +1211,7 @@
       if (REDUCED) return;
       const d = document.createElement('div');
       d.className = 'flyby';
-      d.innerHTML = '<svg width="34" height="24" viewBox="-14 -12 28 24"><g fill="#e8eefc" stroke="#7aa2ff" stroke-width="1" stroke-linejoin="round"><polygon points="12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2"/><polygon points="3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10"/><polygon points="-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5"/></g></svg>';
+      d.innerHTML = '<svg width="34" height="24" viewBox="-14 -12 28 24"><g fill="#ffffff" stroke="#e5484d" stroke-width="1" stroke-linejoin="round"><polygon points="12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2"/><polygon points="3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10"/><polygon points="-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5"/></g></svg>';
       document.body.appendChild(d);
       d.addEventListener('animationend', () => d.remove());
     }
@@ -1099,7 +1241,7 @@
       bar.innerHTML = `
         <button class="nav" onclick="step(-1)">← Previous card</button>
         <div class="sp"></div>
-        <span class="counter">${idx + 1} of ${deck.length}</span>
+        <span class="counter" title="Keys: ← → turn the card · D done · P physical card · F flip practice · T card timer · / search · [ sidebar">${idx + 1} / ${deck.length}</span>
         ${isPractice(deck[idx])
           ? `<button class="donebtn" onclick="flipCard()">${flipped ? '↺ Back to question' : '⟳ Show solution'}</button>`
           : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}">${done.has(deck[idx].id) ? '✓ Done (click to undo)' : 'Mark as done'}</button>
@@ -1558,8 +1700,8 @@
   </script>
 
   <!-- Toast Notification for Copy -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#0c101d] border border-cyan-400/60 text-cyan-200 px-5 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-mono flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
-    <span class="text-cyan-400 text-base">✦</span>
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#111111] border border-neutral-700 text-neutral-100 px-5 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-mono flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <span class="text-red-400 text-base">✦</span>
     <span id="toast-msg">Card copied to clipboard!</span>
   </div>
 </body>
