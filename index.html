@@ -448,6 +448,36 @@
       .actions { justify-content: space-between; }
     }
 
+
+    /* ---------- motion ---------- */
+    .twin { display: inline-grid; } .twin > span { grid-area: 1 / 1; text-align: center; } .twin > .off { visibility: hidden; }
+    .donebtn { justify-content: center; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @keyframes scaleIn { from { opacity: 0; transform: translateY(6px) scale(.97); } to { opacity: 1; transform: none; } }
+    @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(229,72,77,.55); } 100% { box-shadow: 0 0 0 9px rgba(229,72,77,0); } }
+    @keyframes burstRing { from { transform: translate(-50%, -50%) scale(.6); opacity: .9; } to { transform: translate(-50%, -50%) scale(3.2); opacity: 0; } }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+    /* first load: sidebar, header and card rise in one after another */
+    body.booting .brand, body.booting #subject-list, body.booting .topbar > *:not(.plines), body.booting .strip { animation: fadeUp .55s cubic-bezier(.2,.8,.2,1) both; }
+    body.booting #subject-list { animation-delay: .06s; } body.booting .topbar > *:nth-child(4) { animation-delay: .08s; } body.booting .strip { animation-delay: .14s; }
+    body.booting #topic-list .topic { animation: fadeUp .45s cubic-bezier(.2,.8,.2,1) both; }
+    body.booting #topic-list .topic:nth-child(n) { animation-delay: calc(.12s + var(--i, 0) * 25ms); }
+    body.booting .actions > * { animation: fadeUp .5s .2s cubic-bezier(.2,.8,.2,1) both; }
+    /* everything that changes state eases into it */
+    .subj, .topic, .btn, .nav, .donebtn, .chipbtn, .imp-filter-btn, .copy-btn, .ctime-btn, .rail-collapse, .res { transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .15s ease, opacity .2s ease; }
+    .topic:hover { transform: translateX(2px); }
+    .subj:hover { transform: translateY(-1px); }
+    .btn:active, .nav:active, .donebtn:active, .subj:active, .topic:active, .ctime-btn:active { transform: scale(.97); }
+    .chipbtn.cur { transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .15s ease; }
+    .ctime-btn.on { animation: pulseRing 1.8s ease-out infinite; }
+    .results:not([hidden]) { animation: slideDown .16s ease-out both; transform-origin: top; }
+    #sync-modal .syncbox, #add-modal:not(.hidden) > div, #lightbox-modal:not(.hidden) > div { animation: scaleIn .22s cubic-bezier(.2,.8,.2,1) both; }
+    #add-modal:not(.hidden), #lightbox-modal:not(.hidden), #sync-modal .syncwrap { animation: fadeUp .18s ease-out both; }
+    .paper { transition: box-shadow .35s ease; }
+    .paper:hover { box-shadow: 0 1px 0 rgba(255,255,255,.08), 0 30px 70px -18px rgba(0,0,0,.95); }
+    .pfill { transition: flex-grow .6s cubic-bezier(.2,.8,.2,1); }
+    .burst { position: fixed; z-index: 70; pointer-events: none; border: 2px solid; border-radius: 999px; animation: burstRing .6s ease-out both; }
+
     /* ---------- print: the whole topic, one card per page ---------- */
     @media print {
       html, body { background: #fff !important; }
@@ -458,7 +488,7 @@
     }
   </style>
 </head>
-<body class="selection:bg-red-500 selection:text-white">
+<body class="booting selection:bg-red-500 selection:text-white">
 <div class="scrim" id="scrim" onclick="toggleRail(false)"></div>
 
 <div class="app">
@@ -763,6 +793,18 @@
     function saveDone() {
       try { localStorage.setItem(TS_KEY, JSON.stringify(doneTs)); localStorage.setItem(DONE_KEY, JSON.stringify([...done])); } catch (e) {}
     }
+    function burst(sel, color) {
+      const b = document.querySelector('#actions ' + sel);
+      if (!b || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      const r = b.getBoundingClientRect();
+      for (let i = 0; i < 2; i++) {
+        const d = document.createElement('div');
+        d.className = 'burst';
+        d.style.cssText = `left:${r.left + r.width / 2}px;top:${r.top + r.height / 2}px;width:${r.height}px;height:${r.height}px;border-color:${color};animation-delay:${i * 120}ms`;
+        document.body.appendChild(d);
+        d.addEventListener('animationend', () => d.remove());
+      }
+    }
     function toggleDone() {
       const c = deck[idx];
       if (!c || isPractice(c)) return;
@@ -771,6 +813,7 @@
       rebuildDone();
       saveDone();
       renderAll();
+      if (done.has(c.id)) burst('.donebtn:not(.physbtn)', '#5fd3a0');
       syncSoon();
     }
     function togglePhys() {
@@ -781,6 +824,7 @@
       rebuildDone();
       saveDone();
       renderAll();
+      if (phys.has(c.id)) burst('.physbtn', '#a77bf3');
       syncSoon();
     }
 
@@ -1012,7 +1056,7 @@
         const imp = (typeof window.getTopicImportance === 'function')
           ? window.getTopicImportance(currentSubject, t.id)
           : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
-        return `<button class="topic ${t.id === currentTopic ? 'active' : ''}" onclick="switchTopic('${t.id}')" title="${esc(t.title)} • ${imp.label} (PYQ Weight: ${imp.pyqWeight})">
+        return `<button class="topic ${t.id === currentTopic ? 'active' : ''}" style="--i:${filteredTopics.indexOf(t)}" onclick="switchTopic('${t.id}')" title="${esc(t.title)} • ${imp.label} (PYQ Weight: ${imp.pyqWeight})">
           <span class="imp-dot imp-${imp.tier}" title="${imp.label}: ${esc(imp.reason)}"></span>
           <span class="name">${esc(t.title)}</span>
           <span class="cnt">${t.cards.filter(c => done.has(c.id)).length}/${t.cards.length}</span>
@@ -1236,6 +1280,8 @@
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCard); // math fonts load lazily and change widths
     }
 
+    /* Both labels of a toggle button sit in the same grid cell, so the button is always as wide as the longer one and never jumps. */
+    const twin = (on, off, onLabel) => `<span class="twin"><span class="${on ? 'off' : ''}" ${on ? 'aria-hidden="true"' : ''}>${off}</span><span class="${on ? '' : 'off'}" ${on ? '' : 'aria-hidden="true"'}>${onLabel}</span></span>`;
     function renderActions() {
       const bar = document.getElementById('actions');
       if (!deck.length) { bar.innerHTML = ''; return; }
@@ -1244,9 +1290,9 @@
         <div class="sp"></div>
         <span class="counter" title="Keys: ← → turn the card · D done · P physical card · F flip practice · T card timer · / search · [ sidebar">${idx + 1} / ${deck.length}</span>
         ${isPractice(deck[idx])
-          ? `<button class="donebtn" onclick="flipCard()">${flipped ? '↺ Back to question' : '⟳ Show solution'}</button>`
-          : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}">${done.has(deck[idx].id) ? '✓ Done (click to undo)' : 'Mark as done'}</button>
-             <button class="donebtn physbtn ${phys.has(deck[idx].id) ? 'is-done' : ''}" onclick="togglePhys()" aria-pressed="${phys.has(deck[idx].id)}">${phys.has(deck[idx].id) ? '✎ Physical card made (undo)' : 'Made physical card'}</button>`}
+          ? `<button class="donebtn" onclick="flipCard()">${twin(flipped, '⟳ Show solution', '↺ Back to question')}</button>`
+          : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}" title="${done.has(deck[idx].id) ? 'Click to undo' : 'Mark this card as done (D)'}">${twin(done.has(deck[idx].id), 'Mark as done', '✓ Done')}</button>
+             <button class="donebtn physbtn ${phys.has(deck[idx].id) ? 'is-done' : ''}" onclick="togglePhys()" aria-pressed="${phys.has(deck[idx].id)}" title="${phys.has(deck[idx].id) ? 'Click to undo' : 'Mark that you made the physical card (P)'}">${twin(phys.has(deck[idx].id), 'Made physical card', '✎ Physical card made')}</button>`}
         <div class="sp"></div>
         <button class="nav next" onclick="step(1)">Next card →</button>`;
     }
@@ -1412,6 +1458,7 @@
       }
       setSync(syncState);
       syncNow();
+      setTimeout(() => document.body.classList.remove('booting'), 1400);
       setTimeout(flyby, 600);
     });
 
