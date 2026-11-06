@@ -39,10 +39,10 @@
   let curKey = null, last = Date.now(), dirty = false, ctx = null;
   ['plates_timer_v1', 'plates_timer_prefs_v1', 'plates_timer_prefs_v1_plan'].forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });   // the old slot timer
 
-  /* card id for explanation cards (split halves share it); subject/topic/number for practice questions */
+  /* card id for explanation cards (split halves share it); subject + question id for practice questions */
   function keyOf(c) {
     if (!c) return null;
-    return c.kind === 'practice' ? 'p:' + c.subject + ':' + c.topicId + ':' + c.cardNumber : c.id != null ? String(c.id) : null;
+    return c.kind === 'practice' ? 'p:' + c.subject + ':' + (c.id != null ? 'id' + c.id : c.topicId + ':' + c.cardNumber) : c.id != null ? String(c.id) : null;   // practice by id, so moving a question keeps its time
   }
   let subjOf = null;
   function subjectOfKey(k) {

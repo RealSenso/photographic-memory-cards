@@ -36,11 +36,12 @@ def d1104(c):
     p.append(N(180, 141, "sideways pull: no λ ✗", 7.5))
     return svg(c, *p)
 
-# one text line made of parts: (text, 0) plain, (text, 1) subscript, (text, 2) italic
+# one text line made of parts: (text, 0) plain, (text, 1) subscript, (text, 2) italic, (text, 3) superscript
 # (the unicode subscript letters render badly in Helvetica, so subscripts are real tspans)
 def tx(x, y, parts, sz=8, a="middle"):
     def part(t, k):
         if k == 1: return f'<tspan baseline-shift="sub" font-size="{sz*0.72:.1f}">{t}</tspan>'
+        if k == 3: return f'<tspan baseline-shift="super" font-size="{sz*0.72:.1f}">{t}</tspan>'
         if k == 2: return f'<tspan font-style="italic" font-family="serif" font-size="{sz*1.12:.1f}">{t}</tspan>'
         return t
     return f'<text x="{x}" y="{y}" font-size="{sz}" font-family="sans-serif" text-anchor="{a}" fill="#000000">' + "".join(part(t, k) for t, k in parts) + '</text>'

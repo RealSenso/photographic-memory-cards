@@ -381,7 +381,8 @@ window.MASTER_CARDS_DATA = [
     "breakdown": [
       "<strong>$\\theta x+(1-\\theta)y$</strong> is a point on the straight flight path between $x$ and $y$.",
       "<strong>$\\theta f(x)+(1-\\theta)f(y)$</strong> is the height of the straight string stretched between the two altitudes.",
-      "<strong>The inequality says the terrain never rises above the string,</strong> which is convexity."
+      "<strong>The inequality says the terrain never rises above the string,</strong> which is convexity.",
+      "<strong>Two closure facts:</strong> (i) if $f_1,\\dots,f_k$ are convex and $w_i\\ge0$, then $\\sum_iw_if_i$ is convex; (ii) every sublevel set $\\{x:f(x)\\le c\\}$ of a convex $f$ is convex, since $f(x),f(y)\\le c$ gives $f(\\theta x+(1-\\theta)y)\\le\\theta f(x)+(1-\\theta)f(y)\\le c$."
     ],
     "stmtKind": "DEFINITION",
     "statement": "A set $C$ is <b>convex</b> if $\\theta x+(1-\\theta)y\\in C$ for all $x,y\\in C$, $\\theta\\in[0,1]$. A function $f:C\\to\\mathbb R$ on a convex set is <b>convex</b> if $f(\\theta x+(1-\\theta)y)\\le\\theta f(x)+(1-\\theta)f(y)$ for all $x,y\\in C$, $\\theta\\in[0,1]$; <b>strictly convex</b> if the inequality is strict whenever $x\\ne y$, $\\theta\\in(0,1)$."
@@ -796,11 +797,12 @@ window.MASTER_CARDS_DATA = [
     "hint": "Why can the pilot fly hops of exactly $1/L$ without ever overshooting the valley?",
     "breakdown": [
       "<strong>$L$ = the sharpest bend anywhere.</strong> The ground can never curve back up faster than $L$, so a hop of $1/L$ is a safe distance everywhere.",
+      "<strong>Descent lemma $f(y)\\le f(x)+\\nabla f(x)^\\top(y-x)+\\tfrac L2\\|y-x\\|^2$:</strong> the ground never rises above this upward parabola. With $y=x-\\tfrac1L\\nabla f(x)$ it gives $f(x_{k+1})\\le f(x_k)-\\tfrac1{2L}\\|\\nabla f(x_k)\\|^2$.",
       "<strong>$\\|x_0-x^*\\|^2$ = how far away you start.</strong> A bigger first cliff means a bigger gap to close.",
       "<strong>Dividing by $2k$:</strong> each extra hop trims only a shrinking share of what is left, so the error falls like $1/k$ (sublinear), not geometrically."
     ],
     "stmtKind": "THEOREM",
-    "statement": "Let $f$ be convex and differentiable with $L$-Lipschitz gradient, and let $x^*$ be a minimizer. Gradient descent with constant step $1/L$ satisfies $f(x_k)-f^*\\le\\dfrac{L\\|x_0-x^*\\|^2}{2k}$ for all $k\\ge1$."
+    "statement": "Let $f$ be convex and differentiable with $L$-Lipschitz gradient, and let $x^*$ be a minimizer. <b>Descent lemma:</b> $f(y)\\le f(x)+\\nabla f(x)^\\top(y-x)+\\tfrac L2\\|y-x\\|^2$ for all $x,y$. Gradient descent with constant step $1/L$ satisfies $f(x_k)-f^*\\le\\dfrac{L\\|x_0-x^*\\|^2}{2k}$ for all $k\\ge1$."
   },
   {
     "id": 503,
@@ -1883,11 +1885,39 @@ window.MASTER_CARDS_DATA = [
     "statement": "<b>KKT necessary conditions.</b> Consider $\\min f(x)$ s.t. $h_i(x)=0$, $g_j(x)\\le0$, all $C^1$. If $x^*$ is a local minimizer and LICQ holds at $x^*$, there exist $\\lambda,\\mu$ with: (stationarity) $\\nabla f(x^*)+\\sum_i\\lambda_i\\nabla h_i(x^*)+\\sum_j\\mu_j\\nabla g_j(x^*)=0$; (primal feasibility) $h(x^*)=0$, $g(x^*)\\le0$; (dual feasibility) $\\mu\\ge0$; (complementary slackness) $\\mu_jg_j(x^*)=0$ for all $j$."
   },
   {
-    "id": 1102,
+    "id": 1107,
     "subject": "CMO",
     "topicId": "11_Karush_Kuhn_Tucker_Conditions_FONC_and_Sufficiency",
     "topicTitle": "11 \u00b7 KKT Conditions & Sufficiency",
     "cardNumber": "02",
+    "category": "Lagrangian Function",
+    "highlighterClass": "highlight-cyan",
+    "title": "The Lagrangian: One Function Holds the Whole Problem",
+    "drawingSvg": "<svg viewBox=\"0 0 240 145\" class=\"w-full h-full\"><defs><marker id=\"arr-1107\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M 0 1.5 L 8 5 L 0 8.5 z\" fill=\"#000000\"/></marker></defs><rect x=\"14\" y=\"24\" width=\"136\" height=\"98\" fill=\"#f1f3f5\"/><circle cx=\"200\" cy=\"72\" r=\"30\" fill=\"none\" stroke=\"#000000\" stroke-width=\"0.9\" stroke-dasharray=\"3 2\"/><circle cx=\"200\" cy=\"72\" r=\"50\" fill=\"none\" stroke=\"#000000\" stroke-width=\"0.9\" stroke-dasharray=\"3 2\"/><circle cx=\"200\" cy=\"72\" r=\"1.8\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"200\" y=\"66\" font-size=\"6.5\" font-family=\"sans-serif\" text-anchor=\"middle\" fill=\"#000000\"><tspan font-style=\"italic\" font-family=\"serif\" font-size=\"7.3\">f</tspan> lower</text><line x1=\"150.0\" y1=\"24.0\" x2=\"150.0\" y2=\"122.0\" stroke=\"#000000\" stroke-width=\"1.2\"/><line x1=\"150.0\" y1=\"31.0\" x2=\"156.0\" y2=\"31.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"150.0\" y1=\"45.0\" x2=\"156.0\" y2=\"45.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"150.0\" y1=\"59.0\" x2=\"156.0\" y2=\"59.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"150.0\" y1=\"73.0\" x2=\"156.0\" y2=\"73.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"150.0\" y1=\"87.0\" x2=\"156.0\" y2=\"87.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"150.0\" y1=\"101.0\" x2=\"156.0\" y2=\"101.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><line x1=\"150.0\" y1=\"115.0\" x2=\"156.0\" y2=\"115.0\" stroke=\"#000000\" stroke-width=\"1.1\"/><text x=\"80\" y=\"36\" font-size=\"7.5\" font-family=\"sans-serif\" text-anchor=\"middle\" fill=\"#000000\">legal side: g \u2264 0</text><g transform=\"translate(84.0 96.0) rotate(-20) scale(0.75)\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"1.2\" stroke-linejoin=\"round\"><polygon points=\"12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2\"/><polygon points=\"3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10\"/><polygon points=\"-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5\"/></g><line x1=\"150.0\" y1=\"72.0\" x2=\"120.0\" y2=\"72.0\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-1107)\"/><text x=\"118\" y=\"66\" font-size=\"8.5\" font-family=\"sans-serif\" text-anchor=\"end\" fill=\"#000000\">\u2207<tspan font-style=\"italic\" font-family=\"serif\" font-size=\"9.5\">f</tspan></text><line x1=\"150.0\" y1=\"72.0\" x2=\"180.0\" y2=\"72.0\" stroke=\"#000000\" stroke-width=\"1.2\" marker-end=\"url(#arr-1107)\"/><text x=\"176\" y=\"86\" font-size=\"8\" font-family=\"sans-serif\" text-anchor=\"middle\" fill=\"#000000\">\u03bc\u2207g</text><circle cx=\"150.0\" cy=\"72.0\" r=\"2.6\" fill=\"#000000\" stroke=\"#000000\" stroke-width=\"1.2\"/><text x=\"146\" y=\"84\" font-size=\"8.5\" font-family=\"sans-serif\" text-anchor=\"end\" fill=\"#000000\"><tspan font-style=\"italic\" font-family=\"serif\" font-size=\"9.5\">x*</tspan></text><text x=\"222\" y=\"128\" font-size=\"6.5\" font-family=\"sans-serif\" text-anchor=\"end\" fill=\"#000000\">contours of <tspan font-style=\"italic\" font-family=\"serif\" font-size=\"7.3\">f</tspan></text><text x=\"120\" y=\"14\" font-size=\"8.5\" font-family=\"sans-serif\" text-anchor=\"middle\" fill=\"#000000\">L(x, \u03bb, \u03bc) = <tspan font-style=\"italic\" font-family=\"serif\" font-size=\"9.5\">f</tspan> + \u03bb<tspan baseline-shift=\"super\" font-size=\"6.1\">T</tspan>h + \u03bc<tspan baseline-shift=\"super\" font-size=\"6.1\">T</tspan>g</text><text x=\"120\" y=\"140\" font-size=\"8.5\" font-family=\"sans-serif\" text-anchor=\"middle\" fill=\"#000000\">\u2207<tspan baseline-shift=\"sub\" font-size=\"6.1\">x</tspan>L = \u2207<tspan font-style=\"italic\" font-family=\"serif\" font-size=\"9.5\">f</tspan> + \u03bc\u2207g = 0,   \u03bc \u2265 0</text></svg>",
+    "drawingCaption": "x* sits on the wall g = 0 with the legal side g \u2264 0 shaded. The contours of f get lower to the right, so \u2207f points left, away from the low side; the wall's normal \u2207g points out of the legal side. With \u03bc \u2265 0 they cancel: \u2207\u2093L = \u2207f + \u03bc\u2207g = 0.",
+    "coreTranslation": [
+      "<strong>What:</strong> the Lagrangian $L(x,\\lambda,\\mu)=f+\\lambda^\\top h+\\mu^\\top g$ adds each constraint to the objective, weighted by its multiplier.",
+      "<strong>How:</strong> stationarity is $\\nabla_xL=0$; second-order tests use $\\nabla^2_{xx}L$; signs: $\\mu\\ge0$ for $g\\le0$, flip $g\\ge0$ first, $\\lambda$ free, max becomes min of $-f$.",
+      "<strong>Why it matters:</strong> the same function drives KKT (Topic 11), second-order conditions (Topic 12), the dual function $q(\\lambda,\\mu)=\\inf_xL$ (Topic 16) and the penalty and augmented-Lagrangian methods (Topic 19)."
+    ],
+    "math": "$$\\begin{aligned}L(x,\\lambda,\\mu)&=f(x)+\\textstyle\\sum_i\\lambda_ih_i(x)+\\sum_j\\mu_jg_j(x)\\\\ \\nabla_xL&=\\nabla f+\\textstyle\\sum_i\\lambda_i\\nabla h_i+\\sum_j\\mu_j\\nabla g_j\\\\ \\nabla^2_{xx}L&=\\nabla^2f+\\textstyle\\sum_i\\lambda_i\\nabla^2h_i+\\sum_j\\mu_j\\nabla^2g_j\\end{aligned}$$",
+    "personalConnection": "<strong>The airplane analogy.</strong> $L$ is the plane's total bill: altitude $f$, plus a fee $\\mu_j$ for every unit you lean into wall $j$, plus a fee $\\lambda_i$ for drifting off each painted lane $h_i=0$. Parking where the bill is flat in every direction ($\\nabla_xL=0$) is the KKT balance. Wall fees are never negative ($\\mu\\ge0$) because walls only push; lane fees can be either sign because a lane can be left on either side.",
+    "examTrap": "Orientation decides the sign: with $g_j\\le0$ use $L=f+\\mu^\\top g$ and $\\mu\\ge0$. With $g_j\\ge0$ either negate the constraint or write $L=f-\\mu^\\top g$. Equality multipliers have no sign restriction.",
+    "stmtKind": "DEFINITION",
+    "statement": "<b>Lagrangian.</b> For $\\min f(x)$ s.t. $h_i(x)=0$ ($i=1,\\dots,p$), $g_j(x)\\le0$ ($j=1,\\dots,m$), the Lagrangian is $L(x,\\lambda,\\mu)=f(x)+\\lambda^\\top h(x)+\\mu^\\top g(x)=f(x)+\\sum_i\\lambda_ih_i(x)+\\sum_j\\mu_jg_j(x)$. KKT stationarity is exactly $\\nabla_xL(x^*,\\lambda^*,\\mu^*)=0$.",
+    "breakdown": [
+      "<strong>$\\nabla_xL=0$ is the stationarity condition of 11C1:</strong> build $L$ once, differentiate in $x$ only, set it to zero.",
+      "<strong>$\\nabla^2_{xx}L$ is the Hessian in $x$ with $\\lambda,\\mu$ held fixed:</strong> it is the curvature the second-order tests of Topic 12 check.",
+      "<strong>Sign rules:</strong> $g_j\\le0\\Rightarrow\\mu_j\\ge0$; a constraint $g_j\\ge0$ is flipped to $-g_j\\le0$ first (equivalently $L=f-\\mu^\\top g$); equality multipliers $\\lambda_i$ are free in sign; to maximise $f$, minimise $-f$."
+    ],
+    "hint": "Which single function has the KKT stationarity equation as its $x$-gradient?"
+  },
+  {
+    "id": 1102,
+    "subject": "CMO",
+    "topicId": "11_Karush_Kuhn_Tucker_Conditions_FONC_and_Sufficiency",
+    "topicTitle": "11 \u00b7 KKT Conditions & Sufficiency",
+    "cardNumber": "03",
     "category": "COMPLEMENTARY SLACKNESS",
     "highlighterClass": "highlight-amber",
     "title": "Complementary Slackness as an On/Off Switch",
@@ -1917,7 +1947,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "11_Karush_Kuhn_Tucker_Conditions_FONC_and_Sufficiency",
     "topicTitle": "11 \u00b7 KKT Conditions & Sufficiency",
-    "cardNumber": "03",
+    "cardNumber": "04",
     "category": "CONVEX SUFFICIENCY",
     "highlighterClass": "highlight-emerald",
     "title": "KKT Convex Sufficiency Theorem",
@@ -1935,7 +1965,7 @@ window.MASTER_CARDS_DATA = [
     "breakdown": [
       "<strong>$f,g_j$ convex and $h_i$ affine:</strong> a convex valley with convex airspace.",
       "<strong>KKT then says a balanced point</strong> beats every other legal point: $f(x^*)\\le f(x)$.",
-      "<strong>It works because the tangent plane at $x^*$ lies under the terrain,</strong> and the wall pushes cannot make it better."
+      "<strong>Proof:</strong> with $\\mu^*\\ge0$, $L(\\cdot,\\lambda^*,\\mu^*)$ is a nonnegative sum of convex functions plus affine terms, so it is convex; $\\nabla_xL(x^*)=0$ makes $x^*$ its global minimizer. For feasible $x$: $f(x)\\ge L(x,\\lambda^*,\\mu^*)\\ge L(x^*,\\lambda^*,\\mu^*)=f(x^*)$, using $h=0$, $\\mu^{*\\top}g\\le0$ and complementary slackness."
     ],
     "stmtKind": "THEOREM",
     "statement": "<b>KKT sufficiency.</b> If $f$ and every $g_j$ are convex, every $h_i$ is affine, and $(x^*,\\lambda,\\mu)$ satisfies the KKT conditions, then $x^*$ is a global minimizer.",
@@ -1947,7 +1977,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "11_Karush_Kuhn_Tucker_Conditions_FONC_and_Sufficiency",
     "topicTitle": "11 \u00b7 KKT Conditions & Sufficiency",
-    "cardNumber": "04",
+    "cardNumber": "05",
     "category": "CONSTRAINT QUALIFICATIONS",
     "highlighterClass": "highlight-violet",
     "title": "LICQ & Why Regularity is Essential",
@@ -1977,7 +2007,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "11_Karush_Kuhn_Tucker_Conditions_FONC_and_Sufficiency",
     "topicTitle": "11 \u00b7 KKT Conditions & Sufficiency",
-    "cardNumber": "05",
+    "cardNumber": "06",
     "category": "CONSTRAINT QUALIFICATIONS",
     "highlighterClass": "highlight-indigo",
     "title": "Slater\u2019s Condition for Convex Programs",
@@ -2007,7 +2037,7 @@ window.MASTER_CARDS_DATA = [
     "subject": "CMO",
     "topicId": "11_Karush_Kuhn_Tucker_Conditions_FONC_and_Sufficiency",
     "topicTitle": "11 \u00b7 KKT Conditions & Sufficiency",
-    "cardNumber": "06",
+    "cardNumber": "07",
     "category": "WORKED BENCHMARK",
     "highlighterClass": "highlight-rose",
     "title": "Worked Benchmark: KKT Active Set Case Analysis",
@@ -2295,10 +2325,11 @@ window.MASTER_CARDS_DATA = [
     "breakdown": [
       "<strong>$a^\\top p-b$ = how far past the wall the plane is,</strong> measured along the normal direction (in units of $\\|a\\|$).",
       "<strong>Dividing by $\\|a\\|^2$ and multiplying by $a$</strong> turns that signed excess into the displacement back along the normal.",
-      "<strong>The half-space version has $\\max(0,\\cdot)$:</strong> if you are already on the legal side, the excess is 0 and you stay put."
+      "<strong>The half-space version has $\\max(0,\\cdot)$:</strong> if you are already on the legal side, the excess is 0 and you stay put.",
+      "<strong>Several equality walls at once, $Ax=b$:</strong> $P(p)=p-A^\\top(AA^\\top)^{-1}(Ap-b)$. With one row $A=a^\\top$ this is the hyperplane formula again."
     ],
     "stmtKind": "PROPOSITION",
-    "statement": "For the hyperplane $H=\\{x:a^\\top x=b\\}$, $P_H(p)=p-\\dfrac{a^\\top p-b}{\\|a\\|^2}a$. For the halfspace $\\{x:a^\\top x\\le b\\}$, $P(p)=p-\\dfrac{\\max\\{0,a^\\top p-b\\}}{\\|a\\|^2}a$.",
+    "statement": "For the hyperplane $H=\\{x:a^\\top x=b\\}$, $P_H(p)=p-\\dfrac{a^\\top p-b}{\\|a\\|^2}a$. For the halfspace $\\{x:a^\\top x\\le b\\}$, $P(p)=p-\\dfrac{\\max\\{0,a^\\top p-b\\}}{\\|a\\|^2}a$. For the affine set $\\{x:Ax=b\\}$ with $A$ of full row rank, $P(p)=p-A^\\top(AA^\\top)^{-1}(Ap-b)$.",
     "textbookImg": null,
     "textbookRef": null
   },
@@ -3255,7 +3286,8 @@ window.MASTER_CARDS_DATA = [
     "breakdown": [
       "<strong>The altitude is linear,</strong> so there are no hills or valleys inside the polygon.",
       "<strong>Moving along any direction raises or lowers the altitude at a constant rate,</strong> so you can keep going until you hit a wall, then slide, until a corner.",
-      "<strong>So an optimum can always be found among the finitely many basic feasible solutions.</strong>"
+      "<strong>So an optimum can always be found among the finitely many basic feasible solutions.</strong>",
+      "<strong>Concave objectives too:</strong> a concave function on a compact polytope attains its minimum at an extreme point, since $x=\\sum\\theta_kv_k$ gives $f(x)\\ge\\sum\\theta_kf(v_k)\\ge\\min_kf(v_k)$."
     ],
     "textbookImg": null,
     "textbookRef": null,
@@ -3345,7 +3377,8 @@ window.MASTER_CARDS_DATA = [
     "breakdown": [
       "<strong>$x_B=B^{-1}b\\ge0,\\ x_N=0$:</strong> the current corner.",
       "<strong>Reduced cost $\\bar c_j=c_j-a_j^\\top y$, $y^\\top=c_B^\\top B^{-1}$:</strong> how the objective changes per unit of moving along each edge.",
-      "<strong>If all reduced costs are $\\ge0$, no neighbouring corner is lower,</strong> so this corner is optimal."
+      "<strong>If all reduced costs are $\\ge0$, no neighbouring corner is lower,</strong> so this corner is optimal.",
+      "<strong>Worst case:</strong> on the Klee-Minty cube in $\\mathbb R^n$ the classic pivot rule visits all $2^n$ vertices, so simplex is exponential in the worst case though fast in practice; interior-point methods (18C7) are polynomial."
     ],
     "stmtKind": "ALGORITHM",
     "statement": "<b>Simplex method.</b> Move between adjacent basic feasible solutions; at each step compute reduced costs $\\bar c_j=c_j-a_j^\\top y$; if all $\\bar c_j\\ge0$ the current vertex is optimal; otherwise bring in a variable with $\\bar c_j\\lt 0$ and pivot out the variable chosen by the minimum-ratio test (unbounded if no ratio exists).",
@@ -3437,7 +3470,8 @@ window.MASTER_CARDS_DATA = [
     "breakdown": [
       "<strong>$\\max(0,g_j)^2$:</strong> no fine inside the airspace, a quadratic fine outside; squaring keeps it smooth at the wall.",
       "<strong>$\\tfrac{c_k}2h_i^2$:</strong> equality walls are fined for any deviation in either direction.",
-      "<strong>As $c_k\\to\\infty$ the fine becomes so steep</strong> that the unconstrained minimiser is forced onto the boundary."
+      "<strong>As $c_k\\to\\infty$ the fine becomes so steep</strong> that the unconstrained minimiser is forced onto the boundary.",
+      "<strong>Exact ($\\ell_1$) penalty:</strong> $P_1(x;c)=f(x)+c\\big(\\sum_i|h_i(x)|+\\sum_j\\max(0,g_j(x))\\big)$ is non-smooth but exact: if $x^*$ satisfies the second-order sufficient conditions with multipliers $\\lambda^*,\\mu^*$, it is a local minimizer of $P_1$ for every finite $c\\gt\\max_{i,j}\\{|\\lambda_i^*|,\\mu_j^*\\}$."
     ],
     "stmtKind": "DEFINITION",
     "statement": "<b>Quadratic penalty.</b> For $\\min f(x)$ s.t. $h(x)=0$, $g(x)\\le0$: $Q(x;c)=f(x)+\\tfrac c2\\big(\\|h(x)\\|^2+\\|\\max(0,g(x))\\|^2\\big)$. <b>Theorem.</b> If $x_k$ globally minimizes $Q(\\cdot;c_k)$ and $c_k\\to\\infty$, every limit point of $\\{x_k\\}$ solves the constrained problem."

@@ -48,7 +48,9 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
 
   /* ---- 11 · KKT ---- */
   "1101": { s: "STORY 11 · THE BALANCE EQUATIONS", b: "The parked plane must satisfy four things: gravity balanced by wall pushes, legal position, pushes of the right sign, and only touching walls push.",
-    f: [["1006", "where they came from"]], n: [["1102", "the on/off switch"], ["1103", "when KKT is enough"], ["1104", "when KKT is guaranteed"]] },
+    f: [["1006", "where they came from"]], n: [["1107", "one function holds them all"], ["1102", "the on/off switch"], ["1103", "when KKT is enough"]] },
+  "1107": { s: "STORY 11 · THE BALANCE EQUATIONS", b: "Fold the walls into the objective: $L=f+\\lambda^\\top h+\\mu^\\top g$. Its $x$-gradient is the balance equation, its Hessian is the curvature Topic 12 tests, and its infimum is the dual of Topic 16.",
+    f: [["1101", "the four conditions"]], n: [["1102", "the on/off switch"], ["1201", "curvature of L"], ["1601", "minimise L over x: the dual"]] },
   "1102": { s: "STORY 11 · THE BALANCE EQUATIONS", b: "$\\mu_j g_j=0$ hides two statements: a wall that is not touched pushes nothing, and a wall that pushes is touched.",
     f: [["1101", "the fourth condition"]], n: [["1106", "used to check cases"], ["1503", "active-set methods flip this switch"]] },
   "1103": { s: "STORY 11 · THE BALANCE EQUATIONS", b: "On convex terrain with convex walls, KKT is not just necessary but sufficient: a balanced spot is the global lowest one.",
@@ -62,7 +64,7 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
 
   /* ---- 12 · Second-order constrained ---- */
   "1201": { s: "STORY 12 · CURVATURE WITH WALLS", b: "Topic 2 added curvature to the slope test. With walls, the curvature only has to be checked along headings that stay legal, the tangent subspace.",
-    f: [["1106", "KKT first-order test"], ["203", "SONC without walls"]], n: [["1202", "the sufficient version"], ["1203", "a test without parametrising"]] },
+    f: [["1107", "the Lagrangian Hessian"], ["1106", "KKT first-order test"], ["203", "SONC without walls"]], n: [["1202", "the sufficient version"], ["1203", "a test without parametrising"]] },
   "1202": { s: "STORY 12 · CURVATURE WITH WALLS", b: "Strict positivity on the critical cone upgrades the necessary test to a guarantee, the constrained SOSC.",
     f: [["1201", "necessary test"], ["204", "SOSC without walls"]], n: [["1204", "the cone's shape"]] },
   "1203": { s: "STORY 12 · CURVATURE WITH WALLS", b: "Border the Hessian with the wall normals and read the signs of determinants: a matrix-only version of the second-order test.",
