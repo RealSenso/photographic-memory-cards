@@ -1,6 +1,7 @@
 /* Card study time: how long each card has been open while the timer is playing.
    Time counts only for the card on screen, only while this page is visible, and only while Play is on. Switching card stops the old card's
-   count and starts the new one's. A beep sounds every 10 minutes of playing time.
+   count and starts the new one's. A beep sounds after every 10 minutes of playing time since you last pressed Play, counted over all cards
+   together (not per card).
    Totals sync through the same private gist as progress, as a per-device counter (each device only ever raises its own numbers, merging takes the
    larger value per device and card), so two devices never double-count or erase each other. */
 (function (root) {
@@ -96,7 +97,9 @@
     document.querySelectorAll('.stime[data-s]').forEach(el => { const v = subjectTotal(el.dataset.s); el.textContent = v ? fmtShort(v) : ''; });
   }
 
-  function toggle() { tick(); run.on = !run.on; dirty = true; if (run.on) unlock(); persist(); paint(); }
+  /* Play starts a fresh 10-minute count (run.ms = playing time since the last Play, across every card you open);
+     Pause freezes it, so the beep comes after 10 minutes of real study, then every 10 minutes after that. */
+  function toggle() { tick(); run.on = !run.on; if (run.on) { run.ms = 0; unlock(); } dirty = true; persist(); paint(); }
   function barHtml(card) {
     const k = keyOf(card);
     return `<span class="ctime-wrap"><button class="ctime-btn ${run.on ? 'on' : ''}" id="ctime-btn" onclick="CardTime.toggle()" aria-label="${run.on ? 'Pause' : 'Start'} card timer" title="Play / pause the card timer (T)">${run.on ? '❚❚' : '▶'}</button><span class="ctime" id="ctime" title="Time this card has been open with the timer playing">${fmtClock(k ? total(data.c, k) : 0)}</span></span>`;
