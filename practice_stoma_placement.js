@@ -3,7 +3,8 @@
    so practice_stoma.js stays as it is and the visible P-numbers renumber by themselves.
    - moves:   a question goes to the topic whose cards teach the tools it needs
    - splits:  a part that needs a later topic's tool is cut out and placed there
-   - stretch: a note on questions that need a step no card scaffolds */
+   - stretch: a note on questions that need a step no card scaffolds (Cantelli, the delta method and martingale
+     convergence are now bridge bullets on 6.02, 15.05 and 26.06, so those questions are no longer stretch) */
 (function () {
   'use strict';
   const all = window.PRACTICE_DATA = (window.PRACTICE_DATA || []).flat(Infinity);
@@ -44,11 +45,8 @@
 
   /* ---- stretch notes ---- */
   const STRETCH = {
-    30692: 'Cantelli’s one-sided inequality is not on a card: it needs the shift trick ℙ(X ≥ a) ≤ ℙ((X + u)² ≥ (a + u)²).',
     31092: 'Part (b) needs convergence in law (Topic 15), which comes later.',
-    31893: 'The delta method is not on a card: a first-order Taylor step plus Slutsky (15.05).',
-    31992: 'Part (c), the limit of Pⁿ, is Topic 20 material (stationary distribution and limit theorem).',
-    32693: 'Almost sure convergence of the urn fraction needs the martingale convergence theorem, which no card states.'
+    31992: 'Part (c), the limit of Pⁿ, is Topic 20 material (stationary distribution and limit theorem).'
   };
   Object.keys(STRETCH).forEach(id => { const q = get(Number(id)); if (q) q.stretch = STRETCH[id]; });
 })();

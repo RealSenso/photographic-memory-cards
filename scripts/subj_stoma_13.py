@@ -21,7 +21,7 @@ def d2(c):
         ax(130, 118, 226, 70) if False else "",
         L(140, 112, 226, 112, 1), fn(lambda x: 112 - 36 * math.exp(-((x - 184) ** 2) / 500), 140, 226, 40, 1.1),
         N(184, 124, "tᵀX", 7.5), N(184, 64, "𝒩(tᵀμ, tᵀΣt)", 7.5), 
-        N(30, 18, "X ~ 𝒩(μ, Σ) ⇔ tᵀX normal for all t", 7.5, "start"), N(120, 140, "any weighted mix of the sectors is a bell, with mean and variance from μ and Σ", 6.5))
+        N(30, 18, "X ~ 𝒩(μ, Σ) ⇔ tᵀX normal for all t", 7.5, "start"), N(120, 131, "any weighted mix of the sectors is a bell,", 6.5), N(120, 141, "with mean tᵀμ and variance tᵀΣt", 6.5))
 
 def d3(c):
     return svg(c, ax(20, 108, 106, 20), N(60, 120, "uncorrelated", 7.5), cloud(63, 64, 30, 18, 0), N(63, 14, "Cov = 0 ⇒ independent", 7),

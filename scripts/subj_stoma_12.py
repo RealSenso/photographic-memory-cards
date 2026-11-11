@@ -6,9 +6,9 @@ PTS = [(44, 70), (56, 52), (66, 60), (78, 46), (90, 56), (104, 62), (118, 52), (
 
 def d1(c):
     g = lambda x: 112 - 70 * math.exp(-((x - 100) ** 2) / 2600) + 0 if False else 78 - 40 * math.exp(-((x - 90) ** 2) / 1800) + 0.0016 * (x - 90) ** 2
-    out = ax(24, 112, 226, 14) + N(226, 124, "X: tyre age", 7, "end") + N(28, 14, "Y: lap time", 7, "start")
+    out = ax(24, 112, 226, 14) + N(226, 124, "X: tyre age", 7, "end") + N(28, 10, "Y: lap time", 7, "start")
     out += "".join(C(x, y, 1.8) for x, y in PTS) + fn(g, 36, 200, 60, 1.2)
-    out += N(150, 66, "𝔼[Y | X]", 8, "start") + N(36, 20, "𝔼[Y | X] = argmin 𝔼[(Y − g(X))²]", 7.5, "start") + N(36, 31, "𝔼[𝔼[Y | X]] = 𝔼[Y]", 7.5, "start")
+    out += N(150, 66, "𝔼[Y | X]", 8, "start") + N(100, 22, "𝔼[Y | X] = argmin 𝔼[(Y − g(X))²]", 7, "start") + N(100, 33, "𝔼[𝔼[Y | X]] = 𝔼[Y]", 7, "start")
     out += N(120, 138, "the best guess is the average of Y on each vertical slice", 7)
     return svg(c, out)
 

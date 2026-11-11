@@ -21,10 +21,12 @@ def d1(c):
         N(120, 132, "𝔼[Mₙ₊₁ | ℱₙ] = Mₙ  ⇒  𝔼[Mₙ] = 𝔼[M₀]", 8), N(120, 143, "a fair game: no drift up or down, on average", 7))
 
 def d2(c):
-    return svg(c, box(14, 18, 96, 28, "Sₙ − nμ", "#f1f5f9", 8, False), box(130, 18, 96, 28, "Sₙ² − nσ²", "#f1f5f9", 8, False),
-        box(14, 64, 96, 28, "e^(θSₙ) / M(θ)ⁿ", "#f1f5f9", 7.5, False), box(130, 64, 96, 28, "Mₙ = 𝔼[Y | ℱₙ]", "#f1f5f9", 7.5, False),
-        N(62, 106, "centred total", 7), N(178, 106, "centred square", 7), N(120, 124, "each subtracts off its predictable drift (the compensator)", 7),
-        N(120, 137, "what is left is a fair game", 7.5))
+    return svg(c, box(14, 14, 96, 26, "Sₙ − nμ", "#f1f5f9", 8, False), box(130, 14, 96, 26, "Sₙ² − nσ²", "#f1f5f9", 8, False),
+        N(62, 50, "centred total", 7), N(178, 50, "centred square", 7),
+        box(14, 62, 96, 26, "e^(θSₙ) / M(θ)ⁿ", "#f1f5f9", 7.5, False), box(130, 62, 96, 26, "Mₙ = 𝔼[Y | ℱₙ]", "#f1f5f9", 7.5, False),
+        N(62, 98, "exponential (tilted)", 7), N(178, 98, "running forecast of Y", 7),
+        N(120, 122, "each subtracts off its predictable drift (the compensator)", 7),
+        N(120, 136, "what is left is a fair game", 7.5))
 
 def d3(c):
     pts = walk(6, 30, 26, 222, 64, 4)
@@ -37,10 +39,14 @@ def d3(c):
         N(120, 142, "Mₙ∧τ is a martingale and 𝔼[Mₙ∧τ] = 𝔼[M₀]", 8))
 
 def d4(c):
-    return svg(c, box(12, 28, 100, 40, "𝔼[M_τ] = 𝔼[M₀]", "#f1f5f9", 8.5, False), box(124, 28, 102, 40, "if  τ ≤ C", "#f1f5f9", 8.5, False),
-        box(124, 76, 102, 24, "or |Mₙ∧τ| ≤ K", "#f1f5f9", 7.5, False) if False else "", N(175, 90, "or  |Mₙ∧τ| ≤ K", 8), N(175, 104, "or 𝔼τ < ∞ and |ΔM| ≤ c", 7.5),
-        arrow(112, 48, 124, 48, 1), N(120, 14, "when may you stop a fair game?", 7.5),
-        N(120, 124, "each condition rules out endless races or unbounded losses", 7), N(120, 136, "(doubling forever breaks it)", 7))
+    return svg(c, N(120, 14, "when may you stop a fair game?", 7.5),
+        box(12, 24, 92, 30, "fair game Mₙ, stop at τ", "#f8fafc", 7, False), arrow(104, 39, 132, 39, 1),
+        box(132, 24, 96, 30, "𝔼[M_τ] = 𝔼[M₀]", "#e5e9f0", 8, False),
+        N(120, 70, "holds if any one of these is true:", 7),
+        N(24, 86, "τ ≤ C", 7.5, "start"), N(110, 86, "bounded time (e.g. the last lap)", 6.5, "start"),
+        N(24, 100, "|Mₙ∧τ| ≤ K", 7.5, "start"), N(110, 100, "bounded values", 6.5, "start"),
+        N(24, 114, "𝔼τ < ∞, |ΔM| ≤ c", 7.5, "start"), N(110, 114, "finite mean time, capped steps", 6.5, "start"),
+        N(120, 136, "each rules out endless races or unbounded losses (doubling forever breaks it)", 6.2))
 
 def d5(c):
     out = ax(24, 90, 226, 20) + N(226, 102, "n", 7, "end")

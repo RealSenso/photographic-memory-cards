@@ -25,7 +25,7 @@ def d2(c):
     xs = [30, 52, 76, 130, 166, 196]
     return svg(c, line(70), pts(70, xs, mark=[3]),
         R(24, 78, 66, 12, "#f1f5f9", .8), N(57, 87, "k − 1 below", 7),
-        R(136, 78, 78, 12, "#f1f5f9", .8), N(175, 87, "n − k above", 7),
+        R(136, 78, 68, 12, "#f1f5f9", .8), N(170, 87, "n − k above", 7),
         N(130, 56, "X₍ₖ₎ at x", 7.5), L(130, 60, 130, 64, 1),
         N(120, 22, "f(x) = n!/((k−1)!(n−k)!) F(x)ᵏ⁻¹ [1−F(x)]ⁿ⁻ᵏ f(x)", 6.8),
         N(120, 112, "[F(x)]ᵏ⁻¹: k−1 across   [1−F(x)]ⁿ⁻ᵏ: n−k still to come", 6.5), N(120, 126, "f(x) dx: the k-th crosses right at x; n!/(…) chooses who", 6.5))

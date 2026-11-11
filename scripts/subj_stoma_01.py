@@ -40,7 +40,7 @@ def d5(c):
     return svg(c,
         E(84, 52, 40, 28, 0, "none", 1), E(132, 52, 40, 28, 0, "none", 1), E(108, 88, 40, 28, 0, "none", 1),
         PG("108,40 96,60 120,60", "#d9dee7", .8),
-        N(62, 46, "−ℙ(A₁∩A₂)", 6.5), N(60, 118, "add singles, subtract pairs,", 7, "start"), N(60, 128, "add the triple (−1)ⁿ⁻¹", 7, "start"),
+        N(62, 46, "−ℙ(A₁∩A₂)", 6.5), N(14, 130, "add singles, subtract pairs,", 7, "start"), N(14, 140, "add the triple (−1)ⁿ⁻¹", 7, "start"),
         N(206, 52, "Σℙ(Aᵢ)", 7.5), N(206, 64, "−Σℙ(Aᵢ∩Aⱼ)", 7.5), N(206, 76, "+ℙ(A₁∩A₂∩A₃)", 7.5), N(120, 14, "a DNF for at least one of 3 reasons", 7.5))
 
 def d6(c):
