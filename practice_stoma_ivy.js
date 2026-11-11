@@ -3,18 +3,6 @@
 window.PRACTICE_DATA = window.PRACTICE_DATA || [];
 window.PRACTICE_DATA.push([
  {
-  "id": 330101,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q01.webp\" width=\"1328\" height=\"291\" alt=\"Harvard Stat 110 SP/HW 1, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330102,
   "subject": "StoMA",
   "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
@@ -25,18 +13,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q02.webp\" width=\"1328\" height=\"228\" alt=\"Harvard Stat 110 SP/HW 1, Q2\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330103,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q03.webp\" width=\"1328\" height=\"214\" alt=\"Harvard Stat 110 SP/HW 1, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330104,
@@ -51,102 +27,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 330105,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q5",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q5",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q05.webp\" width=\"1328\" height=\"85\" alt=\"Harvard Stat 110 SP/HW 1, Q5\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330106,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q6",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q6",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q06.webp\" width=\"1328\" height=\"175\" alt=\"Harvard Stat 110 SP/HW 1, Q6\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q6.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330107,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q7",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q7",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q07.webp\" width=\"1328\" height=\"1211\" alt=\"Harvard Stat 110 SP/HW 1, Q7\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q7.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330108,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q08.webp\" width=\"1328\" height=\"116\" alt=\"Harvard Stat 110 SP/HW 1, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330109,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q09.webp\" width=\"1328\" height=\"163\" alt=\"Harvard Stat 110 SP/HW 1, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330110,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q10.webp\" width=\"1328\" height=\"151\" alt=\"Harvard Stat 110 SP/HW 1, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330111,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q4",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q11.webp\" width=\"1328\" height=\"116\" alt=\"Harvard Stat 110 SP/HW 1, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330112,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q5",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q5",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q12.webp\" width=\"1328\" height=\"287\" alt=\"Harvard Stat 110 SP/HW 1, Q5\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330113,
   "subject": "StoMA",
   "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
@@ -157,18 +37,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q13a.webp\" width=\"1328\" height=\"589\" alt=\"Harvard Stat 110 SP/HW 1, Q6\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/01/q13b.webp\" width=\"1328\" height=\"89\" alt=\"Harvard Stat 110 SP/HW 1, Q6\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q6.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330114,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Harvard Stat 110 SP/HW 1, Q7",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 1, Q7",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q14.webp\" width=\"1328\" height=\"1509\" alt=\"Harvard Stat 110 SP/HW 1, Q7\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 1, Q7.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330115,
@@ -231,78 +99,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 330120,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Princeton ELE 530 HW1, Q3",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q20.webp\" width=\"1328\" height=\"173\" alt=\"Princeton ELE 530 HW1, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330121,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Princeton ELE 530 HW1, Q4",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q21.webp\" width=\"1328\" height=\"88\" alt=\"Princeton ELE 530 HW1, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330122,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Princeton ELE 530 HW1, Q1",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q22.webp\" width=\"1328\" height=\"330\" alt=\"Princeton ELE 530 HW1, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330123,
-  "subject": "StoMA",
-  "topicId": "01_Probability_Spaces_Axioms_and_Continuity_of_Probability",
-  "topicTitle": "01 · Probability Spaces & Continuity",
-  "title": "Princeton ELE 530 HW1, Q3",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/01/q23.webp\" width=\"1328\" height=\"139\" alt=\"Princeton ELE 530 HW1, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330201,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Harvard Stat 110 SP/HW 2, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 2, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q01.webp\" width=\"1328\" height=\"47\" alt=\"Harvard Stat 110 SP/HW 2, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 2, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330202,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Harvard Stat 110 SP/HW 2, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 2, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q02.webp\" width=\"1328\" height=\"101\" alt=\"Harvard Stat 110 SP/HW 2, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 2, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330203,
   "subject": "StoMA",
   "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
@@ -339,18 +135,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 2, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 330206,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Harvard Stat 110 SP/HW 2, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 2, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q06.webp\" width=\"1328\" height=\"195\" alt=\"Harvard Stat 110 SP/HW 2, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 2, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330207,
   "subject": "StoMA",
   "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
@@ -385,18 +169,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q09a.webp\" width=\"1328\" height=\"406\" alt=\"Harvard Stat 110 SP/HW 2, Q5\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/02/q09b.webp\" width=\"1328\" height=\"1597\" alt=\"Harvard Stat 110 SP/HW 2, Q5\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 2, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330210,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Harvard Stat 110 SP/HW 2, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 2, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q10a.webp\" width=\"1328\" height=\"489\" alt=\"Harvard Stat 110 SP/HW 2, Q3\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/02/q10b.webp\" width=\"1328\" height=\"89\" alt=\"Harvard Stat 110 SP/HW 2, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 2, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330211,
@@ -471,18 +243,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 3, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 330217,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Harvard Stat 110 SP/HW 3, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 3, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q17a.webp\" width=\"1328\" height=\"861\" alt=\"Harvard Stat 110 SP/HW 3, Q2\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/02/q17b.webp\" width=\"1328\" height=\"277\" alt=\"Harvard Stat 110 SP/HW 3, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 3, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330218,
   "subject": "StoMA",
   "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
@@ -493,18 +253,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q18.webp\" width=\"1328\" height=\"380\" alt=\"Harvard Stat 110 SP/HW 3, Q1\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 3, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330219,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Harvard Stat 110 SP/HW 3, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 3, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q19.webp\" width=\"1328\" height=\"225\" alt=\"Harvard Stat 110 SP/HW 3, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 3, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330220,
@@ -579,18 +327,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 3, Q7.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 330226,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Princeton ELE 530 HW1, Q5",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q5",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q26.webp\" width=\"1328\" height=\"156\" alt=\"Princeton ELE 530 HW1, Q5\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330227,
   "subject": "StoMA",
   "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
@@ -601,42 +337,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q27.webp\" width=\"1328\" height=\"807\" alt=\"Princeton ELE 530 HW1, Q6\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q6.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330228,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Princeton ELE 530 HW1, Q2",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q28.webp\" width=\"1328\" height=\"177\" alt=\"Princeton ELE 530 HW1, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330229,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Princeton ELE 530 HW1, Q4",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q29.webp\" width=\"1328\" height=\"56\" alt=\"Princeton ELE 530 HW1, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330230,
-  "subject": "StoMA",
-  "topicId": "02_Conditional_Probability_Bayes_Rule_and_Independence",
-  "topicTitle": "02 · Conditioning, Bayes & Independence",
-  "title": "Princeton ELE 530 HW1, Q5",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q5",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q30.webp\" width=\"1328\" height=\"173\" alt=\"Princeton ELE 530 HW1, Q5\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330231,
@@ -650,78 +350,6 @@ window.PRACTICE_DATA.push([
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/02/q31.webp\" width=\"1328\" height=\"378\" alt=\"Harvard Stat 110 SP/HW 3, Q5\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 3, Q5.</p><p><b>Needs:</b> part (c) limit pn-&gt;2/7 uses the renewal-theorem idea, not covered by any selected card; parts (a)-(b) are conditioning practice</p>",
   "stretch": "part (c) limit pn->2/7 uses the renewal-theorem idea, not covered by any selected card; parts (a)-(b) are conditioning practice"
- },
- {
-  "id": 330301,
-  "subject": "StoMA",
-  "topicId": "03_Discrete_and_Continuous_Random_Variables",
-  "topicTitle": "03 · Discrete & Continuous RVs",
-  "title": "Harvard Stat 110 SP/HW 4, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 4, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q01.webp\" width=\"1328\" height=\"127\" alt=\"Harvard Stat 110 SP/HW 4, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 4, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330302,
-  "subject": "StoMA",
-  "topicId": "03_Discrete_and_Continuous_Random_Variables",
-  "topicTitle": "03 · Discrete & Continuous RVs",
-  "title": "Harvard Stat 110 SP/HW 4, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 4, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q02.webp\" width=\"1328\" height=\"161\" alt=\"Harvard Stat 110 SP/HW 4, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 4, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330303,
-  "subject": "StoMA",
-  "topicId": "03_Discrete_and_Continuous_Random_Variables",
-  "topicTitle": "03 · Discrete & Continuous RVs",
-  "title": "Harvard Stat 110 SP/HW 4, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 4, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q03.webp\" width=\"1328\" height=\"161\" alt=\"Harvard Stat 110 SP/HW 4, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 4, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330304,
-  "subject": "StoMA",
-  "topicId": "03_Discrete_and_Continuous_Random_Variables",
-  "topicTitle": "03 · Discrete & Continuous RVs",
-  "title": "Harvard Stat 110 SP/HW 5, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 5, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q04.webp\" width=\"1328\" height=\"195\" alt=\"Harvard Stat 110 SP/HW 5, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 5, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330305,
-  "subject": "StoMA",
-  "topicId": "03_Discrete_and_Continuous_Random_Variables",
-  "topicTitle": "03 · Discrete & Continuous RVs",
-  "title": "Harvard Stat 110 SP/HW 5, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 5, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q05.webp\" width=\"1328\" height=\"94\" alt=\"Harvard Stat 110 SP/HW 5, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 5, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330306,
-  "subject": "StoMA",
-  "topicId": "03_Discrete_and_Continuous_Random_Variables",
-  "topicTitle": "03 · Discrete & Continuous RVs",
-  "title": "Harvard Stat 110 SP/HW 5, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 5, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q06.webp\" width=\"1328\" height=\"126\" alt=\"Harvard Stat 110 SP/HW 5, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 5, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330307,
@@ -770,18 +398,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q10a.webp\" width=\"1328\" height=\"882\" alt=\"Princeton ELE 530 HW1, Q2\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/03/q10b.webp\" width=\"1328\" height=\"77\" alt=\"Princeton ELE 530 HW1, Q2\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330311,
-  "subject": "StoMA",
-  "topicId": "03_Discrete_and_Continuous_Random_Variables",
-  "topicTitle": "03 · Discrete & Continuous RVs",
-  "title": "Princeton ELE 530 HW1, Q6",
-  "kind2": "ivy",
-  "source": "Princeton ELE 530 HW1, Q6",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/03/q11a.webp\" width=\"1328\" height=\"488\" alt=\"Princeton ELE 530 HW1, Q6\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/03/q11b.webp\" width=\"1328\" height=\"1597\" alt=\"Princeton ELE 530 HW1, Q6\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW1, Q6.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330312,
@@ -844,30 +460,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 5, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 330405,
-  "subject": "StoMA",
-  "topicId": "04_Transformations_and_Functions_of_a_Random_Variable",
-  "topicTitle": "04 · Transformations of Random Variables",
-  "title": "Harvard Stat 110 SP/HW 5, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 5, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/04/q05.webp\" width=\"1328\" height=\"59\" alt=\"Harvard Stat 110 SP/HW 5, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 5, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330406,
-  "subject": "StoMA",
-  "topicId": "04_Transformations_and_Functions_of_a_Random_Variable",
-  "topicTitle": "04 · Transformations of Random Variables",
-  "title": "Harvard Stat 110 SP/HW 8, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 8, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/04/q06.webp\" width=\"1328\" height=\"69\" alt=\"Harvard Stat 110 SP/HW 8, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 8, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330407,
   "subject": "StoMA",
   "topicId": "04_Transformations_and_Functions_of_a_Random_Variable",
@@ -880,18 +472,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 8, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 330408,
-  "subject": "StoMA",
-  "topicId": "04_Transformations_and_Functions_of_a_Random_Variable",
-  "topicTitle": "04 · Transformations of Random Variables",
-  "title": "Harvard Stat 110 SP/HW 9, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 9, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/04/q08.webp\" width=\"1328\" height=\"126\" alt=\"Harvard Stat 110 SP/HW 9, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 9, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 330409,
   "subject": "StoMA",
   "topicId": "04_Transformations_and_Functions_of_a_Random_Variable",
@@ -902,19 +482,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/04/q09.webp\" width=\"1328\" height=\"215\" alt=\"Harvard Stat 110 SP/HW 9, Q2\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 9, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330410,
-  "subject": "StoMA",
-  "topicId": "04_Transformations_and_Functions_of_a_Random_Variable",
-  "topicTitle": "04 · Transformations of Random Variables",
-  "title": "Harvard Stat 110 SP/HW 5, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 5, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/04/q10.webp\" width=\"1328\" height=\"161\" alt=\"Harvard Stat 110 SP/HW 5, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 5, Q2.</p><p><b>Needs:</b> inverse-CDF sampling / probability integral transform (Topic 04 card 04 not selected)</p>",
-  "stretch": "inverse-CDF sampling / probability integral transform (Topic 04 card 04 not selected)"
  },
  {
   "id": 330411,
@@ -941,18 +508,6 @@ window.PRACTICE_DATA.push([
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/04/q12.webp\" width=\"1328\" height=\"127\" alt=\"Harvard Stat 110 SP/HW 8, Q2\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 8, Q2.</p><p><b>Needs:</b> 2D Jacobian / Box-Muller transform (Topic 09 cards 02, 04 not selected)</p>",
   "stretch": "2D Jacobian / Box-Muller transform (Topic 09 cards 02, 04 not selected)"
- },
- {
-  "id": 330501,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 4, Q4",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 4, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q01.webp\" width=\"1328\" height=\"92\" alt=\"Harvard Stat 110 SP/HW 4, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 4, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330502,
@@ -1025,30 +580,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q07.webp\" width=\"1328\" height=\"200\" alt=\"Harvard Stat 110 SP/HW 4, Q2\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 4, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330508,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 4, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 4, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q08.webp\" width=\"1328\" height=\"165\" alt=\"Harvard Stat 110 SP/HW 4, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 4, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330509,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 4, Q4",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 4, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q09.webp\" width=\"1328\" height=\"98\" alt=\"Harvard Stat 110 SP/HW 4, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 4, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330510,
@@ -1169,18 +700,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q19.webp\" width=\"1328\" height=\"268\" alt=\"Harvard Stat 110 SP/HW 6, Q1\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 6, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 330520,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 6, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 6, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q20.webp\" width=\"1328\" height=\"127\" alt=\"Harvard Stat 110 SP/HW 6, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 6, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330521,
@@ -1316,58 +835,6 @@ window.PRACTICE_DATA.push([
   "stretch": "Poisson paradigm approximation for dependent rare events (not a selected card)"
  },
  {
-  "id": 330532,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 6, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 6, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q32.webp\" width=\"1328\" height=\"93\" alt=\"Harvard Stat 110 SP/HW 6, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 6, Q1.</p><p><b>Needs:</b> MGF technique (Topic 05 card 04 not selected)</p>",
-  "stretch": "MGF technique (Topic 05 card 04 not selected)"
- },
- {
-  "id": 330533,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 6, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 6, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q33a.webp\" width=\"1328\" height=\"278\" alt=\"Harvard Stat 110 SP/HW 6, Q2\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/05/q33b.webp\" width=\"1328\" height=\"88\" alt=\"Harvard Stat 110 SP/HW 6, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 6, Q2.</p><p><b>Needs:</b> MGF properties (Topic 05 card 04 not selected)</p>",
-  "stretch": "MGF properties (Topic 05 card 04 not selected)"
- },
- {
-  "id": 330534,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 6, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 6, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q34.webp\" width=\"1328\" height=\"93\" alt=\"Harvard Stat 110 SP/HW 6, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 6, Q3.</p><p><b>Needs:</b> MGF of a sum (Topic 05 card 04 not selected)</p>",
-  "stretch": "MGF of a sum (Topic 05 card 04 not selected)"
- },
- {
-  "id": 330535,
-  "subject": "StoMA",
-  "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
-  "topicTitle": "05 · Expectation, Variance & MGFs",
-  "title": "Harvard Stat 110 SP/HW 6, Q4",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 6, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q35.webp\" width=\"1328\" height=\"1418\" alt=\"Harvard Stat 110 SP/HW 6, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 6, Q4.</p><p><b>Needs:</b> cumulant generating function (Topic 05 card 04 not selected; beyond it)</p>",
-  "stretch": "cumulant generating function (Topic 05 card 04 not selected; beyond it)"
- },
- {
   "id": 330536,
   "subject": "StoMA",
   "topicId": "05_Expectation_Variance_Moments_and_Generating_Functions",
@@ -1379,18 +846,6 @@ window.PRACTICE_DATA.push([
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/05/q36.webp\" width=\"1328\" height=\"375\" alt=\"Harvard Stat 110 SP/HW 6, Q7\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 6, Q7.</p><p><b>Needs:</b> LogNormal moments via MGF (Topic 05 card 04 not selected)</p>",
   "stretch": "LogNormal moments via MGF (Topic 05 card 04 not selected)"
- },
- {
-  "id": 330601,
-  "subject": "StoMA",
-  "topicId": "06_Probability_Inequalities_Markov_Chebyshev_Chernoff",
-  "topicTitle": "06 · Probability Inequalities",
-  "title": "Harvard Stat 110 SP/HW 10, Q3",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 10, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/06/q01a.webp\" width=\"1328\" height=\"408\" alt=\"Harvard Stat 110 SP/HW 10, Q3\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/06/q01b.webp\" width=\"1328\" height=\"89\" alt=\"Harvard Stat 110 SP/HW 10, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 10, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 330602,
@@ -1826,18 +1281,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://www.princeton.edu/~cuff/ele530/\" target=\"_blank\" rel=\"noopener\">Princeton ELE 530 Theory of Detection and Estimation, homework, Spring 2011</a>, Princeton ELE 530 HW2, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 331201,
-  "subject": "StoMA",
-  "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
-  "topicTitle": "12 · Conditional Expectation & MMSE",
-  "title": "Harvard Stat 110 SP/HW 10, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 10, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/12/q01.webp\" width=\"1328\" height=\"95\" alt=\"Harvard Stat 110 SP/HW 10, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 10, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 331202,
   "subject": "StoMA",
   "topicId": "12_Conditional_Expectation_and_MMSE_Estimation",
@@ -2045,30 +1488,6 @@ window.PRACTICE_DATA.push([
   "stretch": "entropy/information content (not among selected cards)"
  },
  {
-  "id": 331301,
-  "subject": "StoMA",
-  "topicId": "13_Jointly_Gaussian_Random_Variables",
-  "topicTitle": "13 · Jointly Gaussian Random Variables",
-  "title": "Harvard Stat 110 SP/HW 11, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 11, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/13/q01.webp\" width=\"1328\" height=\"93\" alt=\"Harvard Stat 110 SP/HW 11, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 11, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 331302,
-  "subject": "StoMA",
-  "topicId": "13_Jointly_Gaussian_Random_Variables",
-  "topicTitle": "13 · Jointly Gaussian Random Variables",
-  "title": "Harvard Stat 110 SP/HW 11, Q2",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 11, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/13/q02.webp\" width=\"1328\" height=\"126\" alt=\"Harvard Stat 110 SP/HW 11, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 11, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 331303,
   "subject": "StoMA",
   "topicId": "13_Jointly_Gaussian_Random_Variables",
@@ -2130,18 +1549,6 @@ window.PRACTICE_DATA.push([
   "stretch": "part (a) requires MGFs (Topic 05 card 04 not selected); the concept itself is selected card 13-03"
  },
  {
-  "id": 331501,
-  "subject": "StoMA",
-  "topicId": "15_Modes_of_Convergence_and_Relations",
-  "topicTitle": "15 · Modes of Convergence",
-  "title": "Harvard Stat 110 SP/HW 11, Q4",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 11, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/15/q01.webp\" width=\"1328\" height=\"212\" alt=\"Harvard Stat 110 SP/HW 11, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 11, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 331502,
   "subject": "StoMA",
   "topicId": "15_Modes_of_Convergence_and_Relations",
@@ -2166,18 +1573,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"http://www.columbia.edu/~ks20/4106-18-Fall/\" target=\"_blank\" rel=\"noopener\">Columbia IEOR 4106 Stochastic Models (Sigman), homework &amp; practice midterm, Fall 2018</a>, Columbia IEOR 4106 HW1, Q6.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 331701,
-  "subject": "StoMA",
-  "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
-  "topicTitle": "17 · Laws of Large Numbers (WLLN & SLLN)",
-  "title": "Harvard Stat 110 SP/HW 11, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 11, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/17/q01.webp\" width=\"1328\" height=\"123\" alt=\"Harvard Stat 110 SP/HW 11, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 11, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 331702,
   "subject": "StoMA",
   "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
@@ -2188,18 +1583,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/17/q02a.webp\" width=\"1328\" height=\"499\" alt=\"Harvard Stat 110 SP/HW 11, Q5\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/17/q02b.webp\" width=\"1328\" height=\"151\" alt=\"Harvard Stat 110 SP/HW 11, Q5\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 11, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 331703,
-  "subject": "StoMA",
-  "topicId": "17_Laws_of_Large_Numbers_WLLN_and_SLLN",
-  "topicTitle": "17 · Laws of Large Numbers (WLLN & SLLN)",
-  "title": "Cornell Math 4740 practice final, Q5",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 practice final, Q5",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/17/q03.webp\" width=\"1328\" height=\"34\" alt=\"Cornell Math 4740 practice final, Q5\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 practice final, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 331801,
@@ -2237,18 +1620,6 @@ window.PRACTICE_DATA.push([
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/18/q03.webp\" width=\"1328\" height=\"161\" alt=\"Harvard Stat 110 SP/HW 11, Q2\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 11, Q2.</p><p><b>Needs:</b> part (b) uses chi-square/t/Beta relationships (Topic 04 card 05 not selected); part (a) is CLT practice</p>",
   "stretch": "part (b) uses chi-square/t/Beta relationships (Topic 04 card 05 not selected); part (a) is CLT practice"
- },
- {
-  "id": 331901,
-  "subject": "StoMA",
-  "topicId": "19_Discrete_Time_Markov_Chains_Chapman_Kolmogorov_and_Classification",
-  "topicTitle": "19 · DTMC & State Classification",
-  "title": "Harvard Stat 110 SP/HW 11, Q1",
-  "kind2": "ivy",
-  "source": "Harvard Stat 110 SP/HW 11, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/19/q01.webp\" width=\"1328\" height=\"89\" alt=\"Harvard Stat 110 SP/HW 11, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://projects.iq.harvard.edu/stat110/\" target=\"_blank\" rel=\"noopener\">Harvard Stat 110 (Blitzstein), Strategic Practice &amp; Homework, Fall 2011</a>, Harvard Stat 110 SP/HW 11, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 331902,
@@ -2369,42 +1740,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/19/q11.webp\" width=\"1328\" height=\"407\" alt=\"Columbia IEOR 4106 HW3, Q5\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"http://www.columbia.edu/~ks20/4106-18-Fall/\" target=\"_blank\" rel=\"noopener\">Columbia IEOR 4106 Stochastic Models (Sigman), homework &amp; practice midterm, Fall 2018</a>, Columbia IEOR 4106 HW3, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 331912,
-  "subject": "StoMA",
-  "topicId": "19_Discrete_Time_Markov_Chains_Chapman_Kolmogorov_and_Classification",
-  "topicTitle": "19 · DTMC & State Classification",
-  "title": "Cornell Math 4740 HW1, Q1",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW1, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/19/q12.webp\" width=\"1328\" height=\"455\" alt=\"Cornell Math 4740 HW1, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW1, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 331913,
-  "subject": "StoMA",
-  "topicId": "19_Discrete_Time_Markov_Chains_Chapman_Kolmogorov_and_Classification",
-  "topicTitle": "19 · DTMC & State Classification",
-  "title": "Cornell Math 4740 HW1, Q2",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW1, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/19/q13a.webp\" width=\"1328\" height=\"520\" alt=\"Cornell Math 4740 HW1, Q2\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/19/q13b.webp\" width=\"1328\" height=\"257\" alt=\"Cornell Math 4740 HW1, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW1, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 331914,
-  "subject": "StoMA",
-  "topicId": "19_Discrete_Time_Markov_Chains_Chapman_Kolmogorov_and_Classification",
-  "topicTitle": "19 · DTMC & State Classification",
-  "title": "Cornell Math 4740 HW1, Q3",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW1, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/19/q14.webp\" width=\"1328\" height=\"1341\" alt=\"Cornell Math 4740 HW1, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW1, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 331915,
@@ -2628,18 +1963,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"http://www.columbia.edu/~ks20/4106-18-Fall/\" target=\"_blank\" rel=\"noopener\">Columbia IEOR 4106 Stochastic Models (Sigman), homework &amp; practice midterm, Fall 2018</a>, Columbia IEOR 4106 HW3, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 332007,
-  "subject": "StoMA",
-  "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
-  "topicTitle": "20 · Stationary Distributions & Ergodicity",
-  "title": "Cornell Math 4740 HW3, Q2",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW3, Q2",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/20/q07.webp\" width=\"1328\" height=\"419\" alt=\"Cornell Math 4740 HW3, Q2\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW3, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 332008,
   "subject": "StoMA",
   "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
@@ -2664,18 +1987,6 @@ window.PRACTICE_DATA.push([
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW4, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
-  "id": 332010,
-  "subject": "StoMA",
-  "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
-  "topicTitle": "20 · Stationary Distributions & Ergodicity",
-  "title": "Cornell Math 4740 HW4, Q3",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW4, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/20/q10.webp\" width=\"1328\" height=\"927\" alt=\"Cornell Math 4740 HW4, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW4, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
   "id": 332011,
   "subject": "StoMA",
   "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
@@ -2686,54 +1997,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/20/q11a.webp\" width=\"1328\" height=\"631\" alt=\"Cornell Math 4740 HW5, Q2\" loading=\"lazy\"><img class=\"qimg\" src=\"assets/ivy_stoma/20/q11b.webp\" width=\"1328\" height=\"456\" alt=\"Cornell Math 4740 HW5, Q2\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW5, Q2.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 332012,
-  "subject": "StoMA",
-  "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
-  "topicTitle": "20 · Stationary Distributions & Ergodicity",
-  "title": "Cornell Math 4740 HW5, Q3",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW5, Q3",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/20/q12.webp\" width=\"1328\" height=\"131\" alt=\"Cornell Math 4740 HW5, Q3\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW5, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 332013,
-  "subject": "StoMA",
-  "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
-  "topicTitle": "20 · Stationary Distributions & Ergodicity",
-  "title": "Cornell Math 4740 HW5, Q4",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW5, Q4",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/20/q13.webp\" width=\"1328\" height=\"98\" alt=\"Cornell Math 4740 HW5, Q4\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW5, Q4.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 332014,
-  "subject": "StoMA",
-  "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
-  "topicTitle": "20 · Stationary Distributions & Ergodicity",
-  "title": "Cornell Math 4740 HW5, Q5",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW5, Q5",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/20/q14.webp\" width=\"1328\" height=\"229\" alt=\"Cornell Math 4740 HW5, Q5\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW5, Q5.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 332015,
-  "subject": "StoMA",
-  "topicId": "20_DTMC_Stationary_Distributions_and_Limiting_Behavior",
-  "topicTitle": "20 · Stationary Distributions & Ergodicity",
-  "title": "Cornell Math 4740 HW5, Q6",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW5, Q6",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/20/q15.webp\" width=\"1328\" height=\"687\" alt=\"Cornell Math 4740 HW5, Q6\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW5, Q6.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 332016,
@@ -3129,18 +2392,6 @@ window.PRACTICE_DATA.push([
   "marks": "",
   "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/24/q05.webp\" width=\"1328\" height=\"502\" alt=\"Columbia IEOR 4106 HW5, Q3\" loading=\"lazy\">",
   "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"http://www.columbia.edu/~ks20/4106-18-Fall/\" target=\"_blank\" rel=\"noopener\">Columbia IEOR 4106 Stochastic Models (Sigman), homework &amp; practice midterm, Fall 2018</a>, Columbia IEOR 4106 HW5, Q3.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
- },
- {
-  "id": 332406,
-  "subject": "StoMA",
-  "topicId": "24_Poisson_Processes_Properties_and_Extensions",
-  "topicTitle": "24 · Poisson Processes & Extensions",
-  "title": "Cornell Math 4740 HW8, Q1",
-  "kind2": "ivy",
-  "source": "Cornell Math 4740 HW8, Q1",
-  "marks": "",
-  "question": "<img class=\"qimg\" src=\"assets/ivy_stoma/24/q06.webp\" width=\"1328\" height=\"98\" alt=\"Cornell Math 4740 HW8, Q1\" loading=\"lazy\">",
-  "solution": "<p>The Ivy League practice pack gives no solutions for this question.</p><p>Source: <a href=\"https://pi.math.cornell.edu/~jerison/math4740.html\" target=\"_blank\" rel=\"noopener\">Cornell Math 4740 Stochastic Processes (Jerison), homework, prelims &amp; practice final</a>, Cornell Math 4740 HW8, Q1.</p><p>It uses only tools from your 65 selected StoMA cards.</p>"
  },
  {
   "id": 332407,
