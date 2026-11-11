@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plates · Photographic Memory Cards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="cards_data.js?v=20261112_f2"></script>
+  <script src="cards_dip.js?v=20261102_d2"></script>
+  <script src="cards_laa.js?v=20261102_l18"></script>
+  <script src="cards_stoma.js?v=20261112_f2"></script>
+  <script src="practice_cmo.js?v=20261029_cmo_complete"></script>
+  <script src="practice_cmo_09_19.js?v=20261029_p2"></script>
+  <script src="practice_cmo_endsem_09_16.js?v=20261029_e1"></script>
+  <script src="practice_cmo_placement.js?v=20261106_pl1"></script>
+  <script src="practice_stoma.js?v=20261029_stoma"></script>
+  <script src="practice_stoma_placement.js?v=20261112_pl2"></script>
+  <script src="practice_stoma_ivy.js?v=20261112_lvl1"></script>
+  <script src="practice_dip.js?v=20261029_dip"></script>
+  <script src="practice_laa.js?v=20261029_laa"></script>
+  <script src="story_cmo_a.js?v=20261101_s4"></script>
+  <script src="story_cmo_b.js?v=20261106_audit1"></script>
+  <script src="story_cmo_c.js?v=20261031_s3"></script>
+  <script src="story_laa.js?v=20261102_l18"></script>
+  <script src="story_stoma.js?v=20261112_f1"></script>
+  <script src="story_dip.js?v=20261102_d2"></script>
+  <script src="topic_importance.js?v=20261028_imp1"></script>
+  <script src="card_time.js?v=20261112_ct4"></script>
+  <script src="play_lib.js?v=20261111_p1"></script>
+  <script src="play_stoma.js?v=20261112_f1"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Roman.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Md.otf') format('opentype'); font-weight: 500 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Bd.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Helvetica Neue LT Std'; src: url('fonts/HelveticaNeueLTStd-Blk.otf') format('opentype'); font-weight: 800 900; font-style: normal; font-display: swap; }
+    /* Helvetica letters and digits for the maths (see .katex below) */
+    @font-face { font-family: 'Helv Math'; src: url('fonts/HelveticaNeueLTStd-Roman.otf') format('opentype'), local('Helvetica Neue'), local('HelveticaNeue'), local('Helvetica'); font-weight: 400; unicode-range: U+0030-0039, U+0041-005A, U+0061-007A; font-display: swap; }
+    @font-face { font-family: 'Helv Math'; src: url('fonts/HelveticaNeueLTStd-Bd.otf') format('opentype'), local('Helvetica Neue Bold'), local('HelveticaNeue-Bold'), local('Helvetica Bold'); font-weight: 700; unicode-range: U+0030-0039, U+0041-005A, U+0061-007A; font-display: swap; }
+    :root {
+      --bg: #0a0a0a; --rail: #0c0c0c; --panel: #121212; --panel-2: #171717; --deep: #0e0e0e;
+      --line: #1f1f1f; --line-2: #2a2a2a; --line-3: #363636;
+      --text: #f4f4f4; --text-2: #dcdcdc; --muted: #8a8a8a; --muted-2: #b3b3b3;
+      --accent: #e5484d; --accent-soft: rgba(229,72,77,.14); --green: #f4f4f4; --amber: #b3b3b3; --red: #e5484d;
+      --radius: 10px;
+      --serif: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --sans: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --mono: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); }
+    /* Helvetica for every piece of text: the labels inside the card drawings (their SVG says sans-serif or serif) and the maths */
+    svg text, svg tspan { font-family: var(--sans) !important; }
+    /* in formulas only letters and digits switch to Helvetica; symbols (|, ‖, ∑, ∫ …) keep KaTeX's maths font, which has them */
+    .katex { font-family: 'Helv Math', KaTeX_Main, 'Times New Roman', serif; }
+    .katex .mathnormal, .katex .mathit { font-family: 'Helv Math', KaTeX_Math, serif; }
+    .katex .mathrm, .katex .textrm, .katex .mathsf, .katex .textsf { font-family: 'Helv Math', KaTeX_Main, serif; }
+    .katex .mathbf, .katex .textbf, .katex .boldsymbol { font-family: 'Helv Math', KaTeX_Main, serif; font-weight: 700; }
+    button { font-family: inherit; cursor: pointer; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .mono { font-family: var(--mono); }
+
+    .app { display: flex; height: 100vh; }
+
+    /* ---------- left rail ---------- */
+    .rail { flex: 0 0 272px; width: 272px; background: var(--rail); border-right: 1px solid var(--line); padding: 20px 14px; display: flex; flex-direction: column; gap: 22px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 0 8px; }
+    .logo { width: 28px; height: 28px; border-radius: 8px; border: 1.5px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; color: var(--accent); }
+    .brand-name { font-family: var(--serif); font-size: 22px; }
+    .label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; color: #8e9bb8; padding: 0 8px 6px; }
+    .subj { width: 100%; display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 10px; border-radius: 10px; border: 1px solid transparent; background: transparent; color: var(--muted-2); font-size: 14px; text-align: left; }
+    .subj:hover { background: #121930; }
+    .subj.active { background: #151c33; border-color: var(--line-2); color: var(--text); font-weight: 600; }
+    .subj .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .subj .n { margin-left: auto; font-family: var(--mono); font-size: 12px; color: #8e9bb8; }
+    .topic { width: 100%; display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 6px 10px; border-radius: 8px; border: 0; background: transparent; color: var(--muted-2); font-size: 13.5px; text-align: left; }
+    .topic:hover { background: #121930; }
+    .topic.active { background: #151c33; color: var(--text); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+    .topic .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .topic .cnt { font-family: var(--mono); font-size: 11px; color: #8e9bb8; }
+
+    /* ---------- topic importance markers ---------- */
+    .imp-dot { width: 7.5px; height: 7.5px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .imp-dot.imp-red { background: #ef4444; box-shadow: 0 0 7px #ef4444; }
+    .imp-dot.imp-orange { background: #f97316; box-shadow: 0 0 6px #f97316; }
+    .imp-dot.imp-yellow { background: #eab308; box-shadow: 0 0 5px #eab308; }
+
+    .imp-filters { display: flex; align-items: center; gap: 4px; padding: 2px 4px 8px; }
+    .imp-filter-btn { font-family: var(--mono); font-size: 10px; padding: 3px 6px; border-radius: 6px; border: 1px solid var(--line-2); background: transparent; color: #8e9bb8; cursor: pointer; transition: all .15s ease; white-space: nowrap; }
+    .imp-filter-btn:hover { background: #141c33; color: var(--text); }
+    .imp-filter-btn.active { background: #17223e; border-color: var(--accent); color: var(--text); font-weight: 600; }
+    .imp-filter-btn.f-red.active { border-color: #ef4444; color: #fca5a5; }
+    .imp-filter-btn.f-orange.active { border-color: #f97316; color: #fdba74; }
+    .imp-filter-btn.f-yellow.active { border-color: #eab308; color: #fde047; }
+
+    .imp-badge { font-family: var(--mono); font-size: 10.5px; font-weight: 600; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; }
+    .imp-badge.imp-red { background: #271115; border: 1px solid #7f1d1d; color: #fca5a5; }
+    .imp-badge.imp-orange { background: #27150c; border: 1px solid #7c2d12; color: #fdba74; }
+    .imp-badge.imp-yellow { background: #241d08; border: 1px solid #713f12; color: #fde047; }
+
+    /* ---------- main column ---------- */
+    .main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 8px 32px; border-bottom: 1px solid var(--line); background: rgba(13,18,32,0.94); backdrop-filter: blur(8px); }
+    .crumb { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #8e9bb8; min-width: 0; flex: 1 1 200px; }
+    .crumb b { color: var(--text); font-weight: 500; }
+    .crumb span.t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .search { position: relative; flex: 1 1 260px; max-width: 440px; }
+    .search input { width: 100%; min-height: 44px; padding: 0 56px 0 40px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text); font-size: 14px; }
+    .search input::placeholder { color: #8e9bb8; }
+    .search svg { position: absolute; left: 14px; top: 14px; }
+    .search kbd { position: absolute; right: 12px; top: 11px; font-family: var(--mono); font-size: 11px; border: 1px solid #2f3c60; border-radius: 6px; padding: 2px 6px; color: var(--muted-2); }
+    .results { position: absolute; top: 50px; left: 0; right: 0; background: #101730; border: 1px solid var(--line-3); border-radius: 12px; padding: 6px; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8); max-height: 60vh; overflow-y: auto; }
+    .results[hidden] { display: none; }
+    .res { width: 100%; text-align: left; border: 0; background: transparent; color: var(--text); padding: 10px 12px; border-radius: 8px; display: flex; flex-direction: column; gap: 3px; min-height: 44px; }
+    .res:hover, .res:focus-visible { background: #17203d; }
+    .res .meta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .res .snip { font-size: 12.5px; color: var(--muted-2); }
+    .res-empty { padding: 14px; font-size: 13px; color: var(--muted); }
+    .btn { min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; }
+    .btn:hover { background: #17203d; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
+    .rail-collapse { margin-left: auto; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line-2); background: transparent; display: inline-flex; align-items: center; justify-content: center; }
+    .rail-collapse:hover { background: #121930; }
+    .rail-open { display: none; width: 44px; padding: 0; justify-content: center; }
+    @media (min-width: 901px) {
+      .app.rail-collapsed .rail { display: none; }
+      .app.rail-collapsed .rail-open { display: inline-flex; }
+    }
+    @media (max-width: 900px) { .rail-collapse { display: none; } }
+    /* ---------- card study time ---------- */
+    .ctime-wrap { display: inline-flex; align-items: center; gap: 6px; }
+    .ctime-btn { width: 30px; height: 30px; border-radius: 8px; border: 1px solid #4a3a28; background: #241b13; color: #e8d9c2; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+    .ctime-btn.on { background: var(--accent); border-color: var(--accent); color: #06101c; }
+    .ctime { font-family: var(--mono); font-size: 13px; color: #e8d9c2; font-variant-numeric: tabular-nums; min-width: 44px; }
+    .stime { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .stime:empty { display: none; }
+    .stime + .n { margin-left: 10px; } .stime:empty + .n { margin-left: auto; }
+    .menu-btn { display: none; width: 44px; padding: 0; justify-content: center; }
+
+    .plines { flex-basis: 100%; display: flex; align-items: flex-start; gap: 16px; margin-top: -2px; }
+    .pwrap { flex: 1; min-width: 0; }
+    .pbar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: #141a2e; }
+    .pfill { height: 100%; min-width: 6px; background: var(--c); transition: flex-grow .35s ease; }
+    .pfill + .pfill { border-left: 1px solid rgba(8, 12, 22, .55); }
+    .prest { height: 100%; background: transparent; }
+    .plabels { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 6px; }
+    .plabels button { display: inline-flex; align-items: center; gap: 7px; border: 0; background: none; padding: 2px 0; font-family: var(--mono); font-size: 11.5px; color: #8e9bb8; white-space: nowrap; cursor: pointer; }
+    .plabels button i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); display: inline-block; }
+    .plabels button b { color: var(--text); font-weight: 600; }
+    .plabels button.cur { color: var(--text); }
+    .plabels button.cur i { box-shadow: 0 0 0 2px #0d1220, 0 0 0 3.5px var(--c); }
+    .ptext { font-size: 12.5px; color: #8e9bb8; white-space: nowrap; font-family: var(--mono); padding-top: 0; line-height: 14px; }
+    .ptext b { color: var(--text); font-weight: 600; }
+    .chipbtn.done { border-color: #2c6e57; background: #11261f; color: var(--green); }
+    .chipbtn.done.cur { border-color: var(--accent); }
+
+    .stretchchip { font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .5px; padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(229,72,77,.6); color: #ff8a8d; cursor: help; }
+
+    /* ---------- motion ---------- */
+    @keyframes cardInFwd { from { opacity: 0; transform: translateX(28px) rotate(.4deg); } to { opacity: 1; transform: none; } }
+    @keyframes cardInBack { from { opacity: 0; transform: translateX(-28px) rotate(-.4deg); } to { opacity: 1; transform: none; } }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
+    @keyframes shine { from { background-position: -160% 0; } to { background-position: 260% 0; } }
+    @keyframes flyby { 0% { transform: translateX(-60px) translateY(6px) rotate(4deg); opacity: 0; } 8% { opacity: .9; } 50% { transform: translateX(50vw) translateY(-4px) rotate(-2deg); } 92% { opacity: .9; } 100% { transform: translateX(calc(100vw + 60px)) translateY(4px) rotate(3deg); opacity: 0; } }
+    .stage-in-fwd .paper, .stage-in-fwd .paper-bar { animation: cardInFwd .42s cubic-bezier(.2,.8,.2,1) both; }
+    .stage-in-back .paper, .stage-in-back .paper-bar { animation: cardInBack .42s cubic-bezier(.2,.8,.2,1) both; }
+    .stage-in-fwd .story, .stage-in-back .story { animation: riseIn .5s .15s ease-out both; }
+    .stage-in-fwd .sect, .stage-in-back .sect, .stage-in-fwd .connection, .stage-in-back .connection, .stage-in-fwd .cardhint, .stage-in-back .cardhint { animation: riseIn .45s ease-out both; }
+    .stage-in-fwd .sect.st, .stage-in-back .sect.st { animation-delay: .08s; } .stage-in-fwd .sect.m, .stage-in-back .sect.m { animation-delay: .16s; }
+    .stage-in-fwd .sect.b, .stage-in-back .sect.b { animation-delay: .24s; } .stage-in-fwd .connection, .stage-in-back .connection { animation-delay: .32s; }
+    .donebtn, .chipbtn, .nav { transition: transform .15s ease, background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease; }
+    .donebtn:hover, .nav:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+    .donebtn:active, .nav:active, .chipbtn:active { transform: scale(.96); }
+    .chipbtn:hover { transform: translateY(-2px); }
+    .donebtn.pop, .chipbtn.cur.pop { animation: pop .38s ease; }
+    .chipbtn.done.phys, .donechip.physchip, .physbtn.is-done { background-image: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%); background-size: 60% 100%; background-repeat: no-repeat; animation: shine 3.2s ease-in-out infinite; }
+    .flyby { position: fixed; top: 10px; left: 0; z-index: 50; pointer-events: none; animation: flyby 4.2s cubic-bezier(.45,.05,.55,.95) forwards; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .flyby { display: none; }
+    }
+    .donechip { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 6px; background: #11261f; border: 1px solid #2c6e57; color: var(--green); }
+    .sdot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#5b6784; margin-right:7px; }
+    .sync-ok .sdot { background: var(--green); } .sync-syncing .sdot { background: #f5b94a; } .sync-error .sdot { background: #ff6b6b; }
+    #sync-modal .syncwrap { position:fixed; inset:0; z-index:80; background:rgba(5,8,16,.8); display:flex; align-items:center; justify-content:center; padding:16px; }
+    #sync-modal .syncbox { max-width:460px; width:100%; background:#0f1426; border:1px solid #2a3558; border-radius:16px; padding:22px; color:#d8e0f2; font-size:14.5px; line-height:1.55; }
+    #sync-modal h3 { font-size:18px; font-weight:700; margin:0 0 8px; } #sync-modal p { margin:8px 0; } #sync-modal ol { margin:8px 0 8px 20px; list-style:decimal; }
+    #sync-modal a { color:var(--accent); text-decoration:underline; } #sync-modal .ok { color:var(--green); } #sync-modal .small { font-size:12.5px; color:#8e9bb8; }
+    #sync-modal input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2a3558; background:#0a0f1d; color:#fff; margin:6px 0 10px; }
+    #sync-modal .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+
+    .chipbtn.prac { border-color: #6b5436; color: #e8c9a0; background: #241b13; }
+    .stripsep { width: 1px; height: 28px; background: var(--line-2); margin: 0 6px; align-self: center; flex: none; }
+    .flipwrap { flex: 1 0 auto; perspective: 1800px; cursor: pointer; display: flex; }
+    .flipper { position: relative; width: 100%; display: grid; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.3,.7,.2,1); }
+    .flipper.is-flipped { transform: rotateY(180deg); }
+    .pface { --lh: 40px; grid-area: 1 / 1; position: relative; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6px; padding: 34px 56px 40px; min-height: 480px;
+      background-color: #fbf8f1; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 39px, #c9d3df 39px, #c9d3df 40px);
+      color: #2b2823; font-family: 'Helvetica Neue LT Std','Helvetica Neue',Helvetica,Arial,sans-serif; box-shadow: 0 10px 34px rgba(0,0,0,.5); }
+    .pface::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #d2574a; border-radius: 6px 6px 0 0; }
+    .pback { transform: rotateY(180deg); }
+    .pback::before { background: #2f8f62; }
+    .pfig { float: right; width: min(320px, 34%); margin: 0 0 14px 28px; }
+    .pfig .sketch-box { background: #fff; border: 2.5px solid #4d4d4d; border-radius: 3px; padding: 8px; box-shadow: 2px 3px 0 rgba(0,0,0,.12); }
+    .pfig .plate-svg { width: 100%; } .pfig .plate-svg svg, .pfig img { width: 100%; height: auto; display: block; max-height: 220px; object-fit: contain; }
+    .pfig figcaption { margin-top: 6px; font-size: 12px; line-height: 1.35; color: #666; }
+    @media (max-width: 700px) { .pfig { float: none; width: 100%; margin: 0 0 14px; } }
+    .plabel { margin: 0 0 14px; font-size: 18px; letter-spacing: 1.6px; font-weight: 700; color: #8a2f25; border-bottom: 3px double #8a2f25; display: inline-block; line-height: 1.2; }
+    .plabel.sol { color: #16603f; border-color: #16603f; }
+    .pbody { font-size: 21px; line-height: 40px; color: #2b2823; }
+    .pbody p { margin: 0 0 20px; } .pbody ul, .pbody ol { margin: 0 0 20px 26px; } .pbody ul { list-style: disc; } .pbody ol { list-style: decimal; }
+    .pbody li { margin-bottom: 8px; }
+    .pbody .part { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255,213,79,.55) 62%); }
+    .pbody .ans { font-weight: 700; color: #16603f; }
+    .pbody .katex-display { margin: 10px 0; } .pbody .katex { font-size: 1.04em; }
+    .phint { margin-top: 18px; font-size: 14px; color: #8b8478; }
+    .phint kbd { font-family: var(--mono); border: 1px solid #b9b2a3; border-radius: 4px; padding: 0 5px; }
+    .pface .connection { margin-top: 24px; }
+    .pface .connection p { font-size: 19px; line-height: 36px; }
+    .pface .connection h2 { font-size: 16px; }
+    @media (max-width: 900px) { .pface { padding: 22px 20px 28px; min-height: 360px; } .pbody { font-size: 18px; line-height: 34px; } }
+    .donebtn { min-height: 40px; padding: 0 22px; border-radius: 12px; border: 1px solid #2c6e57; background: #11261f; color: #a9ecd0; font-size: 14.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+    .donebtn:hover { background: #16342a; }
+    .donebtn.is-done { background: var(--green); border-color: var(--green); color: #06101c; }
+    .physbtn { border-color: #5b3a8c; background: #1c1230; color: #d6c2f5; }
+    .physbtn:hover { background: #2a1b46; }
+    .physbtn.is-done { background: #4b1f7a; border-color: #4b1f7a; color: #fff; }
+    .chipbtn.done.phys { border-color: #6d3fb0; background: #3b1663; color: #f1e8ff; }
+    .donechip.physchip { background: #3b1663; border-color: #6d3fb0; color: #f1e8ff; }
+    .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 8px 32px 14px; gap: 6px 8px; }
+    .chipbtn { width: 36px; height: 36px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--muted-2); font-family: var(--mono); font-size: 13px; }
+    .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: var(--text); }
+    .hint { margin-left: auto; font-size: 13px; color: #8e9bb8; }
+    .hint kbd { font-family: var(--mono); color: var(--muted-2); }
+
+    .stage { flex: 1; min-height: 0; overflow-y: auto; padding: 20px 32px 12px; }
+
+    /* ---------- the index card (as in the video) ---------- */
+    .stage { display: flex; flex-direction: column; background: repeating-linear-gradient(90deg, #15100c 0 5px, #18120d 5px 11px); border-top: 1px solid var(--line); }
+    .paper-bar { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
+    .paper-bar .chip { color: #e8c9a0; border-color: #6b5436; }
+    .paper-bar .cat { color: #b8a58a; }
+    .paper-bar .copy-btn { margin-left: auto; background: #241b13; border-color: #4a3a28; color: #e8d9c2; }
+    .paper { position: relative; flex: 1 0 auto; width: 100%; margin: 0; min-height: 0; padding: 30px 48px 36px; align-content: start; border-radius: 6px;
+      background-color: #f8f6ef;
+      background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--lh) - 1px), #c9d3df calc(var(--lh) - 1px), #c9d3df var(--lh));
+      box-shadow: 0 18px 40px -10px rgba(0,0,0,.75), 0 2px 0 #fff inset; color: #2b2b2b;
+      font-family: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); column-gap: 40px; --lh: clamp(30px, min(2.7vw, 4.3vh), 42px); align-items: start; }
+    .paper::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #d2574a; border-radius: 6px 6px 0 0; }
+    .paper-title small { font-size: .5em; letter-spacing: 1px; color: #7a5410; margin-left: 10px; white-space: nowrap; }
+    .paper-title { margin: 0 0 6px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 1.1); line-height: 1.12; text-transform: uppercase; letter-spacing: .4px; color: #262626; padding-bottom: 6px; border-bottom: 3px double #555; min-height: calc(var(--lh) * 2); display: flex; align-items: flex-end; }
+    .col-left, .col-right { min-width: 0; }
+    /* Plates with a breakdown: title across the top, text stack left, picture + translation right (no stretched gaps). */
+    .paper.grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: "title title" "story story" "left right"; row-gap: 0; align-content: start; }
+    .paper.grid .col-left { display: contents; }
+    .paper.grid .paper-title { grid-area: title; min-height: 0; }
+    .paper.grid .lstack { grid-area: left; min-width: 0; }
+    .paper.grid .col-right { grid-area: right; }
+    /* Story band: where this card sits in the big picture, with clickable links to the cards before and after it. */
+    .story { grid-area: story; margin: calc(var(--lh) * 0.25) 0 calc(var(--lh) * 0.2); padding: calc(var(--lh) * 0.12) calc(var(--lh) * 0.4); border-left: 4px solid #2f8a62; background: rgba(47,138,98,.09); font-size: calc(var(--lh) * 0.52); line-height: 1.28; color: #1f4a37; }
+    .story .stag { font-weight: 700; letter-spacing: .5px; font-size: .86em; color: #2f8a62; margin-right: .6em; }
+    .story .sbig { display: inline; margin: 0; }
+    .story .slinks { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: calc(var(--lh) * 0.06); }
+    .story .slink { border: 0; background: none; padding: 0; font: inherit; color: #1b5e94; cursor: pointer; text-align: left; }
+    .story .slink:hover { text-decoration: underline; }
+    .story .slink b { font-weight: 800; }
+    .paper.grid .sketch { margin-top: calc(var(--lh) * 0.3); }
+    .paper.grid .sketch-box .plate-svg { max-width: none; }
+    .sketch { margin: 0; }
+    .sketch-box { background: #fff; border: 2.5px solid #4d4d4d; border-radius: 3px; padding: 12px; box-shadow: 2px 3px 0 rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; min-height: 0; }
+    .sketch-box img { max-width: 100%; max-height: min(46vh, calc(var(--lh) * 15)); object-fit: contain; cursor: zoom-in; }
+    .sketch-box .plate-svg { width: 100%; max-width: calc(var(--lh) * 11); margin: 0 auto; }
+    .sketch-box .plate-svg svg { width: 100%; height: auto; display: block; }
+    .sketch figcaption { margin-top: 8px; font-family: inherit; font-size: calc(var(--lh) * 0.4); line-height: 1.35; color: #555; }
+    .sketch-box svg text { font-family: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    .info .pt p { margin: 0; }
+    .info h3.sub { display: inline-block; margin: 0; font-size: calc(var(--lh) * 0.5); font-weight: 700; line-height: var(--lh); letter-spacing: .2px; color: #1d1b18; background: linear-gradient(transparent 58%, rgba(255, 213, 79, .6) 58%); }
+    .info .pt + .pt { margin-top: calc(var(--lh) / 2); }
+    .info { margin: 6px 0 0; font-size: calc(var(--lh) * 0.56); line-height: var(--lh); color: #35322d; font-weight: 400; }
+    .info strong { font-weight: 700; color: #1d1b18; background: linear-gradient(transparent 62%, rgba(255, 213, 79, .55) 62%); }
+    .info .katex, .connection .katex { font-size: 1.02em; }
+    .cardhint { margin: 6px 0 0; font-size: calc(var(--lh) * 0.5); line-height: calc(var(--lh) * 0.9); color: #7a5410; font-style: italic; }
+    .cardhint b { font-style: normal; font-weight: 700; letter-spacing: 1px; font-size: .85em; color: #fff; background: #b8860b; padding: 1px 6px; border-radius: 3px; margin-right: 6px; }
+    .sect { margin-top: calc(var(--lh) * 0.5); }
+    .sect h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.55); letter-spacing: 1.2px; color: #1d1b18; border-bottom: 3px double #1d1b18; line-height: 1.1; }
+    /* The statement exactly as a textbook would put it: hypotheses, then conclusion. */
+    .stmt { margin: 4px 0 0; padding: 3px 10px; border: 1px solid #9a9488; background: #fbfaf5; font-family: var(--sans); font-size: calc(var(--lh) * 0.56); line-height: 1.45; color: #222; }
+    .mathbox { margin: 4px 0 0; padding: 2px 8px; background: #f6f1e4; border-left: 4px solid #b8860b; overflow: hidden; font-size: calc(var(--lh) * 0.5 * var(--mfit, 1)); line-height: 1.3; }
+    .mathbox .katex-display { margin: .25em 0; }
+    .connection { margin-top: calc(var(--lh) * 0.6); }
+    .connection h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.62); letter-spacing: 1.2px; color: #16603f; border-bottom: 3px double #16603f; line-height: 1.1; }
+    .connection p { margin: 6px 0 0; font-size: calc(var(--lh) * 0.55); line-height: var(--lh); color: #1a6b46; font-weight: 500; }
+    .math-block { border-radius: 12px; border: 1px solid var(--line-3); background: #121c36; padding: 10px 16px; overflow-x: auto; text-align: center; }
+    .empty { max-width: 560px; margin: 80px auto; text-align: center; color: var(--muted-2); line-height: 1.6; }
+    .empty h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; color: var(--text); margin: 0 0 8px; }
+
+    /* ---------- action bar ---------- */
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 32px 12px; }
+    .actions .sp { flex: 1 1 0; min-width: 8px; }
+    .nav { min-height: 40px; padding: 0 22px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--text-2); font-size: 14.5px; }
+    .counter { font-size: 13px; color: #8e9bb8; font-family: var(--mono); }
+    .nav.next { background: var(--accent); border-color: var(--accent); color: #06101c; font-weight: 600; }
+
+    .scrim { display: none; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 900px) {
+      .menu-btn { display: inline-flex; }
+      .rail { position: fixed; z-index: 60; left: 0; top: 0; transform: translateX(-100%); transition: transform .2s ease; }
+      .rail.open { transform: none; }
+      .scrim.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50; }
+      .topbar, .strip, .stage, .actions { padding-left: 16px; padding-right: 16px; }
+      .paper { grid-template-columns: 1fr; padding: 22px 20px 28px; }
+      .paper.grid { grid-template-areas: "title" "story" "left" "right"; }
+      .col-right { margin-top: 10px; }
+      .paper { --lh: 28px; }
+      .hint { display: none; }
+      .search kbd { display: none; }
+    }
+    @media (min-width: 701px) and (max-width: 900px) { .paper { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); padding: 22px 24px 26px; column-gap: 24px; } .col-right { margin-top: 0; } }
+
+
+    /* ================= theme: black, white and a hint of red ================= */
+    html, body { -webkit-font-smoothing: antialiased; }
+    ::selection { background: var(--accent); color: #fff; }
+    /* sidebar */
+    .rail { background: var(--rail); border-right: 1px solid var(--line); padding: 18px 12px; gap: 20px; }
+    .brand { padding: 0 6px; }
+    .logo { border: 0; background: #fff; color: #0a0a0a; border-radius: 7px; font-weight: 800; font-size: 16px; }
+    .brand-name { font-size: 19px; font-weight: 700; letter-spacing: -.3px; }
+    .label { color: #6b6b6b; font-size: 10.5px; letter-spacing: 1.6px; font-weight: 600; padding: 0 6px 8px; }
+    #subject-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .subj { flex-direction: column; align-items: flex-start; gap: 2px; min-height: 0; padding: 9px 10px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); color: var(--muted-2); font-size: 13px; }
+    .subj:hover { background: var(--panel-2); border-color: var(--line-2); }
+    .subj.active { background: #fff; border-color: #fff; color: #0a0a0a; }
+    .subj .dot { display: none; }
+    .subj .sname { font-weight: 700; font-size: 13.5px; letter-spacing: .2px; }
+    .subj .n, .subj .stime { margin: 0; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .subj.active .n, .subj.active .stime { color: #555; }
+    .subj .srow { display: flex; width: 100%; justify-content: space-between; gap: 6px; }
+    .stime + .n, .stime:empty + .n { margin-left: 0; }
+    .topic { border-radius: 8px; min-height: 36px; padding: 6px 10px; color: var(--muted-2); font-size: 13px; }
+    .topic:hover { background: var(--panel); }
+    .topic.active { background: var(--panel-2); color: var(--text); box-shadow: inset 2px 0 0 var(--accent); }
+    .topic .cnt { color: #6b6b6b; font-variant-numeric: tabular-nums; }
+    .rail-collapse { border-color: var(--line-2); }
+    .rail-collapse:hover, .imp-filter-btn:hover { background: var(--panel-2); }
+    /* importance: red, light grey, dark grey */
+    .imp-dot.imp-red { background: var(--accent); box-shadow: 0 0 0 3px rgba(229,72,77,.18); }
+    .imp-dot.imp-orange { background: #d4d4d4; box-shadow: none; }
+    .imp-dot.imp-yellow { background: #5a5a5a; box-shadow: none; }
+    .imp-filter-btn { display: inline-flex; align-items: center; gap: 5px; }
+    .imp-badge .imp-dot { width: 6px; height: 6px; }
+    .imp-filter-btn { border-color: var(--line-2); color: var(--muted); border-radius: 999px; padding: 3px 9px; }
+    .imp-filter-btn.active { background: var(--panel-2); border-color: #fff; color: #fff; }
+    .imp-filter-btn.f-red.active { border-color: var(--accent); color: #fff; }
+    .imp-filter-btn.f-orange.active, .imp-filter-btn.f-yellow.active { border-color: #bdbdbd; color: #fff; }
+    .imp-badge { border-radius: 999px; padding: 3px 10px; letter-spacing: .4px; }
+    .imp-badge.imp-red { background: var(--accent-soft); border: 1px solid rgba(229,72,77,.55); color: #ff8a8d; }
+    .imp-badge.imp-orange { background: #1b1b1b; border: 1px solid #3a3a3a; color: #e0e0e0; }
+    .imp-badge.imp-yellow { background: #141414; border: 1px solid #2c2c2c; color: #9a9a9a; }
+    /* top bar: one row, progress as a hairline along its bottom edge */
+    .topbar { flex-wrap: nowrap; gap: 10px; padding: 10px 28px; background: rgba(10,10,10,.86); border-bottom: 1px solid var(--line); position: sticky; }
+    .crumb { color: var(--muted); font-size: 13px; }
+    .crumb b { color: var(--text); font-weight: 600; }
+    .search { flex: 0 1 380px; }
+    .search input { min-height: 38px; border-radius: 999px; background: var(--panel); border-color: var(--line-2); font-size: 13.5px; padding-left: 38px; }
+    .search input:focus { outline: none; border-color: #fff; }
+    .search svg { top: 11px; } .search kbd { top: 8px; border-color: var(--line-3); color: var(--muted); }
+    .results { background: #111; border-color: var(--line-2); border-radius: 14px; top: 46px; }
+    .res:hover, .res:focus-visible { background: #1c1c1c; }
+    .btn { min-height: 38px; padding: 0 14px; border-radius: 999px; background: transparent; border-color: var(--line-2); color: var(--text-2); font-size: 13px; }
+    .btn:hover { background: var(--panel-2); border-color: var(--line-3); }
+    .btn.primary { background: #fff; border-color: #fff; color: #0a0a0a; font-weight: 700; }
+    .btn.primary:hover { background: #e6e6e6; }
+    .menu-btn, .rail-open { width: 38px; }
+    .plines { position: absolute; left: 0; right: 0; bottom: -1px; margin: 0; height: 2px; display: block; pointer-events: none; }
+    .pwrap { height: 2px; } .pbar { height: 2px; border-radius: 0; background: transparent; }
+    .pfill { min-width: 0; background: var(--accent) !important; } .pfill + .pfill { border-left: 0; }
+    .plabels, .ptext { display: none; }
+    .sdot { background: #4a4a4a; } .sync-ok .sdot { background: #fff; } .sync-syncing .sdot { background: #9a9a9a; } .sync-error .sdot { background: var(--accent); }
+    /* card strip: one scrolling row of small pills */
+    .strip { flex-wrap: nowrap; overflow-x: auto; padding: 12px 28px 10px; gap: 6px; scrollbar-width: none; }
+    .strip::-webkit-scrollbar { display: none; }
+    .strip .hint { display: none; }
+    .chipbtn { flex: none; width: auto; min-width: 34px; height: 30px; padding: 0 8px; border-radius: 999px; border-color: var(--line-2); background: transparent; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .chipbtn:hover { color: var(--text); border-color: var(--line-3); }
+    .chipbtn.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: #fff; background: var(--accent-soft); }
+    .chipbtn.done { border-color: #2c6e57; background-color: #11261f; color: #5fd3a0; }   /* done: green */
+    .chipbtn.done.phys { border-color: #6d3fb0; background-color: #3b1663; color: #f1e8ff; }   /* done + physical card: purple, with the shine */
+    .chipbtn.done.cur { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .chipbtn.prac { border-color: #2c2c2c; background: transparent; color: #8a8a8a; font-style: italic; }
+    .stripsep { background: var(--line-3); height: 18px; }
+    /* stage and card header */
+    .stage { background: var(--bg); border-top: 0; padding: 6px 28px 12px; }
+    .paper-bar { gap: 10px; }
+    .paper-bar .chip { color: #fff; border-color: transparent; font-weight: 700; letter-spacing: .6px; }
+    .paper-bar .chip { white-space: nowrap; }
+    .paper-bar .chip.prac { color: #bdbdbd; }
+    .paper-bar .cat { color: var(--muted); text-transform: uppercase; font-size: 12px; letter-spacing: .8px; }
+    .paper-bar .copy-btn { background: transparent; border: 1px solid var(--line-2); color: var(--text-2); border-radius: 999px; padding: 4px 12px; }
+    .paper-bar .copy-btn:hover { border-color: var(--line-3); background: var(--panel-2); }
+    .ctime-btn { border-radius: 999px; border-color: var(--line-2); background: transparent; color: #fff; }
+    .ctime-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 0 4px rgba(229,72,77,.18); }
+    .ctime { color: #fff; font-weight: 600; }
+    .donechip { border-radius: 999px; background: #1a1a1a; border-color: #3a3a3a; color: #fff; }
+    .donechip.physchip { background: #fff; border-color: #fff; color: #0a0a0a; }
+    /* the paper: white, faint rules, red top edge */
+    .paper, .pface { border-radius: 8px; box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 24px 60px -20px rgba(0,0,0,.9); }
+    .paper { background-color: #fff; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--lh) - 1px), #ededed calc(var(--lh) - 1px), #ededed var(--lh)); color: #161616; }
+    .pface { background-color: #fff; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 39px, #ededed 39px, #ededed 40px); color: #161616; }
+    .paper::before, .pface::before { background: var(--accent); height: 3px; border-radius: 8px 8px 0 0; }
+    .pback::before { background: #161616; }
+    .paper-title { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; letter-spacing: -.2px; }
+    .paper-title small { color: var(--accent); }
+    .info, .pbody { color: #222; }
+    .info strong, .info h3.sub, .pbody .part { color: #0a0a0a; background: linear-gradient(transparent 60%, rgba(229,72,77,.22) 60%); }
+    .sect h2 { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; }
+    .plabel { color: var(--accent); border-bottom: 2px solid var(--accent); }
+    .plabel.sol, .pbody .ans { color: #0a0a0a; border-color: #0a0a0a; }
+    .story { border-left: 3px solid var(--accent); background: #f5f5f5; color: #333; }
+    .story .stag { color: var(--accent); }
+    .story .slink { color: #0a0a0a; text-decoration: underline; text-decoration-color: rgba(229,72,77,.5); text-underline-offset: 2px; }
+    .mathbox { background: #f6f6f6; border-left: 3px solid #0a0a0a; }
+    .pbody img.qimg { display: block; max-width: 100%; height: auto; margin: 4px 0 10px; mix-blend-mode: multiply; }
+    .stmt { border-color: #cfcfcf; background: #fafafa; color: #111; }
+    .cardhint { color: #555; } .cardhint b { background: var(--accent); color: #fff; }
+    .connection h2 { color: #0a0a0a; border-bottom: 2px solid var(--accent); }
+    .connection p { color: #2a2a2a; }
+    .sketch-box, .pfig .sketch-box { border: 1.5px solid #161616; border-radius: 6px; box-shadow: none; }
+    .sketch figcaption, .pfig figcaption { color: #666; }
+    .phint { color: #888; }
+    /* footer: previous / next at the ends, progress buttons centred */
+    .actions { padding: 10px 28px 14px; gap: 10px; border-top: 1px solid var(--line); background: var(--bg); }
+    .nav { min-height: 40px; border-radius: 999px; background: transparent; border-color: var(--line-2); color: var(--text-2); font-size: 13.5px; }
+    .nav:hover { background: var(--panel-2); }
+    .nav.next { background: #fff; border-color: #fff; color: #0a0a0a; font-weight: 700; }
+    .nav.next:hover { background: #e6e6e6; }
+    .counter { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .donebtn { min-height: 40px; border-radius: 999px; border: 1px solid var(--line-3); background: transparent; color: #fff; font-size: 13.5px; }
+    .donebtn:hover { background: var(--panel-2); }
+    .donebtn.is-done { background: #fff; border-color: #fff; color: #0a0a0a; }
+    .physbtn { border-color: rgba(229,72,77,.6); background: transparent; color: #ff8a8d; }
+    .physbtn:hover { background: var(--accent-soft); }
+    .physbtn.is-done { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .donebtn:hover, .nav:hover { box-shadow: none; }
+    /* dialogs */
+    #sync-modal .syncbox { background: #111; border-color: var(--line-2); color: var(--text-2); border-radius: 16px; }
+    #sync-modal input { background: #0a0a0a; border-color: var(--line-2); }
+    #sync-modal a { color: #fff; } #sync-modal .ok { color: #fff; }
+    @media (max-width: 900px) {
+      .topbar { flex-wrap: wrap; padding: 10px 16px; }
+      .search { order: 5; flex: 1 1 100%; max-width: none; }
+      .crumb { flex: 1 1 0; min-width: 0; white-space: nowrap; overflow: hidden; }
+      .crumb > span:first-child, .crumb > span[aria-hidden] { display: none; }
+      .crumb .t { flex: 1 1 auto; min-width: 0; } .crumb b { flex: none; }
+      .topbar .btn[aria-label="Print this topic"] { display: none; }
+      .topbar .btn { padding: 0 12px; }
+      .paper-bar .cat { display: none; }
+      .strip, .stage, .actions { padding-left: 16px; padding-right: 16px; }
+      .actions .sp { display: none; }
+      .actions { justify-content: space-between; }
+    }
+
+
+    /* ---------- motion ---------- */
+    .twin { display: inline-grid; } .twin > span { grid-area: 1 / 1; text-align: center; } .twin > .off { visibility: hidden; }
+    .donebtn { justify-content: center; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @keyframes scaleIn { from { opacity: 0; transform: translateY(6px) scale(.97); } to { opacity: 1; transform: none; } }
+    @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(229,72,77,.55); } 100% { box-shadow: 0 0 0 9px rgba(229,72,77,0); } }
+    @keyframes burstRing { from { transform: translate(-50%, -50%) scale(.6); opacity: .9; } to { transform: translate(-50%, -50%) scale(3.2); opacity: 0; } }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+    /* first load: sidebar, header and card rise in one after another */
+    body.booting .brand, body.booting #subject-list, body.booting .topbar > *:not(.plines), body.booting .strip { animation: fadeUp .55s cubic-bezier(.2,.8,.2,1) both; }
+    body.booting #subject-list { animation-delay: .06s; } body.booting .topbar > *:nth-child(4) { animation-delay: .08s; } body.booting .strip { animation-delay: .14s; }
+    body.booting #topic-list .topic { animation: fadeUp .45s cubic-bezier(.2,.8,.2,1) both; }
+    body.booting #topic-list .topic:nth-child(n) { animation-delay: calc(.12s + var(--i, 0) * 25ms); }
+    body.booting .actions > * { animation: fadeUp .5s .2s cubic-bezier(.2,.8,.2,1) both; }
+    /* everything that changes state eases into it */
+    .subj, .topic, .btn, .nav, .donebtn, .chipbtn, .imp-filter-btn, .copy-btn, .ctime-btn, .rail-collapse, .res { transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .15s ease, opacity .2s ease; }
+    .topic:hover { transform: translateX(2px); }
+    .subj:hover { transform: translateY(-1px); }
+    .btn:active, .nav:active, .donebtn:active, .subj:active, .topic:active, .ctime-btn:active { transform: scale(.97); }
+    .chipbtn.cur { transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .15s ease; }
+    .ctime-btn.on { animation: pulseRing 1.8s ease-out infinite; }
+    .results:not([hidden]) { animation: slideDown .16s ease-out both; transform-origin: top; }
+    #sync-modal .syncbox, #add-modal:not(.hidden) > div, #lightbox-modal:not(.hidden) > div { animation: scaleIn .22s cubic-bezier(.2,.8,.2,1) both; }
+    #add-modal:not(.hidden), #lightbox-modal:not(.hidden), #sync-modal .syncwrap { animation: fadeUp .18s ease-out both; }
+    .paper { transition: box-shadow .35s ease; }
+    .paper:hover { box-shadow: 0 1px 0 rgba(255,255,255,.08), 0 30px 70px -18px rgba(0,0,0,.95); }
+    .pfill { transition: flex-grow .6s cubic-bezier(.2,.8,.2,1); }
+    .burst { position: fixed; z-index: 70; pointer-events: none; border: 2px solid; border-radius: 999px; animation: burstRing .6s ease-out both; }
+
+    /* ---------- print: the whole topic, one card per page ---------- */
+    @media print {
+      html, body { background: #fff !important; }
+      .app, .main, .stage { display: block !important; height: auto !important; overflow: visible !important; }
+      .rail, .topbar, .strip, .actions, .scrim, #toast, .paper-bar { display: none !important; }
+      .stage { padding: 0 !important; background: none !important; border: 0 !important; }
+      .paper { break-inside: avoid; page-break-after: always; box-shadow: none; border: 1px solid #999; margin: 0 0 12px; }
+    }
+  </style>
+</head>
+<body class="booting selection:bg-red-500 selection:text-white">
+<div class="scrim" id="scrim" onclick="toggleRail(false)"></div>
+
+<div class="app">
+  <aside class="rail" id="rail" aria-label="Subjects and topics">
+    <div class="brand"><div class="logo" aria-hidden="true">P</div><div class="brand-name">Plates</div><button class="rail-collapse" onclick="setRailCollapsed(true)" aria-label="Collapse sidebar" title="Collapse sidebar ( [ )"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button></div>
+    <div>
+      <div class="label">SUBJECTS</div>
+      <div id="subject-list"></div>
+    </div>
+    <div>
+      <div class="label" id="topics-label">TOPICS</div>
+      <div id="imp-filter-bar" class="imp-filters"></div>
+      <div id="topic-list"></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn menu-btn" onclick="toggleRail(true)" aria-label="Open navigation">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h12M3 9h12M3 13h12"/></svg>
+      </button>
+      <button class="btn rail-open" onclick="setRailCollapsed(false)" aria-label="Show sidebar" title="Show sidebar ( [ )"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#b4bfd6" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h12M3 9h12M3 13h12"/></svg></button>
+      <div class="crumb" id="crumb"></div>
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#8e9bb8" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search formulas, traps, topics" aria-label="Search all cards" oninput="runSearch()" onfocus="runSearch()">
+        <kbd>⌘K</kbd>
+        <div class="results" id="search-results" hidden></div>
+      </div>
+      <button class="btn" id="sync-btn" onclick="openSync()">Sync</button>
+      <button class="btn" onclick="printDeck()" aria-label="Print this topic">Print</button>
+      <button class="btn primary" onclick="openAddModal()">+ Add card</button>
+      <div class="plines" id="progress-line" aria-label="Reading progress"></div>
+    </header>
+
+    <div class="strip" id="card-strip"></div>
+    <main class="stage" id="stage"></main>
+    <footer class="actions" id="actions"></footer>
+  </div>
+</div>
+
+    <!-- ================= LIGHTBOX IMAGE MODAL ================= -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/92 backdrop-blur-md z-50 p-4 flex items-center justify-center hidden" onclick="closeLightbox()">
+      <div class="max-w-5xl max-h-[92vh] w-full bg-[#111111] border border-neutral-800 rounded-2xl p-6 shadow-2xl flex flex-col items-center relative" onclick="event.stopPropagation()">
+        <div class="w-full flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+          <div>
+            <h4 id="lightbox-title" class="text-base sm:text-lg font-bold text-white font-serif-title"></h4>
+            <p id="lightbox-ref" class="text-xs font-mono text-red-400"></p>
+          </div>
+          <button onclick="closeLightbox()" class="text-slate-300 hover:text-white px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm">✕ Close</button>
+        </div>
+        <div class="flex-1 w-full flex items-center justify-center overflow-auto p-4 bg-white rounded-xl shadow-inner">
+          <img id="lightbox-img" src="" alt="Enlarged Specimen" class="max-h-[74vh] max-w-full object-contain">
+        </div>
+        <div class="mt-3 text-xs text-slate-400 font-mono text-center">
+          Click outside or press ✕ to return to orbital desk
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ADD NEW CARD MODAL ================= -->
+    <div id="add-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 p-4 flex items-center justify-center hidden">
+      <div class="w-full max-w-xl bg-[#111111] border border-neutral-800 rounded-2xl p-6 shadow-2xl text-slate-200">
+        <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-800">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span>✨</span> Make a new index card
+          </h3>
+          <button onclick="closeAddModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
+        </div>
+
+        <form onsubmit="saveCustomCard(event)" class="space-y-3.5 text-xs">
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">1. Title it with what you want to remember</label>
+            <input type="text" id="new-title" required placeholder="e.g. Linear Independence Constraint Qualification (LICQ)" class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white">
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">2. Fill it with info. Make it sound personal and VERY informal</label>
+            <textarea id="new-info" required rows="2" placeholder="Explain the concept in crisp, intuitive plain words..." class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white"></textarea>
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">3. Formula (optional)</label>
+            <input type="text" id="new-math" placeholder="e.g. $\nabla h_i(x^*)$ and $\nabla g_j(x^*)$ are linearly independent" class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white font-mono">
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">4. Write your own connection (or a personal example)</label>
+            <textarea id="new-connection" required rows="2" placeholder="Real-world physical analogy (e.g. two ropes pulling along same axis)..." class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white"></textarea>
+          </div>
+
+          <div>
+            <label class="block font-medium text-slate-300 mb-1">5. Draw a pic: say what you would draw</label>
+            <input type="text" id="new-drawing-caption" required placeholder="e.g. Visual verification of non-degenerate gradients" class="w-full bg-[#0a0a0a] border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-white">
+          </div>
+
+          <div class="flex justify-end gap-2 pt-3">
+            <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium">Cancel</button>
+            <button type="submit" class="px-5 py-2 rounded-lg bg-white text-black font-bold hover:bg-neutral-200">Launch Card</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+<script>
+    /* Default Cosmic Knowledge Deck (Luenberger & Ye 4th ed Reference) */
+    const defaultDeck = [
+      {
+        id: 1,
+        cardNumber: "01",
+        highlighterClass: "highlight-amber",
+        title: "Feasible Set & Active Constraints",
+        category: "OPTIMIZATION GEOMETRY",
+        textbookImg: "assets/luenberger_fig11_1.png",
+        textbookRef: "Luenberger & Ye (4th ed), Sect. 11.1, Fig. 11.1 (p. 322)",
+        drawingCaption: "Luenberger Fig. 11.1: Inactive g₂ and g₃ are far from x* with zero local effect",
+        coreTranslation: [
+          "The <strong>Feasible Set $\\Omega$</strong> is your legal playground where $h_i(x)=0$ and $g_j(x)\\le 0$ hold simultaneously.",
+          "The <strong>Active Set $\\mathcal{A}(x) = \\{j : g_j(x)=0\\}$</strong> identifies boundary walls you are physically pressing against right now.",
+          "<strong>Inactive constraints ($g_j(x) < 0$):</strong> In Luenberger's Fig. 11.1, candidate $x^*$ touches $g_1(x)=0$, while $g_2(x)=0$ and $g_3(x)=0$ are far away! In a local ball around $x^*$, they remain strictly $< 0$ and have zero local influence."
+        ],
+        math: `$$\\Omega = \\{x : h_i(x)=0, \\, g_j(x) \\le 0\\}, \\quad \\mathcal{A}(x) = \\{j : g_j(x) = 0\\}$$`,
+        personalConnection: "Standing in the corner of an elevator: only the two walls your shoulders are touching restrict immediate steps. The elevator door across the room has plenty of distance and plays zero local role.",
+        examTrap: "Never include inactive constraints in local gradient calculations! $g_j(x^*) < 0$ implies zero Lagrange multiplier impact locally."
+      },
+      {
+        id: 2,
+        cardNumber: "02",
+        highlighterClass: "highlight-cyan",
+        title: "The Tangent Vector d & Tangent Plane",
+        category: "LIMIT DEFINITIONS",
+        textbookImg: "assets/luenberger_fig11_2a.png",
+        textbookRef: "Luenberger & Ye (4th ed), Sect. 11.2, Fig. 11.2a (p. 324)",
+        drawingCaption: "Luenberger Fig. 11.2a: Tangent plane M to surface S at x* with normal ∇h(x*)ᵀ",
+        coreTranslation: [
+          "<strong>Luenberger's Curve Definition (p. 323):</strong> A curve on surface $S$ is parameterized as $x(t) \\in S$. The derivative at $x^*$ is velocity $\\dot{x}(t^*)$. The tangent plane is the collection of all such derivatives!",
+          "Discrete sequence definition: $d = \\lim_{k\\to\\infty} \\frac{x_k - x}{t_k}$ with $x_k \\in \\Omega$ and $t_k \\downarrow 0$.",
+          "As shown in Fig. 11.2a, tangent plane $M = \\{y : \\nabla h(x^*)^T y = 0\\}$ is strictly orthogonal to normal gradient $\\nabla h(x^*)^T$."
+        ],
+        math: `$$\\dot{x}(t^*) = \\lim_{t \\to t^*} \\frac{x(t) - x^*}{t - t^*}, \\quad M = \\{y : \\nabla h(x^*)^T y = 0\\}$$ $$\\lim_{k \\to \\infty} \\frac{x_k - x}{t_k} = d, \\quad x_k \\in \\Omega, \\; t_k \\downarrow 0$$`,
+        personalConnection: "An airplane touching down on a runway: $d$ is its exact velocity vector at touchdown. The crucial requirement is that the entire approach path $x_k$ remained strictly within legal airspace $\\Omega$.",
+        examTrap: "Scalars $t_k$ MUST strictly approach 0 from the positive side ($t_k > 0$). Negative steps reverse direction and can launch you outside $\\Omega$."
+      },
+      {
+        id: 3,
+        cardNumber: "03",
+        highlighterClass: "highlight-emerald",
+        title: "The Tangent Cone T_Ω(x)",
+        category: "CONE GEOMETRY",
+        drawingSvg: `
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <defs>
+              <marker id="arr-cone" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
+              </marker>
+            </defs>
+            <!-- Cone Shaded Fan -->
+            <polygon points="50,110 205,35 205,125" fill="#f1f5f9" stroke="#000000" stroke-width="1.8"/>
+            <!-- Direction ray d -->
+            <line x1="50" y1="110" x2="175" y2="75" stroke="#000000" stroke-width="2" marker-end="url(#arr-cone)"/>
+            <text x="180" y="78" fill="#000000" font-size="9.5" font-family="serif" font-style="italic" font-weight="bold">α d</text>
+            <!-- Base point x* -->
+            <circle cx="50" cy="110" r="4" fill="#000000"/>
+            <text x="40" y="125" fill="#000000" font-size="10" font-family="serif" font-style="italic" font-weight="bold">x*</text>
+            <!-- Cone label -->
+            <text x="135" y="55" fill="#000000" font-size="11" font-family="serif" font-style="italic" font-weight="bold">T_Ω(x*)</text>
+            <text x="120" y="138" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">Fan of all admissible departure rays: d ∈ T_Ω ⇒ αd ∈ T_Ω (α ≥ 0)</text>
+          </svg>
+        `,
+        drawingCaption: "The fan of all admissible departure rays into Ω",
+        coreTranslation: [
+          "The set of all tangent vectors at $x$ is called the <strong>Tangent Cone</strong>, denoted $T_\\Omega(x)$.",
+          "<strong>Why a cone?</strong> If $d \\in T_\\Omega(x)$, then re-scaling time $t_k \\to t_k / \\alpha$ proves $\\alpha d \\in T_\\Omega(x)$ for all $\\alpha \\ge 0$.",
+          "$0 \\in T_\\Omega(x)$ always (take constant sequence $x_k = x$). $T_\\Omega(x)$ is always closed, but NOT necessarily convex or a linear subspace!"
+        ],
+        math: `$$T_\\Omega(x) = \\{ d \\in \\mathbb{R}^n : d \\text{ is tangent to } \\Omega \\text{ at } x \\}$$ $$d \\in T_\\Omega(x) \\implies \\alpha d \\in T_\\Omega(x), \\quad \\forall \\alpha \\ge 0$$`,
+        personalConnection: "A flashlight beam shining out from point $x$ into the courtyard: you can walk as fast as you want along that ray ($\alpha d$), but turning 180° backward into the solid wall is blocked.",
+        examTrap: "Never call $T_\\Omega(x)$ a subspace! At a boundary corner, if $d \\in T_\\Omega$, $-d$ is illegal. It is a CONE."
+      },
+      {
+        id: 4,
+        cardNumber: "04",
+        highlighterClass: "highlight-purple",
+        title: "Computing T_Ω(0,0) for x₁, x₂ ≥ 0",
+        category: "WORKED STEP-BY-STEP",
+        drawingSvg: `
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <defs>
+              <marker id="arr-axis-4" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
+              </marker>
+            </defs>
+            <!-- Axes -->
+            <line x1="35" y1="115" x2="215" y2="115" stroke="#000000" stroke-width="1.5" marker-end="url(#arr-axis-4)"/>
+            <line x1="55" y1="130" x2="55" y2="20" stroke="#000000" stroke-width="1.5" marker-end="url(#arr-axis-4)"/>
+            <text x="215" y="128" fill="#000000" font-size="9" font-family="serif" font-style="italic">x₁</text>
+            <text x="42" y="25" fill="#000000" font-size="9" font-family="serif" font-style="italic">x₂</text>
+            <!-- Shaded First Quadrant -->
+            <rect x="55" y="25" width="145" height="90" fill="#f1f5f9" stroke="#000000" stroke-width="1.2" stroke-dasharray="4,3"/>
+            <!-- Origin -->
+            <circle cx="55" cy="115" r="4" fill="#000000"/>
+            <text x="40" y="128" fill="#000000" font-size="9" font-family="serif" font-style="italic">(0,0)</text>
+            <text x="125" y="65" fill="#000000" font-size="10" font-family="serif" font-style="italic" font-weight="bold">T_Ω(0,0) = ℝ²₊</text>
+            <text x="125" y="82" fill="#000000" font-size="8.5" font-family="monospace">[0, ∞) × [0, ∞)</text>
+          </svg>
+        `,
+        drawingCaption: "At a 90° corner, the cone is the entire first quadrant",
+        coreTranslation: [
+          "Let $\\Omega = \\{(x_1, x_2) : x_1 \\ge 0, x_2 \\ge 0\\}$. At the origin $(0,0)$, both constraints are active.",
+          "For candidate direction $d = (d_1, d_2)$, $x_k = (x_{k,1}, x_{k,2}) \\in \\Omega$ implies $(x_{k,1}/t_k, x_{k,2}/t_k) \\to (d_1, d_2)$.",
+          "Since $x_{k,i} \\ge 0$ and $t_k > 0$, taking limits forces $d_1 \\ge 0, d_2 \\ge 0$. Conversely, $x_k = t_k d$ is feasible. Thus $T_\\Omega((0,0)) = \\mathbb{R}_+^2$."
+        ],
+        math: `$$x_k = (t_k d_1, t_k d_2) \\in \\Omega \\iff d_1 \\ge 0, \\, d_2 \\ge 0$$ $$T_\\Omega((0,0)) = [0, \\infty) \\times [0, \\infty)$$`,
+        personalConnection: "Standing right at the corner flag of a soccer field: every legal kick inside the pitch must have both non-negative forward and non-negative lateral components.",
+        examTrap: "Common blunder: guessing $T_\\Omega((0,0)) = \\{0\\}$ because both walls meet. Zero is just one point; the entire quadrant is feasible!"
+      },
+      {
+        id: 5,
+        cardNumber: "05",
+        highlighterClass: "highlight-amber",
+        title: "First-Order Optimality: ∇f(x*)ᵀd ≥ 0",
+        category: "OPTIMALITY THEOREM",
+        drawingSvg: `
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <defs>
+              <marker id="arr-opt" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000"/>
+              </marker>
+            </defs>
+            <!-- Tangent cone fan -->
+            <polygon points="110,85 195,35 195,120" fill="#f1f5f9" stroke="#000000" stroke-width="1.8"/>
+            <text x="155" y="75" fill="#000000" font-size="10" font-family="serif" font-style="italic" font-weight="bold">T_Ω(x*)</text>
+            <!-- Supporting hyperplane (dashed line) -->
+            <line x1="110" y1="25" x2="110" y2="135" stroke="#000000" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <!-- Negative gradient -∇f pointing into exterior -->
+            <line x1="110" y1="85" x2="45" y2="50" stroke="#000000" stroke-width="2" marker-end="url(#arr-opt)"/>
+            <text x="35" y="45" fill="#000000" font-size="9" font-family="serif" font-style="italic" font-weight="bold">-∇f(x*)</text>
+            <!-- Vertex x* -->
+            <circle cx="110" cy="85" r="4" fill="#000000"/>
+            <text x="100" y="100" fill="#000000" font-size="9.5" font-family="serif" font-style="italic">x*</text>
+            <text x="120" y="20" fill="#000000" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">Optimality: ∇f(x*)ᵀd ≥ 0  (∀ d ∈ T_Ω)</text>
+            <text x="120" y="138" fill="#000000" font-size="8.5" font-family="sans-serif" text-anchor="middle">-∇f(x*) makes obtuse angle (≥ 90°) with all feasible directions</text>
+          </svg>
+        `,
+        drawingCaption: "Negative gradient makes an obtuse angle with all feasible directions",
+        coreTranslation: [
+          "If $x^* \\in \\Omega$ is a local minimizer of $f$, then: $$\\nabla f(x^*)^T d \\ge 0, \\quad \\forall d \\in T_\\Omega(x^*)$$",
+          "<strong>Geometric Meaning:</strong> Any movement into $\\Omega$ causes $f$ to increase or stay level. There are <strong>zero descent directions</strong> inside the tangent cone!",
+          "Consequently, $-\\nabla f(x^*)$ lies in the polar cone $T_\\Omega(x^*)^\\circ$."
+        ],
+        math: `$$\\nabla f(x^*)^T d \\ge 0, \\quad \\forall d \\in T_\\Omega(x^*)$$ $$\\text{Taylor: } f(x + t_k d) = f(x) + t_k \\nabla f(x)^T d + o(t_k)$$`,
+        personalConnection: "A golf ball rolled into a corner against the curb: gravity pulls downward, but the curb blocks it. The only legal roll is back uphill ($\Delta f \\ge 0$).",
+        examTrap: "In constrained optimization, $\\nabla f(x^*) \\ne 0$ is standard! It only equals zero if the minimizer is strictly in the interior ($\mathcal{A}(x) = \\emptyset$)."
+      },
+      {
+        id: 6,
+        cardNumber: "06",
+        highlighterClass: "highlight-cyan",
+        title: "Tangent Cone vs Linearized Cone",
+        category: "EXAM TRAPS & CQ",
+        textbookImg: "assets/luenberger_fig12_1.png",
+        textbookRef: "Luenberger & Ye (4th ed), Sect. 12.1, Fig. 12.1 (p. 360)",
+        drawingCaption: "Luenberger Fig. 12.1: Nonlinear constraints require curved paths; straight tangents can exit Ω",
+        coreTranslation: [
+          "<strong>Tangent Cone $T_\\Omega(x)$</strong> is built from actual physical paths inside $\\Omega$.",
+          "<strong>Linearized Cone $L_\\Omega(x)$</strong> replaces curves with first-order gradient approximations: $\\nabla h_i(x)^T d = 0, \\; \\nabla g_j(x)^T d \\le 0 \\, (j \\in \\mathcal{A}(x))$.",
+          "Always: $T_\\Omega(x) \\subseteq L_\\Omega(x)$. But equality holds only under <strong>Constraint Qualifications</strong> (like LICQ or Mangasarian-Fromovitz)!"
+        ],
+        math: `$$L_\\Omega(x) = \\{ d : \\nabla h_i(x)^T d = 0, \\; \\nabla g_j(x)^T d \\le 0 \\, (j \\in \\mathcal{A}(x)) \\}$$ $$T_\\Omega(x) = L_\\Omega(x) \\iff \\text{Constraint Qualification (CQ) holds}$$`,
+        personalConnection: "A blueprint map showing a flat bridge because of linear drawing errors, but when you arrive in person, there is a cliff. $T_\\Omega$ is the real physical cliff; $L_\\Omega$ is the faulty linear blueprint.",
+        examTrap: "Assuming KKT multipliers always exist. If $T_\\Omega \\ne L_\\Omega$ (CQ fails), a local minimum can exist where KKT fails completely!"
+      }
+    ];
+
+
+    const masterCards = window.MASTER_CARDS_DATA || defaultDeck;
+    const SUBJECTS = [
+      { id: 'CMO', color: '#f4f4f4' },
+      { id: 'LAA', color: '#bdbdbd' },
+      { id: 'StoMA', color: '#8a8a8a' },
+      { id: 'DIP', color: '#5a5a5a' }
+    ];
+    const POS_KEY = 'plates_pos_v1';
+
+    const DONE_KEY = 'plates_done_v1';
+    const TS_KEY = 'plates_done_ts_v1';
+    /* doneTs: card id -> timestamp; positive = done, negative = un-done (last change wins when merging devices) */
+    let doneTs = {};
+    try { doneTs = JSON.parse(localStorage.getItem(TS_KEY) || 'null') || {}; } catch (e) { doneTs = {}; }
+    try { JSON.parse(localStorage.getItem(DONE_KEY) || '[]').forEach(id => { if (!(id in doneTs)) doneTs[id] = 1; }); } catch (e) {}
+    let done = new Set();
+    /* keys 'phys:<id>' in doneTs = a physical card was made for that card (synced with the rest) */
+    let phys = new Set();
+    function rebuildDone() {
+      const on = Object.keys(doneTs).filter(k => doneTs[k] > 0), num = k => isNaN(k) ? k : Number(k);
+      done = new Set(on.filter(k => !k.startsWith('phys:')).map(num));
+      phys = new Set(on.filter(k => k.startsWith('phys:')).map(k => num(k.slice(5))));
+    }
+    const both = id => done.has(id) && phys.has(id);
+    rebuildDone();
+    function saveDone() {
+      try { localStorage.setItem(TS_KEY, JSON.stringify(doneTs)); localStorage.setItem(DONE_KEY, JSON.stringify([...done])); } catch (e) {}
+    }
+    function burst(sel, color) {
+      const b = document.querySelector('#actions ' + sel);
+      if (!b || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      const r = b.getBoundingClientRect();
+      for (let i = 0; i < 2; i++) {
+        const d = document.createElement('div');
+        d.className = 'burst';
+        d.style.cssText = `left:${r.left + r.width / 2}px;top:${r.top + r.height / 2}px;width:${r.height}px;height:${r.height}px;border-color:${color};animation-delay:${i * 120}ms`;
+        document.body.appendChild(d);
+        d.addEventListener('animationend', () => d.remove());
+      }
+    }
+    function toggleDone() {
+      const c = deck[idx];
+      if (!c || isPractice(c)) return;
+      popNext = 'donebtn:not(.physbtn)';
+      doneTs[c.id] = done.has(c.id) ? -Date.now() : Date.now();
+      rebuildDone();
+      saveDone();
+      renderAll();
+      if (done.has(c.id)) burst('.donebtn:not(.physbtn)', '#5fd3a0');
+      syncSoon();
+    }
+    function togglePhys() {
+      const c = deck[idx];
+      if (!c || isPractice(c)) return;
+      popNext = 'physbtn';
+      doneTs['phys:' + c.id] = phys.has(c.id) ? -Date.now() : Date.now();
+      rebuildDone();
+      saveDone();
+      renderAll();
+      if (phys.has(c.id)) burst('.physbtn', '#a77bf3');
+      syncSoon();
+    }
+
+
+    /* ---- cross-device sync: a private GitHub Gist, reached with a token you paste on each device ---- */
+    const SYNC_KEY = 'plates_sync_v1', GIST_FILE = 'plates-progress.json', TIME_FILE = 'plates-card-time.json', RUN_FILE = 'plates-card-run.json', GIST_DESC = 'plates-progress (Plates study site)';
+    let syncCfg = {}; try { syncCfg = JSON.parse(localStorage.getItem(SYNC_KEY) || '{}'); } catch (e) {}
+    let syncState = syncCfg.token ? 'idle' : 'off', syncTimer = null, syncBusy = false;
+    function saveSyncCfg() { try { localStorage.setItem(SYNC_KEY, JSON.stringify(syncCfg)); } catch (e) {} }
+    function ghApi(path, opt) {
+      return fetch('https://api.github.com' + path, Object.assign({}, opt, { headers: {
+        Authorization: 'Bearer ' + syncCfg.token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }, cache: 'no-store' }))
+        .then(r => { if (!r.ok) throw new Error('GitHub ' + r.status); return r.json(); });
+    }
+    function mergeTs(remote) {
+      let changed = false;
+      for (const k in remote) if (!(k in doneTs) || Math.abs(remote[k]) > Math.abs(doneTs[k])) { doneTs[k] = remote[k]; changed = true; }
+      return changed;
+    }
+    async function syncNow() {
+      if (!syncCfg.token || syncBusy) return;
+      syncBusy = true; setSync('syncing');
+      try {
+        if (!syncCfg.gist) {
+          const list = await ghApi('/gists?per_page=100');
+          const found = list.find(g => g.description === GIST_DESC && g.files[GIST_FILE]);
+          if (found) syncCfg.gist = found.id;
+          else syncCfg.gist = (await ghApi('/gists', { method: 'POST', body: JSON.stringify({ description: GIST_DESC, public: false,
+            files: { [GIST_FILE]: { content: JSON.stringify(doneTs) } } }) })).id;
+          saveSyncCfg();
+        }
+        const g = await ghApi('/gists/' + syncCfg.gist);
+        let remote = {}; try { remote = JSON.parse(g.files[GIST_FILE].content || '{}'); } catch (e) {}
+        const pulled = mergeTs(remote);
+        const needPush = Object.keys(doneTs).some(k => !(k in remote) || Math.abs(doneTs[k]) > Math.abs(remote[k]));
+        if (pulled) { rebuildDone(); saveDone(); renderAll(); }
+        /* card study time lives in a second file of the same gist, so the progress file's format is untouched */
+        let remoteT = null; try { if (g.files[TIME_FILE]) remoteT = JSON.parse(g.files[TIME_FILE].content || 'null'); } catch (e) {}
+        /* the timer's play/pause state lives in a third file, so both other formats are untouched */
+        let remoteR = null; try { if (g.files[RUN_FILE]) remoteR = JSON.parse(g.files[RUN_FILE].content || 'null'); } catch (e) {}
+        const ct = window.CardTime ? CardTime.syncMerge(remoteT, remoteR) : null;
+        const files = {};
+        if (needPush) files[GIST_FILE] = { content: JSON.stringify(doneTs) };
+        if (ct && ct.push) files[TIME_FILE] = { content: ct.content };
+        if (ct && ct.pushRun) files[RUN_FILE] = { content: ct.runContent };
+        if (Object.keys(files).length) await ghApi('/gists/' + syncCfg.gist, { method: 'PATCH', body: JSON.stringify({ files }) });
+        syncCfg.last = Date.now(); saveSyncCfg(); setSync('ok');
+      } catch (e) { setSync('error', e.message); }
+      syncBusy = false;
+    }
+    function syncSoon() { if (!syncCfg.token) return; clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 1200); }
+    function setSync(state, msg) {
+      syncState = state;
+      const b = document.getElementById('sync-btn'); if (!b) return;
+      const label = { off: 'Sync', idle: 'Sync', syncing: 'Syncing…', ok: 'Synced', error: 'Sync error' }[state];
+      b.className = 'btn sync-' + state;
+      b.title = msg || (syncCfg.last ? 'Last synced ' + new Date(syncCfg.last).toLocaleTimeString() : 'Sync progress across devices');
+      b.innerHTML = '<span class="sdot"></span>' + label;
+    }
+    function openSync() {
+      let m = document.getElementById('sync-modal');
+      if (!m) { m = document.createElement('div'); m.id = 'sync-modal'; document.body.appendChild(m); }
+      const on = !!syncCfg.token;
+      m.innerHTML = `<div class="syncwrap" onclick="if(event.target===this)closeSync()"><div class="syncbox">
+        <h3>Sync progress across devices</h3>
+        <p>Your “Understood” ticks, card study times and the card timer’s play/pause state are saved in a <b>private GitHub Gist</b> on your own account. Open this site on another device, paste the same token there, and both stay in step.</p>
+        ${on ? `<p class="ok">Sync is on${syncCfg.last ? ' · last synced ' + new Date(syncCfg.last).toLocaleTimeString() : ''}.</p>
+          <div class="row"><button class="btn primary" onclick="syncNow();closeSync()">Sync now</button><button class="btn" onclick="syncOff()">Turn off on this device</button><button class="btn" onclick="closeSync()">Close</button></div>`
+        : `<ol><li><a href="https://github.com/settings/tokens/new?scopes=gist&description=Plates%20sync" target="_blank" rel="noopener">Create a token</a> with only the <b>gist</b> permission.</li>
+          <li>Paste it here:</li></ol>
+          <input id="sync-token" type="password" placeholder="ghp_… or github_pat_…" autocomplete="off">
+          <div class="row"><button class="btn primary" onclick="syncOn()">Turn on sync</button><button class="btn" onclick="closeSync()">Cancel</button></div>
+          <p class="small">The token is stored only in this browser, never in the repo.</p>`}
+      </div></div>`;
+    }
+    function closeSync() { const m = document.getElementById('sync-modal'); if (m) m.innerHTML = ''; }
+    function syncOn() {
+      const t = document.getElementById('sync-token').value.trim(); if (!t) return;
+      syncCfg = { token: t }; saveSyncCfg(); closeSync(); syncNow();
+    }
+    function syncOff() { syncCfg = {}; saveSyncCfg(); setSync('off'); closeSync(); }
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) syncNow(); });
+    setInterval(() => { if (!document.hidden) syncNow(); }, 45000);
+    function savePos() { try { localStorage.setItem(POS_KEY, JSON.stringify({ s: currentSubject, t: currentTopic, i: idx })); } catch (e) {} }
+
+    let currentSubject = 'CMO';
+    let currentTopic = null;
+    let deck = [];
+    /* A card too full for one page becomes two subtopic cards: each shows its own part of the breakdown, nothing hidden. */
+    function splitCard(c) {
+      const k = Math.min(2, c.breakdown.length - 1);
+      return [
+        Object.assign({}, c, { part: 1, cardNumber: c.cardNumber + 'a', title: c.title + ' <small>(1/2)</small>', breakdown: c.breakdown.slice(0, k), hideConn: true }),
+        Object.assign({}, c, { part: 2, cardNumber: c.cardNumber + 'b', title: c.title + ' <small>(2/2)</small>', breakdown: c.breakdown.slice(k), hint: '', hideFig: true })
+      ];
+    }
+    function expandDeck(d) { return d.flatMap(c => (c.__split && !c.part) ? splitCard(c) : [c]); }
+    let idx = 0;
+    let currentImpFilter = 'all';
+    let flipped = false;
+    /* Practice cards: PYQs and same-level questions that follow a topic's explanation cards (data: practice_*.js). */
+    function practiceFor(sub, topicId) {
+      return (window.PRACTICE_DATA || []).flat(Infinity).filter(q => q.subject === sub && q.topicId === topicId && !(q.mockLocked && !(window.mockUnlocked && mockUnlocked())))
+        .map((q, i) => Object.assign({ kind: 'practice', cardNumber: 'P' + (i + 1) }, q));
+    }
+    const isPractice = c => c && c.kind === 'practice';
+    function flipCard() {
+      if (!isPractice(deck[idx])) return;
+      flipped = !flipped;
+      const f = document.querySelector('.flipper');
+      if (f) f.classList.toggle('is-flipped', flipped);
+      renderActions();
+      const btn = document.querySelector('.paper-bar .copy-btn span');
+      if (btn) btn.textContent = flipped ? 'Question' : 'Solution';
+    }
+
+    function setImpFilter(f) {
+      currentImpFilter = f;
+      renderRail();
+    }
+
+    const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const stripTags = s => String(s || '').replace(/<\/?[^>]+(>|$)/g, '').replace(/\$/g, '');
+    const topicOf = c => c.topicId || 'default';
+
+    function getSubjectCards(sub) { return masterCards.filter(c => (c.subject || 'CMO') === sub); }
+
+    function getTopicsList(sub) {
+      const map = new Map();
+      getSubjectCards(sub || currentSubject).forEach(c => {
+        const id = topicOf(c);
+        if (!map.has(id)) map.set(id, { id, title: c.topicTitle || 'Default deck', cards: [] });
+        map.get(id).cards.push(c);
+      });
+      return Array.from(map.values());
+    }
+
+    /* ---------- navigation ---------- */
+    function applyAccent() {
+      const s = SUBJECTS.find(x => x.id === currentSubject);
+      document.documentElement.style.setProperty('--accent', '#e5484d');   // one red accent for every subject
+    }
+
+    function switchSubject(sub) {
+      currentSubject = sub;
+      currentImpFilter = 'all';
+      applyAccent();
+      const topics = getTopicsList(sub);
+      if (topics.length) {
+        switchTopic(topics[0].id);
+      } else {
+        currentTopic = null; deck = []; idx = 0;
+        renderAll();
+      }
+      toggleRail(false);
+    }
+
+    function switchTopic(topicId, keepIdx) {
+      currentTopic = topicId;
+      deck = getSubjectCards(currentSubject).filter(c => topicOf(c) === topicId).concat(practiceFor(currentSubject, topicId));
+      deck = expandDeck(deck);
+      flipped = false;
+      idx = keepIdx ? Math.max(0, Math.min(idx, deck.length - 1)) : 0;
+      closeSearch();
+      renderAll();
+      toggleRail(false);
+    }
+
+    function goTo(i) {
+      if (!deck.length) return;
+      flipped = false;
+      idx = Math.max(0, Math.min(deck.length - 1, i));
+      renderAll();
+    }
+
+    function step(dir) {
+      if (!deck.length) return;
+      const n = idx + dir;
+      if (n >= 0 && n < deck.length) { goTo(n); return; }
+      const topics = getTopicsList();
+      let t = topics.findIndex(x => x.id === currentTopic);
+      t = (t + dir + topics.length) % topics.length;
+      switchTopic(topics[t].id);
+      if (dir < 0) goTo(deck.length - 1);
+    }
+
+    /* sidebar collapse (wide screens); the choice is remembered, narrow screens keep their slide-in drawer */
+    function setRailCollapsed(on) {
+      document.querySelector('.app').classList.toggle('rail-collapsed', !!on);
+      try { localStorage.setItem('plates_rail_collapsed', on ? '1' : '0'); } catch (e) {}
+      setTimeout(() => { if (typeof fitCard === 'function') fitCard(); }, 0);
+    }
+    try { if (localStorage.getItem('plates_rail_collapsed') === '1') document.querySelector('.app').classList.add('rail-collapsed'); } catch (e) {}
+    function toggleRail(open) {
+      document.getElementById('rail').classList.toggle('open', open);
+      document.getElementById('scrim').classList.toggle('open', open);
+    }
+
+    /* ---------- rendering ---------- */
+    function renderRail() {
+      document.getElementById('subject-list').innerHTML = SUBJECTS.map(s => {
+        const cs = getSubjectCards(s.id), n = cs.length, k = cs.filter(c => done.has(c.id)).length;
+        return `<button class="subj ${s.id === currentSubject ? 'active' : ''}" onclick="switchSubject('${s.id}')" title="${s.id}: ${k} of ${n} done">
+          <span class="dot" style="background:${s.color}"></span><span class="sname">${s.id}</span><span class="srow"><span class="n">${n ? k + '/' + n : ''}</span>${window.CardTime ? CardTime.subjHtml(s.id) : ''}</span></button>`;
+      }).join('');
+
+      document.getElementById('topics-label').textContent = `${currentSubject} TOPICS`;
+      const allSubjTopics = getTopicsList();
+
+      const nRed = allSubjTopics.filter(t => (window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id).tier : '') === 'red').length;
+      const nOrange = allSubjTopics.filter(t => (window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id).tier : '') === 'orange').length;
+      const nYellow = allSubjTopics.filter(t => (window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id).tier : '') === 'yellow').length;
+
+      const filterBar = document.getElementById('imp-filter-bar');
+      if (filterBar) {
+        filterBar.innerHTML = `
+          <button class="imp-filter-btn ${currentImpFilter === 'all' ? 'active' : ''}" onclick="setImpFilter('all')">All (${allSubjTopics.length})</button>
+          <button class="imp-filter-btn f-red ${currentImpFilter === 'red' ? 'active' : ''}" onclick="setImpFilter('red')" title="Extremely Important (High PYQ Weight)"><i class="imp-dot imp-red"></i> ${nRed}</button>
+          <button class="imp-filter-btn f-orange ${currentImpFilter === 'orange' ? 'active' : ''}" onclick="setImpFilter('orange')" title="Medium Importance"><i class="imp-dot imp-orange"></i> ${nOrange}</button>
+          <button class="imp-filter-btn f-yellow ${currentImpFilter === 'yellow' ? 'active' : ''}" onclick="setImpFilter('yellow')" title="Lowest Importance / Foundational"><i class="imp-dot imp-yellow"></i> ${nYellow}</button>
+        `;
+      }
+
+      const filteredTopics = (currentImpFilter === 'all')
+        ? allSubjTopics
+        : allSubjTopics.filter(t => {
+            const imp = window.getTopicImportance ? window.getTopicImportance(currentSubject, t.id) : { tier: 'orange' };
+            return imp.tier === currentImpFilter;
+          });
+
+      document.getElementById('topic-list').innerHTML = filteredTopics.length ? filteredTopics.map(t => {
+        const imp = (typeof window.getTopicImportance === 'function')
+          ? window.getTopicImportance(currentSubject, t.id)
+          : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
+        return `<button class="topic ${t.id === currentTopic ? 'active' : ''}" style="--i:${filteredTopics.indexOf(t)}" onclick="switchTopic('${t.id}')" title="${esc(t.title)} • ${imp.label} (PYQ Weight: ${imp.pyqWeight})">
+          <span class="imp-dot imp-${imp.tier}" title="${imp.label}: ${esc(imp.reason)}"></span>
+          <span class="name">${esc(t.title)}</span>
+          <span class="cnt">${t.cards.filter(c => done.has(c.id)).length}/${t.cards.length}</span>
+        </button>`;
+      }).join('')
+      : `<div style="padding:8px 10px;font-size:13px;color:#8e9bb8;line-height:1.5">No ${currentImpFilter} topics found.</div>`;
+    }
+
+    function renderTop() {
+      const t = getTopicsList().find(x => x.id === currentTopic);
+      const card = deck[idx];
+      const imp = (t && typeof window.getTopicImportance === 'function')
+        ? window.getTopicImportance(currentSubject, t.id)
+        : null;
+      const impPill = imp ? `<span class="imp-dot imp-${imp.tier}" title="${imp.label}: ${esc(imp.reason)}" style="margin-left:5px;display:inline-block;vertical-align:middle"></span>` : '';
+      document.getElementById('crumb').innerHTML = `<span>${currentSubject}</span><span aria-hidden="true">/</span>
+        <span class="t">${t ? esc(t.title) : '—'}${impPill}</span>${card ? `<span aria-hidden="true">/</span><b>${isPractice(card) ? 'Practice' : 'Card'} ${esc(card.cardNumber)}</b>` : ''}`;
+      document.title = card ? `${isPractice(card) ? 'Practice ' + card.cardNumber : stripTags(card.title)} · Plates` : 'Plates · Photographic Memory Cards';
+    }
+
+    function renderStrip() {
+      const strip = document.getElementById('card-strip');
+      if (!deck.length) { strip.innerHTML = ''; return; }
+      strip.innerHTML = deck.map((c, i) => isPractice(c)
+        ? `${deck[i - 1] && !isPractice(deck[i - 1]) ? '<span class="stripsep" title="Practice questions"></span>' : ''}<button class="chipbtn prac ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Practice question ${esc(c.cardNumber)}${i === idx ? ', current' : ''}">${esc(c.cardNumber)}</button>`
+        : `<button class="chipbtn ${done.has(c.id) ? 'done' : ''} ${both(c.id) ? 'phys' : ''} ${i === idx ? 'cur' : ''}" onclick="goTo(${i})" aria-label="Card ${esc(c.cardNumber)}${done.has(c.id) ? ', done' : ''}${phys.has(c.id) ? ', physical card made' : ''}${i === idx ? ', current' : ''}">${both(c.id) ? '✎' : done.has(c.id) ? '✓' : esc(c.cardNumber)}</button>`
+      ).join('');
+    }
+
+    function sketchHtml(card) {
+      return card.textbookImg
+        ? `<img src="${esc(card.textbookImg)}" alt="${esc(card.title)}" onclick="openLightboxById(${card.id})">`
+        : `<div class="plate-svg">${card.drawingSvg || ''}</div>`;
+    }
+
+    /* Each point gets its sub-title (Definition, Why it matters, ...) on its own line. */
+    const SUB = /^\s*<strong>\s*([^<]{1,60}?)\s*:?\s*<\/strong>\s*:?\s*/;
+    const cap = t => t.replace(/^([a-z])/, m => m.toUpperCase());
+    function infoHtml(card) {
+      return card.coreTranslation.map(pt => {
+        const m = pt.match(SUB);
+        if (!m) return `<div class="pt"><p>${cap(pt.trim())}</p></div>`;
+        const rest = cap(pt.slice(m[0].length).trim());
+        return `<div class="pt"><h3 class="sub">${m[1]}</h3>${rest ? `<p>${rest}</p>` : ''}</div>`;
+      }).join('');
+    }
+    function infoParagraph(card) {   /* plain text, used for search snippets */
+      return card.coreTranslation.map(pt => pt.replace(SUB, '').trim()).join(' ');
+    }
+
+    /* Practice cards borrow the picture of the topic plate that best matches their wording. */
+    const STOP = new Set('the a an of and or to in is are for with that this be by as on at it its from if then find show prove let which what given each any all'.split(' '));
+    const words = t => (String(t || '').replace(/<[^>]+>|\$[^$]*\$/g, ' ').toLowerCase().match(/[a-z]{3,}/g) || []).filter(w => !STOP.has(w));
+    function pictureFor(q) {
+      if (q.__pic !== undefined) return q.__pic;
+      const plates = getSubjectCards(q.subject).filter(c => c.topicId === q.topicId && (c.textbookImg || c.drawingSvg));
+      const qw = new Set(words(q.title + ' ' + q.question));
+      let best = null, bs = -1;
+      plates.forEach(c => { const sc = words(c.title + ' ' + (c.drawingCaption || '')).filter(w => qw.has(w)).length; if (sc > bs) { bs = sc; best = c; } });
+      return (q.__pic = best);
+    }
+    function practiceHtml(q) {
+      const tag = (q.kind2 === 'pyq' ? ('PYQ · ' + esc(q.source)) : q.kind2 === 'ivy' ? ('Ivy League · ' + esc(q.source)) : 'Practice · same level as the PYQs') + (q.partNote ? ' · ' + esc(q.partNote) : '');
+      const imp = (typeof window.getTopicImportance === 'function')
+        ? window.getTopicImportance(q.subject || currentSubject, q.topicId)
+        : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
+      const impSymbol = `<i class="imp-dot imp-${imp.tier}"></i>`;
+      return `
+        <div class="paper-bar">
+          <span class="chip prac">PRACTICE ${esc(q.cardNumber)}</span>
+          <span class="cat">${tag}</span>
+          ${q.marks ? `<span class="cat">${esc(q.marks)}</span>` : ''}
+          ${q.stretch ? `<span class="stretchchip" title="${esc(q.stretch)}">STRETCH</span>` : ''}
+          <span class="imp-badge imp-${imp.tier}" title="${esc(imp.reason)}">${impSymbol} ${esc(imp.label.toUpperCase())}</span>
+          ${window.CardTime ? CardTime.barHtml(q) : ''}
+          <button class="copy-btn" onclick="flipCard()" title="Flip between Question and Solution (or press F)">⟳ <span>${flipped ? 'Question' : 'Solution'}</span></button>
+        </div>
+        <div class="flipwrap" onclick="if(!event.target.closest('a,button') && !(window.getSelection && window.getSelection().toString().length))flipCard()">
+          <div class="flipper ${flipped ? 'is-flipped' : ''}">
+            <article class="pface pfront" aria-label="Question">
+              <h2 class="plabel">QUESTION</h2>
+              ${(() => { const pc = pictureFor(q); return pc ? `<figure class="pfig"><div class="sketch-box">${sketchHtml(pc)}</div><figcaption>${pc.drawingCaption || ''}</figcaption></figure>` : ''; })()}
+              <div class="pbody">${q.question}</div>
+              <div class="phint">Try it on paper first, then flip for the solution &nbsp;(<kbd>F</kbd> or click to flip)</div>
+            </article>
+            <article class="pface pback" aria-label="Solution">
+              <h2 class="plabel sol">SOLUTION</h2>
+              <div class="pbody">${q.solution}</div>
+              ${q.takeaway ? `<section class="connection"><h2>REMEMBER</h2><p>${q.takeaway}</p></section>` : ''}
+            </article>
+          </div>
+        </div>`;
+    }
+
+    /* Big-picture story (data: story_cmo_*.js, keyed by card id): one sentence + links to the cards before and after. */
+    function storyLabel(id) {
+      const c = getSubjectCards(currentSubject).find(x => String(x.id) === String(id));
+      return c ? { tag: (parseInt(c.topicId, 10) || 0) + '.' + c.cardNumber, title: stripTags(c.title) } : null;
+    }
+    function storyHtml(card) {
+      const st = (window.STORY_DATA || {})[card.id];
+      if (!st || card.part === 2) return '';
+      const link = (arrow, [id, why]) => {
+        const l = storyLabel(id);
+        return l ? `<button class="slink" onclick="jumpToCard('${id}')" title="${esc(l.title)}">${arrow} <b>${l.tag}</b> ${why}</button>` : '';
+      };
+      const links = (st.f || []).map(x => link('←', x)).concat((st.n || []).map(x => link('→', x))).join('');
+      return `<div class="story"><span class="stag">${st.s}</span><p class="sbig">${st.b}</p>${links ? `<div class="slinks">${links}</div>` : ''}</div>`;
+    }
+    function jumpToCard(id) {
+      const c = getSubjectCards(currentSubject).find(x => String(x.id) === String(id));
+      if (!c) return;
+      if (topicOf(c) !== currentTopic) switchTopic(topicOf(c));
+      const i = deck.findIndex(x => String(x.id) === String(id));
+      goTo(i < 0 ? 0 : i);
+    }
+    function cardHtml(card) {
+      if (isPractice(card)) return practiceHtml(card);
+      const imp = (typeof window.getTopicImportance === 'function')
+        ? window.getTopicImportance(card.subject || currentSubject, card.topicId)
+        : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
+      const impSymbol = `<i class="imp-dot imp-${imp.tier}"></i>`;
+      return `
+        <div class="paper-bar">
+          <span class="chip">CARD ${esc(card.cardNumber)}</span>
+          <span class="cat">${esc(card.category)}</span>
+          <span class="imp-badge imp-${imp.tier}" title="${esc(imp.reason)}">${impSymbol} ${esc(imp.label.toUpperCase())}</span>
+          ${window.CardTime ? CardTime.barHtml(card) : ''}
+          ${both(card.id) ? '<span class="donechip physchip">✓ Understood · ✎ Physical card</span>' : done.has(card.id) ? '<span class="donechip">✓ Understood</span>' : ''}
+          <button class="copy-btn" id="copy-btn-${card.id}" onclick="copyCard(${card.id})" title="Copy this card (text and picture) to the clipboard">
+            <span id="copy-icon-${card.id}">⧉</span><span id="copy-text-${card.id}">Copy</span></button>
+        </div>
+        <article class="paper ${card.breakdown ? 'grid' : ''} ${card.part ? 'p' + card.part : ''}" aria-label="Card ${esc(card.cardNumber)}: ${esc(card.title)}">
+          <div class="col-left">
+            <h1 class="paper-title">${card.title}</h1>
+            ${card.breakdown ? `${storyHtml(card)}<div class="lstack">${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
+              ${card.statement && card.part !== 2 ? `<section class="sect st"><h2>${card.stmtKind || 'THEOREM'}</h2><p class="stmt">${card.statement}</p></section>` : ''}
+              <section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
+              <section class="sect b"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section></div>`
+              : `<div class="info">${infoHtml(card)}</div>`}
+          </div>
+          <div class="col-right">
+            ${card.hideFig ? '' : `<figure class="sketch">
+              <div class="sketch-box">${sketchHtml(card)}${window.Play && Play.has(card.id) ? `<button class="playbtn" onclick="Play.open(${card.id})" title="Play with this example (I)">▶ Try it</button>` : ''}</div>
+              <figcaption>${card.drawingCaption || ''}</figcaption>
+            </figure>`}
+            ${card.hideConn ? '' : `<section class="connection"><h2>${card.breakdown ? (TRANSLATION[card.subject] || 'EVERYDAY TRANSLATION') : 'CONNECTION'}</h2><p>${card.personalConnection}</p></section>`}
+          </div>
+        </article>`;
+    }
+
+    /* Highlights written inside $$..$$ (e.g. <span class="ans">) split the formula so KaTeX shows raw LaTeX.
+       Turn them into KaTeX colour and drop any other tag inside the math. */
+    function fixMath(html) {
+      // backslashes eaten when the data was saved: \a(pprox) -> BEL, \f(rac) -> form feed, \t(heta) -> tab, \r(ight) -> CR, \b(eta) -> backspace
+      html = html.replace(/\x07/g, '\\a').replace(/\x0c/g, '\\f').replace(/\x08/g, '\\b').replace(/\x0b/g, '\\v')
+        .replace(/\t(?=ext|imes|heta|au|op\b|riangle|ilde|o\b)/g, '\\t').replace(/\r(?=ho|ight)/g, '\\r');
+      const tag = () => /<\/?[a-zA-Z][^>]*>/g;
+      const inMath = s => s.replace(/<span class="ans">([\s\S]*?)<\/span>/g, '\\color{#16603f}{$1}').replace(tag(), ' ');
+      const pct = s => s.replace(/(^|[^\\])%/g, '$1\\%'); // a bare % starts a TeX comment
+      html = html.replace(/\$\$([\s\S]*?)\$\$/g, (m, s) => '$$' + pct(tag().test(s) ? inMath(s) : s) + '$$');
+      return html.replace(/(^|[^$])\$([^$\n]{1,300}?)\$(?!\$)/g, (m, pre, s) =>
+        (/<span class="ans">/.test(s) && /[=\\]/.test(s.split('<span')[0]) && !/<\/?(p|b|em|strong|br|div|i)\b/.test(s))
+          ? pre + '$' + inMath(s) + '$' : m);
+    }
+    /* the everyday picture each subject is explained with */
+    const TRANSLATION = { CMO: 'AIRPLANE TRANSLATION', LAA: 'PHOTO-EDIT TRANSLATION', StoMA: 'F1 TRANSLATION', DIP: 'STREET-CAMERA TRANSLATION' };
+
+    /* motion: new cards slide in, and their diagram draws itself stroke by stroke */
+    const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lastShown = '', lastIdx = 0, lastTopic = null, popNext = '';
+    function drawSketch(root) {
+      const svg = root.querySelector('.sketch-box svg');
+      const img = root.querySelector('.sketch-box img');
+      if (img && img.animate) img.animate([{ opacity: 0, transform: 'scale(.97)' }, { opacity: 1, transform: 'none' }], { duration: 500, easing: 'ease-out', fill: 'backwards' });
+      if (!svg || !svg.animate) return;
+      const planes = [...svg.querySelectorAll('g[transform]')];
+      const inPlane = el => planes.some(g => g.contains(el));
+      const strokes = [...svg.querySelectorAll('path, line, polyline, polygon, circle, ellipse, rect')].filter(el => !inPlane(el) && !el.closest('defs'));
+      const step = Math.min(28, 900 / Math.max(1, strokes.length));
+      strokes.forEach((el, i) => {
+        let len = 0; try { len = el.getTotalLength(); } catch (e) {}
+        const delay = 120 + i * step;
+        if (len > 1 && !el.hasAttribute('stroke-dasharray')) {
+          el.style.strokeDasharray = len;
+          const a = el.animate([{ strokeDashoffset: len, fillOpacity: 0 }, { strokeDashoffset: len * .02, fillOpacity: 0, offset: .7 }, { strokeDashoffset: 0, fillOpacity: 1 }],
+            { duration: 520 + Math.min(len, 300), delay, easing: 'ease-in-out', fill: 'backwards' });
+          a.onfinish = () => { el.style.strokeDasharray = ''; };
+        } else el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay, fill: 'backwards' });
+      });
+      const end = 120 + strokes.length * step;
+      [...svg.querySelectorAll('text')].forEach((el, i) =>
+        el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 380, delay: end * .5 + i * 30, easing: 'ease-out', fill: 'backwards' }));
+      planes.forEach((g, i) =>
+        g.animate([{ translate: '-26px 10px', opacity: 0 }, { translate: '0 0', opacity: 1 }], { duration: 900, delay: 250 + i * 120, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' }));
+    }
+    function flyby() {
+      if (REDUCED) return;
+      const d = document.createElement('div');
+      d.className = 'flyby';
+      d.innerHTML = '<svg width="34" height="24" viewBox="-14 -12 28 24"><g fill="#ffffff" stroke="#e5484d" stroke-width="1" stroke-linejoin="round"><polygon points="12,0 5,-2.2 -9,-1.6 -9,1.6 5,2.2"/><polygon points="3,0 -4,-10 -7,-10 -3,0 -7,10 -4,10"/><polygon points="-8,0 -11,-4.5 -12.5,-4.5 -10.5,0 -12.5,4.5 -11,4.5"/></g></svg>';
+      document.body.appendChild(d);
+      d.addEventListener('animationend', () => d.remove());
+    }
+    function renderStage() {
+      const stage = document.getElementById('stage');
+      if (!deck.length) {
+        stage.innerHTML = `<div class="empty"><h2>No cards for ${currentSubject} yet</h2>
+          <p>Cards for this subject will show up here, grouped by topic.</p></div>`;
+      } else {
+        stage.innerHTML = fixMath(cardHtml(deck[idx]));
+      }
+      typesetMath(stage);
+      fitCard();
+      const key = deck.length ? currentSubject + '|' + deck[idx].id + '|' + (deck[idx].part || 0) + '|' + flipped : '';
+      if (key && key !== lastShown && !REDUCED) {
+        stage.classList.remove('stage-in-fwd', 'stage-in-back'); void stage.offsetWidth;
+        stage.classList.add(idx < lastIdx && lastTopic === currentTopic ? 'stage-in-back' : 'stage-in-fwd');
+        drawSketch(stage);
+      }
+      lastShown = key; lastIdx = idx; lastTopic = currentTopic;
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCard); // math fonts load lazily and change widths
+    }
+
+    /* Both labels of a toggle button sit in the same grid cell, so the button is always as wide as the longer one and never jumps. */
+    const twin = (on, off, onLabel) => `<span class="twin"><span class="${on ? 'off' : ''}" ${on ? 'aria-hidden="true"' : ''}>${off}</span><span class="${on ? '' : 'off'}" ${on ? '' : 'aria-hidden="true"'}>${onLabel}</span></span>`;
+    function renderActions() {
+      const bar = document.getElementById('actions');
+      if (!deck.length) { bar.innerHTML = ''; return; }
+      bar.innerHTML = `
+        <button class="nav" onclick="step(-1)">← Previous card</button>
+        <div class="sp"></div>
+        <span class="counter" title="Keys: ← → turn the card · D understood · P physical card · F flip practice · T card timer · I try it · / search · [ sidebar">${idx + 1} / ${deck.length}</span>
+        ${isPractice(deck[idx])
+          ? `<button class="donebtn" onclick="flipCard()">${twin(flipped, '⟳ Show solution', '↺ Back to question')}</button>`
+          : `<button class="donebtn ${done.has(deck[idx].id) ? 'is-done' : ''}" onclick="toggleDone()" aria-pressed="${done.has(deck[idx].id)}" title="${done.has(deck[idx].id) ? 'Understood: click to go back to studying' : 'Studying: click once you understand it (D)'}">${twin(done.has(deck[idx].id), 'Studying', '✓ Understood')}</button>
+             <button class="donebtn physbtn ${phys.has(deck[idx].id) ? 'is-done' : ''}" onclick="togglePhys()" aria-pressed="${phys.has(deck[idx].id)}" title="${phys.has(deck[idx].id) ? 'Click to undo' : 'Mark that you made the physical card (P)'}">${twin(phys.has(deck[idx].id), 'Made physical card', '✎ Physical card made')}</button>`}
+        <div class="sp"></div>
+        <button class="nav next" onclick="step(1)">Next card →</button>`;
+    }
+
+    /* Use the biggest text size at which the whole card still fits on screen (no scrolling). */
+    function fitMath(p) {
+      p.querySelectorAll('.mathbox').forEach(m => {
+        m.style.setProperty('--mfit', '1');
+        const w = m.clientWidth, sw = m.scrollWidth;
+        if (sw > w + 1) m.style.setProperty('--mfit', Math.max(0.4, (w / sw) * 0.96).toFixed(3));
+      });
+    }
+    function fitCard() {
+      const p = document.querySelector('.paper'), st = document.getElementById('stage');
+      if (!p || !st) return;
+      const narrow = window.innerWidth <= 700;
+      const bar = document.querySelector('.paper-bar');
+      const room = st.clientHeight - parseFloat(getComputedStyle(st).paddingTop) - parseFloat(getComputedStyle(st).paddingBottom)
+        - (bar ? bar.offsetHeight + 12 : 0) - 6;
+      const flex = p.style.flex, minH = p.style.minHeight;
+      p.style.flex = 'none'; p.style.minHeight = '0';
+      let lh = narrow ? 28 : Math.min(44, Math.max(30, Math.min(window.innerWidth * 0.029, window.innerHeight * 0.047)));
+      for (; lh > 13; lh -= 1) {
+        p.style.setProperty('--lh', lh + 'px');
+        fitMath(p);
+        if (p.getBoundingClientRect().height <= room) break;
+      }
+      p.style.flex = flex; p.style.minHeight = minH;
+      const c = deck[idx];
+      if (c && c.breakdown && !c.part && !c.__split && lh < 20) {
+        c.__split = true;
+        deck = expandDeck(deck);
+        renderAll();
+      }
+    }
+    document.getElementById('stage').addEventListener('load', fitCard, true); // pictures arrive after the text is laid out
+    window.addEventListener('resize', fitCard);
+    window.addEventListener('load', fitCard);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCard);
+
+    function typesetMath(root) {
+      const run = () => window.renderMathInElement && renderMathInElement(root, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        throwOnError: false
+      });
+      if (window.renderMathInElement) run(); else window.addEventListener('load', run, { once: true });
+    }
+
+    function renderProgress() {
+      const el = document.getElementById('progress-line');
+      if (!el) return;
+      let total = 0, got = 0;
+      const segs = SUBJECTS.map(sub => {
+        const cs = getSubjectCards(sub.id);
+        const k = cs.filter(c => done.has(c.id)).length;
+        total += cs.length; got += k;
+        return { sub, n: cs.length, k };
+      }).filter(x => x.n);
+      const pct = (k, n) => n ? Math.round(k / n * 100) : 0;
+      const tip = x => `${x.sub.id}: ${x.k} of ${x.n} understood (${pct(x.k, x.n)}%)`;
+      el.innerHTML = `<div class="pwrap">
+          <div class="pbar" role="img" aria-label="${got} of ${total} cards understood">${segs.filter(x => x.k).map(x =>
+            `<span class="pfill" style="--c:${x.sub.color};flex:${x.k} 1 0" title="${tip(x)}"></span>`).join('')}<span class="prest" style="flex:${Math.max(total - got, 0)} 1 0"></span></div>
+          <div class="plabels">${segs.map(x =>
+            `<button class="${x.sub.id === currentSubject ? 'cur' : ''}" style="--c:${x.sub.color}" onclick="switchSubject('${x.sub.id}')" title="${tip(x)}"><i></i>${x.sub.id} <b>${x.k}</b>/${x.n} · ${pct(x.k, x.n)}%</button>`).join('')}</div>
+        </div>
+        <span class="ptext"><b>${got}</b> / ${total} understood · ${(got / (total || 1) * 100).toFixed(1)}%</span>`;
+    }
+
+    function renderAll() {
+      renderRail(); renderTop(); renderStrip(); renderStage(); renderActions(); renderProgress();
+      if (popNext) { const b = document.querySelector('#actions .' + popNext); if (b) b.classList.add('pop'); const ch = document.querySelector('.chipbtn.cur'); if (ch) ch.classList.add('pop'); popNext = ''; }
+      if (window.CardTime) CardTime.tick();   // credits the time so far to the card that was showing, then follows the new one
+      savePos();
+    }
+    function renderDeck() { idx = Math.max(0, Math.min(idx, deck.length - 1)); renderAll(); }
+
+    /* ---------- search across every subject ---------- */
+    function closeSearch() {
+      const r = document.getElementById('search-results');
+      if (r) r.hidden = true;
+    }
+
+    function runSearch() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const box = document.getElementById('search-results');
+      if (!q) { box.hidden = true; return; }
+      const hits = masterCards.map(c => {
+        const fields = [c.title, c.category, c.topicTitle, c.personalConnection, c.examTrap, c.hint || '', ...(c.breakdown || []), ...(c.coreTranslation || [])].map(stripTags);
+        const hay = fields.join(' ').toLowerCase();
+        return hay.includes(q) ? { c } : null;
+      }).filter(Boolean).slice(0, 8);
+      box.innerHTML = hits.length ? hits.map(h => `
+        <button class="res" onclick="openCard(${h.c.id})">
+          <span>${stripTags(h.c.title)}</span>
+          <span class="meta">${esc(h.c.subject || 'CMO')} · ${esc(h.c.topicTitle || 'Default deck')} · Card ${esc(h.c.cardNumber)}</span>
+          <span class="snip">${esc(stripTags(infoParagraph(h.c)).slice(0, 110))}</span>
+        </button>`).join('') : `<div class="res-empty">No cards match “${esc(q)}”.</div>`;
+      box.hidden = false;
+    }
+
+    function openCard(id) {
+      const c = masterCards.find(x => x.id === id);
+      if (!c) return;
+      currentSubject = c.subject || 'CMO';
+      applyAccent();
+      switchTopic(topicOf(c), true);
+      idx = Math.max(0, deck.findIndex(x => x.id === id));
+      document.getElementById('search-input').value = '';
+      renderAll();
+    }
+
+    /* ---------- print: the whole topic, one card per page ---------- */
+    function printDeck() {
+      if (!deck.length) return;
+      const stage = document.getElementById('stage');
+      stage.innerHTML = deck.filter(c => !isPractice(c)).map(cardHtml).join('');
+      typesetMath(stage);
+      const restore = () => { renderStage(); window.removeEventListener('afterprint', restore); };
+      window.addEventListener('afterprint', restore);
+      setTimeout(() => window.print(), 150);
+    }
+
+    function openLightboxById(id) {
+      const c = masterCards.find(x => x.id === id) || deck.find(x => x.id === id);
+      if (c && c.textbookImg) openLightbox(c.textbookImg, stripTags(c.title), c.textbookRef || '');
+    }
+
+    /* ---------- keyboard ---------- */
+    document.addEventListener('keydown', e => {
+      const input = document.getElementById('search-input');
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); input.focus(); input.select(); return; }
+      if (e.key === 'Escape') { closeSearch(); closeLightbox(); closeAddModal(); toggleRail(false); input.blur(); return; }
+      if (window.Play && Play.isOpen()) return;
+      const t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === '/') { e.preventDefault(); input.focus(); }
+      else if (e.key === '[') setRailCollapsed(!document.querySelector('.app').classList.contains('rail-collapsed'));
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'd' || e.key === 'D') toggleDone();
+      else if (e.key === 'p' || e.key === 'P') togglePhys();
+      else if (e.key === 'f' || e.key === 'F') flipCard();
+      else if ((e.key === 't' || e.key === 'T') && window.CardTime) CardTime.toggle();
+      else if ((e.key === 'i' || e.key === 'I') && window.Play && deck[idx] && Play.has(deck[idx].id)) Play.open(deck[idx].id);
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === ' ' && !(t && t.tagName === 'BUTTON')) { e.preventDefault(); step(1); }
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search')) closeSearch();
+    });
+
+    /* ---------- boot ---------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      let pos = null;
+      try { pos = JSON.parse(localStorage.getItem(POS_KEY) || 'null'); } catch (e) {}
+      if (pos && SUBJECTS.some(s => s.id === pos.s) && getTopicsList(pos.s).some(t => t.id === pos.t)) {
+        currentSubject = pos.s;
+        applyAccent();
+        switchTopic(pos.t, true);
+        idx = Math.max(0, Math.min(pos.i || 0, deck.length - 1));
+        renderAll();
+      } else {
+        switchSubject('CMO');
+      }
+      setSync(syncState);
+      syncNow();
+      setTimeout(() => document.body.classList.remove('booting'), 1400);
+      setTimeout(flyby, 600);
+    });
+
+    /* Lightbox Modal */
+    function openLightbox(src, title, ref) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-title').textContent = title;
+      document.getElementById('lightbox-ref').textContent = ref;
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox-modal').classList.add('hidden');
+    }
+
+    /* Add Card Modal */
+    function openAddModal() {
+      document.getElementById('add-modal').classList.remove('hidden');
+    }
+
+    function closeAddModal() {
+      document.getElementById('add-modal').classList.add('hidden');
+    }
+
+    function saveCustomCard(e) {
+      e.preventDefault();
+      const title = document.getElementById('new-title').value;
+      const info = document.getElementById('new-info').value;
+      const math = document.getElementById('new-math').value;
+      const conn = document.getElementById('new-connection').value;
+      const caption = document.getElementById('new-drawing-caption').value;
+
+      const newId = deck.length + 1;
+      const numStr = String(newId).padStart(2, '0');
+
+      const newCard = {
+        id: newId,
+        cardNumber: numStr,
+        highlighterClass: "highlight-cyan",
+        title: title,
+        category: "CUSTOM SPECIMEN",
+        drawingSvg: `
+          <svg viewBox="0 0 240 145" class="w-full h-full">
+            <rect x="25" y="25" width="190" height="95" rx="8" fill="#0284c7" fill-opacity="0.15" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="120" cy="72" r="14" fill="#38bdf8" fill-opacity="0.3"/>
+            <text x="120" y="77" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" text-anchor="middle">✨</text>
+          </svg>
+        `,
+        drawingCaption: caption,
+        coreTranslation: [info],
+        math: math ? `$$${math}$$` : `$$\\text{Formalization pending}$$`,
+        personalConnection: conn,
+        examTrap: "Check all active constraint boundary conditions!"
+      };
+
+      deck.push(newCard);
+      idx = deck.length - 1;
+      localStorage.setItem('sirianni_index_cards_cosmos_v7', JSON.stringify(deck));
+      closeAddModal();
+      renderDeck();
+    }
+
+    /* ================= CLIPBOARD COPY UTILITIES ================= */
+    function getBase64FromImageUrl(url) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth || img.width;
+            canvas.height = img.naturalHeight || img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            resolve(canvas.toDataURL('image/png'));
+          } catch (e) {
+            resolve(new URL(url, window.location.href).href);
+          }
+        };
+        img.onerror = () => resolve(new URL(url, window.location.href).href);
+        img.src = url;
+      });
+    }
+
+    function getSvgAsPngDataUrl(svgString, width = 600, height = 360) {
+      return new Promise((resolve) => {
+        try {
+          const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+          const URL = window.URL || window.webkitURL || window;
+          const blobURL = URL.createObjectURL(svgBlob);
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, width, height);
+            ctx.drawImage(img, 0, 0, width, height);
+            URL.revokeObjectURL(blobURL);
+            resolve(canvas.toDataURL('image/png'));
+          };
+          img.onerror = () => {
+            resolve("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString));
+          };
+          img.src = blobURL;
+        } catch (e) {
+          resolve("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString));
+        }
+      });
+    }
+
+    async function copyCard(cardId) {
+      const card = deck.find(c => c.id === cardId);
+      if (!card) return;
+
+      const btn = document.getElementById(`copy-btn-${cardId}`);
+      const iconEl = document.getElementById(`copy-icon-${cardId}`);
+      const textEl = document.getElementById(`copy-text-${cardId}`);
+
+      if (textEl) textEl.textContent = "Copying...";
+
+      try {
+        // 1. Plain Text / Markdown Format
+        let md = `# CARD ${card.cardNumber}: ${card.title}\n`;
+        md += `Category: ${card.category}\n\n`;
+        md += `## ⚡ Core Mechanism\n`;
+        card.coreTranslation.forEach(pt => {
+          const cleanPt = pt.replace(/<\/?[^>]+(>|$)/g, "");
+          md += `• ${cleanPt}\n`;
+        });
+        md += `\n## 📐 Mathematical Formulation\n${card.math}\n\n`;
+        md += `## 💡 Memory Anchor\n"${card.personalConnection}"\n\n`;
+        md += `## ⚠️ Exam Trap\n${card.examTrap}\n\n`;
+
+        let fullImgUrl = "";
+        let visualDataUrl = "";
+
+        if (card.textbookImg) {
+          fullImgUrl = new URL(card.textbookImg, window.location.href).href;
+          md += `## 📖 Visual Specimen (${card.textbookRef || 'Luenberger & Ye'})\n`;
+          md += `Caption: "${card.drawingCaption}"\n`;
+          md += `Image: ${fullImgUrl}\n`;
+          visualDataUrl = await getBase64FromImageUrl(card.textbookImg);
+        } else if (card.drawingSvg) {
+          md += `## 📐 Geometric Diagram\n`;
+          md += `Caption: "${card.drawingCaption}"\n`;
+          visualDataUrl = await getSvgAsPngDataUrl(card.drawingSvg);
+        }
+
+        // 2. Rich Formatted HTML
+        let visualHtml = "";
+        if (visualDataUrl) {
+          visualHtml = `
+            <div style="margin-top: 18px; text-align: center; background: #ffffff; padding: 14px; border-radius: 12px; border: 1px solid #cbd5e1;">
+              <p style="font-size: 11px; font-family: var(--mono); color: #475569; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase;">
+                ${card.textbookRef ? `📖 ${card.textbookRef}` : '📐 GEOMETRIC SPECIMEN'}
+              </p>
+              <img src="${visualDataUrl}" alt="${card.title}" style="max-width: 100%; max-height: 440px; display: block; margin: 0 auto; object-fit: contain;" />
+              <p style="font-size: 13px; font-style: italic; color: #334155; margin: 10px 0 0 0; font-weight: 500;">"${card.drawingCaption}"</p>
+            </div>
+          `;
+        }
+
+        const html = `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 720px; padding: 24px; background: #0c101d; color: #f1f5f9; border-radius: 16px; border: 1px solid #38bdf8;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 12px; margin-bottom: 16px;">
+              <span style="font-family: var(--mono); font-weight: bold; background: #083344; color: #67e8f9; padding: 4px 10px; border-radius: 6px; font-size: 12px; border: 1px solid #0e7490;">
+                CARD ${card.cardNumber} • ${card.category}
+              </span>
+              <h2 style="margin: 0; font-size: 22px; color: #ffffff; font-weight: bold;">${card.title}</h2>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <h4 style="font-size: 12px; font-family: var(--mono); color: #38bdf8; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">
+                ⚡ CORE MECHANISM
+              </h4>
+              <ul style="margin: 0; padding-left: 20px; line-height: 1.6; font-size: 15px; color: #e2e8f0;">
+                ${card.coreTranslation.map(pt => `<li style="margin-bottom: 8px;">${pt}</li>`).join('')}
+              </ul>
+            </div>
+
+            <div style="background: #060812; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(56,189,248,0.25); font-family: var(--mono); font-size: 15px; margin-bottom: 16px; color: #f8fafc; overflow-x: auto;">
+              ${card.math}
+            </div>
+
+            <div style="background: rgba(245,158,11,0.12); border-left: 4px solid #fbbf24; padding: 14px 18px; border-radius: 8px; margin-bottom: 16px;">
+              <div style="font-size: 11px; font-weight: bold; color: #fbbf24; text-transform: uppercase; margin-bottom: 4px;">
+                💡 MEMORY ANCHOR
+              </div>
+              <p style="margin: 0; font-style: italic; font-size: 15px; color: #fef3c7; line-height: 1.5;">
+                "${card.personalConnection}"
+              </p>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; font-size: 13px; color: #fca5a5;">
+              <strong style="color: #f87171;">⚠️ Exam Trap:</strong> ${card.examTrap}
+            </div>
+
+            ${visualHtml}
+          </div>
+        `;
+
+        // 3. Write to Clipboard using modern ClipboardItem API
+        if (navigator.clipboard && window.ClipboardItem) {
+          const textBlob = new Blob([md], { type: 'text/plain' });
+          const htmlBlob = new Blob([html], { type: 'text/html' });
+          const item = new ClipboardItem({
+            'text/plain': textBlob,
+            'text/html': htmlBlob
+          });
+          await navigator.clipboard.write([item]);
+        } else {
+          await navigator.clipboard.writeText(md);
+        }
+
+        // Button feedback
+        if (iconEl) iconEl.textContent = "✓";
+        if (textEl) textEl.textContent = "Copied!";
+        if (btn) {
+          btn.classList.add('bg-emerald-500', 'text-slate-950', 'border-emerald-400', 'font-bold');
+          btn.classList.remove('bg-[#0d1326]/90', 'text-cyan-300');
+        }
+
+        setTimeout(() => {
+          if (iconEl) iconEl.textContent = "⧉";
+          if (textEl) textEl.textContent = "Copy";
+          if (btn) {
+            btn.classList.remove('bg-emerald-500', 'text-slate-950', 'border-emerald-400', 'font-bold');
+            btn.classList.add('bg-[#0d1326]/90', 'text-cyan-300');
+          }
+        }, 2000);
+
+        showToast(`✓ Card ${card.cardNumber} copied with text, math & images!`);
+
+      } catch (err) {
+        console.error("Copy error:", err);
+        // Fallback plain copy
+        try {
+          const plainFallback = `CARD ${card.cardNumber}: ${card.title}\n\n` +
+            card.coreTranslation.map(p => `• ${p.replace(/<\/?[^>]+(>|$)/g, "")}`).join('\n') +
+            `\n\nMath:\n${card.math}\n\nMemory Anchor:\n"${card.personalConnection}"\n\nExam Trap:\n${card.examTrap}`;
+          await navigator.clipboard.writeText(plainFallback);
+          if (textEl) textEl.textContent = "Copied Text!";
+          showToast(`✓ Card ${card.cardNumber} text copied!`);
+          setTimeout(() => { if (textEl) textEl.textContent = "Copy"; }, 2000);
+        } catch (e) {
+          alert("Clipboard access denied. Please allow clipboard permissions.");
+        }
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-msg');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+
+
+    /* One-shot timer command via URL, e.g. ?ct=start&until=<epochMs> or ?ct=pause: applied once, then stripped from the address bar. */
+    (function () {
+      try {
+        const q = new URLSearchParams(location.search), ct = q.get('ct');
+        if (!ct) return;
+        history.replaceState(null, '', location.pathname);
+        if (window.CardTime && CardTime.command) CardTime.command(ct, q.get('until') ? Number(q.get('until')) : null);
+      } catch (e) {}
+    })();
+
+    /* Auto-update: when a newer index.html (its ?v= data versions) is published, reload; the card position is already saved. */
+    (function () {
+      if (location.protocol === 'file:') return;
+      let base = null, busy = false;
+      const sig = t => (t.match(/<script[^>]+src="[^"]+"/g) || []).join('|');
+      async function check() {
+        if (busy) return; busy = true;
+        try {
+          const r = await fetch(location.pathname + '?_=' + Date.now(), { cache: 'no-store' });
+          const now = sig(await r.text());
+          if (base === null) base = now;
+          else if (now !== base) { savePos(); location.reload(); }
+        } catch (e) {} finally { busy = false; }
+      }
+      check();
+      setInterval(check, 60000);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
+      window.addEventListener('focus', check);
+    })();
+  </script>
+
+  <!-- Toast Notification for Copy -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#111111] border border-neutral-700 text-neutral-100 px-5 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-mono flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <span class="text-red-400 text-base">✦</span>
+    <span id="toast-msg">Card copied to clipboard!</span>
+  </div>
+</body>
+</html>
