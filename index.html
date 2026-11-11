@@ -1177,11 +1177,10 @@
     /* Print view for a practice card: the question side only; solutions stay on screen. */
     function practicePrintHtml(q) {
       const tag = (q.kind2 === 'pyq' ? ('PYQ · ' + esc(q.source)) : q.kind2 === 'ivy' ? ('Ivy League · ' + esc(q.source)) : 'Practice · same level as the PYQs') + (q.partNote ? ' · ' + esc(q.partNote) : '');
-      const pc = pictureFor(q);
+      /* no figure on paper: the topic memory diagrams explain the method, which would answer the question he is practicing */
       return `
         <article class="pface pfront pprint" aria-label="Practice question ${esc(q.cardNumber)}">
           <h2 class="plabel">PRACTICE ${esc(q.cardNumber)} · QUESTION <span class="printtag">${tag}${q.marks ? ' · ' + esc(q.marks) : ''}${q.stretch ? ' · STRETCH' : ''}</span></h2>
-          ${pc ? `<figure class="pfig"><div class="sketch-box">${sketchHtml(pc)}</div><figcaption>${pc.drawingCaption || ''}</figcaption></figure>` : ''}
           <div class="pbody">${q.question}</div>
         </article>`;
     }
