@@ -503,6 +503,8 @@
       .rail, .topbar, .strip, .actions, .scrim, #toast, .paper-bar { display: none !important; }
       .stage { padding: 0 !important; background: none !important; border: 0 !important; }
       .paper { break-inside: avoid; page-break-after: always; box-shadow: none; border: 1px solid #999; margin: 0 0 12px; }
+      .stage > .pface.pprint { break-inside: avoid; page-break-after: always; box-shadow: none; border: 1px solid #999; margin: 0 0 12px; min-height: 0; transform: none; }
+      .printtag { font-size: 12px; letter-spacing: .4px; font-weight: 400; color: #666; }
     }
   </style>
 </head>
@@ -1172,6 +1174,18 @@
         </div>`;
     }
 
+    /* Print view for a practice card: the question side only; solutions stay on screen. */
+    function practicePrintHtml(q) {
+      const tag = (q.kind2 === 'pyq' ? ('PYQ · ' + esc(q.source)) : q.kind2 === 'ivy' ? ('Ivy League · ' + esc(q.source)) : 'Practice · same level as the PYQs') + (q.partNote ? ' · ' + esc(q.partNote) : '');
+      const pc = pictureFor(q);
+      return `
+        <article class="pface pfront pprint" aria-label="Practice question ${esc(q.cardNumber)}">
+          <h2 class="plabel">PRACTICE ${esc(q.cardNumber)} · QUESTION <span class="printtag">${tag}${q.marks ? ' · ' + esc(q.marks) : ''}${q.stretch ? ' · STRETCH' : ''}</span></h2>
+          ${pc ? `<figure class="pfig"><div class="sketch-box">${sketchHtml(pc)}</div><figcaption>${pc.drawingCaption || ''}</figcaption></figure>` : ''}
+          <div class="pbody">${q.question}</div>
+        </article>`;
+    }
+
     /* Big-picture story (data: story_cmo_*.js, keyed by card id): one sentence + links to the cards before and after. */
     function storyLabel(id) {
       const c = getSubjectCards(currentSubject).find(x => String(x.id) === String(id));
@@ -1431,7 +1445,7 @@
     function printDeck() {
       if (!deck.length) return;
       const stage = document.getElementById('stage');
-      stage.innerHTML = deck.filter(c => !isPractice(c)).map(cardHtml).join('');
+      stage.innerHTML = deck.map(c => isPractice(c) ? practicePrintHtml(c) : cardHtml(c)).join('');
       typesetMath(stage);
       const restore = () => { renderStage(); window.removeEventListener('afterprint', restore); };
       window.addEventListener('afterprint', restore);
