@@ -14,6 +14,7 @@
   <script src="practice_cmo_endsem_09_16.js?v=20261029_e1"></script>
   <script src="practice_cmo_placement.js?v=20261106_pl1"></script>
   <script src="practice_stoma.js?v=20261029_stoma"></script>
+  <script src="practice_stoma_ivy.js?v=20261112_ivy1"></script>
   <script src="practice_dip.js?v=20261029_dip"></script>
   <script src="practice_laa.js?v=20261029_laa"></script>
   <script src="story_cmo_a.js?v=20261101_s4"></script>
@@ -424,6 +425,7 @@
     .story .stag { color: var(--accent); }
     .story .slink { color: #0a0a0a; text-decoration: underline; text-decoration-color: rgba(229,72,77,.5); text-underline-offset: 2px; }
     .mathbox { background: #f6f6f6; border-left: 3px solid #0a0a0a; }
+    .pbody img.qimg { display: block; max-width: 100%; height: auto; margin: 4px 0 10px; mix-blend-mode: multiply; }
     .stmt { border-color: #cfcfcf; background: #fafafa; color: #111; }
     .cardhint { color: #555; } .cardhint b { background: var(--accent); color: #fff; }
     .connection h2 { color: #0a0a0a; border-bottom: 2px solid var(--accent); }
@@ -1134,7 +1136,7 @@
       return (q.__pic = best);
     }
     function practiceHtml(q) {
-      const tag = (q.kind2 === 'pyq' ? ('PYQ · ' + esc(q.source)) : 'Practice · same level as the PYQs') + (q.partNote ? ' · ' + esc(q.partNote) : '');
+      const tag = (q.kind2 === 'pyq' ? ('PYQ · ' + esc(q.source)) : q.kind2 === 'ivy' ? ('Ivy League · ' + esc(q.source)) : 'Practice · same level as the PYQs') + (q.partNote ? ' · ' + esc(q.partNote) : '');
       const imp = (typeof window.getTopicImportance === 'function')
         ? window.getTopicImportance(q.subject || currentSubject, q.topicId)
         : { tier: 'orange', label: 'Medium', pyqWeight: 'Medium', reason: '' };
