@@ -1,0 +1,42 @@
+DOC = """StoMA topic 07 (joint, marginal, conditional). F1 picture: the pit-stop time X and the time lost in traffic Y as a pair; the laps of the first and second stop."""
+DRAW = {}
+SUBS = [
+ ('def plane(lab_x="wait x", lab_y="ride y"', 'def plane(lab_x="pit stop x", lab_y="traffic y"'),
+ ('"region A of (wait, ride) pairs"', '"region A of (stop, traffic) pairs"'),
+]
+CARDS = {
+30701: dict(hint="Pit stop and traffic together: how do you get the chance of a rectangle of (stop, traffic) pairs from the joint CDF alone?",
+  bd=[r"<strong>$F_{X,Y}(x,y)=\mathbb P(X\le x,Y\le y)$ = both at most their limits.</strong> The chance that the stop takes at most $x$ seconds and the time lost in traffic is at most $y$ at once.",
+      r"<strong>$F(b,d)-F(a,d)-F(b,c)+F(a,c)$ = the rectangle by inclusion–exclusion.</strong> Take the big corner, remove the two strips beyond $a$ and $c$, and add back the doubly removed corner.",
+      r"<strong>$\ge0$ = the rectangle rule is part of the definition.</strong> Being increasing in each variable is not enough; this four-corner combination must be non-negative."],
+  conn=r"<strong>Stop and traffic on one plane.</strong> Each race is one point: how long Max's stop took and how much time he then lost in traffic. The CDF at a point says how much of the plane lies to its lower left; a rectangle of pairs needs four such corners.",
+  cap="The (pit stop x, traffic y) plane. The shaded rectangle (a, b] × (c, d] has chance F(b,d) − F(a,d) − F(b,c) + F(a,c): the corner values with signs + − − +."),
+30702: dict(hint="How do you turn a region of (stop, traffic) pairs into a chance when both can be any real value?",
+  bd=[r"<strong>$f_{X,Y}(x,y)$ = chance per unit area of the plane.</strong> A high spot means that combination of stop time and traffic loss is common.",
+      r"<strong>$\iint_Af_{X,Y}\,dx\,dy$ = the volume above $A$.</strong> The chance of landing in a region is the volume under the surface over that region.",
+      r"<strong>$\partial^2F/\partial x\,\partial y$ = recover the density.</strong> Differentiate the joint CDF once in each variable; the total volume is 1."],
+  conn=r"<strong>A hill over the plane.</strong> Over the stop-and-traffic plane stands a hill whose height says how common each pair is. The chance of a set of pairs, such as “a quick stop but a lot of traffic”, is the volume of hill above that set.",
+  cap="Left: a region A of (pit stop, traffic) pairs. Right: a slice of the density f(x,y) over A. The volume under f above A is ℙ((X,Y) ∈ A) = ∬f dx dy."),
+30703: dict(hint="If you only care about the pit-stop time, how do you remove the traffic from the joint picture?",
+  bd=[r"<strong>$f_{X,Y}(x,y)$ = the joint hill.</strong> The chance density of the pair (stop $x$, traffic $y$).",
+      r"<strong>$\int f_{X,Y}(x,y)\,dy$ = add up the whole slab at $x$.</strong> Fix the stop time $x$ and sum over every possible traffic loss; the traffic direction collapses.",
+      r"<strong>$f_X(x)$ = the stop time's own density.</strong> For a triangular support the limits of $y$ depend on $x$; integrating over the whole line would be wrong."],
+  conn=r"<strong>Forget the traffic.</strong> Of all races with a stop of exactly $x$ seconds, whatever happened in traffic, add up their chance. Doing this for every $x$ gives the curve of stop times alone, as if the traffic had never been timed.",
+  cap="The joint blob of (pit stop x, traffic y). For each x the slab at x is added up over y, which collapses the y direction into the marginal curve fX(x) = ∫f(x,y)dy."),
+30704: dict(hint="You know the stop took exactly x seconds. How do you slice the joint hill to get the law of the time lost in traffic?",
+  bd=[r"<strong>$f_{X,Y}(x,y)$ = the cut through the hill at $x$.</strong> Hold the stop time fixed and read the height along the traffic direction.",
+      r"<strong>$f_X(x)$ = the area of that cut.</strong> It is the marginal density of the stop time: the total weight of the slice.",
+      r"<strong>$\int f_{Y\mid X}\,dy=1$ = renormalise.</strong> Dividing the slice by its area turns it into a proper density for the traffic loss, given this stop."],
+  conn=r"<strong>Given a stop of exactly x seconds.</strong> Of the races with that stop, you ask how the time lost in traffic is spread. You slice the joint picture at that stop time and rescale the slice so that it has total chance 1.",
+  cap="Slicing the joint blob at a fixed stop time x gives the curve f(y|x) on the right, with area 1: f(y|x) = f(x,y)/fX(x), the slice divided by its own area."),
+30705: dict(hint="The formula for the density splits into an x part and a y part. Is that enough for independence?",
+  bd=[r"<strong>$f_{X,Y}=f_Xf_Y$ = the joint is the product of the marginals.</strong> Knowing one leaves the law of the other unchanged.",
+      r"<strong>$\forall(x,y)\in S_X\times S_Y$ = the support is a rectangle.</strong> Every value of one must be allowed with every value of the other, so the allowed region is a product set.",
+      r"<strong>The coupled triangle fails.</strong> If $x\le y$ is required, a large $x$ rules out small $y$, so the two are tied even when the formula factorises."],
+  conn=r"<strong>One stop says something about the other.</strong> If the lap of the first stop never changes which laps are possible for the second, they could be independent. But the second stop must come after the first: pitting late the first time rules out an early second stop, so the support is tied and they are not.",
+  cap="Left: a rectangular support where f = fX(x)fY(y) holds. Right: a triangular support 0 ≤ x ≤ y ≤ 1 (first stop x before second stop y), where f = 4xy factorises but the coupled limits break independence."),
+30706: dict(hint="Why do the marginals of a flat density on a triangle depend on x and y, and what is the law of y given x?",
+  conn=r"<strong>The first stop comes before the second.</strong> Let Y be the first stop and X the second, as fractions of the race, with all such pairs equally likely in this toy model. Then late second stops are more common, and given the second stop, the first is uniform up to it.",
+  cap="The triangle 0 ≤ y ≤ x ≤ 1 (first stop y before second stop x) with constant density 2. The marginal fX(x) = 2x rises along x, fY(y) = 2(1−y) falls along y, and the slice at x is flat with height 1/x."),
+}
+STORY = {}

@@ -18,7 +18,6 @@ def _load(name):
     return json.loads(t[re.search(r"\[\s*\{", t).start():t.rindex("]") + 1])
 
 
-CARDS = {c["id"]: c for f in ("cards_data.js", "cards_stoma.js") for c in _load(f) if c["subject"] == SUBJECT}
 MATRIX_P = {32203, 32204, 32702}   # P is the transition matrix, kernel or P(t) here
 FIELDS = ["title", "statement", "math", "coreTranslation", "breakdown", "drawingCaption", "personalConnection",
           "examTrap", "hint", "drawingSvg"]
@@ -80,12 +79,14 @@ def svg(s, cid):
 
 
 FIX = {}
-for cid, c in CARDS.items():
-    out = {}
+
+
+def POST(c):
+    """run by apply_subj_refine.py on every card of the subject after all FIX layers, so it sees the newest text"""
+    cid = c["id"]
     for f in FIELDS:
         v = c.get(f)
         if v is None:
             continue
         fn = svg if f == "drawingSvg" else (lambda s, i: tex(s, i)) if f == "math" else mixed
-        out[f] = [fn(x, cid) for x in v] if isinstance(v, list) else fn(v, cid)
-    FIX[cid] = out
+        c[f] = [fn(x, cid) for x in v] if isinstance(v, list) else fn(v, cid)

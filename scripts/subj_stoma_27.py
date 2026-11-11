@@ -1,5 +1,5 @@
-"""StoMA topic 27 (continuous-time Markov chains). Commute picture: the bus is on time (1) or late (2); switches happen at random instants."""
-from commute_lib import *
+"""StoMA topic 27 (continuous-time Markov chains). F1 picture: Max's car racing / in the pits / retired; the race under green flag (1) or a safety car (2), switching at random instants; fans queueing at a circuit turnstile."""
+from f1_lib import *
 
 SUBJECT = "StoMA"
 
@@ -40,7 +40,7 @@ def d5(c):
     for i in range(4):
         x1 = 34 + i * 42
         out += arrow(x1 + 11, 40, x1 + 31, 40, 1) + arrow(x1 + 31, 48, x1 + 11, 48, 1) + N(x1 + 21, 30, "λ", 7) + N(x1 + 21, 62, "μ", 7)
-    return svg(c, out, N(120, 14, "n people at the stop: arrivals λ, service μ", 7.5), N(120, 88, "M/M/1, ρ = λ/μ < 1:  πₙ = (1 − ρ) ρⁿ", 8),
+    return svg(c, out, N(120, 14, "n fans at the gate: arrivals λ, service μ", 7.5), N(120, 88, "M/M/1, ρ = λ/μ < 1:  πₙ = (1 − ρ) ρⁿ", 8),
         N(120, 102, "𝔼[L] = ρ / (1 − ρ)", 8), N(120, 116, "W = 1 / (μ − λ)", 8), N(120, 132, "ρ → 1: both blow up", 7))
 
 def d6(c):
@@ -55,52 +55,52 @@ def d6(c):
 CARDS = {
 32701: dict(d=d1, kind="DEFINITION",
   stmt=r"<b>Generator of a CTMC.</b> A continuous-time Markov chain on $S$ has transition functions $P_{ij}(t)$ and generator $Q$ with $q_{ij}=\lim_{h\downarrow0}\frac{P_{ij}(h)}h\ (i\ne j)$, $q_{ii}=-\sum_{j\ne i}q_{ij}$, so $Q\mathbf 1=\mathbf 0$. The holding time in $i$ is $T_i\sim\operatorname{Exp}(q_i)$, $q_i=-q_{ii}$, and the next state is $j$ with probability $q_{ij}/q_i$ (Ross 6.2; Grimmett 6.9).",
-  hint="If the bus can change state at any instant, what takes the place of the one-day table?",
+  hint="If Max's car can change state at any instant, what takes the place of the one-step table?",
   bd=[r"<strong>$q_{ij}=\lim P_{ij}(h)/h$ = jump rates.</strong> In a short time $h$ the chance of moving from $i$ to $j$ is about $q_{ij}h$.",
       r"<strong>$q_{ii}=-\sum_{j\ne i}q_{ij}$ and $Q\mathbf 1=\mathbf 0$ = rows sum to zero.</strong> The diagonal is minus the total rate of leaving $i$.",
-      r"<strong>$T_i\sim\operatorname{Exp}(q_i)$ = the holding time.</strong> You stay for an exponential time, then jump to $j$ with probability $q_{ij}/q_i$."],
-  conn=r"<strong>Switching at random instants.</strong> The bus goes from on time to late at a rate of, say, 2 per hour. It stays on time for an exponential time with mean 30 minutes, then switches.",
-  cap="A path of the chain: exponential holding times, then jumps. The generator Q holds the jump rates qᵢⱼ, and each row sums to zero."),
+      r"<strong>$T_i\sim\operatorname{Exp}(q_i)$ = the holding time.</strong> The car stays for an exponential time, then jumps to $j$ with probability $q_{ij}/q_i$."],
+  conn="<strong>Racing, pitting, retired.</strong> Max's car is racing, in the pits or retired. While racing it pits at a rate of, say, 2 per hour and retires at 0.1 per hour. So it stays out for an exponential time, then jumps: to the pits with chance 2/2.1, to retirement with chance 0.1/2.1.",
+  cap='A path of the chain: racing (i), in the pits (j), racing again, then retired (k). Each stay is an exponential holding time. The generator Q holds the jump rates qᵢⱼ, and each row sums to zero.'),
 32702: dict(d=d2, kind="THEOREM",
   stmt=r"<b>Kolmogorov equations.</b> For a (non-explosive) CTMC with generator $Q$, $P'(t)=QP(t)$ (backward) and $P'(t)=P(t)Q$ (forward), $P(0)=I$. For a finite state space the solution is $P(t)=e^{Qt}=\sum_{n\ge0}\frac{(Qt)^n}{n!}$, and $P(s+t)=P(s)P(t)$ (Ross 6.4; Grimmett 6.9).",
-  hint="How do you get the chance of being in each state at time t from the rates alone?",
-  bd=[r"<strong>$P'(t)=QP(t)$ = backward equation.</strong> Condition on the first short step from the start: move by $Q$, then continue for $t$.",
-      r"<strong>$P'(t)=P(t)Q$ = forward equation.</strong> Condition on the last short step: be at $k$ at time $t$, then jump to $j$ at rate $q_{kj}$.",
+  hint='How do you get the chance of being in each state at time t from the rates alone?',
+  bd=["<strong>$P'(t)=QP(t)$ = backward equation.</strong> Condition on the first short step from the start: move by $Q$, then continue for $t$.",
+      "<strong>$P'(t)=P(t)Q$ = forward equation.</strong> Condition on the last short step: be at $k$ at time $t$, then jump to $j$ at rate $q_{kj}$.",
       r"<strong>$P(t)=e^{Qt}$ = matrix exponential.</strong> Both equations are solved by the series $\sum(Qt)^n/n!$; the semigroup property is Chapman–Kolmogorov."],
-  conn=r"<strong>Rates give chances.</strong> From the table of switching rates alone, you can compute the chance that the bus is on time in exactly 20 minutes, by exponentiating the rate table times 20 minutes.",
-  cap="Backward equation: first step first, P′ = QP. Forward equation: last step last, P′ = PQ. Both give P(t) = e^(Qt), with P(s + t) = P(s)P(t)."),
+  conn='<strong>Rates give chances.</strong> From the table of rates alone (pit, rejoin, retire) you can compute the chance that Max is still racing exactly 40 minutes into the race, by exponentiating the rate table times 40 minutes.',
+  cap='Backward equation: first step first, P′ = QP. Forward equation: last step last, P′ = PQ. Both give P(t) = e^(Qt), with P(s + t) = P(s)P(t).'),
 32703: dict(d=d3, kind="WORKED EXAMPLE",
   stmt=r"<b>Two-state chain.</b> States $1\to2$ at rate $\lambda$ and $2\to1$ at rate $\mu$. Then $P_{11}(t)=\dfrac\mu{\lambda+\mu}+\dfrac\lambda{\lambda+\mu}e^{-(\lambda+\mu)t}$, and $\lim_{t\to\infty}P_{11}(t)=\pi_1=\frac\mu{\lambda+\mu}$. The memory of the start decays at rate $\lambda+\mu$ (Ross 6.4; Grimmett 6.9).",
-  hint="How quickly does a bus that starts on time forget that it started on time?",
+  hint='How quickly does a race that starts under green flag forget that it started green?',
   bd=[r"<strong>$\pi_1=\frac\mu{\lambda+\mu}$ = the long-run share in state 1.</strong> Time in 1 is proportional to $1/\lambda$, in 2 to $1/\mu$; the share is $\mu/(\lambda+\mu)$.",
-      r"<strong>$\frac\lambda{\lambda+\mu}e^{-(\lambda+\mu)t}$ = the transient.</strong> The extra chance of still being in 1 because you started there, which decays exponentially.",
+      r"<strong>$\frac\lambda{\lambda+\mu}e^{-(\lambda+\mu)t}$ = the transient.</strong> The extra chance of still being green because the race started green, which decays exponentially.",
       r"<strong>$\lambda+\mu$ = the relaxation rate.</strong> The chain forgets its start on a time scale $1/(\lambda+\mu)$."],
-  conn=r"<strong>Forgetting the start.</strong> If the bus goes late at 2 per hour and recovers at 4 per hour, a bus that began on time is on time with chance close to $\frac23$ after about 10 minutes, whatever the start.",
-  cap="P₁₁(t) starts at 1 and decays exponentially, at rate λ + μ, to its limit π₁ = μ/(λ + μ), the long-run share of time in state 1."),
+  conn=r"<strong>Green flag or safety car.</strong> If a safety car comes out at rate 1 per hour under green, and goes back in at rate 5 per hour, then after about 10 minutes the race is green with chance close to $\frac56$, whether it started green or not.",
+  cap='P₁₁(t), the chance of green flag at time t given green at the start, starts at 1 and decays at rate λ + μ to its limit π₁ = μ/(λ + μ), the long-run share of green-flag time.'),
 32704: dict(d=d4, kind="THEOREM",
   stmt=r"<b>Stationary distribution of a CTMC.</b> A probability vector $\pi$ is stationary if $\pi^\top Q=\mathbf 0^\top$ (global balance), $\sum_i\pi_i=1$, equivalently $\pi^\top P(t)=\pi^\top$ for all $t$. If $\pi_iq_{ij}=\pi_jq_{ji}$ for all $i,j$ (detailed balance), then $\pi^\top Q=\mathbf 0^\top$ (Ross 6.5; Grimmett 6.9).",
-  hint="Which split of time between states is unchanged by the switching?",
+  hint='Which split of race time between green flag and safety car is unchanged by the switching?',
   bd=[r"<strong>$\pi^\top Q=\mathbf 0^\top$ = global balance.</strong> For each state, the rate of flow in, $\sum_i\pi_iq_{ij}$, equals the rate of flow out, $\pi_jq_j$.",
-      r"<strong>$\sum_i\pi_i=1$ = a split of time.</strong> $\pi_i$ is the long-run fraction of time in state $i$.",
+      r"<strong>$\sum_i\pi_i=1$ = a split of time.</strong> $\pi_i$ is the long-run fraction of race time in state $i$.",
       r"<strong>$\pi_iq_{ij}=\pi_jq_{ji}$ = detailed balance.</strong> If every pair of states balances individually, summing over $i$ gives global balance."],
-  conn=r"<strong>Balance the rates.</strong> If the bus is on time for $\frac23$ of the time and goes late at rate 2, while being late for $\frac13$ of the time and recovering at rate 4, both flows are $\frac43$ an hour: balanced.",
-  cap="Flow between two states: rate out of 1 is π₁q₁₂ and rate into 1 is π₂q₂₁. At the stationary law they are equal, which is detailed balance."),
+  conn=r"<strong>Balance the rates.</strong> If the race is green $\frac56$ of the time and a safety car comes out at rate 1, while it is under the safety car $\frac16$ of the time and it goes in at rate 5, both flows are $\frac56$ an hour: balanced.",
+  cap='Flow between green flag (1) and safety car (2): the rate out of 1 is π₁q₁₂ and the rate into 1 is π₂q₂₁. At the stationary law they are equal, which is detailed balance.'),
 32705: dict(d=d5, kind="WORKED EXAMPLE",
   stmt=r"<b>M/M/1 queue.</b> Arrivals at rate $\lambda$, service at rate $\mu$, one server; $\rho=\lambda/\mu<1$. The number in system is a birth–death chain with $\pi_n=(1-\rho)\rho^n$, mean $\mathbb E[L]=\frac\rho{1-\rho}$ and mean time in system $W=\frac1{\mu-\lambda}$ (Little's law $L=\lambda W$). For M/M/c, $\rho=\frac\lambda{c\mu}<1$ (Ross 8.3; Grimmett 11.2).",
-  hint="How long is the queue at the stop in the long run, and how long do you wait?",
+  hint='How long is the queue at a circuit turnstile in the long run, and how long does a fan spend there?',
   bd=[r"<strong>$\pi_n=(1-\rho)\rho^n$ = geometric queue length.</strong> Detailed balance $\pi_n\lambda=\pi_{n+1}\mu$ gives a geometric law, normalised by $1-\rho$.",
       r"<strong>$\mathbb E[L]=\frac\rho{1-\rho}$ = the mean queue.</strong> The mean of the geometric law; it blows up as $\rho\to1$.",
       r"<strong>$W=\frac1{\mu-\lambda}$ = the mean time in system.</strong> By Little's law $W=\mathbb E[L]/\lambda$; it also blows up as $\mu-\lambda\to0$."],
-  conn=r"<strong>Why the stop clogs.</strong> If buses clear people at 6 an hour and 5 arrive an hour, the mean queue is 5 people and the mean time in the system is 1 hour. At 5.9 arrivals an hour, the queue is 59.",
-  cap="Queue-length ladder with arrivals at rate λ and service at rate μ. For ρ = λ/μ < 1 the long-run length is geometric, mean ρ/(1 − ρ), and it explodes as ρ → 1."),
+  conn='<strong>Why the gate clogs.</strong> If a turnstile lets fans in at 6 a minute and 5 arrive a minute, the mean queue is 5 fans and each spends 1 minute there on average. At 5.9 arrivals a minute, the queue is 59.',
+  cap='Queue-length ladder at a turnstile, with arrivals at rate λ and service at rate μ. For ρ = λ/μ < 1 the long-run length is geometric, mean ρ/(1 − ρ), and it explodes as ρ → 1.'),
 32706: dict(d=d6, kind="THEOREM",
   stmt=r"<b>Uniformization (Jensen).</b> Pick $\nu\ge\max_iq_i$ and let $K=I+\frac1\nu Q$, a stochastic matrix. Then $P(t)=\sum_{n\ge0}\frac{(\nu t)^ne^{-\nu t}}{n!}K^n$: the chain is a discrete chain with transition matrix $K$ observed at the ticks of a rate-$\nu$ Poisson clock (Ross 6.7; Grimmett 6.9).",
-  hint="Can a continuous-time chain be run as a discrete one, on the ticks of a clock?",
+  hint='Can a continuous-time chain, like green flag and safety car, be run as a discrete one on the ticks of a clock?',
   bd=[r"<strong>$K=I+Q/\nu$ = a one-tick transition matrix.</strong> With $\nu\ge\max_iq_i$ all entries are in $[0,1]$ and rows add to 1; some ticks leave you in place.",
       r"<strong>$\frac{(\nu t)^ne^{-\nu t}}{n!}$ = the number of ticks.</strong> By time $t$ a rate-$\nu$ Poisson clock has ticked $n$ times with this probability.",
       r"<strong>$P(t)=\sum_n\ldots K^n$ = a mixture.</strong> Weight the $n$-step matrices by the Poisson tick probabilities: a stable way to compute $e^{Qt}$."],
-  conn=r"<strong>A clock ticks, the chain may move.</strong> Fix a fast clock that ticks at least as often as any switch could happen. At each tick, the bus switches with the right small chance, or stays as it is.",
-  cap="A Poisson clock ticks at rate ν. At each tick the chain moves by K = I + Q/ν (some ticks leave it in place). So P(t) is a Poisson mixture of the matrix powers Kⁿ."),
+  conn='<strong>A clock ticks, the race may switch.</strong> Fix a fast random clock that ticks at least as often as any switch could happen. At each tick, race control sends out or calls in the safety car with the right small chance, or nothing changes.',
+  cap='A Poisson clock ticks at rate ν. At each tick the chain moves by K = I + Q/ν (some ticks leave it in place). So P(t) is a Poisson mixture of the matrix powers Kⁿ.'),
 }
 
 STORY = {

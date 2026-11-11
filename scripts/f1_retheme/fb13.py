@@ -1,0 +1,47 @@
+DOC = """StoMA topic 13 (jointly Gaussian). F1 picture: Max's (sector 1, sector 2) times as a Gaussian cloud; conditioning on sector 1 to predict sector 2; marginally normal is not jointly normal."""
+DRAW = {}
+SUBS = [
+ ('"the outline of the cloud of (ETA error, ride error) mornings; μ is its centre"', '"the outline of the cloud of (sector 1, sector 2) laps; μ is its centre"'),
+ ('"any weighted mix of the legs is a bell, with mean and variance from μ and Σ"', '"any weighted mix of the sectors is a bell, with mean and variance from μ and Σ"'),
+]
+CARDS = {
+31301: dict(hint="How does a bell curve in many dimensions know the spread and the tilt of the cloud of sector times?",
+  bd=[r"<strong>$\mu$ = the centre of the cloud.</strong> Max's average (sector 1, sector 2) times over many laps; the density peaks there.",
+      r"<strong>$(x-\mu)^\top\Sigma^{-1}(x-\mu)$ = squared Mahalanobis distance.</strong> Distance from the centre measured in the cloud's own spread and tilt, so tilted stretches count as short.",
+      r"<strong>$(2\pi)^{n/2}|\Sigma|^{1/2}$ = the normaliser.</strong> It makes the total volume 1; a larger cloud (bigger $|\Sigma|$) means a lower peak."],
+  conn=r"<strong>A cloud shaped by Σ.</strong> Max's laps scatter around his typical lap in an oval: a slow sector 1 tends to come with a slow sector 2. A lap far along the long axis of the oval counts as normal; the same distance across it (fast sector 1, slow sector 2) counts as strange.",
+  cap="The outline of the cloud of (sector 1, sector 2) laps around its centre μ. The density falls with the Mahalanobis distance d² = (x − μ)ᵀΣ⁻¹(x − μ), measured in the cloud's own shape."),
+31302: dict(hint="What law does any weighted total of jointly Gaussian sector times follow?",
+  bd=[r"<strong>$t^\top X$ = a weighted total of the sectors.</strong> For instance sector 1 plus sector 2 plus sector 3, the whole lap: look at the cloud along direction $t$.",
+      r"<strong>$t^\top\mu$ = the weighted mean.</strong> Means combine linearly, as always.",
+      r"<strong>$t^\top\Sigma t$ = the weighted variance.</strong> Spread along $t$ comes from the covariance table; the shape is still a bell for every $t$."],
+  conn=r"<strong>Every mix is a bell.</strong> Whatever weighted combination of the sector times you take, the full lap or sector 2 minus sector 1, the result has a bell-curve law with a mean and variance you can read off.",
+  cap="A cloud X and a direction t. The projection tᵀX onto t is a bell with mean tᵀμ and variance tᵀΣt, and this holds for every direction t."),
+31303: dict(hint="For a jointly Gaussian pair of sector times, what does zero covariance tell you about independence?",
+  bd=[r"<strong>$\operatorname{Cov}(X_i,X_j)=0$ = the cloud has no tilt.</strong> Its axes line up with the coordinate directions.",
+      r"<strong>$f_X=\prod f_{X_i}$ = the density factorises.</strong> With a diagonal $\Sigma$, the exponent is a sum of separate squares, so the density is a product.",
+      r"<strong>Only for jointly Gaussian.</strong> For other laws, zero covariance misses non-linear links such as $Y=X^2$."],
+  conn=r"<strong>No tilt, no link.</strong> If Max's sector 1 and sector 2 times are jointly bell-shaped and uncorrelated, then knowing one tells you nothing about the other; the oval is not tilted.",
+  cap="Left: an untilted cloud, Cov = 0, whose density is a product f(x₁)f(x₂): independent. Right: a tilted cloud, Cov ≠ 0: dependent."),
+31304: dict(hint="Given one jointly Gaussian sector time, what is the law of the other, and how does it compare to the best straight-line guess?",
+  bd=[r"<strong>$\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(x_2-\mu_2)$ = the conditional mean.</strong> It is exactly the straight-line LLSE: the guess moves linearly with what you see.",
+      r"<strong>$\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}$ = the conditional spread.</strong> The Schur complement; it does not depend on the value $x_2$ you saw.",
+      r"<strong>Still normal.</strong> Slicing a Gaussian cloud gives a Gaussian slice, so the best guess of any kind is the linear one."],
+  conn=r"<strong>Slicing the cloud.</strong> Among Max's laps with the same sector 2 time, the sector 1 times form a bell centred on the regression line, narrower than over all laps, and equally wide whatever the sector 2 time was.",
+  cap="The cloud sliced at x₂ gives a narrower bell for X₁, centred on the line m = μ₁ + Σ₁₂Σ₂₂⁻¹(x₂ − μ₂) with spread S = Σ₁₁ − Σ₁₂Σ₂₂⁻¹Σ₂₁."),
+31305: dict(hint="Given only the quadratic form in the exponent, how do you read off variances and covariance?",
+  bd=[r"<strong>$-\tfrac12z^\top Pz$ = the exponent.</strong> The matrix in the exponent is the inverse covariance $P=\Sigma^{-1}$ (the precision matrix).",
+      r"<strong>$\Sigma=P^{-1}$ = invert it.</strong> For a $2\times2$ matrix, swap the diagonal, negate the off-diagonal, and divide by the determinant $ac-b^2$.",
+      r"<strong>$\operatorname{Var}X=\frac{c}{ac-b^2}$ = not $1/a$.</strong> The variance is read from $\Sigma$, never from the diagonal of $P$; $\operatorname{Cov}=\frac{-b}{ac-b^2}$."],
+  conn=r"<strong>Recipe from the formula.</strong> A Red Bull engineer hands you the exponent of the joint density of Max's two sector times. Invert its matrix and you get the covariances, so you know how the two sectors move together.",
+  cap="The matrix P in the exponent, inverted: Σ = P⁻¹ = (1/(ac − b²)) [c, −b; −b, a]. Variances come from Σ, such as Var(X) = c/(ac − b²), not from P directly."),
+31306: dict(hint="Can two bell-shaped variables with zero covariance still be dependent?",
+  bd=[r"<strong>$Y=SX$ = flip the sign at random.</strong> With a fair coin $S$, $Y$ is $X$ or $-X$, which is again a standard normal.",
+      r"<strong>$\operatorname{Cov}(X,Y)=0$ = no straight-line link.</strong> The coin makes the covariance average to zero.",
+      r"<strong>$\mathbb P(X+Y=0)=\tfrac12$ = a weighted total with an atom.</strong> A jointly Gaussian pair would make $X+Y$ normal, with no atoms, so the pair is not jointly Gaussian."],
+  conn=r"<strong>Each a bell, but a cross, not an oval.</strong> Imagine a timing glitch that flips the sign of Max's sector 2 deviation at random. Sector 1 and sector 2 deviations are each bell-shaped, but their pairs lie on the two diagonals instead of in a cloud.",
+  cap="Points (X, Y = SX) of sector deviations lie on the two diagonals instead of an oval cloud. Both X and Y are 𝒩(0,1) with Cov = 0, but ℙ(X + Y = 0) = ½, so the pair is not jointly Gaussian."),
+}
+STORY = {
+31302: dict(b="Every <b>weighted total</b> of jointly Gaussian sector times is normal, with mean and variance from μ and Σ."),
+}

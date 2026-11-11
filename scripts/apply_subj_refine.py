@@ -24,7 +24,7 @@ def _light(svg):
     svg = svg.replace('font-weight="bold"', 'font-weight="normal"')
     return re.sub(r'stroke-width="([\d.]+)"', lambda m: f'stroke-width="{min(float(m.group(1)), 1.2):g}"', svg)
 
-story, n_fix, subject = {}, 0, None
+story, n_fix, subject, posts = {}, 0, None, []
 for p in sorted(glob.glob(os.path.join(here, f"subj_{key}_*.py"))):
     mod = importlib.import_module(os.path.basename(p)[:-3])
     subject = mod.SUBJECT
@@ -33,6 +33,7 @@ for p in sorted(glob.glob(os.path.join(here, f"subj_{key}_*.py"))):
         by_id[cid].update(fields)
         n_fix += 1
     story.update({str(k): v for k, v in getattr(mod, "STORY", {}).items()})
+    if hasattr(mod, "POST"): posts.append(mod.POST)
 
 # a bare "<" inside $...$ (e.g. j<k) is read by the browser as the start of a tag and cuts the formula
 _TAG = re.compile(r"<(?=/?(span|b|strong|em|i|br|sup|sub)\b)")
@@ -42,6 +43,7 @@ def _lt(s):
 
 for c in by_id.values():
     if c["subject"] != subject: continue
+    for post in posts: post(c)   # last passes (e.g. notation) over the finished card
     if c.get("drawingSvg"):
         c["drawingSvg"] = _light(c["drawingSvg"])
     for k in ("math", "statement", "personalConnection", "examTrap", "hint"):

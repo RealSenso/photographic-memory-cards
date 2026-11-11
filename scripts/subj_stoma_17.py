@@ -1,5 +1,5 @@
-"""StoMA topic 17 (laws of large numbers). Commute picture: the average of your first n commute times."""
-from commute_lib import *
+"""StoMA topic 17 (laws of large numbers). F1 picture: the average of Max's first n lap times settling at his true pace (weak = one lap-count snapshot, strong = his whole career path); Cauchy = where a spinning car hits the barrier."""
+from f1_lib import *
 
 SUBJECT = "StoMA"
 
@@ -14,7 +14,7 @@ def wobble(n_pts, amp, decay, mu_y, x0=30, x1=222, seed=3):
 
 def d1(c):
     b = 108
-    return svg(c, ax(24, b, 226, 18), N(226, 120, "average commute x̄ₙ (min)", 7, "end"),
+    return svg(c, ax(24, b, 226, 18), N(226, 120, "average lap time x̄ₙ (s)", 7, "end"),
         fn(lambda x: b - 28 * math.exp(-((x - 124) ** 2) / 2500), 24, 226, 60, 1.1), N(60, 70, "n = 1", 7),
         fn(lambda x: b - 56 * math.exp(-((x - 124) ** 2) / 300), 24, 226, 60, 1.1), N(160, 56, "n = 10", 7, "start"),
         fn(lambda x: b - 84 * math.exp(-((x - 124) ** 2) / 25), 24, 226, 80, 1.1), N(124, 18, "n = 100", 7), dash(124, b, 124, 26), N(124, 120, "μ", 8),
@@ -22,7 +22,7 @@ def d1(c):
 
 def d2(c):
     pts = wobble(40, 40, 4.5, 64)
-    return svg(c, ax(24, 112, 226, 14), N(226, 124, "n days", 7, "end"), N(28, 14, "x̄ₙ", 7, "start"),
+    return svg(c, ax(24, 112, 226, 14), N(226, 124, "n laps", 7, "end"), N(28, 14, "x̄ₙ", 7, "start"),
         L(24, 64, 226, 64, 1, "4 3"), N(28, 60, "μ", 8, "start"), L(24, 50, 226, 50, .8, "2 3"), L(24, 78, 226, 78, .8, "2 3"),
         poly(pts, 1.1), N(150, 100, "stays inside ±ε for good", 7, "start"),
         N(120, 138, "ℙ( lim x̄ₙ = μ ) = 1 ⇔ 𝔼|X| < ∞", 7.5))
@@ -37,12 +37,12 @@ def d3(c):
 
 def d4(c):
     xs = [(40, 20), (70, 14), (100, 58), (130, 24), (160, 90), (190, 30), (220, 18)]
-    out = ax(24, 112, 226, 14) + N(226, 124, "day n", 7, "end") + N(28, 14, "|Xₙ|", 7, "start")
+    out = ax(24, 112, 226, 14) + N(226, 124, "lap n", 7, "end") + N(28, 14, "|Xₙ|", 7, "start")
     out += fn(lambda x: 112 - (x - 24) * 0.45, 24, 226, 20, 1.1, "4 3") + N(60, 40, "cap at n", 7, "start")
     for x, h in xs:
         out += L(x, 112, x, 112 - h, 1) + C(x, 112 - h, 1.8, "#000000" if 112 - h > 112 - (x - 24) * .45 else "#ffffff", 1)
-    out += N(120, 130, "Yₙ = Xₙ 1{|Xₙ| ≤ n}: clip the days that exceed the cap", 7)
-    out += N(120, 141, "∑ ℙ(Xₙ ≠ Yₙ) ≤ 𝔼|X| < ∞: only finitely many days are clipped", 6.5)
+    out += N(120, 130, "Yₙ = Xₙ 1{|Xₙ| ≤ n}: clip the laps that exceed the cap", 7)
+    out += N(120, 141, "∑ ℙ(Xₙ ≠ Yₙ) ≤ 𝔼|X| < ∞: only finitely many laps are clipped", 6.5)
     return svg(c, out)
 
 def d5(c):
@@ -63,67 +63,67 @@ def d6(c):
         s += v
         pts.append((24 + i * 5, 64 - max(-50, min(50, s / i * 6))))
     return svg(c, ax(24, 112, 226, 14), N(226, 124, "n", 7, "end"), N(28, 14, "x̄ₙ", 7, "start"), L(24, 64, 226, 64, 1, "4 3"),
-        poly(pts, 1.1), N(30, 28, "Cauchy days: no mean exists", 7, "start"),
+        poly(pts, 1.1), N(30, 28, "Cauchy impact points: no mean exists", 7, "start"),
         N(120, 130, "φ(X̄ₙ)(t) = [e^(−|t|/n)]ⁿ = e^(−|t|): X̄ₙ has the same law as X₁", 7), N(120, 141, "averaging never helps: the average never settles", 7))
 
 CARDS = {
 31701: dict(d=d1, kind="THEOREM",
   stmt=r"<b>Weak law of large numbers.</b> Let $X_1,X_2,\ldots$ be i.i.d. with mean $\mu$ and finite variance $\sigma^2$. Then $\bar X_n=\frac1n\sum_{i=1}^nX_i\xrightarrow{P}\mu$; indeed $\mathbb P(|\bar X_n-\mu|\ge\varepsilon)\le\dfrac{\sigma^2}{n\varepsilon^2}$ (Ross 8.2; Grimmett 7.4).",
-  hint="Why does the average of many commute times home in on the true mean?",
-  bd=[r"<strong>$\bar X_n$ = the average of the first $n$ days.</strong> Its mean is $\mu$ for every $n$.",
-      r"<strong>$\operatorname{Var}(\bar X_n)=\sigma^2/n$ = the spread shrinks.</strong> Independent days average out: the variance of the average falls like $1/n$.",
+  hint="Why does the average of many lap times home in on Max's true pace?",
+  bd=[r"<strong>$\bar X_n$ = the average of the first $n$ laps.</strong> Its mean is $\mu$ for every $n$.",
+      r"<strong>$\operatorname{Var}(\bar X_n)=\sigma^2/n$ = the spread shrinks.</strong> Independent laps average out: the variance of the average falls like $1/n$.",
       r"<strong>$\le\sigma^2/(n\varepsilon^2)\to0$ = Chebyshev.</strong> The chance that the average is off by $\varepsilon$ or more shrinks to zero."],
-  conn=r"<strong>Averaging smooths out the days.</strong> One commute can be anything. The average of 100 commutes is rarely more than a minute from your true typical commute: the bell around the mean gets narrower and narrower.",
-  cap="The law of the average X̄ₙ for n = 1, 10, 100: a bell around μ that narrows like σ²/n. By Chebyshev, ℙ(|X̄ₙ − μ| ≥ ε) ≤ σ²/(nε²) → 0."),
+  conn="<strong>Averaging smooths out the laps.</strong> One lap can be anything: traffic, a lock-up, a tow down the straight. The average of 100 laps is rarely more than a tenth of a second from Max's true pace: the bell around the mean gets narrower and narrower.",
+  cap='The law of the average lap time X̄ₙ for n = 1, 10, 100 laps: a bell around μ that narrows like σ²/n. By Chebyshev, ℙ(|X̄ₙ − μ| ≥ ε) ≤ σ²/(nε²) → 0.'),
 31702: dict(d=d2, kind="THEOREM",
   stmt=r"<b>Strong law of large numbers.</b> Let $X_1,X_2,\ldots$ be i.i.d. Then $\mathbb P\bigl(\lim_n\frac1n\sum_{i=1}^nX_i=\mu\bigr)=1$ if and only if $\mathbb E|X|<\infty$, in which case $\mu=\mathbb E[X]$ (Kolmogorov; Grimmett 7.5; Durrett 2.4).",
-  hint="Not just any snapshot: does a single endless run of commutes settle at the mean for sure?",
-  bd=[r"<strong>$\frac1n\sum X_i$ = the running average along one run of days.</strong> Follow a single infinite sequence of mornings.",
-      r"<strong>$\mathbb P(\lim\ldots=\mu)=1$ = this run settles at $\mu$ with probability 1.</strong> Almost every run of days has a running average that converges to the true mean.",
+  hint='Not just any snapshot: does one endless run of laps settle at the mean for sure?',
+  bd=[r"<strong>$\frac1n\sum X_i$ = the running average along one run of laps.</strong> Follow a single endless sequence of laps: Max's whole career.",
+      r"<strong>$\mathbb P(\lim\ldots=\mu)=1$ = this run settles at $\mu$ with probability 1.</strong> Almost every run of laps has a running average that converges to the true mean.",
       r"<strong>$\iff\mathbb E|X|<\infty$ = exactly when a mean exists.</strong> If $\mathbb E|X|=\infty$ the running average fails to converge a.s."],
-  conn=r"<strong>Your own average commute settles.</strong> Keep a running average of your commute. With probability 1, it ends up within any tiny band around the true mean and stays there for ever.",
-  cap="One infinite run: the running average x̄ₙ wobbles, then enters the band μ ± ε and stays there. The SLLN says this happens for almost every run when 𝔼|X| < ∞."),
+  conn="<strong>Max's own average settles.</strong> Keep a running average of every lap Max drives in his career. With probability 1, it ends up within any tiny band around his true mean lap time and stays there for ever.",
+  cap='One endless run of laps: the running average x̄ₙ wobbles, then enters the band μ ± ε and stays there. The SLLN says this happens for almost every run when 𝔼|X| < ∞.'),
 31703: dict(d=d3, kind="THEOREM",
   stmt=r"<b>Strong law under a fourth moment.</b> If $X_i$ are i.i.d. with $\mathbb E[X^4]<\infty$, then $\mathbb E[(\bar X_n-\mu)^4]\le C/n^2$, so $\sum_n\mathbb P(|\bar X_n-\mu|\ge\varepsilon)\le\sum_n\frac{C}{n^2\varepsilon^4}<\infty$, and by the first Borel–Cantelli lemma $\bar X_n\to\mu$ almost surely (Grimmett 7.5; Durrett 2.4).",
-  hint="How does a finite fourth moment make the chances of missing the mean add up to a finite number?",
+  hint='How does a finite fourth moment make the chances of missing the mean add up to a finite number?',
   bd=[r"<strong>$\mathbb E[(\bar X_n-\mu)^4]\le C/n^2$ = the fourth moment of the average.</strong> Expanding the fourth power, only $O(n^2)$ products of centred terms survive, out of $n^4$, and dividing by $n^4$ leaves $C/n^2$.",
       r"<strong>$\mathbb P(|\bar X_n-\mu|\ge\varepsilon)\le\frac{C}{n^2\varepsilon^4}$ = Markov on the fourth power.</strong> A fourth-moment bound turns into a bound on the chance of a miss.",
       r"<strong>$\sum1/n^2<\infty\Rightarrow$ BC1 $\Rightarrow$ a.s.</strong> Summable chances give finitely many misses, so the running average converges a.s."],
-  conn=r"<strong>Why misses stop for good.</strong> The chance that day $n$'s average is off by a minute shrinks like $1/n^2$. Those chances add up to a finite number, so there is a last day on which you are off by that much.",
-  cap="The bound ℙ(|X̄ₙ − μ| ≥ ε) ≤ C/(n²ε⁴), drawn as bars shrinking like 1/n². The sum is finite, so Borel–Cantelli gives X̄ₙ → μ almost surely."),
+  conn='<strong>Why misses stop for good.</strong> The chance that the average after lap $n$ is off by a tenth of a second shrinks like $1/n^2$. Those chances add up to a finite number, so there is a last lap after which the average is never off by that much again.',
+  cap='The bound ℙ(|X̄ₙ − μ| ≥ ε) ≤ C/(n²ε⁴), drawn as bars shrinking like 1/n². The sum is finite, so Borel–Cantelli gives X̄ₙ → μ almost surely.'),
 31704: dict(d=d4, kind="THEOREM",
   stmt=r"<b>Kolmogorov's SLLN and truncation.</b> $\bar X_n\to\mu$ a.s. iff $\mathbb E|X|<\infty$. Sketch: put $Y_n=X_n\mathbf 1_{\{|X_n|\le n\}}$. Then $\sum_n\mathbb P(X_n\ne Y_n)=\sum_n\mathbb P(|X|>n)\le\mathbb E|X|<\infty$, so $X_n=Y_n$ eventually (Borel–Cantelli), and the truncated variables have bounded variance sums (Grimmett 7.5; Durrett 2.4).",
-  hint="How do you tame an unbounded day by clipping it, and why do only finitely many days get clipped?",
-  bd=[r"<strong>$Y_n=X_n\mathbf 1_{\{|X_n|\le n\}}$ = clip the big days.</strong> Replace a day by 0 if it exceeds a cap that grows with $n$.",
-      r"<strong>$\sum\mathbb P(X_n\ne Y_n)\le\mathbb E|X|$ = few days are clipped.</strong> The chances $\mathbb P(|X|>n)$ sum to at most $\mathbb E|X|$, which is finite.",
-      r"<strong>Borel–Cantelli = finitely many clipped days.</strong> After some day $X_n=Y_n$, so the clipped and original averages have the same limit."],
-  conn=r"<strong>Ignore the freak days.</strong> Cap each morning's delay at a level that grows slowly with the day number. Only finitely many days ever exceed their cap, so capping does not change where the running average ends up.",
-  cap="Each day's |Xₙ| and the growing cap n. Days above the cap are clipped (open dots): Yₙ = Xₙ1{|Xₙ| ≤ n}. Only finitely many days are clipped since ∑ℙ(Xₙ ≠ Yₙ) ≤ 𝔼|X|."),
+  hint='How do you tame an unbounded lap by clipping it, and why do only finitely many laps get clipped?',
+  bd=[r"<strong>$Y_n=X_n\mathbf 1_{\{|X_n|\le n\}}$ = clip the big laps.</strong> Replace a lap by 0 if it exceeds a cap that grows with $n$.",
+      r"<strong>$\sum\mathbb P(X_n\ne Y_n)\le\mathbb E|X|$ = few laps are clipped.</strong> The chances $\mathbb P(|X|>n)$ sum to at most $\mathbb E|X|$, which is finite.",
+      '<strong>Borel–Cantelli = finitely many clipped laps.</strong> After some lap $X_n=Y_n$, so the clipped and original averages have the same limit.'],
+  conn='<strong>Ignore the freak laps.</strong> Cap the time lost on each lap (a spin, a red flag) at a level that grows slowly with the lap number. Only finitely many laps ever exceed their cap, so capping does not change where the running average ends up.',
+  cap="Each lap's |Xₙ| and the growing cap n. Laps above the cap are clipped (open dots): Yₙ = Xₙ1{|Xₙ| ≤ n}. Only finitely many laps are clipped since ∑ℙ(Xₙ ≠ Yₙ) ≤ 𝔼|X|."),
 31705: dict(d=d5, kind="THEOREM",
   stmt=r"<b>WLLN versus SLLN.</b> The WLLN says $\mathbb P(|\bar X_n-\mu|\ge\varepsilon)\to0$ for each fixed $\varepsilon$ (a statement about the law at each time $n$). The SLLN says $\mathbb P\bigl(\bigcup_{k\ge n}\{|\bar X_k-\mu|\ge\varepsilon\}\bigr)\to0$ as $n\to\infty$ (a statement about the whole path after $n$) (Grimmett 7.2, 7.5).",
-  hint="What does a law about one day say, compared with a law about the whole future of a run?",
-  bd=[r"<strong>$\mathbb P(|\bar X_n-\mu|\ge\varepsilon)\to0$ = a snapshot.</strong> On any chosen day $n$, a miss is unlikely; different days may have different unlucky runs.",
-      r"<strong>$\bigcup_{k\ge n}\{|\bar X_k-\mu|\ge\varepsilon\}$ = any miss from day $n$ on.</strong> The union of all later misses is the event that the path ever leaves the band again.",
-      r"<strong>$\to0$ = the path stays inside.</strong> Even the chance of ever leaving the band after day $n$ goes to 0: stronger than the snapshot."],
-  conn=r"<strong>One day versus the rest of your life.</strong> The weak law promises that on day 1000 your average is almost surely close. The strong law promises that from some day on it is close on every later day too.",
-  cap="Left: the weak law is a statement about the spread of values on one fixed day n. Right: the strong law is about a whole path, which must stay in the band for all days after n."),
+  hint="What does a law about one lap count say, compared with a law about Max's whole career path?",
+  bd=[r"<strong>$\mathbb P(|\bar X_n-\mu|\ge\varepsilon)\to0$ = a snapshot.</strong> At any chosen lap count $n$, a miss is unlikely; different $n$ may have different unlucky careers.",
+      r"<strong>$\bigcup_{k\ge n}\{|\bar X_k-\mu|\ge\varepsilon\}$ = any miss from lap $n$ on.</strong> The union of all later misses is the event that the path ever leaves the band again.",
+      r"<strong>$\to0$ = the path stays inside.</strong> Even the chance of ever leaving the band after lap $n$ goes to 0: stronger than the snapshot."],
+  conn="<strong>One snapshot versus the whole career.</strong> The weak law promises that after 1000 laps Max's average is very likely close to his true pace. The strong law promises that from some lap on it is close after every later lap too.",
+  cap='Left: the weak law is about the spread of values at one fixed lap count n. Right: the strong law is about a whole career path, which must stay in the band for all laps after n.'),
 31706: dict(d=d6, kind="WORKED EXAMPLE",
   stmt=r"<b>Failure for the Cauchy law.</b> If $X_i$ are i.i.d. standard Cauchy, $\phi_X(t)=e^{-|t|}$, so $\phi_{\bar X_n}(t)=\bigl[e^{-|t|/n}\bigr]^n=e^{-|t|}$ and $\bar X_n\overset d=X_1$ for every $n$. Hence $\bar X_n$ does not converge to a constant: the laws of large numbers fail since $\mathbb E|X|=\infty$ (Grimmett 5.10).",
-  hint="What happens to the average if single days can be so extreme that no mean exists?",
+  hint='What happens to the average if single values can be so extreme that no mean exists?',
   bd=[r"<strong>$\phi_{\bar X_n}(t)=[\phi_X(t/n)]^n$ = the average's transform.</strong> Independence gives $n$ equal factors.",
-      r"<strong>$[e^{-|t|/n}]^n=e^{-|t|}$ = nothing changes.</strong> The factors recombine into one day's transform.",
-      r"<strong>$\bar X_n\overset d=X_1$ = averaging does not help.</strong> The average is as wild as a single day."],
-  conn=r"<strong>Days with freak outliers.</strong> If now and then a day is so extreme that it dwarfs all before it, the running average is thrown off however many days you average.",
-  cap="The running average of Cauchy days keeps jumping instead of settling at a mean, because φ(X̄ₙ)(t) = e^(−|t|) for every n: the average is no tamer than one day."),
+      '<strong>$[e^{-|t|/n}]^n=e^{-|t|}$ = nothing changes.</strong> The factors recombine into the transform of one impact point.',
+      r"<strong>$\bar X_n\overset d=X_1$ = averaging does not help.</strong> The average is as wild as a single spin-off."],
+  conn='<strong>Where a spinning car hits the wall.</strong> A car that spins off at a uniformly random angle hits a long straight barrier at a Cauchy-distributed point: now and then it slides almost parallel and lands enormously far down the track. Average as many spin-offs as you like; the average impact point never settles.',
+  cap='The running average of Cauchy impact points keeps jumping instead of settling at a mean, because φ(X̄ₙ)(t) = e^(−|t|) for every n: the average is no tamer than one spin-off.'),
 }
 
 STORY = {
-31701: dict(s="STORY 17 · STEP 1 · THE SPREAD COLLAPSES", b="The <b>weak law</b>: the average of many independent days has variance σ²/n, so it concentrates at μ.", f=[["30602", "Chebyshev"], ["30503", "variance of a sum"], ["31501", "convergence in probability"]], n=[["31702", "a statement about whole runs"], ["31705", "snapshot versus path"]]),
+31701: dict(s="STORY 17 · STEP 1 · THE SPREAD COLLAPSES", b='The <b>weak law</b>: the average of many independent laps has variance σ²/n, so it concentrates at μ.', f=[["30602", "Chebyshev"], ["30503", "variance of a sum"], ["31501", "convergence in probability"]], n=[["31702", "a statement about whole runs"], ["31705", "snapshot versus path"]]),
 31702: dict(s="STORY 17 · STEP 2 · EVERY RUN SETTLES", b="The <b>strong law</b>: almost every infinite run's running average converges to the mean.", f=[["31701", "weak law"], ["31605", "limits of events"]], n=[["31703", "a proof from the fourth moment"], ["31704", "the sharp condition"]]),
 31703: dict(s="STORY 17 · STEP 3 · A PROOF", b="A fourth moment gives <b>summable</b> miss chances, and BC1 converts them into a.s. convergence.", f=[["31605", "a.s. via Borel–Cantelli"], ["30601", "Markov's inequality"]], n=[["31704", "removing the fourth-moment assumption"]]),
 31704: dict(s="STORY 17 · STEP 4 · THE SHARP LAW", b="<b>Truncation</b> shows the strong law holds exactly when 𝔼|X| is finite.", f=[["31703", "the fourth-moment proof"], ["31602", "first Borel–Cantelli"]], n=[["31706", "what fails without it"]]),
-31705: dict(s="STORY 17 · STEP 5 · SNAPSHOT VERSUS TRAJECTORY", b="Weak is about <b>each day separately</b>, strong is about the <b>whole future path</b>.", f=[["31701", "WLLN"], ["31702", "SLLN"], ["31503", "probability versus a.s."]], n=[["31706", "failure case"]]),
-31706: dict(s="STORY 17 · STEP 6 · WHEN AVERAGING FAILS", b="For the <b>Cauchy</b> law the average has the same law as one day: no law of large numbers.", f=[["30406", "the Cauchy law"], ["31704", "needing 𝔼|X| < ∞"]], n=[["31801", "characteristic functions"]]),
+31705: dict(s="STORY 17 · STEP 5 · SNAPSHOT VERSUS TRAJECTORY", b='Weak is about <b>each lap count separately</b>, strong is about the <b>whole future path</b>.', f=[["31701", "WLLN"], ["31702", "SLLN"], ["31503", "probability versus a.s."]], n=[["31706", "failure case"]]),
+31706: dict(s="STORY 17 · STEP 6 · WHEN AVERAGING FAILS", b='For the <b>Cauchy</b> law the average has the same law as one value: no law of large numbers.', f=[["30406", "the Cauchy law"], ["31704", "needing 𝔼|X| < ∞"]], n=[["31801", "characteristic functions"]]),
 }
 
 FIX = build(CARDS)

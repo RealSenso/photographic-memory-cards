@@ -1,5 +1,7 @@
-"""StoMA drawing helpers. The everyday picture for all of StoMA is your morning commute to campus by bus:
-one morning = one outcome, ride time / wait time are random variables, buses arrive at a stop, traffic has states."""
+"""StoMA drawing helpers. The everyday picture for all of StoMA is Formula 1: Max Verstappen and Red Bull Racing.
+One race (Grand Prix) = one outcome; lap times, pit-stop times, the gap to P2 and points are random variables; safety cars
+arrive during a race like a Poisson stream; Max's result moves between win, podium and off-podium from race to race
+(a Markov chain); the gap to a rival drifts lap by lap like a random walk."""
 import math
 from air_lib import arrow, dot, dash, circ, fn, f
 from subj_lib import T, N, L, P, C, R, E, PG, svg, poly
@@ -8,19 +10,25 @@ def ax(x0=24, y0=118, x1=226, y1=18):
     """x and y axes with arrow heads"""
     return L(x0, y0, x1, y0, 1, ar=True) + L(x0, y0, x0, y1, 1, ar=True)
 
-def bus(x, y, s=1.0, fill="#ffffff"):
-    """small side-view bus, front at the right, (x, y) = bottom-left"""
-    w, h = 24 * s, 11 * s
-    out = R(f(x), f(y - h), f(w), f(h), fill, 1, 2)
-    for i in range(3):
-        out += R(f(x + 3 * s + i * 7 * s), f(y - h + 2 * s), f(5 * s), f(4 * s), "#f1f5f9", .8)
-    out += C(f(x + 5 * s), f(y), f(2 * s), "#ffffff", 1) + C(f(x + w - 5 * s), f(y), f(2 * s), "#ffffff", 1)
+def car(x, y, s=1.0):
+    """a small side-view F1 car facing right, (x, y) = bottom-left of the wheels"""
+    w = 26 * s
+    body = (f"{x + 2 * s:.1f},{y - 4 * s:.1f} {x + 9 * s:.1f},{y - 7 * s:.1f} {x + 15 * s:.1f},{y - 7 * s:.1f} {x + 17 * s:.1f},{y - 10 * s:.1f} "
+            f"{x + 19 * s:.1f},{y - 7 * s:.1f} {x + w:.1f},{y - 5 * s:.1f} {x + w:.1f},{y - 3 * s:.1f} {x + 2 * s:.1f},{y - 3 * s:.1f}")
+    return (PG(body, "#ffffff", 1) + L(f(x), f(y - 9 * s), f(x + 4 * s), f(y - 9 * s), 1.2) + L(f(x + 2 * s), f(y - 9 * s), f(x + 2 * s), f(y - 4 * s), .8)
+            + C(f(x + 6 * s), f(y - 2.5 * s), f(2.6 * s), "#111111", 1) + C(f(x + w - 5 * s), f(y - 2.5 * s), f(2.6 * s), "#111111", 1))
+
+def flag(x, y, s=1.0):
+    """a chequered flag on a pole, (x, y) = foot of the pole"""
+    out = L(f(x), f(y), f(x), f(y - 22 * s), 1)
+    for i in range(4):
+        for j in range(3):
+            out += R(f(x + i * 3.5 * s), f(y - 22 * s + j * 3.5 * s), f(3.5 * s), f(3.5 * s), "#111111" if (i + j) % 2 == 0 else "#ffffff", .4)
     return out
 
-def stop(x, y, lab=None):
-    """bus-stop pole with a sign, (x, y) = foot of the pole"""
-    out = L(f(x), f(y), f(x), f(y - 20), 1) + R(f(x - 5), f(y - 26), 10, 7, "#ffffff", 1)
-    return out + (N(x, y + 9, lab, 7) if lab else "")
+def track(x, y, w, h):
+    """a simple oval circuit outline with a start line, (x, y) = top-left"""
+    return E(f(x + w / 2), f(y + h / 2), f(w / 2), f(h / 2), 0, "none", 1) + E(f(x + w / 2), f(y + h / 2), f(w / 2 - 8), f(h / 2 - 8), 0, "none", .6) + L(f(x + w / 2), f(y + h - 8), f(x + w / 2), f(y + h), 1.2)
 
 def road(pts, w=1):
     return poly(pts, w)
