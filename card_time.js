@@ -3,7 +3,11 @@
    count and starts the new one's. A beep sounds after every 10 minutes of playing time since you last pressed Play, counted over all cards
    together (not per card).
    Totals sync through the same private gist as progress, as a per-device counter (each device only ever raises its own numbers, merging takes the
-   larger value per device and card), so two devices never double-count or erase each other. */
+   larger value per device and card), so two devices never double-count or erase each other.
+   The play/pause state also syncs (plates-card-run.json, last change wins by `seq` timestamp), so the timer can be started or paused
+   from another device - e.g. Instinct starting it when he says "starting" and pausing it when the slot ends. A start command can carry an
+   `until` deadline that pauses the timer on this page by itself, exactly on time, with no sync round-trip. A stale command whose deadline
+   has already passed is applied as paused, so time is never backfilled: counting only ever accrues live, while this page is visible. */
 (function (root) {
   'use strict';
   const KEY = 'plates_cardtime_v1', RUN = 'plates_cardtime_run_v1', BEEP_EVERY = 10 * 60 * 1000, MAX_STEP = 2000;
@@ -27,7 +31,19 @@
   const pad = n => String(n).padStart(2, '0');
   function fmtClock(ms) { const s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60; return (h ? h + ':' + pad(m) : m) + ':' + pad(s % 60); }
   function fmtShort(ms) { const m = Math.floor(ms / 60000), h = Math.floor(m / 60); return h ? h + 'h ' + pad(m % 60) + 'm' : m ? m + 'm' : '<1m'; }
-  const api = { merge, ahead, total, fmtClock, fmtShort };
+  /* shared play/pause state: {on, until, seq, by}; the larger seq wins. A remote start whose deadline already passed applies as paused. */
+  function mergeRun(local, remote, now) {
+    const l = Object.assign({ on: false, until: null, seq: 0, by: 'manual' }, local || {});
+    const r = (remote && typeof remote === 'object' && typeof remote.seq === 'number') ? remote : null;
+    const rseq = r ? r.seq : -1;
+    if (rseq > (l.seq || 0)) {
+      let on = !!r.on, until = (typeof r.until === 'number') ? r.until : null;
+      if (on && until && until <= now) { on = false; until = null; }
+      return { adopt: true, state: { on, until, seq: rseq, by: (r && r.by) || 'remote' }, push: false };
+    }
+    return { adopt: false, state: l, push: (l.seq || 0) > rseq };
+  }
+  const api = { merge, ahead, total, fmtClock, fmtShort, mergeRun };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
 
   /* ---------- page ---------- */
@@ -36,7 +52,9 @@
   let data = lsGet(KEY, null);
   if (!data || !data.dev || !data.c) data = { dev: Math.random().toString(36).slice(2, 10), c: {} };
   data.c[data.dev] = data.c[data.dev] || {};
-  let run = Object.assign({ on: false, ms: 0 }, lsGet(RUN, {}));
+  let run = Object.assign({ on: false, ms: 0, until: null, seq: 0, by: 'manual' }, lsGet(RUN, {}));
+  /* seq must never go backwards, or a local action could lose to an older remote state on the next sync */
+  const nextSeq = () => Math.max(Date.now(), (run.seq || 0) + 1);
   let curKey = null, last = Date.now(), dirty = false, ctx = null;
   ['plates_timer_v1', 'plates_timer_prefs_v1', 'plates_timer_prefs_v1_plan'].forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });   // the old slot timer
 
@@ -78,6 +96,10 @@
   function tick() {
     const now = Date.now(), dt = Math.max(0, Math.min(now - last, MAX_STEP));
     last = now;
+    if (run.on && run.until && now >= run.until) {   /* the slot's deadline pauses the timer on this page by itself */
+      run.on = false; run.until = null; run.seq = nextSeq(); run.by = 'auto'; dirty = true;
+      if (root.syncSoon) root.syncSoon();
+    }
     if (run.on && !document.hidden && curKey) {
       const mine = data.c[data.dev];
       mine[curKey] = (mine[curKey] || 0) + dt;
@@ -99,19 +121,36 @@
 
   /* Play starts a fresh 10-minute count (run.ms = playing time since the last Play, across every card you open);
      Pause freezes it, so the beep comes after 10 minutes of real study, then every 10 minutes after that. */
-  function toggle() { tick(); run.on = !run.on; if (run.on) { run.ms = 0; unlock(); } dirty = true; persist(); paint(); }
+  function toggle() { tick(); run.on = !run.on; run.until = null; run.seq = nextSeq(); run.by = 'manual'; if (run.on) { run.ms = 0; unlock(); } dirty = true; persist(); paint(); if (root.syncSoon) root.syncSoon(); }
+  /* Remote command from another device (e.g. Instinct on "starting" / at the slot's end). Latest seq wins over anything older. */
+  function command(cmd, until) {
+    tick();
+    if (cmd === 'start') { run.on = true; run.ms = 0; const u = Number(until); run.until = (isFinite(u) && u > Date.now()) ? u : null; }
+    else if (cmd === 'pause') { run.on = false; run.until = null; }
+    else return false;
+    run.seq = nextSeq(); run.by = 'agent'; dirty = true; persist(); paint();
+    if (root.syncSoon) root.syncSoon();
+    return true;
+  }
   function barHtml(card) {
     const k = keyOf(card);
     return `<span class="ctime-wrap"><button class="ctime-btn ${run.on ? 'on' : ''}" id="ctime-btn" onclick="CardTime.toggle()" aria-label="${run.on ? 'Pause' : 'Start'} card timer" title="Play / pause the card timer (T)">${run.on ? '❚❚' : '▶'}</button><span class="ctime" id="ctime" title="Time this card has been open with the timer playing">${fmtClock(k ? total(data.c, k) : 0)}</span></span>`;
   }
   const subjHtml = sub => { const v = subjectTotal(sub); return `<span class="stime" data-s="${sub}" title="Total card time in ${sub}">${v ? fmtShort(v) : ''}</span>`; };
 
-  /* sync: index.html's syncNow passes the gist copy and stores what this returns */
-  function syncMerge(remote) {
+  /* sync: index.html's syncNow passes the gist copies and stores what this returns */
+  function syncMerge(remote, remoteRun) {
     const rc = remote && remote.c && typeof remote.c === 'object' ? remote.c : {};
     const merged = merge(data.c, rc);
     if (ahead(rc, data.c)) { data.c = merged; data.c[data.dev] = data.c[data.dev] || {}; lsSet(KEY, data); paint(); }
-    return { push: ahead(data.c, rc), content: JSON.stringify({ v: 1, c: merge(data.c, rc) }) };
+    const mr = mergeRun(run, remoteRun, Date.now());
+    if (mr.adopt) {
+      tick();   /* settle counting under the old state before switching */
+      run.on = mr.state.on; run.until = mr.state.until; run.seq = mr.state.seq; run.by = mr.state.by;
+      lsSet(RUN, run); paint();
+    }
+    return { push: ahead(data.c, rc), content: JSON.stringify({ v: 1, c: merge(data.c, rc) }),
+      pushRun: mr.push, runContent: JSON.stringify({ v: 1, on: run.on, until: run.until || null, seq: run.seq || 0, by: run.by || 'manual' }) };
   }
 
   setInterval(tick, 1000);
@@ -119,5 +158,5 @@
   document.addEventListener('visibilitychange', () => { tick(); persist(); });
   window.addEventListener('pagehide', () => { tick(); persist(); });
 
-  root.CardTime = Object.assign({ toggle, tick, barHtml, subjHtml, syncMerge, _data: () => data, _run: () => run }, api);
+  root.CardTime = Object.assign({ toggle, command, tick, barHtml, subjHtml, syncMerge, _data: () => data, _run: () => run }, api);
 })(typeof window !== 'undefined' ? window : globalThis);
