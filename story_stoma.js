@@ -352,6 +352,154 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "30501",
     "the mean of any random variable"
+   ],
+   [
+    "30307",
+    "the named distributions"
+   ]
+  ]
+ },
+ "30307": {
+  "s": "STORY 3 · STEP 7 · WIN OR NOT",
+  "b": "Count the <b>wins in n independent races</b>: the Binomial, a sum of n Bernoulli coin flips.",
+  "f": [
+   [
+    "30302",
+    "a PMF for counts"
+   ]
+  ],
+  "n": [
+   [
+    "30308",
+    "waiting for the first win"
+   ],
+   [
+    "30313",
+    "many races, small chance"
+   ]
+  ]
+ },
+ "30308": {
+  "s": "STORY 3 · STEP 8 · THE WINLESS STREAK",
+  "b": "Count the <b>races until the first win</b>: the Geometric, the counting version of a wait with no memory.",
+  "f": [
+   [
+    "30307",
+    "independent races"
+   ]
+  ],
+  "n": [
+   [
+    "30304",
+    "the continuous memoryless wait"
+   ],
+   [
+    "30312",
+    "how the families connect"
+   ]
+  ]
+ },
+ "30309": {
+  "s": "STORY 3 · STEP 9 · RARE EVENTS",
+  "b": "Count <b>rare, random events</b> such as safety cars: the Poisson, where one number λ is both the mean and the variance.",
+  "f": [
+   [
+    "30302",
+    "a PMF for counts"
+   ]
+  ],
+  "n": [
+   [
+    "30313",
+    "where the Poisson comes from"
+   ],
+   [
+    "32401",
+    "the Poisson process"
+   ]
+  ]
+ },
+ "30310": {
+  "s": "STORY 3 · STEP 10 · FLAT",
+  "b": "When <b>no moment is preferred</b>, the density is flat and a chance is just a share of the window.",
+  "f": [
+   [
+    "30303",
+    "a density"
+   ]
+  ],
+  "n": [
+   [
+    "30404",
+    "uniform to any law by the inverse CDF"
+   ],
+   [
+    "30804",
+    "uniform order statistics"
+   ]
+  ]
+ },
+ "30311": {
+  "s": "STORY 3 · STEP 11 · THE r-TH WAIT",
+  "b": "Add r exponential waits to get the <b>Gamma</b>: the time until the r-th event.",
+  "f": [
+   [
+    "30304",
+    "one exponential wait"
+   ]
+  ],
+  "n": [
+   [
+    "30309",
+    "counts of the same events"
+   ],
+   [
+    "30901",
+    "sums by convolution"
+   ]
+  ]
+ },
+ "30312": {
+  "s": "STORY 3 · STEP 12 · THE FAMILY MAP",
+  "b": "The named laws are one family: <b>add copies, take limits</b>, and you move from one to the next.",
+  "f": [
+   [
+    "30307",
+    "Binomial"
+   ],
+   [
+    "30311",
+    "Gamma"
+   ]
+  ],
+  "n": [
+   [
+    "30313",
+    "Binomial → Poisson in detail"
+   ],
+   [
+    "31803",
+    "the CLT"
+   ]
+  ]
+ },
+ "30313": {
+  "s": "STORY 3 · STEP 13 · RARE-EVENT LIMIT",
+  "b": "Many laps, each with a <b>small chance</b>: the Binomial count turns into a Poisson count with λ = np.",
+  "f": [
+   [
+    "30307",
+    "Binomial"
+   ],
+   [
+    "30309",
+    "Poisson"
+   ]
+  ],
+  "n": [
+   [
+    "30501",
+    "the mean of any random variable"
    ]
   ]
  },
@@ -468,6 +616,30 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "31706",
     "the law of large numbers fails for Cauchy"
+   ],
+   [
+    "30407",
+    "the lognormal"
+   ]
+  ]
+ },
+ "30407": {
+  "s": "STORY 4 · STEP 7 · GAINS THAT MULTIPLY",
+  "b": "Exponentiate a normal and you get the <b>lognormal</b>: skewed right, with a mean above its median.",
+  "f": [
+   [
+    "30402",
+    "a monotone change of variables"
+   ],
+   [
+    "30305",
+    "the bell"
+   ]
+  ],
+  "n": [
+   [
+    "32507",
+    "geometric Brownian motion"
    ]
   ]
  },
@@ -592,6 +764,30 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "31303",
     "where it does hold: jointly Gaussian"
+   ],
+   [
+    "30507",
+    "the indicator method"
+   ]
+  ]
+ },
+ "30507": {
+  "s": "STORY 5 · STEP 7 · COUNT WITH SWITCHES",
+  "b": "Write a count as a <b>sum of 0/1 indicators</b>: its mean is the sum of the chances, even for dependent events.",
+  "f": [
+   [
+    "30501",
+    "linearity of expectation"
+   ],
+   [
+    "30503",
+    "variance of a sum"
+   ]
+  ],
+  "n": [
+   [
+    "30307",
+    "the Binomial as a sum of indicators"
    ]
   ]
  },
@@ -1092,6 +1288,30 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "31803",
     "the central limit theorem"
+   ],
+   [
+    "30907",
+    "Beta, χ², t and F"
+   ]
+  ]
+ },
+ "30907": {
+  "s": "STORY 9 · STEP 7 · SHARES AND SAMPLES",
+  "b": "Gamma parts split into a <b>Beta share</b> and a Gamma total; squared normals give χ², and from them t and F.",
+  "f": [
+   [
+    "30311",
+    "the Gamma"
+   ],
+   [
+    "30905",
+    "sums that stay in the family"
+   ]
+  ],
+  "n": [
+   [
+    "31506",
+    "the t-statistic for large samples"
    ]
   ]
  },
@@ -2784,6 +3004,50 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "32401",
     "counting arrivals"
+   ],
+   [
+    "32307",
+    "two signals at once"
+   ]
+  ]
+ },
+ "32307": {
+  "s": "STORY 23 · STEP 7 · TWO SIGNALS AT ONCE",
+  "b": "The <b>cross-spectrum</b> of input and output reveals the filter, phase included, and gives the Wiener filter.",
+  "f": [
+   [
+    "32305",
+    "filtering a WSS process"
+   ]
+  ],
+  "n": [
+   [
+    "31106",
+    "the scalar Wiener filter"
+   ],
+   [
+    "32308",
+    "a worked spectrum"
+   ]
+  ]
+ },
+ "32308": {
+  "s": "STORY 23 · STEP 8 · THE TELEGRAPH",
+  "b": "A ±1 signal that flips at Poisson times is WSS with <b>R(τ) = e^(−2λ|τ|)</b>.",
+  "f": [
+   [
+    "32401",
+    "the Poisson process"
+   ],
+   [
+    "32302",
+    "autocorrelation"
+   ]
+  ],
+  "n": [
+   [
+    "32303",
+    "its power spectrum"
    ]
   ]
  },
@@ -2892,6 +3156,50 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "32501",
     "walks"
+   ],
+   [
+    "32407",
+    "renewal processes"
+   ]
+  ]
+ },
+ "32407": {
+  "s": "STORY 24 · STEP 7 · ANY GAPS",
+  "b": "Let the gaps have <b>any i.i.d. law</b>: the count still grows like t/μ, only the mean gap matters.",
+  "f": [
+   [
+    "32402",
+    "exponential gaps"
+   ],
+   [
+    "31702",
+    "the strong law"
+   ]
+  ],
+  "n": [
+   [
+    "32408",
+    "rewards per cycle"
+   ],
+   [
+    "32406",
+    "the longer gap"
+   ]
+  ]
+ },
+ "32408": {
+  "s": "STORY 24 · STEP 8 · PER CYCLE",
+  "b": "Long-run reward rate = <b>reward per cycle ÷ cycle length</b>; up time ÷ cycle gives availability.",
+  "f": [
+   [
+    "32407",
+    "renewal processes"
+   ]
+  ],
+  "n": [
+   [
+    "32707",
+    "Little's law"
    ]
   ]
  },
@@ -3008,6 +3316,30 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "32601",
     "martingales"
+   ],
+   [
+    "32507",
+    "Brownian motion with drift"
+   ]
+  ]
+ },
+ "32507": {
+  "s": "STORY 25 · STEP 7 · A DRIFTING GAP",
+  "b": "Add a <b>drift</b> to Brownian motion; an exponential martingale gives the chance of ever reaching a level.",
+  "f": [
+   [
+    "32502",
+    "standard Brownian motion"
+   ],
+   [
+    "32605",
+    "optional stopping"
+   ]
+  ],
+  "n": [
+   [
+    "30407",
+    "the lognormal"
    ]
   ]
  },
@@ -3234,6 +3566,26 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
    [
     "32401",
     "Poisson process"
+   ]
+  ],
+  "n": [
+   [
+    "32707",
+    "Little's law and other queues"
+   ]
+  ]
+ },
+ "32707": {
+  "s": "STORY 27 · STEP 7 · BEYOND M/M/1",
+  "b": "<b>L = λW</b> for any stable queue; Poisson arrivals see time averages; buffers truncate, infinite servers give Poisson.",
+  "f": [
+   [
+    "32705",
+    "M/M/1 and M/M/c"
+   ],
+   [
+    "32408",
+    "renewal-reward"
    ]
   ],
   "n": []
