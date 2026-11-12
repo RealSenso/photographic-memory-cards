@@ -24,7 +24,7 @@ test('formats', () => {
 test('mergeRun: newer remote seq is adopted', () => {
   const r = T.mergeRun({ on: false, seq: 100 }, { v: 1, on: true, until: null, seq: 200, by: 'agent' }, 1000);
   assert.strictEqual(r.adopt, true); assert.strictEqual(r.push, false);
-  assert.deepStrictEqual(r.state, { on: true, until: null, seq: 200, by: 'agent' });
+  assert.deepStrictEqual(r.state, { on: true, until: null, seq: 200, by: 'agent', dev: null });
 });
 test('mergeRun: older or equal remote seq is ignored and local ahead pushes', () => {
   assert.strictEqual(T.mergeRun({ on: true, seq: 300 }, { on: false, seq: 200 }, 1000).adopt, false);
@@ -39,14 +39,20 @@ test('mergeRun: no remote file publishes the local baseline, even at seq 0', () 
 test('mergeRun: a remote start whose deadline already passed applies as paused (no backfill)', () => {
   const r = T.mergeRun({ on: false, seq: 0 }, { v: 1, on: true, until: 500, seq: 200, by: 'agent' }, 1000);
   assert.strictEqual(r.adopt, true);
-  assert.deepStrictEqual(r.state, { on: false, until: null, seq: 200, by: 'agent' });
+  assert.deepStrictEqual(r.state, { on: false, until: null, seq: 200, by: 'agent', dev: null });
 });
 test('mergeRun: a remote start with a future deadline keeps it', () => {
   const r = T.mergeRun({ on: false, seq: 0 }, { v: 1, on: true, until: 5000, seq: 200, by: 'agent' }, 1000);
-  assert.deepStrictEqual(r.state, { on: true, until: 5000, seq: 200, by: 'agent' });
+  assert.deepStrictEqual(r.state, { on: true, until: 5000, seq: 200, by: 'agent', dev: null });
 });
 test('mergeRun: garbage remote run state is ignored', () => {
   assert.strictEqual(T.mergeRun({ on: true, seq: 5 }, 'junk', 1000).push, true);
   assert.strictEqual(T.mergeRun({ on: true, seq: 5 }, { on: true }, 1000).push, true);
+});
+test('mergeRun: the counting device travels with the run state', () => {
+  const r = T.mergeRun({ on: true, seq: 100, dev: 'a' }, { v: 1, on: true, until: null, seq: 200, by: 'claim', dev: 'b' }, 1000);
+  assert.strictEqual(r.state.dev, 'b');
+  assert.strictEqual(T.mergeRun({ on: false, seq: 0 }, { on: true, seq: 200, by: 'agent' }, 1000).state.dev, null);
+  assert.strictEqual(T.mergeRun({ on: false, seq: 0 }, { on: true, seq: 200, dev: 42 }, 1000).state.dev, null);
 });
 console.log('\n' + n + ' tests passed');

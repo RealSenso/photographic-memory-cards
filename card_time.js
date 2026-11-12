@@ -7,7 +7,10 @@
    The play/pause state also syncs (plates-card-run.json, last change wins by `seq` timestamp), so the timer can be started or paused
    from another device - e.g. Instinct starting it when he says "starting" and pausing it when the slot ends. A start command can carry an
    `until` deadline that pauses the timer on this page by itself, exactly on time, with no sync round-trip. A stale command whose deadline
-   has already passed is applied as paused, so time is never backfilled: counting only ever accrues live, while this page is visible. */
+   has already passed is applied as paused, so time is never backfilled: counting only ever accrues live, while this page is visible.
+   Only one device counts at a time: the run state names the device in use (`dev`, set by Play or by any tap / key press there while the
+   timer is on), so a second screen left open on the same card does not double the time or beep as well. After a remote start (no `dev`
+   yet) a device counts only while its window has focus, until someone touches one. */
 (function (root) {
   'use strict';
   const KEY = 'plates_cardtime_v1', RUN = 'plates_cardtime_run_v1', BEEP_EVERY = 10 * 60 * 1000, MAX_STEP = 2000;
@@ -33,13 +36,13 @@
   function fmtShort(ms) { const m = Math.floor(ms / 60000), h = Math.floor(m / 60); return h ? h + 'h ' + pad(m % 60) + 'm' : m ? m + 'm' : '<1m'; }
   /* shared play/pause state: {on, until, seq, by}; the larger seq wins. A remote start whose deadline already passed applies as paused. */
   function mergeRun(local, remote, now) {
-    const l = Object.assign({ on: false, until: null, seq: 0, by: 'manual' }, local || {});
+    const l = Object.assign({ on: false, until: null, seq: 0, by: 'manual', dev: null }, local || {});
     const r = (remote && typeof remote === 'object' && typeof remote.seq === 'number') ? remote : null;
     const rseq = r ? r.seq : -1;
     if (rseq > (l.seq || 0)) {
       let on = !!r.on, until = (typeof r.until === 'number') ? r.until : null;
       if (on && until && until <= now) { on = false; until = null; }
-      return { adopt: true, state: { on, until, seq: rseq, by: (r && r.by) || 'remote' }, push: false };
+      return { adopt: true, state: { on, until, seq: rseq, by: (r && r.by) || 'remote', dev: typeof r.dev === 'string' ? r.dev : null }, push: false };
     }
     return { adopt: false, state: l, push: (l.seq || 0) > rseq };
   }
@@ -52,7 +55,7 @@
   let data = lsGet(KEY, null);
   if (!data || !data.dev || !data.c) data = { dev: Math.random().toString(36).slice(2, 10), c: {} };
   data.c[data.dev] = data.c[data.dev] || {};
-  let run = Object.assign({ on: false, ms: 0, until: null, seq: 0, by: 'manual' }, lsGet(RUN, {}));
+  let run = Object.assign({ on: false, ms: 0, until: null, seq: 0, by: 'manual', dev: null }, lsGet(RUN, {}));
   /* seq must never go backwards, or a local action could lose to an older remote state on the next sync */
   const nextSeq = () => Math.max(Date.now(), (run.seq || 0) + 1);
   let curKey = null, last = Date.now(), dirty = false, ctx = null;
@@ -100,7 +103,7 @@
       run.on = false; run.until = null; run.seq = nextSeq(); run.by = 'auto'; dirty = true;
       if (root.syncSoon) root.syncSoon();
     }
-    if (run.on && !document.hidden && curKey) {
+    if (run.on && !document.hidden && curKey && countsHere()) {
       const mine = data.c[data.dev];
       mine[curKey] = (mine[curKey] || 0) + dt;
       const before = run.ms; run.ms += dt; dirty = true;
@@ -109,26 +112,36 @@
     curKey = keyOf(visibleCard());
     paint();
   }
+  /* the device in use counts; with no device named yet (a remote start), whichever window has focus */
+  function countsHere() { return run.dev ? run.dev === data.dev : (typeof document.hasFocus !== 'function' || document.hasFocus()); }
+  /* touching this device while the timer runs elsewhere moves the counting here */
+  function claim() {
+    if (!run.on || run.dev === data.dev) return;
+    tick(); run.dev = data.dev; run.seq = nextSeq(); run.by = 'claim'; run.ms = 0; dirty = true; persist(); paint();
+    if (root.syncSoon) root.syncSoon();
+  }
+  document.addEventListener('pointerdown', claim, true);
+  document.addEventListener('keydown', claim, true);
   function persist() { if (!dirty) return; lsSet(KEY, data); lsSet(RUN, run); dirty = false; }
 
   function paint() {
     const t = document.getElementById('ctime');
     if (t) t.textContent = fmtClock(curKey ? total(data.c, curKey) : 0);
     const b = document.getElementById('ctime-btn');
-    if (b) { b.textContent = run.on ? '❚❚' : '▶'; b.setAttribute('aria-label', run.on ? 'Pause card timer' : 'Start card timer'); b.classList.toggle('on', run.on); }
+    if (b) { b.textContent = run.on ? '❚❚' : '▶'; b.setAttribute('aria-label', run.on ? 'Pause card timer' : 'Start card timer'); b.classList.toggle('on', run.on); b.title = run.on && !countsHere() ? 'Counting on your other device - tap anywhere here to count on this one' : 'Play / pause the card timer (T)'; }
     document.querySelectorAll('.stime[data-s]').forEach(el => { const v = subjectTotal(el.dataset.s); el.textContent = v ? fmtShort(v) : ''; });
   }
 
   /* Play starts a fresh 10-minute count (run.ms = playing time since the last Play, across every card you open);
      Pause freezes it, so the beep comes after 10 minutes of real study, then every 10 minutes after that. */
-  function toggle() { tick(); run.on = !run.on; run.until = null; run.seq = nextSeq(); run.by = 'manual'; if (run.on) { run.ms = 0; unlock(); } dirty = true; persist(); paint(); if (root.syncSoon) root.syncSoon(); }
+  function toggle() { tick(); run.on = !run.on; run.until = null; run.seq = nextSeq(); run.by = 'manual'; run.dev = data.dev; if (run.on) { run.ms = 0; unlock(); } dirty = true; persist(); paint(); if (root.syncSoon) root.syncSoon(); }
   /* Remote command from another device (e.g. Instinct on "starting" / at the slot's end). Latest seq wins over anything older. */
   function command(cmd, until) {
     tick();
     if (cmd === 'start') { run.on = true; run.ms = 0; const u = Number(until); run.until = (isFinite(u) && u > Date.now()) ? u : null; }
     else if (cmd === 'pause') { run.on = false; run.until = null; }
     else return false;
-    run.seq = nextSeq(); run.by = 'agent'; dirty = true; persist(); paint();
+    run.seq = nextSeq(); run.by = 'agent'; run.dev = null; dirty = true; persist(); paint();
     if (root.syncSoon) root.syncSoon();
     return true;
   }
@@ -146,11 +159,11 @@
     const mr = mergeRun(run, remoteRun, Date.now());
     if (mr.adopt) {
       tick();   /* settle counting under the old state before switching */
-      run.on = mr.state.on; run.until = mr.state.until; run.seq = mr.state.seq; run.by = mr.state.by;
+      run.on = mr.state.on; run.until = mr.state.until; run.seq = mr.state.seq; run.by = mr.state.by; run.dev = mr.state.dev;
       lsSet(RUN, run); paint();
     }
     return { push: ahead(data.c, rc), content: JSON.stringify({ v: 1, c: merge(data.c, rc) }),
-      pushRun: mr.push, runContent: JSON.stringify({ v: 1, on: run.on, until: run.until || null, seq: run.seq || 0, by: run.by || 'manual' }) };
+      pushRun: mr.push, runContent: JSON.stringify({ v: 1, on: run.on, until: run.until || null, seq: run.seq || 0, by: run.by || 'manual', dev: run.dev || null }) };
   }
 
   setInterval(tick, 1000);
