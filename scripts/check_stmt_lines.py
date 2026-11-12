@@ -26,7 +26,7 @@ def norm(s):
     return re.sub(r"[\s$().,;:]", "", s)
 
 ALLOWED = re.compile(r'</?b>|<span class="(ln|ln in|ln in2|src)">|</span>')
-mods = sys.argv[1:] or sorted(os.path.basename(p)[15:-3] for p in glob.glob(os.path.join(here, "subj_stoma_lines_*.py")))
+mods = sys.argv[1:] or sorted(os.path.basename(p)[17:-3] for p in glob.glob(os.path.join(here, "subj_stoma_lines_*.py")))
 bad = 0
 for m in mods:
     mod = importlib.import_module(f"subj_stoma_lines_{m}")

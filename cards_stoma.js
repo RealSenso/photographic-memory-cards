@@ -21,7 +21,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Qualifying is done.</strong> Max on pole throws away every race where he starts further back. Among the races that are left, you ask what share of them he wins. Same races, smaller universe, rescaled to 1.",
     "examTrap": "Conditioning on events with \u2119(B) = 0 is undefined in Kolmogorov's elementary setting. Continuous conditioning requires conditional expectation on \u03c3-algebras (Borel-Kolmogorov paradox).",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Conditional probability.</b> Let $B\\in\\mathcal F$ with $\\mathbb P(B)\\gt 0$. The conditional probability of $A\\in\\mathcal F$ given $B$ is $\\mathbb P(A\\mid B)=\\dfrac{\\mathbb P(A\\cap B)}{\\mathbb P(B)}$. The map $A\\mapsto\\mathbb P(A\\mid B)$ is itself a probability measure on $(\\Omega,\\mathcal F)$, with $\\mathbb P(B\\mid B)=1$ (Ross 3.2; Grimmett 1.4).",
+    "statement": "<b>Conditional probability.</b><span class=\"ln\">Let $B\\in\\mathcal F$ with $\\mathbb P(B)\\gt 0$.</span><span class=\"ln\">The conditional probability of $A\\in\\mathcal F$ given $B$ is</span><span class=\"ln in\">$\\mathbb P(A\\mid B)=\\dfrac{\\mathbb P(A\\cap B)}{\\mathbb P(B)}$.</span><span class=\"ln\">The map $A\\mapsto\\mathbb P(A\\mid B)$ is itself a probability measure on $(\\Omega,\\mathcal F)$,</span><span class=\"ln in\">with $\\mathbb P(B\\mid B)=1$.</span><span class=\"src\">Ross 3.2; Grimmett 1.4</span>",
     "hint": "If you already know Max starts from pole, which races are still in play, and what is his chance of winning among them?",
     "breakdown": [
       "<strong>$\\mathbb P(A\\cap B)$ = races Max started from pole and won.</strong> This is the part of the pole positions that he also turned into a win.",
@@ -51,7 +51,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A weekend built step by step.</strong> Take pole, keep the lead through turn 1, hold it to the chequered flag: first chance, times second given first, times third given both.",
     "examTrap": "Forgetting to check whether intermediate conditioning histories have strictly positive probability: \u2119(A\u2081 \u2229 ... \u2229 A_{k-1}) > 0 is mandatory at every step.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chain rule.</b> For events with $\\mathbb P(A_1\\cap\\cdots\\cap A_{n-1})\\gt 0$, $\\mathbb P(\\bigcap_{i=1}^nA_i)=\\mathbb P(A_1)\\prod_{k=2}^n\\mathbb P(A_k\\mid\\bigcap_{j\\lt k}A_j)$. For two events, $\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B\\mid A)$ (Ross 3.2; Grimmett 1.4).",
+    "statement": "<b>Chain rule.</b><span class=\"ln\">For events with $\\mathbb P(A_1\\cap\\cdots\\cap A_{n-1})\\gt 0$,</span><span class=\"ln in\">$\\mathbb P(\\bigcap_{i=1}^nA_i)=\\mathbb P(A_1)\\prod_{k=2}^n\\mathbb P(A_k\\mid\\bigcap_{j\\lt k}A_j)$.</span><span class=\"ln\">For two events,</span><span class=\"ln in\">$\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B\\mid A)$.</span><span class=\"src\">Ross 3.2; Grimmett 1.4</span>",
     "hint": "How do you get the chance of a whole race weekend going a certain way from the chances of its steps?",
     "breakdown": [
       "<strong>$\\mathbb P(A_1)$ = the first step.</strong> For instance, taking pole position in qualifying.",
@@ -81,7 +81,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Wins on each kind of track.</strong> You know how often Max wins on high-speed, mixed and street circuits, and how many of each the calendar has. His overall chance of winning is the average of the three, weighted by how often each kind comes up.",
     "examTrap": "Overlooking missing partition coverage: if \u2211 \u2119(B\u1d62) < 1, the partition has an uncounted gap, strictly underestimating \u2119(A).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Law of total probability.</b> Let $B_1,\\ldots,B_n$ be a partition of $\\Omega$ ($B_i\\cap B_j=\\emptyset$ for $i\\ne j$, $\\bigcup_iB_i=\\Omega$) with $\\mathbb P(B_i)\\gt 0$. Then for every event $A$, $\\mathbb P(A)=\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)$ (Ross 3.3; Grimmett 1.4).",
+    "statement": "<b>Law of total probability.</b><span class=\"ln\">Let $B_1,\\ldots,B_n$ be a partition of $\\Omega$</span><span class=\"ln in\">($B_i\\cap B_j=\\emptyset$ for $i\\ne j$, $\\bigcup_iB_i=\\Omega$)</span><span class=\"ln in\">with $\\mathbb P(B_i)\\gt 0$.</span><span class=\"ln\">Then for every event $A$,</span><span class=\"ln in\">$\\mathbb P(A)=\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)$.</span><span class=\"src\">Ross 3.3; Grimmett 1.4</span>",
     "hint": "If the circuit is high-speed, mixed or a street track, how do you build Max's chance of winning from his chance on each?",
     "breakdown": [
       "<strong>$B_i$ = the kinds of circuit.</strong> Every race is on exactly one kind: they cover $\\Omega$ and do not overlap.",
@@ -111,7 +111,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>No win, so why?</strong> After the chequered flag the question flips from \u201cwhat does each problem do to Max\u201d to \u201cwhich problem did this\u201d. A rare problem that nearly always costs the win, like an engine issue, can still be the likeliest explanation.",
     "examTrap": "The Base Rate Fallacy: confusing test reliability \u2119(A|B) with disease certainty \u2119(B|A). If the prior \u2119(B) is 0.1%, a 99% accurate test still yields >95% false alarms!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Bayes' theorem.</b> Let $B_1,\\ldots,B_n$ partition $\\Omega$ with $\\mathbb P(B_i)\\gt 0$, and let $\\mathbb P(A)\\gt 0$. Then $\\mathbb P(B_k\\mid A)=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)}=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\mathbb P(A)}$ (Ross 3.3; Grimmett 1.4).",
+    "statement": "<b>Bayes' theorem.</b><span class=\"ln\">Let $B_1,\\ldots,B_n$ partition $\\Omega$ with $\\mathbb P(B_i)\\gt 0$,</span><span class=\"ln\">and let $\\mathbb P(A)\\gt 0$.</span><span class=\"ln\">Then</span><span class=\"ln in\">$\\mathbb P(B_k\\mid A)=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\sum_{i=1}^n\\mathbb P(A\\mid B_i)\\,\\mathbb P(B_i)}$</span><span class=\"ln in\">$=\\dfrac{\\mathbb P(A\\mid B_k)\\,\\mathbb P(B_k)}{\\mathbb P(A)}$.</span><span class=\"src\">Ross 3.3; Grimmett 1.4</span>",
     "hint": "Max did not win. How do you turn \u201chow often does each cause cost him the win\u201d into \u201cwhich cause was it?\u201d",
     "breakdown": [
       "<strong>$\\mathbb P(B_k)$ = prior, how common the cause is.</strong> An engine issue, a slow pit stop and a failed rain gamble each happen with some base frequency.",
@@ -141,7 +141,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two Red Bulls on the same weekend.</strong> Whether Max and his team-mate Checo reach the podium are linked, because they drive the same car: a fast car lifts both. Once you know the car is fast this weekend, Max's podium says nothing more about Checo's.",
     "examTrap": "Berkson's Paradox: conditioning on common success (e.g. college admissions) creates artificial negative correlation between two independent skills.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Independence and conditional independence.</b> Events $A,B$ are independent if $\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B)$ (equivalently $\\mathbb P(A\\mid B)=\\mathbb P(A)$ when $\\mathbb P(B)\\gt 0$). Given an event $C$ with $\\mathbb P(C)\\gt 0$, $A$ and $B$ are conditionally independent given $C$ if $\\mathbb P(A\\cap B\\mid C)=\\mathbb P(A\\mid C)\\mathbb P(B\\mid C)$. Neither implies the other (Ross 3.4; Grimmett 1.5).",
+    "statement": "<b>Independence and conditional independence.</b><span class=\"ln\">Events $A,B$ are independent if $\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B)$</span><span class=\"ln in\">(equivalently $\\mathbb P(A\\mid B)=\\mathbb P(A)$ when $\\mathbb P(B)\\gt 0$).</span><span class=\"ln\">Given an event $C$ with $\\mathbb P(C)\\gt 0$, $A$ and $B$ are conditionally independent given $C$ if</span><span class=\"ln in\">$\\mathbb P(A\\cap B\\mid C)=\\mathbb P(A\\mid C)\\mathbb P(B\\mid C)$.</span><span class=\"ln\">Neither implies the other.</span><span class=\"src\">Ross 3.4; Grimmett 1.5</span>",
     "hint": "When does learning that B happened tell you nothing about A, and how can a third fact change that?",
     "breakdown": [
       "<strong>$\\mathbb P(A\\cap B)=\\mathbb P(A)\\mathbb P(B)$ = knowing B leaves A unchanged.</strong> The joint chance is just the product of the two separate chances.",
@@ -171,7 +171,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Four kinds of race.</strong> Imagine only four equally likely races, each with a different mix of rain, safety car and red flag. Any two of the three look unrelated, but all three together happen far more often than independence would give.",
     "examTrap": "Assuming pairwise independence implies mutual independence! For n events, mutual independence requires verifying all 2^n - n - 1 non-trivial subset intersection equations.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Bernstein's example.</b> A tetrahedron has faces coloured $\\{R\\}$, $\\{G\\}$, $\\{B\\}$ and $\\{R,G,B\\}$, each face rolled with probability $\\tfrac14$. Then $\\mathbb P(R)=\\mathbb P(G)=\\mathbb P(B)=\\tfrac12$ and $\\mathbb P(R\\cap G)=\\tfrac14=\\mathbb P(R)\\mathbb P(G)$ (and likewise for the other pairs), so the events are pairwise independent. But $\\mathbb P(R\\cap G\\cap B)=\\tfrac14\\ne\\tfrac18=\\mathbb P(R)\\mathbb P(G)\\mathbb P(B)$, so they are not mutually independent (Grimmett 1.5).",
+    "statement": "<b>Bernstein's example.</b><span class=\"ln\">A tetrahedron has faces coloured $\\{R\\}$, $\\{G\\}$, $\\{B\\}$ and $\\{R,G,B\\}$,</span><span class=\"ln in\">each face rolled with probability $\\tfrac14$.</span><span class=\"ln\">Then $\\mathbb P(R)=\\mathbb P(G)=\\mathbb P(B)=\\tfrac12$</span><span class=\"ln in\">and $\\mathbb P(R\\cap G)=\\tfrac14=\\mathbb P(R)\\mathbb P(G)$ (and likewise for the other pairs),</span><span class=\"ln in\">so the events are pairwise independent.</span><span class=\"ln\">But $\\mathbb P(R\\cap G\\cap B)=\\tfrac14\\ne\\tfrac18=\\mathbb P(R)\\mathbb P(G)\\mathbb P(B)$,</span><span class=\"ln in\">so they are not mutually independent.</span><span class=\"src\">Grimmett 1.5</span>",
     "hint": "Can three events be independent in every pair, yet fail to be independent together?",
     "breakdown": [
       "<strong>$\\mathbb P(R)=\\tfrac12$ = each colour is on two of the four equally likely faces.</strong> Say R is rain, S a safety car, F a red flag, each present in two of four kinds of race.",
@@ -201,7 +201,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The first safety car as a number per race.</strong> Each race gets the minute its first safety car comes out. The CDF then answers \u201cin what share of races is there a safety car by minute 30?\u201d for every minute at once, a curve that only goes up.",
     "examTrap": "Assuming CDFs must be continuous everywhere. Jump discontinuities F(x) - F(x\u207b) = \u2119(X = x) occur at every discrete atom; only RIGHT-continuity is universally guaranteed!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Random variable and CDF.</b> A random variable on $(\\Omega,\\mathcal F,\\mathbb P)$ is a function $X:\\Omega\\to\\mathbb R$ such that $\\{X\\le x\\}\\in\\mathcal F$ for all $x$. Its cumulative distribution function is $F_X(x)=\\mathbb P(X\\le x)$. Then $F_X$ is non-decreasing and right-continuous, with $F_X(-\\infty)=0$ and $F_X(\\infty)=1$, and $F_X(x)-F_X(x^-)=\\mathbb P(X=x)$ (Ross 4.1; Grimmett 2.1).",
+    "statement": "<b>Random variable and CDF.</b><span class=\"ln\">A random variable on $(\\Omega,\\mathcal F,\\mathbb P)$ is a function $X:\\Omega\\to\\mathbb R$</span><span class=\"ln in\">such that $\\{X\\le x\\}\\in\\mathcal F$ for all $x$.</span><span class=\"ln\">Its cumulative distribution function is $F_X(x)=\\mathbb P(X\\le x)$.</span><span class=\"ln\">Then $F_X$ is non-decreasing and right-continuous,</span><span class=\"ln in\">with $F_X(-\\infty)=0$ and $F_X(\\infty)=1$,</span><span class=\"ln in\">and $F_X(x)-F_X(x^-)=\\mathbb P(X=x)$.</span><span class=\"src\">Ross 4.1; Grimmett 2.1</span>",
     "hint": "How do you turn the minutes until the first safety car into one curve that answers \u201cby minute x?\u201d for every x?",
     "breakdown": [
       "<strong>$X:\\Omega\\to\\mathbb R$ = a number read off each race.</strong> The minutes until the first safety car: each point of $\\Omega$ is sent to that number.",
@@ -231,7 +231,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Counting safety cars.</strong> A race has 0, 1, 2 or 3 safety cars. The chances of these counts must add to 1, and the running total, the CDF, climbs in steps whose heights are those chances.",
     "examTrap": "Interval evaluation traps: \u2119(a < X \u2264 b) = F(b) - F(a), whereas \u2119(a \u2264 X \u2264 b) = F(b) - F(a) + \u2119(X = a). With discrete variables, strict vs weak inequalities drastically change the answer!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Discrete random variable and PMF.</b> $X$ is discrete if it takes values in a countable set $\\{x_k\\}$. Its probability mass function $p_X(x_k)=\\mathbb P(X=x_k)$ satisfies $p_X(x_k)\\ge0$ and $\\sum_kp_X(x_k)=1$. Its CDF is a step function $F_X(x)=\\sum_{x_k\\le x}p_X(x_k)$ with a jump of size $p_X(x_k)$ at each $x_k$ (Ross 4.2; Grimmett 2.1).",
+    "statement": "<b>Discrete random variable and PMF.</b><span class=\"ln\">$X$ is discrete if it takes values in a countable set $\\{x_k\\}$.</span><span class=\"ln\">Its probability mass function $p_X(x_k)=\\mathbb P(X=x_k)$ satisfies</span><span class=\"ln in\">$p_X(x_k)\\ge0$ and $\\sum_kp_X(x_k)=1$.</span><span class=\"ln\">Its CDF is a step function $F_X(x)=\\sum_{x_k\\le x}p_X(x_k)$</span><span class=\"ln in\">with a jump of size $p_X(x_k)$ at each $x_k$.</span><span class=\"src\">Ross 4.2; Grimmett 2.1</span>",
     "hint": "If you count the safety cars in a race, what does the CDF look like, and what is the size of each step?",
     "breakdown": [
       "<strong>$p_X(x_k)\\ge0$ = a chance for each count.</strong> 0, 1, 2 or 3 safety cars in a race each have their own chance.",
@@ -261,7 +261,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The safety car at any instant.</strong> A safety car at exactly 27.000\u2026 minutes has chance 0; \u201cbetween minute 25 and 30\u201d has the area of the curve over that stretch. The curve is high where first safety cars usually come.",
     "examTrap": "Believing probability density f_X(x) cannot exceed 1! Densities can be arbitrarily large (e.g. Uniform(0, 0.1) has f(x) = 10). Only PROBABILITIES are bounded by 1.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Continuous random variable and PDF.</b> $X$ is continuous if $F_X(x)=\\int_{-\\infty}^xf_X(t)\\,dt$ for a function $f_X\\ge0$ with $\\int_{-\\infty}^\\infty f_X=1$, the probability density function. Then $f_X(x)=F_X'(x)$ at continuity points of $f_X$, $\\mathbb P(a\\le X\\le b)=\\int_a^bf_X$, and $\\mathbb P(X=c)=0$ for every $c$ (Ross 5.1; Grimmett 4.1).",
+    "statement": "<b>Continuous random variable and PDF.</b><span class=\"ln\">$X$ is continuous if $F_X(x)=\\int_{-\\infty}^xf_X(t)\\,dt$</span><span class=\"ln in\">for a function $f_X\\ge0$ with $\\int_{-\\infty}^\\infty f_X=1$, the probability density function.</span><span class=\"ln\">Then</span><span class=\"ln in\">$f_X(x)=F_X'(x)$ at continuity points of $f_X$,</span><span class=\"ln in\">$\\mathbb P(a\\le X\\le b)=\\int_a^bf_X$,</span><span class=\"ln in\">and $\\mathbb P(X=c)=0$ for every $c$.</span><span class=\"src\">Ross 5.1; Grimmett 4.1</span>",
     "hint": "If the first safety car can come at any instant, how do chances become areas?",
     "breakdown": [
       "<strong>$f_X(t)$ = density, chance per minute.</strong> A tall spot of the curve means first safety cars near minute $t$ are common. It is not a chance itself and may exceed 1.",
@@ -291,7 +291,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A safety car is never \u201cdue\u201d.</strong> Forty clean laps and the strategists say a safety car must be coming, so Red Bull waits to pit. If incidents happen at random, the next one is no closer than at the start: the clean laps buy you nothing.",
     "examTrap": "Applying the memoryless property to aging physical machinery (car engines, human organs). Most real systems exhibit wear-out (Weibull with shape k > 1), where hazard rate strictly increases.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Exponential distribution and memorylessness.</b> $X\\sim\\mathrm{Exp}(\\lambda)$ has density $f_X(t)=\\lambda e^{-\\lambda t}$ for $t\\ge0$, so $\\mathbb P(X\\gt t)=e^{-\\lambda t}$. Then for all $s,t\\ge0$, $\\mathbb P(X\\gt t+s\\mid X\\gt t)=\\dfrac{e^{-\\lambda(t+s)}}{e^{-\\lambda t}}=e^{-\\lambda s}=\\mathbb P(X\\gt s)$. It is the only continuous distribution on $[0,\\infty)$ with this property (Ross 5.5).",
+    "statement": "<b>Exponential distribution and memorylessness.</b><span class=\"ln\">$X\\sim\\mathrm{Exp}(\\lambda)$ has density $f_X(t)=\\lambda e^{-\\lambda t}$ for $t\\ge0$,</span><span class=\"ln in\">so $\\mathbb P(X\\gt t)=e^{-\\lambda t}$.</span><span class=\"ln\">Then for all $s,t\\ge0$,</span><span class=\"ln in\">$\\mathbb P(X\\gt t+s\\mid X\\gt t)=\\dfrac{e^{-\\lambda(t+s)}}{e^{-\\lambda t}}=e^{-\\lambda s}=\\mathbb P(X\\gt s)$.</span><span class=\"ln\">It is the only continuous distribution on $[0,\\infty)$ with this property.</span><span class=\"src\">Ross 5.5</span>",
     "hint": "There has been no safety car for t minutes. What is the chance there is none for s more?",
     "breakdown": [
       "<strong>$\\lambda e^{-\\lambda t}$ = the waiting-time curve.</strong> Early incidents are most likely, and $\\lambda$ is how many safety cars per minute come on average.",
@@ -321,7 +321,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Tenths away from typical.</strong> \u201cThat lap was 0.8 s slower than usual\u201d means little unless you compare it to how much Max's laps normally vary. Dividing by $\\sigma$ turns it into \u201chow many usual spreads off the pace that lap was\u201d.",
     "examTrap": "Attempting to evaluate \u03a6(z) symbolically by elementary integration. The integral has no closed-form elementary antiderivative; express solutions strictly in terms of \u03a6(z) or Q(z).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Standardisation of the normal law.</b> If $X\\sim\\mathcal N(\\mu,\\sigma^2)$, with density $f_X(x)=\\dfrac1{\\sigma\\sqrt{2\\pi}}e^{-(x-\\mu)^2/2\\sigma^2}$, then $Z=\\dfrac{X-\\mu}{\\sigma}\\sim\\mathcal N(0,1)$. Writing $\\Phi$ for the $\\mathcal N(0,1)$ CDF, $\\mathbb P(X\\le x)=\\Phi\\!\\left(\\frac{x-\\mu}{\\sigma}\\right)$ and $\\Phi(-z)=1-\\Phi(z)$ (Ross 5.4; Grimmett 4.4).",
+    "statement": "<b>Standardisation of the normal law.</b><span class=\"ln\">If $X\\sim\\mathcal N(\\mu,\\sigma^2)$, with density</span><span class=\"ln in\">$f_X(x)=\\dfrac1{\\sigma\\sqrt{2\\pi}}e^{-(x-\\mu)^2/2\\sigma^2}$,</span><span class=\"ln\">then $Z=\\dfrac{X-\\mu}{\\sigma}\\sim\\mathcal N(0,1)$.</span><span class=\"ln\">Writing $\\Phi$ for the $\\mathcal N(0,1)$ CDF,</span><span class=\"ln in\">$\\mathbb P(X\\le x)=\\Phi\\!\\left(\\frac{x-\\mu}{\\sigma}\\right)$ and $\\Phi(-z)=1-\\Phi(z)$.</span><span class=\"src\">Ross 5.4; Grimmett 4.4</span>",
     "hint": "How do you answer any normal question using the single table for mean 0 and variance 1?",
     "breakdown": [
       "<strong>$\\mu$ = the centre.</strong> Max's typical lap time on this circuit, where the bell curve peaks.",
@@ -351,7 +351,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Behind the safety car.</strong> In some races there is no safety car at all: 0 seconds behind it. In the others Max spends a random time behind it. The time is part \u201cexactly 0\u201d and part \u201cany positive amount\u201d.",
     "examTrap": "Applying \u222b x f(x)dx alone without accounting for point mass jumps! Disregarding atoms F(x) - F(x\u207b) completely invalidates expected values and variances.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Mixed random variable.</b> A random variable whose CDF has the form $F_X=\\alpha F_{\\rm disc}+(1-\\alpha)F_{\\rm cont}$, $0\\lt \\alpha\\lt 1$, with $F_{\\rm disc}$ a step function and $F_{\\rm cont}$ continuous, is mixed. Its mean is $\\mathbb E[X]=\\sum_kx_k\\,\\mathbb P(X=x_k)+\\int_{-\\infty}^\\infty x\\,f_c(x)\\,dx$, the atoms plus the continuous part, where $f_c$ is the density of the continuous part (Ross 5.1; Grimmett 4.1).",
+    "statement": "<b>Mixed random variable.</b><span class=\"ln\">A random variable whose CDF has the form $F_X=\\alpha F_{\\rm disc}+(1-\\alpha)F_{\\rm cont}$, $0\\lt \\alpha\\lt 1$,</span><span class=\"ln in\">with $F_{\\rm disc}$ a step function and $F_{\\rm cont}$ continuous, is mixed.</span><span class=\"ln\">Its mean is</span><span class=\"ln in\">$\\mathbb E[X]=\\sum_kx_k\\,\\mathbb P(X=x_k)+\\int_{-\\infty}^\\infty x\\,f_c(x)\\,dx$,</span><span class=\"ln in\">the atoms plus the continuous part, where $f_c$ is the density of the continuous part.</span><span class=\"src\">Ross 5.1; Grimmett 4.1</span>",
     "hint": "With some chance there is no safety car, otherwise Max spends a continuous time behind it. How does that shape the CDF?",
     "breakdown": [
       "<strong>$\\alpha F_{\\rm disc}$ = no safety car.</strong> With chance $\\alpha$ the time behind the safety car is exactly 0, so the CDF jumps at 0 by $\\alpha$.",
@@ -381,7 +381,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>From lap time to something else.</strong> Whatever the engineers compute from a lap (average speed, gap to the target, time lost), ask which lap times make it at most $y$, add up their chance, and you have the CDF of the new quantity.",
     "examTrap": "Differentiating without determining the valid support of Y! You must track y \u2208 g(supp(X)); omitting indicator functions 1_{y \u2208 support} leads to invalid densities with infinite integrals.",
     "stmtKind": "THEOREM",
-    "statement": "<b>CDF method.</b> Let $X$ be a random variable and $g:\\mathbb R\\to\\mathbb R$ measurable, and put $Y=g(X)$. Then $F_Y(y)=\\mathbb P(g(X)\\le y)=\\mathbb P\\bigl(X\\in\\{x:g(x)\\le y\\}\\bigr)$, which equals $\\int_{\\{x:g(x)\\le y\\}}f_X(x)\\,dx$ when $X$ has density $f_X$. If $F_Y$ is differentiable, $f_Y(y)=\\dfrac{d}{dy}F_Y(y)$ on the support of $Y$ (Ross 5.7; Grimmett 4.7).",
+    "statement": "<b>CDF method.</b><span class=\"ln\">Let $X$ be a random variable and $g:\\mathbb R\\to\\mathbb R$ measurable, and put $Y=g(X)$.</span><span class=\"ln\">Then</span><span class=\"ln in\">$F_Y(y)=\\mathbb P(g(X)\\le y)=\\mathbb P\\bigl(X\\in\\{x:g(x)\\le y\\}\\bigr)$,</span><span class=\"ln in\">which equals $\\int_{\\{x:g(x)\\le y\\}}f_X(x)\\,dx$ when $X$ has density $f_X$.</span><span class=\"ln\">If $F_Y$ is differentiable,</span><span class=\"ln in\">$f_Y(y)=\\dfrac{d}{dy}F_Y(y)$ on the support of $Y$.</span><span class=\"src\">Ross 5.7; Grimmett 4.7</span>",
     "hint": "How do you find the law of a new quantity built from Max's lap time, without any formula to memorise?",
     "breakdown": [
       "<strong>$\\{x:g(x)\\le y\\}$ = the laps that give a small enough $Y$.</strong> Turn the question about $Y$ into a question about which lap times $x$ qualify.",
@@ -411,7 +411,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Seconds into km/h.</strong> The chance in a band of lap times is the same chance in the matching band of average speeds; the density changes by the stretch factor.",
     "examTrap": "Omitting the absolute value |dx/dy| for strictly decreasing functions (e.g. Y = -X or Y = 1/X). Probabilities and densities must NEVER be negative!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Monotone change of variables.</b> If $g$ is strictly monotone and differentiable on the support of $X$, then $Y=g(X)$ has density $f_Y(y)=f_X(g^{-1}(y))\\left|\\frac{d}{dy}g^{-1}(y)\\right|$ for $y\\in g(\\operatorname{supp}X)$ (Ross 5.7; Grimmett 4.7).",
+    "statement": "<b>Monotone change of variables.</b><span class=\"ln\">If $g$ is strictly monotone and differentiable on the support of $X$,</span><span class=\"ln\">then $Y=g(X)$ has density</span><span class=\"ln in\">$f_Y(y)=f_X(g^{-1}(y))\\left|\\frac{d}{dy}g^{-1}(y)\\right|$</span><span class=\"ln in\">for $y\\in g(\\operatorname{supp}X)$.</span><span class=\"src\">Ross 5.7; Grimmett 4.7</span>",
     "hint": "If average speed is lap length over lap time, how does the density of the lap time turn into the density of the speed?",
     "breakdown": [
       "<strong>$f_X(g^{-1}(y))$ = density at the lap time that gives $y$.</strong> Undo $g$ to find which lap time $x$ produces speed $y$.",
@@ -441,7 +441,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two ways to the same number.</strong> Deviation from the target lap: 0.3 s too fast or 0.3 s too slow both give a squared deviation of 0.09. The chance of that squared value counts both.",
     "examTrap": "Missing branches when g(x) is even or periodic (e.g. Y = |X|, Y = X\u2074, Y = cos X). Every real root x_k contributing to y must be included in the sum!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Many-to-one transformations.</b> Let $g$ be piecewise strictly monotone and differentiable, and let $y$ have preimages $x_1,\\ldots,x_m$ with $g'(x_k)\\ne0$. Then $f_Y(y)=\\sum_{k}\\dfrac{f_X(x_k)}{|g'(x_k)|}$. In particular for $Y=X^2$, $f_Y(y)=\\dfrac{f_X(\\sqrt y)+f_X(-\\sqrt y)}{2\\sqrt y}\\,\\mathbf 1_{\\{y\\gt 0\\}}$ (Ross 5.7; Grimmett 4.7).",
+    "statement": "<b>Many-to-one transformations.</b><span class=\"ln\">Let $g$ be piecewise strictly monotone and differentiable,</span><span class=\"ln\">and let $y$ have preimages $x_1,\\ldots,x_m$ with $g'(x_k)\\ne0$.</span><span class=\"ln\">Then</span><span class=\"ln in\">$f_Y(y)=\\sum_{k}\\dfrac{f_X(x_k)}{|g'(x_k)|}$.</span><span class=\"ln\">In particular for $Y=X^2$,</span><span class=\"ln in\">$f_Y(y)=\\dfrac{f_X(\\sqrt y)+f_X(-\\sqrt y)}{2\\sqrt y}\\,\\mathbf 1_{\\{y\\gt 0\\}}$.</span><span class=\"src\">Ross 5.7; Grimmett 4.7</span>",
     "hint": "If two different values of X give the same Y, how do you count the chance at that Y?",
     "breakdown": [
       "<strong>$x_k\\in g^{-1}(y)$ = every input that lands on $y$.</strong> For $Y=X^2$ both $+\\sqrt y$ and $-\\sqrt y$ do; one must find every real root.",
@@ -471,7 +471,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Percentiles of a lap.</strong> A lap at the 80th percentile is slower than 80% of Max's laps. Red Bull's simulator picks a random percentile, reads off the lap time at it, and gets a simulated lap with the right law.",
     "examTrap": "Applying F_X(X) ~ Uniform(0, 1) to discrete random variables! For discrete distributions, F_X(X) takes only discrete values and is emphatically NOT uniform.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Probability integral transform.</b> If $X$ has a continuous CDF $F_X$, then $U=F_X(X)\\sim\\text{Uniform}(0,1)$. Conversely, if $U\\sim\\text{Uniform}(0,1)$ and $F$ is any CDF with generalised inverse $F^{-1}(u)=\\inf\\{x:F(x)\\ge u\\}$, then $X=F^{-1}(U)$ has CDF $F$ (Ross 5.7; Grimmett 4.11).",
+    "statement": "<b>Probability integral transform.</b><span class=\"ln\">If $X$ has a continuous CDF $F_X$,</span><span class=\"ln in\">then $U=F_X(X)\\sim\\text{Uniform}(0,1)$.</span><span class=\"ln\">Conversely, if $U\\sim\\text{Uniform}(0,1)$ and $F$ is any CDF with generalised inverse</span><span class=\"ln in\">$F^{-1}(u)=\\inf\\{x:F(x)\\ge u\\}$,</span><span class=\"ln in\">then $X=F^{-1}(U)$ has CDF $F$.</span><span class=\"src\">Ross 5.7; Grimmett 4.11</span>",
     "hint": "How can the race simulator generate lap times with a given law using only a uniform random number?",
     "breakdown": [
       "<strong>$U=F_X(X)$ = the CDF reading of a lap.</strong> Feed the lap time through its own CDF: the output is the share of laps that were no slower than this one.",
@@ -501,7 +501,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How far off the pace, squared.</strong> Take the standardised deviation of a lap from Max's usual pace and square it. Too fast or too slow both count as the same squared distance, so everything folds onto positive values, with a pile-up of near-zero deviations.",
     "examTrap": "Worrying that f_Y(y) \u2192 \u221e as y \u2192 0\u207a. An integrable pole (y^{-1/2}) is completely legal for continuous probability densities; the integral remains strictly equal to 1.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chi-square with one degree of freedom.</b> If $Z\\sim\\mathcal N(0,1)$ then $Y=Z^2$ has density $f_Y(y)=\\dfrac1{\\sqrt{2\\pi y}}e^{-y/2}\\mathbf 1_{\\{y\\gt 0\\}}$, that is $Y\\sim\\chi^2_1=\\mathrm{Gamma}\\bigl(\\tfrac12,\\tfrac12\\bigr)$. Proof: $F_Y(y)=\\mathbb P(-\\sqrt y\\le Z\\le\\sqrt y)=2\\Phi(\\sqrt y)-1$ for $y\\gt 0$; differentiate (Ross 5.7; Grimmett 4.4).",
+    "statement": "<b>Chi-square with one degree of freedom.</b><span class=\"ln\">If $Z\\sim\\mathcal N(0,1)$ then $Y=Z^2$ has density</span><span class=\"ln in\">$f_Y(y)=\\dfrac1{\\sqrt{2\\pi y}}e^{-y/2}\\mathbf 1_{\\{y\\gt 0\\}}$,</span><span class=\"ln in\">that is $Y\\sim\\chi^2_1=\\mathrm{Gamma}\\bigl(\\tfrac12,\\tfrac12\\bigr)$.</span><span class=\"ln\">Proof: $F_Y(y)=\\mathbb P(-\\sqrt y\\le Z\\le\\sqrt y)=2\\Phi(\\sqrt y)-1$ for $y\\gt 0$;</span><span class=\"ln in\">differentiate.</span><span class=\"src\">Ross 5.7; Grimmett 4.4</span>",
     "hint": "What law does the squared deviation of a standardised lap time follow, and why does its density blow up at zero?",
     "breakdown": [
       "<strong>$F_Y(y)=2\\Phi(\\sqrt y)-1$ = the middle strip of the bell.</strong> $Z^2\\le y$ means $Z$ lies between $-\\sqrt y$ and $\\sqrt y$; both sides of the bell count.",
@@ -531,7 +531,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A spin at a random angle.</strong> A car that spins can slide off in any direction facing the barrier. Most hit near the corner, but a few slide almost parallel to the wall and hit absurdly far away, and these ruin any average.",
     "examTrap": "Claiming \ud835\udd3c[X] = 0 by symmetry! For Cauchy, the positive tail integral is +\u221e and the negative tail is -\u221e. The expression \u221e - \u221e is undefined, so the expected value does not exist.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Cauchy law from a random angle.</b> If $\\Theta\\sim\\text{Uniform}(-\\pi/2,\\pi/2)$ and $X=\\tan\\Theta$, then $F_X(x)=\\mathbb P(\\Theta\\le\\arctan x)=\\tfrac12+\\tfrac1\\pi\\arctan x$ and $f_X(x)=\\dfrac1{\\pi(1+x^2)}$, the standard Cauchy density. Its tails are so heavy that $\\int|x|f_X(x)\\,dx=\\infty$, so $\\mathbb E[X]$ does not exist (Ross 5.7; Grimmett 4.4).",
+    "statement": "<b>Cauchy law from a random angle.</b><span class=\"ln\">If $\\Theta\\sim\\text{Uniform}(-\\pi/2,\\pi/2)$ and $X=\\tan\\Theta$, then</span><span class=\"ln in\">$F_X(x)=\\mathbb P(\\Theta\\le\\arctan x)=\\tfrac12+\\tfrac1\\pi\\arctan x$</span><span class=\"ln in\">and $f_X(x)=\\dfrac1{\\pi(1+x^2)}$, the standard Cauchy density.</span><span class=\"ln\">Its tails are so heavy that $\\int|x|f_X(x)\\,dx=\\infty$,</span><span class=\"ln in\">so $\\mathbb E[X]$ does not exist.</span><span class=\"src\">Ross 5.7; Grimmett 4.4</span>",
     "hint": "If a spinning car slides off at a uniformly random angle, where does it hit the barrier, and why is its average undefined?",
     "breakdown": [
       "<strong>$\\Theta\\sim\\text{Uniform}(-\\pi/2,\\pi/2)$ = a random direction.</strong> Every direction facing the barrier is equally likely.",
@@ -561,7 +561,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The average race is the sum of the average parts.</strong> Average first stint, average pit stop, average second stint: add them and you have Max's average race time, with no need to know how the three are tangled together.",
     "examTrap": "Assuming \ud835\udd3c[g(X)] = g(\ud835\udd3c[X]). By Jensen's inequality, this holds only for linear/affine functions; for non-linear convex g, \ud835\udd3c[g(X)] \u2265 g(\ud835\udd3c[X]).",
     "stmtKind": "THEOREM",
-    "statement": "<b>LOTUS and linearity of expectation.</b> If $X$ has density $f_X$ (or pmf $p_X$) and $\\mathbb E|g(X)|\\lt \\infty$, then $\\mathbb E[g(X)]=\\int_{-\\infty}^\\infty g(x)f_X(x)\\,dx$ (respectively $\\sum_xg(x)p_X(x)$). For random variables $X_1,\\ldots,X_n$ with finite means and constants $c_i$, $\\mathbb E\\bigl[\\sum_ic_iX_i\\bigr]=\\sum_ic_i\\mathbb E[X_i]$, with no independence needed (Ross 4.4, 7.2; Grimmett 3.3).",
+    "statement": "<b>LOTUS and linearity of expectation.</b><span class=\"ln\">If $X$ has density $f_X$ (or pmf $p_X$) and $\\mathbb E|g(X)|\\lt \\infty$, then</span><span class=\"ln in\">$\\mathbb E[g(X)]=\\int_{-\\infty}^\\infty g(x)f_X(x)\\,dx$ (respectively $\\sum_xg(x)p_X(x)$).</span><span class=\"ln\">For random variables $X_1,\\ldots,X_n$ with finite means and constants $c_i$,</span><span class=\"ln in\">$\\mathbb E\\bigl[\\sum_ic_iX_i\\bigr]=\\sum_ic_i\\mathbb E[X_i]$,</span><span class=\"ln in\">with no independence needed.</span><span class=\"src\">Ross 4.4, 7.2; Grimmett 3.3</span>",
     "hint": "Can you add the averages of the first stint, the pit stop and the second stint to get the average race time, and do you need the law of the sum?",
     "breakdown": [
       "<strong>$\\int g(x)f_X(x)\\,dx$ = weight each value by its density.</strong> To average a function of a lap time, you do not need the law of $g(X)$: use the density of $X$ itself.",
@@ -591,7 +591,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Counting laps on a set of tyres.</strong> Lap by lap, you ask whether Max is still on the same set. Adding up those yes-chances lap by lap gives the average tyre life.",
     "examTrap": "Applying the one-sided tail integral to random variables with negative values. For general RVs on \u211d, \ud835\udd3c[X] = \u222b\u2080^\u221e \u2119(X > t)dt - \u222b_{-\u221e}^0 \u2119(X < t)dt.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Tail-sum formula.</b> If $X\\ge0$ then $\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X\\gt t)\\,dt$. If $X$ takes values in $\\{0,1,2,\\ldots\\}$ then $\\mathbb E[X]=\\sum_{k=1}^\\infty\\mathbb P(X\\ge k)$. For general $X$, $\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X\\gt t)\\,dt-\\int_{-\\infty}^0\\mathbb P(X\\lt t)\\,dt$ (Ross 5.3; Grimmett 4.3).",
+    "statement": "<b>Tail-sum formula.</b><span class=\"ln\">If $X\\ge0$ then</span><span class=\"ln in\">$\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X\\gt t)\\,dt$.</span><span class=\"ln\">If $X$ takes values in $\\{0,1,2,\\ldots\\}$ then</span><span class=\"ln in\">$\\mathbb E[X]=\\sum_{k=1}^\\infty\\mathbb P(X\\ge k)$.</span><span class=\"ln\">For general $X$,</span><span class=\"ln in\">$\\mathbb E[X]=\\int_0^\\infty\\mathbb P(X\\gt t)\\,dt-\\int_{-\\infty}^0\\mathbb P(X\\lt t)\\,dt$.</span><span class=\"src\">Ross 5.3; Grimmett 4.3</span>",
     "hint": "How can the average tyre life be read as an area under the curve \u201cstill on the same tyres after t laps\u201d?",
     "breakdown": [
       "<strong>$\\mathbb P(X\\gt t)$ = chance the tyres are still on after lap $t$.</strong> It starts at 1 and falls to 0 as $t$ grows.",
@@ -621,7 +621,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A bad stop stacks up.</strong> If a slow pit stop also drops Max into traffic, the total time lost varies more than the pieces suggest; independent pieces just add variances.",
     "examTrap": "Assuming Cov(X, Y) = 0 implies independence! Zero covariance only means no LINEAR relationship. Deterministic non-linear pairs (e.g. Y = X\u00b2) can have Cov(X, Y) = 0.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Variance of a sum.</b> For $X_1,\\ldots,X_n$ with finite second moments, $\\operatorname{Var}(\\sum_iX_i)=\\sum_i\\operatorname{Var}(X_i)+2\\sum_{i\\lt j}\\operatorname{Cov}(X_i,X_j)$, where $\\operatorname{Cov}(X,Y)=\\mathbb E[(X-\\mathbb EX)(Y-\\mathbb EY)]$ (Ross 7.4; Grimmett 3.6).",
+    "statement": "<b>Variance of a sum.</b><span class=\"ln\">For $X_1,\\ldots,X_n$ with finite second moments,</span><span class=\"ln in\">$\\operatorname{Var}(\\sum_iX_i)=\\sum_i\\operatorname{Var}(X_i)+2\\sum_{i\\lt j}\\operatorname{Cov}(X_i,X_j)$,</span><span class=\"ln\">where $\\operatorname{Cov}(X,Y)=\\mathbb E[(X-\\mathbb EX)(Y-\\mathbb EY)]$.</span><span class=\"src\">Ross 7.4; Grimmett 3.6</span>",
     "hint": "If a slow pit stop tends to drop Max into traffic, what does the variance of the total time lost look like?",
     "breakdown": [
       "<strong>$\\sum\\operatorname{Var}(X_i)$ = each part's own spread.</strong> The squares on the diagonal.",
@@ -651,7 +651,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>One curve for the whole lap.</strong> Instead of remembering the average, the spread and every higher feature of Max's lap time, the engineers keep one curve that holds them all, and for two independent stints they multiply their curves.",
     "examTrap": "Assuming the MGF always exists! Heavy-tailed distributions (Cauchy, Pareto, Log-Normal) have M_X(t) = \u221e for all t > 0. In such cases, use the Characteristic Function \u03c6_X(t) = \ud835\udd3c[e^{itX}].",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Moment generating function.</b> The MGF of $X$ is $M_X(t)=\\mathbb E[e^{tX}]$ for $t$ in an interval around $0$ where it is finite. Then $M_X(t)=\\sum_{k\\ge0}\\frac{t^k}{k!}\\mathbb E[X^k]$, $M_X^{(k)}(0)=\\mathbb E[X^k]$, and if $M_X$ is finite near $0$ it determines the law of $X$. For independent $X,Y$: $M_{X+Y}(t)=M_X(t)M_Y(t)$ (Ross 7.7; Grimmett 5.1).",
+    "statement": "<b>Moment generating function.</b><span class=\"ln\">The MGF of $X$ is $M_X(t)=\\mathbb E[e^{tX}]$ for $t$ in an interval around $0$ where it is finite.</span><span class=\"ln\">Then</span><span class=\"ln in\">$M_X(t)=\\sum_{k\\ge0}\\frac{t^k}{k!}\\mathbb E[X^k]$,</span><span class=\"ln in\">$M_X^{(k)}(0)=\\mathbb E[X^k]$,</span><span class=\"ln in\">and if $M_X$ is finite near $0$ it determines the law of $X$.</span><span class=\"ln\">For independent $X,Y$: $M_{X+Y}(t)=M_X(t)M_Y(t)$.</span><span class=\"src\">Ross 7.7; Grimmett 5.1</span>",
     "hint": "How can one function of t store every moment of a lap time and turn a sum of independent stints into a product?",
     "breakdown": [
       "<strong>$\\mathbb E[e^{tX}]$ = the average exponential tilt of a lap time.</strong> Weight each lap time by $e^{tx}$ and average: slow laps count more as $t$ grows.",
@@ -681,7 +681,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Counting overtakes.</strong> The number of cars Max overtakes in a stint is a whole number. A polynomial whose coefficients are the chances of 0, 1, 2, \u2026 overtakes holds the whole picture; its slope at 1 is the average.",
     "examTrap": "Evaluating moments at s = 0 instead of s = 1! G_X(0) = \u2119(X = 0), while expectations and variances require derivatives evaluated at s = 1.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Probability generating function.</b> For $X$ taking values in $\\{0,1,2,\\ldots\\}$, $G_X(s)=\\mathbb E[s^X]=\\sum_{k\\ge0}\\mathbb P(X=k)s^k$ for $|s|\\le1$. Then $G_X(0)=\\mathbb P(X=0)$, $G_X(1)=1$, $\\mathbb E[X]=G_X'(1)$, and for independent $X_i$ with $N$ independent of them, $G_{\\sum_{i=1}^NX_i}(s)=G_N\\bigl(G_X(s)\\bigr)$ (Ross 7.7; Grimmett 5.1).",
+    "statement": "<b>Probability generating function.</b><span class=\"ln\">For $X$ taking values in $\\{0,1,2,\\ldots\\}$,</span><span class=\"ln in\">$G_X(s)=\\mathbb E[s^X]=\\sum_{k\\ge0}\\mathbb P(X=k)s^k$ for $|s|\\le1$.</span><span class=\"ln\">Then $G_X(0)=\\mathbb P(X=0)$, $G_X(1)=1$, $\\mathbb E[X]=G_X'(1)$,</span><span class=\"ln\">and for independent $X_i$ with $N$ independent of them,</span><span class=\"ln in\">$G_{\\sum_{i=1}^NX_i}(s)=G_N\\bigl(G_X(s)\\bigr)$.</span><span class=\"src\">Ross 7.7; Grimmett 5.1</span>",
     "hint": "How can a polynomial in s hold the whole count distribution, and how do you read the average off it?",
     "breakdown": [
       "<strong>$\\sum\\mathbb P(X=k)s^k$ = the count's law as a polynomial.</strong> The coefficient of $s^k$ is the chance of exactly $k$ overtakes.",
@@ -711,7 +711,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Too fast or too slow, both are off.</strong> Take the seconds a lap is off the target time, and the size of the miss. Too fast is as likely as too slow, so the two numbers show no straight-line link, though the size is set exactly by the deviation.",
     "examTrap": "Assuming uncorrelated variables are independent! Covariance measures ONLY linear association; quadratic, circular, or higher-order dependencies have Cov = 0.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Uncorrelated but dependent.</b> Let $X$ be symmetric about $0$ with finite third moment (say uniform on $\\{-1,0,1\\}$) and $Y=X^2$. Then $\\mathbb E[X]=\\mathbb E[X^3]=0$, so $\\operatorname{Cov}(X,Y)=\\mathbb E[X^3]-\\mathbb E[X]\\mathbb E[X^2]=0$, yet $Y$ is a function of $X$. For $X$ uniform on $\\{-1,0,1\\}$: $\\mathbb P(X=0,Y=1)=0\\ne\\tfrac13\\cdot\\tfrac23=\\mathbb P(X=0)\\mathbb P(Y=1)$, so $X,Y$ are not independent (Ross 7.4; Grimmett 3.6).",
+    "statement": "<b>Uncorrelated but dependent.</b><span class=\"ln\">Let $X$ be symmetric about $0$ with finite third moment (say uniform on $\\{-1,0,1\\}$) and $Y=X^2$.</span><span class=\"ln\">Then $\\mathbb E[X]=\\mathbb E[X^3]=0$, so</span><span class=\"ln in\">$\\operatorname{Cov}(X,Y)=\\mathbb E[X^3]-\\mathbb E[X]\\mathbb E[X^2]=0$,</span><span class=\"ln in\">yet $Y$ is a function of $X$.</span><span class=\"ln\">For $X$ uniform on $\\{-1,0,1\\}$:</span><span class=\"ln in\">$\\mathbb P(X=0,Y=1)=0\\ne\\tfrac13\\cdot\\tfrac23=\\mathbb P(X=0)\\mathbb P(Y=1)$,</span><span class=\"ln in\">so $X,Y$ are not independent.</span><span class=\"src\">Ross 7.4; Grimmett 3.6</span>",
     "hint": "Can Y be completely determined by X and yet have zero covariance with it?",
     "breakdown": [
       "<strong>$\\mathbb E[X]=0,\\ \\mathbb E[X^3]=0$ = the odd moments vanish.</strong> If laps too fast and too slow balance, every odd power averages out to 0.",
@@ -741,7 +741,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Slow stops cannot be everywhere.</strong> If Red Bull's stops average 2.5 seconds, at most one stop in three can take 7.5 seconds or more, however the rest are spread. It is a crude but always valid ceiling.",
     "examTrap": "Applying Markov directly to random variables with negative values! Markov strictly requires X \u2265 0. For general variables, apply Markov to |X|, (X - \u03bc)\u00b2, or e^{tX}.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Markov's inequality.</b> If $X\\ge0$ is a random variable with finite mean and $a\\gt 0$, then $\\mathbb P(X\\ge a)\\le\\dfrac{\\mathbb E[X]}{a}$. Proof: $a\\mathbf 1_{\\{X\\ge a\\}}\\le X$ pointwise; take expectations. For general $X$, apply the bound to $|X|$, $(X-\\mu)^2$ or $e^{tX}$ (Ross 8.2; Grimmett 7.3).",
+    "statement": "<b>Markov's inequality.</b><span class=\"ln\">If $X\\ge0$ is a random variable with finite mean and $a\\gt 0$,</span><span class=\"ln in\">then $\\mathbb P(X\\ge a)\\le\\dfrac{\\mathbb E[X]}{a}$.</span><span class=\"ln\">Proof: $a\\mathbf 1_{\\{X\\ge a\\}}\\le X$ pointwise; take expectations.</span><span class=\"ln\">For general $X$, apply the bound to $|X|$, $(X-\\mu)^2$ or $e^{tX}$.</span><span class=\"src\">Ross 8.2; Grimmett 7.3</span>",
     "hint": "Knowing only the average pit-stop time, what is the most you can say about the chance of a really slow stop?",
     "breakdown": [
       "<strong>$a\\mathbf 1_{\\{X\\ge a\\}}\\le X$ = a step stays under the line.</strong> The step is $0$ for stops under $a$ seconds and $a$ for stops of at least $a$; the stop time $X$ itself lies above both pieces.",
@@ -771,7 +771,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How far from a typical lap.</strong> With an average of 92.0 s and a spread of 0.3 s, a lap more than 0.9 s off (three spreads) happens on at most a ninth of laps, whatever the shape.",
     "examTrap": "Using Chebyshev when a 1-sided bound is required. For 1-sided deviations \u2119(X - \u03bc \u2265 \u03b5), Cantelli's inequality gives the strictly sharper bound \u03c3\u00b2 / (\u03c3\u00b2 + \u03b5\u00b2).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chebyshev's inequality.</b> If $X$ has finite mean $\\mu$ and variance $\\sigma^2$, then for every $\\varepsilon\\gt 0$, $\\mathbb P(|X-\\mu|\\ge\\varepsilon)\\le\\dfrac{\\operatorname{Var}(X)}{\\varepsilon^2}$. Equivalently $\\mathbb P(|X-\\mu|\\ge k\\sigma)\\le1/k^2$. It is Markov's inequality applied to $(X-\\mu)^2$ (Ross 8.2; Grimmett 7.3).",
+    "statement": "<b>Chebyshev's inequality.</b><span class=\"ln\">If $X$ has finite mean $\\mu$ and variance $\\sigma^2$, then for every $\\varepsilon\\gt 0$,</span><span class=\"ln in\">$\\mathbb P(|X-\\mu|\\ge\\varepsilon)\\le\\dfrac{\\operatorname{Var}(X)}{\\varepsilon^2}$.</span><span class=\"ln\">Equivalently $\\mathbb P(|X-\\mu|\\ge k\\sigma)\\le1/k^2$.</span><span class=\"ln\">It is Markov's inequality applied to $(X-\\mu)^2$.</span><span class=\"src\">Ross 8.2; Grimmett 7.3</span>",
     "hint": "Knowing the average and the spread of Max's lap time, how likely is a lap far from the average?",
     "breakdown": [
       "<strong>$|X-\\mu|\\ge\\varepsilon$ = the lap is far from usual.</strong> More than $\\varepsilon$ seconds off the average, faster or slower: the two shaded tails.",
@@ -802,7 +802,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Tuning the ceiling.</strong> The engineers try different ways of weighing slow stops in the average, each giving a valid ceiling on \u201ca stop this slow\u201d. The smallest ceiling over all weights is the one they keep, and it often shrinks exponentially.",
     "examTrap": "Forgetting the constraint t > 0 for upper tails (and t < 0 for lower tails \u2119(X \u2264 a)). Plugging negative t into an upper-tail bound flips the inequality direction!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chernoff bound.</b> If $M_X(t)=\\mathbb E[e^{tX}]$ is finite for some $t\\gt 0$, then for every $a$, $\\mathbb P(X\\ge a)\\le\\inf_{t\\gt 0}e^{-ta}M_X(t)=\\exp\\bigl(-\\sup_{t\\gt 0}[ta-\\Lambda_X(t)]\\bigr)$, where $\\Lambda_X=\\ln M_X$. For the lower tail, use $t\\lt 0$ (Ross 8.3; Grimmett 5.11).",
+    "statement": "<b>Chernoff bound.</b><span class=\"ln\">If $M_X(t)=\\mathbb E[e^{tX}]$ is finite for some $t\\gt 0$, then for every $a$,</span><span class=\"ln in\">$\\mathbb P(X\\ge a)\\le\\inf_{t\\gt 0}e^{-ta}M_X(t)=\\exp\\bigl(-\\sup_{t\\gt 0}[ta-\\Lambda_X(t)]\\bigr)$,</span><span class=\"ln in\">where $\\Lambda_X=\\ln M_X$.</span><span class=\"ln\">For the lower tail, use $t\\lt 0$.</span><span class=\"src\">Ross 8.3; Grimmett 5.11</span>",
     "hint": "How do you squeeze the best possible bound on a very slow pit stop out of Markov's inequality?",
     "breakdown": [
       "<strong>$e^{-ta}M_X(t)$ = Markov applied to $e^{tX}$.</strong> The event $X\\ge a$ is the same as $e^{tX}\\ge e^{ta}$ for $t\\gt 0$, so Markov gives this bound for each $t$.",
@@ -832,7 +832,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Averages do not pass through curves.</strong> The average of the squared seconds off the pace is bigger than the square of the average seconds off, because the very bad laps are weighted extra by the squaring.",
     "examTrap": "Reversing the inequality for concave functions! For concave functions like log(x) or \u221ax, \ud835\udd3c[g(X)] \u2264 g(\ud835\udd3c[X]) (which directly proves the Arithmetic-Geometric Mean AM-GM inequality).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Jensen's inequality.</b> If $g$ is convex and $X$ and $g(X)$ are integrable, then $g(\\mathbb E[X])\\le\\mathbb E[g(X)]$. If $g$ is concave, $\\mathbb E[g(X)]\\le g(\\mathbb E[X])$. Equality holds for non-degenerate $X$ only if $g$ is affine on the support of $X$. For $g=\\ln$ this gives the AM\u2013GM inequality (Ross 8.5; Grimmett 6.6).",
+    "statement": "<b>Jensen's inequality.</b><span class=\"ln\">If $g$ is convex and $X$ and $g(X)$ are integrable,</span><span class=\"ln in\">then $g(\\mathbb E[X])\\le\\mathbb E[g(X)]$.</span><span class=\"ln\">If $g$ is concave, $\\mathbb E[g(X)]\\le g(\\mathbb E[X])$.</span><span class=\"ln\">Equality holds for non-degenerate $X$ only if $g$ is affine on the support of $X$.</span><span class=\"ln\">For $g=\\ln$ this gives the AM\u2013GM inequality.</span><span class=\"src\">Ross 8.5; Grimmett 6.6</span>",
     "hint": "Is the average of a convex function of the lap time bigger or smaller than the function of the average lap?",
     "breakdown": [
       "<strong>$g(\\mathbb E[X])$ = apply $g$ after averaging.</strong> The point on the curve above the average lap time.",
@@ -862,7 +862,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Many small, bounded losses.</strong> If each lap in traffic costs Max between 0 and 0.2 seconds and the laps are independent, the total loss rarely ends far above its average: the chance falls off exponentially with the excess.",
     "examTrap": "Applying Hoeffding to dependent variables! Mutual independence of X\u2081,...,X_n is strictly mandatory to factorize the joint MGF in Hoeffding's proof.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Cauchy\u2013Schwarz and Hoeffding.</b> For $X,Y$ with finite second moments, $|\\mathbb E[XY]|^2\\le\\mathbb E[X^2]\\,\\mathbb E[Y^2]$. If $X_1,\\ldots,X_n$ are independent with $a_i\\le X_i\\le b_i$, then for $t\\gt 0$, $\\mathbb P\\!\\left(\\sum_{i=1}^n(X_i-\\mathbb EX_i)\\ge t\\right)\\le\\exp\\!\\left(-\\dfrac{2t^2}{\\sum_i(b_i-a_i)^2}\\right)$ (Ross 8.5; Grimmett 7.3, 12.2).",
+    "statement": "<b>Cauchy\u2013Schwarz and Hoeffding.</b><span class=\"ln\">For $X,Y$ with finite second moments,</span><span class=\"ln in\">$|\\mathbb E[XY]|^2\\le\\mathbb E[X^2]\\,\\mathbb E[Y^2]$.</span><span class=\"ln\">If $X_1,\\ldots,X_n$ are independent with $a_i\\le X_i\\le b_i$, then for $t\\gt 0$,</span><span class=\"ln in\">$\\mathbb P\\!\\left(\\sum_{i=1}^n(X_i-\\mathbb EX_i)\\ge t\\right)\\le\\exp\\!\\left(-\\dfrac{2t^2}{\\sum_i(b_i-a_i)^2}\\right)$.</span><span class=\"src\">Ross 8.5; Grimmett 7.3, 12.2</span>",
     "hint": "How do you bound the average of a product, and the chance that a sum of bounded losses strays far above its mean?",
     "breakdown": [
       "<strong>$|\\mathbb E[XY]|^2\\le\\mathbb E[X^2]\\mathbb E[Y^2]$ = the inner product is at most the product of lengths.</strong> Random variables act as vectors, and the cosine of the angle between them is at most 1.",
@@ -892,7 +892,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How rare is a freak season?</strong> For a driver who wins half his races, after 100 races Chebyshev says winning three quarters of them has chance at most 4%, while the exponential bound says about one in a quarter of a million. More information gives a much sharper ceiling, which is why runs like Max's 2023 season say the car is genuinely faster.",
     "examTrap": "Using Chebyshev for large sample sizes (n >> 100). Chebyshev captures only 2nd moments, missing the exponential destructive cancellation across independent terms.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Chebyshev against Chernoff.</b> Let $S_n$ be the number of heads in $n$ tosses of a fair coin. Chebyshev gives $\\mathbb P(S_n\\ge\\tfrac34n)\\le\\mathbb P(|S_n-\\tfrac n2|\\ge\\tfrac n4)\\le\\dfrac{n/4}{(n/4)^2}=\\dfrac4n$. Hoeffding (Chernoff) gives $\\mathbb P(S_n\\ge\\tfrac34n)\\le\\exp\\!\\bigl(-\\tfrac{2(n/4)^2}{n}\\bigr)=e^{-n/8}$. The second decays exponentially, the first only like $1/n$ (Ross 8.2; Grimmett 7.3).",
+    "statement": "<b>Chebyshev against Chernoff.</b><span class=\"ln\">Let $S_n$ be the number of heads in $n$ tosses of a fair coin.</span><span class=\"ln\">Chebyshev gives</span><span class=\"ln in\">$\\mathbb P(S_n\\ge\\tfrac34n)\\le\\mathbb P(|S_n-\\tfrac n2|\\ge\\tfrac n4)\\le\\dfrac{n/4}{(n/4)^2}=\\dfrac4n$.</span><span class=\"ln\">Hoeffding (Chernoff) gives</span><span class=\"ln in\">$\\mathbb P(S_n\\ge\\tfrac34n)\\le\\exp\\!\\bigl(-\\tfrac{2(n/4)^2}{n}\\bigr)=e^{-n/8}$.</span><span class=\"ln\">The second decays exponentially, the first only like $1/n$.</span><span class=\"src\">Ross 8.2; Grimmett 7.3</span>",
     "hint": "Over a long run of races, which bound on a freak run of wins shrinks faster: the 1/n or the exponential one?",
     "breakdown": [
       "<strong>$\\mathbb P(S_n\\ge\\tfrac34n)$ = a freak run.</strong> Over $n$ races, $S_n$ counts the wins of a driver who wins each race with chance $\\tfrac12$; the event is far more wins than the half you expect.",
@@ -922,7 +922,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Stop and traffic on one plane.</strong> Each race is one point: how long Max's stop took and how much time he then lost in traffic. The CDF at a point says how much of the plane lies to its lower left; a rectangle of pairs needs four such corners.",
     "examTrap": "Assuming coordinate-wise monotonicity guarantees a valid 2D CDF. Functions exist where \u2202F/\u2202x \u2265 0 and \u2202F/\u2202y \u2265 0, yet the rectangle measure evaluates to a negative number!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Joint CDF.</b> For random variables $X,Y$ on the same space, $F_{X,Y}(x,y)=\\mathbb P(X\\le x,\\,Y\\le y)$. It is non-decreasing in each variable, right-continuous, tends to $0$ as either argument $\\to-\\infty$ and to $1$ as both $\\to\\infty$, and for $a\\lt b$, $c\\lt d$: $\\mathbb P(a\\lt X\\le b,\\,c\\lt Y\\le d)=F_{X,Y}(b,d)-F_{X,Y}(a,d)-F_{X,Y}(b,c)+F_{X,Y}(a,c)\\ge0$ (Ross 6.1; Grimmett 4.5).",
+    "statement": "<b>Joint CDF.</b><span class=\"ln\">For random variables $X,Y$ on the same space,</span><span class=\"ln in\">$F_{X,Y}(x,y)=\\mathbb P(X\\le x,\\,Y\\le y)$.</span><span class=\"ln\">It is non-decreasing in each variable, right-continuous,</span><span class=\"ln\">tends to $0$ as either argument $\\to-\\infty$ and to $1$ as both $\\to\\infty$,</span><span class=\"ln\">and for $a\\lt b$, $c\\lt d$:</span><span class=\"ln in\">$\\mathbb P(a\\lt X\\le b,\\,c\\lt Y\\le d)=F_{X,Y}(b,d)-F_{X,Y}(a,d)-F_{X,Y}(b,c)+F_{X,Y}(a,c)\\ge0$.</span><span class=\"src\">Ross 6.1; Grimmett 4.5</span>",
     "hint": "Pit stop and traffic together: how do you get the chance of a rectangle of (stop, traffic) pairs from the joint CDF alone?",
     "breakdown": [
       "<strong>$F_{X,Y}(x,y)=\\mathbb P(X\\le x,Y\\le y)$ = both at most their limits.</strong> The chance that the stop takes at most $x$ seconds and the time lost in traffic is at most $y$ at once.",
@@ -952,7 +952,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A hill over the plane.</strong> Over the stop-and-traffic plane stands a hill whose height says how common each pair is. The chance of a set of pairs, such as \u201ca quick stop but a lot of traffic\u201d, is the volume of hill above that set.",
     "examTrap": "Swapping integration order in non-rectangular domains without adjusting boundaries! For coupled domains like 0 \u2264 x \u2264 y \u2264 1, \u222b\u2080\u00b9 dx \u222b_x\u00b9 dy = \u222b\u2080\u00b9 dy \u222b\u2080^y dx.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Joint density.</b> $X,Y$ are jointly continuous if there is $f_{X,Y}\\ge0$ with $\\mathbb P((X,Y)\\in A)=\\iint_Af_{X,Y}(x,y)\\,dx\\,dy$ for all (Borel) sets $A\\subset\\mathbb R^2$; then $f_{X,Y}(x,y)=\\dfrac{\\partial^2F_{X,Y}(x,y)}{\\partial x\\,\\partial y}$ where it exists, and $\\iint f_{X,Y}=1$ (Ross 6.1; Grimmett 4.5).",
+    "statement": "<b>Joint density.</b><span class=\"ln\">$X,Y$ are jointly continuous if there is $f_{X,Y}\\ge0$ with</span><span class=\"ln in\">$\\mathbb P((X,Y)\\in A)=\\iint_Af_{X,Y}(x,y)\\,dx\\,dy$ for all (Borel) sets $A\\subset\\mathbb R^2$;</span><span class=\"ln\">then $f_{X,Y}(x,y)=\\dfrac{\\partial^2F_{X,Y}(x,y)}{\\partial x\\,\\partial y}$ where it exists,</span><span class=\"ln\">and $\\iint f_{X,Y}=1$.</span><span class=\"src\">Ross 6.1; Grimmett 4.5</span>",
     "hint": "How do you turn a region of (stop, traffic) pairs into a chance when both can be any real value?",
     "breakdown": [
       "<strong>$f_{X,Y}(x,y)$ = chance per unit area of the plane.</strong> A high spot means that combination of stop time and traffic loss is common.",
@@ -982,7 +982,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Forget the traffic.</strong> Of all races with a stop of exactly $x$ seconds, whatever happened in traffic, add up their chance. Doing this for every $x$ gives the curve of stop times alone, as if the traffic had never been timed.",
     "examTrap": "Neglecting dependent boundary limits during integration! If the support is triangular 0 \u2264 y \u2264 x \u2264 1, then f_X(x) = \u222b\u2080^x f(x, y)dy, NOT \u222b\u2080\u00b9!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Marginal distributions.</b> If $(X,Y)$ has joint density $f_{X,Y}$, then $X$ has density $f_X(x)=\\int_{-\\infty}^\\infty f_{X,Y}(x,y)\\,dy$, and likewise $f_Y(y)=\\int f_{X,Y}(x,y)\\,dx$; in the discrete case $p_X(x)=\\sum_yp_{X,Y}(x,y)$. If the support depends on $x$, the limits of the inner integral are those of the section at $x$ (Ross 6.1; Grimmett 3.6, 4.5).",
+    "statement": "<b>Marginal distributions.</b><span class=\"ln\">If $(X,Y)$ has joint density $f_{X,Y}$, then</span><span class=\"ln in\">$X$ has density $f_X(x)=\\int_{-\\infty}^\\infty f_{X,Y}(x,y)\\,dy$,</span><span class=\"ln in\">and likewise $f_Y(y)=\\int f_{X,Y}(x,y)\\,dx$;</span><span class=\"ln\">in the discrete case $p_X(x)=\\sum_yp_{X,Y}(x,y)$.</span><span class=\"ln\">If the support depends on $x$, the limits of the inner integral are those of the section at $x$.</span><span class=\"src\">Ross 6.1; Grimmett 3.6, 4.5</span>",
     "hint": "If you only care about the pit-stop time, how do you remove the traffic from the joint picture?",
     "breakdown": [
       "<strong>$f_{X,Y}(x,y)$ = the joint hill.</strong> The chance density of the pair (stop $x$, traffic $y$).",
@@ -1012,7 +1012,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Given a stop of exactly x seconds.</strong> Of the races with that stop, you ask how the time lost in traffic is spread. You slice the joint picture at that stop time and rescale the slice so that it has total chance 1.",
     "examTrap": "Borel-Kolmogorov Paradox: conditioning continuous distributions on measure-zero curves g(X,Y)=0 depends on the coordinate parametrization! Slicing is well-defined along coordinate projections.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Conditional density.</b> If $f_X(x)\\gt 0$, the conditional density of $Y$ given $X=x$ is $f_{Y\\mid X}(y\\mid x)=\\dfrac{f_{X,Y}(x,y)}{f_X(x)}$. For each such $x$, $f_{Y\\mid X}(\\cdot\\mid x)$ is a density: $\\int f_{Y\\mid X}(y\\mid x)\\,dy=1$, and $f_{X,Y}(x,y)=f_X(x)f_{Y\\mid X}(y\\mid x)$ (Ross 6.5; Grimmett 4.6).",
+    "statement": "<b>Conditional density.</b><span class=\"ln\">If $f_X(x)\\gt 0$, the conditional density of $Y$ given $X=x$ is</span><span class=\"ln in\">$f_{Y\\mid X}(y\\mid x)=\\dfrac{f_{X,Y}(x,y)}{f_X(x)}$.</span><span class=\"ln\">For each such $x$, $f_{Y\\mid X}(\\cdot\\mid x)$ is a density:</span><span class=\"ln in\">$\\int f_{Y\\mid X}(y\\mid x)\\,dy=1$,</span><span class=\"ln in\">and $f_{X,Y}(x,y)=f_X(x)f_{Y\\mid X}(y\\mid x)$.</span><span class=\"src\">Ross 6.5; Grimmett 4.6</span>",
     "hint": "You know the stop took exactly x seconds. How do you slice the joint hill to get the law of the time lost in traffic?",
     "breakdown": [
       "<strong>$f_{X,Y}(x,y)$ = the cut through the hill at $x$.</strong> Hold the stop time fixed and read the height along the traffic direction.",
@@ -1042,7 +1042,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>One stop says something about the other.</strong> If the lap of the first stop never changes which laps are possible for the second, they could be independent. But the second stop must come after the first: pitting late the first time rules out an early second stop, so the support is tied and they are not.",
     "examTrap": "Declaring independence when f(x, y) = 4xy on coupled domain 0 \u2264 x \u2264 y \u2264 1! Even though the algebraic formula factorizes, coupled boundary limits destroy independence instantly.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Independence via densities.</b> Jointly continuous $X,Y$ are independent iff $f_{X,Y}(x,y)=f_X(x)f_Y(y)$ for all $(x,y)$. This forces the support of $(X,Y)$ to be a product set $S_X\\times S_Y$; a density like $4xy$ on the triangle $0\\le x\\le y\\le1$ factorises as a formula, but the coupled support makes $X,Y$ dependent (Ross 6.2; Grimmett 4.5).",
+    "statement": "<b>Independence via densities.</b><span class=\"ln\">Jointly continuous $X,Y$ are independent iff</span><span class=\"ln in\">$f_{X,Y}(x,y)=f_X(x)f_Y(y)$ for all $(x,y)$.</span><span class=\"ln\">This forces the support of $(X,Y)$ to be a product set $S_X\\times S_Y$;</span><span class=\"ln in\">a density like $4xy$ on the triangle $0\\le x\\le y\\le1$ factorises as a formula,</span><span class=\"ln in\">but the coupled support makes $X,Y$ dependent.</span><span class=\"src\">Ross 6.2; Grimmett 4.5</span>",
     "hint": "The formula for the density splits into an x part and a y part. Is that enough for independence?",
     "breakdown": [
       "<strong>$f_{X,Y}=f_Xf_Y$ = the joint is the product of the marginals.</strong> Knowing one leaves the law of the other unchanged.",
@@ -1072,7 +1072,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The first stop comes before the second.</strong> Let Y be the first stop and X the second, as fractions of the race, with all such pairs equally likely in this toy model. Then late second stops are more common, and given the second stop, the first is uniform up to it.",
     "examTrap": "Integrating y from 0 to 1 when finding f_X(x)! Because y \u2264 x, integrating past x includes forbidden empty territory, producing an erroneous constant marginal.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Uniform on a triangle.</b> Let $(X,Y)$ have density $f_{X,Y}=2$ on $T=\\{0\\le y\\le x\\le1\\}$ and $0$ elsewhere. Then $f_X(x)=\\int_0^x2\\,dy=2x$ on $[0,1]$, $f_Y(y)=\\int_y^12\\,dx=2(1-y)$ on $[0,1]$, and $f_{Y\\mid X}(y\\mid x)=\\dfrac2{2x}=\\dfrac1x\\mathbf 1_{\\{0\\le y\\le x\\}}$, a uniform law on $[0,x]$. Since $f_{X,Y}\\ne f_Xf_Y$, $X,Y$ are dependent (Ross 6.1).",
+    "statement": "<b>Uniform on a triangle.</b><span class=\"ln\">Let $(X,Y)$ have density $f_{X,Y}=2$ on $T=\\{0\\le y\\le x\\le1\\}$ and $0$ elsewhere.</span><span class=\"ln\">Then</span><span class=\"ln in\">$f_X(x)=\\int_0^x2\\,dy=2x$ on $[0,1]$,</span><span class=\"ln in\">$f_Y(y)=\\int_y^12\\,dx=2(1-y)$ on $[0,1]$,</span><span class=\"ln in\">and $f_{Y\\mid X}(y\\mid x)=\\dfrac2{2x}=\\dfrac1x\\mathbf 1_{\\{0\\le y\\le x\\}}$, a uniform law on $[0,x]$.</span><span class=\"ln\">Since $f_{X,Y}\\ne f_Xf_Y$, $X,Y$ are dependent.</span><span class=\"src\">Ross 6.1</span>",
     "hint": "Why do the marginals of a flat density on a triangle depend on x and y, and what is the law of y given x?",
     "breakdown": [
       "<strong>$f_X(x)=\\int_0^x2\\,dy=2x$ = the slab at $x$ has height $x$.</strong> Integrating $y$ only from $0$ to $x$ (the triangle's limits) gives a rising line, not a constant.",
@@ -1102,7 +1102,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Who is first across the line?</strong> With many cars on track, the leader's time is the shortest of several times: it is short unless every car is slow. The last car's time is long unless every car is quick.",
     "examTrap": "Differentiating 1 - [1 - F(x)]^n and losing the negative sign from the inner derivative! -n[1 - F(x)]^{n-1}(-f(x)) = +n[1 - F(x)]^{n-1}f(x).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Distribution of the extremes.</b> Let $X_1,\\ldots,X_n$ be i.i.d. with CDF $F$ and density $f$, and let $X_{(1)}\\le\\cdots\\le X_{(n)}$ be their order statistics. Then $F_{X_{(n)}}(x)=[F(x)]^n$ and $F_{X_{(1)}}(x)=1-[1-F(x)]^n$, so $f_{X_{(n)}}(x)=n[F(x)]^{n-1}f(x)$ and $f_{X_{(1)}}(x)=n[1-F(x)]^{n-1}f(x)$ (Ross 6.6; Grimmett 4.14).",
+    "statement": "<b>Distribution of the extremes.</b><span class=\"ln\">Let $X_1,\\ldots,X_n$ be i.i.d. with CDF $F$ and density $f$,</span><span class=\"ln\">and let $X_{(1)}\\le\\cdots\\le X_{(n)}$ be their order statistics.</span><span class=\"ln in\">Then $F_{X_{(n)}}(x)=[F(x)]^n$ and $F_{X_{(1)}}(x)=1-[1-F(x)]^n$,</span><span class=\"ln in\">so $f_{X_{(n)}}(x)=n[F(x)]^{n-1}f(x)$ and $f_{X_{(1)}}(x)=n[1-F(x)]^{n-1}f(x)$.</span><span class=\"src\">Ross 6.6; Grimmett 4.14</span>",
     "hint": "With n cars finishing lap 1 independently, how do you get the law of the first one across the line and of the last?",
     "breakdown": [
       "<strong>$[F(x)]^n$ = all $n$ have crossed by $x$.</strong> The last car is across by $x$ exactly when every car is; independent chances multiply.",
@@ -1132,7 +1132,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Third of five across the line.</strong> For the third of five cars to cross at time $x$, two cars must already be across, one must cross right at $x$, and two must still be to come. Count the ways to assign roles and multiply the chances.",
     "examTrap": "Forgetting the trailing density factor f(x)! Without f(x), the expression is a discrete binomial probability mass, NOT a continuous probability density function.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Density of the $k$-th order statistic.</b> For i.i.d. $X_1,\\ldots,X_n$ with CDF $F$ and density $f$, $f_{X_{(k)}}(x)=\\dfrac{n!}{(k-1)!\\,(n-k)!}[F(x)]^{k-1}[1-F(x)]^{n-k}f(x)=k\\binom nk[F(x)]^{k-1}[1-F(x)]^{n-k}f(x)$ (Ross 6.6; Grimmett 4.14).",
+    "statement": "<b>Density of the $k$-th order statistic.</b><span class=\"ln\">For i.i.d. $X_1,\\ldots,X_n$ with CDF $F$ and density $f$,</span><span class=\"ln in\">$f_{X_{(k)}}(x)=\\dfrac{n!}{(k-1)!\\,(n-k)!}[F(x)]^{k-1}[1-F(x)]^{n-k}f(x)=k\\binom nk[F(x)]^{k-1}[1-F(x)]^{n-k}f(x)$.</span><span class=\"src\">Ross 6.6; Grimmett 4.14</span>",
     "hint": "For the k-th car to cross the line exactly at time x, what must the other n \u2212 1 cars be doing?",
     "breakdown": [
       "<strong>$[F(x)]^{k-1}$ = $k-1$ cars have already crossed.</strong> Each of those crossed before $x$, with chance $F(x)$ each.",
@@ -1162,7 +1162,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Sorting the timing screen.</strong> Many car-by-car assignments of times lead to the same sorted timing screen; collecting them multiplies the chance by $n!$.",
     "examTrap": "Omitting the factor n! in joint calculations. Without n!, integrating over the ordered domain x\u2081 < ... < x_n yields 1/n! instead of the required probability 1.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Joint density of order statistics.</b> For i.i.d. $X_i$ with density $f$, $(X_{(1)},\\ldots,X_{(n)})$ has density $n!\\prod_{i=1}^nf(x_i)\\mathbf 1_{\\{x_1\\lt \\cdots\\lt x_n\\}}$ (Ross 6.6; Grimmett 4.14).",
+    "statement": "<b>Joint density of order statistics.</b><span class=\"ln\">For i.i.d. $X_i$ with density $f$, $(X_{(1)},\\ldots,X_{(n)})$ has density</span><span class=\"ln in\">$n!\\prod_{i=1}^nf(x_i)\\mathbf 1_{\\{x_1\\lt \\cdots\\lt x_n\\}}$.</span><span class=\"src\">Ross 6.6; Grimmett 4.14</span>",
     "hint": "If you sort n lap times, why is the joint density of the sorted list n! times the product of the densities?",
     "breakdown": [
       "<strong>$\\prod f(x_i)$ = one particular unsorted list.</strong> Independent cars' times multiply.",
@@ -1192,7 +1192,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Incidents spread across the race.</strong> With four incidents at random moments in a race, the first comes after about a fifth of the race, and every gap between them averages the same.",
     "examTrap": "Believing edge spacings 0 to U_{(1)} and U_{(n)} to 1 behave differently from interior spacings. All (n+1) spacings are identically distributed with expected length 1/(n+1).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Uniform order statistics.</b> If $U_i$ are i.i.d. $\\text{Uniform}(0,1)$, then $U_{(k)}\\sim\\mathrm{Beta}(k,n-k+1)$ with $\\mathbb E[U_{(k)}]=\\frac{k}{n+1}$. The $n+1$ spacings are identically distributed, each of mean $\\frac1{n+1}$ (Ross 6.6; Grimmett 4.14).",
+    "statement": "<b>Uniform order statistics.</b><span class=\"ln\">If $U_i$ are i.i.d. $\\text{Uniform}(0,1)$, then</span><span class=\"ln in\">$U_{(k)}\\sim\\mathrm{Beta}(k,n-k+1)$ with $\\mathbb E[U_{(k)}]=\\frac{k}{n+1}$.</span><span class=\"ln\">The $n+1$ spacings are identically distributed, each of mean $\\frac1{n+1}$.</span><span class=\"src\">Ross 6.6; Grimmett 4.14</span>",
     "hint": "If n incidents fall at random times in a race, where does the k-th one sit on average, and how big are the gaps?",
     "breakdown": [
       "<strong>$\\mathrm{Beta}(k,n-k+1)$ = the $k$-th incident's law.</strong> A bump with $k-1$ incidents to its left and $n-k$ to its right.",
@@ -1222,7 +1222,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The field thins out.</strong> With twenty cars running, the first retirement comes quickly because twenty cars could fail. Once it is gone, nineteen remain, so the next gap is a little longer, and the last car standing has the slowest gap of all.",
     "examTrap": "Applying independent spacings to non-exponential variables! The independent spacings property is a UNIQUE signature of the memoryless exponential distribution.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Spacings of exponential order statistics.</b> Let $X_1,\\ldots,X_n$ be i.i.d. $\\mathrm{Exp}(\\lambda)$ with $X_{(0)}=0$. Then the spacings $W_k=X_{(k)}-X_{(k-1)}$, $k=1,\\ldots,n$, are independent with $W_k\\sim\\mathrm{Exp}\\bigl((n-k+1)\\lambda\\bigr)$. Hence $\\mathbb E[X_{(n)}]=\\dfrac1\\lambda\\sum_{j=1}^n\\dfrac1j$ (Ross 6.6; Grimmett 4.14).",
+    "statement": "<b>Spacings of exponential order statistics.</b><span class=\"ln\">Let $X_1,\\ldots,X_n$ be i.i.d. $\\mathrm{Exp}(\\lambda)$ with $X_{(0)}=0$.</span><span class=\"ln\">Then the spacings $W_k=X_{(k)}-X_{(k-1)}$, $k=1,\\ldots,n$,</span><span class=\"ln in\">are independent with $W_k\\sim\\mathrm{Exp}\\bigl((n-k+1)\\lambda\\bigr)$.</span><span class=\"ln\">Hence $\\mathbb E[X_{(n)}]=\\dfrac1\\lambda\\sum_{j=1}^n\\dfrac1j$.</span><span class=\"src\">Ross 6.6; Grimmett 4.14</span>",
     "hint": "After the first car has retired, how long until the next, if every car's time to failure is memoryless?",
     "breakdown": [
       "<strong>$W_k=X_{(k)}-X_{(k-1)}$ = the gap between consecutive retirements.</strong> The time from the $(k-1)$-th retirement to the $k$-th.",
@@ -1252,7 +1252,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Three parts race to fail.</strong> A fragile part is more likely to be the one that ends the race, in proportion to its failure rate, and having three ways to fail makes the first failure come sooner than any one part alone.",
     "examTrap": "Attempting convolution integration to find the minimum of lifetimes! Always compute minimums via the product of survival functions \u2119(T_i > t)\u2014convolution is for SUMS, not minimums.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Minimum of independent exponentials.</b> If $T_1,\\ldots,T_n$ are independent with $T_i\\sim\\mathrm{Exp}(\\lambda_i)$, then $T=\\min_iT_i\\sim\\mathrm{Exp}\\!\\left(\\sum_i\\lambda_i\\right)$, since $\\mathbb P(T\\gt t)=\\prod_ie^{-\\lambda_it}$, and $\\mathbb P(T_k=\\min_iT_i)=\\dfrac{\\lambda_k}{\\sum_i\\lambda_i}$. A series system of components with these lifetimes fails at time $T$ (Ross 5.5, 6.6).",
+    "statement": "<b>Minimum of independent exponentials.</b><span class=\"ln\">If $T_1,\\ldots,T_n$ are independent with $T_i\\sim\\mathrm{Exp}(\\lambda_i)$, then</span><span class=\"ln in\">$T=\\min_iT_i\\sim\\mathrm{Exp}\\!\\left(\\sum_i\\lambda_i\\right)$, since $\\mathbb P(T\\gt t)=\\prod_ie^{-\\lambda_it}$,</span><span class=\"ln in\">and $\\mathbb P(T_k=\\min_iT_i)=\\dfrac{\\lambda_k}{\\sum_i\\lambda_i}$.</span><span class=\"ln\">A series system of components with these lifetimes fails at time $T$.</span><span class=\"src\">Ross 5.5, 6.6</span>",
     "hint": "Engine, gearbox and hydraulics race to fail first. How long until Max's race ends, and which part breaks?",
     "breakdown": [
       "<strong>$\\mathbb P(T\\gt t)=\\prod_ie^{-\\lambda_it}$ = nothing has failed yet.</strong> The first failure is later than $t$ only if every part survives past $t$; survival chances multiply.",
@@ -1282,7 +1282,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Every way to lose 6 seconds.</strong> Max can lose 6 seconds as a 2 s stop plus 4 s in traffic, 2.5 + 3.5, 3 + 3, and so on. For each split you multiply the density of the stop and of the traffic, then add up all splits.",
     "examTrap": "Neglecting to adjust integration limits for non-negative variables! If X, Y \u2265 0, then 0 \u2264 x \u2264 z; integrating from -\u221e to \u221e without truncating limits produces severe calculation errors.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Convolution formula.</b> If $X,Y$ are independent with densities $f_X,f_Y$, then $X+Y$ has density $f_{X+Y}(z)=(f_X*f_Y)(z)=\\int_{-\\infty}^\\infty f_X(x)f_Y(z-x)\\,dx=\\int_{-\\infty}^\\infty f_X(z-y)f_Y(y)\\,dy$. For independent integer-valued $X,Y$, $p_{X+Y}(z)=\\sum_xp_X(x)p_Y(z-x)$ (Ross 6.3; Grimmett 4.8).",
+    "statement": "<b>Convolution formula.</b><span class=\"ln\">If $X,Y$ are independent with densities $f_X,f_Y$, then $X+Y$ has density</span><span class=\"ln in\">$f_{X+Y}(z)=(f_X*f_Y)(z)=\\int_{-\\infty}^\\infty f_X(x)f_Y(z-x)\\,dx=\\int_{-\\infty}^\\infty f_X(z-y)f_Y(y)\\,dy$.</span><span class=\"ln\">For independent integer-valued $X,Y$,</span><span class=\"ln in\">$p_{X+Y}(z)=\\sum_xp_X(x)p_Y(z-x)$.</span><span class=\"src\">Ross 6.3; Grimmett 4.8</span>",
     "hint": "The pit-stop time and the time lost in traffic after it are independent. How do you get the density of the total time lost from the two densities?",
     "breakdown": [
       "<strong>$f_X(x)$ = the chance density of one part being $x$.</strong> Say the pit stop takes $x$ seconds.",
@@ -1312,7 +1312,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two ways to describe the time lost.</strong> You can describe a race by (pit stop, traffic) or by (total time lost, share lost in the pits). A small box of the second description covers a stretched, tilted box of the first, and the determinant says by how much.",
     "examTrap": "Inverting forward vs inverse Jacobian! If you calculate the forward derivative matrix \u2202(u,v)/\u2202(x,y), you must DIVIDE by its determinant rather than multiply.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Change of variables in two dimensions.</b> Let $(X,Y)$ have density $f_{X,Y}$ and let $(U,V)=(u(X,Y),v(X,Y))$ be a differentiable one-to-one map with inverse $x(u,v),y(u,v)$ and non-vanishing Jacobian. Then $f_{U,V}(u,v)=f_{X,Y}\\bigl(x(u,v),y(u,v)\\bigr)\\left|\\det\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\right|$ (Ross 6.7; Grimmett 4.7).",
+    "statement": "<b>Change of variables in two dimensions.</b><span class=\"ln\">Let $(X,Y)$ have density $f_{X,Y}$</span><span class=\"ln\">and let $(U,V)=(u(X,Y),v(X,Y))$ be a differentiable one-to-one map</span><span class=\"ln in\">with inverse $x(u,v),y(u,v)$ and non-vanishing Jacobian.</span><span class=\"ln\">Then</span><span class=\"ln in\">$f_{U,V}(u,v)=f_{X,Y}\\bigl(x(u,v),y(u,v)\\bigr)\\left|\\det\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\right|$.</span><span class=\"src\">Ross 6.7; Grimmett 4.7</span>",
     "hint": "If you swap (pit stop, traffic) for new coordinates such as (total time lost, share lost in the pits), how does the density change?",
     "breakdown": [
       "<strong>$f_{X,Y}(x(u,v),y(u,v))$ = the old density at the matching point.</strong> Find which $(x,y)$ maps to the new coordinates $(u,v)$, and read the old density there.",
@@ -1342,7 +1342,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The mix of the time lost versus its size.</strong> The ratio of traffic loss to pit-stop time only depends on the direction of the point in the (pit stop, traffic) plane, not on how far from the origin it is. Direction and distance are the polar coordinates.",
     "examTrap": "Forgetting the absolute value factor |x| in the ratio formula! Neglecting |x| violates physical dimensions (density must have units 1/z) and gives wrong integrals.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Ratios and polar coordinates.</b> If $(X,Y)$ has density $f_{X,Y}$, then $Z=Y/X$ has density $f_Z(z)=\\int_{-\\infty}^\\infty|x|\\,f_{X,Y}(x,xz)\\,dx$. In polar coordinates $X=R\\cos\\Theta$, $Y=R\\sin\\Theta$, the density of $(R,\\Theta)$ is $f_{R,\\Theta}(r,\\theta)=r\\,f_{X,Y}(r\\cos\\theta,r\\sin\\theta)$ for $r\\gt 0$ (Ross 6.7; Grimmett 4.7).",
+    "statement": "<b>Ratios and polar coordinates.</b><span class=\"ln\">If $(X,Y)$ has density $f_{X,Y}$, then $Z=Y/X$ has density</span><span class=\"ln in\">$f_Z(z)=\\int_{-\\infty}^\\infty|x|\\,f_{X,Y}(x,xz)\\,dx$.</span><span class=\"ln\">In polar coordinates $X=R\\cos\\Theta$, $Y=R\\sin\\Theta$, the density of $(R,\\Theta)$ is</span><span class=\"ln in\">$f_{R,\\Theta}(r,\\theta)=r\\,f_{X,Y}(r\\cos\\theta,r\\sin\\theta)$ for $r\\gt 0$.</span><span class=\"src\">Ross 6.7; Grimmett 4.7</span>",
     "hint": "How does a ratio of two random times, say traffic over pit stop, or a switch to polar coordinates, change the density of the pair?",
     "breakdown": [
       "<strong>$Z=Y/X$ = the slope of the ray to the point.</strong> Each value $z$ picks a line through the origin; the density of $Z$ adds up the joint density along that whole line.",
@@ -1372,7 +1372,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Simulating lap-time noise.</strong> Red Bull's race simulator needs the usual wobble around Max's 92.0 s lap. It draws two ordinary random numbers, treats one as a random distance and one as a random direction, and reads off two perfect bell-curve values: the noise for two laps.",
     "examTrap": "Generating standard normals one at a time and discarding Z\u2082! Box-Muller generates TWO independent normal values per pair of uniforms; saving both doubles computational efficiency.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Box\u2013Muller transform.</b> If $U_1,U_2$ are independent $\\text{Uniform}(0,1)$, then $Z_1=\\sqrt{-2\\ln U_1}\\cos(2\\pi U_2)$ and $Z_2=\\sqrt{-2\\ln U_1}\\sin(2\\pi U_2)$ are independent $\\mathcal N(0,1)$. Proof: $R^2=-2\\ln U_1\\sim\\mathrm{Exp}(1/2)$ and $\\Theta=2\\pi U_2\\sim\\text{Uniform}(0,2\\pi)$ are independent, and the Jacobian of the polar map gives the joint density $\\frac1{2\\pi}e^{-(z_1^2+z_2^2)/2}$ (Ross 6.7; Grimmett 4.11).",
+    "statement": "<b>Box\u2013Muller transform.</b><span class=\"ln\">If $U_1,U_2$ are independent $\\text{Uniform}(0,1)$, then</span><span class=\"ln in\">$Z_1=\\sqrt{-2\\ln U_1}\\cos(2\\pi U_2)$ and $Z_2=\\sqrt{-2\\ln U_1}\\sin(2\\pi U_2)$</span><span class=\"ln in\">are independent $\\mathcal N(0,1)$.</span><span class=\"ln\">Proof: $R^2=-2\\ln U_1\\sim\\mathrm{Exp}(1/2)$ and $\\Theta=2\\pi U_2\\sim\\text{Uniform}(0,2\\pi)$ are independent,</span><span class=\"ln in\">and the Jacobian of the polar map gives the joint density $\\frac1{2\\pi}e^{-(z_1^2+z_2^2)/2}$.</span><span class=\"src\">Ross 6.7; Grimmett 4.11</span>",
     "hint": "How can two uniform random numbers produce two independent normal variables exactly?",
     "breakdown": [
       "<strong>$R=\\sqrt{-2\\ln U_1}$ = a random radius.</strong> The squared radius is exponential with rate $1/2$, which is the radial law of the two-dimensional standard normal.",
@@ -1402,7 +1402,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Adding up the race.</strong> A normal pit-stop time plus a normal traffic loss is a normal total time lost, with the means and the variances added. Safety cars in Saudi Arabia and in Australia add up to a Poisson count for the two races. The family never changes, only its parameters.",
     "examTrap": "Adding Gamma random variables with different scale parameters \u03b2\u2081 \u2260 \u03b2\u2082! The sum of Gammas is Gamma ONLY when the rate/scale parameter is identical across all terms.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Closure under independent sums.</b> If $X_i\\sim\\mathcal N(\\mu_i,\\sigma_i^2)$ are independent, then $\\sum_iX_i\\sim\\mathcal N\\bigl(\\sum\\mu_i,\\sum\\sigma_i^2\\bigr)$. If $X_i\\sim\\mathrm{Pois}(\\lambda_i)$ are independent, then $\\sum_iX_i\\sim\\mathrm{Pois}\\bigl(\\sum\\lambda_i\\bigr)$. If $X_i\\sim\\mathrm{Gamma}(\\alpha_i,\\beta)$ are independent (same rate), then $\\sum_iX_i\\sim\\mathrm{Gamma}\\bigl(\\sum\\alpha_i,\\beta\\bigr)$ (Ross 7.7; Grimmett 4.8, 5.1).",
+    "statement": "<b>Closure under independent sums.</b><span class=\"ln\">If $X_i\\sim\\mathcal N(\\mu_i,\\sigma_i^2)$ are independent,</span><span class=\"ln in\">then $\\sum_iX_i\\sim\\mathcal N\\bigl(\\sum\\mu_i,\\sum\\sigma_i^2\\bigr)$.</span><span class=\"ln\">If $X_i\\sim\\mathrm{Pois}(\\lambda_i)$ are independent,</span><span class=\"ln in\">then $\\sum_iX_i\\sim\\mathrm{Pois}\\bigl(\\sum\\lambda_i\\bigr)$.</span><span class=\"ln\">If $X_i\\sim\\mathrm{Gamma}(\\alpha_i,\\beta)$ are independent (same rate),</span><span class=\"ln in\">then $\\sum_iX_i\\sim\\mathrm{Gamma}\\bigl(\\sum\\alpha_i,\\beta\\bigr)$.</span><span class=\"src\">Ross 7.7; Grimmett 4.8, 5.1</span>",
     "hint": "Which families stay in the same family when you add independent members, and what happens to the parameters?",
     "breakdown": [
       "<strong>$\\sum\\mu_i,\\ \\sum\\sigma_i^2$ = means add and variances add.</strong> The total of independent normal parts is normal, centred at the total mean, with the variances added (not the spreads).",
@@ -1433,7 +1433,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two flat delays.</strong> A sticky wheel nut and a slow front jack each cost Max anywhere from 0 to 1 second, all equally likely. A total near 1 second is most likely, because there are the most ways to make it; totals near 0 or 2 seconds are rare.",
     "examTrap": "Treating the convolution integral as a single algebraic formula over [0, 2]! The overlap geometry changes at z = 1, splitting the solution into two distinct linear regimes.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Sum of two uniforms.</b> If $X,Y$ are independent $\\text{Uniform}(0,1)$, then $f_{X+Y}(z)=z$ on $[0,1]$, $2-z$ on $(1,2]$, and $0$ otherwise (the triangular law); $\\mathbb E[X+Y]=1$, $\\operatorname{Var}(X+Y)=\\frac16$ (Ross 6.3; Grimmett 4.8).",
+    "statement": "<b>Sum of two uniforms.</b><span class=\"ln\">If $X,Y$ are independent $\\text{Uniform}(0,1)$, then</span><span class=\"ln in\">$f_{X+Y}(z)=z$ on $[0,1]$, $2-z$ on $(1,2]$, and $0$ otherwise (the triangular law);</span><span class=\"ln in\">$\\mathbb E[X+Y]=1$, $\\operatorname{Var}(X+Y)=\\frac16$.</span><span class=\"src\">Ross 6.3; Grimmett 4.8</span>",
     "hint": "Two independent flat delays at the pit stop add. What shape does the total take, and why does it peak in the middle?",
     "breakdown": [
       "<strong>$f(z)=z$ on $[0,1]$ = the overlap grows.</strong> At small totals the flat densities overlap on a stretch of length $z$.",
@@ -1463,7 +1463,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Races with no calendar.</strong> Take a stretch of similar high-speed circuits. If you hid the race names, you could not tell which was which, and every ordering of the same results would look equally plausible. The races can still be linked, for example through the same Red Bull car.",
     "examTrap": "Confusing exchangeable with i.i.d.! Exchangeable variables can be strongly correlated (e.g. sampling without replacement from a finite urn).",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Exchangeability.</b> Random variables $X_1,\\ldots,X_n$ are exchangeable if $(X_1,\\ldots,X_n)\\overset d=(X_{\\pi(1)},\\ldots,X_{\\pi(n)})$ for every permutation $\\pi$ of $\\{1,\\ldots,n\\}$. An infinite sequence is exchangeable if every finite subsequence is. Every i.i.d. sequence is exchangeable, but not conversely (Grimmett 7.2; Durrett 4.1).",
+    "statement": "<b>Exchangeability.</b><span class=\"ln\">Random variables $X_1,\\ldots,X_n$ are exchangeable if</span><span class=\"ln in\">$(X_1,\\ldots,X_n)\\overset d=(X_{\\pi(1)},\\ldots,X_{\\pi(n)})$ for every permutation $\\pi$ of $\\{1,\\ldots,n\\}$.</span><span class=\"ln\">An infinite sequence is exchangeable if every finite subsequence is.</span><span class=\"ln\">Every i.i.d. sequence is exchangeable, but not conversely.</span><span class=\"src\">Grimmett 7.2; Durrett 4.1</span>",
     "hint": "If the order of Max's races carries no information, what does that say about their joint law?",
     "breakdown": [
       "<strong>$(X_1,\\ldots,X_n)$ = Max's results in races $1$ to $n$.</strong> Say his gap to P2 in each race: one list, one joint law for the whole stretch.",
@@ -1493,7 +1493,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>One shared car effect.</strong> Every race has the same spread, and any two races are linked by the same amount, because they all share this season's Red Bull car and swapping which races you compare changes nothing. A constant off-diagonal is the signature.",
     "examTrap": "Assuming pairwise covariances can vary across indices. In an exchangeable sequence, Cov(X\u2081, X\u2082) MUST equal Cov(X\u2087, X\u2089)\u2014any discrepancy disproves exchangeability.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Equal moments.</b> If $X_1,\\ldots,X_n$ are exchangeable with finite second moments, then they have a common mean $\\mu$ and variance $\\sigma^2$, and a common covariance $\\operatorname{Cov}(X_i,X_j)=\\rho\\sigma^2$ for all $i\\ne j$. The covariance matrix is $\\Sigma=\\sigma^2\\bigl[(1-\\rho)I+\\rho\\mathbf 1\\mathbf 1^\\top\\bigr]$ (Grimmett 7.2; Ross 7.4).",
+    "statement": "<b>Equal moments.</b><span class=\"ln\">If $X_1,\\ldots,X_n$ are exchangeable with finite second moments, then they have</span><span class=\"ln in\">a common mean $\\mu$ and variance $\\sigma^2$,</span><span class=\"ln in\">and a common covariance $\\operatorname{Cov}(X_i,X_j)=\\rho\\sigma^2$ for all $i\\ne j$.</span><span class=\"ln\">The covariance matrix is</span><span class=\"ln in\">$\\Sigma=\\sigma^2\\bigl[(1-\\rho)I+\\rho\\mathbf 1\\mathbf 1^\\top\\bigr]$.</span><span class=\"src\">Grimmett 7.2; Ross 7.4</span>",
     "hint": "If races can be reshuffled freely, what must the covariance between any two races look like?",
     "breakdown": [
       "<strong>$\\operatorname{Var}(X_i)=\\sigma^2$ = every race has the same spread.</strong> Reshuffling can swap any race with any other, so their marginal laws agree.",
@@ -1523,7 +1523,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Not every race can make up for every other.</strong> A bad Monza can be balanced by a great Spa. But with five equal races, each race cannot offset all four others strongly: the average negative link is at best \u2212\u00bc.",
     "examTrap": "Believing correlation can never be negative in exchangeable systems. For finite n, negative correlation is completely valid down to the barrier -1/(n-1).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Correlation bound for finite exchangeable sequences.</b> If $X_1,\\ldots,X_n$ are exchangeable with common variance $\\sigma^2\\gt 0$ and pairwise correlation $\\rho$, then $\\rho\\ge-\\dfrac1{n-1}$. Proof: $0\\le\\operatorname{Var}\\bigl(\\sum_iX_i\\bigr)=n\\sigma^2+n(n-1)\\rho\\sigma^2=n\\sigma^2\\bigl[1+(n-1)\\rho\\bigr]$ (Grimmett 7.2).",
+    "statement": "<b>Correlation bound for finite exchangeable sequences.</b><span class=\"ln\">If $X_1,\\ldots,X_n$ are exchangeable with common variance $\\sigma^2\\gt 0$ and pairwise correlation $\\rho$,</span><span class=\"ln in\">then $\\rho\\ge-\\dfrac1{n-1}$.</span><span class=\"ln\">Proof:</span><span class=\"ln in\">$0\\le\\operatorname{Var}\\bigl(\\sum_iX_i\\bigr)=n\\sigma^2+n(n-1)\\rho\\sigma^2=n\\sigma^2\\bigl[1+(n-1)\\rho\\bigr]$.</span><span class=\"src\">Grimmett 7.2</span>",
     "hint": "How negatively can n exchangeable races be linked, if their total must have a non-negative variance?",
     "breakdown": [
       "<strong>$\\operatorname{Var}(\\sum X_i)\\ge0$ = a variance is never negative.</strong> The total over all races can vary, or not at all, but not less than that.",
@@ -1553,7 +1553,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A never-ending season.</strong> If the season never ends, you can always ask about more and more races at once, and then no race can systematically make up for the others. The link between races is at least zero.",
     "examTrap": "Applying De Finetti or claiming \u03c1 \u2265 0 for a finite sequence! Sampling without replacement from an urn of N balls stops at N; its correlation -1/(N-1) CANNOT be extended to infinity.",
     "stmtKind": "COROLLARY",
-    "statement": "<b>Infinite exchangeability forces non-negative correlation.</b> If $X_1,X_2,\\ldots$ is an infinite exchangeable sequence with finite variance, then every pair has $\\rho\\ge0$. Proof: each finite segment $X_1,\\ldots,X_n$ is exchangeable, so $\\rho\\ge-\\frac1{n-1}$ for all $n\\ge2$, and letting $n\\to\\infty$ gives $\\rho\\ge0$ (Grimmett 7.2).",
+    "statement": "<b>Infinite exchangeability forces non-negative correlation.</b><span class=\"ln\">If $X_1,X_2,\\ldots$ is an infinite exchangeable sequence with finite variance,</span><span class=\"ln in\">then every pair has $\\rho\\ge0$.</span><span class=\"ln\">Proof: each finite segment $X_1,\\ldots,X_n$ is exchangeable,</span><span class=\"ln in\">so $\\rho\\ge-\\frac1{n-1}$ for all $n\\ge2$,</span><span class=\"ln in\">and letting $n\\to\\infty$ gives $\\rho\\ge0$.</span><span class=\"src\">Grimmett 7.2</span>",
     "hint": "If the season could go on forever, what is the most negative the link between two races can be?",
     "breakdown": [
       "<strong>$\\rho\\ge-\\tfrac1{n-1}\\ \\forall n$ = the bound holds for every length.</strong> Any $n$ races of an infinite exchangeable sequence are themselves exchangeable.",
@@ -1583,7 +1583,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How good is this year's car?</strong> Before you know how fast the car is, one win tells you something about the next race. If you knew the car's true win chance, races would be independent coin flips. Not knowing it makes the races exchangeable but linked.",
     "examTrap": "Applying De Finetti to finite sequences! De Finetti FAILS for finite exchangeable collections; the infinite horizon is strictly necessary for the representation integral to hold.",
     "stmtKind": "THEOREM",
-    "statement": "<b>de Finetti's theorem.</b> Let $X_1,X_2,\\ldots\\in\\{0,1\\}$ be an infinite exchangeable sequence. Then there is a random variable $\\Theta\\in[0,1]$, $\\Theta=\\lim_n\\frac1n\\sum_{i\\le n}X_i$ a.s., with law $F_\\Theta$, such that $\\mathbb P(X_1=x_1,\\ldots,X_n=x_n)=\\int_0^1\\theta^{\\sum x_i}(1-\\theta)^{n-\\sum x_i}\\,dF_\\Theta(\\theta)$: conditionally on $\\Theta$, the $X_i$ are i.i.d. Bernoulli($\\Theta$) (Grimmett 7.2; Durrett 4.1).",
+    "statement": "<b>de Finetti's theorem.</b><span class=\"ln\">Let $X_1,X_2,\\ldots\\in\\{0,1\\}$ be an infinite exchangeable sequence.</span><span class=\"ln\">Then there is a random variable $\\Theta\\in[0,1]$,</span><span class=\"ln in\">$\\Theta=\\lim_n\\frac1n\\sum_{i\\le n}X_i$ a.s., with law $F_\\Theta$, such that</span><span class=\"ln in\">$\\mathbb P(X_1=x_1,\\ldots,X_n=x_n)=\\int_0^1\\theta^{\\sum x_i}(1-\\theta)^{n-\\sum x_i}\\,dF_\\Theta(\\theta)$:</span><span class=\"ln\">conditionally on $\\Theta$, the $X_i$ are i.i.d. Bernoulli($\\Theta$).</span><span class=\"src\">Grimmett 7.2; Durrett 4.1</span>",
     "hint": "Is an exchangeable record of wins and losses secretly independent races with a hidden win chance?",
     "breakdown": [
       "<strong>$\\Theta$ = a hidden win chance.</strong> Say how good this season's Red Bull car really is: fixed once and for all but unknown to you, and equal to the long-run share of races Max wins.",
@@ -1613,7 +1613,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The vote snowballs.</strong> Fans see the live Driver of the Day count, and each vote for Max makes the next fan a bit more likely to vote for him too. The order of the votes does not matter, only how many went to Max.",
     "examTrap": "Assuming P\u00f3lya's urn trials are independent. The draws are heavily dependent (positive feedback reinforcement), yet perfectly exchangeable!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>P\u00f3lya's urn.</b> An urn has $w$ white and $b$ black balls; a ball is drawn and returned with $c$ more of its colour. With $k=\\sum x_i$ white draws, $\\mathbb P(X_1=x_1,\\ldots,X_n=x_n)=\\frac{\\prod_{j\\lt k}(w+jc)\\prod_{j\\lt n-k}(b+jc)}{\\prod_{j\\lt n}(w+b+jc)}$, which depends only on $k$: the draws are exchangeable, and $\\Theta\\sim\\mathrm{Beta}(\\frac wc,\\frac bc)$ (Ross 3.6; Grimmett 7.2).",
+    "statement": "<b>P\u00f3lya's urn.</b><span class=\"ln\">An urn has $w$ white and $b$ black balls;</span><span class=\"ln in\">a ball is drawn and returned with $c$ more of its colour.</span><span class=\"ln\">With $k=\\sum x_i$ white draws,</span><span class=\"ln in\">$\\mathbb P(X_1=x_1,\\ldots,X_n=x_n)=\\frac{\\prod_{j\\lt k}(w+jc)\\prod_{j\\lt n-k}(b+jc)}{\\prod_{j\\lt n}(w+b+jc)}$,</span><span class=\"ln in\">which depends only on $k$:</span><span class=\"ln\">the draws are exchangeable, and $\\Theta\\sim\\mathrm{Beta}(\\frac wc,\\frac bc)$.</span><span class=\"src\">Ross 3.6; Grimmett 7.2</span>",
     "hint": "If every Driver of the Day vote for Max makes the next vote for him more likely, are the votes independent? Exchangeable?",
     "breakdown": [
       "<strong>$\\prod_{j\\lt k}(w+jc)$ = the white draws.</strong> The $j$-th white draw sees white grown by $jc$, in whatever positions they fall.",
@@ -1643,7 +1643,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The cloud of laps.</strong> Plot each of Max's laps as (sector 1 time, sector 2 time). The cloud has a shape, and along any direction you cut it, its spread is a variance: zero or more.",
     "examTrap": "Writing \u03a3_{AX} = A\u1d40 \u03a3_X A instead of A \u03a3_X A\u1d40! If A is m \u00d7 n, A \u03a3_X A\u1d40 produces the correct m \u00d7 m covariance matrix.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Covariance matrix.</b> For a random vector $X$ with mean $\\mu$, $\\Sigma_X=\\mathbb E[(X-\\mu)(X-\\mu)^\\top]$ is symmetric and positive semidefinite: $v^\\top\\Sigma_Xv=\\operatorname{Var}(v^\\top X)\\ge0$ for all $v$. Also $\\Sigma_{AX+b}=A\\Sigma_XA^\\top$ (Grimmett 3.6; Ross 7.4).",
+    "statement": "<b>Covariance matrix.</b><span class=\"ln\">For a random vector $X$ with mean $\\mu$,</span><span class=\"ln in\">$\\Sigma_X=\\mathbb E[(X-\\mu)(X-\\mu)^\\top]$ is symmetric and positive semidefinite:</span><span class=\"ln in\">$v^\\top\\Sigma_Xv=\\operatorname{Var}(v^\\top X)\\ge0$ for all $v$.</span><span class=\"ln\">Also $\\Sigma_{AX+b}=A\\Sigma_XA^\\top$.</span><span class=\"src\">Grimmett 3.6; Ross 7.4</span>",
     "hint": "Why can a table of covariances between Max's sector times never have a negative direction?",
     "breakdown": [
       "<strong>$\\Sigma_X=\\mathbb E[(X-\\mu)(X-\\mu)^\\top]$ = all variances and covariances in one table.</strong> Entry $(i,j)$ is how sector $i$ and sector $j$ move together.",
@@ -1673,7 +1673,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The shortest miss.</strong> Like dropping a perpendicular from a point to a floor, the best guess of Sunday's race gap from Saturday's data is where the remaining error points straight away from everything you observed.",
     "examTrap": "Assuming error is independent of X. Orthogonality guarantees ZERO CORRELATION (Cov(e, X) = 0), not independence! Independence holds only under joint Gaussianity.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Orthogonality principle.</b> Among estimators $\\hat Y=a+BX$, $\\hat Y$ minimises $\\mathbb E\\|Y-\\hat Y\\|^2$ iff $\\mathbb E[Y-\\hat Y]=0$ and $\\mathbb E[(Y-\\hat Y)X^\\top]=0$: the error is orthogonal to the constants and to the observations (Grimmett 7.9; Papoulis).",
+    "statement": "<b>Orthogonality principle.</b><span class=\"ln\">Among estimators $\\hat Y=a+BX$,</span><span class=\"ln in\">$\\hat Y$ minimises $\\mathbb E\\|Y-\\hat Y\\|^2$ iff</span><span class=\"ln in2\">$\\mathbb E[Y-\\hat Y]=0$ and $\\mathbb E[(Y-\\hat Y)X^\\top]=0$:</span><span class=\"ln\">the error is orthogonal to the constants and to the observations.</span><span class=\"src\">Grimmett 7.9; Papoulis</span>",
     "hint": "Among all straight-line guesses from what you see, which one leaves the smallest squared error?",
     "breakdown": [
       "<strong>$\\hat Y$ = a guess built linearly from $X$.</strong> It lies in the flat set of things you can compute from what you observe.",
@@ -1703,7 +1703,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Reading Saturday for Sunday.</strong> Max takes pole by 0.4 s more than usual. If qualifying surprises usually carry over to the race, you pass most of that on to your guess of the race gap; if not, you add little to the usual gap.",
     "examTrap": "Assuming LLSE is the optimal overall estimator. LLSE is optimal ONLY among affine estimators (c\u1d40X + d). The unconditional MMSE estimator is conditional expectation \ud835\udd3c[Y|X], which may be highly non-linear.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Linear least squares estimator.</b> If $\\Sigma_X$ is invertible, the linear estimator of $Y$ from $X$ minimising mean squared error is $\\hat Y=\\mu_Y+\\Sigma_{YX}\\Sigma_X^{-1}(X-\\mu_X)$, with gain $K=\\Sigma_{YX}\\Sigma_X^{-1}$ (Grimmett 7.9; Ross 7.4).",
+    "statement": "<b>Linear least squares estimator.</b><span class=\"ln\">If $\\Sigma_X$ is invertible, the linear estimator of $Y$ from $X$ minimising mean squared error is</span><span class=\"ln in\">$\\hat Y=\\mu_Y+\\Sigma_{YX}\\Sigma_X^{-1}(X-\\mu_X)$,</span><span class=\"ln in\">with gain $K=\\Sigma_{YX}\\Sigma_X^{-1}$.</span><span class=\"src\">Grimmett 7.9; Ross 7.4</span>",
     "hint": "What is the best straight-line prediction of Max's race gap from his qualifying gap, using only means and covariances?",
     "breakdown": [
       "<strong>$\\mu_Y+\\ldots$ = start from the average race gap.</strong> With no information, the best guess is the mean.",
@@ -1733,7 +1733,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>What qualifying cannot tell you.</strong> Even with the qualifying gap, some races surprise you: a safety car, a slow stop. The leftover spread is the total spread minus the part qualifying explains.",
     "examTrap": "Singular \u03a3_X: If \u03a3_X is not invertible (observations are linearly redundant), replace \u03a3_X\u207b\u00b9 with the Moore-Penrose pseudoinverse \u03a3_X\u207a.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Error covariance.</b> For the LLSE $\\hat Y$, the error $e=Y-\\hat Y$ has mean $0$ and covariance $\\Sigma_e=\\Sigma_Y-\\Sigma_{YX}\\Sigma_X^{-1}\\Sigma_{XY}\\preceq\\Sigma_Y$, the Schur complement of $\\Sigma_X$ in the joint covariance (Grimmett 7.9).",
+    "statement": "<b>Error covariance.</b><span class=\"ln\">For the LLSE $\\hat Y$, the error $e=Y-\\hat Y$ has mean $0$ and covariance</span><span class=\"ln in\">$\\Sigma_e=\\Sigma_Y-\\Sigma_{YX}\\Sigma_X^{-1}\\Sigma_{XY}\\preceq\\Sigma_Y$,</span><span class=\"ln in\">the Schur complement of $\\Sigma_X$ in the joint covariance.</span><span class=\"src\">Grimmett 7.9</span>",
     "hint": "How much of the race gap's spread is left after you use the qualifying gap?",
     "breakdown": [
       "<strong>$\\Sigma_Y$ = spread with no information.</strong> The total variation of the race gap across races.",
@@ -1763,7 +1763,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How much to believe qualifying.</strong> If the qualifying gap and the race gap have correlation 0.9, qualifying explains 81% of how the race gap varies; with correlation 0 it explains nothing and you stay with the average.",
     "examTrap": "Swapping X and Y in the regression slope: the slope for predicting Y from X is \u03c1(\u03c3_Y/\u03c3_X), while the slope for predicting X from Y is \u03c1(\u03c3_X/\u03c3_Y) (which is NOT 1/slope!).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Scalar LLSE.</b> For scalar $X,Y$ with $\\sigma_X\\gt 0$, $\\hat Y=\\mu_Y+\\rho\\frac{\\sigma_Y}{\\sigma_X}(X-\\mu_X)$ with $\\rho=\\frac{\\operatorname{Cov}(X,Y)}{\\sigma_X\\sigma_Y}$, and $\\mathbb E(Y-\\hat Y)^2=\\sigma_Y^2(1-\\rho^2)$ (Ross 7.4; Grimmett 3.6).",
+    "statement": "<b>Scalar LLSE.</b><span class=\"ln\">For scalar $X,Y$ with $\\sigma_X\\gt 0$,</span><span class=\"ln in\">$\\hat Y=\\mu_Y+\\rho\\frac{\\sigma_Y}{\\sigma_X}(X-\\mu_X)$ with $\\rho=\\frac{\\operatorname{Cov}(X,Y)}{\\sigma_X\\sigma_Y}$,</span><span class=\"ln in\">and $\\mathbb E(Y-\\hat Y)^2=\\sigma_Y^2(1-\\rho^2)$.</span><span class=\"src\">Ross 7.4; Grimmett 3.6</span>",
     "hint": "How does one number, the correlation, set both the slope of the prediction and how good it is?",
     "breakdown": [
       "<strong>$\\rho=\\frac{\\operatorname{Cov}(X,Y)}{\\sigma_X\\sigma_Y}$ = covariance in standard units.</strong> A pure number between $-1$ and $1$: how tightly the qualifying gap and the race gap move together.",
@@ -1793,7 +1793,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>One fast lap in practice.</strong> Max sets a lap 0.5 s quicker than his usual pace. If single laps are very noisy, the engineers shade that down to a fraction; if laps are clean, they take it almost at face value.",
     "examTrap": "Using raw observation Y as the estimator without shrinkage! Y is unbiased, but has MSE equal to \u03c3_W\u00b2, which is strictly WORSE than the Wiener estimate's MSE.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Wiener filter (scalar).</b> Let $Y=X+W$ with $X,W$ independent, zero mean, variances $\\sigma_X^2,\\sigma_W^2$. Then $\\hat X(Y)=\\frac{\\sigma_X^2}{\\sigma_X^2+\\sigma_W^2}Y$ and $\\operatorname{MSE}=\\frac{\\sigma_X^2\\sigma_W^2}{\\sigma_X^2+\\sigma_W^2}$ (Grimmett 7.9; Ross 7.4).",
+    "statement": "<b>Wiener filter (scalar).</b><span class=\"ln\">Let $Y=X+W$ with $X,W$ independent, zero mean, variances $\\sigma_X^2,\\sigma_W^2$.</span><span class=\"ln\">Then</span><span class=\"ln in\">$\\hat X(Y)=\\frac{\\sigma_X^2}{\\sigma_X^2+\\sigma_W^2}Y$</span><span class=\"ln in\">and $\\operatorname{MSE}=\\frac{\\sigma_X^2\\sigma_W^2}{\\sigma_X^2+\\sigma_W^2}$.</span><span class=\"src\">Grimmett 7.9; Ross 7.4</span>",
     "hint": "One lap time is Max's true pace plus noise. How much of what it shows should you trust?",
     "breakdown": [
       "<strong>$Y=X+W$ = the true pace plus lap noise.</strong> What you see is the signal $X$ blurred by independent error $W$ (wind, a lock-up, a backmarker).",
@@ -1823,7 +1823,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The average of similar laps.</strong> Among all of Max's laps on tyres of the same age, take the average lap time. Doing this for every tyre age gives the best possible guess of the next lap.",
     "examTrap": "Treating \ud835\udd3c[Y|X] as a deterministic number! \ud835\udd3c[Y|X] is a random variable, a function of X. Only when evaluated at a fixed sample realization X = x does it become a constant.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Conditional expectation as best guess.</b> If $\\mathbb E[Y^2]\\lt \\infty$, then $\\hat Y=\\mathbb E[Y\\mid X]$ is the unique (a.s.) function of $X$ minimising $\\mathbb E[(Y-g(X))^2]$ over all $g$ with $\\mathbb E[g(X)^2]\\lt \\infty$, and $\\mathbb E[\\mathbb E[Y\\mid X]]=\\mathbb E[Y]$ (Ross 7.5; Grimmett 3.7, 7.9).",
+    "statement": "<b>Conditional expectation as best guess.</b><span class=\"ln\">If $\\mathbb E[Y^2]\\lt \\infty$,</span><span class=\"ln in\">then $\\hat Y=\\mathbb E[Y\\mid X]$ is the unique (a.s.) function of $X$ minimising $\\mathbb E[(Y-g(X))^2]$</span><span class=\"ln in2\">over all $g$ with $\\mathbb E[g(X)^2]\\lt \\infty$,</span><span class=\"ln in\">and $\\mathbb E[\\mathbb E[Y\\mid X]]=\\mathbb E[Y]$.</span><span class=\"src\">Ross 7.5; Grimmett 3.7, 7.9</span>",
     "hint": "With no restriction on the form of your guess, which function of the tyre age predicts Max's lap time best?",
     "breakdown": [
       "<strong>$\\mathbb E[Y\\mid X]$ = the average lap time given what you know.</strong> On each value of $X$, take the average of $Y$ over laps with that $X$.",
@@ -1853,7 +1853,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Nothing left to learn.</strong> After the best guess from tyre age, no trick with the tyre age, however clever, predicts the leftover error: all the information in the tyre age has been used.",
     "examTrap": "Confusing LLSE with MMSE orthogonality! LLSE error is orthogonal only to affine functions aX + b; MMSE error is orthogonal to ALL measurable non-linear functions h(X).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Orthogonality in $L^2$.</b> For $\\mathbb E[Y^2]\\lt \\infty$, $\\hat Y=\\mathbb E[Y\\mid X]$ is the orthogonal projection of $Y$ onto $L^2(\\sigma(X))$: $\\mathbb E\\bigl[(Y-\\mathbb E[Y\\mid X])h(X)\\bigr]=0$ for all $h$ with $\\mathbb E[h(X)^2]\\lt \\infty$ (Grimmett 7.9).",
+    "statement": "<b>Orthogonality in $L^2$.</b><span class=\"ln\">For $\\mathbb E[Y^2]\\lt \\infty$,</span><span class=\"ln in\">$\\hat Y=\\mathbb E[Y\\mid X]$ is the orthogonal projection of $Y$ onto $L^2(\\sigma(X))$:</span><span class=\"ln in\">$\\mathbb E\\bigl[(Y-\\mathbb E[Y\\mid X])h(X)\\bigr]=0$</span><span class=\"ln in2\">for all $h$ with $\\mathbb E[h(X)^2]\\lt \\infty$.</span><span class=\"src\">Grimmett 7.9</span>",
     "hint": "Which property of the error tells you the conditional average is the nearest possible guess?",
     "breakdown": [
       "<strong>$h(X)$ = any function of what you know.</strong> Not just straight lines: squares, thresholds, anything computed from $X$.",
@@ -1883,7 +1883,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Refine, then coarsen.</strong> Averaging the detailed forecast (tyre age and fuel load) over the fuel loads you do not know brings you back to the forecast from tyre age alone.",
     "examTrap": "Reversing the tower ordering: \ud835\udd3c[\ud835\udd3c[Y|X\u2081]|X\u2081, X\u2082] = \ud835\udd3c[Y|X\u2081], NOT \ud835\udd3c[Y|X\u2081, X\u2082]! Finer conditioning cannot invent new information that was already lost.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Tower property and taking out what is known.</b> For $\\sigma$-algebras $\\mathcal G\\subset\\mathcal H$: $\\mathbb E[\\mathbb E[Y\\mid\\mathcal H]\\mid\\mathcal G]=\\mathbb E[Y\\mid\\mathcal G]$, in particular $\\mathbb E[\\mathbb E[Y\\mid X_1,X_2]\\mid X_1]=\\mathbb E[Y\\mid X_1]$. Also $\\mathbb E[g(X)Y\\mid X]=g(X)\\,\\mathbb E[Y\\mid X]$ (Ross 7.5; Grimmett 3.7).",
+    "statement": "<b>Tower property and taking out what is known.</b><span class=\"ln\">For $\\sigma$-algebras $\\mathcal G\\subset\\mathcal H$:</span><span class=\"ln in\">$\\mathbb E[\\mathbb E[Y\\mid\\mathcal H]\\mid\\mathcal G]=\\mathbb E[Y\\mid\\mathcal G]$,</span><span class=\"ln in\">in particular $\\mathbb E[\\mathbb E[Y\\mid X_1,X_2]\\mid X_1]=\\mathbb E[Y\\mid X_1]$.</span><span class=\"ln\">Also $\\mathbb E[g(X)Y\\mid X]=g(X)\\,\\mathbb E[Y\\mid X]$.</span><span class=\"src\">Ross 7.5; Grimmett 3.7</span>",
     "hint": "If you refine a guess with the fuel load and then forget the fuel load again, what do you get back?",
     "breakdown": [
       "<strong>$\\mathbb E[Y\\mid X_1,X_2]$ = the finer guess.</strong> The average lap time given both the tyre age and the fuel load.",
@@ -1913,7 +1913,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Between compounds and within a compound.</strong> Part of the variation in Max's lap times comes from which compound he is on, and part is lap-to-lap noise on the same compound. Together they make up the total variation, and the noise is your unavoidable error.",
     "examTrap": "Missing one of the two terms in Eve's law! Forgetting Var(\ud835\udd3c[Y|X]) or \ud835\udd3c[Var(Y|X)] creates severe underestimates of total population volatility.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Law of total variance.</b> If $\\mathbb E[Y^2]\\lt \\infty$, $\\operatorname{Var}(Y)=\\mathbb E[\\operatorname{Var}(Y\\mid X)]+\\operatorname{Var}(\\mathbb E[Y\\mid X])$. Hence the minimum mean squared error of estimating $Y$ from $X$ is $\\mathbb E[\\operatorname{Var}(Y\\mid X)]$ (Ross 7.5; Grimmett 3.7).",
+    "statement": "<b>Law of total variance.</b><span class=\"ln\">If $\\mathbb E[Y^2]\\lt \\infty$,</span><span class=\"ln in\">$\\operatorname{Var}(Y)=\\mathbb E[\\operatorname{Var}(Y\\mid X)]+\\operatorname{Var}(\\mathbb E[Y\\mid X])$.</span><span class=\"ln\">Hence the minimum mean squared error of estimating $Y$ from $X$ is $\\mathbb E[\\operatorname{Var}(Y\\mid X)]$.</span><span class=\"src\">Ross 7.5; Grimmett 3.7</span>",
     "hint": "How does the total spread of Max's lap times split into the part the tyre compound explains and the part that stays noise?",
     "breakdown": [
       "<strong>$\\operatorname{Var}(\\mathbb E[Y\\mid X])$ = the signal.</strong> How much the average lap time moves from one compound (soft, medium, hard) to another.",
@@ -1943,7 +1943,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Line versus curve.</strong> Tyres matter in a curved way: the lap time barely moves for 20 laps, then the tyres fall off a cliff. A straight-line rule loses to the curve. If the link were straight, the two would give the same guess.",
     "examTrap": "Assuming LLSE is always a close approximation to MMSE. In non-linear symmetric systems, LLSE has 0% predictive power while MMSE has 100% predictive accuracy.",
     "stmtKind": "THEOREM",
-    "statement": "<b>MMSE versus LLSE.</b> For $\\mathbb E[Y^2]\\lt \\infty$, $\\mathbb E[(Y-\\mathbb E[Y\\mid X])^2]\\le\\mathbb E[(Y-\\hat Y_{\\rm LLSE})^2]\\le\\operatorname{Var}(Y)$, since the linear estimators are a subset of all functions of $X$ and constants are a subset of linear ones. They coincide iff $\\mathbb E[Y\\mid X]$ is affine in $X$, e.g. jointly Gaussian $(X,Y)$ (Grimmett 7.9).",
+    "statement": "<b>MMSE versus LLSE.</b><span class=\"ln\">For $\\mathbb E[Y^2]\\lt \\infty$,</span><span class=\"ln in\">$\\mathbb E[(Y-\\mathbb E[Y\\mid X])^2]\\le\\mathbb E[(Y-\\hat Y_{\\rm LLSE})^2]\\le\\operatorname{Var}(Y)$,</span><span class=\"ln in\">since the linear estimators are a subset of all functions of $X$ and constants are a subset of linear ones.</span><span class=\"ln\">They coincide iff $\\mathbb E[Y\\mid X]$ is affine in $X$,</span><span class=\"ln in\">e.g. jointly Gaussian $(X,Y)$.</span><span class=\"src\">Grimmett 7.9</span>",
     "hint": "When does a straight-line guess lose to the curve of slice averages, and when do they agree?",
     "breakdown": [
       "<strong>$\\mathbb E[(Y-\\mathbb E[Y\\mid X])^2]$ = error of the best curve.</strong> The smallest error over all functions of $X$.",
@@ -1973,7 +1973,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Only the big incidents.</strong> Incidents happen at random during a race, and each is serious enough for a safety car with chance $p$. The safety cars then arrive randomly too, as if only they existed: Poisson with the thinned rate.",
     "examTrap": "Attempting to compute Var(K) as Var(N) \u00d7 Var(X\u1d62)! You must use the Law of Total Variance: \ud835\udd3c[Var(K|N)] + Var(\ud835\udd3c[K|N]).",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Poisson thinning via Eve's law.</b> Let $N\\sim\\mathrm{Poisson}(\\lambda)$ and, given $N$, $K\\sim\\mathrm{Bin}(N,p)$. Then $\\mathbb E[K]=\\mathbb E[Np]=\\lambda p$ and $\\operatorname{Var}(K)=\\mathbb E[Np(1-p)]+\\operatorname{Var}(Np)=\\lambda p(1-p)+\\lambda p^2=\\lambda p$. In fact $K\\sim\\mathrm{Poisson}(\\lambda p)$ (Ross 7.5).",
+    "statement": "<b>Poisson thinning via Eve's law.</b><span class=\"ln\">Let $N\\sim\\mathrm{Poisson}(\\lambda)$ and, given $N$, $K\\sim\\mathrm{Bin}(N,p)$.</span><span class=\"ln in\">Then $\\mathbb E[K]=\\mathbb E[Np]=\\lambda p$</span><span class=\"ln in\">and $\\operatorname{Var}(K)=\\mathbb E[Np(1-p)]+\\operatorname{Var}(Np)=\\lambda p(1-p)+\\lambda p^2=\\lambda p$.</span><span class=\"ln\">In fact $K\\sim\\mathrm{Poisson}(\\lambda p)$.</span><span class=\"src\">Ross 7.5</span>",
     "hint": "Of the yellow-flag incidents in a race, a share p bring out the safety car. What are the mean and variance of the number of safety cars?",
     "breakdown": [
       "<strong>$\\mathbb E[K\\mid N]=Np$ = given $N$ incidents, a share $p$ bring a safety car.</strong> Averaging over $N$ gives $\\mathbb E[K]=\\lambda p$.",
@@ -2003,7 +2003,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A cloud shaped by \u03a3.</strong> Max's laps scatter around his typical lap in an oval: a slow sector 1 tends to come with a slow sector 2. A lap far along the long axis of the oval counts as normal; the same distance across it (fast sector 1, slow sector 2) counts as strange.",
     "examTrap": "Attempting to write density when |\u03a3| = 0 (singular covariance). When variables are linearly dependent, the distribution is degenerate and has no density with respect to Lebesgue measure on \u211d\u207f.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Multivariate normal density.</b> $X\\in\\mathbb R^n$ is $\\mathcal N(\\mu,\\Sigma)$ with $\\Sigma\\succ0$ if it has density $f_X(x)=\\dfrac{1}{(2\\pi)^{n/2}|\\Sigma|^{1/2}}\\exp\\!\\left(-\\tfrac12(x-\\mu)^\\top\\Sigma^{-1}(x-\\mu)\\right)$ (Ross 7.8; Grimmett 4.9).",
+    "statement": "<b>Multivariate normal density.</b><span class=\"ln\">$X\\in\\mathbb R^n$ is $\\mathcal N(\\mu,\\Sigma)$ with $\\Sigma\\succ0$ if it has density</span><span class=\"ln in\">$f_X(x)=\\dfrac{1}{(2\\pi)^{n/2}|\\Sigma|^{1/2}}\\exp\\!\\left(-\\tfrac12(x-\\mu)^\\top\\Sigma^{-1}(x-\\mu)\\right)$.</span><span class=\"src\">Ross 7.8; Grimmett 4.9</span>",
     "hint": "How does a bell curve in many dimensions know the spread and the tilt of the cloud of sector times?",
     "breakdown": [
       "<strong>$\\mu$ = the centre of the cloud.</strong> Max's average (sector 1, sector 2) times over many laps; the density peaks there.",
@@ -2033,7 +2033,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Every mix is a bell.</strong> Whatever weighted combination of the sector times you take, the full lap or sector 2 minus sector 1, the result has a bell-curve law with a mean and variance you can read off.",
     "examTrap": "Assuming marginally Gaussian variables are jointly Gaussian! Having X ~ \ud835\udca9(0, 1) and Y ~ \ud835\udca9(0, 1) does NOT imply (X, Y) is jointly Gaussian (e.g. Y = SX with sign flip S).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Linear projections.</b> $X\\sim\\mathcal N(\\mu,\\Sigma)$ in $\\mathbb R^n$ if and only if for every $t\\in\\mathbb R^n$, $t^\\top X\\sim\\mathcal N(t^\\top\\mu,\\,t^\\top\\Sigma t)$. Consequently, $AX+b\\sim\\mathcal N(A\\mu+b,A\\Sigma A^\\top)$ (Ross 7.8; Grimmett 4.9).",
+    "statement": "<b>Linear projections.</b><span class=\"ln\">$X\\sim\\mathcal N(\\mu,\\Sigma)$ in $\\mathbb R^n$</span><span class=\"ln in\">if and only if for every $t\\in\\mathbb R^n$, $t^\\top X\\sim\\mathcal N(t^\\top\\mu,\\,t^\\top\\Sigma t)$.</span><span class=\"ln\">Consequently, $AX+b\\sim\\mathcal N(A\\mu+b,A\\Sigma A^\\top)$.</span><span class=\"src\">Ross 7.8; Grimmett 4.9</span>",
     "hint": "What law does any weighted total of jointly Gaussian sector times follow?",
     "breakdown": [
       "<strong>$t^\\top X$ = a weighted total of the sectors.</strong> For instance sector 1 plus sector 2 plus sector 3, the whole lap: look at the cloud along direction $t$.",
@@ -2063,7 +2063,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>No tilt, no link.</strong> If Max's sector 1 and sector 2 times are jointly bell-shaped and uncorrelated, then knowing one tells you nothing about the other; the oval is not tilted.",
     "examTrap": "Applying this equivalence without verifying JOINT Gaussianity. If joint normality fails, zero covariance tells you nothing about independence.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Uncorrelated implies independent (Gaussian case).</b> If $(X_1,\\ldots,X_n)$ is jointly Gaussian, then $X_i,X_j$ with $\\operatorname{Cov}(X_i,X_j)=0$ are independent; more generally, the vector splits into independent blocks iff the cross-covariances vanish, because the density factorises (Ross 7.8; Grimmett 4.9).",
+    "statement": "<b>Uncorrelated implies independent (Gaussian case).</b><span class=\"ln\">If $(X_1,\\ldots,X_n)$ is jointly Gaussian,</span><span class=\"ln in\">then $X_i,X_j$ with $\\operatorname{Cov}(X_i,X_j)=0$ are independent;</span><span class=\"ln in\">more generally, the vector splits into independent blocks iff the cross-covariances vanish,</span><span class=\"ln in\">because the density factorises.</span><span class=\"src\">Ross 7.8; Grimmett 4.9</span>",
     "hint": "For a jointly Gaussian pair of sector times, what does zero covariance tell you about independence?",
     "breakdown": [
       "<strong>$\\operatorname{Cov}(X_i,X_j)=0$ = the cloud has no tilt.</strong> Its axes line up with the coordinate directions.",
@@ -2093,7 +2093,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Slicing the cloud.</strong> Among Max's laps with the same sector 2 time, the sector 1 times form a bell centred on the regression line, narrower than over all laps, and equally wide whatever the sector 2 time was.",
     "examTrap": "Expecting conditional variance \u03a3_{1|2} to change with observation x\u2082! For Gaussians, measurements shift the mean, but uncertainty reduction is invariant to observed data.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Gaussian conditioning.</b> If $(X_1,X_2)\\sim\\mathcal N(\\mu,\\Sigma)$ with $\\Sigma_{22}\\succ0$, then $X_1\\mid X_2=x_2\\sim\\mathcal N\\bigl(\\mu_1+\\Sigma_{12}\\Sigma_{22}^{-1}(x_2-\\mu_2),\\ \\Sigma_{11}-\\Sigma_{12}\\Sigma_{22}^{-1}\\Sigma_{21}\\bigr)$. So $\\mathbb E[X_1\\mid X_2]$ equals the LLSE: MMSE $=$ LLSE (Ross 7.8; Grimmett 4.9).",
+    "statement": "<b>Gaussian conditioning.</b><span class=\"ln\">If $(X_1,X_2)\\sim\\mathcal N(\\mu,\\Sigma)$ with $\\Sigma_{22}\\succ0$, then</span><span class=\"ln in\">$X_1\\mid X_2=x_2\\sim\\mathcal N\\bigl(\\mu_1+\\Sigma_{12}\\Sigma_{22}^{-1}(x_2-\\mu_2),\\ \\Sigma_{11}-\\Sigma_{12}\\Sigma_{22}^{-1}\\Sigma_{21}\\bigr)$.</span><span class=\"ln\">So $\\mathbb E[X_1\\mid X_2]$ equals the LLSE: MMSE $=$ LLSE.</span><span class=\"src\">Ross 7.8; Grimmett 4.9</span>",
     "hint": "Given one jointly Gaussian sector time, what is the law of the other, and how does it compare to the best straight-line guess?",
     "breakdown": [
       "<strong>$\\mu_1+\\Sigma_{12}\\Sigma_{22}^{-1}(x_2-\\mu_2)$ = the conditional mean.</strong> It is exactly the straight-line LLSE: the guess moves linearly with what you see.",
@@ -2123,7 +2123,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Recipe from the formula.</strong> A Red Bull engineer hands you the exponent of the joint density of Max's two sector times. Invert its matrix and you get the covariances, so you know how the two sectors move together.",
     "examTrap": "Forgetting the factor of 2 in cross-term 2b xy! The off-diagonal element of \u03a3\u207b\u00b9 is b, NOT 2b. The matrix must be symmetric.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Reading moments from the exponent.</b> If $f(x,y)\\propto\\exp\\!\\bigl(-\\tfrac12[x\\ y]\\,P\\,[x\\ y]^\\top\\bigr)$ with $P=\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}\\succ0$, then $(X,Y)$ is centred Gaussian with $\\Sigma=P^{-1}=\\dfrac1{ac-b^2}\\begin{bmatrix}c&-b\\\\-b&a\\end{bmatrix}$, so $\\operatorname{Var}X=\\dfrac{c}{ac-b^2}$ (Grimmett 4.9).",
+    "statement": "<b>Reading moments from the exponent.</b><span class=\"ln\">If $f(x,y)\\propto\\exp\\!\\bigl(-\\tfrac12[x\\ y]\\,P\\,[x\\ y]^\\top\\bigr)$</span><span class=\"ln in\">with $P=\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}\\succ0$,</span><span class=\"ln\">then $(X,Y)$ is centred Gaussian with</span><span class=\"ln in\">$\\Sigma=P^{-1}=\\dfrac1{ac-b^2}\\begin{bmatrix}c&-b\\\\-b&a\\end{bmatrix}$,</span><span class=\"ln in\">so $\\operatorname{Var}X=\\dfrac{c}{ac-b^2}$.</span><span class=\"src\">Grimmett 4.9</span>",
     "hint": "Given only the quadratic form in the exponent, how do you read off variances and covariance?",
     "breakdown": [
       "<strong>$-\\tfrac12z^\\top Pz$ = the exponent.</strong> The matrix in the exponent is the inverse covariance $P=\\Sigma^{-1}$ (the precision matrix).",
@@ -2153,7 +2153,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Each a bell, but a cross, not an oval.</strong> Imagine a timing glitch that flips the sign of Max's sector 2 deviation at random. Sector 1 and sector 2 deviations are each bell-shaped, but their pairs lie on the two diagonals instead of in a cloud.",
     "examTrap": "Concluding independence because Cov(X, Y) = 0! They are uncorrelated, but |Y| = |X| (complete deterministic dependence). Joint normality is strictly required for uncorrelated \u21d4 independent.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Normal marginals, not jointly normal.</b> Let $X\\sim\\mathcal N(0,1)$, $S=\\pm1$ with probability $\\tfrac12$ each, independent of $X$, and $Y=SX$. Then $Y\\sim\\mathcal N(0,1)$ and $\\operatorname{Cov}(X,Y)=\\mathbb E[S]\\mathbb E[X^2]=0$, but $\\mathbb P(X+Y=0)=\\mathbb P(S=-1)=\\tfrac12$, so $X+Y$ is not normal (a normal law has no atoms): $(X,Y)$ is not jointly Gaussian and $X,Y$ are dependent (Ross 7.8; Grimmett 4.9).",
+    "statement": "<b>Normal marginals, not jointly normal.</b><span class=\"ln\">Let $X\\sim\\mathcal N(0,1)$, $S=\\pm1$ with probability $\\tfrac12$ each, independent of $X$, and $Y=SX$.</span><span class=\"ln in\">Then $Y\\sim\\mathcal N(0,1)$ and $\\operatorname{Cov}(X,Y)=\\mathbb E[S]\\mathbb E[X^2]=0$,</span><span class=\"ln in\">but $\\mathbb P(X+Y=0)=\\mathbb P(S=-1)=\\tfrac12$,</span><span class=\"ln in2\">so $X+Y$ is not normal (a normal law has no atoms):</span><span class=\"ln\">$(X,Y)$ is not jointly Gaussian and $X,Y$ are dependent.</span><span class=\"src\">Ross 7.8; Grimmett 4.9</span>",
     "hint": "Can two bell-shaped variables with zero covariance still be dependent?",
     "breakdown": [
       "<strong>$Y=SX$ = flip the sign at random.</strong> With a fair coin $S$, $Y$ is $X$ or $-X$, which is again a standard normal.",
@@ -2183,7 +2183,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A race with a random number of pit stops.</strong> Red Bull pits Max when the tyres fade or a safety car comes out, so the number of stops is random. Whether stop $i$ happens is decided by the race so far, not by how long that stop itself will take.",
     "examTrap": "Applying Wald's identities when N looks into the future! For example, N = argmax_{1 \u2264 i \u2264 5} X_i depends on future terms; Wald's equation fails completely for anticipatory stopping rules.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Random sums.</b> Let $X_1,X_2,\\ldots$ be i.i.d. and $N\\ge0$ integer-valued. The random sum is $S_N=\\sum_{i=1}^NX_i=\\sum_{i=1}^\\infty X_i\\mathbf 1_{\\{N\\ge i\\}}$. If $N$ is a stopping time ($\\{N\\ge i\\}\\in\\sigma(X_1,\\ldots,X_{i-1})$) or independent of $(X_i)$, then $\\mathbf 1_{\\{N\\ge i\\}}$ is independent of $X_i$ (Ross 7.5; Grimmett 5.1).",
+    "statement": "<b>Random sums.</b><span class=\"ln\">Let $X_1,X_2,\\ldots$ be i.i.d. and $N\\ge0$ integer-valued.</span><span class=\"ln\">The random sum is</span><span class=\"ln in\">$S_N=\\sum_{i=1}^NX_i=\\sum_{i=1}^\\infty X_i\\mathbf 1_{\\{N\\ge i\\}}$.</span><span class=\"ln\">If $N$ is a stopping time ($\\{N\\ge i\\}\\in\\sigma(X_1,\\ldots,X_{i-1})$) or independent of $(X_i)$,</span><span class=\"ln in\">then $\\mathbf 1_{\\{N\\ge i\\}}$ is independent of $X_i$.</span><span class=\"src\">Ross 7.5; Grimmett 5.1</span>",
     "hint": "If the number of pit stops is itself random, when can you still treat each stop's time as separate from whether the stop happens?",
     "breakdown": [
       "<strong>$S_N=\\sum_{i=1}^NX_i$ = total time in the pits over $N$ stops.</strong> Both the number of stops and each stop time are random.",
@@ -2213,7 +2213,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Average stops times average stop.</strong> If Max makes 1.8 stops a race on average and the car stands still for 2.5 seconds per stop on average, his average total time standing still is 4.5 seconds, even though the number of stops is random.",
     "examTrap": "Ignoring integrability conditions: if \ud835\udd3c[N] = \u221e or \ud835\udd3c[|X|] = \u221e, Wald's equation breaks down and can yield undefined \u221e \u00d7 0 forms.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Wald's first identity.</b> Let $X_1,X_2,\\ldots$ be i.i.d. with $\\mathbb E|X|\\lt \\infty$ and $N$ a stopping time with $\\mathbb E[N]\\lt \\infty$. Then $\\mathbb E\\bigl[\\sum_{i=1}^NX_i\\bigr]=\\mathbb E[N]\\,\\mathbb E[X]$ (Ross 7.5; Grimmett 12.5).",
+    "statement": "<b>Wald's first identity.</b><span class=\"ln\">Let $X_1,X_2,\\ldots$ be i.i.d. with $\\mathbb E|X|\\lt \\infty$</span><span class=\"ln\">and $N$ a stopping time with $\\mathbb E[N]\\lt \\infty$.</span><span class=\"ln in\">Then $\\mathbb E\\bigl[\\sum_{i=1}^NX_i\\bigr]=\\mathbb E[N]\\,\\mathbb E[X]$.</span><span class=\"src\">Ross 7.5; Grimmett 12.5</span>",
     "hint": "With a random number of pit stops, what is the average total time Max spends standing in the pits?",
     "breakdown": [
       "<strong>$\\mathbb E[N]$ = the average number of stops.</strong> How many times Max pits in a typical race.",
@@ -2243,7 +2243,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two reasons races differ.</strong> Some races differ because a stop goes well or badly (a sticky wheel nut); others because Max stops once instead of twice. The total variation adds both reasons.",
     "examTrap": "Using Var(S_N) = \ud835\udd3c[N]Var(X)! Omitting the second term \u03bc\u00b2 Var(N) severely underestimates risk whenever mean \ud835\udd3c[X] is non-zero.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Wald's second identity.</b> If $N$ is independent of the i.i.d. $X_i$ with finite second moments, then $\\operatorname{Var}\\bigl(\\sum_{i=1}^NX_i\\bigr)=\\mathbb E[N]\\operatorname{Var}(X)+(\\mathbb E[X])^2\\operatorname{Var}(N)$ (Ross 7.5; Grimmett 3.7).",
+    "statement": "<b>Wald's second identity.</b><span class=\"ln\">If $N$ is independent of the i.i.d. $X_i$ with finite second moments, then</span><span class=\"ln in\">$\\operatorname{Var}\\bigl(\\sum_{i=1}^NX_i\\bigr)=\\mathbb E[N]\\operatorname{Var}(X)+(\\mathbb E[X])^2\\operatorname{Var}(N)$.</span><span class=\"src\">Ross 7.5; Grimmett 3.7</span>",
     "hint": "With a random number of pit stops, where do the two sources of randomness show up in the variance of the total time in the pits?",
     "breakdown": [
       "<strong>$\\mathbb E[N]\\operatorname{Var}(X)$ = randomness of each stop's time.</strong> On average $\\mathbb E[N]$ stops, each adding its own variance.",
@@ -2273,7 +2273,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Plug one into the other.</strong> To describe the total time in the pits, take the description of one stop and feed it into the description of the number of stops. The same trick gives Max's season points: feed the points-per-race law into the law of how many races he scores in.",
     "examTrap": "Swapping the composition order: writing M_X(G_N(t)) instead of G_N(M_X(t))! The outer function is always the counter N; the inner function is the term X.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Compound generating functions.</b> If $N$ is independent of the i.i.d. $X_i$, then $M_{S_N}(t)=G_N\\bigl(M_X(t)\\bigr)$, and for $X_i\\in\\{0,1,2,\\ldots\\}$, $G_{S_N}(s)=G_N\\bigl(G_X(s)\\bigr)$ (Ross 7.7; Grimmett 5.1).",
+    "statement": "<b>Compound generating functions.</b><span class=\"ln\">If $N$ is independent of the i.i.d. $X_i$,</span><span class=\"ln in\">then $M_{S_N}(t)=G_N\\bigl(M_X(t)\\bigr)$,</span><span class=\"ln in\">and for $X_i\\in\\{0,1,2,\\ldots\\}$, $G_{S_N}(s)=G_N\\bigl(G_X(s)\\bigr)$.</span><span class=\"src\">Ross 7.7; Grimmett 5.1</span>",
     "hint": "How do you find the generating function of a random sum, like the total pit time or Max's points from a random number of scoring races, from those of the count and of one term?",
     "breakdown": [
       "<strong>$M_X(t)$ = the MGF of one stop's time.</strong> Given $N=n$, independent stops multiply: $\\mathbb E[e^{tS}\\mid N=n]=M_X(t)^n$.",
@@ -2303,7 +2303,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A chant in the grandstand.</strong> One fan in the orange stand starts singing for Max; each singer pulls in a random number of neighbours, who pull in others. If on average each singer brings in at most one new one, the chant surely dies out; otherwise it may take over the whole stand.",
     "examTrap": "Selecting the trivial root s = 1 when solving s = G(s). The root s = 1 is always a mathematical solution (G(1)=1); the true extinction probability is the SMALLEST root in [0, 1].",
     "stmtKind": "THEOREM",
-    "statement": "<b>Galton\u2013Watson process.</b> Let $Z_0=1$ and $Z_{n+1}=\\sum_{i=1}^{Z_n}\\xi_{n,i}$ with i.i.d. offspring counts $\\xi$, mean $\\mu$ and PGF $G$. Then $\\mathbb E[Z_n]=\\mu^n$, and the extinction probability $\\pi_0=\\mathbb P(Z_n=0\\text{ for some }n)$ is the smallest root of $s=G(s)$ in $[0,1]$; $\\pi_0=1$ iff $\\mu\\le1$ (excluding $\\xi\\equiv1$) (Ross 4.7; Grimmett 5.4).",
+    "statement": "<b>Galton\u2013Watson process.</b><span class=\"ln\">Let $Z_0=1$ and $Z_{n+1}=\\sum_{i=1}^{Z_n}\\xi_{n,i}$</span><span class=\"ln in\">with i.i.d. offspring counts $\\xi$, mean $\\mu$ and PGF $G$.</span><span class=\"ln\">Then $\\mathbb E[Z_n]=\\mu^n$,</span><span class=\"ln\">and the extinction probability $\\pi_0=\\mathbb P(Z_n=0\\text{ for some }n)$</span><span class=\"ln in\">is the smallest root of $s=G(s)$ in $[0,1]$;</span><span class=\"ln in\">$\\pi_0=1$ iff $\\mu\\le1$ (excluding $\\xi\\equiv1$).</span><span class=\"src\">Ross 4.7; Grimmett 5.4</span>",
     "hint": "If each fan singing a chant pulls in a random number of new singers, when does the chant surely die out?",
     "breakdown": [
       "<strong>$Z_{n+1}=\\sum_{i\\le Z_n}\\xi_{n,i}$ = a random sum.</strong> Each of the $Z_n$ singers in round $n$ pulls in their own number of new singers in the next round.",
@@ -2333,7 +2333,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Safety cars eat the lead.</strong> Safety cars come out at random during the race, and each one bunches the field up and costs Max a random number of seconds of his lead. The total lost has an average of rate times average cost, and a spread driven by the big losses.",
     "examTrap": "Omitting the count variance term: calculating Var(S_N) = \u03bb / \u03b2\u00b2 by treating N as a constant! Because Var(N) = \u03bb, the second term adds another \u03bb/\u03b2\u00b2, exactly doubling the variance.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Compound Poisson (Lundberg) model.</b> Let $N\\sim\\mathrm{Poisson}(\\lambda)$ be independent of i.i.d. $X_i$ (for example $X_i\\sim\\mathrm{Exp}(\\beta)$) and $S=\\sum_{i=1}^NX_i$. Then $\\mathbb E[S]=\\lambda\\,\\mathbb E[X]$ and $\\operatorname{Var}(S)=\\lambda\\,\\mathbb E[X^2]$, which equals $\\dfrac{2\\lambda}{\\beta^2}$ for exponential claims (Ross 7.5; Grimmett 6.8).",
+    "statement": "<b>Compound Poisson (Lundberg) model.</b><span class=\"ln\">Let $N\\sim\\mathrm{Poisson}(\\lambda)$ be independent of i.i.d. $X_i$ (for example $X_i\\sim\\mathrm{Exp}(\\beta)$)</span><span class=\"ln\">and $S=\\sum_{i=1}^NX_i$.</span><span class=\"ln in\">Then $\\mathbb E[S]=\\lambda\\,\\mathbb E[X]$</span><span class=\"ln in\">and $\\operatorname{Var}(S)=\\lambda\\,\\mathbb E[X^2]$,</span><span class=\"ln in2\">which equals $\\dfrac{2\\lambda}{\\beta^2}$ for exponential claims.</span><span class=\"src\">Ross 7.5; Grimmett 6.8</span>",
     "hint": "Safety cars come out as a Poisson stream during a race, each wiping out a random chunk of Max's lead. What are the mean and variance of the total lead lost?",
     "breakdown": [
       "<strong>$\\mathbb E[S]=\\lambda\\mathbb E[X]$ = rate times mean size.</strong> The average number of safety cars times the average lead lost to one.",
@@ -2363,7 +2363,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Four kinds of \u201csettling down\u201d.</strong> Watch Max's win rate race after race. You could demand that every run of races homes in; that after race $n$ it is rarely far off; that the typical size of the error shrinks; or just that its histogram stops changing.",
     "examTrap": "Assuming convergence in distribution requires a shared sample space! X_n \u2192^d X depends ONLY on CDFs; variables can be defined on completely unrelated probability spaces.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Modes of convergence.</b> For random variables $X_n,X$: $X_n\\to X$ almost surely if $\\mathbb P(X_n\\to X)=1$; in probability if $\\mathbb P(|X_n-X|\\gt \\varepsilon)\\to0$ for all $\\varepsilon\\gt 0$; in $L^p$ if $\\mathbb E|X_n-X|^p\\to0$; in distribution if $F_{X_n}(x)\\to F_X(x)$ at continuity points of $F_X$. Then a.s. $\\Rightarrow$ in probability $\\Rightarrow$ in distribution, and $L^p\\Rightarrow L^r\\Rightarrow$ in probability for $p\\gt r\\ge1$ (Grimmett 7.2; Ross 8.2).",
+    "statement": "<b>Modes of convergence.</b><span class=\"ln\">For random variables $X_n,X$: $X_n\\to X$</span><span class=\"ln in\">almost surely if $\\mathbb P(X_n\\to X)=1$;</span><span class=\"ln in\">in probability if $\\mathbb P(|X_n-X|\\gt \\varepsilon)\\to0$ for all $\\varepsilon\\gt 0$;</span><span class=\"ln in\">in $L^p$ if $\\mathbb E|X_n-X|^p\\to0$;</span><span class=\"ln in\">in distribution if $F_{X_n}(x)\\to F_X(x)$ at continuity points of $F_X$.</span><span class=\"ln\">Then a.s. $\\Rightarrow$ in probability $\\Rightarrow$ in distribution,</span><span class=\"ln\">and $L^p\\Rightarrow L^r\\Rightarrow$ in probability for $p\\gt r\\ge1$.</span><span class=\"src\">Grimmett 7.2; Ross 8.2</span>",
     "hint": "What are the four different things \u201cMax's running win rate settles down\u201d can mean, and which imply which?",
     "breakdown": [
       "<strong>a.s. $\\mathbb P(X_n\\to X)=1$ = every typical record settles.</strong> Follow one endless run of races: with probability 1, it converges.",
@@ -2393,7 +2393,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>When the end result is a number.</strong> If the histogram of Max's estimated average lap time piles up at one number, then after a typical race count the estimate is close to it; and a thinned-out set of races will settle in the strong sense.",
     "examTrap": "Assuming X_n \u2192^d X implies X_n \u2192^P X for non-constant X! E.g. let X ~ \ud835\udca9(0, 1) and X_n = -X. Then X_n has the same normal distribution, but X_n - X = -2X never converges to 0.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Partial converses.</b> (i) If $c$ is a constant, $X_n\\xrightarrow{d}c$ iff $X_n\\xrightarrow{P}c$. (ii) If $X_n\\xrightarrow{P}X$, there is a subsequence $n_k$ with $X_{n_k}\\xrightarrow{a.s.}X$. (iii) If $X_n\\xrightarrow{P}X$ and $|X_n|\\le Y$ with $\\mathbb E[Y]\\lt \\infty$, then $X_n\\xrightarrow{L^1}X$ (Grimmett 7.3; Ross 8.2).",
+    "statement": "<b>Partial converses.</b><span class=\"ln\">(i) If $c$ is a constant, $X_n\\xrightarrow{d}c$ iff $X_n\\xrightarrow{P}c$.</span><span class=\"ln\">(ii) If $X_n\\xrightarrow{P}X$, there is a subsequence $n_k$ with $X_{n_k}\\xrightarrow{a.s.}X$.</span><span class=\"ln\">(iii) If $X_n\\xrightarrow{P}X$ and $|X_n|\\le Y$ with $\\mathbb E[Y]\\lt \\infty$,</span><span class=\"ln in\">then $X_n\\xrightarrow{L^1}X$.</span><span class=\"src\">Grimmett 7.3; Ross 8.2</span>",
     "hint": "When do the weaker modes imply the stronger ones after all?",
     "breakdown": [
       "<strong>$X_n\\xrightarrow{d}c\\iff X_n\\xrightarrow{P}c$ = a constant limit.</strong> If the histogram piles up at a single value $c$, then $X_n$ is within $\\varepsilon$ of $c$ with chance tending to 1.",
@@ -2423,7 +2423,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A warning light that wanders.</strong> Picture an endless race. On each lap, a small and shrinking slice of all possible races gets a warning light on Max's steering wheel. On any one lap he is almost surely fine, yet in every possible race the light comes on again and again.",
     "examTrap": "Assuming that \u2119(|X_n| \u2265 \u03b5) \u2192 0 guarantees sample paths settle down. Probability measures only instantaneous mass size; almost sure convergence requires mass to stop wandering across points.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Sliding typewriter.</b> On $\\Omega=[0,1]$ with Lebesgue measure, enumerate intervals of length $1/k$ sweeping $[0,1]$ for $k=1,2,\\ldots$, and let $X_n=\\mathbf 1_{I_n}$ for the $n$-th interval. Then $\\mathbb P(X_n=1)=1/k\\to0$, so $X_n\\xrightarrow{P}0$, but each $\\omega$ lies in infinitely many $I_n$, so $\\limsup X_n(\\omega)=1$ for all $\\omega$: $X_n\\not\\to0$ a.s. (Grimmett 7.2; Durrett 2.3).",
+    "statement": "<b>Sliding typewriter.</b><span class=\"ln\">On $\\Omega=[0,1]$ with Lebesgue measure,</span><span class=\"ln in\">enumerate intervals of length $1/k$ sweeping $[0,1]$ for $k=1,2,\\ldots$,</span><span class=\"ln in\">and let $X_n=\\mathbf 1_{I_n}$ for the $n$-th interval.</span><span class=\"ln\">Then $\\mathbb P(X_n=1)=1/k\\to0$, so $X_n\\xrightarrow{P}0$,</span><span class=\"ln\">but each $\\omega$ lies in infinitely many $I_n$, so $\\limsup X_n(\\omega)=1$ for all $\\omega$:</span><span class=\"ln in\">$X_n\\not\\to0$ a.s.</span><span class=\"src\">Grimmett 7.2; Durrett 2.3</span>",
     "hint": "Can a warning light be almost surely off on any given lap, and yet never stay off in any single race?",
     "breakdown": [
       "<strong>$\\mathbb P(X_n=1)=1/k\\to0$ = a shrinking block.</strong> On lap $n$ the light is on only for a block of races of width $1/k$, whose chance goes to zero.",
@@ -2453,7 +2453,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Rare disasters.</strong> In any given race Max eventually stops losing time, but the rare disaster (a spin, a puncture) gets so costly when it does strike that its share of the average grows without bound.",
     "examTrap": "Assuming almost sure convergence allows exchanging limit and expectation: lim \ud835\udd3c[X_n] = \ud835\udd3c[lim X_n] strictly requires Uniform Integrability or a Dominated Bound (DCT).",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Escaping spike.</b> On $[0,1]$ with Lebesgue measure let $X_n=n^2\\mathbf 1_{(0,1/n)}$. For each fixed $\\omega$, $X_n(\\omega)=0$ once $n\\gt 1/\\omega$, so $X_n\\to0$ a.s., but $\\mathbb E|X_n|=n^2\\cdot\\frac1n=n\\to\\infty$, so $X_n\\not\\to0$ in $L^1$ (Grimmett 7.2; Durrett 2.3).",
+    "statement": "<b>Escaping spike.</b><span class=\"ln\">On $[0,1]$ with Lebesgue measure let $X_n=n^2\\mathbf 1_{(0,1/n)}$.</span><span class=\"ln\">For each fixed $\\omega$, $X_n(\\omega)=0$ once $n\\gt 1/\\omega$,</span><span class=\"ln in\">so $X_n\\to0$ a.s.,</span><span class=\"ln\">but $\\mathbb E|X_n|=n^2\\cdot\\frac1n=n\\to\\infty$,</span><span class=\"ln in\">so $X_n\\not\\to0$ in $L^1$.</span><span class=\"src\">Grimmett 7.2; Durrett 2.3</span>",
     "hint": "Can the time lost settle to zero in every single race while its average size blows up?",
     "breakdown": [
       "<strong>$X_n=n^2\\mathbf 1_{(0,1/n)}$ = a tall spike on a thin window.</strong> On lap $n$, a loss of $n^2$ seconds in the first $1/n$ of the races, zero elsewhere.",
@@ -2483,7 +2483,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A constant comes along for free.</strong> Say the error in Max's estimated lap time, in seconds, has a limiting bell shape, and the estimate of his speed settles to a constant. Then the error in metres (seconds times speed) has the same bell shape, scaled by that constant.",
     "examTrap": "Applying Slutsky when Y_n \u2192^d Y with non-constant Y! If Y is random, X_n + Y_n does NOT necessarily converge to X + Y because distribution convergence tells you nothing about mutual joint alignment.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Slutsky's theorem.</b> If $X_n\\xrightarrow{d}X$ and $Y_n\\xrightarrow{P}c$ for a constant $c$, then $X_n+Y_n\\xrightarrow{d}X+c$, $X_nY_n\\xrightarrow{d}cX$, and $X_n/Y_n\\xrightarrow{d}X/c$ if $c\\ne0$. The continuous mapping theorem: if $g$ is continuous a.e. under the law of $X$ and $X_n\\xrightarrow{d}X$, then $g(X_n)\\xrightarrow{d}g(X)$ (Ross 8.3; Grimmett 7.2).",
+    "statement": "<b>Slutsky's theorem.</b><span class=\"ln\">If $X_n\\xrightarrow{d}X$ and $Y_n\\xrightarrow{P}c$ for a constant $c$, then</span><span class=\"ln in\">$X_n+Y_n\\xrightarrow{d}X+c$,</span><span class=\"ln in\">$X_nY_n\\xrightarrow{d}cX$,</span><span class=\"ln in\">and $X_n/Y_n\\xrightarrow{d}X/c$ if $c\\ne0$.</span><span class=\"ln\">The continuous mapping theorem: if $g$ is continuous a.e. under the law of $X$ and $X_n\\xrightarrow{d}X$,</span><span class=\"ln in\">then $g(X_n)\\xrightarrow{d}g(X)$.</span><span class=\"src\">Ross 8.3; Grimmett 7.2</span>",
     "hint": "If one estimate settles in shape and another settles to a number, how does their product behave?",
     "breakdown": [
       "<strong>$X_n\\xrightarrow{d}X$ = the first quantity settles in shape.</strong> Its histogram converges, say to a bell.",
@@ -2514,7 +2514,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Not knowing the spread costs nothing.</strong> After enough laps the engineers can replace the true spread of the gap between Max and Checo by the sample spread, and the bell-curve answer for the average gap stays the same.",
     "examTrap": "Assuming T_n is strictly Gaussian for finite n! T_n has heavier polynomial tails (Student's t) for finite n; it becomes Gaussian ONLY in the asymptotic limit n \u2192 \u221e.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Asymptotic normality of the $t$-statistic.</b> For i.i.d. $X_i$ with mean $\\mu$, variance $\\sigma^2\\in(0,\\infty)$ and sample variance $S_n^2$: $\\sqrt n(\\bar X_n-\\mu)/\\sigma\\xrightarrow{d}\\mathcal N(0,1)$ (CLT) and $S_n/\\sigma\\xrightarrow{P}1$ (LLN), so by Slutsky $T_n=\\frac{\\sqrt n(\\bar X_n-\\mu)}{S_n}\\xrightarrow{d}\\mathcal N(0,1)$ (Grimmett 5.10).",
+    "statement": "<b>Asymptotic normality of the $t$-statistic.</b><span class=\"ln\">For i.i.d. $X_i$ with mean $\\mu$, variance $\\sigma^2\\in(0,\\infty)$ and sample variance $S_n^2$:</span><span class=\"ln in\">$\\sqrt n(\\bar X_n-\\mu)/\\sigma\\xrightarrow{d}\\mathcal N(0,1)$ (CLT)</span><span class=\"ln in\">and $S_n/\\sigma\\xrightarrow{P}1$ (LLN),</span><span class=\"ln\">so by Slutsky $T_n=\\frac{\\sqrt n(\\bar X_n-\\mu)}{S_n}\\xrightarrow{d}\\mathcal N(0,1)$.</span><span class=\"src\">Grimmett 5.10</span>",
     "hint": "If you do not know the spread of the lap-time gap between Max and Checo and use the sample spread, does the bell shape survive?",
     "breakdown": [
       "<strong>$\\sqrt n(\\bar X_n-\\mu)/\\sigma\\xrightarrow{d}\\mathcal N(0,1)$ = the numerator.</strong> The standardised average lap-time gap over $n$ laps tends to a standard bell (CLT).",
@@ -2544,7 +2544,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Does the bad luck ever stop?</strong> \u201cDNF infinitely often\u201d means however many seasons ahead you look, another retirement awaits. \u201cDNF from some race on\u201d means the car breaks in every single race from some point and never recovers.",
     "examTrap": "Swapping intersection and union! Limsup is intersection of unions (\u22c2 \u22c3); Liminf is union of intersections (\u22c3 \u22c2). Swapping them completely reverses their mathematical meaning.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Limsup and liminf of events.</b> For events $A_n$, $\\limsup A_n=\\bigcap_{n=1}^\\infty\\bigcup_{k=n}^\\infty A_k=\\{A_n\\text{ infinitely often}\\}$ and $\\liminf A_n=\\bigcup_{n=1}^\\infty\\bigcap_{k=n}^\\infty A_k=\\{A_n\\text{ for all but finitely many }n\\}$. Also $(\\limsup A_n)^c=\\liminf A_n^c$ (Grimmett 7.3; Durrett 2.3).",
+    "statement": "<b>Limsup and liminf of events.</b><span class=\"ln\">For events $A_n$,</span><span class=\"ln in\">$\\limsup A_n=\\bigcap_{n=1}^\\infty\\bigcup_{k=n}^\\infty A_k=\\{A_n\\text{ infinitely often}\\}$</span><span class=\"ln in\">and $\\liminf A_n=\\bigcup_{n=1}^\\infty\\bigcap_{k=n}^\\infty A_k=\\{A_n\\text{ for all but finitely many }n\\}$.</span><span class=\"ln\">Also $(\\limsup A_n)^c=\\liminf A_n^c$.</span><span class=\"src\">Grimmett 7.3; Durrett 2.3</span>",
     "hint": "How do you say \u201ca DNF in infinitely many races\u201d versus \u201ca DNF in all but finitely many races\u201d with unions and intersections?",
     "breakdown": [
       "<strong>$\\bigcup_{k\\ge n}A_k$ = a DNF in some race from $n$ on.</strong> Whatever race $n$ you start from, there is still a retirement ahead.",
@@ -2574,7 +2574,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Reliability that keeps improving.</strong> If Red Bull keeps fixing the car so that the chance of a DNF in race $n$ shrinks quickly, say like $1/n^2$, then with probability 1 Max retires only finitely many times, however the races are linked.",
     "examTrap": "Assuming BC1 requires independence! BC1 is a pure measure-theoretic consequence of countable sub-additivity; it requires zero independence.",
     "stmtKind": "THEOREM",
-    "statement": "<b>First Borel\u2013Cantelli lemma.</b> If $\\sum_{n=1}^\\infty\\mathbb P(A_n)\\lt \\infty$, then $\\mathbb P(A_n\\text{ i.o.})=\\mathbb P(\\limsup A_n)=0$. No independence is needed. Proof: $\\mathbb P(\\limsup A_n)\\le\\mathbb P(\\bigcup_{k\\ge n}A_k)\\le\\sum_{k\\ge n}\\mathbb P(A_k)\\to0$ (Grimmett 7.3; Ross 8.2).",
+    "statement": "<b>First Borel\u2013Cantelli lemma.</b><span class=\"ln\">If $\\sum_{n=1}^\\infty\\mathbb P(A_n)\\lt \\infty$,</span><span class=\"ln in\">then $\\mathbb P(A_n\\text{ i.o.})=\\mathbb P(\\limsup A_n)=0$.</span><span class=\"ln\">No independence is needed.</span><span class=\"ln\">Proof:</span><span class=\"ln in\">$\\mathbb P(\\limsup A_n)\\le\\mathbb P(\\bigcup_{k\\ge n}A_k)\\le\\sum_{k\\ge n}\\mathbb P(A_k)\\to0$.</span><span class=\"src\">Grimmett 7.3; Ross 8.2</span>",
     "hint": "If the chances of a DNF in race n add up to a finite number, how often can Max retire?",
     "breakdown": [
       "<strong>$\\sum\\mathbb P(A_n)\\lt \\infty$ = the chances are summable.</strong> Chances like $1/n^2$ add up to a finite number; the DNF chances die away fast enough.",
@@ -2604,7 +2604,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Bad luck that never quite fades.</strong> If the chance of a DNF in race $n$ is $1/n$ and races are independent, you can be certain the retirements never stop, though they become rarer. A double DNF for Max and Checo at a fixed 1 in 1000 is the same story: the chances add to infinity, so over endless seasons it happens again and again.",
     "examTrap": "Applying BC2 without independence! If A_n = A for all n with \u2119(A) = 1/2, then \u2211 \u2119(A_n) = \u221e, yet \u2119(A_n i.o.) = \u2119(A) = 1/2 \u2260 1! Independence is indispensable.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Second Borel\u2013Cantelli lemma.</b> If $A_1,A_2,\\ldots$ are independent and $\\sum_{n=1}^\\infty\\mathbb P(A_n)=\\infty$, then $\\mathbb P(A_n\\text{ i.o.})=1$. Proof: $\\mathbb P(\\bigcap_{k\\ge n}A_k^c)=\\prod_{k\\ge n}(1-\\mathbb P(A_k))\\le\\exp(-\\sum_{k\\ge n}\\mathbb P(A_k))=0$ (Grimmett 7.3; Ross 8.2).",
+    "statement": "<b>Second Borel\u2013Cantelli lemma.</b><span class=\"ln\">If $A_1,A_2,\\ldots$ are independent and $\\sum_{n=1}^\\infty\\mathbb P(A_n)=\\infty$,</span><span class=\"ln in\">then $\\mathbb P(A_n\\text{ i.o.})=1$.</span><span class=\"ln\">Proof:</span><span class=\"ln in\">$\\mathbb P(\\bigcap_{k\\ge n}A_k^c)=\\prod_{k\\ge n}(1-\\mathbb P(A_k))\\le\\exp(-\\sum_{k\\ge n}\\mathbb P(A_k))=0$.</span><span class=\"src\">Grimmett 7.3; Ross 8.2</span>",
     "hint": "If races are independent and the DNF chances never add up to a finite number, how often does Max retire?",
     "breakdown": [
       "<strong>$\\{A_n\\}$ independent = races are unrelated.</strong> This is essential: without it, linked races (the same faulty part every weekend) can make the conclusion fail.",
@@ -2634,7 +2634,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The far future is all or nothing.</strong> Whether Max's long-run win share settles down cannot depend on any finite number of races, so for independent races it either happens for sure or never happens.",
     "examTrap": "Assuming event {X\u2081 = 1} is a tail event! The first step X\u2081 is in the prefix, not the tail. Only asymptotic properties invariant to finite prefixes belong to \ud835\udcaf.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Kolmogorov's zero\u2013one law.</b> Let $X_1,X_2,\\ldots$ be independent and $\\mathcal T=\\bigcap_{n=1}^\\infty\\sigma(X_n,X_{n+1},\\ldots)$ the tail $\\sigma$-algebra. Then $\\mathbb P(E)\\in\\{0,1\\}$ for every $E\\in\\mathcal T$ (Grimmett 7.3; Durrett 2.5).",
+    "statement": "<b>Kolmogorov's zero\u2013one law.</b><span class=\"ln\">Let $X_1,X_2,\\ldots$ be independent</span><span class=\"ln\">and $\\mathcal T=\\bigcap_{n=1}^\\infty\\sigma(X_n,X_{n+1},\\ldots)$ the tail $\\sigma$-algebra.</span><span class=\"ln in\">Then $\\mathbb P(E)\\in\\{0,1\\}$ for every $E\\in\\mathcal T$.</span><span class=\"src\">Grimmett 7.3; Durrett 2.5</span>",
     "hint": "For independent races, which events are decided only by the far future, and what are their possible chances?",
     "breakdown": [
       "<strong>$\\sigma(X_n,X_{n+1},\\ldots)$ = what the races from $n$ on can tell you.</strong> Questions about the record from race $n$ forward.",
@@ -2664,7 +2664,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>From rare slips to certainty.</strong> Let $X_n$ be the team's estimate of Max's true lap time after race $n$. If the chance of it being off by more than a tenth of a second shrinks quickly enough to add up, the estimate eventually stays inside that band for good.",
     "examTrap": "Attempting to check a.s. convergence pointwise by hand! Pathwise limits are analytically intractable; the summable probability test (BC1) is the universal tool.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Almost sure convergence via Borel\u2013Cantelli.</b> If $\\sum_{n=1}^\\infty\\mathbb P(|X_n-X|\\ge\\varepsilon)\\lt \\infty$ for every $\\varepsilon\\gt 0$, then $X_n\\to X$ almost surely. Proof: by the first Borel\u2013Cantelli lemma, $|X_n-X|\\ge\\varepsilon$ happens only finitely often a.s.; take $\\varepsilon=1/m$ and a countable intersection (Grimmett 7.3; Durrett 2.3).",
+    "statement": "<b>Almost sure convergence via Borel\u2013Cantelli.</b><span class=\"ln\">If $\\sum_{n=1}^\\infty\\mathbb P(|X_n-X|\\ge\\varepsilon)\\lt \\infty$ for every $\\varepsilon\\gt 0$,</span><span class=\"ln in\">then $X_n\\to X$ almost surely.</span><span class=\"ln\">Proof: by the first Borel\u2013Cantelli lemma, $|X_n-X|\\ge\\varepsilon$ happens only finitely often a.s.;</span><span class=\"ln in\">take $\\varepsilon=1/m$ and a countable intersection.</span><span class=\"src\">Grimmett 7.3; Durrett 2.3</span>",
     "hint": "How do you turn a summable bound on the chance of a big miss into a.s. convergence?",
     "breakdown": [
       "<strong>$\\mathbb P(|X_n-X|\\ge\\varepsilon)$ = the chance of a miss bigger than $\\varepsilon$ after race $n$.</strong> Typically bounded by Chebyshev or Markov.",
@@ -2694,7 +2694,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The longest winning streak.</strong> Max won 10 races in a row in 2023. In an endless record of races, each won with chance \u00bd, a streak of about $\\log_2k$ wins keeps appearing around race $k$, but streaks much longer than $2\\log_2k$ stop appearing.",
     "examTrap": "Selecting overlapping blocks and applying BC2! Overlapping blocks are correlated, violating the independence mandate of BC2. Non-overlapping partitioning restores independence.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Head runs.</b> In an infinite sequence of fair coin tosses, let $A_k$ be the event that tosses $k,\\ldots,k+L_k-1$ are all heads, so $\\mathbb P(A_k)=2^{-L_k}$. If $\\sum_k2^{-L_k}\\lt \\infty$, the run lengths $L_k$ occur only finitely often (first Borel\u2013Cantelli); if $\\sum_k2^{-L_k}=\\infty$ and the events are independent (disjoint blocks), they occur infinitely often a.s. (second) (Grimmett 7.3; Durrett 2.3).",
+    "statement": "<b>Head runs.</b><span class=\"ln\">In an infinite sequence of fair coin tosses,</span><span class=\"ln in\">let $A_k$ be the event that tosses $k,\\ldots,k+L_k-1$ are all heads, so $\\mathbb P(A_k)=2^{-L_k}$.</span><span class=\"ln\">If $\\sum_k2^{-L_k}\\lt \\infty$,</span><span class=\"ln in\">the run lengths $L_k$ occur only finitely often (first Borel\u2013Cantelli);</span><span class=\"ln\">if $\\sum_k2^{-L_k}=\\infty$ and the events are independent (disjoint blocks),</span><span class=\"ln in\">they occur infinitely often a.s. (second).</span><span class=\"src\">Grimmett 7.3; Durrett 2.3</span>",
     "hint": "How long a winning streak can you expect to see somewhere in an endless record of races?",
     "breakdown": [
       "<strong>$A_k$ = a run of $L_k$ wins starting at race $k$.</strong> Each such run has chance $2^{-L_k}$ if Max wins each race with chance \u00bd.",
@@ -2724,7 +2724,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Averaging smooths out the laps.</strong> One lap can be anything: traffic, a lock-up, a tow down the straight. The average of 100 laps is rarely more than a tenth of a second from Max's true pace: the bell around the mean gets narrower and narrower.",
     "examTrap": "Believing WLLN guarantees paths settle down without wild fluctuations. WLLN guarantees only that at step n, error is unlikely; it does NOT preclude infinite future deviations at later times!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Weak law of large numbers.</b> Let $X_1,X_2,\\ldots$ be i.i.d. with mean $\\mu$ and finite variance $\\sigma^2$. Then $\\bar X_n=\\frac1n\\sum_{i=1}^nX_i\\xrightarrow{P}\\mu$; indeed $\\mathbb P(|\\bar X_n-\\mu|\\ge\\varepsilon)\\le\\dfrac{\\sigma^2}{n\\varepsilon^2}$ (Ross 8.2; Grimmett 7.4).",
+    "statement": "<b>Weak law of large numbers.</b><span class=\"ln\">Let $X_1,X_2,\\ldots$ be i.i.d. with mean $\\mu$ and finite variance $\\sigma^2$.</span><span class=\"ln in\">Then $\\bar X_n=\\frac1n\\sum_{i=1}^nX_i\\xrightarrow{P}\\mu$;</span><span class=\"ln in\">indeed $\\mathbb P(|\\bar X_n-\\mu|\\ge\\varepsilon)\\le\\dfrac{\\sigma^2}{n\\varepsilon^2}$.</span><span class=\"src\">Ross 8.2; Grimmett 7.4</span>",
     "hint": "Why does the average of many lap times home in on Max's true pace?",
     "breakdown": [
       "<strong>$\\bar X_n$ = the average of the first $n$ laps.</strong> Its mean is $\\mu$ for every $n$.",
@@ -2754,7 +2754,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Max's own average settles.</strong> Keep a running average of every lap Max drives in his career. With probability 1, it ends up within any tiny band around his true mean lap time and stays there for ever.",
     "examTrap": "Confusing WLLN with SLLN! WLLN is a snapshot statement (prob at time n); SLLN is a full-path statement (the entire future trajectory never strays).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Strong law of large numbers.</b> Let $X_1,X_2,\\ldots$ be i.i.d. Then $\\mathbb P\\bigl(\\lim_n\\frac1n\\sum_{i=1}^nX_i=\\mu\\bigr)=1$ if and only if $\\mathbb E|X|\\lt \\infty$, in which case $\\mu=\\mathbb E[X]$ (Kolmogorov; Grimmett 7.5; Durrett 2.4).",
+    "statement": "<b>Strong law of large numbers.</b><span class=\"ln\">Let $X_1,X_2,\\ldots$ be i.i.d.</span><span class=\"ln in\">Then $\\mathbb P\\bigl(\\lim_n\\frac1n\\sum_{i=1}^nX_i=\\mu\\bigr)=1$</span><span class=\"ln in\">if and only if $\\mathbb E|X|\\lt \\infty$,</span><span class=\"ln in\">in which case $\\mu=\\mathbb E[X]$.</span><span class=\"src\">Kolmogorov; Grimmett 7.5; Durrett 2.4</span>",
     "hint": "Not just any snapshot: does one endless run of laps settle at the mean for sure?",
     "breakdown": [
       "<strong>$\\frac1n\\sum X_i$ = the running average along one run of laps.</strong> Follow a single endless sequence of laps: Max's whole career.",
@@ -2784,7 +2784,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Why misses stop for good.</strong> The chance that the average after lap $n$ is off by a tenth of a second shrinks like $1/n^2$. Those chances add up to a finite number, so there is a last lap after which the average is never off by that much again.",
     "examTrap": "Chebyshev gives 1/n decay: \u2211 1/n = \u221e (diverges), which CANNOT be plugged into BC1! The 4th moment is essential to force the series to converge.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Strong law under a fourth moment.</b> If $X_i$ are i.i.d. with $\\mathbb E[X^4]\\lt \\infty$, then $\\mathbb E[(\\bar X_n-\\mu)^4]\\le C/n^2$, so $\\sum_n\\mathbb P(|\\bar X_n-\\mu|\\ge\\varepsilon)\\le\\sum_n\\frac{C}{n^2\\varepsilon^4}\\lt \\infty$, and by the first Borel\u2013Cantelli lemma $\\bar X_n\\to\\mu$ almost surely (Grimmett 7.5; Durrett 2.4).",
+    "statement": "<b>Strong law under a fourth moment.</b><span class=\"ln\">If $X_i$ are i.i.d. with $\\mathbb E[X^4]\\lt \\infty$,</span><span class=\"ln in\">then $\\mathbb E[(\\bar X_n-\\mu)^4]\\le C/n^2$,</span><span class=\"ln in\">so $\\sum_n\\mathbb P(|\\bar X_n-\\mu|\\ge\\varepsilon)\\le\\sum_n\\frac{C}{n^2\\varepsilon^4}\\lt \\infty$,</span><span class=\"ln in\">and by the first Borel\u2013Cantelli lemma $\\bar X_n\\to\\mu$ almost surely.</span><span class=\"src\">Grimmett 7.5; Durrett 2.4</span>",
     "hint": "How does a finite fourth moment make the chances of missing the mean add up to a finite number?",
     "breakdown": [
       "<strong>$\\mathbb E[(\\bar X_n-\\mu)^4]\\le C/n^2$ = the fourth moment of the average.</strong> Expanding the fourth power, only $O(n^2)$ products of centred terms survive, out of $n^4$, and dividing by $n^4$ leaves $C/n^2$.",
@@ -2814,7 +2814,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Ignore the freak laps.</strong> Cap the time lost on each lap (a spin, a red flag) at a level that grows slowly with the lap number. Only finitely many laps ever exceed their cap, so capping does not change where the running average ends up.",
     "examTrap": "Assuming variance is required for SLLN. Kolmogorov proved that \ud835\udd3c[|X|] < \u221e alone suffices; distributions with infinite variance (e.g. Pareto with 1 < \u03b1 \u2264 2) still satisfy SLLN!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Kolmogorov's SLLN and truncation.</b> $\\bar X_n\\to\\mu$ a.s. iff $\\mathbb E|X|\\lt \\infty$. Sketch: put $Y_n=X_n\\mathbf 1_{\\{|X_n|\\le n\\}}$. Then $\\sum_n\\mathbb P(X_n\\ne Y_n)=\\sum_n\\mathbb P(|X|\\gt n)\\le\\mathbb E|X|\\lt \\infty$, so $X_n=Y_n$ eventually (Borel\u2013Cantelli), and the truncated variables have bounded variance sums (Grimmett 7.5; Durrett 2.4).",
+    "statement": "<b>Kolmogorov's SLLN and truncation.</b><span class=\"ln\">$\\bar X_n\\to\\mu$ a.s. iff $\\mathbb E|X|\\lt \\infty$.</span><span class=\"ln\">Sketch: put $Y_n=X_n\\mathbf 1_{\\{|X_n|\\le n\\}}$.</span><span class=\"ln in\">Then $\\sum_n\\mathbb P(X_n\\ne Y_n)=\\sum_n\\mathbb P(|X|\\gt n)\\le\\mathbb E|X|\\lt \\infty$,</span><span class=\"ln in\">so $X_n=Y_n$ eventually (Borel\u2013Cantelli),</span><span class=\"ln in\">and the truncated variables have bounded variance sums.</span><span class=\"src\">Grimmett 7.5; Durrett 2.4</span>",
     "hint": "How do you tame an unbounded lap by clipping it, and why do only finitely many laps get clipped?",
     "breakdown": [
       "<strong>$Y_n=X_n\\mathbf 1_{\\{|X_n|\\le n\\}}$ = clip the big laps.</strong> Replace a lap by 0 if it exceeds a cap that grows with $n$.",
@@ -2844,7 +2844,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>One snapshot versus the whole career.</strong> The weak law promises that after 1000 laps Max's average is very likely close to his true pace. The strong law promises that from some lap on it is close after every later lap too.",
     "examTrap": "Assuming WLLN implies SLLN. Variables can satisfy WLLN while oscillating violently out of the tube infinitely many times (e.g. typewriter sequence).",
     "stmtKind": "THEOREM",
-    "statement": "<b>WLLN versus SLLN.</b> The WLLN says $\\mathbb P(|\\bar X_n-\\mu|\\ge\\varepsilon)\\to0$ for each fixed $\\varepsilon$ (a statement about the law at each time $n$). The SLLN says $\\mathbb P\\bigl(\\bigcup_{k\\ge n}\\{|\\bar X_k-\\mu|\\ge\\varepsilon\\}\\bigr)\\to0$ as $n\\to\\infty$ (a statement about the whole path after $n$) (Grimmett 7.2, 7.5).",
+    "statement": "<b>WLLN versus SLLN.</b><span class=\"ln\">The WLLN says $\\mathbb P(|\\bar X_n-\\mu|\\ge\\varepsilon)\\to0$ for each fixed $\\varepsilon$</span><span class=\"ln in\">(a statement about the law at each time $n$).</span><span class=\"ln\">The SLLN says $\\mathbb P\\bigl(\\bigcup_{k\\ge n}\\{|\\bar X_k-\\mu|\\ge\\varepsilon\\}\\bigr)\\to0$ as $n\\to\\infty$</span><span class=\"ln in\">(a statement about the whole path after $n$).</span><span class=\"src\">Grimmett 7.2, 7.5</span>",
     "hint": "What does a law about one lap count say, compared with a law about Max's whole career path?",
     "breakdown": [
       "<strong>$\\mathbb P(|\\bar X_n-\\mu|\\ge\\varepsilon)\\to0$ = a snapshot.</strong> At any chosen lap count $n$, a miss is unlikely; different $n$ may have different unlucky careers.",
@@ -2874,7 +2874,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Where a spinning car hits the wall.</strong> A car that spins off at a uniformly random angle hits a long straight barrier at a Cauchy-distributed point: now and then it slides almost parallel and lands enormously far down the track. Average as many spin-offs as you like; the average impact point never settles.",
     "examTrap": "Attempting to apply LLN to Cauchy distributions because the PDF looks symmetric! Symmetry is irrelevant when the tail integral \u222b |x| f(x)dx diverges to infinity.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Failure for the Cauchy law.</b> If $X_i$ are i.i.d. standard Cauchy, $\\varphi_X(t)=e^{-|t|}$, so $\\varphi_{\\bar X_n}(t)=\\bigl[e^{-|t|/n}\\bigr]^n=e^{-|t|}$ and $\\bar X_n\\overset d=X_1$ for every $n$. Hence $\\bar X_n$ does not converge to a constant: the laws of large numbers fail since $\\mathbb E|X|=\\infty$ (Grimmett 5.10).",
+    "statement": "<b>Failure for the Cauchy law.</b><span class=\"ln\">If $X_i$ are i.i.d. standard Cauchy, $\\varphi_X(t)=e^{-|t|}$,</span><span class=\"ln in\">so $\\varphi_{\\bar X_n}(t)=\\bigl[e^{-|t|/n}\\bigr]^n=e^{-|t|}$</span><span class=\"ln in\">and $\\bar X_n\\overset d=X_1$ for every $n$.</span><span class=\"ln\">Hence $\\bar X_n$ does not converge to a constant:</span><span class=\"ln in\">the laws of large numbers fail since $\\mathbb E|X|=\\infty$.</span><span class=\"src\">Grimmett 5.10</span>",
     "hint": "What happens to the average if single values can be so extreme that no mean exists?",
     "breakdown": [
       "<strong>$\\varphi_{\\bar X_n}(t)=[\\varphi_X(t/n)]^n$ = the average's transform.</strong> Independence gives $n$ equal factors.",
@@ -2904,7 +2904,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Wrapping the lap time around a circle.</strong> Each possible lap time becomes a direction on a circle. The average direction, over all of Max's laps, is a point inside the circle that encodes the whole law of his lap time.",
     "examTrap": "Believing characteristic functions can diverge to infinity like MGFs! Because |e^{itx}| = 1, the characteristic function is universally bounded by 1 everywhere.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Characteristic function.</b> For a random variable $X$, $\\varphi_X(t)=\\mathbb E[e^{itX}]$, $t\\in\\mathbb R$. It exists for every $X$, $|\\varphi_X(t)|\\le1$, $\\varphi_X(0)=1$, $\\varphi_{aX+b}(t)=e^{itb}\\varphi_X(at)$, and it determines the law of $X$; for independent $X,Y$, $\\varphi_{X+Y}=\\varphi_X\\varphi_Y$ (Grimmett 5.7; Durrett 3.3).",
+    "statement": "<b>Characteristic function.</b><span class=\"ln\">For a random variable $X$, $\\varphi_X(t)=\\mathbb E[e^{itX}]$, $t\\in\\mathbb R$.</span><span class=\"ln in\">It exists for every $X$, $|\\varphi_X(t)|\\le1$, $\\varphi_X(0)=1$,</span><span class=\"ln in\">$\\varphi_{aX+b}(t)=e^{itb}\\varphi_X(at)$,</span><span class=\"ln in\">and it determines the law of $X$;</span><span class=\"ln\">for independent $X,Y$, $\\varphi_{X+Y}=\\varphi_X\\varphi_Y$.</span><span class=\"src\">Grimmett 5.7; Durrett 3.3</span>",
     "hint": "Which transform of a lap-time law always exists, even for laws with no mean?",
     "breakdown": [
       "<strong>$e^{itX}$ = a point on the unit circle.</strong> Each lap time $X$ becomes an angle $tX$ and a point on a circle of radius 1.",
@@ -2934,7 +2934,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Judging the shape by its fingerprint.</strong> Instead of watching the histogram of Max's total race time change with the number of laps $n$, you watch its transform at each frequency; when every frequency has settled, the shape has settled.",
     "examTrap": "Ignoring continuity at t = 0! For Uniform(-n, n), \u03c6(t) = sin(nt)/(nt) \u2192 0 for t \u2260 0 and 1 at t = 0. The limit is discontinuous at 0, signaling mass escape to infinity.",
     "stmtKind": "THEOREM",
-    "statement": "<b>L\u00e9vy's continuity theorem.</b> $X_n\\xrightarrow{d}X$ if and only if $\\varphi_{X_n}(t)\\to\\varphi_X(t)$ for every $t\\in\\mathbb R$. More generally, if $\\varphi_{X_n}(t)\\to\\varphi(t)$ pointwise and $\\varphi$ is continuous at $0$, then $\\varphi$ is the characteristic function of some $X$ and $X_n\\xrightarrow{d}X$ (Grimmett 5.9; Durrett 3.3).",
+    "statement": "<b>L\u00e9vy's continuity theorem.</b><span class=\"ln\">$X_n\\xrightarrow{d}X$ if and only if $\\varphi_{X_n}(t)\\to\\varphi_X(t)$ for every $t\\in\\mathbb R$.</span><span class=\"ln\">More generally, if $\\varphi_{X_n}(t)\\to\\varphi(t)$ pointwise and $\\varphi$ is continuous at $0$,</span><span class=\"ln in\">then $\\varphi$ is the characteristic function of some $X$</span><span class=\"ln in\">and $X_n\\xrightarrow{d}X$.</span><span class=\"src\">Grimmett 5.9; Durrett 3.3</span>",
     "hint": "How can you check that a sequence of laws settles by looking at their transforms only?",
     "breakdown": [
       "<strong>$\\varphi_{X_n}(t)$ = the transform of the $n$-th law.</strong> One function of $t$ for each $n$.",
@@ -2964,7 +2964,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A whole race is a bell.</strong> Whatever shape one lap time has (a few slow laps in traffic make it lopsided), Max's total time over 57 laps, measured in standard units, has a bell-shaped histogram. Only the average and the spread of one lap matter.",
     "examTrap": "Applying CLT to unscaled sums S_n or raw means X\u0304_n! S_n variance explodes to \u221e; X\u0304_n variance collapses to 0. CLT applies ONLY to the \u221an-standardized deviation.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Central limit theorem (Lindeberg\u2013L\u00e9vy).</b> Let $X_1,X_2,\\ldots$ be i.i.d. with mean $\\mu$ and variance $\\sigma^2\\in(0,\\infty)$. Then $Z_n=\\dfrac{\\sum_{i=1}^nX_i-n\\mu}{\\sigma\\sqrt n}\\xrightarrow{d}\\mathcal N(0,1)$. Proof: $\\varphi_{Z_n}(t)=\\bigl(1-\\frac{t^2}{2n}+o(\\frac{t^2}n)\\bigr)^n\\to e^{-t^2/2}$, then L\u00e9vy (Ross 8.3; Grimmett 5.10).",
+    "statement": "<b>Central limit theorem (Lindeberg\u2013L\u00e9vy).</b><span class=\"ln\">Let $X_1,X_2,\\ldots$ be i.i.d. with mean $\\mu$ and variance $\\sigma^2\\in(0,\\infty)$.</span><span class=\"ln in\">Then $Z_n=\\dfrac{\\sum_{i=1}^nX_i-n\\mu}{\\sigma\\sqrt n}\\xrightarrow{d}\\mathcal N(0,1)$.</span><span class=\"ln\">Proof: $\\varphi_{Z_n}(t)=\\bigl(1-\\frac{t^2}{2n}+o(\\frac{t^2}n)\\bigr)^n\\to e^{-t^2/2}$,</span><span class=\"ln in\">then L\u00e9vy.</span><span class=\"src\">Ross 8.3; Grimmett 5.10</span>",
     "hint": "Why does the total of many independent laps look like a bell, whatever one lap looks like?",
     "breakdown": [
       "<strong>$\\sum X_i-n\\mu$ = the total, centred.</strong> Subtract the expected race time, so the leftover has mean 0.",
@@ -2994,7 +2994,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How good is the bell for one season?</strong> Max's number of wins in a 24-race season is a whole-number count. A lopsided win chance needs more races before the count looks like a bell. And to ask for \u201cat most 15 wins\u201d, ask the bell up to 15.5.",
     "examTrap": "Omitting the continuity correction on exam calculations! For moderate sample sizes (n = 50-100), omitting \u00b10.5 can induce up to 10% calculation error.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Berry\u2013Esseen theorem.</b> For i.i.d. $X_i$ with $\\mathbb E|X-\\mu|^3\\lt \\infty$, $\\sup_x|F_{Z_n}(x)-\\Phi(x)|\\le\\dfrac{C\\,\\mathbb E|X-\\mu|^3}{\\sigma^3\\sqrt n}$ with $C\\le0.4748$. For integer-valued sums, the continuity correction $\\mathbb P(S_n\\le k)\\approx\\Phi\\!\\left(\\frac{k+\\frac12-n\\mu}{\\sigma\\sqrt n}\\right)$ is more accurate (Grimmett 5.10; Ross 8.3).",
+    "statement": "<b>Berry\u2013Esseen theorem.</b><span class=\"ln\">For i.i.d. $X_i$ with $\\mathbb E|X-\\mu|^3\\lt \\infty$,</span><span class=\"ln in\">$\\sup_x|F_{Z_n}(x)-\\Phi(x)|\\le\\dfrac{C\\,\\mathbb E|X-\\mu|^3}{\\sigma^3\\sqrt n}$</span><span class=\"ln in\">with $C\\le0.4748$.</span><span class=\"ln\">For integer-valued sums, the continuity correction</span><span class=\"ln in\">$\\mathbb P(S_n\\le k)\\approx\\Phi\\!\\left(\\frac{k+\\frac12-n\\mu}{\\sigma\\sqrt n}\\right)$</span><span class=\"ln in\">is more accurate.</span><span class=\"src\">Grimmett 5.10; Ross 8.3</span>",
     "hint": "How far from a perfect bell is a sum of n terms, like Max's wins in a season, and how do you handle that counts come in whole numbers?",
     "breakdown": [
       "<strong>$\\sup_x|F_{Z_n}(x)-\\Phi(x)|$ = the largest gap between CDFs.</strong> The worst disagreement, anywhere, between the standardised total and the bell.",
@@ -3024,7 +3024,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Many different laps.</strong> A race is made of different laps (the start, laps on fresh and on worn tyres, the pit-stop lap, laps behind the safety car), each with its own spread. It still adds up to a bell, as long as no single lap is so big or so wild that it dominates the total.",
     "examTrap": "Applying CLT when one giant term dominates the sum! If X\u2081 contributes 90% of total variance, the sum reflects X\u2081's individual distribution and fails CLT.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Lyapunov and Lindeberg CLT.</b> Let $X_i$ be independent with means $\\mu_i$, variances $\\sigma_i^2$ and $s_n^2=\\sum_{i\\le n}\\sigma_i^2$. If for some $\\delta\\gt 0$ (Lyapunov) $\\frac1{s_n^{2+\\delta}}\\sum_{i\\le n}\\mathbb E|X_i-\\mu_i|^{2+\\delta}\\to0$, then $\\frac1{s_n}\\sum_{i\\le n}(X_i-\\mu_i)\\xrightarrow{d}\\mathcal N(0,1)$. Lindeberg's condition $\\frac1{s_n^2}\\sum\\mathbb E[(X_i-\\mu_i)^2\\mathbf 1_{\\{|X_i-\\mu_i|\\gt \\varepsilon s_n\\}}]\\to0$ is weaker and, with $\\max_i\\sigma_i/s_n\\to0$, necessary (Grimmett 5.10; Durrett 3.4).",
+    "statement": "<b>Lyapunov and Lindeberg CLT.</b><span class=\"ln\">Let $X_i$ be independent with means $\\mu_i$, variances $\\sigma_i^2$ and $s_n^2=\\sum_{i\\le n}\\sigma_i^2$.</span><span class=\"ln\">If for some $\\delta\\gt 0$ (Lyapunov)</span><span class=\"ln in\">$\\frac1{s_n^{2+\\delta}}\\sum_{i\\le n}\\mathbb E|X_i-\\mu_i|^{2+\\delta}\\to0$,</span><span class=\"ln in\">then $\\frac1{s_n}\\sum_{i\\le n}(X_i-\\mu_i)\\xrightarrow{d}\\mathcal N(0,1)$.</span><span class=\"ln\">Lindeberg's condition</span><span class=\"ln in\">$\\frac1{s_n^2}\\sum\\mathbb E[(X_i-\\mu_i)^2\\mathbf 1_{\\{|X_i-\\mu_i|\\gt \\varepsilon s_n\\}}]\\to0$</span><span class=\"ln in\">is weaker and, with $\\max_i\\sigma_i/s_n\\to0$, necessary.</span><span class=\"src\">Grimmett 5.10; Durrett 3.4</span>",
     "hint": "If the laps are not identical, what stops a single one from spoiling the bell?",
     "breakdown": [
       "<strong>$s_n^2=\\sum\\sigma_i^2$ = the total variance.</strong> The sum of every lap's variance.",
@@ -3054,7 +3054,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>About half the races won.</strong> If Max wins each race with chance \u00bd, then over 100 races he wins between 45 and 55 of them about 73% of the time. The bars of the exact counts follow the bell of mean 50 and spread 5.",
     "examTrap": "Evaluating without continuity correction: (55 - 50)/5 = 1.0 \u21d2 2\u03a6(1.0) - 1 = 0.6827, introducing an unnecessary 4.6% approximation error.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>De Moivre\u2013Laplace.</b> Let $S_{100}$ be the number of heads in $100$ fair tosses, so $\\mu=50$, $\\sigma=5$. With the continuity correction, $\\mathbb P(45\\le S_{100}\\le55)\\approx\\Phi\\!\\left(\\frac{55.5-50}{5}\\right)-\\Phi\\!\\left(\\frac{44.5-50}{5}\\right)=2\\Phi(1.1)-1\\approx0.7286$ (Ross 8.3; Grimmett 5.10).",
+    "statement": "<b>De Moivre\u2013Laplace.</b><span class=\"ln\">Let $S_{100}$ be the number of heads in $100$ fair tosses, so $\\mu=50$, $\\sigma=5$.</span><span class=\"ln\">With the continuity correction,</span><span class=\"ln in\">$\\mathbb P(45\\le S_{100}\\le55)\\approx\\Phi\\!\\left(\\frac{55.5-50}{5}\\right)-\\Phi\\!\\left(\\frac{44.5-50}{5}\\right)$</span><span class=\"ln in\">$=2\\Phi(1.1)-1\\approx0.7286$.</span><span class=\"src\">Ross 8.3; Grimmett 5.10</span>",
     "hint": "If Max wins each of 100 independent races with chance \u00bd, how likely is it that he wins between 45 and 55 of them?",
     "breakdown": [
       "<strong>$\\mu=50,\\ \\sigma=\\sqrt{100\\cdot\\frac14}=5$ = centre and spread.</strong> The count of wins has mean $np$ and standard deviation $\\sqrt{np(1-p)}$.",
@@ -3084,7 +3084,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Form carries over one race.</strong> If Max just won, the chance he wins again next time is $P_{WW}$, whatever happened earlier in the season. One row of the matrix is the odds for the next race after a given result, and those odds add to one.",
     "examTrap": "Assuming matrix columns sum to 1! In general, P is ROW-stochastic (rows sum to 1). A matrix whose columns also sum to 1 is doubly stochastic (a special subclass).",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Markov chain.</b> A process $(X_n)_{n\\ge0}$ on a countable state space $S$ is a Markov chain with transition matrix $P=(P_{ij})$ if $\\mathbb P(X_{n+1}=j\\mid X_n=i,X_{n-1}=i_{n-1},\\ldots,X_0=i_0)=P_{ij}$ for all $n$ and all histories. Each row sums to one: $\\sum_{j\\in S}P_{ij}=1$ (Ross 4.1; Grimmett 6.1).",
+    "statement": "<b>Markov chain.</b><span class=\"ln\">A process $(X_n)_{n\\ge0}$ on a countable state space $S$ is a Markov chain with transition matrix $P=(P_{ij})$ if</span><span class=\"ln in\">$\\mathbb P(X_{n+1}=j\\mid X_n=i,X_{n-1}=i_{n-1},\\ldots,X_0=i_0)=P_{ij}$</span><span class=\"ln in\">for all $n$ and all histories.</span><span class=\"ln\">Each row sums to one: $\\sum_{j\\in S}P_{ij}=1$.</span><span class=\"src\">Ross 4.1; Grimmett 6.1</span>",
     "hint": "If Max's result in the next race depends only on this race, how do you write down the chances?",
     "breakdown": [
       "<strong>$\\mathbb P(X_{n+1}=j\\mid X_n=i,\\ldots,X_0=i_0)$ = the next race, given the whole past.</strong> The chance of result $j$ next race, given every race so far.",
@@ -3114,7 +3114,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Two races ahead by squaring.</strong> To predict the race after next, add up over what the next race could be: a win, a podium or off the podium. That sum is exactly one matrix product, so $n$ races ahead is the $n$-th power of the table.",
     "examTrap": "Multiplying state distribution from the wrong side: p^{(n)} = p^{(0)} P^n where p^{(0)} is a ROW vector. Writing P^n p^{(0)} causes matrix dimension mismatch!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Chapman\u2013Kolmogorov.</b> For a Markov chain, $P^{(m+n)}_{ij}=\\sum_{k\\in S}P^{(m)}_{ik}P^{(n)}_{kj}$, i.e. $P^{(m+n)}=P^mP^n$ and so $P^{(n)}=P^n$. If $\\mathbf p^{(0)}$ is the law of $X_0$, then $\\mathbf p^{(n)}=\\mathbf p^{(0)}P^n$ is the law of $X_n$ (Ross 4.2; Grimmett 6.1).",
+    "statement": "<b>Chapman\u2013Kolmogorov.</b><span class=\"ln\">For a Markov chain,</span><span class=\"ln in\">$P^{(m+n)}_{ij}=\\sum_{k\\in S}P^{(m)}_{ik}P^{(n)}_{kj}$,</span><span class=\"ln in\">i.e. $P^{(m+n)}=P^mP^n$ and so $P^{(n)}=P^n$.</span><span class=\"ln\">If $\\mathbf p^{(0)}$ is the law of $X_0$,</span><span class=\"ln in\">then $\\mathbf p^{(n)}=\\mathbf p^{(0)}P^n$ is the law of $X_n$.</span><span class=\"src\">Ross 4.2; Grimmett 6.1</span>",
     "hint": "How do you get the chances for Max's result n races ahead from the one-race table?",
     "breakdown": [
       "<strong>$P^{(m+n)}_{ij}$ = from $i$ to $j$ in $m+n$ races.</strong> The chance of result $j$ after $m+n$ races, starting from result $i$.",
@@ -3144,7 +3144,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Which results connect.</strong> From a win Max can drop to a podium and climb back, so those are one class. Add a state \u201cretired from the sport\u201d: he can get there, but never comes back, so it sits in a class of its own.",
     "examTrap": "Confusing 1-step transitions with accessibility! P_{ij} = 0 does NOT imply j is inaccessible from i; state j might be reached in 2, 3, or more hops (P_{ij}^{(n)} > 0).",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Accessibility and communication.</b> State $j$ is accessible from $i$, $i\\to j$, if $P^{(n)}_{ij}\\gt 0$ for some $n\\ge0$. States communicate, $i\\leftrightarrow j$, if $i\\to j$ and $j\\to i$. Communication is an equivalence relation, so the state space splits into disjoint classes: $S=\\bigcup_kC_k$ (Ross 4.3; Grimmett 6.2).",
+    "statement": "<b>Accessibility and communication.</b><span class=\"ln\">State $j$ is accessible from $i$, $i\\to j$, if $P^{(n)}_{ij}\\gt 0$ for some $n\\ge0$.</span><span class=\"ln\">States communicate, $i\\leftrightarrow j$, if $i\\to j$ and $j\\to i$.</span><span class=\"ln\">Communication is an equivalence relation,</span><span class=\"ln in\">so the state space splits into disjoint classes: $S=\\bigcup_kC_k$.</span><span class=\"src\">Ross 4.3; Grimmett 6.2</span>",
     "hint": "Which results can lead to which, and which pairs can lead back to each other?",
     "breakdown": [
       "<strong>$i\\to j\\iff P^{(n)}_{ij}\\gt 0$ for some $n\\ge0$ = a path exists.</strong> There is a chain of possible race-to-race moves from $i$ to $j$.",
@@ -3174,7 +3174,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Wins keep coming back.</strong> In a long career a win comes round again and again: recurrent. A state like \u201chis debut race\u201d happens once and never again, so it is transient.",
     "examTrap": "Assuming all states in a finite Markov chain can be transient. In ANY finite-state Markov chain, at least ONE state must be recurrent (probability mass has nowhere to escape).",
     "stmtKind": "THEOREM",
-    "statement": "<b>Recurrence and transience.</b> Let $f_{ii}=\\mathbb P(X_n=i\\text{ for some }n\\ge1\\mid X_0=i)$. State $i$ is recurrent iff $f_{ii}=1$ iff $\\sum_{n\\ge1}P^{(n)}_{ii}=\\infty$, and transient iff $f_{ii}\\lt 1$ iff $\\sum_{n\\ge1}P^{(n)}_{ii}\\lt \\infty$ (Ross 4.3; Grimmett 6.2).",
+    "statement": "<b>Recurrence and transience.</b><span class=\"ln\">Let $f_{ii}=\\mathbb P(X_n=i\\text{ for some }n\\ge1\\mid X_0=i)$.</span><span class=\"ln\">State $i$ is</span><span class=\"ln in\">recurrent iff $f_{ii}=1$ iff $\\sum_{n\\ge1}P^{(n)}_{ii}=\\infty$,</span><span class=\"ln in\">and transient iff $f_{ii}\\lt 1$ iff $\\sum_{n\\ge1}P^{(n)}_{ii}\\lt \\infty$.</span><span class=\"src\">Ross 4.3; Grimmett 6.2</span>",
     "hint": "Is Max sure to win again some day, or can a state be left for good?",
     "breakdown": [
       "<strong>$f_{ii}$ = the chance of ever returning to $i$.</strong> Start at $i$; $f_{ii}$ is the chance of being at $i$ again in some later race.",
@@ -3204,7 +3204,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A strict four-race rotation.</strong> Say Red Bull rotates Max's car through four set-ups in a fixed order, one per race. Set-up 0 can only come back every 4th race, and so can every other set-up in the loop. Any shortcut of another length would break the rhythm.",
     "examTrap": "Defining period as the minimum return time! Period is the GREATEST COMMON DIVISOR of all return times, not the length of the shortest loop.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Period and class properties.</b> The period of $i$ is $d(i)=\\gcd\\{n\\ge1:P^{(n)}_{ii}\\gt 0\\}$; $i$ is aperiodic if $d(i)=1$. If $i\\leftrightarrow j$ then $d(i)=d(j)$, and $i$ is recurrent iff $j$ is recurrent: period, recurrence and transience are class properties (Ross 4.3; Grimmett 6.2).",
+    "statement": "<b>Period and class properties.</b><span class=\"ln\">The period of $i$ is $d(i)=\\gcd\\{n\\ge1:P^{(n)}_{ii}\\gt 0\\}$;</span><span class=\"ln in\">$i$ is aperiodic if $d(i)=1$.</span><span class=\"ln\">If $i\\leftrightarrow j$</span><span class=\"ln in\">then $d(i)=d(j)$, and $i$ is recurrent iff $j$ is recurrent:</span><span class=\"ln\">period, recurrence and transience are class properties.</span><span class=\"src\">Ross 4.3; Grimmett 6.2</span>",
     "hint": "If a state can only come back every fourth race, what does that say about the rest of its class?",
     "breakdown": [
       "<strong>$\\{n\\ge1:P^{(n)}_{ii}\\gt 0\\}$ = possible return times.</strong> The numbers of races after which you can be back at $i$.",
@@ -3234,7 +3234,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The gap to a rival.</strong> Each lap Max either gains a tenth on the rival or loses one. If both cars are equally quick, the gap comes back to zero for sure, again and again. If Max's car is faster, the gap drifts away and may never be zero again.",
     "examTrap": "Missing period 2: P_{00}^{(2n+1)} = 0 for all odd steps. Returns require an equal number of left and right steps; only even powers contribute to the return series.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>P\u00f3lya: the 1D random walk.</b> Step $+1$ with probability $p$, $-1$ with $1-p$. Then $P^{(2n)}_{00}=\\binom{2n}n(p(1-p))^n\\sim\\frac{(4p(1-p))^n}{\\sqrt{\\pi n}}$. For $p=\\tfrac12$ the sum $\\sum_nP^{(2n)}_{00}=\\infty$ (recurrent); for $p\\ne\\tfrac12$ it is finite (transient) (Ross 4.3; Grimmett 6.3).",
+    "statement": "<b>P\u00f3lya: the 1D random walk.</b><span class=\"ln\">Step $+1$ with probability $p$, $-1$ with $1-p$.</span><span class=\"ln in\">Then $P^{(2n)}_{00}=\\binom{2n}n(p(1-p))^n\\sim\\frac{(4p(1-p))^n}{\\sqrt{\\pi n}}$.</span><span class=\"ln\">For $p=\\tfrac12$ the sum $\\sum_nP^{(2n)}_{00}=\\infty$ (recurrent);</span><span class=\"ln\">for $p\\ne\\tfrac12$ it is finite (transient).</span><span class=\"src\">Ross 4.3; Grimmett 6.3</span>",
     "hint": "If the gap to a rival goes up or down one step each lap, are they sure to be level again? What if Max's car is faster?",
     "breakdown": [
       "<strong>$P^{(2n)}_{00}=\\binom{2n}n(p(1-p))^n$ = $n$ ups and $n$ downs.</strong> Getting back to a zero gap needs as many steps up as down, so only at an even lap count.",
@@ -3264,7 +3264,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Max's steady win rate.</strong> Say after a win he wins again with chance $0.8$, and after a non-win he wins with chance $0.4$. Then a split of $\\frac23$ wins and $\\frac13$ non-wins reproduces itself: $0.8\\cdot\\frac23+0.4\\cdot\\frac13=\\frac23$.",
     "examTrap": "Confusing left vs right eigenvectors! \u03c0^T P = \u03c0^T is a *left* eigenvector equation. The trivial *right* eigenvector with eigenvalue 1 is the vector of all ones P 1 = 1, which represents row-stochasticity, not the stationary distribution!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Stationary distribution.</b> A probability vector $\\pi$ on $S$ is stationary for $P$ if $\\pi^{\\top}P=\\pi^{\\top}$, i.e. $\\pi_j=\\sum_{i\\in S}\\pi_iP_{ij}$ for all $j$, with $\\pi_i\\ge0$ and $\\sum_i\\pi_i=1$. If $X_0\\sim\\pi$ then $X_n\\sim\\pi$ for every $n$ (Ross 4.4; Grimmett 6.4).",
+    "statement": "<b>Stationary distribution.</b><span class=\"ln\">A probability vector $\\pi$ on $S$ is stationary for $P$ if $\\pi^{\\top}P=\\pi^{\\top}$,</span><span class=\"ln in\">i.e. $\\pi_j=\\sum_{i\\in S}\\pi_iP_{ij}$ for all $j$,</span><span class=\"ln in\">with $\\pi_i\\ge0$ and $\\sum_i\\pi_i=1$.</span><span class=\"ln\">If $X_0\\sim\\pi$ then $X_n\\sim\\pi$ for every $n$.</span><span class=\"src\">Ross 4.4; Grimmett 6.4</span>",
     "hint": "Which split of wins and non-wins stays exactly the same from one race to the next?",
     "breakdown": [
       "<strong>$\\pi_j=\\sum_i\\pi_iP_{ij}$ = inflow equals share.</strong> The weight of $j$ next race is what flows in from every $i$, weighted by this race's share $\\pi_i$.",
@@ -3294,7 +3294,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The first race of the season does not matter.</strong> Whether Max won the opener or not, by mid-season the chance he wins a given race is the same $\\frac23$. That is one over the mean return time to a win: on average the next win comes $1/\\pi_W=1.5$ races later.",
     "examTrap": "Applying the limit theorem to periodic chains! If the chain is bipartite or cyclic (period d > 1), P_ij^(n) does not converge as n \u2192 \u221e but oscillates indefinitely, even though a unique stationary distribution \u03c0 exists!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Fundamental limit theorem.</b> For an irreducible, aperiodic, positive recurrent chain, $\\lim_{n\\to\\infty}P^{(n)}_{ij}=\\pi_j=\\dfrac1{\\mu_{jj}}\\gt 0$ for all $i,j$, where $\\mu_{jj}=\\mathbb E[\\tau_j\\mid X_0=j]$ is the mean return time to $j$, and $\\pi$ is the unique stationary distribution (Ross 4.4; Grimmett 6.4).",
+    "statement": "<b>Fundamental limit theorem.</b><span class=\"ln\">For an irreducible, aperiodic, positive recurrent chain,</span><span class=\"ln in\">$\\lim_{n\\to\\infty}P^{(n)}_{ij}=\\pi_j=\\dfrac1{\\mu_{jj}}\\gt 0$ for all $i,j$,</span><span class=\"ln in\">where $\\mu_{jj}=\\mathbb E[\\tau_j\\mid X_0=j]$ is the mean return time to $j$,</span><span class=\"ln in\">and $\\pi$ is the unique stationary distribution.</span><span class=\"src\">Ross 4.4; Grimmett 6.4</span>",
     "hint": "Why does Max's chance of winning a race far into the season settle on one number, however the season began?",
     "breakdown": [
       "<strong>$P^{(n)}_{ij}\\to\\pi_j$ = the start is forgotten.</strong> After many races the chance of being at $j$ does not depend on $i$.",
@@ -3324,7 +3324,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Sure to be level again, but too slowly.</strong> If two equally quick cars swap a tenth back and forth each lap with no limit on the gap, they are sure to be level again, but the average time until then is infinite. So there is no steady share of laps spent level, even though it keeps happening.",
     "examTrap": "Assuming recurrence implies existence of a stationary distribution! On infinite state spaces, symmetric random walks are recurrent (f_00 = 1) but possess NO stationary probability distribution because \u03bc_00 = \u221e.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Positive versus null recurrence.</b> A recurrent state $i$ is positive recurrent if $\\mu_{ii}=\\mathbb E[\\tau_i\\mid X_0=i]\\lt \\infty$ and null recurrent if $\\mu_{ii}=\\infty$. An irreducible chain has a stationary distribution iff it is positive recurrent; for null recurrent or transient chains $\\pi_i\\equiv0$ (e.g. the symmetric random walk) (Ross 4.4; Grimmett 6.4).",
+    "statement": "<b>Positive versus null recurrence.</b><span class=\"ln\">A recurrent state $i$ is</span><span class=\"ln in\">positive recurrent if $\\mu_{ii}=\\mathbb E[\\tau_i\\mid X_0=i]\\lt \\infty$</span><span class=\"ln in\">and null recurrent if $\\mu_{ii}=\\infty$.</span><span class=\"ln\">An irreducible chain has a stationary distribution iff it is positive recurrent;</span><span class=\"ln in\">for null recurrent or transient chains $\\pi_i\\equiv0$ (e.g. the symmetric random walk).</span><span class=\"src\">Ross 4.4; Grimmett 6.4</span>",
     "hint": "He comes back for sure, but can the average time to come back be so long that no long-run share exists?",
     "breakdown": [
       "<strong>$\\mu_{ii}\\lt \\infty$ = positive recurrent.</strong> The expected time to return is finite, so a positive fraction of races is spent at $i$.",
@@ -3354,7 +3354,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Balance the flow.</strong> Of all races, $\\frac23$ are wins and $\\frac15$ of those are followed by a non-win; $\\frac13$ are non-wins and $\\frac25$ of those are followed by a win. Both flows are $\\frac2{15}$ of all races: the streaks that end match the streaks that start.",
     "examTrap": "Thinking all Markov chains satisfy detailed balance! Detailed balance only holds for *reversible* chains (such as trees or birth-death chains). Unidirectional cyclic chains (1 \u2192 2 \u2192 3 \u2192 1) satisfy global balance but violate detailed balance!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Cut equations and detailed balance.</b> If $\\pi$ is stationary then for every $A\\subset S$, $\\sum_{i\\in A,\\,j\\in A^c}\\pi_iP_{ij}=\\sum_{j\\in A^c,\\,i\\in A}\\pi_jP_{ji}$. If $\\pi_iP_{ij}=\\pi_jP_{ji}$ for all $i,j$ (detailed balance), then $\\pi^{\\top}P=\\pi^{\\top}$ and the chain is reversible (Ross 4.8; Grimmett 6.5).",
+    "statement": "<b>Cut equations and detailed balance.</b><span class=\"ln\">If $\\pi$ is stationary then for every $A\\subset S$,</span><span class=\"ln in\">$\\sum_{i\\in A,\\,j\\in A^c}\\pi_iP_{ij}=\\sum_{j\\in A^c,\\,i\\in A}\\pi_jP_{ji}$.</span><span class=\"ln\">If $\\pi_iP_{ij}=\\pi_jP_{ji}$ for all $i,j$ (detailed balance),</span><span class=\"ln in\">then $\\pi^{\\top}P=\\pi^{\\top}$ and the chain is reversible.</span><span class=\"src\">Ross 4.8; Grimmett 6.5</span>",
     "hint": "How can you find the steady split by balancing the moves between two groups of results?",
     "breakdown": [
       "<strong>$\\sum_{i\\in A,j\\in A^c}\\pi_iP_{ij}$ = flow out of $A$.</strong> The long-run rate of moves from a set $A$ to its complement.",
@@ -3384,7 +3384,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Strictly alternating results still have a share.</strong> If Max won exactly every other race, the chance he wins race $n$ is 0 or 1 and never settles. But the fraction of wins over many races is steady at one half.",
     "examTrap": "Claiming a periodic chain has no stationary distribution! Periodicity only prevents pointwise convergence lim_{n \u2192 \u221e} P_ij^(n); the stationary distribution \u03c0 still exists and satisfies \u03c0^T P = \u03c0^T uniquely!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Periodic chains and Ces\u00e0ro limits.</b> For an irreducible positive recurrent chain, periodic or not, $\\lim_{N\\to\\infty}\\frac1N\\sum_{n=1}^NP^{(n)}_{ij}=\\pi_j$. If the chain has period $d\\gt 1$, $P^{(n)}_{ij}$ itself does not converge (Ross 4.4; Grimmett 6.4).",
+    "statement": "<b>Periodic chains and Ces\u00e0ro limits.</b><span class=\"ln\">For an irreducible positive recurrent chain, periodic or not,</span><span class=\"ln in\">$\\lim_{N\\to\\infty}\\frac1N\\sum_{n=1}^NP^{(n)}_{ij}=\\pi_j$.</span><span class=\"ln\">If the chain has period $d\\gt 1$,</span><span class=\"ln in\">$P^{(n)}_{ij}$ itself does not converge.</span><span class=\"src\">Ross 4.4; Grimmett 6.4</span>",
     "hint": "If Max's results flip back and forth in a fixed rhythm, in what sense do they still settle?",
     "breakdown": [
       "<strong>$P^{(n)}_{ij}$ may oscillate.</strong> A strictly alternating chain has $P^{(n)}_{ii}=1,0,1,0,\\ldots$, with no limit.",
@@ -3414,7 +3414,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>One career tells the story.</strong> Keep a tally of how many races Max did not win. Over a long career that fraction gets very close to $\\frac13$, just as the steady split says, whatever happened in his first race. Points work the same way: average points per race tend to $\\sum_j\\pi_jf(j)$.",
     "examTrap": "Applying the Ergodic Theorem to reducible chains! If the chain has multiple communicating recurrent classes, the long-run average lim (1/N) \u03a3 f(X_n) is a random variable dependent on which class the chain was absorbed into, not a single constant!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Ergodic theorem for Markov chains.</b> For an irreducible positive recurrent chain with stationary $\\pi$ and $f$ with $\\sum_j\\pi_j|f(j)|\\lt \\infty$, $\\lim_{N\\to\\infty}\\frac1N\\sum_{n=1}^Nf(X_n)=\\sum_{j\\in S}\\pi_jf(j)=\\mathbb E_\\pi[f(X)]$ almost surely, from any starting state (Ross 4.4; Grimmett 6.4).",
+    "statement": "<b>Ergodic theorem for Markov chains.</b><span class=\"ln\">For an irreducible positive recurrent chain with stationary $\\pi$</span><span class=\"ln\">and $f$ with $\\sum_j\\pi_j|f(j)|\\lt \\infty$,</span><span class=\"ln in\">$\\lim_{N\\to\\infty}\\frac1N\\sum_{n=1}^Nf(X_n)=\\sum_{j\\in S}\\pi_jf(j)=\\mathbb E_\\pi[f(X)]$</span><span class=\"ln in\">almost surely, from any starting state.</span><span class=\"src\">Ross 4.4; Grimmett 6.4</span>",
     "hint": "Does one long career show the steady shares, without averaging over many imagined seasons?",
     "breakdown": [
       "<strong>$\\frac1N\\sum_{n\\le N}f(X_n)$ = a time average on one run.</strong> Follow one run of races and average a quantity $f$ of each race's result.",
@@ -3444,7 +3444,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Look one lap ahead.</strong> The chance of getting past from gap state 2 is the average of the chances from the states he can be in after one more lap. Solving these linear equations gives every gap state's chance at once.",
     "examTrap": "Forgetting to check boundary conditions! If boundary states a_i = 1 are omitted, the trivial all-zero vector a_i \u2261 0 solves the unconstrained system a = P a. Always specify boundary conditions on absorbing sets!",
     "stmtKind": "THEOREM",
-    "statement": "<b>First-step analysis for absorption.</b> Let $A,B\\subset S$ be disjoint absorbing sets and $a_i=\\mathbb P_i(\\text{hit }A\\text{ before }B)$. Then $a_i=\\sum_{j\\in S}P_{ij}a_j$ for $i\\notin A\\cup B$, with $a_i=1$ for $i\\in A$ and $a_i=0$ for $i\\in B$. The minimal non-negative solution is $a_i$ (Ross 4.5; Grimmett 6.3).",
+    "statement": "<b>First-step analysis for absorption.</b><span class=\"ln\">Let $A,B\\subset S$ be disjoint absorbing sets and $a_i=\\mathbb P_i(\\text{hit }A\\text{ before }B)$.</span><span class=\"ln in\">Then $a_i=\\sum_{j\\in S}P_{ij}a_j$ for $i\\notin A\\cup B$,</span><span class=\"ln in\">with $a_i=1$ for $i\\in A$ and $a_i=0$ for $i\\in B$.</span><span class=\"ln\">The minimal non-negative solution is $a_i$.</span><span class=\"src\">Ross 4.5; Grimmett 6.3</span>",
     "hint": "How do you find the chance that Max overtakes before he drops out of DRS range, by looking one lap ahead?",
     "breakdown": [
       "<strong>$a_i=\\mathbb P_i(\\text{hit }A\\text{ before }B)$ = the target chance.</strong> Start in gap state $i$; $a_i$ is the chance he overtakes before he falls back and gives up.",
@@ -3474,7 +3474,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Counting laps to the overtake.</strong> The expected number of laps from a gap state is one lap plus the average of the expected laps from wherever he is next. Solving the system gives the mean number of laps to overtake from every gap.",
     "examTrap": "Omitting the +1 in hitting time calculations! Without +1, the equation becomes \u03bc = Q\u03bc, which gives the useless trivial solution \u03bc = 0. In contrast, absorption probabilities do NOT have +1.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Mean hitting time.</b> Let $\\mu_i=\\mathbb E_i[\\tau_A]$ be the expected number of steps to hit $A$. It is the minimal non-negative solution of $\\mu_i=0$ for $i\\in A$ and $\\mu_i=1+\\sum_{j\\notin A}P_{ij}\\mu_j$ for $i\\notin A$; equivalently $(I-Q)\\boldsymbol\\mu=\\mathbf 1$, with $Q$ the transitions among states outside $A$ (Ross 4.5; Grimmett 6.3).",
+    "statement": "<b>Mean hitting time.</b><span class=\"ln\">Let $\\mu_i=\\mathbb E_i[\\tau_A]$ be the expected number of steps to hit $A$.</span><span class=\"ln\">It is the minimal non-negative solution of</span><span class=\"ln in\">$\\mu_i=0$ for $i\\in A$ and</span><span class=\"ln in\">$\\mu_i=1+\\sum_{j\\notin A}P_{ij}\\mu_j$ for $i\\notin A$;</span><span class=\"ln\">equivalently $(I-Q)\\boldsymbol\\mu=\\mathbf 1$, with $Q$ the transitions among states outside $A$.</span><span class=\"src\">Ross 4.5; Grimmett 6.3</span>",
     "hint": "How many laps does the chase last on average, counted one lap at a time?",
     "breakdown": [
       "<strong>$\\mu_i=\\mathbb E_i[\\tau_A]$ = the average chase length.</strong> The expected number of steps from gap state $i$ until the first arrival in $A$.",
@@ -3504,7 +3504,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A lap counter for each gap.</strong> Entry $N_{ij}$ tells you how many laps, on average, Max spends at gap $j$ before the chase ends, if it starts at gap $i$.",
     "examTrap": "Forgetting that N_ii \u2265 1 always! When starting in state i, step n=0 counts as a visit to state i (1_{X_0=i} = 1), so the diagonal entries of N are always at least 1, even if Q_ii = 0.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Canonical form and fundamental matrix.</b> Order the states with the transient ones first: $P=\\begin{pmatrix}Q&R\\\\0&I\\end{pmatrix}$. Then $P^n=\\begin{pmatrix}Q^n&\\ast\\\\0&I\\end{pmatrix}$, $Q^n\\to0$, and $N=\\sum_{k\\ge0}Q^k=(I-Q)^{-1}$, where $N_{ij}=\\mathbb E_i[\\text{number of visits to }j\\text{ before absorption}]$ (Grimmett 6.3; Kemeny\u2013Snell).",
+    "statement": "<b>Canonical form and fundamental matrix.</b><span class=\"ln\">Order the states with the transient ones first: $P=\\begin{pmatrix}Q&R\\\\0&I\\end{pmatrix}$.</span><span class=\"ln in\">Then $P^n=\\begin{pmatrix}Q^n&\\ast\\\\0&I\\end{pmatrix}$, $Q^n\\to0$,</span><span class=\"ln in\">and $N=\\sum_{k\\ge0}Q^k=(I-Q)^{-1}$,</span><span class=\"ln in\">where $N_{ij}=\\mathbb E_i[\\text{number of visits to }j\\text{ before absorption}]$.</span><span class=\"src\">Grimmett 6.3; Kemeny\u2013Snell</span>",
     "hint": "How can the whole chase be packed into one matrix that counts visits to each gap?",
     "breakdown": [
       "<strong>$Q$ and $R$ = stay or leave.</strong> $Q$ holds the moves between gap states and $R$ the moves from a gap state into an absorbing end.",
@@ -3534,7 +3534,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>How it ends and how long.</strong> From the lap counter you read both the chance that the chase ends in an overtake rather than a give-up, and the expected number of laps the whole chase lasts.",
     "examTrap": "Multiplying RN instead of NR! The dimensions must align: N is (t \u00d7 t) and R is (t \u00d7 r), so NR produces a (t \u00d7 r) matrix mapping transient starting states to absorbing destinations. RN is undefined!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Absorption probabilities and lifetime.</b> With $N=(I-Q)^{-1}$, the matrix $B=NR$ has entries $B_{ik}=\\mathbb P_i(\\text{absorbed in state }k)$, and the vector $\\mathbf t=N\\mathbf 1$ has $t_i=\\mathbb E_i[\\tau_{\\text{abs}}]$, the expected time to absorption (Grimmett 6.3; Kemeny\u2013Snell).",
+    "statement": "<b>Absorption probabilities and lifetime.</b><span class=\"ln\">With $N=(I-Q)^{-1}$,</span><span class=\"ln in\">the matrix $B=NR$ has entries $B_{ik}=\\mathbb P_i(\\text{absorbed in state }k)$,</span><span class=\"ln in\">and the vector $\\mathbf t=N\\mathbf 1$ has $t_i=\\mathbb E_i[\\tau_{\\text{abs}}]$,</span><span class=\"ln in2\">the expected time to absorption.</span><span class=\"src\">Grimmett 6.3; Kemeny\u2013Snell</span>",
     "hint": "How does the lap counter alone tell you how the chase ends, and how long it takes?",
     "breakdown": [
       "<strong>$B=NR$ = visits times exit chances.</strong> He visits each gap state $j$ $N_{ij}$ times on average, and each visit exits to $k$ with chance $R_{jk}$.",
@@ -3564,7 +3564,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The faster car.</strong> In the chase with $N$ steps, if Max gains or loses a step on each lap with equal chance, his chance of getting past is just how far along he already is. If his car is faster ($p\\gt \\frac12$), the line bends upwards: even from far back he usually gets there.",
     "examTrap": "Using the biased formula when p = 1/2! Substituting p = q = 1/2 into (\u03c1^i - \u03c1^N)/(1 - \u03c1^N) gives indeterminate 0/0. For p = 1/2, the solution is linear a_i = 1 - i/N, not exponential!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Gambler's ruin.</b> Win each round with prob. $p$, lose with $q=1-p$, start at $i$, stop at $0$ or $N$. Then $a_i=\\mathbb P_i(\\text{reach }N)=\\dfrac{(q/p)^i-1}{(q/p)^N-1}$ for $p\\ne q$ (equivalently $\\frac{1-(q/p)^i}{1-(q/p)^N}$ for reaching $0$ with the roles swapped), and $a_i=i/N$ for $p=q=\\frac12$, where $\\mu_i=i(N-i)$ (Ross 4.5; Grimmett 3.9).",
+    "statement": "<b>Gambler's ruin.</b><span class=\"ln\">Win each round with prob. $p$, lose with $q=1-p$, start at $i$, stop at $0$ or $N$.</span><span class=\"ln in\">Then $a_i=\\mathbb P_i(\\text{reach }N)=\\dfrac{(q/p)^i-1}{(q/p)^N-1}$ for $p\\ne q$</span><span class=\"ln in2\">(equivalently $\\frac{1-(q/p)^i}{1-(q/p)^N}$ for reaching $0$ with the roles swapped),</span><span class=\"ln in\">and $a_i=i/N$ for $p=q=\\frac12$, where $\\mu_i=i(N-i)$.</span><span class=\"src\">Ross 4.5; Grimmett 3.9</span>",
     "hint": "With a fair or a biased step each lap, how likely is Max to reach the far end before the near one?",
     "breakdown": [
       "<strong>$p=q=\\frac12$: $a_i=i/N$ = linear.</strong> The chance of reaching $N$ before $0$ is the fraction of the way he already is.",
@@ -3594,7 +3594,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Waiting for a pattern of laps.</strong> Say each lap is a fair coin: quicker than the lap before (H) or not (T). The strategist waits for a pattern before calling Max in. Two quicker laps in a row take 6 laps on average, but quicker then slower only 4. Chasing H H, a slower lap after an H throws away all progress; chasing H T, another quicker lap still leaves you one lap from done.",
     "examTrap": "Assuming equally likely sequences have equal expected waiting times! At any two consecutive flips, \u2119(HT) = \u2119(HH) = 1/4, but waiting times differ fundamentally due to renewal regeneration: after seeing HH, another H immediately completes the next HH in 1 flip, clustering occurrences together!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Pattern waiting times.</b> For fair coin tosses, $\\mathbb E[T_{HT}]=4$ but $\\mathbb E[T_{HH}]=6$. In general, for a pattern $W$ of length $k$, $\\mathbb E[T_W]=\\sum_{j=1}^kc_j2^j$ where $c_j=1$ if the first $j$ letters of $W$ equal its last $j$ letters, and $0$ otherwise (Conway; Grimmett 6.3).",
+    "statement": "<b>Pattern waiting times.</b><span class=\"ln\">For fair coin tosses, $\\mathbb E[T_{HT}]=4$ but $\\mathbb E[T_{HH}]=6$.</span><span class=\"ln\">In general, for a pattern $W$ of length $k$,</span><span class=\"ln in\">$\\mathbb E[T_W]=\\sum_{j=1}^kc_j2^j$</span><span class=\"ln in\">where $c_j=1$ if the first $j$ letters of $W$ equal its last $j$ letters, and $0$ otherwise.</span><span class=\"src\">Conway; Grimmett 6.3</span>",
     "hint": "Why does waiting for two quicker laps in a row take longer than waiting for a quicker lap then a slower one?",
     "breakdown": [
       "<strong>$\\mathbb E[T_{HT}]=4$ = no overlap.</strong> After an H you are one lap from success; a wrong lap just restarts with a partial match.",
@@ -3624,7 +3624,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A ladder of championship places.</strong> Count how many places Max is behind the leader: 0 means he leads. If gaining a place is likelier than dropping one, being far back is rare; the ratio of neighbouring shares is exactly the drop/gain ratio.",
     "examTrap": "Applying birth-death formulas to chains with skip transitions! If transitions like i \u2192 i+2 or resets to 0 occur, the chain is no longer tridiagonal and simple detailed balance \u03c0_i p_i = \u03c0_{i+1} q_{i+1} breaks!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Birth\u2013death chains.</b> A chain on $\\{0,1,2,\\ldots\\}$ moves only $i\\to i\\pm1$, with $P_{i,i+1}=p_i$ and $P_{i,i-1}=q_i$. A stationary $\\pi$ satisfies the detailed balance (cut) equations $\\pi_ip_i=\\pi_{i+1}q_{i+1}$, so $\\pi_{i+1}=\\frac{p_i}{q_{i+1}}\\pi_i$ for all $i\\ge0$ (Ross 4.8; Grimmett 6.5).",
+    "statement": "<b>Birth\u2013death chains.</b><span class=\"ln\">A chain on $\\{0,1,2,\\ldots\\}$ moves only $i\\to i\\pm1$,</span><span class=\"ln in\">with $P_{i,i+1}=p_i$ and $P_{i,i-1}=q_i$.</span><span class=\"ln\">A stationary $\\pi$ satisfies the detailed balance (cut) equations</span><span class=\"ln in\">$\\pi_ip_i=\\pi_{i+1}q_{i+1}$,</span><span class=\"ln in\">so $\\pi_{i+1}=\\frac{p_i}{q_{i+1}}\\pi_i$ for all $i\\ge0$.</span><span class=\"src\">Ross 4.8; Grimmett 6.5</span>",
     "hint": "If Max's championship place only moves one at a time, how do the steady shares of neighbouring places compare?",
     "breakdown": [
       "<strong>$P_{i,i+1}=p_i,\\ P_{i,i-1}=q_i$ = one step up or down.</strong> After a race he drops one place or gains one; nothing jumps further.",
@@ -3654,7 +3654,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Does he stay near the top?</strong> If Max gains places more easily than he loses them, the share of time spent $n$ places back falls off geometrically, and he is mostly leading. If he loses places more easily, he just keeps sliding back and there is no steady law.",
     "examTrap": "Assuming traffic intensity \u03c1 = 1 has a stationary distribution! When \u03c1 = p/q = 1, all \u03c0_n = \u03c0_0 are equal, so the sum diverges. The chain is null recurrent, not positive recurrent!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Birth\u2013death invariant law.</b> Solving the recursion, $\\pi_n=\\pi_0\\prod_{k=0}^{n-1}\\frac{p_k}{q_{k+1}}$ and $\\pi_0=\\Bigl(1+\\sum_{n\\ge1}\\prod_{k=0}^{n-1}\\frac{p_k}{q_{k+1}}\\Bigr)^{-1}$. An irreducible birth\u2013death chain is positive recurrent iff this sum is finite (Ross 4.8; Grimmett 6.5).",
+    "statement": "<b>Birth\u2013death invariant law.</b><span class=\"ln\">Solving the recursion,</span><span class=\"ln in\">$\\pi_n=\\pi_0\\prod_{k=0}^{n-1}\\frac{p_k}{q_{k+1}}$ and</span><span class=\"ln in\">$\\pi_0=\\Bigl(1+\\sum_{n\\ge1}\\prod_{k=0}^{n-1}\\frac{p_k}{q_{k+1}}\\Bigr)^{-1}$.</span><span class=\"ln\">An irreducible birth\u2013death chain is positive recurrent iff this sum is finite.</span><span class=\"src\">Ross 4.8; Grimmett 6.5</span>",
     "hint": "When does Max's championship place have a steady law, and what does it look like?",
     "breakdown": [
       "<strong>$\\pi_n=\\pi_0\\prod_{k\\lt n}\\frac{p_k}{q_{k+1}}$ = multiply the ratios.</strong> Each rung further back multiplies the weight by drop-over-gain.",
@@ -3684,7 +3684,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Does the season make sense in reverse?</strong> Take three results, win, podium and off the podium. If going round the loop win \u2192 podium \u2192 off \u2192 win has the same chance as going round the other way, then a highlight reel of Max's long-run results played backwards looks just as believable.",
     "examTrap": "Assuming every stationary chain is reversible! Cyclic chains (e.g. 1 \u2192 2 \u2192 3 \u2192 1 with probability 1) have stationary distribution \u03c0 = (1/3, 1/3, 1/3) but reverse direction product is 0 \u2260 1, completely violating reversibility!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Reversibility and Kolmogorov's criterion.</b> An irreducible stationary chain is reversible, $\\pi_iP_{ij}=\\pi_jP_{ji}$, if and only if for every cycle $P_{i_0i_1}P_{i_1i_2}\\cdots P_{i_ki_0}=P_{i_0i_k}\\cdots P_{i_2i_1}P_{i_1i_0}$: each loop has the same probability in both directions (Grimmett 6.5; Kelly, Reversibility).",
+    "statement": "<b>Reversibility and Kolmogorov's criterion.</b><span class=\"ln\">An irreducible stationary chain is reversible, $\\pi_iP_{ij}=\\pi_jP_{ji}$,</span><span class=\"ln in\">if and only if for every cycle</span><span class=\"ln in\">$P_{i_0i_1}P_{i_1i_2}\\cdots P_{i_ki_0}=P_{i_0i_k}\\cdots P_{i_2i_1}P_{i_1i_0}$:</span><span class=\"ln\">each loop has the same probability in both directions.</span><span class=\"src\">Grimmett 6.5; Kelly, Reversibility</span>",
     "hint": "How can you tell, from the one-step chances alone, that the chain looks the same run backwards?",
     "breakdown": [
       "<strong>$\\pi_iP_{ij}=\\pi_jP_{ji}$ = reversible.</strong> In steady state, the film run backwards has the same law as the film run forwards.",
@@ -3714,7 +3714,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Red Bull's set-up engineers.</strong> They propose a small change to the set-up. If the simulator says it is better, they take it; if worse, they take it only sometimes, with the ratio of scores. Over a long session they visit set-ups in proportion to how good they are, and never need the total of all scores.",
     "examTrap": "Discarding rejected proposals from the sample history! When a proposal is rejected, the chain *remains* at the current state x, meaning x must be recorded AGAIN as the next sample X_{t+1} = x. Dropping rejections severely biases the empirical distribution!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Metropolis\u2013Hastings.</b> To sample from $\\pi\\propto\\tilde\\pi$, propose $y\\sim q(\\cdot\\mid x)$ and accept with $\\alpha(x,y)=\\min\\bigl(1,\\frac{\\tilde\\pi(y)q(x\\mid y)}{\\tilde\\pi(x)q(y\\mid x)}\\bigr)$. Then $\\pi(x)q(y\\mid x)\\alpha(x,y)=\\pi(y)q(x\\mid y)\\alpha(y,x)$, so detailed balance holds and $\\pi$ is stationary (Robert & Casella 7.3; Grimmett 6.14).",
+    "statement": "<b>Metropolis\u2013Hastings.</b><span class=\"ln\">To sample from $\\pi\\propto\\tilde\\pi$, propose $y\\sim q(\\cdot\\mid x)$ and accept with</span><span class=\"ln in\">$\\alpha(x,y)=\\min\\bigl(1,\\frac{\\tilde\\pi(y)q(x\\mid y)}{\\tilde\\pi(x)q(y\\mid x)}\\bigr)$.</span><span class=\"ln\">Then $\\pi(x)q(y\\mid x)\\alpha(x,y)=\\pi(y)q(x\\mid y)\\alpha(y,x)$,</span><span class=\"ln in\">so detailed balance holds and $\\pi$ is stationary.</span><span class=\"src\">Robert & Casella 7.3; Grimmett 6.14</span>",
     "hint": "How do the engineers sample good car set-ups from a law they can only compute up to a constant?",
     "breakdown": [
       "<strong>$y\\sim q(\\cdot\\mid x)$ = propose a move.</strong> From the current set-up $x$, suggest a candidate $y$.",
@@ -3744,7 +3744,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Choosing the step.</strong> Moving the rear wing by a hair is almost always accepted, but the engineers learn little. A wild change is almost always rejected. A medium change explores the set-ups best.",
     "examTrap": "Assuming an acceptance rate near 100% indicates superior MCMC performance! A near-100% acceptance rate usually means the proposal step size is infinitesimally tiny, leaving the sampler trapped in a microscopic corner of the state space!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Random-walk Metropolis.</b> With a symmetric proposal, $q(y\\mid x)=q(x\\mid y)$, the acceptance is $\\alpha(x,y)=\\min\\bigl(1,\\frac{\\pi(y)}{\\pi(x)}\\bigr)$. The step size trades off acceptance against movement; for Gaussian-like targets in high dimension the optimal acceptance rate is about $23.4\\%$ (Roberts\u2013Gelman\u2013Gilks).",
+    "statement": "<b>Random-walk Metropolis.</b><span class=\"ln\">With a symmetric proposal, $q(y\\mid x)=q(x\\mid y)$,</span><span class=\"ln in\">the acceptance is $\\alpha(x,y)=\\min\\bigl(1,\\frac{\\pi(y)}{\\pi(x)}\\bigr)$.</span><span class=\"ln\">The step size trades off acceptance against movement;</span><span class=\"ln in\">for Gaussian-like targets in high dimension the optimal acceptance rate is about $23.4\\%$.</span><span class=\"src\">Roberts\u2013Gelman\u2013Gilks</span>",
     "hint": "How big should each proposed set-up change be: small and safe, or large and risky?",
     "breakdown": [
       "<strong>$q(y\\mid x)=q(x\\mid y)$ = symmetric proposal.</strong> A step of a given size forwards is as likely as backwards, so the $q$ factors cancel.",
@@ -3774,7 +3774,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Front wing, then rear wing.</strong> With the rear wing fixed, pick a new front wing angle from its conditional law; then, with that front wing fixed, pick a new rear wing angle. Alternating the two samples the pair together, with nothing thrown away.",
     "examTrap": "Applying Gibbs sampling when full conditionals are not analytically standard! Gibbs sampling requires easy sampling from 1D full conditionals p(X_i | X_{-i}). If conditionals are intractable, Metropolis-within-Gibbs must be used instead.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Gibbs sampling.</b> To sample $p(x_1,\\ldots,x_d)$, update one coordinate at a time from its full conditional: $X_i^{(t+1)}\\sim p(X_i\\mid X_{-i}^{(t)})$. This is Metropolis\u2013Hastings with proposal $q(y\\mid x)=p(y_i\\mid x_{-i})$, for which the acceptance probability is $\\alpha(x,y)\\equiv1$, so every proposal is accepted (Robert & Casella 10; Grimmett 6.14).",
+    "statement": "<b>Gibbs sampling.</b><span class=\"ln\">To sample $p(x_1,\\ldots,x_d)$, update one coordinate at a time from its full conditional:</span><span class=\"ln in\">$X_i^{(t+1)}\\sim p(X_i\\mid X_{-i}^{(t)})$.</span><span class=\"ln\">This is Metropolis\u2013Hastings with proposal $q(y\\mid x)=p(y_i\\mid x_{-i})$,</span><span class=\"ln in\">for which the acceptance probability is $\\alpha(x,y)\\equiv1$,</span><span class=\"ln in\">so every proposal is accepted.</span><span class=\"src\">Robert & Casella 10; Grimmett 6.14</span>",
     "hint": "Can you sample a joint law by redrawing one variable at a time, never rejecting?",
     "breakdown": [
       "<strong>$X_i\\sim p(X_i\\mid X_{-i})$ = redraw one coordinate.</strong> Hold all the others fixed and draw again from the exact conditional law.",
@@ -3804,7 +3804,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A signal without a trend.</strong> On a steady run, if the engine vibration looks the same on lap 10 as on lap 40, with the same average and the same link between readings a tenth of a second apart, the signal is wide-sense stationary. A speed trace with its corners and straights is not.",
     "examTrap": "Assuming WSS implies SSS! Consider independent X_n with mean 0 and variance 1 where X_n ~ \ud835\udca9(0, 1) for even n and X_n ~ Uniform(-\u221a3, \u221a3) for odd n. It is WSS, but its 4th moment changes with parity, violating SSS!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Strict-sense and wide-sense stationarity.</b> $X(t)$ is strict-sense stationary if $F_{X(t_1+\\tau),\\ldots,X(t_k+\\tau)}=F_{X(t_1),\\ldots,X(t_k)}$ for all $k,t_i,\\tau$. It is wide-sense stationary (WSS) if $\\mathbb E[X(t)]=\\mu$ is constant and $R_X(t,t+\\tau)=\\mathbb E[X(t)X(t+\\tau)]=R_X(\\tau)$ depends only on the lag (Papoulis 9; Grimmett 9.1).",
+    "statement": "<b>Strict-sense and wide-sense stationarity.</b><span class=\"ln\">$X(t)$ is strict-sense stationary if</span><span class=\"ln in\">$F_{X(t_1+\\tau),\\ldots,X(t_k+\\tau)}=F_{X(t_1),\\ldots,X(t_k)}$ for all $k,t_i,\\tau$.</span><span class=\"ln\">It is wide-sense stationary (WSS) if</span><span class=\"ln in\">$\\mathbb E[X(t)]=\\mu$ is constant and</span><span class=\"ln in\">$R_X(t,t+\\tau)=\\mathbb E[X(t)X(t+\\tau)]=R_X(\\tau)$ depends only on the lag.</span><span class=\"src\">Papoulis 9; Grimmett 9.1</span>",
     "hint": "What does it mean for the engine vibration signal to look statistically the same at every moment of the run?",
     "breakdown": [
       "<strong>SSS: every joint law is shift-invariant.</strong> Moving the whole picture by $\\tau$ leaves all finite-dimensional distributions unchanged.",
@@ -3834,7 +3834,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Not every curve is a correlation.</strong> The link between vibration readings must be strongest at the same instant and the same for looking ahead or back. And no weighted mix of readings may ever come out with a negative variance.",
     "examTrap": "Assuming any even function can serve as an autocorrelation function! R_X(\u03c4) must be positive semi-definite (its Fourier transform S_X(\u03c9) must be non-negative everywhere). A function like a square pulse is even but has negative Fourier lobes!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Properties of the autocorrelation.</b> For a WSS process, $R_X(0)=\\mathbb E[X^2(t)]\\ge|R_X(\\tau)|$ for all $\\tau$, $R_X(-\\tau)=R_X(\\tau)$, and $R_X$ is non-negative definite: $\\sum_{i,j}c_ic_jR_X(t_i-t_j)\\ge0$ for all real $c_i$ and times $t_i$ (Papoulis 9; Grimmett 9.1).",
+    "statement": "<b>Properties of the autocorrelation.</b><span class=\"ln\">For a WSS process,</span><span class=\"ln in\">$R_X(0)=\\mathbb E[X^2(t)]\\ge|R_X(\\tau)|$ for all $\\tau$,</span><span class=\"ln in\">$R_X(-\\tau)=R_X(\\tau)$, and</span><span class=\"ln in\">$R_X$ is non-negative definite: $\\sum_{i,j}c_ic_jR_X(t_i-t_j)\\ge0$ for all real $c_i$ and times $t_i$.</span><span class=\"src\">Papoulis 9; Grimmett 9.1</span>",
     "hint": "Which shapes can the link between telemetry readings at different lags take, and which cannot?",
     "breakdown": [
       "<strong>$R_X(0)\\ge|R_X(\\tau)|$ = peak at zero lag.</strong> A reading is at least as related to itself as to any other reading (Cauchy\u2013Schwarz); $R_X(0)$ is the average power.",
@@ -3864,7 +3864,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Hum and rattle.</strong> A vibration whose readings stay related for a long time has its power at low frequencies, like a deep hum. One that forgets itself in a few milliseconds is a rattle with a wide, flat spectrum. Engineers read the spectrum to spot which part of the car is shaking.",
     "examTrap": "Forgetting the 1/(2\u03c0) factor in the inverse Fourier transform! When integrating S_X(\u03c9) over angular frequency d\u03c9 to compute total power, omitting 1/(2\u03c0) inflates the calculated power by a factor of ~6.28!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Wiener\u2013Khinchin.</b> For a WSS process with integrable $R_X$, the power spectral density is the Fourier transform of the autocorrelation: $S_X(\\omega)=\\int_{-\\infty}^{\\infty}R_X(\\tau)e^{-j\\omega\\tau}d\\tau\\ge0$, and $R_X(\\tau)=\\frac1{2\\pi}\\int_{-\\infty}^{\\infty}S_X(\\omega)e^{j\\omega\\tau}d\\omega$; in particular $\\mathbb E[X^2]=\\frac1{2\\pi}\\int S_X\\,d\\omega$ (Papoulis 10; Grimmett 9.3).",
+    "statement": "<b>Wiener\u2013Khinchin.</b><span class=\"ln\">For a WSS process with integrable $R_X$, the power spectral density is the Fourier transform of the autocorrelation:</span><span class=\"ln in\">$S_X(\\omega)=\\int_{-\\infty}^{\\infty}R_X(\\tau)e^{-j\\omega\\tau}d\\tau\\ge0$, and</span><span class=\"ln in\">$R_X(\\tau)=\\frac1{2\\pi}\\int_{-\\infty}^{\\infty}S_X(\\omega)e^{j\\omega\\tau}d\\omega$;</span><span class=\"ln\">in particular $\\mathbb E[X^2]=\\frac1{2\\pi}\\int S_X\\,d\\omega$.</span><span class=\"src\">Papoulis 10; Grimmett 9.3</span>",
     "hint": "How does the correlation of the engine vibration over time tell you which frequencies carry its power?",
     "breakdown": [
       "<strong>$S_X(\\omega)=\\int R_X(\\tau)e^{-j\\omega\\tau}d\\tau$ = the spectrum.</strong> Transform the lag-correlation to the frequency domain to see where the power sits.",
@@ -3894,7 +3894,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The engine note at fixed revs.</strong> Held at steady revs, the engine shakes at one frequency $\\omega_0$, so its spectrum is a single spike. But the signal only counts as stationary if the moment the recording starts is completely random within one cycle, so the phase is uniform.",
     "examTrap": "Assuming X(t) = cos(\u03c9_0 t) without random phase is WSS! A deterministic cosine has \ud835\udd3c[X(t)] = cos(\u03c9_0 t), which oscillates with time t. It is NOT stationary; random phase uniform over [-\u03c0, \u03c0] is strictly required!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Random harmonic process.</b> Let $X(t)=A\\cos(\\omega_0t+\\Theta)$ with $A$ independent of $\\Theta$. Then $R_X(\\tau)=\\frac{\\mathbb E[A^2]}2\\cos(\\omega_0\\tau)$ and $\\mathbb E[X(t)]=\\mathbb E[A]\\,\\mathbb E[\\cos(\\omega_0t+\\Theta)]=0$ for all $t$ iff $\\Theta\\sim\\text{Uniform}(-\\pi,\\pi)$. Then $S_X(\\omega)=\\frac{\\pi\\mathbb E[A^2]}2[\\delta(\\omega-\\omega_0)+\\delta(\\omega+\\omega_0)]$ (Papoulis 9\u201310; Grimmett 9.3).",
+    "statement": "<b>Random harmonic process.</b><span class=\"ln\">Let $X(t)=A\\cos(\\omega_0t+\\Theta)$ with $A$ independent of $\\Theta$.</span><span class=\"ln in\">Then $R_X(\\tau)=\\frac{\\mathbb E[A^2]}2\\cos(\\omega_0\\tau)$ and</span><span class=\"ln in\">$\\mathbb E[X(t)]=\\mathbb E[A]\\,\\mathbb E[\\cos(\\omega_0t+\\Theta)]=0$ for all $t$ iff $\\Theta\\sim\\text{Uniform}(-\\pi,\\pi)$.</span><span class=\"ln\">Then $S_X(\\omega)=\\frac{\\pi\\mathbb E[A^2]}2[\\delta(\\omega-\\omega_0)+\\delta(\\omega+\\omega_0)]$.</span><span class=\"src\">Papoulis 9\u201310; Grimmett 9.3</span>",
     "hint": "Why must the phase of the engine's vibration be completely random for the signal to be stationary?",
     "breakdown": [
       "<strong>$R_X(\\tau)=\\frac{\\mathbb E[A^2]}2\\cos(\\omega_0\\tau)$ = a cosine in the lag.</strong> The product of two shifted cosines averages to half the amplitude-power times $\\cos(\\omega_0\\tau)$.",
@@ -3924,7 +3924,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The suspension as a filter.</strong> The track bumps go in, and the chassis feels a smoothed version. The suspension passes the slow swells and damps the sharp jolts. Its effect on the spectrum is just a multiplication by the squared gain at each frequency.",
     "examTrap": "Using H(\u03c9) instead of |H(\u03c9)|\u00b2 for power spectral density! PSD represents power (quadratic in amplitude), so it scales with the magnitude-squared |H(\u03c9)|\u00b2, not the linear frequency response H(\u03c9).",
     "stmtKind": "THEOREM",
-    "statement": "<b>LTI filtering of a WSS process.</b> If $X(t)$ is WSS with spectrum $S_X$ and passes through a stable LTI system with impulse response $h$ and transfer function $H(\\omega)$, then $Y=h*X$ is WSS with $S_Y(\\omega)=|H(\\omega)|^2S_X(\\omega)$, $R_Y(\\tau)=R_X(\\tau)*h(\\tau)*h(-\\tau)$ and $\\mathbb E[Y^2(t)]=\\frac1{2\\pi}\\int|H(\\omega)|^2S_X(\\omega)d\\omega$ (Papoulis 10; Grimmett 9.3).",
+    "statement": "<b>LTI filtering of a WSS process.</b><span class=\"ln\">If $X(t)$ is WSS with spectrum $S_X$ and passes through a stable LTI system with impulse response $h$ and transfer function $H(\\omega)$,</span><span class=\"ln in\">then $Y=h*X$ is WSS with</span><span class=\"ln in2\">$S_Y(\\omega)=|H(\\omega)|^2S_X(\\omega)$,</span><span class=\"ln in2\">$R_Y(\\tau)=R_X(\\tau)*h(\\tau)*h(-\\tau)$ and</span><span class=\"ln in2\">$\\mathbb E[Y^2(t)]=\\frac1{2\\pi}\\int|H(\\omega)|^2S_X(\\omega)d\\omega$.</span><span class=\"src\">Papoulis 10; Grimmett 9.3</span>",
     "hint": "What does the suspension do to the power of the track bumps at each frequency?",
     "breakdown": [
       "<strong>$S_Y(\\omega)=|H(\\omega)|^2S_X(\\omega)$ = reweight each frequency.</strong> A filter multiplies the power at frequency $\\omega$ by its squared gain $|H(\\omega)|^2$.",
@@ -3954,7 +3954,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>One long trace is enough.</strong> If the vibration now is basically unrelated to the vibration a few laps later, then averaging one long telemetry trace gives the true mean. You don't need the same run repeated in many cars.",
     "examTrap": "Assuming all WSS processes are mean-ergodic! Consider X(t) = A where A ~ \ud835\udca9(0, 1) is a single random variable frozen across all time. It is WSS with C_X(\u03c4) = 1, but \u03bc\u0302_T = A \u2260 0 for any single realization, so Var(\u03bc\u0302_T) = 1 does not decay to 0!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Mean ergodicity (Slutsky).</b> For a WSS process with mean $\\mu$ and covariance $C_X(\\tau)$, $\\hat\\mu_T=\\frac1{2T}\\int_{-T}^TX(t)\\,dt\\to\\mu$ in $L^2$ if and only if $\\lim_{T\\to\\infty}\\frac1T\\int_0^{2T}\\bigl(1-\\frac{\\tau}{2T}\\bigr)C_X(\\tau)\\,d\\tau=0$ (Papoulis 13; Grimmett 9.5).",
+    "statement": "<b>Mean ergodicity (Slutsky).</b><span class=\"ln\">For a WSS process with mean $\\mu$ and covariance $C_X(\\tau)$,</span><span class=\"ln in\">$\\hat\\mu_T=\\frac1{2T}\\int_{-T}^TX(t)\\,dt\\to\\mu$ in $L^2$</span><span class=\"ln in\">if and only if $\\lim_{T\\to\\infty}\\frac1T\\int_0^{2T}\\bigl(1-\\frac{\\tau}{2T}\\bigr)C_X(\\tau)\\,d\\tau=0$.</span><span class=\"src\">Papoulis 13; Grimmett 9.5</span>",
     "hint": "When does one long telemetry trace give you the true mean vibration level?",
     "breakdown": [
       "<strong>$\\hat\\mu_T=\\frac1{2T}\\int_{-T}^TX(t)dt$ = the time average.</strong> Average one long recording over the window $[-T,T]$.",
@@ -3984,7 +3984,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Incidents at random.</strong> If races see incidents (a spin, debris, a crash) at 2 an hour at random times, the number in a 1.5-hour Grand Prix is Poisson with mean 3. Its variance is also 3, so some races are calm and some are chaos.",
     "examTrap": "Assuming \u2119(N(t)=k) depends on absolute time s! Stationarity ensures the count distribution in (s, s+t] depends *only* on interval duration t, completely independent of starting timestamp s.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Poisson process.</b> A counting process $N(t)$ with $N(0)=0$, independent increments, stationary increments, $\\mathbb P(N(t+h)-N(t)=1)=\\lambda h+o(h)$ and $\\mathbb P(N(t+h)-N(t)\\ge2)=o(h)$ is a Poisson process of rate $\\lambda$. Then $\\mathbb P(N(t)=k)=\\frac{(\\lambda t)^ke^{-\\lambda t}}{k!}$, $\\mathbb E[N(t)]=\\operatorname{Var}(N(t))=\\lambda t$ (Ross 5.3; Grimmett 6.8).",
+    "statement": "<b>Poisson process.</b><span class=\"ln\">A counting process $N(t)$ with</span><span class=\"ln in\">$N(0)=0$,</span><span class=\"ln in\">independent increments, stationary increments,</span><span class=\"ln in\">$\\mathbb P(N(t+h)-N(t)=1)=\\lambda h+o(h)$ and</span><span class=\"ln in\">$\\mathbb P(N(t+h)-N(t)\\ge2)=o(h)$</span><span class=\"ln\">is a Poisson process of rate $\\lambda$.</span><span class=\"ln in\">Then $\\mathbb P(N(t)=k)=\\frac{(\\lambda t)^ke^{-\\lambda t}}{k!}$, $\\mathbb E[N(t)]=\\operatorname{Var}(N(t))=\\lambda t$.</span><span class=\"src\">Ross 5.3; Grimmett 6.8</span>",
     "hint": "If incidents happen at random during a race at a constant rate, how many come in a stretch of the race?",
     "breakdown": [
       "<strong>$\\mathbb P(\\text{one arrival in }h)=\\lambda h+o(h)$ = rate times length.</strong> In a short stretch of racing, an incident happens with chance about $\\lambda h$, and two or more at once are negligible.",
@@ -4014,7 +4014,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Quiet spells and the n-th incident.</strong> With 2 incidents an hour the typical quiet spell is 30 minutes, and the time of the 3rd incident is the sum of three such spells. A safety car is never \u201cdue\u201d.",
     "examTrap": "Confusing rate parameter \u03bb with scale parameter \u03b2 = 1/\u03bb! In StoMA and engineering, Exp(\u03bb) denotes rate \u03bb with mean 1/\u03bb and density \u03bb e^{-\u03bbt}, not mean \u03bb!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Inter-arrival and waiting times.</b> For a Poisson process of rate $\\lambda$ the inter-arrival times $T_1,T_2,\\ldots$ are i.i.d. $\\operatorname{Exp}(\\lambda)$, the $n$-th arrival time $S_n=\\sum_{k=1}^nT_k\\sim\\operatorname{Gamma}(n,\\lambda)$, and $\\mathbb P(N(t)\\ge n)=\\mathbb P(S_n\\le t)$ (Ross 5.3; Grimmett 6.8).",
+    "statement": "<b>Inter-arrival and waiting times.</b><span class=\"ln\">For a Poisson process of rate $\\lambda$</span><span class=\"ln in\">the inter-arrival times $T_1,T_2,\\ldots$ are i.i.d. $\\operatorname{Exp}(\\lambda)$,</span><span class=\"ln in\">the $n$-th arrival time $S_n=\\sum_{k=1}^nT_k\\sim\\operatorname{Gamma}(n,\\lambda)$, and</span><span class=\"ln in\">$\\mathbb P(N(t)\\ge n)=\\mathbb P(S_n\\le t)$.</span><span class=\"src\">Ross 5.3; Grimmett 6.8</span>",
     "hint": "How long does the race go between incidents, and how long until the n-th one?",
     "breakdown": [
       "<strong>$T_k\\sim\\operatorname{Exp}(\\lambda)$ = memoryless gaps.</strong> Each quiet spell between incidents is exponential with mean $1/\\lambda$, independently of the others.",
@@ -4044,7 +4044,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Where did the three incidents fall?</strong> If a race had exactly 3 incidents, their times are like 3 darts thrown uniformly at the race clock; on average the middle one is at half distance.",
     "examTrap": "Assuming arrivals are uniformly spaced deterministically! Conditioned on N(t) = n, arrival times are *random* order statistics with expected spacing t/(n+1), NOT equally spaced grid points k\u00b7t/n!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Order-statistics property.</b> Given $N(t)=n$, the arrival times $(S_1,\\ldots,S_n)$ have the law of the order statistics of $n$ i.i.d. $\\text{Uniform}(0,t)$ variables: the joint density is $\\frac{n!}{t^n}$ on $0\\lt s_1\\lt \\cdots\\lt s_n\\lt t$, and $\\mathbb E[S_k\\mid N(t)=n]=\\frac{k}{n+1}t$ (Ross 5.3; Grimmett 6.12).",
+    "statement": "<b>Order-statistics property.</b><span class=\"ln\">Given $N(t)=n$, the arrival times $(S_1,\\ldots,S_n)$ have the law of the order statistics of $n$ i.i.d. $\\text{Uniform}(0,t)$ variables:</span><span class=\"ln in\">the joint density is $\\frac{n!}{t^n}$ on $0\\lt s_1\\lt \\cdots\\lt s_n\\lt t$, and</span><span class=\"ln in\">$\\mathbb E[S_k\\mid N(t)=n]=\\frac{k}{n+1}t$.</span><span class=\"src\">Ross 5.3; Grimmett 6.12</span>",
     "hint": "If you know exactly n incidents happened in the race, where in the race did they fall?",
     "breakdown": [
       "<strong>$\\frac{n!}{t^n}$ = uniform on the ordered region.</strong> Given the count, the incident times are spread evenly over $(0,t)$, then put in order.",
@@ -4074,7 +4074,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Safety car or VSC.</strong> If incidents come at 3 an hour and each one is independently a full safety car with chance 1/3, else a virtual safety car, the safety cars form their own random stream of 1 an hour, independent of the VSC stream of 2 an hour.",
     "examTrap": "Assuming split streams N_1 and N_2 must be correlated because N_1 + N_2 = N! For a fixed total N=n, they are dependent Binomials. But when total count N is Poisson, the random total decouples them into strictly independent Poisson processes!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Superposition and thinning.</b> If $N_1,N_2$ are independent Poisson processes with rates $\\lambda_1,\\lambda_2$, then $N_1+N_2$ is Poisson with rate $\\lambda_1+\\lambda_2$ (merging). If each point of a rate-$\\lambda$ Poisson process is independently kept with probability $p$, the kept points $N_1\\sim\\operatorname{PP}(\\lambda p)$ and the rest $N_2\\sim\\operatorname{PP}(\\lambda(1-p))$ are independent (Ross 5.3; Grimmett 6.8).",
+    "statement": "<b>Superposition and thinning.</b><span class=\"ln\">If $N_1,N_2$ are independent Poisson processes with rates $\\lambda_1,\\lambda_2$,</span><span class=\"ln in\">then $N_1+N_2$ is Poisson with rate $\\lambda_1+\\lambda_2$ (merging).</span><span class=\"ln\">If each point of a rate-$\\lambda$ Poisson process is independently kept with probability $p$,</span><span class=\"ln in\">the kept points $N_1\\sim\\operatorname{PP}(\\lambda p)$ and the rest $N_2\\sim\\operatorname{PP}(\\lambda(1-p))$ are independent.</span><span class=\"src\">Ross 5.3; Grimmett 6.8</span>",
     "hint": "What happens when each incident is either a full safety car or a virtual one, and when you merge two incident streams?",
     "breakdown": [
       "<strong>$N_1+N_2\\sim\\operatorname{PP}(\\lambda_1+\\lambda_2)$ = merge.</strong> Two independent Poisson streams combine into one Poisson stream whose rate is the sum.",
@@ -4104,7 +4104,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Lap-one chaos.</strong> More incidents happen on the opening lap than in the middle of the race. The expected number in the first ten minutes is the area under the rate curve there, and the count is still Poisson.",
     "examTrap": "Using exponential inter-arrival times for NHPP! Because rate \u03bb(t) changes over time, inter-arrival intervals are *neither* identically distributed nor exponential. Only increments over fixed time windows remain Poisson.",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Non-homogeneous Poisson process.</b> With a rate function $\\lambda(t)\\ge0$, let $m(t)=\\int_0^t\\lambda(u)\\,du$. Then $N(t+s)-N(s)\\sim\\operatorname{Poisson}\\bigl(m(t+s)-m(s)\\bigr)$, and counts on disjoint intervals are independent (Ross 5.4; Grimmett 6.13).",
+    "statement": "<b>Non-homogeneous Poisson process.</b><span class=\"ln\">With a rate function $\\lambda(t)\\ge0$, let $m(t)=\\int_0^t\\lambda(u)\\,du$.</span><span class=\"ln in\">Then $N(t+s)-N(s)\\sim\\operatorname{Poisson}\\bigl(m(t+s)-m(s)\\bigr)$,</span><span class=\"ln in\">and counts on disjoint intervals are independent.</span><span class=\"src\">Ross 5.4; Grimmett 6.13</span>",
     "hint": "How do you count incidents when the rate changes during the race?",
     "breakdown": [
       "<strong>$\\lambda(t)$ = the rate at time $t$.</strong> High on lap 1 when the whole field is packed together, lower in the calm middle, up again late in the race.",
@@ -4134,7 +4134,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Why it always looks calm when you tune in.</strong> If the average quiet spell between incidents is 30 minutes, the spell you switch on the TV in averages 60 minutes. The next incident is 30 minutes away on average, and the last one was 30 minutes ago.",
     "examTrap": "Thinking \ud835\udd3c[W(t) + B(t)] must equal \ud835\udd3c[T]! An arrival chosen by fixed time t does NOT select an interval uniformly at random. It samples with probability proportional to interval duration x, producing the classic length-biased factor 2!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Inspection paradox.</b> For a Poisson process of rate $\\lambda$ and a fixed time $t$, the wait $W(t)$ to the next arrival has $\\mathbb E[W(t)]=\\frac1\\lambda$, and the time $B(t)$ since the last one has $\\mathbb E[B(t)]\\to\\frac1\\lambda$. So the gap containing $t$ has $\\mathbb E[I(t)]=\\mathbb E[W+B]\\to\\frac2\\lambda=2\\mathbb E[T]$: length-biased sampling (Ross 7.7; Grimmett 10.4).",
+    "statement": "<b>Inspection paradox.</b><span class=\"ln\">For a Poisson process of rate $\\lambda$ and a fixed time $t$,</span><span class=\"ln in\">the wait $W(t)$ to the next arrival has $\\mathbb E[W(t)]=\\frac1\\lambda$,</span><span class=\"ln in\">and the time $B(t)$ since the last one has $\\mathbb E[B(t)]\\to\\frac1\\lambda$.</span><span class=\"ln\">So the gap containing $t$ has $\\mathbb E[I(t)]=\\mathbb E[W+B]\\to\\frac2\\lambda=2\\mathbb E[T]$:</span><span class=\"ln in\">length-biased sampling.</span><span class=\"src\">Ross 7.7; Grimmett 10.4</span>",
     "hint": "Why does the quiet spell you tune in to tend to be longer than the average quiet spell?",
     "breakdown": [
       "<strong>$\\mathbb E[W(t)]=\\frac1\\lambda$ = the time to the next incident.</strong> By memorylessness it is the same as the average gap.",
@@ -4164,7 +4164,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Back level with the rival.</strong> If Max's gap to one rival moves a random step each lap, it is sure to hit zero again, though it can take very long. The same holds for the pair of gaps to two rivals. With three rivals' gaps tracked at once, all three may never be zero together again.",
     "examTrap": "Assuming 2D random walks return quickly because they are recurrent! The 2D return probability is 1, but expected return time \u03bc_00 = \u221e (null recurrent); the walk wanders enormously before returning!",
     "stmtKind": "THEOREM",
-    "statement": "<b>P\u00f3lya's recurrence theorem.</b> The simple symmetric random walk on $\\mathbb Z^d$ satisfies $\\sum_{n\\ge1}P^{(2n)}_{00}=\\infty$ iff $d\\in\\{1,2\\}$, in which case it is recurrent. For $d\\ge3$, $P^{(2n)}_{00}\\asymp n^{-d/2}$ is summable ($\\sum n^{-d/2}\\lt \\infty$) and the walk is transient (Grimmett 5.10; Ross 4.3).",
+    "statement": "<b>P\u00f3lya's recurrence theorem.</b><span class=\"ln\">The simple symmetric random walk on $\\mathbb Z^d$ satisfies</span><span class=\"ln in\">$\\sum_{n\\ge1}P^{(2n)}_{00}=\\infty$ iff $d\\in\\{1,2\\}$, in which case it is recurrent.</span><span class=\"ln\">For $d\\ge3$, $P^{(2n)}_{00}\\asymp n^{-d/2}$ is summable ($\\sum n^{-d/2}\\lt \\infty$)</span><span class=\"ln in\">and the walk is transient.</span><span class=\"src\">Grimmett 5.10; Ross 4.3</span>",
     "hint": "If the gap to a rival goes up or down a bit each lap at random, are they sure to be level again? What about with two or three rivals at once?",
     "breakdown": [
       "<strong>$P^{(2n)}_{00}\\asymp n^{-d/2}$ = return chance at step $2n$.</strong> The gaps are all back to zero at lap $2n$ with chance of order $n^{-d/2}$, where $d$ is how many gaps you track.",
@@ -4194,7 +4194,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The gap through a microscope.</strong> Lap by lap the gap is a coarse random walk. Measured at every corner from telemetry, the many tiny random nudges make one continuous jagged path. Zooming in does not smooth it.",
     "examTrap": "Treating Brownian motion paths as differentiable! In classical calculus, dB/dt does not exist as an ordinary function; treating it as such invalidates chain rules and requires It\u00f4 calculus!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Standard Brownian motion.</b> $B(0)=0$; independent increments; $B(t)-B(s)\\sim\\mathcal N(0,t-s)$ for $s\\lt t$; continuous paths. Donsker's theorem: for a simple random walk $S_n$, $\\frac{S_{\\lfloor nt\\rfloor}}{\\sqrt n}\\xrightarrow{d}B(t)$ as a process. Paths are nowhere differentiable: $\\operatorname{Var}\\bigl(\\frac{\\Delta B}{\\Delta t}\\bigr)=\\frac1{\\Delta t}\\to\\infty$ (Ross 10.1; Durrett 8).",
+    "statement": "<b>Standard Brownian motion.</b><span class=\"ln\">$B(0)=0$;</span><span class=\"ln\">independent increments;</span><span class=\"ln\">$B(t)-B(s)\\sim\\mathcal N(0,t-s)$ for $s\\lt t$;</span><span class=\"ln\">continuous paths.</span><span class=\"ln\">Donsker's theorem: for a simple random walk $S_n$,</span><span class=\"ln in\">$\\frac{S_{\\lfloor nt\\rfloor}}{\\sqrt n}\\xrightarrow{d}B(t)$ as a process.</span><span class=\"ln\">Paths are nowhere differentiable:</span><span class=\"ln in\">$\\operatorname{Var}\\bigl(\\frac{\\Delta B}{\\Delta t}\\bigr)=\\frac1{\\Delta t}\\to\\infty$.</span><span class=\"src\">Ross 10.1; Durrett 8</span>",
     "hint": "What continuous wander appears if you measure the gap more and more often, in smaller and smaller random steps?",
     "breakdown": [
       "<strong>$B(t)-B(s)\\sim\\mathcal N(0,t-s)$ = Gaussian increments.</strong> The change in the gap over a stretch of the race is normal with variance equal to the length of the stretch, and independent for separate stretches.",
@@ -4224,7 +4224,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The final gap contains the halfway gap.</strong> The gap at the chequered flag is the gap at half distance plus whatever happened after. So how the two relate is set by the earlier time, and a zoomed-out view of the gap looks like the original.",
     "examTrap": "Assuming Cov(B(t), B(s)) = max(t, s) or s\u00b7t! For s < t, future innovations B(t) - B(s) are independent of past values, so only the shared past interval [0, s] contributes to covariance!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Brownian covariance and scaling.</b> $\\operatorname{Cov}(B(t),B(s))=\\min(t,s)$. For every $c\\gt 0$, $B(ct)\\overset d=\\sqrt c\\,B(t)$ (self-similarity), and $tB(1/t)\\overset d=B(t)$ (time inversion, with value $0$ at $t=0$) (Ross 10.1; Durrett 8).",
+    "statement": "<b>Brownian covariance and scaling.</b><span class=\"ln\">$\\operatorname{Cov}(B(t),B(s))=\\min(t,s)$.</span><span class=\"ln\">For every $c\\gt 0$, $B(ct)\\overset d=\\sqrt c\\,B(t)$ (self-similarity),</span><span class=\"ln\">and $tB(1/t)\\overset d=B(t)$ (time inversion, with value $0$ at $t=0$).</span><span class=\"src\">Ross 10.1; Durrett 8</span>",
     "hint": "How are the gap at half distance and the gap at the flag related, and what happens when you zoom in or out?",
     "breakdown": [
       "<strong>$\\operatorname{Cov}(B(t),B(s))=\\min(t,s)$ = shared history.</strong> For $s\\le t$, $B(t)=B(s)+(\\text{independent increment})$, so the covariance is $\\operatorname{Var}B(s)=s$.",
@@ -4254,7 +4254,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The jitter does not cancel.</strong> The little squared wiggles in the gap, corner after corner, add up to a fixed amount equal to the race time elapsed. A smooth gap curve would give zero, which is why a new calculus is needed.",
     "examTrap": "Applying ordinary chain rule d(f(B)) = f'(B) dB! Because (dB)\u00b2 = dt \u2260 0, It\u00f4's lemma requires the second-order term: df(B) = f'(B) dB + (1/2) f''(B) dt. Omitting (1/2)f'' dt is the most notorious error in stochastic calculus!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Quadratic variation and It\u00f4's rule.</b> For partitions $\\Pi$ of $[0,t]$, $\\lim_{\\|\\Pi\\|\\to0}\\sum_i\\bigl(B(t_i)-B(t_{i-1})\\bigr)^2=t$ in $L^2$, i.e. $[B]_t=t$. Formally $(dB)^2=dt$ and $dB\\,dt=0$, which gives It\u00f4's formula $df(B)=f'(B)dB+\\frac12f''(B)dt$ (\u00d8ksendal 4; Durrett 8).",
+    "statement": "<b>Quadratic variation and It\u00f4's rule.</b><span class=\"ln\">For partitions $\\Pi$ of $[0,t]$,</span><span class=\"ln in\">$\\lim_{\\|\\Pi\\|\\to0}\\sum_i\\bigl(B(t_i)-B(t_{i-1})\\bigr)^2=t$ in $L^2$, i.e. $[B]_t=t$.</span><span class=\"ln\">Formally $(dB)^2=dt$ and $dB\\,dt=0$, which gives It\u00f4's formula</span><span class=\"ln in\">$df(B)=f'(B)dB+\\frac12f''(B)dt$.</span><span class=\"src\">\u00d8ksendal 4; Durrett 8</span>",
     "hint": "Why do the squared little changes in a jagged gap curve add up to the race time elapsed rather than to zero?",
     "breakdown": [
       "<strong>$\\sum(\\Delta B)^2$ = add up the squared moves.</strong> Chop $[0,t]$ into tiny pieces and square each piece's change in the gap.",
@@ -4284,7 +4284,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Will the lead ever reach 5 seconds?</strong> The chance that Max's biggest lead so far has reached 5 seconds is twice the chance that his lead right now is above 5 seconds, because every path that touched 5 has a mirror twin that ends below it.",
     "examTrap": "Assuming \ud835\udd3c[\u03c4_a] is finite because \u2119(\u03c4_a < \u221e) = 1! Although standard Brownian motion is guaranteed to hit level a eventually with probability 1, the heavy tail t^{-3/2} causes the expected wait time \ud835\udd3c[\u03c4_a] to diverge to infinity!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Reflection principle.</b> Let $M(t)=\\max_{s\\le t}B(s)$ and $\\tau_a=\\inf\\{t:B(t)=a\\}$, $a\\gt 0$. Then $\\mathbb P(M(t)\\ge a)=\\mathbb P(\\tau_a\\le t)=2\\mathbb P(B(t)\\ge a)=2\\bigl(1-\\Phi(a/\\sqrt t)\\bigr)$, and $\\tau_a$ has density $f_{\\tau_a}(t)=\\frac{a}{\\sqrt{2\\pi t^3}}e^{-a^2/(2t)}$ (Ross 10.2; Durrett 8).",
+    "statement": "<b>Reflection principle.</b><span class=\"ln\">Let $M(t)=\\max_{s\\le t}B(s)$ and $\\tau_a=\\inf\\{t:B(t)=a\\}$, $a\\gt 0$.</span><span class=\"ln in\">Then $\\mathbb P(M(t)\\ge a)=\\mathbb P(\\tau_a\\le t)=2\\mathbb P(B(t)\\ge a)=2\\bigl(1-\\Phi(a/\\sqrt t)\\bigr)$,</span><span class=\"ln in\">and $\\tau_a$ has density $f_{\\tau_a}(t)=\\frac{a}{\\sqrt{2\\pi t^3}}e^{-a^2/(2t)}$.</span><span class=\"src\">Ross 10.2; Durrett 8</span>",
     "hint": "What is the chance that Max's lead ever reaches a seconds before time t?",
     "breakdown": [
       "<strong>$\\mathbb P(M(t)\\ge a)=\\mathbb P(\\tau_a\\le t)$ = reaching the level.</strong> The biggest lead so far is at least $a$ iff the lead first hit $a$ by time $t$.",
@@ -4314,7 +4314,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Predicting the gap between readings.</strong> Given the gap to the rival at laps 10, 20 and 45, you can predict lap 30 by leaning on the nearby readings, and you are much less sure about lap 60, far from any reading.",
     "examTrap": "Forgetting the noise variance regularization \u03c3\u00b2I when inverting K! Without \u03c3\u00b2I, near-collinear input points cause the kernel matrix K to become numerically singular, destabilizing the matrix inverse (K + \u03c3\u00b2I)^{-1}!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Gaussian-process regression.</b> Place a Gaussian-process prior with kernel $K(x,x')=\\sigma_f^2e^{-\\|x-x'\\|^2/(2\\ell^2)}$ on $f$ and observe $y=f(X)+\\varepsilon$, $\\varepsilon\\sim\\mathcal N(0,\\sigma^2I)$. The posterior at $x_*$ is Gaussian with $\\mu_*=K_*^{\\top}(K+\\sigma^2I)^{-1}y$ and $\\Sigma_*=K_{**}-K_*^{\\top}(K+\\sigma^2I)^{-1}K_*$ (Rasmussen\u2013Williams 2).",
+    "statement": "<b>Gaussian-process regression.</b><span class=\"ln\">Place a Gaussian-process prior with kernel $K(x,x')=\\sigma_f^2e^{-\\|x-x'\\|^2/(2\\ell^2)}$ on $f$</span><span class=\"ln\">and observe $y=f(X)+\\varepsilon$, $\\varepsilon\\sim\\mathcal N(0,\\sigma^2I)$.</span><span class=\"ln in\">The posterior at $x_*$ is Gaussian with</span><span class=\"ln in2\">$\\mu_*=K_*^{\\top}(K+\\sigma^2I)^{-1}y$ and</span><span class=\"ln in2\">$\\Sigma_*=K_{**}-K_*^{\\top}(K+\\sigma^2I)^{-1}K_*$.</span><span class=\"src\">Rasmussen\u2013Williams 2</span>",
     "hint": "How do you fit a gap curve through a few noisy timing readings and say how sure you are between them?",
     "breakdown": [
       "<strong>$K(x,x')=\\sigma_f^2e^{-\\|x-x'\\|^2/2\\ell^2}$ = similarity.</strong> The gaps at nearby laps are strongly related; $\\ell$ sets how many laps the relation reaches.",
@@ -4344,7 +4344,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A fair win probability.</strong> Let $M_n$ be Max's chance of winning as the TV graphic shows it after lap $n$. If it is honest, its average next lap, given everything so far, is what it says now. So it is a martingale, and on average it ends where it started.",
     "examTrap": "Confusing Submartingale and Supermartingale signs! A *sub*martingale has upward drift (\ud835\udd3c[X_{n+1}|F_n] >= X_n), while a *super*martingale has downward drift (\ud835\udd3c[X_{n+1}|F_n] <= X_n). Remember: sub = 'subterranean floor that pushes up'!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Filtration and martingale.</b> A filtration $(\\mathcal F_n)$ is an increasing sequence of \u03c3-fields. $(M_n)$ is a martingale if $M_n$ is $\\mathcal F_n$-measurable, $\\mathbb E|M_n|\\lt \\infty$ and $\\mathbb E[M_{n+1}\\mid\\mathcal F_n]=M_n$. Then $\\mathbb E[M_n]=\\mathbb E[M_0]$ for all $n\\ge0$; with $\\ge$ or $\\le$ it is a sub- or supermartingale (Williams 10; Grimmett 12.1).",
+    "statement": "<b>Filtration and martingale.</b><span class=\"ln\">A filtration $(\\mathcal F_n)$ is an increasing sequence of \u03c3-fields.</span><span class=\"ln\">$(M_n)$ is a martingale if</span><span class=\"ln in\">$M_n$ is $\\mathcal F_n$-measurable, $\\mathbb E|M_n|\\lt \\infty$ and $\\mathbb E[M_{n+1}\\mid\\mathcal F_n]=M_n$.</span><span class=\"ln\">Then $\\mathbb E[M_n]=\\mathbb E[M_0]$ for all $n\\ge0$;</span><span class=\"ln\">with $\\ge$ or $\\le$ it is a sub- or supermartingale.</span><span class=\"src\">Williams 10; Grimmett 12.1</span>",
     "hint": "What does it mean for Max's live win probability to be a fair game, given everything seen so far?",
     "breakdown": [
       "<strong>$\\mathcal F_n$ = what you know by lap $n$.</strong> The information grows lap by lap; $M_n$ can be read off from it.",
@@ -4374,7 +4374,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Remove the drift.</strong> Max's total race time after $n$ laps grows by about one average lap time per lap; subtract that drift and what is left is a fair game. His live win probability, a forecast of the final result, is also a fair game.",
     "examTrap": "Assuming S_n\u00b2 is a martingale! For zero-mean random walks, \ud835\udd3c[S_{n+1}\u00b2 | F_n] = S_n\u00b2 + \u03c3\u00b2 > S_n\u00b2, making S_n\u00b2 a strict *submartingale*. One must subtract the compensator n\u03c3\u00b2 to form a true martingale!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Canonical martingales.</b> For i.i.d. $X_i$ with mean $\\mu$, variance $\\sigma^2$ and MGF $M_X(\\theta)\\lt \\infty$, and $S_n=\\sum_{i\\le n}X_i$: $S_n-n\\mu$, $(S_n-n\\mu)^2-n\\sigma^2$ and $\\dfrac{e^{\\theta S_n}}{M_X(\\theta)^n}$ are martingales. For any integrable $Y$, $M_n=\\mathbb E[Y\\mid\\mathcal F_n]$ is a martingale (Doob) (Williams 10; Grimmett 12.1).",
+    "statement": "<b>Canonical martingales.</b><span class=\"ln\">For i.i.d. $X_i$ with mean $\\mu$, variance $\\sigma^2$ and MGF $M_X(\\theta)\\lt \\infty$, and $S_n=\\sum_{i\\le n}X_i$:</span><span class=\"ln in\">$S_n-n\\mu$, $(S_n-n\\mu)^2-n\\sigma^2$ and $\\dfrac{e^{\\theta S_n}}{M_X(\\theta)^n}$ are martingales.</span><span class=\"ln\">For any integrable $Y$, $M_n=\\mathbb E[Y\\mid\\mathcal F_n]$ is a martingale (Doob).</span><span class=\"src\">Williams 10; Grimmett 12.1</span>",
     "hint": "Which natural quantities built from lap times are fair games?",
     "breakdown": [
       "<strong>$S_n-n\\mu$ = the centred total.</strong> Subtract the expected drift $n\\mu$; the rest has zero mean increments.",
@@ -4404,7 +4404,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>No system beats a fair bet.</strong> \u201cCash out the first lap Max takes the lead\u201d is a stopping time: you know it when it happens. That rule, or any other based on the race so far, never changes your expected payout at a fixed lap.",
     "examTrap": "Treating the last time a state is visited as a stopping time! The event 'last visit to 0' requires observing the entire infinite future to ensure the process never returns. It is NOT a stopping time!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Stopping times and the stopped martingale.</b> A random time $\\tau$ is a stopping time if $\\{\\tau\\le n\\}\\in\\mathcal F_n$ for all $n\\ge0$. If $(M_n)$ is a martingale then the stopped process $M_{n\\wedge\\tau}$ is a martingale, so $\\mathbb E[M_{n\\wedge\\tau}]=\\mathbb E[M_0]$ for each $n$ (Williams 10; Grimmett 12.4).",
+    "statement": "<b>Stopping times and the stopped martingale.</b><span class=\"ln\">A random time $\\tau$ is a stopping time if $\\{\\tau\\le n\\}\\in\\mathcal F_n$ for all $n\\ge0$.</span><span class=\"ln\">If $(M_n)$ is a martingale</span><span class=\"ln in\">then the stopped process $M_{n\\wedge\\tau}$ is a martingale,</span><span class=\"ln in\">so $\\mathbb E[M_{n\\wedge\\tau}]=\\mathbb E[M_0]$ for each $n$.</span><span class=\"src\">Williams 10; Grimmett 12.4</span>",
     "hint": "If you decide when to stop betting using only the laps seen so far, does the bet stay fair?",
     "breakdown": [
       "<strong>$\\{\\tau\\le n\\}\\in\\mathcal F_n$ = a decision from the past.</strong> Whether you have stopped by lap $n$ is decided by what you have seen up to lap $n$; no peeking ahead.",
@@ -4434,7 +4434,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A doubling system fails.</strong> Betting on Max and doubling the stake after each race he loses, until he wins, seems to guarantee a profit. But it needs unbounded losses on the way, so none of the conditions hold and the expectation is not preserved.",
     "examTrap": "Applying OST without checking regulatory conditions! In the classic doubling strategy, M_\u03c4 = 1 with probability 1, but \ud835\udd3c[M_0] = 0. Blindly applying OST produces 1 = 0! Always verify one of the three regulatory conditions!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Optional stopping theorem.</b> If $(M_n)$ is a martingale and $\\tau$ a stopping time, then $\\mathbb E[M_\\tau]=\\mathbb E[M_0]$ provided one of: (a) $\\tau\\le C$ a.s.; (b) $\\tau\\lt \\infty$ a.s. and $|M_{n\\wedge\\tau}|\\le K$; (c) $\\mathbb E[\\tau]\\lt \\infty$ and $|M_{n+1}-M_n|\\le c$ (Williams 10.10; Grimmett 12.5).",
+    "statement": "<b>Optional stopping theorem.</b><span class=\"ln\">If $(M_n)$ is a martingale and $\\tau$ a stopping time,</span><span class=\"ln in\">then $\\mathbb E[M_\\tau]=\\mathbb E[M_0]$ provided one of:</span><span class=\"ln in2\">(a) $\\tau\\le C$ a.s.;</span><span class=\"ln in2\">(b) $\\tau\\lt \\infty$ a.s. and $|M_{n\\wedge\\tau}|\\le K$;</span><span class=\"ln in2\">(c) $\\mathbb E[\\tau]\\lt \\infty$ and $|M_{n+1}-M_n|\\le c$.</span><span class=\"src\">Williams 10.10; Grimmett 12.5</span>",
     "hint": "When can you stop a fair bet at a random lap and still expect to leave with what you came with?",
     "breakdown": [
       "<strong>$\\tau\\le C$ = bounded time.</strong> You stop by a fixed lap, say the last lap, so the stopped-martingale theorem applies at $n=C$.",
@@ -4464,7 +4464,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>The chase.</strong> The gap between Max and a rival moves a fair step each lap. The fight ends when Max is $b$ steps clear or $a$ steps behind. He breaks clear first with chance $a/(a+b)$, and the fight lasts $ab$ laps on average. Two fair games answer both questions.",
     "examTrap": "Applying \ud835\udd3c[\u03c4] = ab to biased walks! The identity \ud835\udd3c[S_\u03c4\u00b2 - \u03c4] = 0 holds ONLY for zero-mean symmetric walks (p = 1/2). For biased walks (p \u2260 1/2), you must use the exponential Wald martingale exp(\u03b8 S_n) / (M(\u03b8))^n instead!",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Gambler's ruin by OST.</b> For a fair simple random walk $S_n$ started at $0$ and $\\tau$ the first exit time from $(-a,b)$: $\\mathbb E[S_\\tau]=0$ gives $\\mathbb P(\\text{hit }b\\text{ first})=\\frac a{a+b}$, and $\\mathbb E[S_\\tau^2-\\tau]=0$ gives $\\mathbb E[\\tau]=ab$ (Wald's identities) (Ross 6.3; Williams 10.12).",
+    "statement": "<b>Gambler's ruin by OST.</b><span class=\"ln\">For a fair simple random walk $S_n$ started at $0$ and $\\tau$ the first exit time from $(-a,b)$:</span><span class=\"ln in\">$\\mathbb E[S_\\tau]=0$ gives $\\mathbb P(\\text{hit }b\\text{ first})=\\frac a{a+b}$,</span><span class=\"ln in\">and $\\mathbb E[S_\\tau^2-\\tau]=0$ gives $\\mathbb E[\\tau]=ab$</span><span class=\"ln\">(Wald's identities).</span><span class=\"src\">Ross 6.3; Williams 10.12</span>",
     "hint": "In a fair chase, how do two fair games give both the chance that Max breaks clear and how many laps the fight lasts?",
     "breakdown": [
       "<strong>$\\mathbb E[S_\\tau]=0$ = the walk is a martingale.</strong> The stopped value is $b$ with chance $p$ and $-a$ with chance $1-p$, so $pb-(1-p)a=0$.",
@@ -4494,7 +4494,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Caps on each lap.</strong> If no single lap can move Max's win probability by more than a little, then the chance that it ends up far from where it started after many laps is very small, like a bell's tail.",
     "examTrap": "Applying Doob's maximal inequality to supermartingales or signed martingales! The classic maximal inequality requires a *non-negative submartingale* (such as |M_n| or M_n^+). For general martingales, apply it to |M_n| or |M_n|^p.",
     "stmtKind": "THEOREM",
-    "statement": "<b>Doob's inequality and Azuma\u2013Hoeffding.</b> For a non-negative submartingale $(X_k)$, $\\mathbb P\\bigl(\\max_{0\\le k\\le n}X_k\\ge\\lambda\\bigr)\\le\\frac{\\mathbb E[X_n]}\\lambda$. For a martingale with $|M_k-M_{k-1}|\\le c_k$, $\\mathbb P(|M_n-M_0|\\ge t)\\le2\\exp\\Bigl(-\\frac{t^2}{2\\sum_{k=1}^nc_k^2}\\Bigr)$ (Williams 14; Grimmett 12.6).",
+    "statement": "<b>Doob's inequality and Azuma\u2013Hoeffding.</b><span class=\"ln\">For a non-negative submartingale $(X_k)$,</span><span class=\"ln in\">$\\mathbb P\\bigl(\\max_{0\\le k\\le n}X_k\\ge\\lambda\\bigr)\\le\\frac{\\mathbb E[X_n]}\\lambda$.</span><span class=\"ln\">For a martingale with $|M_k-M_{k-1}|\\le c_k$,</span><span class=\"ln in\">$\\mathbb P(|M_n-M_0|\\ge t)\\le2\\exp\\Bigl(-\\frac{t^2}{2\\sum_{k=1}^nc_k^2}\\Bigr)$.</span><span class=\"src\">Williams 14; Grimmett 12.6</span>",
     "hint": "How likely is a fair game, like Max's win probability, ever to swing far from where it started?",
     "breakdown": [
       "<strong>$\\mathbb P(\\max_kX_k\\ge\\lambda)\\le\\mathbb E[X_n]/\\lambda$ = Doob.</strong> Markov's inequality for the whole running maximum, not just the last value.",
@@ -4525,7 +4525,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Racing, pitting, retired.</strong> Max's car is racing, in the pits or retired. While racing it pits at a rate of, say, 2 per hour and retires at 0.1 per hour. So it stays out for an exponential time, then jumps: to the pits with chance 2/2.1, to retirement with chance 0.1/2.1.",
     "examTrap": "Thinking diagonal entries q_{ii} are probabilities! Generator entries q_{ij} are transition *rates* (units 1/time), not probabilities. Diagonals q_{ii} are strictly non-positive (q_{ii} \u2264 0) and can be less than -1!",
     "stmtKind": "DEFINITION",
-    "statement": "<b>Generator of a CTMC.</b> A continuous-time Markov chain on $S$ has transition functions $P_{ij}(t)$ and generator $Q$ with $q_{ij}=\\lim_{h\\downarrow0}\\frac{P_{ij}(h)}h\\ (i\\ne j)$, $q_{ii}=-\\sum_{j\\ne i}q_{ij}$, so $Q\\mathbf 1=\\mathbf 0$. The holding time in $i$ is $T_i\\sim\\operatorname{Exp}(q_i)$, $q_i=-q_{ii}$, and the next state is $j$ with probability $q_{ij}/q_i$ (Ross 6.2; Grimmett 6.9).",
+    "statement": "<b>Generator of a CTMC.</b><span class=\"ln\">A continuous-time Markov chain on $S$ has transition functions $P_{ij}(t)$ and generator $Q$ with</span><span class=\"ln in\">$q_{ij}=\\lim_{h\\downarrow0}\\frac{P_{ij}(h)}h\\ (i\\ne j)$, $q_{ii}=-\\sum_{j\\ne i}q_{ij}$,</span><span class=\"ln in\">so $Q\\mathbf 1=\\mathbf 0$.</span><span class=\"ln\">The holding time in $i$ is $T_i\\sim\\operatorname{Exp}(q_i)$, $q_i=-q_{ii}$,</span><span class=\"ln in\">and the next state is $j$ with probability $q_{ij}/q_i$.</span><span class=\"src\">Ross 6.2; Grimmett 6.9</span>",
     "hint": "If Max's car can change state at any instant, what takes the place of the one-step table?",
     "breakdown": [
       "<strong>$q_{ij}=\\lim P_{ij}(h)/h$ = jump rates.</strong> In a short time $h$ the chance of moving from $i$ to $j$ is about $q_{ij}h$.",
@@ -4555,7 +4555,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Rates give chances.</strong> From the table of rates alone (pit, rejoin, retire) you can compute the chance that Max is still racing exactly 40 minutes into the race, by exponentiating the rate table times 40 minutes.",
     "examTrap": "Assuming Forward and Backward equations always hold equally on infinite state spaces! For explosive or non-regular chains, the Backward equation P' = QP always holds, but the Forward equation P' = PQ can fail due to divergent infinite sums!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Kolmogorov equations.</b> For a (non-explosive) CTMC with generator $Q$, $P'(t)=QP(t)$ (backward) and $P'(t)=P(t)Q$ (forward), $P(0)=I$. For a finite state space the solution is $P(t)=e^{Qt}=\\sum_{n\\ge0}\\frac{(Qt)^n}{n!}$, and $P(s+t)=P(s)P(t)$ (Ross 6.4; Grimmett 6.9).",
+    "statement": "<b>Kolmogorov equations.</b><span class=\"ln\">For a (non-explosive) CTMC with generator $Q$,</span><span class=\"ln in\">$P'(t)=QP(t)$ (backward) and $P'(t)=P(t)Q$ (forward), $P(0)=I$.</span><span class=\"ln\">For a finite state space the solution is</span><span class=\"ln in\">$P(t)=e^{Qt}=\\sum_{n\\ge0}\\frac{(Qt)^n}{n!}$, and $P(s+t)=P(s)P(t)$.</span><span class=\"src\">Ross 6.4; Grimmett 6.9</span>",
     "hint": "How do you get the chance of being in each state at time t from the rates alone?",
     "breakdown": [
       "<strong>$P'(t)=QP(t)$ = backward equation.</strong> Condition on the first short step from the start: move by $Q$, then continue for $t$.",
@@ -4585,7 +4585,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Green flag or safety car.</strong> If a safety car comes out at rate 1 per hour under green, and goes back in at rate 5 per hour, then after about 10 minutes the race is green with chance close to $\\frac56$, whether it started green or not.",
     "examTrap": "Thinking relaxation rate is min(\u03bb, \u03bc)! The transient exponent is the *sum* of the transition rates, -(\u03bb + \u03bc)t. Transitions in both directions accelerate convergence toward stationary balance.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>Two-state chain.</b> States $1\\to2$ at rate $\\lambda$ and $2\\to1$ at rate $\\mu$. Then $P_{11}(t)=\\dfrac\\mu{\\lambda+\\mu}+\\dfrac\\lambda{\\lambda+\\mu}e^{-(\\lambda+\\mu)t}$, and $\\lim_{t\\to\\infty}P_{11}(t)=\\pi_1=\\frac\\mu{\\lambda+\\mu}$. The memory of the start decays at rate $\\lambda+\\mu$ (Ross 6.4; Grimmett 6.9).",
+    "statement": "<b>Two-state chain.</b><span class=\"ln\">States $1\\to2$ at rate $\\lambda$ and $2\\to1$ at rate $\\mu$.</span><span class=\"ln in\">Then $P_{11}(t)=\\dfrac\\mu{\\lambda+\\mu}+\\dfrac\\lambda{\\lambda+\\mu}e^{-(\\lambda+\\mu)t}$,</span><span class=\"ln in\">and $\\lim_{t\\to\\infty}P_{11}(t)=\\pi_1=\\frac\\mu{\\lambda+\\mu}$.</span><span class=\"ln\">The memory of the start decays at rate $\\lambda+\\mu$.</span><span class=\"src\">Ross 6.4; Grimmett 6.9</span>",
     "hint": "How quickly does a race that starts under green flag forget that it started green?",
     "breakdown": [
       "<strong>$\\pi_1=\\frac\\mu{\\lambda+\\mu}$ = the long-run share in state 1.</strong> Time in 1 is proportional to $1/\\lambda$, in 2 to $1/\\mu$; the share is $\\mu/(\\lambda+\\mu)$.",
@@ -4615,7 +4615,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Balance the rates.</strong> If the race is green $\\frac56$ of the time and a safety car comes out at rate 1, while it is under the safety car $\\frac16$ of the time and it goes in at rate 5, both flows are $\\frac56$ an hour: balanced.",
     "examTrap": "Using \u03c0^T Q = \u03c0^T instead of \u03c0^T Q = 0^T! In DTMC, \u03c0^T P = \u03c0^T. But in CTMC, generator Q has zero row sums, so the stationary equation is \u03c0^T Q = 0^T!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Stationary distribution of a CTMC.</b> A probability vector $\\pi$ is stationary if $\\pi^\\top Q=\\mathbf 0^\\top$ (global balance), $\\sum_i\\pi_i=1$, equivalently $\\pi^\\top P(t)=\\pi^\\top$ for all $t$. If $\\pi_iq_{ij}=\\pi_jq_{ji}$ for all $i,j$ (detailed balance), then $\\pi^\\top Q=\\mathbf 0^\\top$ (Ross 6.5; Grimmett 6.9).",
+    "statement": "<b>Stationary distribution of a CTMC.</b><span class=\"ln\">A probability vector $\\pi$ is stationary if</span><span class=\"ln in\">$\\pi^\\top Q=\\mathbf 0^\\top$ (global balance), $\\sum_i\\pi_i=1$,</span><span class=\"ln in\">equivalently $\\pi^\\top P(t)=\\pi^\\top$ for all $t$.</span><span class=\"ln\">If $\\pi_iq_{ij}=\\pi_jq_{ji}$ for all $i,j$ (detailed balance),</span><span class=\"ln in\">then $\\pi^\\top Q=\\mathbf 0^\\top$.</span><span class=\"src\">Ross 6.5; Grimmett 6.9</span>",
     "hint": "Which split of race time between green flag and safety car is unchanged by the switching?",
     "breakdown": [
       "<strong>$\\pi^\\top Q=\\mathbf 0^\\top$ = global balance.</strong> For each state, the rate of flow in, $\\sum_i\\pi_iq_{ij}$, equals the rate of flow out, $\\pi_jq_j$.",
@@ -4645,7 +4645,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>Why the gate clogs.</strong> If a turnstile lets fans in at 6 a minute and 5 arrive a minute, the mean queue is 5 fans and each spends 1 minute there on average. At 5.9 arrivals a minute, the queue is 59.",
     "examTrap": "Applying M/M/1 formulas when \u03c1 \u2265 1! When arrival rate \u03bb exceeds service rate \u03bc (\u03c1 \u2265 1), no stationary distribution exists, and the queue backlog explodes to +\u221e with probability 1.",
     "stmtKind": "WORKED EXAMPLE",
-    "statement": "<b>M/M/1 queue.</b> Arrivals at rate $\\lambda$, service at rate $\\mu$, one server; $\\rho=\\lambda/\\mu\\lt 1$. The number in system is a birth\u2013death chain with $\\pi_n=(1-\\rho)\\rho^n$, mean $\\mathbb E[L]=\\frac\\rho{1-\\rho}$ and mean time in system $W=\\frac1{\\mu-\\lambda}$ (Little's law $L=\\lambda W$). For M/M/c, $\\rho=\\frac\\lambda{c\\mu}\\lt 1$ (Ross 8.3; Grimmett 11.2).",
+    "statement": "<b>M/M/1 queue.</b><span class=\"ln\">Arrivals at rate $\\lambda$, service at rate $\\mu$, one server; $\\rho=\\lambda/\\mu\\lt 1$.</span><span class=\"ln in\">The number in system is a birth\u2013death chain with $\\pi_n=(1-\\rho)\\rho^n$,</span><span class=\"ln in\">mean $\\mathbb E[L]=\\frac\\rho{1-\\rho}$</span><span class=\"ln in\">and mean time in system $W=\\frac1{\\mu-\\lambda}$ (Little's law $L=\\lambda W$).</span><span class=\"ln\">For M/M/c, $\\rho=\\frac\\lambda{c\\mu}\\lt 1$.</span><span class=\"src\">Ross 8.3; Grimmett 11.2</span>",
     "hint": "How long is the queue at a circuit turnstile in the long run, and how long does a fan spend there?",
     "breakdown": [
       "<strong>$\\pi_n=(1-\\rho)\\rho^n$ = geometric queue length.</strong> Detailed balance $\\pi_n\\lambda=\\pi_{n+1}\\mu$ gives a geometric law, normalised by $1-\\rho$.",
@@ -4675,7 +4675,7 @@ window.MASTER_CARDS_DATA = (window.MASTER_CARDS_DATA || []).concat(
     "personalConnection": "<strong>A clock ticks, the race may switch.</strong> Fix a fast random clock that ticks at least as often as any switch could happen. At each tick, race control sends out or calls in the safety car with the right small chance, or nothing changes.",
     "examTrap": "Choosing \u03bd smaller than max_i q_i! If \u03bd < q_i for some state i, the diagonal entry K_{ii} = 1 - q_i/\u03bd becomes negative, invalidating K as a probability matrix and causing uniformization to blow up!",
     "stmtKind": "THEOREM",
-    "statement": "<b>Uniformization (Jensen).</b> Pick $\\nu\\ge\\max_iq_i$ and let $K=I+\\frac1\\nu Q$, a stochastic matrix. Then $P(t)=\\sum_{n\\ge0}\\frac{(\\nu t)^ne^{-\\nu t}}{n!}K^n$: the chain is a discrete chain with transition matrix $K$ observed at the ticks of a rate-$\\nu$ Poisson clock (Ross 6.7; Grimmett 6.9).",
+    "statement": "<b>Uniformization (Jensen).</b><span class=\"ln\">Pick $\\nu\\ge\\max_iq_i$ and let $K=I+\\frac1\\nu Q$, a stochastic matrix.</span><span class=\"ln in\">Then $P(t)=\\sum_{n\\ge0}\\frac{(\\nu t)^ne^{-\\nu t}}{n!}K^n$:</span><span class=\"ln\">the chain is a discrete chain with transition matrix $K$ observed at the ticks of a rate-$\\nu$ Poisson clock.</span><span class=\"src\">Ross 6.7; Grimmett 6.9</span>",
     "hint": "Can a continuous-time chain, like green flag and safety car, be run as a discrete one on the ticks of a clock?",
     "breakdown": [
       "<strong>$K=I+Q/\\nu$ = a one-tick transition matrix.</strong> With $\\nu\\ge\\max_iq_i$ all entries are in $[0,1]$ and rows add to 1; some ticks leave you in place.",
