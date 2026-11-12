@@ -8,7 +8,7 @@
   <script src="cards_data.js?v=20261112_ln1"></script>
   <script src="cards_dip.js?v=20261102_d2"></script>
   <script src="cards_laa.js?v=20261102_l18"></script>
-  <script src="cards_stoma.js?v=20261113_ln1"></script>
+  <script src="cards_stoma.js?v=20261113_ln2"></script>
   <script src="practice_cmo.js?v=20261029_cmo_complete"></script>
   <script src="practice_cmo_09_19.js?v=20261029_p2"></script>
   <script src="practice_cmo_endsem_09_16.js?v=20261029_e1"></script>
@@ -1248,7 +1248,7 @@
             <h1 class="paper-title">${card.title}</h1>
             ${card.breakdown ? `${storyHtml(card)}<div class="lstack">${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
               ${card.statement && card.part !== 2 ? `<section class="sect st"><h2>${card.stmtKind || 'THEOREM'}</h2><p class="stmt">${card.statement}</p></section>` : ''}
-              <section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>
+              ${card.subject === 'StoMA' ? '' : `<section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>`}
               <section class="sect b"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section></div>`
               : `<div class="info">${infoHtml(card)}</div>`}
           </div>

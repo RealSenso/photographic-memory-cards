@@ -22,7 +22,7 @@ cards = {c["id"]: c for p in ("cards_data.js", "cards_stoma.js") for c in load(o
 
 def norm(s):
     s = re.sub(r"<[^>]+>", "", s)
-    s = re.sub(r"\\(displaystyle|textstyle|quad|qquad|,|;|!| )", "", s)
+    s = re.sub(r"\\(nolimits|displaystyle|textstyle|quad|qquad|,|;|!| )", "", s)
     return re.sub(r"[\s$().,;:]", "", s)
 
 ALLOWED = re.compile(r'</?b>|<span class="(ln|ln in|ln in2|src)">|</span>')

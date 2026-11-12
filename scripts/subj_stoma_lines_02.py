@@ -27,8 +27,7 @@ FIX = {
         r"""<span class="ln">Let $B_1,\ldots,B_n$ partition $\Omega$ with $\mathbb P(B_i)\gt 0$,</span>"""
         r"""<span class="ln">and let $\mathbb P(A)\gt 0$.</span>"""
         r"""<span class="ln">Then</span>"""
-        r"""<span class="ln in">$\mathbb P(B_k\mid A)=\dfrac{\mathbb P(A\mid B_k)\,\mathbb P(B_k)}{\sum_{i=1}^n\mathbb P(A\mid B_i)\,\mathbb P(B_i)}$</span>"""
-        r"""<span class="ln in">$=\dfrac{\mathbb P(A\mid B_k)\,\mathbb P(B_k)}{\mathbb P(A)}$.</span>"""
+        r"""<span class="ln in">$\mathbb P(B_k\mid A)=\dfrac{\mathbb P(A\mid B_k)\,\mathbb P(B_k)}{\sum\nolimits_{i=1}^n\mathbb P(A\mid B_i)\,\mathbb P(B_i)}=\dfrac{\mathbb P(A\mid B_k)\,\mathbb P(B_k)}{\mathbb P(A)}$.</span>"""
         r"""<span class="src">Ross 3.3; Grimmett 1.4</span>"""},
     30205: {"statement": r"""<b>Independence and conditional independence.</b>"""
         r"""<span class="ln">Events $A,B$ are independent if $\mathbb P(A\cap B)=\mathbb P(A)\mathbb P(B)$</span>"""
