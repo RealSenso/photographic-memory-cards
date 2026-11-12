@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plates · Photographic Memory Cards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="cards_data.js?v=20261112_f2"></script>
+  <script src="cards_data.js?v=20261112_ln1"></script>
   <script src="cards_dip.js?v=20261102_d2"></script>
   <script src="cards_laa.js?v=20261102_l18"></script>
   <script src="cards_stoma.js?v=20261113_f3"></script>
@@ -289,6 +289,11 @@
     .sect h2 { display: inline-block; margin: 0 0 4px; font-family: inherit; font-weight: 700; font-size: calc(var(--lh) * 0.55); letter-spacing: 1.2px; color: #1d1b18; border-bottom: 3px double #1d1b18; line-height: 1.1; }
     /* The statement exactly as a textbook would put it: hypotheses, then conclusion. */
     .stmt { margin: 4px 0 0; padding: 3px 10px; border: 1px solid #9a9488; background: #fbfaf5; font-family: var(--sans); font-size: calc(var(--lh) * 0.56); line-height: 1.45; color: #222; }
+    /* line-by-line statements: each .ln is its own line (wrapped text hangs under its first word), .in indents a consequence, .src is the citation */
+    .stmt .ln { display: block; padding-left: 1em; text-indent: -1em; }
+    .stmt .ln.in { padding-left: 2.2em; }
+    .stmt .ln.in2 { padding-left: 3.4em; }
+    .stmt .src { display: block; text-align: right; font-size: .78em; color: #777; }
     .mathbox { margin: 4px 0 0; padding: 2px 8px; background: #f6f1e4; border-left: 4px solid #b8860b; overflow: hidden; font-size: calc(var(--lh) * 0.5 * var(--mfit, 1)); line-height: 1.3; }
     .mathbox .katex-display { margin: .25em 0; }
     .connection { margin-top: calc(var(--lh) * 0.6); }
