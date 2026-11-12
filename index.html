@@ -857,20 +857,25 @@
     /* ---- cross-device sync: a private GitHub Gist, reached with a token you paste on each device ---- */
     const SYNC_KEY = 'plates_sync_v1', GIST_FILE = 'plates-progress.json', TIME_FILE = 'plates-card-time.json', RUN_FILE = 'plates-card-run.json', GIST_DESC = 'plates-progress (Plates study site)';
     let syncCfg = {}; try { syncCfg = JSON.parse(localStorage.getItem(SYNC_KEY) || '{}'); } catch (e) {}
-    let syncState = syncCfg.token ? 'idle' : 'off', syncTimer = null, syncBusy = false, syncAgain = false, lastPoll = 0;
+    let syncState = syncCfg.token ? 'idle' : 'off', syncTimer = null, syncBusy = false, syncAgain = false, lastPoll = 0, lastTimePush = 0, backoffUntil = 0;
+    /* GitHub refuses too many writes (403/429). Checking for changes is cheap, so it stays frequent; card time is written at most every 2 minutes
+       (sooner on Play/Pause, on leaving the page or on "Sync now"), and after a refusal sync waits 5 minutes before trying again. */
+    const TIME_PUSH_EVERY = 120000, BACKOFF = 5 * 60000;
     function saveSyncCfg() { try { localStorage.setItem(SYNC_KEY, JSON.stringify(syncCfg)); } catch (e) {} }
     function ghApi(path, opt) {
       return fetch('https://api.github.com' + path, Object.assign({}, opt, { headers: {
         Authorization: 'Bearer ' + syncCfg.token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }, cache: 'no-store' }))
-        .then(r => { if (!r.ok) throw new Error('GitHub ' + r.status); return r.json(); });
+        .then(r => { if (!r.ok) { const e = new Error('GitHub ' + r.status); e.status = r.status; throw e; } return r.json(); });
     }
     function mergeTs(remote) {
       let changed = false;
       for (const k in remote) if (!(k in doneTs) || Math.abs(remote[k]) > Math.abs(doneTs[k])) { doneTs[k] = remote[k]; changed = true; }
       return changed;
     }
-    async function syncNow() {
+    async function syncNow(force) {
       if (!syncCfg.token) return;
+      force = force === true;
+      if (!force && Date.now() < backoffUntil) return;   /* GitHub said slow down: wait it out (Sync now still tries) */
       if (syncBusy) { syncAgain = true; return; }   /* a change made mid-sync (e.g. Pause) is pushed right after, not dropped */
       syncBusy = true; lastPoll = Date.now(); setSync('syncing');
       try {
@@ -894,11 +899,14 @@
         const ct = window.CardTime ? CardTime.syncMerge(remoteT, remoteR) : null;
         const files = {};
         if (needPush) files[GIST_FILE] = { content: JSON.stringify(doneTs) };
-        if (ct && ct.push) files[TIME_FILE] = { content: ct.content };
+        if (ct && ct.push && (force || ct.pushRun || Date.now() - lastTimePush >= TIME_PUSH_EVERY)) { files[TIME_FILE] = { content: ct.content }; lastTimePush = Date.now(); }
         if (ct && ct.pushRun) files[RUN_FILE] = { content: ct.runContent };
         if (Object.keys(files).length) await ghApi('/gists/' + syncCfg.gist, { method: 'PATCH', body: JSON.stringify({ files }) });
-        syncCfg.last = Date.now(); saveSyncCfg(); setSync('ok');
-      } catch (e) { setSync('error', e.message); }
+        syncCfg.last = Date.now(); saveSyncCfg(); backoffUntil = 0; setSync('ok');
+      } catch (e) {
+        if (e.status === 403 || e.status === 429) { backoffUntil = Date.now() + BACKOFF; setSync('error', e.message + ' - GitHub asked to slow down; retrying at ' + new Date(backoffUntil).toLocaleTimeString()); }
+        else setSync('error', e.message + (e.status === 401 ? ' - the token has expired or was revoked: turn sync off and on with a new one' : e.status === 404 ? ' - the gist was not found' : ''));
+      }
       syncBusy = false;
       if (syncAgain) { syncAgain = false; syncSoon(); }
     }
@@ -919,7 +927,7 @@
         <h3>Sync progress across devices</h3>
         <p>Your “Understood” ticks, card study times and the card timer’s play/pause state are saved in a <b>private GitHub Gist</b> on your own account. Open this site on another device, paste the same token there, and both stay in step.</p>
         ${on ? `<p class="ok">Sync is on${syncCfg.last ? ' · last synced ' + new Date(syncCfg.last).toLocaleTimeString() : ''}.</p>
-          <div class="row"><button class="btn primary" onclick="syncNow();closeSync()">Sync now</button><button class="btn" onclick="syncOff()">Turn off on this device</button><button class="btn" onclick="closeSync()">Close</button></div>`
+          <div class="row"><button class="btn primary" onclick="syncNow(true);closeSync()">Sync now</button><button class="btn" onclick="syncOff()">Turn off on this device</button><button class="btn" onclick="closeSync()">Close</button></div>`
         : `<ol><li><a href="https://github.com/settings/tokens/new?scopes=gist&description=Plates%20sync" target="_blank" rel="noopener">Create a token</a> with only the <b>gist</b> permission.</li>
           <li>Paste it here:</li></ol>
           <input id="sync-token" type="password" placeholder="ghp_… or github_pat_…" autocomplete="off">
@@ -933,7 +941,7 @@
       syncCfg = { token: t }; saveSyncCfg(); closeSync(); syncNow();
     }
     function syncOff() { syncCfg = {}; saveSyncCfg(); setSync('off'); closeSync(); }
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) syncNow(); });
+    document.addEventListener('visibilitychange', () => { syncNow(document.hidden); });   /* leaving the page writes the latest card time */
     /* poll every 45 s, or every 10 s while the card timer is playing, so a Pause on another device stops this one quickly */
     setInterval(() => {
       if (document.hidden) return;
