@@ -8,7 +8,7 @@
   <script src="cards_data.js?v=20261112_f2"></script>
   <script src="cards_dip.js?v=20261102_d2"></script>
   <script src="cards_laa.js?v=20261102_l18"></script>
-  <script src="cards_stoma.js?v=20261112_f2"></script>
+  <script src="cards_stoma.js?v=20261113_f3"></script>
   <script src="practice_cmo.js?v=20261029_cmo_complete"></script>
   <script src="practice_cmo_09_19.js?v=20261029_p2"></script>
   <script src="practice_cmo_endsem_09_16.js?v=20261029_e1"></script>
@@ -25,7 +25,7 @@
   <script src="story_stoma.js?v=20261112_f1"></script>
   <script src="story_dip.js?v=20261102_d2"></script>
   <script src="topic_importance.js?v=20261028_imp1"></script>
-  <script src="card_time.js?v=20261112_ct5"></script>
+  <script src="card_time.js?v=20261113_ct6"></script>
   <script src="play_lib.js?v=20261111_p1"></script>
   <script src="play_stoma.js?v=20261112_f1"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
@@ -852,7 +852,7 @@
     /* ---- cross-device sync: a private GitHub Gist, reached with a token you paste on each device ---- */
     const SYNC_KEY = 'plates_sync_v1', GIST_FILE = 'plates-progress.json', TIME_FILE = 'plates-card-time.json', RUN_FILE = 'plates-card-run.json', GIST_DESC = 'plates-progress (Plates study site)';
     let syncCfg = {}; try { syncCfg = JSON.parse(localStorage.getItem(SYNC_KEY) || '{}'); } catch (e) {}
-    let syncState = syncCfg.token ? 'idle' : 'off', syncTimer = null, syncBusy = false;
+    let syncState = syncCfg.token ? 'idle' : 'off', syncTimer = null, syncBusy = false, syncAgain = false, lastPoll = 0;
     function saveSyncCfg() { try { localStorage.setItem(SYNC_KEY, JSON.stringify(syncCfg)); } catch (e) {} }
     function ghApi(path, opt) {
       return fetch('https://api.github.com' + path, Object.assign({}, opt, { headers: {
@@ -865,8 +865,9 @@
       return changed;
     }
     async function syncNow() {
-      if (!syncCfg.token || syncBusy) return;
-      syncBusy = true; setSync('syncing');
+      if (!syncCfg.token) return;
+      if (syncBusy) { syncAgain = true; return; }   /* a change made mid-sync (e.g. Pause) is pushed right after, not dropped */
+      syncBusy = true; lastPoll = Date.now(); setSync('syncing');
       try {
         if (!syncCfg.gist) {
           const list = await ghApi('/gists?per_page=100');
@@ -894,6 +895,7 @@
         syncCfg.last = Date.now(); saveSyncCfg(); setSync('ok');
       } catch (e) { setSync('error', e.message); }
       syncBusy = false;
+      if (syncAgain) { syncAgain = false; syncSoon(); }
     }
     function syncSoon() { if (!syncCfg.token) return; clearTimeout(syncTimer); syncTimer = setTimeout(syncNow, 1200); }
     function setSync(state, msg) {
@@ -927,7 +929,12 @@
     }
     function syncOff() { syncCfg = {}; saveSyncCfg(); setSync('off'); closeSync(); }
     document.addEventListener('visibilitychange', () => { if (!document.hidden) syncNow(); });
-    setInterval(() => { if (!document.hidden) syncNow(); }, 45000);
+    /* poll every 45 s, or every 10 s while the card timer is playing, so a Pause on another device stops this one quickly */
+    setInterval(() => {
+      if (document.hidden) return;
+      const playing = window.CardTime && CardTime._run().on;
+      if (playing || Date.now() - lastPoll >= 45000) syncNow();
+    }, 10000);
     function savePos() { try { localStorage.setItem(POS_KEY, JSON.stringify({ s: currentSubject, t: currentTopic, i: idx })); } catch (e) {} }
 
     let currentSubject = 'CMO';

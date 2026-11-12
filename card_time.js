@@ -56,6 +56,8 @@
   /* seq must never go backwards, or a local action could lose to an older remote state on the next sync */
   const nextSeq = () => Math.max(Date.now(), (run.seq || 0) + 1);
   let curKey = null, last = Date.now(), dirty = false, ctx = null;
+  /* the last two minutes of credited time, so a Pause made on another device can take back what this page counted after it */
+  let recent = [];
   ['plates_timer_v1', 'plates_timer_prefs_v1', 'plates_timer_prefs_v1_plan'].forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });   // the old slot timer
 
   /* card id for explanation cards (split halves share it); subject + question id for practice questions */
@@ -103,6 +105,7 @@
     if (run.on && !document.hidden && curKey) {
       const mine = data.c[data.dev];
       mine[curKey] = (mine[curKey] || 0) + dt;
+      recent.push({ t: now, k: curKey, dt }); while (recent.length && recent[0].t < now - 120000) recent.shift();
       const before = run.ms; run.ms += dt; dirty = true;
       if (Math.floor(run.ms / BEEP_EVERY) > Math.floor(before / BEEP_EVERY)) beep();
     }
@@ -138,6 +141,16 @@
   }
   const subjHtml = sub => { const v = subjectTotal(sub); return `<span class="stime" data-s="${sub}" title="Total card time in ${sub}">${v ? fmtShort(v) : ''}</span>`; };
 
+  /* take back time credited after `since` (a remote Pause's timestamp); it has not been pushed yet, so the merge keeps it out */
+  function rollback(since) {
+    const mine = data.c[data.dev];
+    recent = recent.filter(e => {
+      if (e.t <= since) return true;
+      mine[e.k] = Math.max(0, (mine[e.k] || 0) - e.dt); run.ms = Math.max(0, run.ms - e.dt); dirty = true;
+      return false;
+    });
+  }
+
   /* sync: index.html's syncNow passes the gist copies and stores what this returns */
   function syncMerge(remote, remoteRun) {
     const rc = remote && remote.c && typeof remote.c === 'object' ? remote.c : {};
@@ -146,6 +159,7 @@
     const mr = mergeRun(run, remoteRun, Date.now());
     if (mr.adopt) {
       tick();   /* settle counting under the old state before switching */
+      if (run.on && !mr.state.on) rollback(mr.state.seq);   /* paused elsewhere: drop what was counted here after that moment */
       run.on = mr.state.on; run.until = mr.state.until; run.seq = mr.state.seq; run.by = mr.state.by;
       lsSet(RUN, run); paint();
     }

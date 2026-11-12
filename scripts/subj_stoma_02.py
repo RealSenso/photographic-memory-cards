@@ -52,7 +52,7 @@ def d5(c):
 
 def d6(c):
     out = ""
-    for i, (x, nm) in enumerate([(20, "1: R S"), (68, "2: R F"), (116, "3: S F"), (164, "4: R S F")]):
+    for i, (x, nm) in enumerate([(20, "1: R"), (68, "2: S"), (116, "3: F"), (164, "4: R S F")]):
         out += R(x, 36, 44, 30, "#f1f5f9", 1, 3) + N(x + 22, 53, nm, 7)
     return svg(c, out, N(120, 24, "4 equally likely kinds of race, each ¼", 7.5),
         N(120, 82, "R rain · S safety car · F red flag, each in 2 of 4: ℙ = ½", 6.5),
@@ -101,7 +101,7 @@ CARDS = {
   conn="<strong>Two Red Bulls on the same weekend.</strong> Whether Max and his team-mate Checo reach the podium are linked, because they drive the same car: a fast car lifts both. Once you know the car is fast this weekend, Max's podium says nothing more about Checo's.",
   cap='Left: A and B with ℙ(A∩B) = ℙ(A)ℙ(B). Right: inside the case C (the car is fast this weekend), A (Max on the podium) and B (Checo on the podium) satisfy ℙ(A∩B|C) = ℙ(A|C)ℙ(B|C), though they are dependent overall.'),
 30206: dict(d=d6, kind="WORKED EXAMPLE",
-  stmt=r"<b>Bernstein's example.</b> A tetrahedron has faces coloured $\{R,G\}$, $\{R,B\}$, $\{G,B\}$ and $\{R,G,B\}$, each face rolled with probability $\tfrac14$. Then $\mathbb P(R)=\mathbb P(G)=\mathbb P(B)=\tfrac12$ and $\mathbb P(R\cap G)=\tfrac14=\mathbb P(R)\mathbb P(G)$ (and likewise for the other pairs), so the events are pairwise independent. But $\mathbb P(R\cap G\cap B)=\tfrac14\ne\tfrac18=\mathbb P(R)\mathbb P(G)\mathbb P(B)$, so they are not mutually independent (Grimmett 1.5).",
+  stmt=r"<b>Bernstein's example.</b> A tetrahedron has faces coloured $\{R\}$, $\{G\}$, $\{B\}$ and $\{R,G,B\}$, each face rolled with probability $\tfrac14$. Then $\mathbb P(R)=\mathbb P(G)=\mathbb P(B)=\tfrac12$ and $\mathbb P(R\cap G)=\tfrac14=\mathbb P(R)\mathbb P(G)$ (and likewise for the other pairs), so the events are pairwise independent. But $\mathbb P(R\cap G\cap B)=\tfrac14\ne\tfrac18=\mathbb P(R)\mathbb P(G)\mathbb P(B)$, so they are not mutually independent (Grimmett 1.5).",
   hint='Can three events be independent in every pair, yet fail to be independent together?',
   bd=[r"<strong>$\mathbb P(R)=\tfrac12$ = each colour is on two of the four equally likely faces.</strong> Say R is rain, S a safety car, F a red flag, each present in two of four kinds of race.",
       r"<strong>$\mathbb P(R\cap G)=\tfrac14=\mathbb P(R)\mathbb P(G)$ = every pair multiplies.</strong> Each pair of colours shares exactly one face, so every pair is independent.",
