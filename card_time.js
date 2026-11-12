@@ -28,6 +28,10 @@
     return Object.keys(a || {}).some(dev => Object.keys(a[dev]).some(k => (a[dev][k] || 0) > (((b || {})[dev] || {})[k] || 0)));
   }
   function total(c, key) { let t = 0; Object.keys(c).forEach(dev => { t += c[dev][key] || 0; }); return t; }
+  /* Tombstoned device ids: sessions that published accidental time. They are dropped from every merge and publish,
+     so that time leaves the totals without touching any real device's numbers. */
+  const DEAD_DEVS = { g5vewbir: 1 };
+  function prune(c) { const out = {}; Object.keys(c || {}).forEach(dev => { if (!DEAD_DEVS[dev]) out[dev] = c[dev]; }); return out; }
   const pad = n => String(n).padStart(2, '0');
   function fmtClock(ms) { const s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60; return (h ? h + ':' + pad(m) : m) + ':' + pad(s % 60); }
   function fmtShort(ms) { const m = Math.floor(ms / 60000), h = Math.floor(m / 60); return h ? h + 'h ' + pad(m % 60) + 'm' : m ? m + 'm' : '<1m'; }
@@ -43,7 +47,7 @@
     }
     return { adopt: false, state: l, push: (l.seq || 0) > rseq };
   }
-  const api = { merge, ahead, total, fmtClock, fmtShort, mergeRun };
+  const api = { merge, ahead, total, fmtClock, fmtShort, mergeRun, prune };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
 
   /* ---------- page ---------- */
@@ -51,6 +55,7 @@
   const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   let data = lsGet(KEY, null);
   if (!data || !data.dev || !data.c) data = { dev: Math.random().toString(36).slice(2, 10), c: {} };
+  data.c = prune(data.c);
   data.c[data.dev] = data.c[data.dev] || {};
   let run = Object.assign({ on: false, ms: 0, until: null, seq: 0, by: 'manual' }, lsGet(RUN, {}));
   /* seq must never go backwards, or a local action could lose to an older remote state on the next sync */
@@ -153,7 +158,7 @@
 
   /* sync: index.html's syncNow passes the gist copies and stores what this returns */
   function syncMerge(remote, remoteRun) {
-    const rc = remote && remote.c && typeof remote.c === 'object' ? remote.c : {};
+    const rc = prune(remote && remote.c && typeof remote.c === 'object' ? remote.c : {});
     const merged = merge(data.c, rc);
     if (ahead(rc, data.c)) { data.c = merged; data.c[data.dev] = data.c[data.dev] || {}; lsSet(KEY, data); paint(); }
     const mr = mergeRun(run, remoteRun, Date.now());
@@ -163,7 +168,7 @@
       run.on = mr.state.on; run.until = mr.state.until; run.seq = mr.state.seq; run.by = mr.state.by;
       lsSet(RUN, run); paint();
     }
-    return { push: ahead(data.c, rc), content: JSON.stringify({ v: 1, c: merge(data.c, rc) }),
+    return { push: ahead(data.c, rc), content: JSON.stringify({ v: 1, c: merge(prune(data.c), rc) }),
       pushRun: mr.push, runContent: JSON.stringify({ v: 1, on: run.on, until: run.until || null, seq: run.seq || 0, by: run.by || 'manual' }) };
   }
 
