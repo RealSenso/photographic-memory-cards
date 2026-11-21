@@ -19,10 +19,10 @@ def d3021(c):
 def d3022(c):
     sx = lambda r: 24 + r * 0.9
     out = [axes(24, 116, 130, 18), N(132, 124, "r", 8, "start"), N(16, 18, "s", 8, "end"), L(24, 116, 114, 26, .6, "2 3"),
-           curve(lambda x: 116 - 90 * ((x - 24) / 90) ** .45, 24, 114, 40, 1), N(32, 40, "γ < 1 brightens", 7, "start"),
-           curve(lambda x: 116 - 90 * ((x - 24) / 90) ** 2.2, 24, 114, 40, 1, "3 2"), N(100, 88, "γ > 1 darkens", 7, "start"),
+           curve(lambda x: 116 - 90 * ((x - 24) / 90) ** .45, 24, 114, 40, 1), N(46, 26, "γ < 1 brightens", 7, "start"),
+           curve(lambda x: 116 - 90 * ((x - 24) / 90) ** 2.2, 24, 114, 40, 1, "3 2"), N(58, 113, "γ > 1 darkens", 7, "start"),
            curve(lambda x: 116 - 90 * math.log(1 + 9 * (x - 24) / 90) / math.log(10), 24, 114, 40, .8, "1 2"),
-           L(114, 116, 24, 26, .8, None) if False else "",
+           L(24, 26, 114, 116, .8), N(116, 110, "negative", 6.5, "start"),
            R(144, 22, 86, 30, "#f1f5f9", 1), N(187, 34, "s = T(r), same T", 7.5), N(187, 45, "for every pixel", 7.5),
            N(187, 72, "negative: s = L−1−r", 7), N(187, 84, "log: s = c·log(1+r)", 7), N(187, 96, "gamma: s = c·rᵞ", 7),
            N(120, 138, "brighten the night frame, pixel by pixel", 7.5)]
@@ -35,7 +35,7 @@ def d3023(c):
         curve(lambda x: b - 56 * math.exp(-((x - 46) / 14) ** 2) - 44 * math.exp(-((x - 110) / 14) ** 2), 18, 146, 60, 1),
         N(46, 28, "road", 7), N(110, 38, "person", 7),
         L(80, b, 80, 20, 1, "3 2"), N(80, 16, "T", 8),
-        N(46, b + 10, "μ₁", 7), N(110, b + 10, "μ₂", 7), N(80, b + 10, "½(μ₁+μ₂)", 6.5),
+        N(46, b + 10, "μ₂", 7), N(110, b + 10, "μ₁", 7), N(80, b + 10, "½(μ₁+μ₂)", 6.5),
         R(164, 20, 66, 46, "#f1f5f9", 1), N(197, 32, "g = 1 if f > T", 7), N(197, 43, "g = 0 if f ≤ T", 7), N(197, 58, "binary mask", 7),
         frame(172, 78, 20, 22, None, "#ffffff"), frame(200, 78, 20, 22, None, "#d9dee7"), person(210, 98, 14), N(182, 112, "f", 7), N(210, 112, "g", 7),
         N(120, 135, "any T in the valley separates people from road", 7.5))
@@ -53,13 +53,26 @@ def d3024(c):
         N(197, 100, "k* = argmax σB²", 7.5), N(197, 112, "= min within-class", 7), N(197, 122, "variance", 7))
 
 def d3025(c):
-    b = 100
+    b, x0, x1 = 100, 22, 146
+    n = 62
+    p = [math.exp(-((i - 20) / 7) ** 2) + .8 * math.exp(-((i - 46) / 6) ** 2) for i in range(n)]
+    tot = sum(p); p = [v / tot for v in p]
+    W, M, sw, sm = [], [], 0, 0
+    for i, v in enumerate(p):
+        sw += v; sm += i * v; W.append(sw); M.append(sm)
+    muT = M[-1]
+    X = lambda i: x0 + (x1 - x0) * i / (n - 1)
+    yW = lambda i: b - 72 * W[i]
+    yM = lambda i: b - 46 * M[i] / muT
+    k = 32
     return svg(c,
         axes(18, b, 150, 14), N(150, b + 10, "k", 8, "end"),
-        curve(lambda x: b - 78 * (1 / (1 + math.exp(-(x - 70) / 8))) * 0.6 - 30 * (1 / (1 + math.exp(-(x - 110) / 6))), 22, 146, 60, 1),
-        N(26, 38, "ω(k) = Σ pᵢ", 7, "start"), 
-        L(84, b, 84, 30, 1, "3 2"), N(84, b + 10, "k", 8), dot(84, 54, None, r=1.8), N(88, 52, "μ(k)", 7, "start"),
-        L(18, 24, 146, 24, .6, "1 3"), N(24, 20, "μT", 7, "start"),
+        L(18, 28, 146, 28, .6, "1 3"), N(14, 31, "1", 7, "end"),
+        L(18, 54, 146, 54, .6, "1 3"), N(14, 57, "μT", 7, "end"),
+        poly([(X(i), yW(i)) for i in range(n)], 1), poly([(X(i), yM(i)) for i in range(n)], 1, "3 2"),
+        L(f(X(k)), b, f(X(k)), 22, .8, "3 2"), N(round(X(k), 1), b + 10, "k", 8),
+        dot(round(X(k), 1), round(yW(k), 1), None, r=1.8), N(round(X(k) - 3, 1), round(yW(k) - 3, 1), "ω(k)", 7, "end"),
+        dot(round(X(k), 1), round(yM(k), 1), None, r=1.8), N(round(X(k) + 3, 1), round(yM(k) + 9, 1), "μ(k)", 7, "start"),
         R(162, 20, 68, 70, "#f1f5f9", 1), N(196, 34, "σB²(k) =", 7.5), N(196, 46, "[μT·ω − μ]²", 7.5), L(170, 51, 222, 51, .8), N(196, 62, "ω (1 − ω)", 7.5), N(196, 80, "one pass: O(L)", 7),
         N(120, 128, "running totals along the histogram of the frame", 7.5))
 
@@ -73,7 +86,7 @@ def d3026(c):
         out.append(N(48 + k * 22, b + 10, str(k), 7))
     out += [L(104, b, 104, 16, 1, "3 2"), N(104, 12, "k = 2", 7.5),
             N(40, 22, "ω₀ = 0.5", 7, "start"), N(40, 32, "μ₀ = 1.2", 7, "start"), N(160, 24, "ω₁ = 0.5", 7, "start"), N(160, 34, "μ₁ = 6.6", 7, "start"),
-            R(108, 60, 44, 12, "none", .8, 0, "2 2"), N(130, 69, "empty", 6.5),
+            R(106, 60, 66, 12, "none", .8, 0, "2 2"), N(139, 69, "empty", 6.5),
             N(120, 112, "σB²(2) = 0.5·0.5·(6.6 − 1.2)² = 7.29", 7.5),
             N(120, 125, "k = 2, 3, 4, 5 tie ⇒ take the middle, ≈ 3.5", 7.5)]
     return svg(c, *out)
@@ -92,7 +105,8 @@ CARDS = {
   hint="Which curve would you bend to lift the dark street without touching the lamps?",
   breakdown=[r"<strong>$s=T(r)$ = one rule for every pixel.</strong> Each pixel looks only at its own value; its neighbours play no part.",
              r"<strong>$c\,r^{\gamma}$ and $c\log(1+r)$ = lift the dark end.</strong> For $\gamma\lt1$ and the log, dark values are spread out and bright ones are squeezed together.",
-             r"<strong>$\frac{r-r_{\min}}{r_{\max}-r_{\min}}(L-1)$ = stretch the used range.</strong> Move the darkest value in the frame to 0 and the brightest to $L-1$."],
+             r"<strong>$\frac{r-r_{\min}}{r_{\max}-r_{\min}}(L-1)$ = stretch the used range (full-scale contrast stretch).</strong> Move the darkest value in the frame to 0 and the brightest to $L-1$.",
+             r"<strong>$\frac{ds}{dr}=c\gamma r^{\gamma-1}$ = the local contrast gain.</strong> Where it is above 1, nearby grey levels are pushed apart; where it is below 1, they are squeezed together."],
   conn=r"<strong>Brightening the night footage.</strong> Run every pixel of the dim street frame through the same bent curve: shadows lift, the lamp stays bright. A pixel that was already black cannot be recovered, because the curve only moves values.",
   cap="Curves s = T(r) on the street frame: γ < 1 and the log lift dark pixels, γ > 1 darkens, the negative flips the scale. Every pixel uses the same curve."),
 3023: dict(d=d3023, stmtKind="ALGORITHM",
@@ -100,7 +114,9 @@ CARDS = {
   hint="When the frame has road and people, where on the histogram should the cut go?",
   breakdown=[r"<strong>$g=1$ if $f\gt T$, else $0$ = a yes/no mask.</strong> Every pixel above the cut becomes object, every pixel at or below it becomes background.",
              r"<strong>$\mu_1,\mu_2$ = the average brightness of each side.</strong> Where the two humps of the histogram are centred.",
-             r"<strong>$T\leftarrow\frac12(\mu_1+\mu_2)$ = move the cut to the middle.</strong> Repeating this settles the cut in the valley between the humps."],
+             r"<strong>$T\leftarrow\frac12(\mu_1+\mu_2)$ = move the cut to the middle.</strong> Repeating this settles the cut in the valley between the humps.",
+             r"<strong>The iterates $T_n$ are monotone.</strong> If $T_{n+1}\gt T_n$, the pixels that change class lie above the old lower mean and below the old upper mean, so both means rise and $T_{n+2}\ge T_{n+1}$. The decreasing case is the mirror image.",
+             r"<strong>$T=\frac12(\mu_1+\mu_2)$ = the nearest-mean boundary.</strong> A level $k$ is closer to the upper mean exactly when $k\gt T$, so for fixed means this cut minimises $\sum(k-\mu_{\rm class})^2p(k)$."],
   conn=r"<strong>People on a dark road.</strong> The road makes one hump, the lit passers-by another. Drawing the cut in the valley between them gives a mask where the people are white. A shadow across half the road would drag one hump over and break a single cut.",
   cap="A two-hump histogram of the street frame: road and person. The cut T sits in the valley, halfway between the means μ₁ and μ₂, and gives the binary mask g."),
 3024: dict(d=d3024, stmtKind="ALGORITHM",
@@ -108,7 +124,9 @@ CARDS = {
   hint="Which cut makes the two groups of pixels as far apart and as balanced as possible?",
   breakdown=[r"<strong>$\omega_0,\omega_1$ = how many pixels are on each side of the cut.</strong> The two shares of the frame, adding to 1.",
              r"<strong>$(\mu_0-\mu_1)^2$ = how far apart the two groups are.</strong> The squared gap between their average brightnesses.",
-             r"<strong>$\arg\max_k\,\omega_0\omega_1(\mu_0-\mu_1)^2$ = the best cut.</strong> A big gap and balanced groups give a large value; the cut with the largest value wins."],
+             r"<strong>$\arg\max_k\,\omega_0\omega_1(\mu_0-\mu_1)^2$ = the best cut.</strong> A big gap and balanced groups give a large value; the cut with the largest value wins.",
+             r"<strong>$\sigma_B^2=\omega_0(\mu_0-\mu_T)^2+\omega_1(\mu_1-\mu_T)^2=\omega_0\mu_0^2+\omega_1\mu_1^2-\mu_T^2$.</strong> Using $\mu_T=\omega_0\mu_0+\omega_1\mu_1$, this equals $\omega_0\omega_1(\mu_0-\mu_1)^2$. Since $\mu_T$ is fixed, maximising $\sigma_B^2$ is maximising $\omega_0\mu_0^2+\omega_1\mu_1^2$.",
+             r"<strong>$\sigma_T^2=\sigma_W^2+\sigma_B^2$, with $\sigma_W^2=\omega_0\sigma_0^2+\omega_1\sigma_1^2$.</strong> The total variance does not depend on $k$, so the largest $\sigma_B^2$ is the smallest $\sigma_W^2$."],
   conn=r"<strong>Let the frame choose its own cut.</strong> Instead of guessing a brightness, try every cut on the street histogram and keep the one that separates road from people best. It fails when one side is tiny, like a single far-away person.",
   cap="A cut k splits the street histogram into classes with weights ω₀, ω₁ and means μ₀, μ₁. Otsu picks the k with the largest ω₀ω₁(μ₀ − μ₁)²."),
 3025: dict(d=d3025, stmtKind="PROPOSITION",
@@ -116,7 +134,8 @@ CARDS = {
   hint="How can you score every possible cut by sweeping once along the histogram?",
   breakdown=[r"<strong>$\omega(k)$ = running share of pixels up to $k$.</strong> The fraction of the frame at or below the cut.",
              r"<strong>$\mu(k)$ = running sum of level × share.</strong> With $\mu_T$ (the whole frame's mean) it gives both class means without a second pass.",
-             r"<strong>$\omega(1-\omega)$ in the denominator = the balance term.</strong> It is zero when one class is empty, so those $k$ are skipped."],
+             r"<strong>$\omega(1-\omega)$ in the denominator = the balance term.</strong> It is zero when one class is empty, so those $k$ are skipped.",
+             r"<strong>$\mu_0=\frac{\mu(k)}{\omega},\ \mu_1=\frac{\mu_T-\mu(k)}{1-\omega}$ = the step to the fast formula.</strong> Then $\mu_0-\mu_1=\frac{\mu(k)-\mu_T\omega}{\omega(1-\omega)}$; put this into $\omega(1-\omega)(\mu_0-\mu_1)^2$."],
   conn=r"<strong>One sweep along the night histogram.</strong> Keep two running totals as you walk from black to white and read the score of every cut off them, instead of recomputing the two groups each time.",
   cap="Walking along the street histogram we keep ω(k) (running share) and μ(k) (running mean); with the total mean μT they give σB²(k) in one pass."),
 3026: dict(d=d3026, stmtKind="WORKED EXAMPLE",

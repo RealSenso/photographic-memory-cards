@@ -23,14 +23,20 @@ def d3012(c):
         N(195, 99, "Y alone = brightness", 7), N(120, 130, "the street lamp's spectrum P(λ) weighed three ways", 7.5))
 
 def d3013(c):
+    locus = [(.1741,.0050),(.1440,.0297),(.1241,.0578),(.0913,.1327),(.0454,.2950),(.0082,.5384),(.0139,.7502),(.0743,.8338),(.1547,.8059),
+             (.2296,.7543),(.3016,.6923),(.3731,.6245),(.4441,.5547),(.5125,.4866),(.5752,.4242),(.6270,.3725),(.6915,.3083),(.7347,.2653)]
+    X = lambda x: 18 + x * 150
+    Y = lambda y: 122 - y * 118
+    pts = lambda L_: " ".join(f"{f(X(a))},{f(Y(b))}" for a, b in L_)
     return svg(c,
-        axes(16, 118, 132, 12), N(130, 128, "x", 8, "end"), N(10, 20, "y", 8, "start"),
-        curve(lambda x: 118 - 100 * math.sin((x - 24) / 96 * math.pi) ** .7, 28, 120, 50, 1),
-        L(32, 118, 36, 118, 1), N(40, 112, "violet", 6.5, "start"), N(56, 26, "green 520", 6.5, "start"), N(112, 64, "red 700", 6.5, "start"),
-        PG("34,110 112,112 44,40", "none", 1, "3 2"), N(130, 112, "screen gamut", 6.5, "start"), 
-        C(66, 84, 1.8, "#ffffff"), N(70, 88, "white", 6.5, "start"),
+        axes(18, 122, 146, 10), N(146, 131, "x", 8, "end"), N(11, 16, "y", 8, "start"),
+        PG(pts(locus), "none", 1),
+        N(33, 21, "green 520", 6.5, "start"), N(130, 89, "red", 6.5, "start"), N(130, 97, "700", 6.5, "start"), N(44, 131, "violet 380", 6.5),
+        PG(pts([(.64,.33),(.30,.60),(.15,.06)]), "none", 1, "3 2"),
+        L(96, 44, 88.5, 67, .6), N(92, 41, "screen gamut", 6.5, "start"),
+        C(f(X(.3127)), f(Y(.3290)), 1.8, "#ffffff"), N(69, 91, "white", 6.5, "start"),
         R(150, 18, 80, 76, "#f1f5f9", 1), N(190, 32, "x = X/(X+Y+Z)", 7), N(190, 46, "y = Y/(X+Y+Z)", 7), N(190, 60, "z = 1 − x − y", 7), N(190, 78, "no brightness left", 7),
-        N(120, 140, "the red bus and its sign live on this map", 7.5))
+        N(120, 141, "the red bus and its sign live on this map", 7.5))
 
 def d3014(c):
     return svg(c,
@@ -46,17 +52,19 @@ def d3014(c):
 def d3015(c):
     cx, cy, r = 70, 76, 48
     out = [circ(cx, cy, r, "none", 1), circ(cx, cy, 3, "#ffffff", 1)]
-    for a, lab in ((90, "R 0°"), (-30, "G 120°"), (210, "B 240°")):
+    for a, lab, lx, ly, anc in ((0, "R 0°", 120, 72, "start"), (120, "G 120°", 42, 32, "end"), (240, "B 240°", 42, 126, "end")):
         x, y = cx + r * math.cos(math.radians(a)), cy - r * math.sin(math.radians(a))
-        out += [L(f(cx), f(cy), f(x), f(y), .6, "1 3"), N(round(x + (6 if x > cx else -6), 1), round(y + (-3 if a == 90 else 8), 1), lab, 7, "start" if x > cx else "end")]
-    px, py = cx + 28, cy - 20
+        out += [L(f(cx), f(cy), f(x), f(y), .6, "1 3"), N(lx, ly, lab, 7, anc)]
+    h = math.radians(50)
+    px, py = cx + 34 * math.cos(h), cy - 34 * math.sin(h)
+    ax, ay = cx + 16 * math.cos(h), cy - 16 * math.sin(h)
     out += [arrow(cx, cy, px, py, 1), C(f(px), f(py), 2), N(px + 4, py - 2, "colour", 7, "start"),
-            arc := P(f"M{cx + 18},{cy} A18,18 0 0 0 {cx + 15.5},{cy - 9}", "none", .8), N(cx + 20, cy + 4, "H", 8, "start"),
-            N(cx - 2, cy + 10, "S = radius", 6.5, "end"),
+            P(f"M{cx + 16},{cy} A16,16 0 0 0 {f(ax)},{f(ay)}", "none", .8), N(cx + 19, cy - 5, "H", 8, "start"),
+            N(cx + 5, cy + 13, "S = arrow length", 6.5, "start"),
             R(138, 20, 90, 24, "#f1f5f9", 1), N(183, 36, "I = (R+G+B)/3", 7.5),
             R(138, 52, 90, 24, "#f1f5f9", 1), N(183, 68, "S = 1 − 3·min/(R+G+B)", 6.5),
             R(138, 84, 90, 24, "#f1f5f9", 1), N(183, 100, "H = angle θ (or 360° − θ)", 6.5),
-            N(120, 136, "grey ⇒ S = 0 ⇒ hue undefined", 7.5)]
+            N(120, 138, "grey ⇒ S = 0 ⇒ hue undefined", 7.5)]
     return svg(c, *out)
 
 def d3016(c):
@@ -67,12 +75,12 @@ def d3016(c):
         N(120, 62, "+128 for 8-bit storage", 7.5),
         L(40, 122, 226, 122, 1), N(40, 134, "0", 7), N(226, 134, "255", 7, "end"),
         R(40, 76, 55, 10, "#d9dee7", .8), N(100, 85, "Y ≈ 76", 7, "start"),
-        R(40, 90, 66, 10, "#f1f5f9", .8), N(111, 99, "Cb ≈ 85", 7, "start"),
+        R(40, 90, 62, 10, "#f1f5f9", .8), N(107, 99, "Cb ≈ 85", 7, "start"),
         R(40, 104, 186, 10, "#d9dee7", .8), N(44, 113, "Cr ≈ 255 (clipped)", 7, "start"))
 
 CARDS = {
 3011: dict(d=d3011, stmtKind="THEOREM",
-  statement=r"<b>Trichromacy and Grassmann's laws.</b> For normal human vision, any colour stimulus $C$ can be matched by a mixture of three fixed primaries: $C\equiv R\,\mathbf R+G\,\mathbf G+B\,\mathbf B$, where $\equiv$ means \"looks the same\". Matching is linear (Grassmann): if $C_1\equiv C_2$ then $\alpha C_1\equiv\alpha C_2$ for $\alpha\gt 0$, and $C_1+C_3\equiv C_2+C_3$ for any $C_3$.",
+  statement=r"<b>Trichromacy and Grassmann's laws.</b> For normal human vision, any colour stimulus $C$ can be matched by a mixture of three fixed primaries: $C\equiv R\,\mathbf R+G\,\mathbf G+B\,\mathbf B$, where $\equiv$ means “looks the same” and an amount may be negative (that primary is then added to the $C$ side). Matching is linear (Grassmann): if $C_1\equiv C_2$ then $\alpha C_1\equiv\alpha C_2$ for $\alpha\gt 0$, and $C_1+C_3\equiv C_2+C_3$ for any $C_3$.",
   hint="Why can a red bus and a differently-made red light look identical to the street camera?",
   breakdown=[r"<strong>$R\,\mathbf R+G\,\mathbf G+B\,\mathbf B$ = three dials.</strong> Whatever the light, the camera's three channels report one amount for each primary; those three amounts are all it keeps.",
              r"<strong>$\alpha C_1\equiv\alpha C_2$ = turning the light up keeps a match.</strong> If two lights match, making both twice as bright still matches.",
@@ -92,7 +100,8 @@ CARDS = {
   hint="After you divide out brightness, what is left on the map, and where does the screen's gamut sit?",
   breakdown=[r"<strong>$x=X/(X+Y+Z),\ y=Y/(X+Y+Z)$ = the colour's share of each primary.</strong> Dividing by the total throws brightness away, leaving pure hue and purity.",
              r"<strong>$z=1-x-y$ = the third share.</strong> The three shares add to 1, so two numbers are enough to place the colour on a flat map.",
-             r"<strong>The triangle inside the horseshoe = the screen's gamut.</strong> Three primaries can only make colours inside the triangle joining them, and a mix of two lies on the straight line between them."],
+             r"<strong>The triangle inside the horseshoe = the screen's gamut.</strong> Three primaries can only make colours inside the triangle joining them, and a mix of two lies on the straight line between them.",
+             r"<strong>$\mathbf c_m=\frac{S_1\mathbf c_1+S_2\mathbf c_2}{S_1+S_2}$, $S_i=X_i+Y_i+Z_i$ = where a mixture lands.</strong> Tristimulus values add, so the mixture's chromaticity is a weighted average of the two: it lies on the segment joining them, pulled toward the source with the larger total $S$."],
   conn=r"<strong>Which reds the camera can show.</strong> The bus red and the sign red are two points on this map. The monitor showing the street frame can only reproduce points inside its triangle, so a very saturated colour on the street may be pulled inward.",
   cap="The horseshoe is the spectral locus on the (x, y) map; x = X/(X+Y+Z), y = Y/(X+Y+Z). The dashed triangle is the screen's gamut and white sits near the middle."),
 3014: dict(d=d3014, stmtKind="ALGORITHM",
@@ -100,7 +109,8 @@ CARDS = {
   hint="Which part of the street frame must stay sharp, and which part can be stored at half size without anyone noticing?",
   breakdown=[r"<strong>$Y$ row $(0.299,0.587,0.114)$ = the brightness picture.</strong> Green is weighted most because the eye finds it brightest; this plane alone is the black-and-white frame.",
              r"<strong>$C_b,C_r$ rows = blue-minus-brightness and red-minus-brightness.</strong> Each row sums to zero, so a grey pixel gives $C_b=C_r=0$ (128 after the offset).",
-             r"<strong>Half-size $C_b,C_r$ = the saving.</strong> The eye sees fine detail in brightness but not in colour, so the recorder keeps every $Y$ pixel and shares each colour sample among four."],
+             r"<strong>Half-size $C_b,C_r$ = the saving.</strong> The eye sees fine detail in brightness but not in colour, so the recorder keeps every $Y$ pixel and shares each colour sample among four.",
+             r"<strong>$4+1+1=6$ samples per $2\times2$ block, against $12$ = the 4:2:0 saving.</strong> That is 12 bits per pixel instead of 24, a 50% reduction at any frame size."],
   conn=r"<strong>Fitting more street on the recorder.</strong> The camera's recorder stores the black-and-white picture at full detail and the two colour pictures at half size. The shop sign stays crisp; only the colour fringes on its edges are coarser.",
   cap="The R, G, B frame goes through a 3×3 matrix to a full-size Y plane and two half-size colour planes Cb, Cr (4:2:0)."),
 3015: dict(d=d3015, stmtKind="DEFINITION",
@@ -108,7 +118,8 @@ CARDS = {
   hint="If you make the night frame brighter, which of hue, saturation and intensity should not move?",
   breakdown=[r"<strong>$I=(R+G+B)/3$ = brightness.</strong> The plain average of the three channels, the grey level of the pixel.",
              r"<strong>$S=1-3\min(R,G,B)/(R+G+B)$ = distance from grey.</strong> Take away the grey part (the smallest channel) and see how much is left: a grey pixel has $S=0$.",
-             r"<strong>$H=\theta$ or $360^\circ-\theta$ = the angle on the colour wheel.</strong> It names which pure colour (red, green, blue, ...) and does not change when brightness changes."],
+             r"<strong>$H=\theta$ or $360^\circ-\theta$ = the angle on the colour wheel.</strong> It names which pure colour (red, green, blue, ...) and does not change when brightness changes.",
+             r"<strong>$(R,G,B)\to\alpha(R,G,B)$ leaves $H,S$ unchanged.</strong> In $\theta$ the top and bottom both scale by $\alpha$, and in $S$ so do $\min(R,G,B)$ and $R+G+B$; only $I$ becomes $\alpha I$."],
   conn=r"<strong>Brighten the night frame, keep the bus red.</strong> Work on $I$ alone: the dim bus gets brighter and stays the same red, because hue and saturation are not touched.",
   cap="A colour on the wheel: the arrow's angle is the hue H and its length is the saturation S; I = (R+G+B)/3 is the brightness. Grey has S = 0, so its hue is undefined."),
 3016: dict(d=d3016, stmtKind="WORKED EXAMPLE",
@@ -117,7 +128,7 @@ CARDS = {
   breakdown=[r"<strong>$Y=0.299\cdot255\approx76.2$ = red is a dark-ish grey.</strong> Only 30% of its weight goes to brightness; most of the pixel's story is in the colour planes.",
              r"<strong>$C_b=-0.1687\cdot255\approx-43$ = no blue.</strong> Below the neutral 0, so after the offset it is about 85.",
              r"<strong>$C_r=0.5\cdot255=127.5$ = the most red anyone can have.</strong> The top of the scale, so red sits at the maximum of $C_r$ (255 once stored)."],
-  conn=r"<strong>The red bus in the recorder.</strong> Its Y value is mid-low, its Cb is low and its Cr is at the ceiling. A bus that is red but dim at night would keep the same Cr-high pattern.",
+  conn=r"<strong>The red bus in the recorder.</strong> Its Y value is mid-low, its Cb is low and its Cr is at the ceiling. A dim red bus at night has all three scaled down: $C_r$ stays above the neutral 128, but by less.",
   cap="The bus red (255, 0, 0) becomes Y = 76.2, Cb = −43, Cr = 127.5; adding 128 for storage gives Cb ≈ 85 and Cr ≈ 255."),
 }
 

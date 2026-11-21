@@ -4,8 +4,13 @@ from street_lib import *
 SUBJECT = "DIP"
 
 BLOB = ["........", ".###....", ".####.#.", ".####...", ".###....", "........"]
+SQ = [(i, j) for i in (-1, 0, 1) for j in (-1, 0, 1)]
+def _at(A, r, c): return 0 <= r < len(A) and 0 <= c < len(A[0]) and A[r][c] == "#"
+def erode(A): return ["".join("#" if all(_at(A, r + i, c + j) for i, j in SQ) else "." for c in range(len(A[0]))) for r in range(len(A))]
+def dilate(A): return ["".join("#" if any(_at(A, r + i, c + j) for i, j in SQ) else "." for c in range(len(A[0]))) for r in range(len(A))]
+
 def d3031(c):
-    er = ["........", "........", "..##....", "..##....", "........", "........"]
+    er = erode(BLOB)
     return svg(c,
         N(40, 14, "mask A", 8), bgrid(12, 20, BLOB, 9), N(40, 88, "person + a speck", 6.5),
         N(120, 14, "B slides", 7), bgrid(98, 38, ["###", "###", "###"], 9, "#ffffff"), N(111, 76, "B fits ⇒ keep", 6.5),
@@ -14,8 +19,7 @@ def d3031(c):
 
 def d3032(c):
     A = ["........", ".##.##..", ".##.##..", ".#..#...", "........", "........"]
-    D = ["########", "########", "########", "########", "########", "........"]
-    D = ["........", "########"[:7] + ".", "########"[:7] + ".", "########"[:7] + ".", ".#####..", "........"]
+    D = dilate(A)
     return svg(c,
         N(40, 14, "mask A with a gap", 7.5), bgrid(8, 20, A, 9), 
         N(120, 14, "B", 8), bgrid(106, 34, ["###", "###", "###"], 9, "#ffffff"), N(120, 72, "grow by B", 6.5),
@@ -24,8 +28,8 @@ def d3032(c):
 
 def d3033(c):
     A = ["........", ".####.#.", ".####...", ".####...", ".####...", "........"]
-    E_ = ["........", "........", "..##....", "..##....", "........", "........"]
-    O = ["........", ".####...", ".####...", ".####...", ".####...", "........"]
+    E_ = erode(A)
+    O = dilate(E_)
     return svg(c,
         N(34, 12, "A", 8), bgrid(8, 16, A, 7), N(34, 66, "speck beside person", 6.5),
         arrow(66, 40, 84, 40, 1), N(75, 34, "⊖B", 7),
@@ -37,14 +41,14 @@ def d3033(c):
 
 def d3034(c):
     A = ["........", ".######.", ".######.", ".######.", ".######.", "........"]
-    Er = ["........", "........", "..####..", "..####..", "........", "........"]
-    Bd = ["........", ".######.", ".#....#.", ".#....#.", ".######.", "........"]
+    Er = erode(A)
+    Bd = ["".join("#" if a == "#" and e == "." else "." for a, e in zip(x, y)) for x, y in zip(A, Er)]
     return svg(c,
         N(36, 12, "A", 8), bgrid(8, 16, A, 7, "#b8c0cc"), N(100, 12, "A ⊖ B", 8), bgrid(72, 16, Er, 7), N(168, 12, "β(A)", 8), bgrid(136, 16, Bd, 7),
-        N(63, 40, "−", 10), N(127, 40, "=", 10),
+        N(68, 40, "−", 10), N(132, 40, "=", 10),
         N(120, 84, "β(A) = A − (A ⊖ B)", 8.5),
         N(120, 100, "the part of A that erosion removes is the outline", 7.5),
-        N(120, 114, "3×3 square B ⇒ thin 8-connected outline", 7), N(120, 127, "cross-shaped B ⇒ thicker outline", 7))
+        N(120, 114, "3×3 square B ⇒ 4-connected outline", 7), N(120, 127, "cross-shaped B ⇒ thinner, 8-connected outline", 7))
 
 def d3035(c):
     G = ["#..", ".#.", "..#"]
@@ -58,15 +62,15 @@ def d3035(c):
         N(120, 128, "object 8-connected ⇒ background 4-connected", 7.5))
 
 def d3036(c):
-    A = ["........", ".#####..", ".#####.#", ".#####..", ".#####..", ".#####..", "........"]
-    Er = ["........", "........", "..###...", "..###...", "..###...", "........", "........"]
-    O = ["........", ".#####..", ".#####..", ".#####..", ".#####..", ".#####..", "........"]
+    A = ["........", ".#####..", ".######.", ".#####..", ".#####..", ".#####..", "........"]
+    Er = erode(A)
+    O = dilate(Er)
     return svg(c,
         N(32, 12, "|A| = 25 + 1", 7.5), bgrid(6, 16, A, 8),
-        N(120, 12, "|A ⊖ B| = 9", 7.5), bgrid(92, 16, Er, 8),
-        N(206, 12, "|(A ⊖ B) ⊕ B| = 25", 7.5, "middle"), bgrid(178, 16, O, 8),
-        N(76, 50, "⊖B", 8), N(160, 50, "⊕B", 8),
-        N(32, 84, "spur", 6.5), 
+        N(122, 12, "|A ⊖ B| = 9", 7.5), bgrid(92, 16, Er, 8),
+        N(204, 12, "|(A ⊖ B) ⊕ B| = 25", 7), bgrid(174, 16, O, 8),
+        N(81, 56, "⊖B", 8), N(166, 56, "⊕B", 8),
+        N(65, 38, "spur", 6.5, "start"),
         N(120, 100, "the spur cannot hold a 3×3 B ⇒ it vanishes", 7.5),
         N(120, 114, "the 3×3 core grown by B = the 5×5 square again", 7.5),
         N(120, 128, "in general A ∘ B ≠ A: only pieces that fit B come back", 7.5))
@@ -84,8 +88,9 @@ CARDS = {
   statement=r"<b>Dilation and duality.</b> The dilation of $A$ by $B$ is $A\oplus B=\{z\mid(\hat B)_z\cap A\ne\emptyset\}=\bigcup_{b\in B}A_b$, where $\hat B=\{-b: b\in B\}$ is the reflection of $B$. Erosion and dilation are dual: $(A\ominus B)^c=A^c\oplus\hat B$.",
   hint="If erosion shrinks the mask, what does its twin do to the gaps in the person's outline?",
   breakdown=[r"<strong>$\bigcup_{b\in B}A_b$ = paste $A$ at every offset in $B$.</strong> Each object pixel spreads out into the shape of $B$, so objects grow.",
-             r"<strong>$(\hat B)_z\cap A\ne\emptyset$ = $B$ touches the object.</strong> The same rule seen from the other side: keep every centre where the probe touches $A$.",
-             r"<strong>$(A\ominus B)^c=A^c\oplus\hat B$ = duality.</strong> Eroding the object is the same as dilating the background with the reflected probe; it is not undoing a dilation."],
+             r"<strong>$(\hat B)_z\cap A\ne\emptyset$ = the reflected probe touches the object.</strong> The same rule seen from the other side: keep every $z$ where $\hat B$, placed at $z$, touches $A$.",
+             r"<strong>$(A\ominus B)^c=A^c\oplus\hat B$ = duality.</strong> Eroding the object is the same as dilating the background with the reflected probe; it is not undoing a dilation.",
+             r"<strong>Proof of duality in one line.</strong> $z\in(A\ominus B)^c\iff(B)_z\not\subseteq A\iff(B)_z\cap A^c\ne\emptyset\iff z\in A^c\oplus\hat B$, the last step because the reflection of $\hat B$ is $B$."],
   conn=r"<strong>Closing a gap in the person's mask.</strong> Thresholding left a crack between the two halves of the person's body. Growing the mask by $B$ fills the crack but also fattens the outline.",
   cap="A mask A with a gap is pasted at every offset of B: A ⊕ B closes the gap. Eroding A is the same as dilating the background Aᶜ with the reflected probe."),
 3033: dict(d=d3033, stmtKind="DEFINITION",
@@ -101,7 +106,9 @@ CARDS = {
   hint="If you subtract the shrunken person from the person, what is left?",
   breakdown=[r"<strong>$A\ominus B$ = the inside of the object.</strong> Everything at least a probe's width from the edge.",
              r"<strong>$A-(A\ominus B)$ = the outline.</strong> Remove the inside from the object and only the border pixels remain.",
-             r"<strong>$B_1,B_2$ in the hit-or-miss transform = a pattern for object and one for background.</strong> Both must match at once, so exact local shapes can be found."],
+             r"<strong>$B_1,B_2$ in the hit-or-miss transform = a pattern for object and one for background.</strong> Both must match at once, so exact local shapes can be found.",
+             r"<strong>Inner $A-(A\ominus B)$, outer $(A\oplus B)-A$, gradient $(A\oplus B)-(A\ominus B)$.</strong> For an $n\times n$ square and $3\times3$ $B$: $|A\ominus B|=(n-2)^2$, inner $=4n-4$, outer $=4n+4$.",
+             r"<strong>$B_1\cap B_2=\emptyset$; a cell in neither = don't care.</strong> Write the template with 1 for $B_1$, 0 for $B_2$ and $\times$ for cells that may be anything."],
   conn=r"<strong>Drawing the outline of each person.</strong> To box or trace the people in the frame, take each mask, erode it, and subtract: what remains is a one-pixel ring around each person.",
   cap="The person mask A minus its erosion A ⊖ B leaves the one-pixel outline β(A)."),
 3035: dict(d=d3035, stmtKind="ALGORITHM",
@@ -109,7 +116,8 @@ CARDS = {
   hint="Do two pixels touching only at a corner belong to the same person?",
   breakdown=[r"<strong>$N_4(p)$ = the four neighbours that share an edge.</strong> Diagonal pixels do not count as touching.",
              r"<strong>$N_8(p)$ = also the four diagonals.</strong> Two corner-touching pixels now count as one blob.",
-             r"<strong>Two passes with union–find = a name for every blob.</strong> The first pass may give one blob two labels; the second merges them. Pair 8-connected objects with a 4-connected background to avoid the closed-curve paradox."],
+             r"<strong>Two passes with union–find = a name for every blob.</strong> The first pass may give one blob two labels; the second merges them. Pair 8-connected objects with a 4-connected background to avoid the closed-curve paradox.",
+             r"<strong>Already-labelled neighbours in a raster scan</strong> = west and north for 4-connectivity; west, north-west, north and north-east for 8-connectivity. Two different labels there are recorded as equal."],
   conn=r"<strong>Counting people in the frame.</strong> After cleaning the mask, give each separate white blob its own number: that is the head count. Whether two blobs meeting at a corner count as one depends on 4 or 8.",
   cap="Three diagonal pixels are three objects under N₄ but one under N₈. Labelling scans twice: first guess labels, then merge equal ones."),
 3036: dict(d=d3036, stmtKind="WORKED EXAMPLE",
