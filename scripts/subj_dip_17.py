@@ -11,7 +11,7 @@ def d3161(c):
     out += [arrow(102, 44, 118, 44, 1), N(110, 38, "−", 8),
             R(124, 18, 40, 28, "#f1f5f9", 1), N(144, 36, "D(σ)", 7.5), R(124, 52, 40, 28, "#f1f5f9", 1), N(144, 70, "D(kσ)", 7.5),
             arrow(168, 50, 186, 50, 1), N(180, 42, "↓2", 7), R(190, 34, 22, 18, "#ffffff", 1), N(201, 46, "½", 7), N(201, 64, "next octave", 6.5),
-            N(120, 100, "L(x,y,σ) = Gσ ∗ I ,  D = L(kσ) − L(σ)", 8), N(120, 114, "k = 2^(1/s): σ doubles every s layers (one octave)", 7.5),
+            N(120, 100, "L(x,y,σ) = Gσ ∗ f ,  D = L(kσ) − L(σ)", 8), N(120, 114, "k = 2^(1/s): σ doubles every s layers (one octave)", 7.5),
             N(120, 128, "s + 3 blurred images per octave ⇒ s + 2 DoG layers", 7.5), N(120, 140, "downsample by 2 and repeat: cheap", 7)]
     return svg(c, *out)
 
@@ -24,13 +24,13 @@ def d3162(c):
                 ctr = (i == 1 and r == 1 and q == 1)
                 out.append(R(x + q * 18, 20 + r * 18, 18, 18, "#7b8494" if ctr else "#ffffff", .8))
         out.append(N(x + 27, 84, lab, 6.5))
-    out += [N(120, 100, "x̂ = −H⁻¹ ∇D  (sub-pixel, sub-scale)", 8), N(120, 113, "drop if |D(x̂)| < 0.03 (low contrast)", 7.5),
-            N(120, 126, "edge test: tr(H)² / det(H) < (r+1)²/r = 12.1, r = 10", 7.5), N(120, 139, "a ratio of curvatures: no units, no scale", 7)]
+    out += [N(120, 100, "x̂ = −H₃⁻¹ ∇D  (sub-pixel, sub-scale)", 8), N(120, 113, "drop if |D(x̂)| < 0.03 (low contrast)", 7.5),
+            N(120, 126, "edge test: tr(H)² / det(H) < (r+1)²/r = 12.1, r = 10", 7.5), N(120, 139, "H: 2×2 in (x, y), need det H > 0;  H₃: 3×3 in (x, y, σ)", 6.5)]
     return svg(c, *out)
 
 def d3163(c):
-    vals = [6, 9, 12, 16, 24, 40, 62, 44, 26, 18, 12, 9, 8, 7, 8, 12, 20, 36, 49, 30, 18, 11, 8, 6, 5, 4, 4, 5, 6, 6, 6, 5, 5, 5, 5, 6]
-    out = [axes(14, 70, 232, 10), N(232, 80, "angle θ (36 bins)", 7, "end"), N(10, 12, "Σ m·G", 7, "end")]
+    vals = [6, 9, 12, 16, 24, 40, 62, 44, 26, 18, 12, 9, 8, 7, 8, 12, 20, 36, 54, 30, 18, 11, 8, 6, 5, 4, 4, 5, 6, 6, 6, 5, 5, 5, 5, 6]
+    out = [axes(14, 70, 232, 10), N(232, 80, "angle θ (36 bins)", 7, "end"), N(18, 12, "Σ m·Gσ", 7, "start")]
     for i, v in enumerate(vals): out.append(R(f(16 + i * 6), f(70 - v * .6), 5, f(v * .6), "#d9dee7" if i not in (6, 18) else "#8b95a5", .5))
     out += [L(14, 70 - 62 * .6 * .8, 232, 70 - 62 * .6 * .8, .6, "3 2"), N(14, 70 - 62 * .6 * .8 - 3, "80% line", 6.5, "start"),
             N(60, 24, "peak 1: the orientation", 7, "start"), N(140, 34, "peak 2 ≥ 80%: extra keypoint", 6.5, "start"),
@@ -71,24 +71,24 @@ def d3166(c):
 
 CARDS = {
 3161: dict(d=d3161, stmtKind="DEFINITION",
-  statement=r"<b>Scale space and difference-of-Gaussians pyramid (SIFT).</b> The scale space of an image $I$ is $L(x,y,\sigma)=G_\sigma\ast I$. The difference-of-Gaussians function is $D(x,y,\sigma)=L(x,y,k\sigma)-L(x,y,\sigma)\approx(k-1)\sigma^2\nabla^2G\ast I$, computed with $k=2^{1/s}$ so that $\sigma$ doubles over $s$ intervals (an octave). After each octave the image is downsampled by 2. For $s$ intervals per octave, $s+3$ blurred images are produced, giving $s+2$ DoG images.",
+  statement=r"<b>Scale space and difference-of-Gaussians pyramid (SIFT).</b> The scale space of an image $f$ is $L(x,y,\sigma)=G_\sigma\ast f$. The difference-of-Gaussians function is $D(x,y,\sigma)=L(x,y,k\sigma)-L(x,y,\sigma)\approx(k-1)\sigma^2\nabla^2G_\sigma\ast f$, computed with $k=2^{1/s}$ so that $\sigma$ doubles over $s$ intervals (an octave). After each octave the image is downsampled by 2. For $s$ intervals per octave, $s+3$ blurred images are produced, giving $s+2$ DoG images.",
   hint="How can the same shopfront be recognised when it appears bigger or smaller in another camera's frame?",
-  breakdown=[r"<strong>$L(x,y,\sigma)=G_\sigma\ast I$ = the frame at blur level $\sigma$.</strong> A stack of copies, from sharp to very soft; a larger $\sigma$ shows only coarse structure.",
+  breakdown=[r"<strong>$L(x,y,\sigma)=G_\sigma\ast f$ = the frame at blur level $\sigma$.</strong> A stack of copies, from sharp to very soft; a larger $\sigma$ shows only coarse structure.",
              r"<strong>$D=L(k\sigma)-L(\sigma)$ = what lives at that scale.</strong> Subtracting neighbouring blurs keeps only features about the size of $\sigma$, approximately the scale-normalised Laplacian.",
              r"<strong>$k=2^{1/s}$ and downsampling = an octave is cheap.</strong> $\sigma$ doubles every $s$ layers; then the frame is halved and the blurring starts again, so the whole pyramid costs little."],
   conn=r"<strong>Seeing the shop at every distance.</strong> From a far pole the shop sign is a few pixels wide; from the near pole it fills the frame. The blur stack looks for the sign at every size at once, so both cameras find the same feature.",
   cap="The frame is blurred to σ, kσ, k²σ and neighbouring blurs are subtracted to give D(σ), D(kσ). After an octave the frame is halved (↓2) and the process repeats."),
 3162: dict(d=d3162, stmtKind="ALGORITHM",
-  statement=r"<b>SIFT keypoint detection.</b> A DoG sample is a candidate keypoint if it is larger or smaller than all 26 neighbours (8 in its own layer, 9 above, 9 below). Its position is refined by a quadratic fit, $\hat x=-H^{-1}\nabla D$ (sub-pixel and sub-scale); candidates with $|D(\hat x)|\lt0.03$ are discarded as low contrast; and edge-like candidates are rejected unless $\dfrac{\operatorname{tr}(H)^2}{\det(H)}\lt\dfrac{(r+1)^2}{r}$ with $r=10$ (i.e. $\lt12.1$), where $H$ is the $2\times2$ Hessian of $D$.",
+  statement=r"<b>SIFT keypoint detection.</b> A DoG sample is a candidate keypoint if it is larger or smaller than all 26 neighbours (8 in its own layer, 9 above, 9 below). Its position is refined by a quadratic fit, $\hat x=-H_3^{-1}\nabla D$ (sub-pixel and sub-scale), where $H_3$ is the $3\times3$ Hessian of $D$ in $(x,y,\sigma)$; candidates with $|D(\hat x)|\lt0.03$ (pixel values in $[0,1]$) are discarded as low contrast; and edge-like candidates are rejected unless $\det(H)\gt0$ and $\dfrac{\operatorname{tr}(H)^2}{\det(H)}\lt\dfrac{(r+1)^2}{r}$ with $r=10$ (i.e. $\lt12.1$), where $H$ is the $2\times2$ spatial Hessian of $D$.",
   hint="Why does SIFT throw away spots on an edge even when they are strong?",
   breakdown=[r"<strong>26 neighbours = the cube around a sample.</strong> Eight in its own layer, nine above and nine below; a keypoint is the largest (or smallest) in position and in scale."],
   conn=r"<strong>Picking the sign's best spot.</strong> The detector picks the pixel and scale at which the shop sign's blob is strongest, polishes it to a fraction of a pixel, and drops anything faint or lying along a straight edge of the building.",
-  cap="The centre sample (dark) is compared with its 8 neighbours in the same DoG layer and 9 in each adjacent layer: 26 in all. Refine with x̂ = −H⁻¹∇D, then drop low-contrast and edge-like points."),
+  cap="The centre sample (dark) is compared with its 8 neighbours in the same DoG layer and 9 in each adjacent layer: 26 in all. Refine with x̂ = −H₃⁻¹∇D, then drop low-contrast and edge-like points."),
 3163: dict(d=d3163, stmtKind="ALGORITHM",
   statement=r"<b>SIFT orientation assignment.</b> Around each keypoint, at its scale, compute gradient magnitudes $m=\sqrt{L_x^2+L_y^2}$ and orientations $\theta=\operatorname{atan2}(L_y,L_x)$ and accumulate a 36-bin orientation histogram $h[b]=\sum m\cdot G_\sigma\cdot\mathbf 1[\theta\in\text{bin }b]$ (Gaussian-weighted). The highest peak (refined by a parabola fit) gives the keypoint orientation, and every other peak of at least $80\%$ of it creates an additional keypoint at the same location and scale with that orientation.",
   hint="How does SIFT recognise the sign when the other camera is tilted?",
   breakdown=[r"<strong>$m,\theta$ = how strong and which way the edges point.</strong> The gradient magnitude and angle at each pixel around the keypoint.",
-             r"<strong>$h[b]=\sum m\,G_\sigma\mathbf 1[\theta\in b]$ = a vote count by angle.</strong> Each pixel votes for its angle bin with its edge strength, weighted so pixels near the keypoint count more.",
+             r"<strong>$h[b]=\sum m\,G_\sigma\mathbf 1[\theta\in b]$ = a vote count by angle.</strong> Each pixel votes for its angle bin with its edge strength, weighted so pixels near the keypoint count more (Lowe uses a Gaussian of $1.5$ times the keypoint scale).",
              r"<strong>The tallest peak = the keypoint's own 'up'.</strong> Everything measured afterwards is relative to it; peaks above 80% make extra keypoints, which help matching."],
   conn=r"<strong>The sign seen sideways.</strong> The strokes of the sign mostly point one way; that dominant direction becomes the sign's own 'up', so the tilted view and the straight view give the same description.",
   cap="A 36-bin histogram of edge angles around the keypoint, weighted by gradient magnitude m. The highest peak sets the orientation; a second peak above 80% makes an extra keypoint."),
@@ -111,11 +111,14 @@ CARDS = {
   conn=r"<strong>Two matches from the shop front.</strong> The sign's corner has one very close twin and a distant second: accepted. A brick has two near-identical twins: rejected as ambiguous.",
   cap="Two matches: d₁ = 0.3 and d₂ = 0.5 give 0.6 and pass; d₁ = 0.45 and d₂ = 0.5 give 0.9 and fail the 0.8 test."),
 }
-CARDS[3162]["breakdown"] += [r"<strong>$\hat x=-H^{-1}\nabla D$ = fit a bowl through the samples.</strong> The true extremum lies between samples; this gives its position to a fraction of a pixel and of a scale step, and $|D(\hat x)|\lt0.03$ drops faint ones.",
-                             r"<strong>$\operatorname{tr}(H)^2/\det(H)\lt12.1$ = reject edges.</strong> It is the ratio of the two curvatures: a high ratio means one large and one small curvature (an edge), whose position slides along the edge."]
+CARDS[3162]["breakdown"] += [r"<strong>$\hat x=-H_3^{-1}\nabla D$ = fit a bowl through the samples.</strong> The true extremum lies between samples; this gives its position to a fraction of a pixel and of a scale step, and $|D(\hat x)|\lt0.03$ drops faint ones.",
+                             r"<strong>$\operatorname{tr}(H)^2/\det(H)\lt12.1$ = reject edges.</strong> It is the ratio of the two curvatures: a high ratio means one large and one small curvature (an edge), whose position slides along the edge.",
+                             r"<strong>$D'\approx\frac{D_+-D_-}2,\ D''\approx D_+-2D_0+D_-$ = derivatives from three samples.</strong> Along one axis the offset is $\hat s=-D'/D''$ and the refined peak is $D(\hat s)=D_0+\tfrac12D'\hat s$. If $|\hat s|\gt0.5$ the extremum is nearer the next sample, so move there and refit.",
+                             r"<strong>$\frac{\operatorname{tr}(H)^2}{\det(H)}=\frac{(r+1)^2}{r}$ with $r=\lambda_1/\lambda_2$ = no eigenvalues needed.</strong> $\operatorname{tr}H=(r+1)\lambda_2$ and $\det H=r\lambda_2^2$, and the ratio grows with $r\ge1$. If $\det H\le0$ the curvatures have opposite signs (a saddle): reject."]
 CARDS[3164]["breakdown"] += [r"<strong>Rotated to $\theta$ and scaled to $\sigma$ = the same patch from any view.</strong> The grid is laid out along the keypoint's own orientation and size, which is what makes the 128 numbers invariant.",
-                             r"<strong>Normalise, clip at 0.2, renormalise = steady under lighting.</strong> The first scaling cancels contrast, the clip tames a few huge glare gradients, and the second normalisation restores unit length."]
-CARDS[3165]["breakdown"] += [r"<strong>$d_1/d_2\lt0.8$ = clearly the best.</strong> A true match has a close twin and a far runner-up; a repeated texture has $d_1\approx d_2$ and is dropped. Lowe reports it removes about 90% of false matches and loses under 5% of true ones.",
+                             r"<strong>Normalise, clip at 0.2, renormalise = steady under lighting.</strong> Gradients already ignore an added brightness $\beta$, and since $\nabla(\alpha f+\beta)=\alpha\nabla f$ the first scaling cancels the contrast $\alpha$. The clip tames a few huge glare gradients, and the second normalisation restores unit length.",
+                             r"<strong>Rotate by $-\theta$, $45^\circ$ bins, Gaussian $\sigma_w=8$ = the construction details.</strong> Sample positions and gradient angles are rotated by $-\theta$, each of the 8 bins spans $360^\circ/8=45^\circ$, and the weighting Gaussian has $\sigma_w$ equal to half the window width, $16/2=8$."]
+CARDS[3165]["breakdown"] += [r"<strong>$d_1/d_2\lt0.8$ = clearly the best.</strong> A true match has a close twin and a far runner-up; a repeated texture has $d_1\approx d_2$ and is dropped. A fixed threshold on $d_1$ cannot do this, because repeated textures also have small $d_1$. Lowe reports the ratio removes about 90% of false matches and loses under 5% of true ones.",
                              r"<strong>RANSAC = keep what agrees on one transform.</strong> The remaining matches may still hold outliers, so fit a homography or affine map and keep only the inliers."]
 CARDS[3166]["breakdown"] += [r"<strong>$0.45/0.5=0.9\ge0.8$ = rejected.</strong> Nearly a tie between the two best candidates: ambiguous.",
                              r"<strong>$128$, $12.1$, $0.03$ = the three numbers to remember.</strong> Descriptor length, the edge-test bound for $r=10$, and the contrast threshold; the ratio is on distances, so on squared distances use $0.64$."]
