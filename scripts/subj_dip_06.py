@@ -45,7 +45,7 @@ def d3054(c):
         axes(128, b, 232, 14), N(232, b + 10, "x", 8, "end"),
         L(132, b - 8, 178, b - 8, 1), L(178, b - 8, 178, b - 52, 1), L(178, b - 52, 228, b - 52, 1),
         curve(lambda x: b - 8 - 44 / (1 + math.exp(-(x - 178) / 9)), 132, 228, 50, 1, "3 2"), N(180, b - 56, "edge", 7, "start"),
-        N(120, 104, "G(x, y) = (1/2πσ²) exp(−(x² + y²)/2σ²)", 8), N(120, 118, "box K×K: noise variance ÷ K²", 7.5), N(120, 132, "bigger kernel: less noise, blurrier street edges", 7.5))
+        N(120, 104, "Gσ(x, y) = (1/2πσ²) exp(−(x² + y²)/2σ²)", 8), N(120, 118, "box K×K: noise variance ÷ K²", 7.5), N(120, 132, "bigger kernel: less noise, blurrier street edges", 7.5))
 
 def d3055(c):
     sm = lambda x, lo, hi, x0, w: lo - (lo - hi) / (1 + math.exp(-(x - x0) / w))
@@ -56,7 +56,7 @@ def d3055(c):
         curve(lambda x: 84 + 12 * math.exp(-((x - 52) / 6) ** 2) - 12 * math.exp(-((x - 72) / 6) ** 2), 14, 110, 80, 1),
         N(122, 62, "g = f + k (f − f̄)", 7, "start"),
         curve(lambda x: (100 if x < 176 else 76) + 9 * math.exp(-((x - 170) / 5) ** 2) - 9 * math.exp(-((x - 182) / 5) ** 2), 122, 230, 120, 1),
-        N(172, 116, "undershoot", 6.5, "end"), N(184, 70, "overshoot", 6.5, "start") if False else N(186, 72, "overshoot", 6.5, "start"),
+        N(172, 116, "undershoot", 6.5, "end"), N(184, 70, "overshoot", 6.5, "start") if False else N(193, 69, "overshoot", 6.5, "start"),
         N(120, 126, "Laplacian version: g = f − c ∇²f , ∇²f = fₓₓ + fᵧᵧ", 7.5),
         N(120, 139, "edges look crisper, noise is boosted too", 7.5))
 
@@ -67,10 +67,10 @@ def d3056(c):
         N(110, 20, "slide it along f, add the products", 7, "start"),
         N(110, 40, "n = 2:  3·1 + 1·(−1) = 2", 7, "start"),
         N(110, 52, "n = 4:  4·(−1) = −3 (no 3 to its right)", 7, "start") if False else "",
-        N(10, 80, "f ∗ h", 8, "start"), row(30, 70, [1, 2, 2, 2, -3, -4], 22, 9, {(0, 1), (0, 2), (0, 3)}),
-        N(30, 100, "end", 6.5), N(52, 100, "", 6),
+        N(10, 80, "f ∗ h", 8, "start"), row(30, 70, [1, 2, 2, 2, -3, -4], 22, 9, {(0, 2), (0, 3)}),
+        N(52, 100, "padding", 6.5), N(96, 100, "interior", 6.5), N(140, 100, "padding", 6.5),
         N(120, 112, "length = M + K − 1 = 4 + 3 − 1 = 6", 8),
-        N(120, 126, "middle value 2 = slope of the ramp; ends = zero-padding", 7.5),
+        N(120, 126, "interior 2 = twice the unit slope; ends = zero-padding", 7.5),
         N(120, 139, "correlation would give −2 inside", 7.5))
 
 CARDS = {
@@ -115,14 +115,19 @@ CARDS = {
   conn=r"<strong>Reading the shop sign.</strong> A slightly soft frame of the sign gets crisper when the blurred copy is subtracted and the detail added back. The same step also boosts the noise in the dark street.",
   cap="A step edge f and its blurred copy f̄; the difference f − f̄ is the detail. Adding k times it gives g, which overshoots on the bright side and undershoots on the dark side."),
 3056: dict(d=d3056, stmtKind="WORKED EXAMPLE",
-  statement=r"<b>Example.</b> Let $f=[1,2,3,4]$ and $h=[1,0,-1]$. The full convolution has length $M+K-1=6$: $f\ast h=[1,\,2,\,2,\,2,\,-3,\,-4]$. Interior values equal $f(n)-f(n-2)$, the discrete derivative of the ramp; the end values come from zero-padding. Correlation gives the negative of the interior values.",
+  statement=r"<b>Example.</b> Let $f=[1,2,3,4]$ and $h=[1,0,-1]$. The full convolution has length $M+K-1=6$: $f\ast h=[1,\,2,\,2,\,2,\,-3,\,-4]$. Interior values equal $f(n)-f(n-2)$, a central difference equal to twice the ramp's unit slope; the end values come from zero-padding. Correlation gives the negative of every value.",
   hint="Which entries of f ∗ h are real slope, and which come from running off the ends?",
   breakdown=[r"<strong>Flip $h$ to $[-1,0,1]$.</strong> Convolution turns the kernel round before sliding it along $f=[1,2,3,4]$.",
-             r"<strong>$n=2:\ 3-1=2$, $n=3:\ 4-2=2$ = the slope of the ramp.</strong> Each interior value is a difference of two pixels, which for a unit ramp is 2.",
+             r"<strong>$n=2:\ 3-1=2$, $n=3:\ 4-2=2$ = twice the slope of the ramp.</strong> Each interior value is the difference of two pixels that are two steps apart, so a ramp of slope 1 gives 2.",
              r"<strong>Length $4+3-1=6$ and ends $1,2,-3,-4$ = zero-padding.</strong> At the ends the kernel hangs off the data, so those entries are not real slope."],
-  conn=r"<strong>A strip of four pixels across the kerb.</strong> The brightness rises 1, 2, 3, 4. The derivative kernel reports a steady slope of 2 inside and false jumps at the ends of the strip.",
+  conn=r"<strong>A strip of four pixels across the kerb.</strong> The brightness rises 1, 2, 3, 4. The derivative kernel reports a steady 2 inside (twice the slope of 1) and false jumps at the ends of the strip.",
   cap="The four pixels f = [1, 2, 3, 4] with the flipped kernel [−1, 0, 1] slid along them give [1, 2, 2, 2, −3, −4]: a steady 2 inside and zero-padding values at the ends."),
 }
+
+# bridge facts the practice questions and PYQs rely on
+CARDS[3051]["breakdown"] += [r"""<strong>Is it a convolution? = is it linear and shift-invariant?</strong> Translation by integers $(a_1,a_2)$ is, with $h(x,y)=\delta(x-a_1,y-a_2)$. Rotation by $90^\circ$ is linear but not shift-invariant, so no filter $h$ produces it."""]
+CARDS[3053]["breakdown"] += [r"""<strong>Rank 2 = not one pass, but two.</strong> The Laplacian $\begin{pmatrix}0&1&0\\1&-4&1\\0&1&0\end{pmatrix}$ has rank 2 (row 3 = row 1). It is the sum of the separable kernels $[1,-2,1]$ along a row and along a column, so filter with each and add."""]
+CARDS[3055]["breakdown"] += [r"""<strong>$h_{\rm HB}=(1+k)\delta-k\,h_{\rm blur}$ = one equivalent kernel.</strong> Its weights sum to $(1+k)-k=1$, so mean brightness is kept. With the $3\times3$ box and $k=1$: centre $17/9$, all others $-1/9$."""]
 
 STORY = {
  3051: dict(s="STORY 3 · STEP 1 · THE LENS AS A SYSTEM", b="A lens that treats every part of the frame alike is <b>linear and shift-invariant</b>, so one smear $h$ describes it and the output is a convolution.",

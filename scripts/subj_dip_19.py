@@ -28,22 +28,22 @@ def d3183(c):
     for i, v in enumerate((9, 5, 7, 2, 4)): out.append(R(64 + i * 11, 44 - v * 3.6, 8, v * 3.6, "#d9dee7", .8))
     out += [N(88, 54, "Ω (k numbers)", 6.5), arrow(120, 34, 136, 34, 1), N(128, 28, "U Ω", 6, "middle")]
     out += face(160, 34) + [N(160, 56, "x̂ (rebuilt)", 6.5), N(206, 30, "ε = ‖x−μ−UΩ‖", 6.5, "middle"), N(206, 42, "small ⇒ a face", 6.5, "middle"),
-            N(120, 80, "who:  argmin_c ‖Ω − Ω_c‖  (nearest stored person)", 7.5), N(120, 96, "is it a face:  ε small ?", 7.5), N(120, 112, "need both: a cat can land near a known Ω", 7.5), N(120, 128, "Fisherfaces (LDA): between / within scatter", 7.5)]
+            N(120, 80, "who:  argmin over c of ‖Ω − Ωc‖  (nearest stored person)", 7.5), N(120, 96, "is it a face:  ε small ?", 7.5), N(120, 112, "need both: a cat can land near a known Ω", 7.5), N(120, 128, "Fisherfaces (LDA): between / within scatter", 7.5)]
     return svg(c, *out)
 
 def d3184(c):
     out = [R(12, 12, 100, 70, "#ffffff", 1)]
     for i, v in enumerate(("A", "B", "C", "D")):
         pass
-    out += [R(40, 30, 42, 28, "#d9dee7", .9), N(30, 24, "A", 7.5), N(92, 24, "B", 7.5), N(30, 68, "C", 7.5), N(92, 68, "D", 7.5),
-            N(61, 46, "rect", 7), N(130, 16, "ii(x,y) = Σ f(x′,y′)", 7, "start"),
+    out += [R(40, 30, 42, 28, "#d9dee7", .9), N(35, 27, "A", 7.5), N(77, 27, "B", 7.5), N(35, 56, "C", 7.5), N(77, 56, "D", 7.5),
+            N(58, 46, "rect", 7), N(130, 16, "ii(x,y) = Σ f(x′,y′)", 7, "start"),
             N(190, 36, "Σ = D − B − C + A", 8), N(190, 50, "four lookups", 7.5), N(190, 62, "any size", 7.5)]
     out += [R(124, 72, 28, 14, "#f1f5f9", .8), R(152, 72, 28, 14, "#33384a", .8), R(188, 72, 14, 14, "#f1f5f9", .8), R(202, 72, 14, 14, "#33384a", .8), R(216, 72, 14, 14, "#f1f5f9", .8),
-            N(120, 104, "Haar feature = Σ white − Σ black", 8), N(120, 118, "24 × 24 window: over 160 000 features", 7.5), N(120, 132, "ii: each costs about four reads", 7.5)]
+            N(120, 104, "Haar feature = Σ white − Σ black", 8), N(120, 118, "24 × 24 window: over 160 000 features", 7.5), N(120, 132, "2 / 3 / 4 rectangles: 6 / 8 / 9 reads of ii", 7.5)]
     return svg(c, *out)
 
 def d3185(c):
-    out = [N(40, 12, "weak h_t", 7.5)]
+    out = [N(40, 12, "weak hₜ", 7.5)]
     for i in range(3): out += [R(12, 18 + i * 14, 56, 11, "#f1f5f9", .8), N(40, 26 + i * 14, f"h{'₁₂₃'[i]}  α{'₁₂₃'[i]}", 6.5)]
     out += [N(40, 66, "H = sign Σ αₜ hₜ", 7), arrow(72, 40, 88, 40, 1)]
     for i, lab in enumerate(("1", "2", "3")):
@@ -86,9 +86,9 @@ CARDS = {
   hint="How does the camera decide both 'is this a face?' and 'whose face?' from the same k numbers?",
   breakdown=[r"<strong>$\Omega=U^T(x-\mu)$ = the face as $k$ numbers.</strong> The weight on each eigenface, a compact code such as $k\approx50$."],
   conn=r"<strong>Who just walked past?</strong> The camera projects the crop onto the eigenfaces and looks for the closest known person. If the rebuilt picture is far from the crop, it was not a face at all, perhaps a bag or a dog.",
-  cap="The face x is projected to weights Ω, then rebuilt as UΩ. A small error ε says it is a face; the nearest stored Ω_c says whose."),
+  cap="The face x is projected to weights Ω, then rebuilt as UΩ. A small error ε says it is a face; the nearest stored Ωc says whose."),
 3184: dict(d=d3184, stmtKind="DEFINITION",
-  statement=r"<b>Integral image and Haar-like features.</b> The integral image $ii(x,y)=\sum_{x'\le x,\,y'\le y}f(x',y')$ is computed in one pass, and the sum over any rectangle with corner values $A,B,C,D$ is $D-B-C+A$ in four lookups. A Haar-like feature is the difference of adjacent rectangle sums, $\sum_{\rm white}-\sum_{\rm black}$; a $24\times24$ window has over $160\,000$ of them.",
+  statement=r"<b>Integral image and Haar-like features.</b> The integral image $ii(x,y)=\sum_{x'\le x,\,y'\le y}f(x',y')$ is computed in one pass, and the sum over any rectangle is $D-B-C+A$ in four lookups, where $D$ is $ii$ at its bottom-right pixel and $B$, $C$, $A$ are $ii$ just above its top-right, just left of its bottom-left and diagonally outside its top-left. A Haar-like feature is the difference of adjacent rectangle sums, $\sum_{\rm white}-\sum_{\rm black}$; a $24\times24$ window has over $160\,000$ of them.",
   hint="How can the camera test 160 000 features on every window in real time?",
   breakdown=[r"<strong>$ii(x,y)$ = the sum of everything above and left.</strong> One pass over the frame fills it in."],
   conn=r"<strong>Dark eyes, bright cheeks.</strong> A face window has a dark band over a bright one. A Haar feature measures exactly that with two rectangle sums, found from four corner lookups each.",
@@ -98,9 +98,9 @@ CARDS = {
   hint="Why do most windows of a street frame cost almost nothing to reject?",
   breakdown=[r"<strong>$H=\operatorname{sign}\sum\alpha_th_t$ = a weighted vote.</strong> Each weak feature is barely better than a coin; the weights $\alpha_t$ reward the better ones."],
   conn=r"<strong>Most of the street is not a face.</strong> Road, wall and sky fail the first cheap stage and are dropped at once. Only the few windows that look like faces reach the expensive stages.",
-  cap="Weak classifiers h_t with weights α_t are combined into H. Cascade stages 1, 2, 3, … reject most windows early, so the average cost per window is tiny."),
+  cap="Weak classifiers hₜ with weights αₜ are combined into H. Cascade stages 1, 2, 3, … reject most windows early, so the average cost per window is tiny."),
 3186: dict(d=d3186, stmtKind="WORKED EXAMPLE",
-  statement=r"<b>Example.</b> For $f=\begin{pmatrix}1&2&3\\4&5&6\\7&8&9\end{pmatrix}$ the integral image is $ii=\begin{pmatrix}1&3&6\\5&12&21\\12&27&45\end{pmatrix}$. The bottom-right $2\times2$ block $\{5,6,8,9\}$ sums to $28$ directly, and $ii(3,3)-ii(1,3)-ii(3,1)+ii(1,1)=45-6-12+1=28$.",
+  statement=r"<b>Example.</b> For $f=\begin{pmatrix}1&2&3\\4&5&6\\7&8&9\end{pmatrix}$ the integral image is $ii=\begin{pmatrix}1&3&6\\5&12&21\\12&27&45\end{pmatrix}$. The bottom-right $2\times2$ block $\{5,6,8,9\}$ sums to $28$ directly, and $ii(3,3)-ii(1,3)-ii(3,1)+ii(1,1)=45-6-12+1=28$ (indices are row, column).",
   hint="Check the four-corner formula on a 3 × 3 patch you can add up by eye.",
   breakdown=[r"<strong>$ii=\begin{pmatrix}1&3&6\\5&12&21\\12&27&45\end{pmatrix}$ = running sums.</strong> Each cell adds everything above and to its left; the bottom-right is the total 45."],
   conn=r"<strong>A tiny window of the frame.</strong> Nine pixel values stand for a patch of the street. Four lookups give the sum of its bottom-right block without adding the pixels again.",
@@ -108,14 +108,17 @@ CARDS = {
 }
 CARDS[3181]["breakdown"] += [r"<strong>$\mu$ and $\Phi_i=x_i-\mu$ = the average face and each person's difference.</strong> Centring puts the origin at the mean face so variance measures how faces differ.",
                              r"<strong>$C=\frac1N\sum\Phi_i\Phi_i^T$ = the spread of faces.</strong> Its top eigenvectors are the eigenfaces; lighting and pose dominate the pixel variance, so normalise first."]
-CARDS[3182]["breakdown"] += [r"<strong>$u=Av$ = map back to pixel space.</strong> Multiplying by $A$ turns a small eigenvector into an eigenvector of the large $C$ with the same eigenvalue.",
-                             r"<strong>$\operatorname{rank}C\le N-1$ = at most $N-1$ useful faces.</strong> Normalise $u$ to unit length (it is not automatically) and keep the top $k$."]
+CARDS[3182]["breakdown"] += [r"<strong>$u=Av$ = map back to pixel space.</strong> Multiplying by $A$ turns a small eigenvector into an eigenvector of $AA^T$ with the same $\lambda$, so of $C=\frac1NAA^T$ with eigenvalue $\lambda/N$.",
+                             r"<strong>$\operatorname{rank}C\le N-1$ = at most $N-1$ useful faces.</strong> Keep the top $k$.",
+                             r"<strong>$\|Av\|=\sqrt\lambda$ = the normaliser.</strong> For unit $v$, $\|Av\|^2=v^TA^TAv=\lambda$, so $u=Av/\sqrt\lambda$. These $\sqrt\lambda$ are the singular values of $A$."]
 CARDS[3183]["breakdown"] += [r"<strong>$\varepsilon=\|(x-\mu)-U\Omega\|$ = is it a face?</strong> What the eigenfaces cannot rebuild; large means the crop is not in the face subspace.",
-                             r"<strong>$\arg\min_c\|\Omega-\Omega_c\|$ = whose face?</strong> The nearest stored person in weight space. Fisherfaces use LDA to cope with lighting and pose better."]
+                             r"<strong>$\arg\min_c\|\Omega-\Omega_c\|$ = whose face?</strong> The nearest stored person in weight space. Fisherfaces use LDA to cope with lighting and pose better; without the within-class term, classes could separate on average yet stay wide and overlap."]
 CARDS[3184]["breakdown"] += [r"<strong>$D-B-C+A$ = any rectangle in four reads.</strong> Add the big corner, subtract the two overlaps, add back the doubly-subtracted corner. Mind the off-by-one at the border.",
+                             r"<strong>$s(x,y)=s(x,y-1)+f(x,y),\ ii(x,y)=ii(x-1,y)+s(x,y)$ = the one-pass build.</strong> For rows $r_1..r_2$ and columns $c_1..c_2$: $A=ii(r_1-1,c_1-1)$, $B=ii(r_1-1,c_2)$, $C=ii(r_2,c_1-1)$, $D=ii(r_2,c_2)$, with $ii=0$ outside the image.",
                              r"<strong>$\sum_{\rm white}-\sum_{\rm black}$ = a Haar feature.</strong> Two-, three- and four-rectangle patterns detect edges, lines and diagonals at any scale at the same cost."]
 CARDS[3185]["breakdown"] += [r"<strong>$\alpha_t=\tfrac12\ln\frac{1-\epsilon_t}{\epsilon_t}$ = trust in a weak feature.</strong> Low error gives large weight; misclassified windows are then up-weighted, which also selects features.",
-                             r"<strong>$F=\prod f_i,\ D=\prod d_i$ = rates multiply.</strong> Ten stages at 50% false hits give $0.5^{10}\approx0.001$, but each stage needs about 99.9% recall to keep $D$ high."]
+                             r"<strong>$w_i\leftarrow w_ie^{-\alpha_ty_ih_t(x_i)}/Z_t$ = the reweighting.</strong> Wrong samples grow by $e^{\alpha_t}$ and right ones shrink by $e^{-\alpha_t}$. With $Z_t=2\sqrt{\epsilon_t(1-\epsilon_t)}$, the wrong samples then hold exactly half the total weight.",
+                             r"<strong>$F=\prod f_i,\ D=\prod d_i$ = rates multiply.</strong> Ten stages at 50% false hits give $0.5^{10}\approx0.001$, but each stage needs about 99.9% recall to keep $D$ high. Expected false alarms per frame = number of windows $\times F$."]
 CARDS[3186]["breakdown"] += [r"<strong>$45-6-12+1$ = inclusion-exclusion.</strong> $ii(3,3)$ is everything; subtract the strip above and the strip to the left, which both contain the corner $ii(1,1)$.",
                              r"<strong>Forgetting $+ii(1,1)$ gives 27.</strong> The corner was removed twice. For a $100\times100$ box it is still four reads instead of 10 000 additions."]
 

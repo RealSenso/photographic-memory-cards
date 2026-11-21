@@ -1,6 +1,14 @@
 """DIP topic 13 (image quality: MSE, PSNR, SSIM). Everyday picture: a street camera on a pole (original vs compressed frame)."""
 from street_lib import *
 
+def _s(c):
+    """marks a subscript f or g (no Unicode subscript letter exists); _sub turns it into a tspan after the text is escaped"""
+    return f"⟦{c}⟧"
+
+def _sub(s):
+    import re
+    return re.sub(r"⟦(\w+)⟧", r'<tspan baseline-shift="sub" font-size="72%">\1</tspan>', s)
+
 SUBJECT = "DIP"
 
 def mini(x, y, kind, lab, w=50, h=40):
@@ -15,7 +23,7 @@ def mini(x, y, kind, lab, w=50, h=40):
 def d3121(c):
     return svg(c,
         mini(8, 14, "orig", "original"), mini(66, 14, "shift", "shifted"), mini(124, 14, "blur", "blurred"), mini(182, 14, "noise", "noisy"),
-        N(120, 84, "all four can have MSE = 100", 8),
+        N(120, 84, "the three copies can all have MSE = 100", 8),
         N(120, 100, "MSE = (1/MN) ΣΣ [f(x,y) − f̂(x,y)]²", 7.5),
         N(120, 116, "every pixel error counts the same, wherever it is", 7.5),
         N(120, 130, "the eye sees structure, MSE does not", 7.5))
@@ -25,21 +33,20 @@ def d3122(c):
     for i, (db, mse) in enumerate(((18.1, 1000), (28.1, 100), (38.1, 10), (48.1, 1))):
         x = 30 + i * 56
         out += [L(x, 62, x, 70, 1), N(x, 82, f"{db} dB", 7), N(x, 52, f"MSE {mse}", 7)]
-    out += [N(75, 36, "÷ 10", 7), N(131, 36, "÷ 10", 7), N(187, 36, "÷ 10", 7),
+    out += [N(58, 36, "÷ 10", 7), N(114, 36, "÷ 10", 7), N(170, 36, "÷ 10", 7),
             N(120, 104, "each +10 dB = MSE ÷ 10", 7.5), N(120, 118, "< 25 dB degraded · 30–40 dB typical lossy · > 40 dB transparent", 7),
             N(120, 132, "MAX = 255 for 8-bit, 1.0 for floats in [0, 1]", 7)]
     return svg(c, *out)
 
 def d3123(c):
-    b = 56
-    return svg(c,
-        N(40, 12, "patch x (original)", 7), frame(14, 16, 52, 30), person(40, 44, 22),
-        N(126, 12, "patch y (compressed)", 7), frame(100, 16, 52, 30), person(126, 44, 22),
-        N(60, 66, "l: means μₓ, μᵧ (brightness)", 7, "start") if False else "",
-        N(14, 66, "l  means μₓ μᵧ  (brightness)", 7, "start"), N(14, 78, "c  spreads σₓ σᵧ  (contrast)", 7, "start"), N(14, 90, "s  correlation σₓᵧ  (structure)", 7, "start"),
+    mf, mg, sf, sg, sfg = "μ" + _s("f"), "μ" + _s("g"), "σ" + _s("f"), "σ" + _s("g"), "σ" + _s("fg")
+    return _sub(svg(c,
+        N(40, 12, "patch f (original)", 7), frame(14, 16, 52, 30), person(40, 44, 22),
+        N(126, 12, "patch g (compressed)", 7), frame(100, 16, 52, 30), person(126, 44, 22),
+        N(14, 66, f"l  means {mf} {mg}  (brightness)", 7, "start"), N(14, 78, f"c  spreads {sf} {sg}  (contrast)", 7, "start"), N(14, 90, f"s  correlation {sfg}  (structure)", 7, "start"),
         R(168, 18, 62, 36, "#f1f5f9", 1), N(199, 30, "SSIM = 1", 7.5), N(199, 43, "only if identical", 7),
-        N(120, 108, "(2μₓμᵧ + C₁)(2σₓᵧ + C₂)", 8), L(70, 112, 170, 112, .8), N(120, 124, "(μₓ² + μᵧ² + C₁)(σₓ² + σᵧ² + C₂)", 8),
-        N(120, 138, "C₁ = (0.01L)² , C₂ = (0.03L)² : only keep the ratio defined", 6.5))
+        N(120, 108, f"(2{mf}{mg} + C₁)(2{sfg} + C₂)", 8), L(70, 112, 170, 112, .8), N(120, 124, f"({mf}² + {mg}² + C₁)({sf}² + {sg}² + C₂)", 8),
+        N(120, 138, "C₁ = (0.01L)² , C₂ = (0.03L)² : only keep the ratio defined", 6.5)))
 
 def d3124(c):
     out = [N(40, 12, "compressed frame", 7), frame(10, 16, 60, 44), building(14, 22, 22, 32, 2, 1, "#f1f5f9"), R(40, 30, 14, 14, "none", 1, 0, "2 2"), N(47, 70, "window", 6.5),
@@ -47,7 +54,7 @@ def d3124(c):
     shade = [["#ffffff"] * 6, ["#ffffff", "#ffffff", "#e8ebf0", "#ffffff", "#ffffff", "#ffffff"], ["#ffffff", "#e8ebf0", "#8b95a5", "#b8c0cc", "#ffffff", "#ffffff"], ["#ffffff", "#ffffff", "#d9dee7", "#ffffff", "#ffffff", "#ffffff"]]
     for r in range(4):
         for q in range(6): out.append(R(100 + q * 14, 16 + r * 12, 14, 12, shade[r][q], .5))
-    out += [N(142, 70, "dark = damage is visible there", 6.5), N(120, 92, "MSSIM = (1/W) Σⱼ SSIM(xⱼ, yⱼ)", 8),
+    out += [N(142, 70, "dark = damage is visible there", 6.5), N(120, 92, "MSSIM = (1/W) Σⱼ SSIM(fⱼ, gⱼ)", 8),
             N(120, 106, "11×11 Gaussian window, σ = 1.5", 7.5), N(120, 120, "MS-SSIM: repeat at several downsampled scales", 7.5), N(120, 134, "the map shows where, the mean hides it", 7.5)]
     return svg(c, *out)
 
@@ -76,33 +83,38 @@ CARDS = {
 3121: dict(d=d3121, stmtKind="DEFINITION",
   statement=r"<b>Mean squared error.</b> For an original image $f$ and a distorted or restored image $\hat f$, both $M\times N$, $\mathrm{MSE}=\frac1{MN}\sum_{x,y}\big[f(x,y)-\hat f(x,y)\big]^2$. It weights every pixel error equally, regardless of position or local structure, so very different distortions (a shift, a blur, noise, a brightness change) can have the same MSE while looking very different to a viewer.",
   hint="Can a shifted, a blurred and a noisy copy of the street frame all score the same error, and look nothing alike?",
-  breakdown=[r"<strong>$f-\hat f$ = the error at one pixel.</strong> The recorded value minus the original value, pixel by pixel.",
+  breakdown=[r"<strong>$f-\hat f$ = the error at one pixel.</strong> The original value minus the recorded value, pixel by pixel.",
              r"<strong>$[\cdot]^2$ = big errors count more.</strong> Squaring removes the sign and punishes large errors, and is easy to optimise.",
-             r"<strong>$\frac1{MN}\sum$ = average over the frame.</strong> Every pixel counts the same, so MSE cannot tell where the damage is or whether it breaks an edge."],
+             r"<strong>$\frac1{MN}\sum$ = average over the frame.</strong> Every pixel counts the same, so MSE cannot tell where the damage is or whether it breaks an edge.",
+             r"<strong>$\mathrm{MSE}=\mathrm{SSD}/(MN)$; $\hat f=f+c\Rightarrow\mathrm{MSE}=c^2$; $\hat f-\mu_f=a(f-\mu_f)\Rightarrow\mathrm{MSE}=(1-a)^2\sigma_f^2$.</strong> SSD is the summed squared difference. A brightness shift costs its square, and a contrast change about the mean costs a fraction of the variance."],
   conn=r"<strong>Four versions of the same frame.</strong> A slight shift of the person, a blur of the person, speckle over the street and a global brightness change can all have the same MSE. Only some of them make the plate unreadable.",
-  cap="The original street frame and a shifted, a blurred and a noisy copy can share one MSE while looking very different, because MSE treats every pixel error alike."),
+  cap="A shifted, a blurred and a noisy copy of the original frame can share one MSE while looking very different, because MSE treats every pixel error alike."),
 3122: dict(d=d3122, stmtKind="DEFINITION",
   statement=r"<b>Peak signal-to-noise ratio.</b> $\mathrm{PSNR}=10\log_{10}\dfrac{\mathrm{MAX}^2}{\mathrm{MSE}}=20\log_{10}\dfrac{\mathrm{MAX}}{\sqrt{\mathrm{MSE}}}$ dB, where MAX is the maximum possible pixel value ($255$ for 8-bit images, $1$ for floating point images in $[0,1]$). A rise of 10 dB corresponds to MSE divided by 10.",
   hint="How much does the PSNR of the recorded frame go up each time the error is cut tenfold?",
   breakdown=[r"<strong>$\mathrm{MAX}^2/\mathrm{MSE}$ = signal power over error power.</strong> The largest possible pixel value squared against the average squared error.",
              r"<strong>$10\log_{10}$ = decibels.</strong> A log scale, so every factor of 10 in MSE moves the score by exactly 10 dB; better quality means a larger number.",
-             r"<strong>$\mathrm{MAX}$ = the dynamic range of the data.</strong> $255$ for 8-bit; using 255 on data scaled to $[0,1]$ gives nonsense."],
+             r"<strong>$\mathrm{MAX}$ = the dynamic range of the data.</strong> $255$ for 8-bit; using 255 on data scaled to $[0,1]$ gives nonsense.",
+             r"<strong>$\mathrm{MSE}\to2\,\mathrm{MSE}\Rightarrow\mathrm{PSNR}-10\log_{10}2\approx\mathrm{PSNR}-3.01$ dB.</strong> The log turns a factor in MSE into a fixed step in dB, whatever the starting quality."],
   conn=r"<strong>Comparing recorder settings.</strong> The same camera and codec at higher bit-rates gives a higher PSNR on the same frame: it is a handy ruler for that comparison, though no more informative than the MSE under it.",
   cap="PSNR = 10 log₁₀(MAX²/MSE). Each tenfold drop in MSE (1000 → 100 → 10 → 1) adds 10 dB: 18.1, 28.1, 38.1, 48.1."),
 3123: dict(d=d3123, stmtKind="DEFINITION",
-  statement=r"<b>Structural similarity index.</b> For two image patches $x,y$ with local means $\mu_x,\mu_y$, variances $\sigma_x^2,\sigma_y^2$ and covariance $\sigma_{xy}$: $\mathrm{SSIM}(x,y)=\dfrac{(2\mu_x\mu_y+C_1)(2\sigma_{xy}+C_2)}{(\mu_x^2+\mu_y^2+C_1)(\sigma_x^2+\sigma_y^2+C_2)}$, with $C_1=(0.01L)^2$, $C_2=(0.03L)^2$ for dynamic range $L$. It is the product of luminance, contrast and structure comparisons, lies in $[-1,1]$ and equals 1 only if $x=y$.",
+  statement=r"<b>Structural similarity index.</b> For two image patches $f,g$ with local means $\mu_f,\mu_g$, variances $\sigma_f^2,\sigma_g^2$ and covariance $\sigma_{fg}$: $\mathrm{SSIM}(f,g)=\dfrac{(2\mu_f\mu_g+C_1)(2\sigma_{fg}+C_2)}{(\mu_f^2+\mu_g^2+C_1)(\sigma_f^2+\sigma_g^2+C_2)}$, with $C_1=(0.01L)^2$, $C_2=(0.03L)^2$ for dynamic range $L$. With $C_3=C_2/2$ it is the product of luminance, contrast and structure comparisons, lies in $[-1,1]$ and equals 1 only if $f=g$.",
   hint="Which three things should two patches share for the compressed street patch to look like the original?",
-  breakdown=[r"<strong>$2\mu_x\mu_y/(\mu_x^2+\mu_y^2)$ = same brightness.</strong> Compares the average level of the two patches; it is 1 when the means match.",
-             r"<strong>$2\sigma_x\sigma_y/(\sigma_x^2+\sigma_y^2)$ = same contrast.</strong> Compares how much each patch varies around its own mean.",
-             r"<strong>$\sigma_{xy}$ = same structure.</strong> The correlation of the two patches: do they rise and fall together? $C_1,C_2$ are tiny constants that stop a division by zero."],
+  breakdown=[r"<strong>$l=\dfrac{2\mu_f\mu_g+C_1}{\mu_f^2+\mu_g^2+C_1}$ = same brightness.</strong> Compares the average level of the two patches; it is 1 when the means match.",
+             r"<strong>$c=\dfrac{2\sigma_f\sigma_g+C_2}{\sigma_f^2+\sigma_g^2+C_2}$ = same contrast.</strong> Compares how much each patch varies around its own mean.",
+             r"<strong>$s=\dfrac{\sigma_{fg}+C_3}{\sigma_f\sigma_g+C_3}$ = same structure.</strong> The correlation of the two patches: do they rise and fall together? $C_1,C_2,C_3$ are tiny constants that stop a division by zero.",
+             r"<strong>$C_3=C_2/2\Rightarrow c\cdot s=\dfrac{2\sigma_{fg}+C_2}{\sigma_f^2+\sigma_g^2+C_2}$.</strong> The $\sigma_f\sigma_g$ terms cancel, which is why the one-line SSIM formula has no $C_3$.",
+             r"<strong>$g=af+b\Rightarrow\mu_g=a\mu_f+b,\ \sigma_g^2=a^2\sigma_f^2,\ \sigma_{fg}=a\sigma_f^2$.</strong> These three facts give SSIM for a brightness shift or contrast change without touching a pixel."],
   conn=r"<strong>Is the compressed patch still the same patch?</strong> Look at a small window of the original and of the compressed frame: same overall brightness, same amount of texture, and the edges in the same places. SSIM scores all three.",
-  cap="Two patches, the original x and the compressed y, are compared on brightness (means μ), contrast (spreads σ) and structure (correlation σₓᵧ). SSIM = 1 only if they are identical."),
+  cap="Two patches, the original f and the compressed g, are compared on brightness (means), contrast (spreads) and structure (covariance of f and g). SSIM = 1 only if they are identical."),
 3124: dict(d=d3124, stmtKind="ALGORITHM",
-  statement=r"<b>SSIM map and mean SSIM.</b> Slide a window (typically an $11\times11$ Gaussian with $\sigma=1.5$) over the two images and compute $\mathrm{SSIM}(x_j,y_j)$ at each of $W$ positions to form a quality map. The mean SSIM is $\mathrm{MSSIM}(X,Y)=\frac1W\sum_{j=1}^{W}\mathrm{SSIM}(x_j,y_j)$. Multi-scale SSIM (MS-SSIM) repeats the comparison over several downsampled scales.",
+  statement=r"<b>SSIM map and mean SSIM.</b> Slide a window (typically an $11\times11$ Gaussian with $\sigma=1.5$) over the two images and compute $\mathrm{SSIM}(f_j,g_j)$ at each of $W$ positions to form a quality map. The mean SSIM is $\mathrm{MSSIM}(f,g)=\frac1W\sum_{j=1}^{W}\mathrm{SSIM}(f_j,g_j)$. Multi-scale SSIM (MS-SSIM) repeats the comparison over several downsampled scales.",
   hint="Which would you read first to find where the compression hurt, the map or the mean?",
-  breakdown=[r"<strong>$\mathrm{SSIM}(x_j,y_j)$ = the score in one window.</strong> A local comparison, so a damaged patch shows up where it is.",
+  breakdown=[r"<strong>$\mathrm{SSIM}(f_j,g_j)$ = the score in one window.</strong> A local comparison, so a damaged patch shows up where it is.",
              r"<strong>$\frac1W\sum_j$ = the mean of the map.</strong> One number per frame pair, in $[-1,1]$, handy for ranking.",
-             r"<strong>MS-SSIM = several viewing distances.</strong> The comparison is repeated after downsampling, mimicking looking from farther away."],
+             r"<strong>MS-SSIM = several viewing distances.</strong> The comparison is repeated after downsampling, mimicking looking from farther away.",
+             r"<strong>$\text{MS-SSIM}=l_K^{\alpha_K}\prod_{j=1}^{K}c_j^{\beta_j}s_j^{\gamma_j}$ = brightness once, detail at every scale.</strong> Downsampling keeps the mean, so luminance is compared only at the coarsest scale $K$; the weights peak at middle scales, where the eye is most sensitive."],
   conn=r"<strong>Spotting the damaged plate.</strong> The mean SSIM of the compressed frame may be 0.97, but the map has a dark patch exactly over the number plate: the mean hides what the map shows.",
   cap="A window slides over the compressed frame and each position gets a score; the SSIM map is dark where the damage is visible. MSSIM is the average of the map."),
 3125: dict(d=d3125, stmtKind="DEFINITION",
@@ -138,3 +150,11 @@ STORY = {
    f=[["3122", "PSNR"]], n=[["3131", "next: find the edges in the frame"]]),
 }
 FIX = build_fix(CARDS)
+
+# Fields the card builder above does not set (notation and corrections).
+EXTRA = {
+    3123: {"coreTranslation": ["<strong>l</strong> compares local <strong>means</strong> (brightness), <strong>c</strong> compares local <strong>standard deviations</strong> (contrast), and <strong>s</strong> measures the <strong>correlation</strong> between the two patches (structure).", "With $C_3=C_2/2$, $\\mathrm{SSIM}=\\dfrac{(2\\mu_f\\mu_g+C_1)(2\\sigma_{fg}+C_2)}{(\\mu_f^2+\\mu_g^2+C_1)(\\sigma_f^2+\\sigma_g^2+C_2)}$, $C_1=(0.01L)^2$, $C_2=(0.03L)^2$ to avoid division by zero.", "It equals <strong>1 only if the patches are identical</strong>, lies in $[-1,1]$, and it tracks human judgments better than MSE."], "math": "$$\\mathrm{SSIM}(f,g)=\\frac{(2\\mu_f\\mu_g+C_1)(2\\sigma_{fg}+C_2)}{(\\mu_f^2+\\mu_g^2+C_1)(\\sigma_f^2+\\sigma_g^2+C_2)}$$"},
+    3124: {"math": "$$\\mathrm{MSSIM}(f,g)=\\frac{1}{W}\\sum_{j=1}^{W}\\mathrm{SSIM}(f_j,g_j)$$"},
+}
+for _cid, _fields in EXTRA.items():
+    FIX[_cid].update(_fields)

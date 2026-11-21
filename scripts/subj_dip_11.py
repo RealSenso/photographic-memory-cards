@@ -20,8 +20,8 @@ def d3102(c):
     b = 100
     return svg(c,
         axes(16, b, 150, 14), N(150, b + 10, "u", 8, "end"),
-        curve(lambda x: b - 70 * math.exp(-((x - 16) / 50) ** 2), 16, 140, 50, 1), N(100, b - 14, "|H|", 8, "start"),
-        curve(lambda x: max(14, b - 1.5 / (max(.03, math.exp(-((x - 16) / 50) ** 2))) * 6 - 0), 16, 140, 50, 1, "3 2"), N(120, 24, "1/|H|", 8),
+        curve(lambda x: b - 30 * math.exp(-((x - 16) / 50) ** 2), 16, 140, 50, 1), N(70, 82, "|H|", 8, "start"),
+        curve(lambda x: b - 30 / math.exp(-((x - 16) / 50) ** 2), 16, 67.3, 40, 1, "3 2"), N(72, 24, "1/|H|", 8, "start"),
         R(104, 20, 40, 82, "none", .6, 0, "1 3"), N(124, 118, "noise zone", 6.5),
         R(160, 20, 70, 62, "#f1f5f9", 1), N(195, 34, "F̂ = G / H", 8), N(195, 48, "= F + N / H", 8), N(195, 66, "H → 0 ⇒ N/H blows up", 6.5),
         N(120, 138, "the plate turns to snow", 7.5))
@@ -30,17 +30,16 @@ def d3103(c):
     b = 100
     return svg(c,
         axes(16, b, 150, 14), N(150, b + 10, "u", 8, "end"),
-        curve(lambda x: max(14, b - 6 / max(.04, math.exp(-((x - 16) / 50) ** 2))), 16, 140, 50, 1, "3 2"), N(30, 22, "1/H", 7),
-        curve(lambda x: b - 6 * (lambda h: h / (h * h + .05))(math.exp(-((x - 16) / 50) ** 2)) * 2, 16, 140, 50, 1), N(110, 70, "Wiener W", 7, "start"),
+        curve(lambda x: b - 12 / math.exp(-((x - 16) / 50) ** 2), 16, 86.2, 40, 1, "3 2"), N(90, 22, "1/H", 7, "start"),
+        curve(lambda x: b - 12 * (lambda h: h / (h * h + .05))(math.exp(-((x - 16) / 50) ** 2)), 16, 140, 50, 1), N(84, 66, "Wiener W", 7, "start"),
         R(160, 20, 70, 76, "#f1f5f9", 1), N(195, 32, "W =", 8), N(195, 46, "H*", 8), L(176, 50, 214, 50, .8), N(195, 62, "|H|² + S_η/S_f".replace("S_η", "Sη").replace("S_f", "Sf"), 7), N(195, 82, "F̂ = W G", 8),
         N(120, 124, "strong |H|: W ≈ 1/H", 7.5), N(120, 137, "weak |H|: W backs off, noise stays quiet", 7.5))
 
 def d3104(c):
     return svg(c,
         axes(18, 106, 130, 14), N(130, 116, "‖g − Hf‖² (misfit)", 7, "end"), N(14, 14, "‖Pf‖² (roughness)", 7, "start"),
-        curve(lambda x: 106 - 76 / (1 + ((x - 18) / 24) ** 1.5) if x > 18 else 30, 22, 126, 50, 1),
-        dot(62, 66, None, r=2.4), N(66, 62, "γ chosen here (corner)", 7, "start"),
-        N(30, 40, "too smooth", 6.5, "start") if False else "",
+        curve(lambda x: 100 - 72 * (10 / (x - 12)) ** 1.6, 22, 126, 60, 1),
+        dot(34, 79.6, None, r=2.4), N(38, 74, "γ chosen here (corner)", 7, "start"),
         R(150, 20, 80, 70, "#f1f5f9", 1), N(190, 33, "min ‖Pf‖²", 7.5), N(190, 45, "s.t. ‖g − Hf‖² = ‖η‖²", 6.5), N(190, 60, "F̂ = H* G /", 7.5), N(190, 72, "(|H|² + γ|P|²)", 7.5), N(190, 84, "P = Laplacian", 6.5),
         N(120, 134, "no power spectra needed: only the noise size", 7.5))
 
@@ -82,7 +81,7 @@ CARDS = {
   conn=r"<strong>Sharpening the plate too hard.</strong> Undoing the blur frequency by frequency works until the blur has erased a frequency: there the camera only recorded speckle, and dividing by almost zero multiplies that speckle until it covers the plate.",
   cap="The blur |H| falls toward 0 at high u. The inverse 1/|H| (dashed) shoots up there, multiplying the noise: F̂ = G/H = F + N/H."),
 3103: dict(d=d3103, stmtKind="THEOREM",
-  statement=r"<b>Wiener filter.</b> For $g=h\ast f+\eta$ with $f,\eta$ uncorrelated wide-sense stationary with power spectra $S_f,S_\eta$, the linear filter minimizing $E\|f-\hat f\|^2$ is $W(u,v)=\dfrac{H^*(u,v)}{|H(u,v)|^2+S_\eta(u,v)/S_f(u,v)}$, with $\hat F=W\,G$. In practice $S_\eta/S_f$ is replaced by a constant $K$ chosen by eye: $K=0$ gives the inverse filter.",
+  statement=r"<b>Wiener filter.</b> For $g=h\ast f+\eta$ with $f,\eta$ zero-mean, uncorrelated and wide-sense stationary with power spectra $S_f,S_\eta$, the linear filter minimizing $\mathbb E\|f-\hat f\|^2$ is $W(u,v)=\dfrac{H^*(u,v)}{|H(u,v)|^2+S_\eta(u,v)/S_f(u,v)}$, with $\hat F=W\,G$. In practice $S_\eta/S_f$ is replaced by a constant $K$ chosen by eye: $K=0$ gives the inverse filter.",
   hint="How should a restoring filter act where the blur has nearly erased the plate's frequencies?",
   breakdown=[r"<strong>$H^*/|H|^2$ = the inverse where the signal is strong.</strong> When $|H|^2$ is much larger than the noise ratio, $W\approx1/H$ and the blur is undone.",
              r"<strong>$S_\eta/S_f$ in the denominator = a safety margin.</strong> Where $|H|$ is tiny, the margin dominates and $W$ shrinks towards zero instead of exploding.",
@@ -115,6 +114,10 @@ CARDS = {
 CARDS[3106]["breakdown"] += [r"<strong>$W(1)=1/(1+0.05)=0.952$ vs inverse $1$.</strong> Where the signal is strong the two filters are almost the same: Wiener is about the inverse there.",
                              r"<strong>The 6× lower gain is the point.</strong> It gives up a little accuracy (bias) to cut a huge amount of noise (variance); for complex $H$ use $H^*$ on top and $|H|^2$ below, not $1/H$."]
 
+CARDS[3103]["breakdown"] += [r"""<strong>$\partial J/\partial W^*=0\Rightarrow W(|H|^2S_f+S_\eta)=H^*S_f$ = the derivation.</strong> With $J=\mathbb E|F-WG|^2$ and $\mathbb E[FN^*]=0$, this solves to the filter above. Factored, $W=\frac1H\cdot\frac{|H|^2}{|H|^2+1/\mathrm{SNR}}$ with $\mathrm{SNR}=S_f/S_\eta$: $W\to1/H$ as $\mathrm{SNR}\to\infty$, and $W\to0$ as $|H|\to0$.""", r"""<strong>$W=S_{dg}/S_g$ = the general Wiener filter.</strong> To estimate any target $d$ from an observation $g$, divide their cross-spectrum by the spectrum of $g$. For $g_1=f+\eta_1$, $g_2=f+\eta_2$ with all three uncorrelated, estimating $g_1$ from $g_2$ gives $W=S_f/(S_f+S_{\eta_2})$; with no blur and $S_\eta=S_f$, $W=\tfrac12$."""]
+CARDS[3104]["breakdown"] += [r"""<strong>$(H^\top H+\gamma P^\top P)\hat f=H^\top g$ = the Lagrange condition.</strong> Set the gradient of $\|Pf\|^2+\lambda(\|g-Hf\|^2-\|\eta\|^2)$ to zero with $\gamma=1/\lambda$. Block-circulant $H,P$ are diagonalized by the DFT, which gives the per-frequency formula; $\gamma=0$ is the inverse filter, large $\gamma$ is smoother."""]
+CARDS[3105]["breakdown"] += [r"""<strong>Total shift $(a,b)$ over the exposure: $H(u,v)=\operatorname{sinc}(ua+vb)\,e^{-j\pi(ua+vb)}$.</strong> From $g=\frac1T\int_0^Tf(x-\frac{at}T,y-\frac{bt}T)\,dt$ and the shift theorem, with $\operatorname{sinc}t=\frac{\sin\pi t}{\pi t}$. Nulls lie on $ua+vb=k\ne0$. Here $a$ is the total shift, whereas above $a$ is a speed.""", r"""<strong>$H=G/F$ from a known target.</strong> Photograph something you also have in focus under the same setup; where noise is small, the ratio of the two spectra estimates $H$."""]
+
 STORY = {
  3101: dict(s="STORY 5 · STEP 1 · THE DAMAGE", b="The recorded frame is the true scene <b>blurred</b> and then <b>noisy</b>: $g=h\\ast f+\\eta$. Restoration needs a model of both.",
    f=[["3051", "convolution is the blur"], ["3064", "product in frequency"]], n=[["3102", "the naive fix"], ["3105", "what $H$ looks like"]]),
@@ -130,3 +133,12 @@ STORY = {
    f=[["3103", "Wiener"]], n=[["3111", "next: noise that blurring cannot fix"]]),
 }
 FIX = build_fix(CARDS)
+
+# fields not built by build_fix (hidden math, core translation, trap, title): same notation and fixes
+_SWAPS = {3103: {'coreTranslation': [('$E\\|f', '$\\mathbb E\\|f')]}}
+def POST(c):
+    for field, pairs in _SWAPS.get(c["id"], {}).items():
+        v = c.get(field)
+        for a, b in pairs:
+            v = [x.replace(a, b) for x in v] if isinstance(v, list) else v.replace(a, b)
+        c[field] = v

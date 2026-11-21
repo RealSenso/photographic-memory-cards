@@ -19,7 +19,7 @@ def d3042(c):
         axes(18, 112, 130, 14), N(130, 122, "r", 8, "end"), N(14, 18, "s", 8, "end"),
         curve(lambda x: 112 - 92 / (1 + math.exp(-(x - 70) / 12)), 22, 126, 50, 1),
         L(70, 112, 70, 66, .6, "2 3"), L(18, 66, 70, 66, .6, "2 3"),
-        N(78, 56, "slope = (L−1)·p(r)", 7, "start"), N(70, 122, "r", 7), 
+        N(80, 64, "slope = (L−1)·p(r)", 7, "start"), 
         bell(22, 126, 70, 18, 20, 112, .8, "2 2"), N(44, 98, "p(r)", 7),
         R(148, 20, 82, 74, "#f1f5f9", 1), N(189, 34, "ds/dr = (L−1)·p(r)", 7), N(189, 50, "p(s) = p(r)·|dr/ds|", 7), N(189, 66, "= 1/(L−1)", 8), N(189, 84, "flat ✓", 7.5),
         N(120, 138, "busy grey levels get a steep slope: they spread out", 7.5))
@@ -38,12 +38,14 @@ def d3043(c):
     return svg(c, *out)
 
 def d3044(c):
+    S = ((60 - 16) / 96) ** .55          # T(r) at the marked r; G(z) = S gives the marked z, so both dots lie on their curves
+    YS, XZ = round(112 - 88 * S, 1), round(16 + 96 * S ** .5, 1)
     return svg(c,
-        axes(16, 112, 112, 16), N(114, 122, "r , z", 7, "end"), N(10, 18, "level", 7, "start"),
+        axes(16, 112, 112, 16), N(114, 122, "r , z", 7, "end"), N(21, 18, "level", 7, "start"),
         curve(lambda x: 112 - 88 * ((x - 16) / 96) ** .55, 16, 112, 40, 1), N(24, 40, "T(r) (input CDF)", 7, "start"),
-        curve(lambda x: 112 - 88 * ((x - 16) / 96) ** 2, 16, 112, 40, 1, "3 2"), N(76, 100, "G(z) (target CDF)", 7, "start"),
-        dot(60, 64, None, r=1.8), arrow(60, 112, 60, 68, .8), N(60, 122, "r", 7),
-        arrow(60, 64, 98, 64, .8), dash(98, 64, 98, 112, .8, "1 2"), dot(98, 64, None, r=1.8), N(98, 122, "z", 7),
+        curve(lambda x: 112 - 88 * ((x - 16) / 96) ** 2, 16, 112, 40, 1, "3 2"), N(97, 102, "G (target)", 7, "start"),
+        dot(60, YS, None, r=1.8), arrow(60, 112, 60, YS + 4, .8), N(60, 122, "r", 7),
+        arrow(60, YS, XZ - 3, YS, .8), dash(XZ, YS, XZ, 112, .8, "1 2"), dot(XZ, YS, None, r=1.8), N(XZ, 122, "z", 7),
         R(130, 20, 100, 70, "#f1f5f9", 1), N(180, 34, "s = T(r)", 7.5), N(180, 48, "v = G(z)", 7.5), N(180, 64, "set s = v ⇒", 7.5), N(180, 80, "z = G⁻¹[T(r)]", 8),
         N(180, 108, "match one frame's look", 7), N(180, 119, "to another's", 7), N(120, 138, "G is a staircase: take the z with G(z) closest to s", 7))
 
@@ -57,7 +59,7 @@ def d3045(c):
             axes(104, b, 232, 14), N(232, b + 10, "k", 8, "end"), N(100, 18, "h(k)", 7, "end"),
             bell(110, 228, 140, 10, 62, b, 1),
             L(110, 36, 228, 36, .8, "3 2"), N(228, 46, "β (clip)", 7, "end"),
-            R(131, 24, 18, 12, "#d9dee7", .6), N(158, 26, "excess ⇒ spread", 7, "start"), N(176, 36, "over all bins", 7, "start") if False else "",
+            quad([(134.1, 36)] + [(134.1 + i * 11.8 / 16, b - 62 * math.exp(-((134.1 + i * 11.8 / 16 - 140) / 10) ** 2)) for i in range(17)] + [(145.9, 36)], "#d9dee7", None, .6), N(158, 26, "excess ⇒ spread", 7, "start"), N(176, 36, "over all bins", 7, "start") if False else "",
             N(120, 112, "hclip(k) = min(h(k), β)", 8), N(120, 126, "excess = Σ (h(k) − β)⁺ , redistributed evenly", 7.5),
             N(120, 140, "without the clip, flat tiles turn into noise", 7)]
     return svg(c, *out)
@@ -70,9 +72,9 @@ def d3046(c):
     out += [N(18, 12, "p(r)", 7, "start"),
             R(168, 14, 62, 90, "#ffffff", 1)]
     for i in range(8):
-        out.append(N(180, 26 + i * 10.5, f"{i} →", 7, "end"))
-        out.append(N(190, 26 + i * 10.5, str([1, 3, 5, 6, 6, 7, 7, 7][i]), 7.5, "start"))
-    out += [N(215, 26, "merged", 6.5, "start") if False else "", L(204, 70, 204, 100, .6), N(214, 86, "merge", 6.5, "start"), L(204, 46, 204, 56, .6),
+        out.append(N(188, 26 + i * 10.5, f"{i} →", 7, "end"))
+        out.append(N(193, 26 + i * 10.5, str([1, 3, 5, 6, 6, 7, 7, 7][i]), 7.5, "start"))
+    out += [N(215, 26, "merged", 6.5, "start") if False else "", L(204, 52, 204, 69, .6), N(207, 63, "merge", 6.5, "start"), L(204, 73, 204, 100, .6), N(207, 89, "merge", 6.5, "start"),
             N(100, 120, "round(7 × 0.19) = 1, round(7 × 0.44) = 3, round(7 × 0.65) = 5", 7.5),
             N(100, 134, "only five output levels: 1, 3, 5, 6, 7", 7.5)]
     return svg(c, *out)
@@ -128,6 +130,12 @@ CARDS = {
   conn=r"<strong>A tiny frame, a small table.</strong> Eight dark-to-bright levels become five. The crowded dark ones spread out; the sparse bright ones collapse together.",
   cap="The eight input levels and their equalized outputs: 0→1, 1→3, 2→5, 3 and 4→6, 5, 6 and 7→7. Merged levels are why only five levels remain."),
 }
+
+# bridge facts the practice questions and PYQs rely on
+CARDS[3042]["breakdown"] += [r"""<strong>Normalized range $r,s\in[0,1]$ = put $L-1=1$.</strong> Then $s=T(r)=\int_0^r p_r(w)\,dw$; check $T(0)=0$ and $T(1)=1$. For $p_r=\lambda e^{-\lambda r}/(1-e^{-\lambda})$ this gives $T(r)=(1-e^{-\lambda r})/(1-e^{-\lambda})$."""]
+CARDS[3043]["breakdown"] += [r"""<strong>$s'=(L-1)\dfrac{s-s_{\min}}{s_{\max}-s_{\min}}$ = full-scale contrast stretch after equalizing.</strong> $T$ depends only on the bin shares taken in grey-level order, so two frames with the same shares in the same regions get the same output, whatever their actual grey values."""]
+CARDS[3044]["breakdown"] += [r"""<strong>Table form: $v_q=\operatorname{round}[(L-1)G(z_q)]$, pick $z_q$ minimizing $|v_q-s_k|$.</strong> If several $z_q$ tie, take the smallest. The output only approximates $p_z$, because all pixels of one input level move together.""",
+    r"""<strong>Continuous case = solve $s=T(r)$ for $r$.</strong> For the truncated exponential, $T^{-1}(s)=-\frac1\lambda\ln\!\big(1-s(1-e^{-\lambda})\big)$."""]
 
 STORY = {
  3041: dict(s="STORY 2 · STEP 13 · FLATTEN THE HISTOGRAM", b="A dark frame crowds a few levels. <b>Equalization</b> uses the frame's own running total as the curve, spreading the levels.",

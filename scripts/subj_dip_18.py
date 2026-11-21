@@ -8,11 +8,11 @@ def d3171(c):
     out = [frame(8, 16, 44, 34), building(12, 20, 18, 26, 2, 1, "#f1f5f9"), person(40, 48, 22)]
     for (x, y) in ((16, 24), (34, 30), (22, 40)): out.append(R(x, y, 8, 8, "none", .8, 0, "2 2"))
     out += [N(30, 62, "keypoints", 7), arrow(56, 34, 72, 34, 1), N(64, 28, "SIFT", 6.5),
-            N(94, 30, "d₁ … dₙ", 8), N(94, 42, "128-D each", 6.5), arrow(116, 34, 132, 34, 1), N(124, 46, "nearest word", 5.5, "middle"),
+            N(94, 30, "d₁ … dₙ", 8), N(94, 42, "128-D each", 6.5), arrow(116, 34, 132, 34, 1), N(124, 54, "nearest word", 5.5, "middle"),
             N(150, 30, "w(dᵢ)", 8)]
     for i, v in enumerate((3, 1, 4, 2)): out.append(R(176 + i * 12, 54 - v * 8, 10, v * 8, "#d9dee7", .8))
     out += [arrow(166, 34, 176, 34, 1), N(200, 66, "h ∈ ℕᴷ", 7.5),
-            N(120, 92, "I → {dᵢ} → {w(dᵢ)} → h ,  hₖ = #{ i : w(dᵢ) = k }", 8),
+            N(120, 92, "f → {dᵢ} → {w(dᵢ)} → h ,  hₖ = #{ i : w(dᵢ) = k }", 8),
             N(120, 108, "like counting words in a text, order ignored", 7.5), N(120, 122, "same-length signature: easy to compare and index", 7.5),
             N(120, 136, "all geometry is lost (scrambled face, same bag)", 7)]
     return svg(c, *out)
@@ -32,7 +32,7 @@ def d3172(c):
     return svg(c, *out)
 
 def d3173(c):
-    out = [axes(14, 70, 150, 10), N(232, 82, "word k", 7, "end"), N(10, 12, "hₖ", 7.5, "end")]
+    out = [axes(14, 70, 150, 10), N(150, 89, "word k", 7, "end"), N(18, 12, "hₖ", 7.5, "start")]
     vals = [10, 3, 0, 7, 2, 0, 5, 1]
     for i, v in enumerate(vals):
         out += [R(20 + i * 16, 70 - v * 5, 12, v * 5, "#f1f5f9", .8), N(26 + i * 16, 80, str(i + 1), 6.5)]
@@ -64,7 +64,7 @@ def d3175(c):
 
 def d3176(c):
     out = [N(10, 12, "h₁ = (4, 2, 3, 1)", 7.5, "start"), N(130, 12, "h₂ = (2, 1, 1, 6)", 7.5, "start")]
-    for i, v in enumerate((4, 2, 3, 1)): out += [R(12 + i * 24, 60 - v * 8, 18, v * 8, "#f1f5f9", .8), N(21 + i * 24, 70, f"w{'₁₂₃₄'[i]}", 7)]
+    for i, v in enumerate((4, 2, 3, 1)): out += [R(12 + i * 24, 60 - v * 6, 18, v * 6, "#f1f5f9", .8), N(21 + i * 24, 70, f"w{'₁₂₃₄'[i]}", 7)]
     for i, v in enumerate((2, 1, 1, 6)): out += [R(132 + i * 24, 60 - v * 6, 18, v * 6, "#d9dee7", .8), N(141 + i * 24, 70, f"w{'₁₂₃₄'[i]}", 7)]
     out += [N(120, 88, "h₁·h₂ = 8 + 2 + 3 + 6 = 19", 8), N(120, 102, "‖h₁‖ = √30 ≈ 5.477 ,  ‖h₂‖ = √42 ≈ 6.481", 7.5),
             N(120, 118, "cos θ = 19 / (5.477 × 6.481) ≈ 0.535  (θ ≈ 58°)", 8), N(120, 133, "image 1 is w₁-heavy, image 2 is w₄-heavy", 7.5)]
@@ -72,7 +72,7 @@ def d3176(c):
 
 CARDS = {
 3171: dict(d=d3171, stmtKind="DEFINITION",
-  statement=r"<b>Bag of visual words (BoVW).</b> An image $I$ is described by the multiset of its local descriptors $\{d_1,\dots,d_n\}$ (e.g. SIFT). Each descriptor is replaced by the index $w(d_i)\in\{1,\dots,K\}$ of its nearest codeword in a learned vocabulary, and the image is represented by the histogram $\mathbf h\in\mathbb N^K$, $h_k=\#\{i:w(d_i)=k\}$. The representation discards the spatial arrangement of the descriptors.",
+  statement=r"<b>Bag of visual words (BoVW).</b> An image $f$ is described by the multiset of its local descriptors $\{d_1,\dots,d_n\}$ (e.g. SIFT). Each descriptor is replaced by the index $w(d_i)\in\{1,\dots,K\}$ of its nearest codeword in a learned vocabulary, and the image is represented by the histogram $\mathbf h\in\mathbb N^K$, $h_k=\#\{i:w(d_i)=k\}$. The representation discards the spatial arrangement of the descriptors.",
   hint="How can a street frame be summarised as a count of words, the way a book is summarised by word counts?",
   breakdown=[r"<strong>$\{d_1,\dots,d_n\}$ = the patches the camera sees.</strong> Each keypoint on the frame gives one 128-number description, one 'word' in the raw."],
   conn=r"<strong>Which street is this?</strong> The camera finds patches of the shop sign, a lamp, a bus, a window and counts how often each kind of patch appears. Two frames of the same street have similar counts, even if the bus has moved.",
@@ -113,11 +113,13 @@ CARDS[3171]["breakdown"] += [r"<strong>$w(d_i)$ = replace each patch by its near
 CARDS[3172]["breakdown"] += [r"<strong>$\mu_k\leftarrow\frac1{|S_k|}\sum d_i$ = move each word to the middle of its patches.</strong> Assign and update, again and again, until nothing changes.",
                              r"<strong>$K$ = how many words.</strong> Too small merges different patches; too large makes sparse, over-specific bags. k-means can land in local optima, so start it carefully (k-means++)."]
 CARDS[3173]["breakdown"] += [r"<strong>$h_k=\sum_i\mathbf 1[k(i)=k]$ = a length-$K$ count.</strong> One bin per visual word.",
-                             r"<strong>$\mathbf h/\|\mathbf h\|_1$ = proportions.</strong> Normalising makes frames with different numbers of keypoints comparable; without it, big textured frames look similar to everything."]
-CARDS[3174]["breakdown"] += [r"<strong>$\log(N/n_i)$ = how rare the word is.</strong> Large for words found in few images, zero for a word in every image (it is erased).",
+                             r"<strong>$\mathbf h/\|\mathbf h\|_1$ = proportions.</strong> Normalising makes frames with different numbers of keypoints comparable; without it, big textured frames look similar to everything.",
+                             r"<strong>$\sum_k\min(h_k,h_k')$ = histogram intersection.</strong> It counts the votes two bags share. It is a valid SVM kernel because $\min(a,b)=\int_0^\infty\mathbf 1[t\le a]\,\mathbf 1[t\le b]\,dt$ is an inner product, and a sum of kernels is a kernel."]
+CARDS[3174]["breakdown"] += [r"<strong>$\log(N/n_i)$ = how rare the word is.</strong> Large for words found in few images, zero for a word in every image (it is erased). Use the log base the question gives; $\ln$ is common.",
                              r"<strong>Inverted index = jump to the right frames.</strong> Each word lists the images that contain it, so a query only looks at images that share a word with it."]
 CARDS[3175]["breakdown"] += [r"<strong>$\mathbf h^{(1)}_{1..4},\mathbf h^{(2)}_{1..16}$ = a bag for every cell.</strong> The $2\times2$ and $4\times4$ grids record which words occur in which part of the frame.",
-                             r"<strong>$\dim=K(1+4+16)=21K$ = the price.</strong> Finer levels weigh more but each cell has fewer patches, so counts are noisier: a deliberate trade-off."]
+                             r"<strong>$\dim=K(1+4+16)=21K$ = the price.</strong> Finer levels weigh more but each cell has fewer patches, so counts are noisier: a deliberate trade-off.",
+                             r"<strong>$\kappa_L=\frac1{2^L}\mathcal I_0+\sum_{l=1}^L\frac1{2^{L-l+1}}\mathcal I_l$ = the pyramid match kernel.</strong> $\mathcal I_l$ is the histogram intersection summed over the cells of level $l$; for $L=1$ it is $\frac12\mathcal I_0+\frac12\mathcal I_1$. The cells are fixed to the frame, so unlike a plain bag of SIFT words the pyramid is not rotation invariant."]
 CARDS[3176]["breakdown"] += [r"<strong>$\|\mathbf h_1\|=\sqrt{30},\ \|\mathbf h_2\|=\sqrt{42}$ = the lengths.</strong> Dividing by them leaves only the direction, the mix of words.",
                              r"<strong>$\cos\theta\approx0.535$ = moderately alike.</strong> Frame 2 is dominated by $w_4$ and frame 1 by $w_1$. Cosine ignores size, so a big and a small frame with the same proportions score 1."]
 
