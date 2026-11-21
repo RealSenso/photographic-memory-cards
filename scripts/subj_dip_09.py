@@ -29,7 +29,7 @@ def d3082(c):
     out += [arrow(100, 52, 126, 52, 1)]
     for i, v in enumerate([52, -3, 2, 0, 0, 0, 0, 0, 0]):
         out.append(R(130 + i * 11, 40, 11, 14, "#ffffff" if v == 0 else "#e2e6ed", .6)); out.append(N(135.5 + i * 11, 50, str(v), 6.5))
-    out += [N(180, 68, "long run of zeros: cheap to code", 7), N(20, 112, "Ĉ(u,v) = round[ C(u,v) / Q(u,v) ]", 7.5, "start"), N(20, 124, "the only lossy step is the rounding", 7.5, "start"), N(20, 136, "DC (top-left) = block average", 7.5, "start")]
+    out += [N(180, 68, "long run of zeros: cheap to code", 7), N(20, 112, "Ĉ(u,v) = round[ C(u,v) / Q(u,v) ]", 7.5, "start"), N(20, 124, "the only lossy step is the rounding", 7.5, "start"), N(20, 136, "DC (top-left) = 8 × block average", 7.5, "start")]
     return svg(c, *out)
 
 def d3083(c):
@@ -44,7 +44,7 @@ def d3083(c):
                 for j in range(4):
                     if (i + j) % 2 == 0: s += R(x + i * 10, y + j * 10, 10, 10, "#b8c0cc", .4)
         return s + N(x + 20, y + 52, lab, 7)
-    out += [tile(14, 20, "dc", "(0,0) average"), tile(66, 20, "u", "(1,0)"), tile(118, 20, "v", "(0,1)"), tile(170, 20, "ck", "(3,3) fine")]
+    out += [tile(14, 20, "dc", "(0,0) average"), tile(66, 20, "v", "(1,0)"), tile(118, 20, "u", "(0,1)"), tile(170, 20, "ck", "(3,3) fine")]
     out += [N(120, 92, "C = A f Aᵀ ,   f = Aᵀ C A", 8), N(120, 106, "A Aᵀ = I ⇒ no inverse needed", 7.5), N(120, 120, "Σ f² = Σ C²  (energy kept)", 7.5), N(120, 134, "top-left: smooth, bottom-right: fine bricks", 7.5)]
     return svg(c, *out)
 
@@ -87,7 +87,7 @@ CARDS = {
   statement=r"<b>Discrete cosine transform (DCT-II).</b> For a block $f(0),\dots,f(N-1)$: $C(u)=\alpha(u)\sum_{x=0}^{N-1}f(x)\cos\!\Big[\frac{(2x+1)u\pi}{2N}\Big]$, with $\alpha(0)=\sqrt{1/N}$ and $\alpha(u)=\sqrt{2/N}$ for $u\gt0$. It equals the DFT (up to a phase and scale) of the even, mirror-image extension of $f$, so its coefficients are real and there is no boundary discontinuity.",
   hint="Why does JPEG cut the frame into blocks and use cosines, not the plain DFT?",
   breakdown=[r"<strong>$\cos\big[(2x+1)u\pi/2N\big]$ = a cosine that fits the block.</strong> The $(2x+1)/2$ puts the sample in the middle of its cell, so the wave meets the block ends without a jump.",
-             r"<strong>$\sum f(x)\cos[\cdot]$ = how much of that cosine the block has.</strong> A real number for each frequency $u$; $u=0$ is the block average.",
+             r"<strong>$\sum f(x)\cos[\cdot]$ = how much of that cosine the block has.</strong> A real number for each frequency $u$; $C(0)=\sqrt N$ times the block average.",
              r"<strong>$\alpha(u)$ = scale factors that make the transform orthonormal.</strong> Without them the basis would have unequal lengths and energy would not be preserved."],
   conn=r"<strong>One block of the street frame.</strong> The recorder cuts the frame into small blocks. The DFT would treat each block as repeating, creating a jump where the right end meets the left; mirroring the block removes that jump.",
   cap="A block of the street frame, repeated by the DFT, jumps where its right end meets the left (dashed). Mirrored for the DCT it is smooth, so only cosines are needed."),
@@ -98,7 +98,7 @@ CARDS = {
              r"<strong>$\operatorname{round}[C/Q]$ = the lossy step.</strong> Dividing by large numbers at high frequencies and rounding turns the weak coefficients into zeros.",
              r"<strong>Zig-zag order = zeros in one long run.</strong> Walking the block from the top-left corner outward puts the zeros at the end, where run-length coding stores them as one count."],
   conn=r"<strong>Fitting a day of footage on the recorder.</strong> Every $8\times8$ block of the street frame is reduced to a few numbers followed by a long run of zeros. Only the rounding discards information.",
-  cap="After the 8×8 DCT the large coefficients sit top-left (DC = block average). Dividing by Q and rounding gives 52, −3, 2, then zeros along the zig-zag scan."),
+  cap="After the 8×8 DCT the large coefficients sit top-left (DC = 8 × block average). Dividing by Q and rounding gives 52, −3, 2, then zeros along the zig-zag scan."),
 3083: dict(d=d3083, stmtKind="PROPOSITION",
   statement=r"<b>2D DCT as a separable orthonormal transform.</b> The 2D DCT of an $N\times N$ block is $C(u,v)=\alpha(u)\alpha(v)\sum_{x,y}f(x,y)\cos\frac{(2x+1)u\pi}{2N}\cos\frac{(2y+1)v\pi}{2N}$. In matrix form $C=AfA^{\top}$ with $A$ orthogonal ($AA^{\top}=I$), so $f=A^{\top}CA$ and $\sum f^2=\sum C^2$ (Parseval).",
   hint="Why is inverting the DCT as easy as transposing a matrix?",
@@ -106,7 +106,7 @@ CARDS = {
              r"<strong>$AA^{\top}=I$ = orthonormal.</strong> Each basis image has length 1 and is perpendicular to the others, so the inverse is the transpose: $f=A^{\top}CA$.",
              r"<strong>$\sum f^2=\sum C^2$ = no energy gained or lost.</strong> The coefficients are the block rewritten in 64 fixed cosine patterns, from smooth (top-left) to fine checkerboard (bottom-right)."],
   conn=r"<strong>Building a block from patterns.</strong> A block of the shop-front brick wall is a weighted sum of 64 fixed patterns; the coarse ones carry the overall brightness, the fine checkerboards only the brick texture.",
-  cap="Four of the 64 basis images: the flat average (0,0), a left-right split (1,0), a top-bottom split (0,1) and a fine checkerboard (3,3). The block is a weighted sum of them: C = A f Aᵀ."),
+  cap="Four of the 64 basis images: the flat average (0,0), a top-bottom split (1,0), a left-right split (0,1) and a fine checkerboard (3,3). The block is a weighted sum of them: C = A f Aᵀ."),
 3084: dict(d=d3084, stmtKind="THEOREM",
   statement=r"<b>Karhunen–Loève transform (KLT).</b> Let $x$ be a random vector with mean $\mu$ and covariance $C_x$, and let $\varphi_i$ be orthonormal eigenvectors of $C_x$ with eigenvalues $\lambda_1\ge\lambda_2\ge\dots$. The transform $y=\Phi^{\top}(x-\mu)$ has the diagonal covariance $C_y=\Lambda=\operatorname{diag}(\lambda_i)$, and among all orthonormal linear transforms, keeping the first $k$ coefficients gives the smallest mean-squared error $\sum_{i\gt k}\lambda_i$.",
   hint="Which axes of a cloud of neighbouring pixel pairs hold the most variance?",
@@ -133,6 +133,10 @@ CARDS = {
   cap="The covariance [[2, 1], [1, 2]] gives an ellipse with axes φ₁ = (1,1)/√2 (λ₁ = 3) and φ₂ = (1,−1)/√2 (λ₂ = 1); y₁ keeps 75% of the variance."),
 }
 
+CARDS[3081]["breakdown"] += [r"""<strong>Jump $\Rightarrow$ coefficients decay like $1/u$; no jump $\Rightarrow$ like $1/u^2$.</strong> The DFT's periodic copy of a ramp has a step at the boundary, so its coefficients fall slowly. The DCT's mirrored copy is continuous with only a kink, so they fall faster and the energy packs into fewer coefficients."""]
+CARDS[3082]["breakdown"] += [r"""<strong>$(\text{run},\text{level})$ = zeros skipped, then the next non-zero value.</strong> Scan the AC coefficients after DC; an end-of-block (EOB) symbol says every remaining coefficient is zero, so the last long run costs one symbol. The scan covers all 64 positions, so a zero outside a printed sub-block still counts in a run."""]
+CARDS[3084]["breakdown"] += [r"""<strong>$\hat x=\mu+\sum_{i\le k}y_i\varphi_i$ = rebuild from the kept coefficients.</strong> For one sample the squared error is $\sum_{i\gt k}y_i^2$; its expected value over the data is $\sum_{i\gt k}\lambda_i$."""]
+
 STORY = {
  3081: dict(s="STORY 4 · STEP 1 · COSINES FOR BLOCKS", b="To store the street frame in small blocks, mirror each block and use <b>cosines</b>: no jump at the edges, real coefficients.",
    f=[["3061", "the DFT"], ["3014", "work on the Y plane"]], n=[["3082", "JPEG"], ["3083", "the 64 patterns"]]),
@@ -148,3 +152,12 @@ STORY = {
    f=[["3084", "KLT"]], n=[["3091", "next: look at several scales at once"]]),
 }
 FIX = build_fix(CARDS)
+
+# fields not built by build_fix (hidden math, core translation, trap, title): same notation and fixes
+_SWAPS = {3082: {'coreTranslation': [('with DC the block average', 'with DC proportional to the block average')]}, 3083: {'math': [('A^{T}', 'A^{\\top}')], 'coreTranslation': [('A^{T}', 'A^{\\top}')]}, 3084: {'math': [('\\Phi^{T}', '\\Phi^{\\top}')], 'coreTranslation': [('\\Phi^{T}', '\\Phi^{\\top}')]}}
+def POST(c):
+    for field, pairs in _SWAPS.get(c["id"], {}).items():
+        v = c.get(field)
+        for a, b in pairs:
+            v = [x.replace(a, b) for x in v] if isinstance(v, list) else v.replace(a, b)
+        c[field] = v
