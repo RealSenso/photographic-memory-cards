@@ -37,7 +37,7 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
  },
  "40103": {
   "s": "STORY 1 · STEP 3 · THE LENS AND SENSOR",
-  "b": "$K$ counts everything in <b>pixels</b>: focal length $f_x,f_y$, principal point $(c_x,c_y)$, skew $s$.",
+  "b": "$K$ counts everything in <b>pixels</b>: focal length $\u0007lpha_x,\u0007lpha_y$, principal point $(c_x,c_y)$, skew $s$.",
   "f": [
    [
     "40102",
@@ -701,7 +701,7 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
  },
  "3061": {
   "s": "STORY 3 · STEP 7 · THE FREQUENCY VIEW",
-  "b": "The <b>DFT</b> rewrites the frame as stripe patterns of every frequency; a fence is just a pair of bright dots.",
+  "b": "The <b>DFT</b> rewrites the frame as stripe patterns of every frequency; a fence is mainly one pair of bright dots.",
   "f": [
    [
     "3051",
@@ -837,7 +837,7 @@ window.STORY_DATA = Object.assign(window.STORY_DATA || {}, {
  },
  "3072": {
   "s": "STORY 3 · STEP 14 · HOW FINE IS FINE ENOUGH",
-  "b": "If the copies do not overlap ($f_s\\ge2f_{\\max}$) the frame can be rebuilt exactly with a <b>sinc</b>.",
+  "b": "If the copies do not overlap ($f_s\\gt2u_{\\max}$) the frame can be rebuilt exactly with a <b>sinc</b>.",
   "f": [
    [
     "3071",
