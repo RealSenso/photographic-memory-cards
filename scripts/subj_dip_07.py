@@ -14,10 +14,10 @@ def d3061(c):
         N(40, 12, "fence in the frame f", 7), stripes(10, 18, 60, 44, 6), N(40, 74, "6 stripes across", 6.5),
         arrow(74, 40, 98, 40, 1), N(86, 34, "DFT", 7),
         N(160, 12, "F(u, v)", 7.5), R(104, 18, 112, 44, "#ffffff", 1),
-        C(160, 40, 2, "#000000"), C(184, 40, 2, "#ffffff", 1), C(136, 40, 2, "#ffffff", 1), N(160, 54, "DC", 6.5), N(184, 34, "u = 6", 6.5),
+        C(160, 40, 2, "#000000"), C(184, 40, 2, "#ffffff", 1), C(136, 40, 2, "#ffffff", 1), N(160, 54, "DC", 6.5), N(184, 34, "v = 6", 6.5),
         N(120, 92, "F(u,v) = ΣΣ f(x,y) e^(−j2π(ux/M + vy/N))", 7.5),
         N(120, 106, "kernel = row wave × column wave ⇒ rows, then columns", 7.5),
-        N(120, 120, "FFT: O(MN log MN)", 7.5), N(120, 134, "the fence = one pair of bright dots", 7.5))
+        N(120, 120, "FFT: O(MN log MN)", 7.5), N(120, 134, "the fence = one main pair of bright dots", 7.5))
 
 def d3062(c):
     return svg(c,
@@ -25,7 +25,7 @@ def d3062(c):
         C(18, 22, 2.2), N(20, 90, "DC at the corner", 6.5, "start"), C(82, 22, 1.5), C(18, 74, 1.5), C(82, 74, 1.5),
         arrow(92, 48, 118, 48, 1), N(105, 42, "× (−1)^(x+y)", 6),
         N(172, 12, "centred", 7), R(124, 18, 96, 60, "#ffffff", 1), L(172, 18, 172, 78, .5, "2 2"), L(124, 48, 220, 48, .5, "2 2"),
-        C(172, 48, 2.2), N(176, 60, "DC", 6.5, "start"), C(196, 36, 1.8, "#ffffff", 1), C(148, 60, 1.8, "#ffffff", 1), N(200, 33, "F(u,v)", 6.5, "start"), N(144, 72, "F*(−u,−v)", 6.5, "end"),
+        C(172, 48, 2.2), N(176, 60, "DC", 6.5, "start"), C(196, 36, 1.8, "#ffffff", 1), C(148, 60, 1.8, "#ffffff", 1), N(200, 33, "F(u,v)", 6.5, "start"), N(128, 73, "F*(−u,−v)", 6.5, "start"),
         N(120, 104, "periodic: F(u + M, v) = F(u, v)", 7.5),
         N(120, 118, "real f ⇒ F(u,v) = F*(−u,−v): half is redundant", 7.5),
         N(120, 132, "ℱ{ f (−1)^(x+y) } = F(u − M/2, v − N/2)", 7.5))
@@ -45,26 +45,31 @@ def d3064(c):
     def seq(y, vals, lab, shade=()):
         return N(8, y + 11, lab, 7, "start") + pix(40, y, [vals], 13, 7, set((0, i) for i in shade))
     return svg(c,
-        seq(6, [1, 2, 3, 4, "", "", ""], "f (M=4)", ()), seq(26, [1, 0, -1, "", "", "", ""], "h (K=3)"),
+        seq(6, [1, 2, 3, 4, 0, 0], "f (M=4)", (4, 5)), seq(26, [1, 0, -1, 0, 0, 0], "h (K=3)", (3, 4, 5)),
         N(142, 20, "← zero-padded to", 7, "start") if False else "",
         N(138, 16, "P = 7 ≥ M + K − 1 = 6", 7, "start") if False else "",
         N(200, 16, "P ≥ M+K−1", 7, "start") if False else "",
-        N(140, 12, "pad both to P:", 7, "start"), N(140, 22, "P ≥ M+K−1", 7, "start"),
+        N(128, 16, "shaded = padding", 7, "start"), N(128, 28, "P = M + K − 1 = 6", 7, "start"),
         L(8, 48, 232, 48, .5),
-        N(8, 62, "F · H", 7.5, "start"), N(46, 62, "= ℱ{ f ⊛ h }  (circular)", 7.5, "start"),
-        N(8, 82, "no padding: the tail wraps round to the start", 7.5, "start"),
-        pix(40, 90, [[-2, 2, 2, 2, -3, -4]], 14, 7, {(0, 0), (0, 1)}), N(128, 100, "← wrap ✗", 7, "start") if False else N(132, 101, "wrapped ends ✗", 7, "start"),
-        N(8, 124, "with padding: circular = linear (f ∗ h)", 7.5, "start"),
-        N(120, 138, "padding the same size P in both dimensions", 7))
+        N(8, 59, "F · H = ℱ{ f ⊛ h }  (circular)", 7.5, "start"),
+        N(8, 72, "P = 4, no padding: −3, −4 wrap onto the start", 7, "start"),
+        pix(40, 76, [[-2, -2, 2, 2]], 14, 7, {(0, 0), (0, 1)}), N(102, 86, "wrong first two ✗", 7, "start"),
+        N(8, 103, "P = 6: circular = linear f ∗ h", 7, "start"),
+        pix(40, 107, [[1, 2, 2, 2, -3, -4]], 14, 7), N(128, 117, "correct ✓", 7, "start"),
+        N(120, 134, "pad to the same P in each dimension", 7))
 
 def d3065(c):
-    cx, cy = 56, 58
+    cx, cy = 56, 50
+    th = math.radians(30.7)          # the same angle as the spoke drawn in the spectrum
+    pt = lambda t, s: (round(cx + t * math.cos(th) + s * math.sin(th), 1), round(cy - t * math.sin(th) + s * math.cos(th), 1))   # t along direction θ, s along the ray
     return svg(c,
-        N(56, 10, "street slice f(x, y)", 7), circ(cx, cy, 20, "#f1f5f9", 1), 
-        *[L(f(cx - 40 + k * 10), f(cy - 28 + k * 7), f(cx + 40 + k * 10 - 20 * 0), f(cy - 28 + k * 7 + 0), .5) for k in range(0)],
-        *[arrow(34 + k * 11, 14, 34 + k * 11, 100 - 0, .6) if False else L(f(34 + k * 11), 16, f(34 + k * 11), 92, .5, "2 3") for k in range(5)],
-        N(20, 108, "p_θ(t) = sum along each ray".replace("p_θ", "pθ"), 7, "start"),
-        curve(lambda x: 124 - 10 * math.exp(-((x - 56) / 14) ** 2), 20, 92, 40, 1), N(56, 136, "t", 7),
+        N(56, 10, "street slice f(x, y)", 7), circ(cx, cy, 18, "#f1f5f9", 1),
+        *[L(*pt(k * 9, -32), *pt(k * 9, 30), .5, "2 3") for k in range(-2, 3)],
+        L(*pt(-36, 36), *pt(36, 36), .8),
+        poly([pt(t, 36 + 11 * math.exp(-(t / 15) ** 2)) for t in range(-34, 35, 2)], 1),
+        N(*pt(39, 39), "t", 7),
+        N(10, 122, "pθ(t) = sum along each ray", 7, "start"),
+        N(10, 134, "rays ⟂ direction θ", 7, "start"),
         arrow(116, 62, 136, 62, 1), N(126, 54, "1D DFT", 6.5),
         R(140, 20, 90, 84, "#ffffff", 1), L(185, 20, 185, 104, .5, "2 2"), L(140, 62, 230, 62, .5, "2 2"),
         L(185, 62, 222, 40, 1), C(185, 62, 2), N(214, 34, "ρ", 7), N(196, 52, "θ", 7, "start"),
@@ -84,11 +89,11 @@ CARDS = {
 3061: dict(d=d3061, stmtKind="DEFINITION",
   statement=r"<b>2D discrete Fourier transform.</b> For an $M\times N$ image $f(x,y)$, $F(u,v)=\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}f(x,y)\,e^{-j2\pi(ux/M+vy/N)}$, with inverse $f(x,y)=\frac1{MN}\sum_{u,v}F(u,v)\,e^{j2\pi(ux/M+vy/N)}$. The kernel is separable, so $F$ is computed by 1D DFTs along the rows and then along the columns, and with the FFT in $O(MN\log MN)$ operations.",
   hint="Which two bright dots would the fence's stripes put in the frequency picture?",
-  breakdown=[r"<strong>$e^{-j2\pi(ux/M+vy/N)}$ = a wave of frequency $(u,v)$.</strong> A stripe pattern across the frame; $u$ counts stripes along $x$, $v$ along $y$.",
+  breakdown=[r"<strong>$e^{-j2\pi(ux/M+vy/N)}$ = a wave of frequency $(u,v)$.</strong> A stripe pattern across the frame; $u$ counts stripes along $x$ (down the rows), $v$ along $y$ (across the columns).",
              r"<strong>$\sum\sum f(x,y)\,e^{-j2\pi(\cdot)}$ = how much of that wave the frame contains.</strong> Multiply the frame by the wave and add up: a big total means the frame has that stripe pattern.",
              r"<strong>Separable kernel = rows, then columns.</strong> The 2D wave is a product of a row wave and a column wave, so two sweeps of the 1D FFT give $F$ cheaply."],
-  conn=r"<strong>The fence in the street.</strong> A fence with six stripes across the frame shows up as one pair of bright dots at $u=\pm6$: the DFT says how much of each stripe pattern the frame holds, and nothing about where the fence is.",
-  cap="A fence of 6 stripes across the street frame f gives F(u, v) with a bright dot at the origin (DC) and a pair at u = ±6. F(u,v) = ΣΣ f(x,y)·e^(−j2π(ux/M + vy/N))."),
+  conn=r"<strong>The fence in the street.</strong> A fence with six stripes across the frame shows up as one main pair of bright dots at $v=\pm6$: the magnitude says how much of each stripe pattern the frame holds, and nothing about where the fence is.",
+  cap="A fence of 6 stripes across the street frame f gives F(u, v) with a bright dot at the origin (DC) and a main pair at v = ±6 (the stripes vary across the columns). F(u,v) = ΣΣ f(x,y)·e^(−j2π(ux/M + vy/N))."),
 3062: dict(d=d3062, stmtKind="PROPOSITION",
   statement=r"<b>Periodicity, symmetry and centring.</b> $F(u,v)$ is periodic: $F(u+M,v)=F(u,v+N)=F(u,v)$. For real $f$, $F(u,v)=F^*(-u,-v)$, so $|F|$ is symmetric about the origin. For even $M,N$, $\mathcal F\{f(x,y)(-1)^{x+y}\}=F(u-\tfrac M2,v-\tfrac N2)$, which moves the zero-frequency term to the centre of the array.",
   hint="Why does the raw spectrum show its brightest dot in a corner, and how do you move it to the middle?",
@@ -112,7 +117,7 @@ CARDS = {
              r"<strong>$\circledast$ = the frame wraps round.</strong> The DFT treats the frame as one tile of an endless repeating pattern, so the kernel pulls in pixels from the opposite border.",
              r"<strong>$P\ge M+K-1$ = enough zeros to stop the wrap.</strong> Pad both $f$ and $h$ to the same size $P$ in each dimension; then the tail lands in empty space, and circular equals linear."],
   conn=r"<strong>Blurring the street frame through the spectrum.</strong> Without padding the right edge of the frame leaks into the left edge and a bright shopfront bleeds across the border. Pad first and the blur matches the sliding-kernel result.",
-  cap="Signal f (M = 4) and kernel h (K = 3) multiplied in frequency. Without padding the tail wraps to the start (circular); padding both to P ≥ M + K − 1 = 6 gives the true linear f ∗ h."),
+  cap="Signal f (M = 4) and kernel h (K = 3) multiplied in frequency. With P = 4 the tail −3, −4 wraps onto the start and gives [−2, −2, 2, 2]; padding both to P = M + K − 1 = 6 gives the true linear f ∗ h = [1, 2, 2, 2, −3, −4]."),
 3065: dict(d=d3065, stmtKind="THEOREM",
   statement=r"<b>Central slice (projection-slice) theorem.</b> Let $p_\theta(t)=\int f(t\cos\theta-s\sin\theta,\ t\sin\theta+s\cos\theta)\,ds$ be the projection of $f$ along rays perpendicular to the direction $\theta$ (the Radon transform). Then $\int p_\theta(t)\,e^{-j2\pi\rho t}\,dt=F(\rho\cos\theta,\rho\sin\theta)$: the 1D Fourier transform of the projection is the slice of the 2D transform through the origin at angle $\theta$.",
   hint="If a scanner adds up the street along parallel rays, which line of the 2D spectrum do you get?",
@@ -131,8 +136,17 @@ CARDS = {
   cap="The 2×2 patch f = [[1, 2], [3, 4]] gives F = [[10, −2], [−4, 0]]: DC = 10, left/right contrast −2, top/bottom contrast −4, checkerboard 0."),
 }
 
+# bridge facts the practice questions and PYQs rely on
+CARDS[3061]["breakdown"] += [r"""<strong>DSFT: $F(\omega_1,\omega_2)=\sum_m\sum_n f(m,n)\,e^{-j(\omega_1m+\omega_2n)}$.</strong> It is $2\pi$-periodic in each frequency, and the DFT is its samples at $\omega_1=2\pi u/M,\ \omega_2=2\pi v/N$.""",
+    r"""<strong>CSFT: $\operatorname{rect}(x/a)\operatorname{rect}(y/b)\leftrightarrow ab\operatorname{sinc}(ua)\operatorname{sinc}(vb)$, with $\operatorname{sinc}w=\frac{\sin\pi w}{\pi w}$.</strong> Nulls lie at $u=\pm m/a$ and $v=\pm n/b$. Scaling: $f(x/a,y/b)\leftrightarrow|ab|F(au,bv)$, so a narrower slit gives a wider lobe. Rotating $f$ rotates $F$ by the same angle."""]
+CARDS[3062]["breakdown"] += [r"""<strong>Real and even $f$ gives real, even $F$; real and odd $f$ gives imaginary, odd $F$.</strong> Here even and odd are taken modulo $(M,N)$, since the DFT is periodic.""",
+    r"""<strong>Ideal band on the DFT circle: $H(u)=1$ for $|u|\le N/2$ ($N$ even) has $h(m)=\frac1M\frac{\sin(\pi(N+1)m/M)}{\sin(\pi m/M)}$.</strong> The band wraps by periodicity. If $M=N+1$ every bin is 1, so $h=\delta$ and nothing is filtered."""]
+CARDS[3063]["breakdown"] += [r"""<strong>Shift theorem: $f(x-x_0,y-y_0)\leftrightarrow F(u,v)\,e^{-j2\pi(ux_0/M+vy_0/N)}$.</strong> A shift changes only the phase, never $|F|$. Dually, multiplying $f$ by $e^{j2\pi(u_0x/M+v_0y/N)}$ moves $F$ to $F(u-u_0,v-v_0)$."""]
+CARDS[3065]["breakdown"] += [r"""<strong>Filtered backprojection: $f(x,y)=\int_0^\pi\!\int P_\theta(\rho)\,|\rho|\,e^{j2\pi\rho(x\cos\theta+y\sin\theta)}\,d\rho\,d\theta$.</strong> $P_\theta$ is the 1D transform of $p_\theta$. The factor $|\rho|$ is the polar Jacobian (the ramp filter), which corrects the crowding of spokes near the origin."""]
+CARDS[3066]["breakdown"] += [r"""<strong>Parseval: $\sum_{x,y}|f(x,y)|^2=\frac1{MN}\sum_{u,v}|F(u,v)|^2$.</strong> Check on this patch: $1+4+9+16=30$ and $\frac14(100+4+16+0)=30$."""]
+
 STORY = {
- 3061: dict(s="STORY 3 · STEP 7 · THE FREQUENCY VIEW", b="The <b>DFT</b> rewrites the frame as stripe patterns of every frequency; a fence is just a pair of bright dots.",
+ 3061: dict(s="STORY 3 · STEP 7 · THE FREQUENCY VIEW", b="The <b>DFT</b> rewrites the frame as stripe patterns of every frequency; a fence is mainly one pair of bright dots.",
    f=[["3051", "filters seen in space"]], n=[["3062", "how to read the spectrum"], ["3064", "filtering by multiplying"]]),
  3062: dict(s="STORY 3 · STEP 8 · READING THE SPECTRUM", b="The spectrum repeats and mirrors for real frames; <b>centring</b> puts DC in the middle.",
    f=[["3061", "the DFT"]], n=[["3063", "magnitude and phase"]]),
