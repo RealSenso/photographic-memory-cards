@@ -1248,7 +1248,7 @@
             <h1 class="paper-title">${card.title}</h1>
             ${card.breakdown ? `${storyHtml(card)}<div class="lstack">${card.hint ? `<p class="cardhint"><b>HINT</b>${card.hint}</p>` : ''}
               ${card.statement && card.part !== 2 ? `<section class="sect st"><h2>${card.stmtKind || 'THEOREM'}</h2><p class="stmt">${card.statement}</p></section>` : ''}
-              ${card.subject === 'StoMA' ? '' : `<section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>`}
+              ${['StoMA', 'DIP'].includes(card.subject) ? '' : `<section class="sect m"><h2>THE MATH</h2><div class="mathbox">${card.math}</div></section>`}
               <section class="sect b"><h2>THE BREAKDOWN</h2><div class="info">${card.breakdown.map(b => `<div class="pt"><p>${b}</p></div>`).join('')}</div></section></div>`
               : `<div class="info">${infoHtml(card)}</div>`}
           </div>
